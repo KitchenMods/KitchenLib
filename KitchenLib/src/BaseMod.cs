@@ -7,8 +7,7 @@ namespace KitchenLib
 {
 	public abstract class BaseMod : MelonMod
 	{
-		public override void OnApplicationStart() {
-			base.OnApplicationStart();
+		public BaseMod() : base() {
 			ModRegistery.Register(this);
 		}
 
