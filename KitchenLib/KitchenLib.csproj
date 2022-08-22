@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net4.7</TargetFramework>
+    <PlateUpGameFolder>C:\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp</PlateUpGameFolder>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="MelonLoader">
+      <HintPath>$(PlateUpGameFolder)\MelonLoader\MelonLoader.dll</HintPath>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(PlateUpGameFolder)\MelonLoader\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitchen">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="KitchenMode">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\KitchenMode.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitchen.GameData">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.GameData.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitchen.RestaurantMode">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.RestaurantMode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Serialization">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Unity.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Entities">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Unity.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Sirenix.Serialization.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="CopyToPlateUp" AfterTargets="Build">
+    <Message Text="Copying KitchenLib to PlateUp Mods folder" Importance="High" />
+    <Copy SourceFiles="$(OutputPath)\KitchenLib.dll" DestinationFolder="$(PlateUpGameFolder)\Mods" ContinueOnError="false" />
+  </Target>
+</Project>
