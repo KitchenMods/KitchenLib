@@ -1,7 +1,7 @@
 using System;
 namespace KitchenLib
 {
-    [AttributeUsage(AttributeTarget.Assembly)]
+    [AttributeUsage(AttributeTargets.Assembly)]
     public class KitchenLibAttribute : Attribute
     {
         public string modID {get; internal set; }
