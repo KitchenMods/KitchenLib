@@ -4,14 +4,14 @@ namespace KitchenLib
     [AttributeUsage(AttributeTargets.Assembly)]
     public class KitchenLibAttribute : Attribute
     {
-        public string modID {get; internal set; }
+        public string ModID {get; internal set; }
 
-        public string[] modDependancies {get; internal set;}
+        public string[] ModDependancies {get; internal set;}
 
         public KitchenLibAttribute(string modId, string[] modDependancies = null)
         {
-            this.modID = modID;
-            this.modDependancies = modDependancies;
+            ModID = modId;
+            ModDependancies = modDependancies;
         }
     }
 }
