@@ -5,6 +5,16 @@ namespace KitchenLib.Appliances
 {
 	public class CustomApplianceInteractionSystem : InteractionSystem
 	{
+		protected override bool AllowActOrGrab
+		{
+			get { return true; }
+		}
+
+		protected override bool AllowAnyMode
+		{
+			get { return true; }
+		}
+
 		protected override bool IsPossible(ref InteractionData data) {
 			CustomApplianceInfo applianceInfo = GetApplianceFromInteraction(ref data);
 			if(applianceInfo == null || applianceInfo.OnCheckInteractPossible == null)
@@ -22,7 +32,7 @@ namespace KitchenLib.Appliances
 		}
 
 		private CustomApplianceInfo GetApplianceFromInteraction(ref InteractionData data) {
-			if(!base.Require<CAppliance>(data.Interactor, out var appliance))
+			if(!base.Require<CAppliance>(data.Target, out var appliance))
 				return null;
 			
 			CustomApplianceInfo applianceInfo = CustomAppliances.Get(appliance.ID);

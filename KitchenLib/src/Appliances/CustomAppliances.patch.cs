@@ -16,6 +16,7 @@ namespace KitchenLib.Appliances
 				newApp.Description = info.Description;
 				newApp.Info = new LocalisationObject<ApplianceInfo>();
 				newApp.name = $"{newApp.Name}(Clone)";
+				newApp.Processes.Clear();
 				info.Appliance = newApp;
 
 				newApp.SetupForGame();
