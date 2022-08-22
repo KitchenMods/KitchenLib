@@ -12,5 +12,9 @@ namespace KitchenLib.Appliances
 			Mod.Log($"Registered appliance '{info.ModName}:{info.Name}' as {info.ID}");
 			return info.ID;
 		}
+
+		public static CustomApplianceInfo Get(int id) {
+			return Appliances[id];
+		}
 	}
 }
