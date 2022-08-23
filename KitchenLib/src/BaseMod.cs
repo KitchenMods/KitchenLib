@@ -7,9 +7,12 @@ namespace KitchenLib
 {
 	public abstract class BaseMod : MelonMod
 	{
-		public BaseMod() : base() {
-			ModRegistery.Register(this);
-		}
+		public string ModName;
+		public string ModVersion;
+        
+        public BaseMod() : base() {
+            ModRegistery.Register(this);
+        }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Log(string message) {

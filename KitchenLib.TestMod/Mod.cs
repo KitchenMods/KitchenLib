@@ -5,8 +5,9 @@ namespace KitchenLib.TestMod
 	public class Mod : BaseMod
 	{
 		public Mod() : base() { }
-
 		public override void OnApplicationStart() {
+			ModName = Info.Name;
+			ModVersion = Info.Version;
 			base.OnApplicationStart();
 			RegisterCustomAppliance(new CustomApplianceInfo() {
 				Name                    = "Testing Terminal",
