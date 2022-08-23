@@ -22,20 +22,9 @@ namespace KitchenLib.Appliances
 			return info.ID;
 		}
 
-		/*
-		 * Temporary fix for the Github issue #1
-		 */
 		public static CustomApplianceInfo Get(int id) {
-			if (Appliances.ContainsKey(id))
-				return Appliances[id];
-			else
-				return null;
+			Appliances.TryGetValue(id, out var result);
+			return result;
 		}
-		/*
-        public static CustomApplianceInfo Get(int id)
-        {
-			return Appliances[id];
-        }
-		*/
     }
 }
