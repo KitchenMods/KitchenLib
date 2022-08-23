@@ -9,12 +9,10 @@ namespace KitchenLib.Appliances
 		public static int Register(CustomApplianceInfo info) {
 			if (info.ID == 0)
 				info.ID = info.GetHash();
-			if (Appliances.ContainsKey(info.ID))
-            {
+			if (Appliances.ContainsKey(info.ID)){
                 Mod.Error("Appliance: " + info.Name + " failed to register - key:" + info.ID + " already in use. Generating custom key. " + info.GetHash());
                 info.ID = info.GetHash();
-				if (Appliances.ContainsKey(info.GetHash()))
-				{
+				if (Appliances.ContainsKey(info.GetHash())){
                     Mod.Error("Appliance: " + info.Name + " failed to register - key:" + info.GetHash() + " Unable to generate custom key.");
 					return -1;
                 }
