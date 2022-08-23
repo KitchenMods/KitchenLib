@@ -30,7 +30,10 @@ namespace KitchenLib.Appliances
 
 			applianceInfo.OnInteract(data);
 		}
-		
+        /*
+		 * You're trying to get the appliance info of a custom appliance, but you're not checking if that appliance exists.
+		 * It is throwing errors in Unity when you are highlighting an appliance that isn't custom, as the appliance.ID won't exist in CustomAppliances
+		 */
         private CustomApplianceInfo GetApplianceFromInteraction(ref InteractionData data) {
 			if(!base.Require<CAppliance>(data.Target, out var appliance))
 				return null;
