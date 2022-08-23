@@ -2,6 +2,7 @@ using System;
 using Kitchen;
 using KitchenData;
 using KitchenLib.Utils;
+using UnityEngine;
 
 namespace KitchenLib.Appliances
 {
@@ -13,6 +14,7 @@ namespace KitchenLib.Appliances
 		public string Description;
 		public int BaseApplianceId = -1248669347;
 		public int BasePrefabId = -1248669347;
+		public GameObject Prefab;
 
 		public Func<InteractionData, bool> OnCheckInteractPossible;
 		public Action<InteractionData> OnInteract;

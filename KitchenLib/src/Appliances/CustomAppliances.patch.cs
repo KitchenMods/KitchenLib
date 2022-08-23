@@ -18,10 +18,17 @@ namespace KitchenLib.Appliances
 				newApp.name = $"{newApp.Name}(Clone)";
 				newApp.Processes.Clear();
 
-				if(info.BasePrefabId != info.BaseApplianceId) {
-					var prefabApp = UnityEngine.Object.Instantiate(__result.Get<Appliance>().FirstOrDefault(a => a.ID == info.BasePrefabId));
-					newApp.Prefab = prefabApp.Prefab;
+				if (info.Prefab == null){
+					if (info.BasePrefabId != info.BaseApplianceId){
+						var prefabApp = UnityEngine.Object.Instantiate(__result.Get<Appliance>().FirstOrDefault(a => a.ID == info.BasePrefabId));
+						newApp.Prefab = prefabApp.Prefab;
+					}
 				}
+				else {
+                    newApp.Prefab = info.Prefab;
+                }
+
+				
 
 				info.Appliance = newApp;
 
