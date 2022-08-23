@@ -57,7 +57,7 @@ namespace KitchenLib
         public override void Setup(int player_id)
         {
             AddLabel("Loaded Mods");
-            
+
             foreach (BaseMod mod in ModRegistery.Registered.Values)
             {
                 if (mod.ModName != null && mod.ModVersion != null)

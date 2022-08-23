@@ -14,8 +14,8 @@ namespace KitchenLib.Appliances
 		{
 			get { return true; }
 		}
-
-		protected override bool IsPossible(ref InteractionData data) {
+        
+        protected override bool IsPossible(ref InteractionData data) {	
 			CustomApplianceInfo applianceInfo = GetApplianceFromInteraction(ref data);
 			if(applianceInfo == null || applianceInfo.OnCheckInteractPossible == null)
 				return false;
@@ -30,8 +30,8 @@ namespace KitchenLib.Appliances
 
 			applianceInfo.OnInteract(data);
 		}
-
-		private CustomApplianceInfo GetApplianceFromInteraction(ref InteractionData data) {
+		
+        private CustomApplianceInfo GetApplianceFromInteraction(ref InteractionData data) {
 			if(!base.Require<CAppliance>(data.Target, out var appliance))
 				return null;
 			
