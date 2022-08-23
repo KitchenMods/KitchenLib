@@ -12,6 +12,7 @@ namespace KitchenLib.TestMod
 			RegisterCustomAppliance(new CustomApplianceInfo() {
 				Name                    = "Testing Terminal",
 				Description             = "This is how we test things, from a terminal!",
+				BasePrefabId            = -1610332021,
 				OnCheckInteractPossible = (data) => true,
 				OnInteract              = (data) => Mod.Log($"Interacting! {data.Attempt.Mode} {data.Attempt.Type}")
 			});

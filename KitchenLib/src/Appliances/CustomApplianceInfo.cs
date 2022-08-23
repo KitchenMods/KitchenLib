@@ -12,6 +12,7 @@ namespace KitchenLib.Appliances
 		public string Name;
 		public string Description;
 		public int BaseApplianceId = -1248669347;
+		public int BasePrefabId = -1248669347;
 
 		public Func<InteractionData, bool> OnCheckInteractPossible;
 		public Action<InteractionData> OnInteract;
