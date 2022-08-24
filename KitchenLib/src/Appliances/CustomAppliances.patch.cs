@@ -26,8 +26,9 @@ namespace KitchenLib.Appliances
 				} else {
 					newApp.Prefab = appliance.Prefab;
 				}
-				
+
 				appliance.Appliance = newApp;
+				appliance.OnRegister(newApp);
 
 				newApp.SetupForGame();
 				newApp.Localise(Localisation.CurrentLocale, __result.Substitutions);
