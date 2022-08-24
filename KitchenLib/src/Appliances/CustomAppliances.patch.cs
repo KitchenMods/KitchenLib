@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using HarmonyLib;
 using KitchenData;
+using KitchenLib.Utils;
 
 namespace KitchenLib.Appliances
 {
@@ -9,6 +10,7 @@ namespace KitchenLib.Appliances
 	class GameDataConstructor_Patch
 	{
 		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result) {
+			MaterialUtils.SetupMaterialIndex(__result);
 			foreach(var appliance in CustomAppliances.Appliances.Values) {
 				var newApp = UnityEngine.Object.Instantiate(__result.Get<Appliance>().FirstOrDefault(a => a.ID == appliance.BaseApplianceId));
 				newApp.ID = appliance.ID;
