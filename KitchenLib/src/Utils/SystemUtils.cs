@@ -10,6 +10,7 @@ namespace KitchenLib.Utils
 		}
 
 		public static T AddSystem<T>() where T : GenericSystemBase, new() {
+			Mod.Log($"Registered system '{typeof(T).ToString()}'");
 			return World.DefaultGameObjectInjectionWorld.AddSystem<T>(new T());
 		}
 	}
