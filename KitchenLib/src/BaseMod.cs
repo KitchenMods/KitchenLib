@@ -1,7 +1,10 @@
-using MelonLoader;
+using System;
 using System.Runtime.CompilerServices;
+using MelonLoader;
+using Kitchen;
 using KitchenLib.Registry;
 using KitchenLib.Appliances;
+using KitchenLib.Utils;
 
 namespace KitchenLib
 {
@@ -24,7 +27,12 @@ namespace KitchenLib
 			MelonLogger.Error(message);
 		}
 
-		public bool RegisterCustomAppliance<T>() where T : CustomAppliance, new()  {
+		[Obsolete("Use the AddAppliance method instead")]
+		public T RegisterCustomAppliance<T>() where T : CustomAppliance, new()  {
+			return AddAppliance<T>();
+		}
+
+		public T AddAppliance<T>() where T : CustomAppliance, new()  {
 			T appliance = new T();
 			appliance.ModName = Info.Name;
 			return CustomAppliances.Register(appliance);

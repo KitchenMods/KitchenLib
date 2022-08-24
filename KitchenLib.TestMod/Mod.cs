@@ -8,7 +8,7 @@ namespace KitchenLib.TestMod
 		
 		public override void OnApplicationStart() {
 			base.OnApplicationStart();
-			RegisterCustomAppliance<TestingTerminalAppliance>();
+			AddAppliance<TestingTerminalAppliance>();
 		}
 	}
 }
