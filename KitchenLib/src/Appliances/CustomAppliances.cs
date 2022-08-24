@@ -8,19 +8,19 @@ namespace KitchenLib.Appliances
 		public static Dictionary<int, CustomAppliance> Appliances = new Dictionary<int, CustomAppliance>();
 		private static Dictionary<Type, CustomAppliance> appliancesByType = new Dictionary<Type, CustomAppliance>();
 
-		public static bool Register(CustomAppliance appliance) {
+		public static T Register<T>(T appliance) where T : CustomAppliance {
 			if (appliance.ID == 0)
 				appliance.ID = appliance.GetHash();
 
 			if (Appliances.ContainsKey(appliance.ID)){
 				Mod.Error("Appliance: " + appliance.Name + " failed to register - key:" + appliance.ID + " already in use. Generating custom key. " + appliance.GetHash());
-				return false;
+				return null;
 			}
 			
 			Appliances.Add(appliance.ID, appliance);
 			appliancesByType.Add(appliance.GetType(), appliance);
 			Mod.Log($"Registered appliance '{appliance.ModName}:{appliance.Name}' as {appliance.ID}");
-			return true;
+			return appliance;
 		}
 
 		public static CustomAppliance Get(int id) {
