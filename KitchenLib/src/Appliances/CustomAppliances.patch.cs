@@ -31,8 +31,10 @@ namespace KitchenLib.Appliances
 				}
 
 				var newAppHasPrefab = newApp as IHasPrefab;
-				if(newAppHasPrefab != null)
+				if(newAppHasPrefab != null) {
 					newApp.Prefab = UnityEngine.Object.Instantiate(prefab);
+					newApp.Prefab.transform.position = new UnityEngine.Vector3(1000000.0f, 1000000.0f, 1000000.0f);
+				}
 
 				appliance.Appliance = newApp;
 				appliance.OnRegister(newApp);
