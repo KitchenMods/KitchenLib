@@ -7,8 +7,8 @@ namespace KitchenLib
 {
 	public abstract class BaseMod : MelonMod
 	{
-		public string ModName;
-		public string ModVersion;
+		public string ModName { get { return Info.Name; } }
+		public string ModVersion { get { return Info.Version; } }
         
         public BaseMod() : base() {
             ModRegistery.Register(this);
@@ -24,9 +24,10 @@ namespace KitchenLib
 			MelonLogger.Error(message);
 		}
 
-		public int RegisterCustomAppliance(CustomApplianceInfo info) {
-			info.ModName = Info.Name;
-			return CustomAppliances.Register(info);
+		public bool RegisterCustomAppliance<T>() where T : CustomAppliance, new()  {
+			T appliance = new T();
+			appliance.ModName = Info.Name;
+			return CustomAppliances.Register(appliance);
 		}
 	}
 }
