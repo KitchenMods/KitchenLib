@@ -12,6 +12,7 @@ namespace KitchenLib.Appliances
 		public virtual int ID { get; internal set; }
 		public virtual string Name { get { return "Custom Appliance"; } }
 		public virtual string Description { get { return ""; } }
+		public virtual ShoppingTags ShoppingTags { get { return ShoppingTags.None; } }
 		public virtual int BaseApplianceId { get { return -1248669347; } }
 		public virtual int BasePrefabId { get { return -1248669347; } }
 		public GameObject Prefab { get { return null; } }
