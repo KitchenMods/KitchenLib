@@ -2,6 +2,10 @@ using MelonLoader;
 using System.Runtime.CompilerServices;
 using KitchenLib.Registry;
 using KitchenLib.Appliances;
+using Kitchen;
+using HarmonyLib;
+using UnityEngine;
+using KitchenLib.Utils;
 
 namespace KitchenLib
 {
@@ -24,10 +28,12 @@ namespace KitchenLib
 			MelonLogger.Error(message);
 		}
 
-		public bool RegisterCustomAppliance<T>() where T : CustomAppliance, new()  {
+		public CustomAppliance RegisterCustomAppliance<T>() where T : CustomAppliance, new()  {
 			T appliance = new T();
 			appliance.ModName = Info.Name;
-			return CustomAppliances.Register(appliance);
+			if (CustomAppliances.Register(appliance))
+				return appliance;
+			else return null;
 		}
-	}
+    }
 }

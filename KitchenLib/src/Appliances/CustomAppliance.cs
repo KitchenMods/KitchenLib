@@ -15,7 +15,7 @@ namespace KitchenLib.Appliances
 		public virtual ShoppingTags ShoppingTags { get { return ShoppingTags.None; } }
 		public virtual int BaseApplianceId { get { return -1248669347; } }
 		public virtual int BasePrefabId { get { return -1248669347; } }
-		public GameObject Prefab { get { return null; } }
+		public virtual GameObject Prefab { get { return null; } }
 
 		public Appliance Appliance { get; internal set; }
 

@@ -7,6 +7,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KitchenLib\KitchenLib.csproj" />
+    <Reference Include="0Harmony">
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp\MelonLoader\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitchen.RestaurantMode">
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp\PlateUp_Data\Managed\Kitchen.RestaurantMode.dll</HintPath>
+    </Reference>
     <Reference Include="MelonLoader">
       <HintPath>$(PlateUpGameFolder)\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>
@@ -16,11 +22,20 @@
     <Reference Include="Kitchen.GameData">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.GameData.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Entities">
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp\PlateUp_Data\Managed\Unity.Entities.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp\PlateUp_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp\PlateUp_Data\Managed\UnityEngine.InputModule.dll</HintPath>
     </Reference>
   </ItemGroup>
 

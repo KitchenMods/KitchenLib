@@ -9,6 +9,7 @@ namespace KitchenLib.TestMod
 {
 	public class TestingTerminalAppliance : CustomAppliance
 	{
+
 		public override string Name {
 			get { return "Test Appliance"; }
 		}
@@ -16,12 +17,16 @@ namespace KitchenLib.TestMod
 		public override string Description {
 			get { return "It's an appliance for testing things"; }
 		}
-
-		public override void OnRegister(Appliance appliance) {
-			MaterialUtils.ApplyMaterial(appliance.Prefab, "OrderMachine/Base_L_Counter.blend", new Material[] { /* ... */ });
+        public override GameObject Prefab {
+			get { return null; }
 		}
 
-		public override void OnInteract(InteractionData data) {
+        public override void OnRegister(Appliance appliance) {
+            MaterialUtils.ApplyMaterial(appliance.Prefab, "Counter2/Counter Surface", new Material[] { MaterialUtils.GetExistingMaterial("Blueprint Light") });
+		}
+        
+
+        public override void OnInteract(InteractionData data) {
 			Mod.Log("Hey, don't you touch me!");
 		}
 
