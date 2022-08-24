@@ -2,29 +2,27 @@ using System.Collections.Generic;
 
 namespace KitchenLib.Appliances
 {
-	public partial class CustomAppliances
+	public class CustomAppliances
 	{
-		public static Dictionary<int, CustomApplianceInfo> Appliances = new Dictionary<int, CustomApplianceInfo>();
+		public static Dictionary<int, CustomAppliance> Appliances = new Dictionary<int, CustomAppliance>();
 
-		public static int Register(CustomApplianceInfo info) {
-			if (info.ID == 0)
-				info.ID = info.GetHash();
-			if (Appliances.ContainsKey(info.ID)){
-                Mod.Error("Appliance: " + info.Name + " failed to register - key:" + info.ID + " already in use. Generating custom key. " + info.GetHash());
-                info.ID = info.GetHash();
-				if (Appliances.ContainsKey(info.GetHash())){
-                    Mod.Error("Appliance: " + info.Name + " failed to register - key:" + info.GetHash() + " Unable to generate custom key.");
-					return -1;
-                }
+		public static bool Register(CustomAppliance appliance) {
+			if (appliance.ID == 0)
+				appliance.ID = appliance.GetHash();
+
+			if (Appliances.ContainsKey(appliance.ID)){
+				Mod.Error("Appliance: " + appliance.Name + " failed to register - key:" + appliance.ID + " already in use. Generating custom key. " + appliance.GetHash());
+				return false;
 			}
-			Appliances.Add(info.ID, info);
-			Mod.Log($"Registered appliance '{info.ModName}:{info.Name}' as {info.ID}");
-			return info.ID;
+			
+			Appliances.Add(appliance.ID, appliance);
+			Mod.Log($"Registered appliance '{appliance.ModName}:{appliance.Name}' as {appliance.ID}");
+			return true;
 		}
 
-		public static CustomApplianceInfo Get(int id) {
+		public static CustomAppliance Get(int id) {
 			Appliances.TryGetValue(id, out var result);
 			return result;
 		}
-    }
+	}
 }

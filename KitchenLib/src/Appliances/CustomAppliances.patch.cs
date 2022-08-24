@@ -6,31 +6,29 @@ using KitchenData;
 namespace KitchenLib.Appliances
 {
 	[HarmonyPatch(typeof(GameDataConstructor), "BuildGameData", new Type[] { })]
-	public partial class CustomAppliances
+	class GameDataConstructor_Patch
 	{
 		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result) {
-			foreach(var info in CustomAppliances.Appliances.Values) {
-				var newApp = UnityEngine.Object.Instantiate(__result.Get<Appliance>().FirstOrDefault(a => a.ID == info.BaseApplianceId));
-				newApp.ID = info.ID;
-				newApp.Name = info.Name;
-				newApp.Description = info.Description;
+			foreach(var appliance in CustomAppliances.Appliances.Values) {
+				var newApp = UnityEngine.Object.Instantiate(__result.Get<Appliance>().FirstOrDefault(a => a.ID == appliance.BaseApplianceId));
+				newApp.ID = appliance.ID;
+				newApp.Name = appliance.Name;
+				newApp.Description = appliance.Description;
 				newApp.Info = new LocalisationObject<ApplianceInfo>();
 				newApp.name = $"{newApp.Name}(Clone)";
 				newApp.Processes.Clear();
 
-				if (info.Prefab == null){
-					if (info.BasePrefabId != info.BaseApplianceId){
-						var prefabApp = UnityEngine.Object.Instantiate(__result.Get<Appliance>().FirstOrDefault(a => a.ID == info.BasePrefabId));
+				if (appliance.Prefab == null){
+					if (appliance.BasePrefabId != appliance.BaseApplianceId){
+						var prefabApp = UnityEngine.Object.Instantiate(__result.Get<Appliance>().FirstOrDefault(a => a.ID == appliance.BasePrefabId));
 						newApp.Prefab = prefabApp.Prefab;
 					}
+				} else {
+					newApp.Prefab = appliance.Prefab;
 				}
-				else {
-                    newApp.Prefab = info.Prefab;
-                }
 
-				
-
-				info.Appliance = newApp;
+				appliance.Appliance = newApp;
+				appliance.OnRegister(newApp);
 
 				newApp.SetupForGame();
 				newApp.Localise(Localisation.CurrentLocale, __result.Substitutions);

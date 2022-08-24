@@ -16,29 +16,27 @@ namespace KitchenLib.Appliances
 		}
         
         protected override bool IsPossible(ref InteractionData data) {	
-			CustomApplianceInfo applianceInfo = GetApplianceFromInteraction(ref data);
-			if(applianceInfo == null || applianceInfo.OnCheckInteractPossible == null)
+			CustomAppliance customAppliance = GetApplianceFromInteraction(ref data);
+			if(customAppliance == null)
 				return false;
 
-			return applianceInfo.OnCheckInteractPossible(data);
+			return customAppliance.OnCheckInteractPossible(data);
 		}
 		
 		protected override void Perform(ref InteractionData data) {
-			CustomApplianceInfo applianceInfo = GetApplianceFromInteraction(ref data);
-			if(applianceInfo == null || applianceInfo.OnInteract == null)
-				return;
-
-			applianceInfo.OnInteract(data);
+			CustomAppliance customAppliance = GetApplianceFromInteraction(ref data);
+			customAppliance?.OnInteract(data);
 		}
-        private CustomApplianceInfo GetApplianceFromInteraction(ref InteractionData data) {
+		
+        private CustomAppliance GetApplianceFromInteraction(ref InteractionData data) {
 			if(!base.Require<CAppliance>(data.Target, out var appliance))
 				return null;
 			
-			CustomApplianceInfo applianceInfo = CustomAppliances.Get(appliance.ID);
-			if(applianceInfo == null || applianceInfo.Appliance == null)
+			CustomAppliance customAppliance = CustomAppliances.Get(appliance.ID);
+			if(customAppliance == null || customAppliance.Appliance == null)
 				return null;
 
-			return applianceInfo;
+			return customAppliance;
 		}
 	}
 }
