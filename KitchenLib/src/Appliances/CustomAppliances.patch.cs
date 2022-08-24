@@ -21,14 +21,18 @@ namespace KitchenLib.Appliances
 				newApp.name = $"{newApp.Name}(Clone)";
 				newApp.Processes.Clear();
 
-				if (appliance.Prefab == null){
-					if (appliance.BasePrefabId != appliance.BaseApplianceId){
-						var prefabApp = UnityEngine.Object.Instantiate(__result.Get<Appliance>().FirstOrDefault(a => a.ID == appliance.BasePrefabId));
-						newApp.Prefab = prefabApp.Prefab;
-					}
-				} else {
-					newApp.Prefab = appliance.Prefab;
+				UnityEngine.GameObject prefab = newApp.Prefab;
+				if(appliance.Prefab != null) {
+					prefab = appliance.Prefab;
+				} else if(appliance.BasePrefabId != appliance.BaseApplianceId) {
+					var prefabAppliance = __result.Get<Appliance>().FirstOrDefault(a => a.ID == appliance.BasePrefabId);
+					if(prefabAppliance)
+						prefab = prefabAppliance.Prefab;
 				}
+
+				var newAppHasPrefab = newApp as IHasPrefab;
+				if(newAppHasPrefab != null)
+					newApp.Prefab = UnityEngine.Object.Instantiate(prefab);
 
 				appliance.Appliance = newApp;
 				appliance.OnRegister(newApp);
@@ -37,8 +41,8 @@ namespace KitchenLib.Appliances
 				newApp.Localise(Localisation.CurrentLocale, __result.Substitutions);
 
 				__result.Objects.Add(newApp.ID, newApp);
-				if(newApp as IHasPrefab != null)
-					__result.Prefabs.Add(newApp.ID, (newApp as IHasPrefab).Prefab);
+				if(newAppHasPrefab != null)
+					__result.Prefabs.Add(newApp.ID, newAppHasPrefab.Prefab);
 			}
 
 			foreach(var info in CustomAppliances.Appliances.Values)
