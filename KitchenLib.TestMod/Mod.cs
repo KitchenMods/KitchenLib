@@ -14,18 +14,5 @@ namespace KitchenLib.TestMod
 			base.OnApplicationStart();
 			d = AddAppliance<TestingTerminalAppliance>();
         }
-        [HarmonyPatch(typeof(ProvideStartingEnvelopes), "OnUpdate")]
-        class ProvideStartingEnvelopes_Patch
-        {
-            [HarmonyPostfix]
-            static void Postfix(ProvideStartingEnvelopes __instance)
-            {
-                if (Input.GetKeyDown(KeyCode.T))
-                {
-                    SpawnUtils.SpawnApplianceBlueprint(Mod.d.ID, 0f, -1);
-                }
-            }
-
-        }
     }
 }
