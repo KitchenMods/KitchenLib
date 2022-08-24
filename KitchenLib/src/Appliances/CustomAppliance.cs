@@ -1,7 +1,7 @@
-using System;
 using Kitchen;
 using KitchenData;
 using KitchenLib.Utils;
+using UnityEngine;
 
 namespace KitchenLib.Appliances
 {
@@ -14,6 +14,7 @@ namespace KitchenLib.Appliances
 		public virtual string Description { get { return ""; } }
 		public virtual int BaseApplianceId { get { return -1248669347; } }
 		public virtual int BasePrefabId { get { return -1248669347; } }
+		public GameObject Prefab { get { return null; } }
 
 		public Appliance Appliance { get; internal set; }
 
