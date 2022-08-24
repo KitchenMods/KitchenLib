@@ -18,6 +18,9 @@
     <Reference Include="KitchenMode">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\KitchenMode.dll</HintPath>
     </Reference>
+    <Reference Include="Kitchen.FranchiseMode">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.FranchiseMode.dll</HintPath>
+    </Reference>
     <Reference Include="Kitchen.GameData">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.GameData.dll</HintPath>
     </Reference>
@@ -35,6 +38,9 @@
     </Reference>
     <Reference Include="Unity.Entities">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Unity.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Serialization">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Sirenix.Serialization.dll</HintPath>
