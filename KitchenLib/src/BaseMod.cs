@@ -37,5 +37,9 @@ namespace KitchenLib
 			appliance.ModName = Info.Name;
 			return CustomAppliances.Register(appliance);
 		}
+
+		public T AddSystem<T>() where T : GenericSystemBase, new() {
+			return SystemUtils.AddSystem<T>();
+		}
 	}
 }
