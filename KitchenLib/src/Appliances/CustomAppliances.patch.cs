@@ -11,6 +11,11 @@ namespace KitchenLib.Appliances
 	{
 		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result) {
 			MaterialUtils.SetupMaterialIndex(__result);
+
+			var prefabHostObject = new UnityEngine.GameObject();
+			prefabHostObject.name = "Custom Appliance Prefab Host";
+			prefabHostObject.SetActive(false);
+
 			foreach(var appliance in CustomAppliances.Appliances.Values) {
 				var newApp = UnityEngine.Object.Instantiate(__result.Get<Appliance>().FirstOrDefault(a => a.ID == appliance.BaseApplianceId));
 				newApp.ID = appliance.ID;
@@ -33,7 +38,7 @@ namespace KitchenLib.Appliances
 				var newAppHasPrefab = newApp as IHasPrefab;
 				if(newAppHasPrefab != null) {
 					newApp.Prefab = UnityEngine.Object.Instantiate(prefab);
-					newApp.Prefab.transform.position = new UnityEngine.Vector3(1000000.0f, 1000000.0f, 1000000.0f);
+					newApp.Prefab.transform.SetParent(prefabHostObject.transform);
 				}
 
 				appliance.Appliance = newApp;
