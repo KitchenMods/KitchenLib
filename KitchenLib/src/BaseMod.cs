@@ -12,8 +12,14 @@ namespace KitchenLib
 	{
 		public string ModName { get { return Info.Name; } }
 		public string ModVersion { get { return Info.Version; } }
-        
-        public BaseMod() : base() {
+
+		public string ModID;
+		public string[] TestedVersions;
+		public string[] ModDependencies;
+
+
+        public BaseMod(string modID, string[] testedVersions, string[] modDependencies = null) : base() {
+            ModID = modID; TestedVersions = testedVersions; ModDependencies = modDependencies;
             ModRegistery.Register(this);
         }
 
