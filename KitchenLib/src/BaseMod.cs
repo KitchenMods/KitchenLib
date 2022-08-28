@@ -5,6 +5,8 @@ using Kitchen;
 using KitchenLib.Registry;
 using KitchenLib.Appliances;
 using KitchenLib.Utils;
+using UnityEngine;
+using Semver;
 
 namespace KitchenLib
 {
@@ -12,14 +14,18 @@ namespace KitchenLib
 	{
 		public string ModName { get { return Info.Name; } }
 		public string ModVersion { get { return Info.Version; } }
-
+        
 		public string ModID;
-		public string[] TestedVersions;
+		public string CompatibleVersions;
 		public string[] ModDependencies;
 
-
-        public BaseMod(string modID, string[] testedVersions, string[] modDependencies = null) : base() {
-            ModID = modID; TestedVersions = testedVersions; ModDependencies = modDependencies;
+		public static KitchenVersion version = new KitchenVersion(Application.version);
+		public static SemVersion semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
+        
+            
+        public BaseMod(string modID, string compatibleVersions, string[] modDependencies = null) : base() {
+            
+            ModID = modID; CompatibleVersions = compatibleVersions; ModDependencies = modDependencies;
             ModRegistery.Register(this);
         }
 

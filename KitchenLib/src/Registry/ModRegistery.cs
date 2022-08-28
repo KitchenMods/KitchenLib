@@ -9,7 +9,6 @@ namespace KitchenLib.Registry
 	public class ModRegistery
 	{
 		public static Dictionary<Type, BaseMod> Registered = new Dictionary<Type, BaseMod>();
-		public static string GameVersion = Application.version.Split(' ')[1].Substring(1).Remove(Application.version.Split(' ')[1].Substring(1).Length - 1, 1);
 
 
 		public static BaseMod Get<T>() {
@@ -22,7 +21,7 @@ namespace KitchenLib.Registry
 
 		public static bool isModSafeForVersion(BaseMod mod)
 		{
-			if (mod.TestedVersions.Contains(GameVersion))
+			if (Mod.semVersion.SatisfiesNpm(mod.CompatibleVersions))
 				return true;
 			return false;
 		}
