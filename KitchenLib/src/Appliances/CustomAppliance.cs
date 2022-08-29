@@ -48,7 +48,7 @@ namespace KitchenLib.Appliances
 
         public string ModName { get; internal set; }
         public virtual int BaseApplianceId { get { return -1; } }
-		public virtual int BasePrefabId { get { return -1; } }
+		public virtual int BasePrefabId { get { return BaseApplianceId; } }
 
 		public Appliance Appliance { get; internal set; }
 
