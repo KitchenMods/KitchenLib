@@ -17,14 +17,51 @@ namespace KitchenLib.Appliances
 			prefabHostObject.SetActive(false);
 
 			foreach(var appliance in CustomAppliances.Appliances.Values) {
-				var newApp = UnityEngine.Object.Instantiate(__result.Get<Appliance>().FirstOrDefault(a => a.ID == appliance.BaseApplianceId));
-				newApp.ID = appliance.ID;
-				newApp.Name = appliance.Name;
-				newApp.Description = appliance.Description;
+				Appliance newApp;
+				if (appliance.BaseApplianceId != -1)
+				{
+					newApp = UnityEngine.Object.Instantiate(__result.Get<Appliance>().FirstOrDefault(a => a.ID == appliance.BaseApplianceId));
+                    newApp.ID = appliance.ID;
+                }
+				else
+				{
+                    newApp = UnityEngine.Object.Instantiate(__result.Get<Appliance>().FirstOrDefault(a => a.ID == -1248669347));
+					newApp.ID = appliance.ID;
+					if (appliance.CrateItem != null) newApp.CrateItem = appliance.CrateItem;
+					if (appliance.EffectCondition != null) newApp.EffectCondition = appliance.EffectCondition;
+					if (appliance.EffectRange != null) newApp.EffectRange = appliance.EffectRange;
+					if (appliance.EffectRepresentation != null) newApp.EffectRepresentation = appliance.EffectRepresentation;
+					if (appliance.EffectType != null) newApp.EffectType = appliance.EffectType;
+					if (appliance.HeldAppliancePrefab != null) newApp.HeldAppliancePrefab = appliance.HeldAppliancePrefab;
+					if (appliance.Prefab != null) newApp.Prefab = appliance.Prefab;
+					if (appliance.Processes != null) newApp.Processes = appliance.Processes;
+					if (appliance.Properties != null) newApp.Properties = appliance.Properties;
+					if (appliance.RequiresForShop != null) newApp.RequiresForShop = appliance.RequiresForShop;
+					if (appliance.RequiresProcessForShop != null) newApp.RequiresProcessForShop = appliance.RequiresProcessForShop;
+					if (appliance.Sections != null) newApp.Sections = appliance.Sections;
+					if (appliance.Tags != null) newApp.Tags = appliance.Tags;
+					if (appliance.Upgrades != null) newApp.Upgrades = appliance.Upgrades;
+					newApp.Description = appliance.Description;
+					newApp.EntryAnimation = appliance.EntryAnimation;
+					newApp.ExitAnimation = appliance.ExitAnimation;
+					newApp.ForceHighInteractionPriority = appliance.ForceHighInteractionPriority;
+					newApp.IsAnUpgrade = appliance.IsAnUpgrade;
+					newApp.IsNonCrated = appliance.IsNonCrated;
+					newApp.IsNonInteractive = appliance.IsNonInteractive;
+					newApp.IsPurchasable = appliance.IsPurchasable;
+					newApp.IsPurchasableAsUpgrade = appliance.IsPurchasableAsUpgrade;
+					newApp.Layer = appliance.Layer;
+					newApp.Name = appliance.Name;
+					newApp.PreventSale = appliance.PreventSale;
+					newApp.RarityTier = appliance.RarityTier;
+					newApp.SellOnlyAsDuplicate = appliance.SellOnlyAsDuplicate;
+					newApp.ShoppingTags = appliance.ShoppingTags;
+					newApp.ShopRequirementFilter = appliance.ShopRequirementFilter;
+					newApp.SkipRotationAnimation = appliance.SkipRotationAnimation;
+					newApp.ThemeRequired = appliance.ThemeRequired;
+                }
 				newApp.Info = new LocalisationObject<ApplianceInfo>();
-				newApp.ShoppingTags = appliance.ShoppingTags;
 				newApp.name = $"{newApp.Name}(Clone)";
-				//newApp.Processes.Clear();
 
 				UnityEngine.GameObject prefab = newApp.Prefab;
 				if(appliance.Prefab != null) {
