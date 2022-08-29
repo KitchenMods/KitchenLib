@@ -19,10 +19,20 @@ namespace KitchenLib.TestMod
 		}
         public override GameObject Prefab {
 			get { return null; }
-		}
+        }
+
+        public override int BaseApplianceId
+        {
+            get { return -1029710921; }
+        }
+
+		public override int BasePrefabId
+        {
+            get { return -1029710921; }
+        }
 
         public override void OnRegister(Appliance appliance) {
-            MaterialUtils.ApplyMaterial(appliance.Prefab, "Counter2/Counter Surface", new Material[] { MaterialUtils.GetExistingMaterial("Blueprint Light") });
+            //MaterialUtils.ApplyMaterial(appliance.Prefab, "Counter2/Counter Surface", new Material[] { MaterialUtils.GetExistingMaterial("Blueprint Light") });
 		}
         
 

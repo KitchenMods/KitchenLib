@@ -24,7 +24,7 @@ namespace KitchenLib.Appliances
 				newApp.Info = new LocalisationObject<ApplianceInfo>();
 				newApp.ShoppingTags = appliance.ShoppingTags;
 				newApp.name = $"{newApp.Name}(Clone)";
-				newApp.Processes.Clear();
+				//newApp.Processes.Clear();
 
 				UnityEngine.GameObject prefab = newApp.Prefab;
 				if(appliance.Prefab != null) {
