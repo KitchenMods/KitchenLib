@@ -32,6 +32,22 @@ namespace KitchenLib.TestMod
         }
 
         public override void OnRegister(Appliance appliance) {
+			Mod.Log("Listing Processes");
+			Mod.Log(appliance.Processes.Count.ToString());
+			foreach (Appliance.ApplianceProcesses proc in appliance.Processes)
+			{
+				Mod.Log("Process: " + proc.Process.name);
+				Mod.Log("ID: " + proc.Process.ID);
+				Mod.Log("Info: " + proc.Process.Info);
+				Mod.Log("IsPseudoprocessFor: " + proc.Process.IsPseudoprocessFor);
+				Mod.Log("BasicEnablingAppliance: " + proc.Process.BasicEnablingAppliance);
+				Mod.Log("CanObfuscateProgress: " + proc.Process.CanObfuscateProgress);
+				Mod.Log("EnablingApplianceCount: " + proc.Process.EnablingApplianceCount);
+				Mod.Log("Icon: " + proc.Process.Icon);
+				Mod.Log("IsAutomatic: " + proc.IsAutomatic);
+				Mod.Log("Speed: " + proc.Speed);
+				Mod.Log("Validity: " + proc.Validity);
+			}
             //MaterialUtils.ApplyMaterial(appliance.Prefab, "Counter2/Counter Surface", new Material[] { MaterialUtils.GetExistingMaterial("Blueprint Light") });
 		}
         
