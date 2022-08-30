@@ -9,9 +9,9 @@ namespace KitchenLib.TestMod
 {
 	public class TestingTerminalAppliance : CustomAppliance
 	{
-        public override int BasePrefabId
+        public override string Name
         {
-            get { return -26827118; }
+            get { return "Custom Appliance Lol"; }
         }
     }
 }
