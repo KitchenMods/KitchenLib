@@ -1,8 +1,10 @@
 using System;
 using System.Linq;
 using HarmonyLib;
+using Kitchen;
 using KitchenData;
 using KitchenLib.Utils;
+using System.Collections.Generic;
 
 namespace KitchenLib.Appliances
 {
@@ -17,83 +19,106 @@ namespace KitchenLib.Appliances
 			prefabHostObject.SetActive(false);
 
 			foreach(var appliance in CustomAppliances.Appliances.Values) {
-				Appliance newApp;
-				if (appliance.BaseApplianceId != -1)
-				{
-					newApp = UnityEngine.Object.Instantiate(__result.Get<Appliance>().FirstOrDefault(a => a.ID == appliance.BaseApplianceId));
-                    newApp.ID = appliance.ID;
+
+                var newApp = createApp(__result, appliance);
+
+                UnityEngine.GameObject prefab = newApp.Prefab;
+                if (appliance.Prefab != null)
+                {
+                    prefab = appliance.Prefab;
                 }
-				else
-				{
-                    newApp = UnityEngine.Object.Instantiate(__result.Get<Appliance>().FirstOrDefault(a => a.ID == -1248669347));
-					newApp.ID = appliance.ID;
-					if (appliance.CrateItem != null) newApp.CrateItem = appliance.CrateItem;
-					if (appliance.EffectCondition != null) newApp.EffectCondition = appliance.EffectCondition;
-					if (appliance.EffectRange != null) newApp.EffectRange = appliance.EffectRange;
-					if (appliance.EffectRepresentation != null) newApp.EffectRepresentation = appliance.EffectRepresentation;
-					if (appliance.EffectType != null) newApp.EffectType = appliance.EffectType;
-					if (appliance.HeldAppliancePrefab != null) newApp.HeldAppliancePrefab = appliance.HeldAppliancePrefab;
-					if (appliance.Prefab != null) newApp.Prefab = appliance.Prefab;
-					if (appliance.Processes != null) newApp.Processes = appliance.Processes;
-					if (appliance.Properties != null) newApp.Properties = appliance.Properties;
-					if (appliance.RequiresForShop != null) newApp.RequiresForShop = appliance.RequiresForShop;
-					if (appliance.RequiresProcessForShop != null) newApp.RequiresProcessForShop = appliance.RequiresProcessForShop;
-					if (appliance.Sections != null) newApp.Sections = appliance.Sections;
-					if (appliance.Tags != null) newApp.Tags = appliance.Tags;
-					if (appliance.Upgrades != null) newApp.Upgrades = appliance.Upgrades;
-					newApp.Description = appliance.Description;
-					newApp.EntryAnimation = appliance.EntryAnimation;
-					newApp.ExitAnimation = appliance.ExitAnimation;
-					newApp.ForceHighInteractionPriority = appliance.ForceHighInteractionPriority;
-					newApp.IsAnUpgrade = appliance.IsAnUpgrade;
-					newApp.IsNonCrated = appliance.IsNonCrated;
-					newApp.IsNonInteractive = appliance.IsNonInteractive;
-					newApp.IsPurchasable = appliance.IsPurchasable;
-					newApp.IsPurchasableAsUpgrade = appliance.IsPurchasableAsUpgrade;
-					newApp.Layer = appliance.Layer;
-					newApp.Name = appliance.Name;
-					newApp.PreventSale = appliance.PreventSale;
-					newApp.RarityTier = appliance.RarityTier;
-					newApp.SellOnlyAsDuplicate = appliance.SellOnlyAsDuplicate;
-					newApp.ShoppingTags = appliance.ShoppingTags;
-					newApp.ShopRequirementFilter = appliance.ShopRequirementFilter;
-					newApp.SkipRotationAnimation = appliance.SkipRotationAnimation;
-					newApp.ThemeRequired = appliance.ThemeRequired;
+                else if (appliance.BasePrefabId != appliance.BaseApplianceId)
+                {
+                    var prefabAppliance = __result.Get<Appliance>().FirstOrDefault(a => a.ID == appliance.BasePrefabId);
+                    if (prefabAppliance)
+                        prefab = prefabAppliance.Prefab;
                 }
-				newApp.Info = new LocalisationObject<ApplianceInfo>();
-				newApp.name = $"{newApp.Name}(Clone)";
 
-				UnityEngine.GameObject prefab = newApp.Prefab;
-				if(appliance.Prefab != null) {
-					prefab = appliance.Prefab;
-				} else if(appliance.BasePrefabId != appliance.BaseApplianceId) {
-					var prefabAppliance = __result.Get<Appliance>().FirstOrDefault(a => a.ID == appliance.BasePrefabId);
-					if(prefabAppliance)
-						prefab = prefabAppliance.Prefab;
-				}
+                var newAppHasPrefab = newApp as IHasPrefab;
+                if (newAppHasPrefab != null)
+                {
+                    newApp.Prefab = UnityEngine.Object.Instantiate(prefab);
+                    newApp.Prefab.transform.SetParent(prefabHostObject.transform);
+                }
 
-				var newAppHasPrefab = newApp as IHasPrefab;
-				if(newAppHasPrefab != null) {
-					newApp.Prefab = UnityEngine.Object.Instantiate(prefab);
-					newApp.Prefab.transform.SetParent(prefabHostObject.transform);
-				}
+                appliance.Appliance = newApp;
+                appliance.OnRegister(newApp);
 
-				appliance.Appliance = newApp;
-				appliance.OnRegister(newApp);
+                newApp.SetupForGame();
+                newApp.Localise(Localisation.CurrentLocale, __result.Substitutions);
 
-				newApp.SetupForGame();
-				newApp.Localise(Localisation.CurrentLocale, __result.Substitutions);
-
-				__result.Objects.Add(newApp.ID, newApp);
-				if(newAppHasPrefab != null)
-					__result.Prefabs.Add(newApp.ID, newAppHasPrefab.Prefab);
-			}
+                __result.Objects.Add(newApp.ID, newApp);
+                if (newAppHasPrefab != null)
+                    __result.Prefabs.Add(newApp.ID, newAppHasPrefab.Prefab);
+            }
 
 			foreach(var info in CustomAppliances.Appliances.Values)
 				info.Appliance.SetupFinal();
 
 			__result.Dispose();
 			__result.InitialiseViews();
+		}
+
+		private static Appliance createApp(GameData gameData, CustomAppliance customAppliance)
+        {
+            Appliance result;
+            Appliance empty = new Appliance();
+			if (customAppliance.BaseApplianceId != -1)
+				result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == customAppliance.BaseApplianceId));
+            else
+                result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == AssetReference.Counter));
+            /*
+			 * If value is overriden and changed from default, apply override value
+			 */
+            if (customAppliance.Description != empty.Description) result.Description = customAppliance.Description;
+            if (customAppliance.EntryAnimation != empty.EntryAnimation) result.EntryAnimation = customAppliance.EntryAnimation;
+            if (customAppliance.ExitAnimation != empty.ExitAnimation) result.ExitAnimation = customAppliance.ExitAnimation;
+            if (customAppliance.ForceHighInteractionPriority != empty.ForceHighInteractionPriority) result.ForceHighInteractionPriority = customAppliance.ForceHighInteractionPriority;
+            if (customAppliance.IsAnUpgrade != empty.IsAnUpgrade) result.IsAnUpgrade = customAppliance.IsAnUpgrade;
+            if (customAppliance.IsNonCrated != empty.IsNonCrated) result.IsNonCrated = customAppliance.IsNonCrated;
+            if (customAppliance.IsNonInteractive != empty.IsNonInteractive) result.IsNonInteractive = customAppliance.IsNonInteractive;
+            if (customAppliance.IsPurchasable != empty.IsPurchasable) result.IsPurchasable = customAppliance.IsPurchasable;
+            if (customAppliance.IsPurchasableAsUpgrade != empty.IsPurchasableAsUpgrade) result.IsPurchasableAsUpgrade = customAppliance.IsPurchasableAsUpgrade;
+            if (customAppliance.Layer != empty.Layer) result.Layer = customAppliance.Layer;
+            if (customAppliance.Name != empty.Name) result.Name = customAppliance.Name;
+            if (customAppliance.PreventSale != empty.PreventSale) result.PreventSale = customAppliance.PreventSale;
+            if (customAppliance.PurchaseCost != empty.PurchaseCost) result.PurchaseCost = customAppliance.PurchaseCost;
+            if (customAppliance.RarityTier != empty.RarityTier) result.RarityTier = customAppliance.RarityTier;
+            if (customAppliance.RequiresForShop != empty.RequiresForShop) result.RequiresForShop = customAppliance.RequiresForShop;
+            if (customAppliance.RequiresProcessForShop != empty.RequiresProcessForShop) result.RequiresProcessForShop = customAppliance.RequiresProcessForShop;
+            if (customAppliance.SellOnlyAsDuplicate != empty.SellOnlyAsDuplicate) result.SellOnlyAsDuplicate = customAppliance.SellOnlyAsDuplicate;
+            if (customAppliance.ShoppingTags != empty.ShoppingTags) result.ShoppingTags = customAppliance.ShoppingTags;
+            if (customAppliance.ShopRequirementFilter != empty.ShopRequirementFilter) result.ShopRequirementFilter = customAppliance.ShopRequirementFilter;
+            if (customAppliance.SkipRotationAnimation != empty.SkipRotationAnimation) result.SkipRotationAnimation = customAppliance.SkipRotationAnimation;
+            if (customAppliance.ThemeRequired != empty.ThemeRequired) result.ThemeRequired = customAppliance.ThemeRequired;
+            if (customAppliance.Upgrades != empty.Upgrades) result.Upgrades = customAppliance.Upgrades;
+            if (customAppliance.StapleWhenMissing != empty.StapleWhenMissing) result.StapleWhenMissing = customAppliance.StapleWhenMissing;
+            if (customAppliance.PriceTier != empty.PriceTier) result.PriceTier = customAppliance.PriceTier;
+            /*
+			 * If null value is overriden and changed from default, apply override value
+			 */
+            if (customAppliance.CrateItem != null) result.CrateItem = customAppliance.CrateItem;
+            if (customAppliance.EffectCondition != null) result.EffectCondition = customAppliance.EffectCondition;
+            if (customAppliance.EffectRange != null) result.EffectRange = customAppliance.EffectRange;
+            if (customAppliance.EffectRepresentation != null) result.EffectRepresentation = customAppliance.EffectRepresentation;
+            if (customAppliance.EffectType != null) result.EffectType = customAppliance.EffectType;
+            if (customAppliance.HeldAppliancePrefab != null) result.HeldAppliancePrefab = customAppliance.HeldAppliancePrefab;
+            if (customAppliance.Prefab != null) result.Prefab = customAppliance.Prefab;
+            if (customAppliance.Processes != null) result.Processes = customAppliance.Processes;
+            if (customAppliance.Properties != null) result.Properties = customAppliance.Properties;
+            if (customAppliance.Sections != null) result.Sections = customAppliance.Sections;
+            if (customAppliance.Tags != null) result.Tags = customAppliance.Tags;
+
+            result.ID = customAppliance.ID;
+            result.Info = new LocalisationObject<ApplianceInfo>();
+            result.name = $"{result.Name}(Clone)";
+
+            if (result.Prefab == null)
+                result.Prefab = gameData.Get<Appliance>().FirstOrDefault(a => a.ID == customAppliance.BasePrefabId).Prefab;
+
+
+            
+            return result;
 		}
 	}
 }
