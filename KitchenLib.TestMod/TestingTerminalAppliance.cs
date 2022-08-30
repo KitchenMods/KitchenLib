@@ -13,25 +13,5 @@ namespace KitchenLib.TestMod
         {
             get { return "Custom Appliance Lol"; }
         }
-
-        public override bool OnCheckRotatePossible(InteractionData data)
-        {
-            return true;
-        }
-
-        public override void OnRotate(InteractionData data)
-        {
-            Mod.Log("You rotated me!");
-        }
-
-        public override bool OnCheckInteractPossible(InteractionData data)
-        {
-            return true;
-        }
-
-        public override void OnInteract(InteractionData data)
-        {
-            Mod.Log("You interacted me!");
-        }
     }
 }
