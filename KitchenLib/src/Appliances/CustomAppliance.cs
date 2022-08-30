@@ -65,15 +65,18 @@ namespace KitchenLib.Appliances
         
 		public virtual void OnRegister(Appliance appliance) { }
 
-		public virtual void OnInteract(InteractionData data) { }
-
+ 
         public virtual void OnRotate(InteractionData data) { }
 
-		public virtual bool OnCheckInteractPossible(InteractionData data) {
-			return false;
-		}
 
         public virtual bool OnCheckRotatePossible(InteractionData data)
+        {
+            return false;
+        }
+
+        public virtual void OnInteract(InteractionData data) { }
+
+        public virtual bool OnCheckInteractPossible(InteractionData data)
         {
             return false;
         }
