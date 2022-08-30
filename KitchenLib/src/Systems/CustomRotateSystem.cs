@@ -3,7 +3,7 @@ using KitchenLib.Appliances;
 
 namespace KitchenLib.Systems
 {
-    public class CustomRotateSystem : RotateAppliances
+    public class CustomRotateSystem : ApplianceInteractionSystem
     {
 		protected override bool IsPossible(ref InteractionData data)
 		{
