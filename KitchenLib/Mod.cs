@@ -8,6 +8,7 @@ namespace KitchenLib
 	{
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName) {
 			SystemUtils.AddSystem<CustomApplianceInteractionSystem>();
+			SystemUtils.AddSystem<CustomApplianceRotationSystem>();
 		}
 	}
 }
