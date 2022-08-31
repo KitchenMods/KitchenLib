@@ -2,6 +2,7 @@
 using KitchenData;
 using System.Reflection;
 using HarmonyLib;
+using KitchenLib.Utils;
 
 namespace KitchenLib.src.Utils
 {
@@ -13,8 +14,8 @@ namespace KitchenLib.src.Utils
             int cosmeticID = 0;
             foreach (PlayerCosmetic cosmetic in GameData.Main.Get<PlayerCosmetic>())
             {
-                //if (cosmetic.Visual.name.ToLower().Contains("hot dog"))
-                if (cosmetic.Visual.name.ToLower().Contains("bunny"))
+                if (cosmetic.Visual.name.ToLower().Contains("hot dog"))
+                //if (cosmetic.Visual.name.ToLower().Contains("bunny"))
                 {
                     cosmeticID = cosmetic.ID;
                 }
@@ -22,8 +23,8 @@ namespace KitchenLib.src.Utils
             PlayerCosmetic playerCosmetic;
             bool flag = GameData.Main.TryGet<PlayerCosmetic>(cosmeticID, out playerCosmetic, false);
 
-            MethodInfo ca = typeof(PlayerCosmeticSubview).GetMethod("CleanAttachments", BindingFlags.NonPublic | BindingFlags.Instance);
-            MethodInfo aa = typeof(PlayerCosmeticSubview).GetMethod("AddAttachment", BindingFlags.NonPublic | BindingFlags.Instance);
+			MethodInfo ca = ReflectionUtils.GetMethod<PlayerCosmeticSubview>("CleanAttachments");
+			MethodInfo aa = ReflectionUtils.GetMethod<PlayerCosmeticSubview>("AddAttachment");
             ca.Invoke(__instance, new object[] { view_data });
             aa.Invoke(__instance, new object[] { playerCosmetic });
 

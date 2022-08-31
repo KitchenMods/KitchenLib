@@ -5,6 +5,7 @@ using HarmonyLib;
 using System.Reflection;
 using Kitchen.Modules;
 using KitchenData;
+using KitchenLib.Utils;
 
 namespace KitchenLib
 {
@@ -14,9 +15,10 @@ namespace KitchenLib
         [HarmonyPrefix]
         static bool Prefix(StartMainMenu __instance) {
             ProfileManager.Main.Load();
-            MethodInfo addSubmenuButton = __instance.GetType().GetMethod("AddSubmenuButton", BindingFlags.NonPublic | BindingFlags.Instance);
             MethodInfo addActionButton = __instance.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).Single(m => m.Name == "AddActionButton" && m.GetParameters().Length == 3);
-            MethodInfo addSpacer = __instance.GetType().GetMethod("New", BindingFlags.NonPublic | BindingFlags.Instance).MakeGenericMethod(new Type[] { typeof(SpacerElement) });
+			MethodInfo addSubmenuButton = ReflectionUtils.GetMethod<StartMainMenu>("AddSubmenuButton");
+			MethodInfo addSpacer = ReflectionUtils.GetMethod<StartMainMenu>("New").MakeGenericMethod(new Type[] { typeof(SpacerElement)});
+
             addSubmenuButton.Invoke(__instance, new object[] { GameData.Main.GlobalLocalisation["MAIN_MENU_SINGLEPLAYER"], typeof(SingleplayerMainMenu), false });
             addSubmenuButton.Invoke(__instance, new object[] { GameData.Main.GlobalLocalisation["MAIN_MENU_MULTIPLAYER"], typeof(MultiplayerMainMenu), false });
             addSubmenuButton.Invoke(__instance, new object[] { "Mods", typeof(ModsMenu), false });
