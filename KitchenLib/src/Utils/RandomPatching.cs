@@ -23,8 +23,8 @@ namespace KitchenLib.src.Utils
             PlayerCosmetic playerCosmetic;
             bool flag = GameData.Main.TryGet<PlayerCosmetic>(cosmeticID, out playerCosmetic, false);
 
-			MethodInfo ca = ReflectionUtils.GetMethod<PlayerCosmeticSubview>("CleanAttachments");
-			MethodInfo aa = ReflectionUtils.GetMethod<PlayerCosmeticSubview>("AddAttachment");
+		      	MethodInfo ca = ReflectionUtils.GetMethod<PlayerCosmeticSubview>("CleanAttachments");
+		      	MethodInfo aa = ReflectionUtils.GetMethod<PlayerCosmeticSubview>("AddAttachment");
             ca.Invoke(__instance, new object[] { view_data });
             aa.Invoke(__instance, new object[] { playerCosmetic });
 
