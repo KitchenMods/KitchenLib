@@ -14,14 +14,16 @@ namespace KitchenLib.TestMod
             get { return "Custom Appliance Lol"; }
         }
 
-        public override void OnInteract(InteractionData data)
+        public override bool PreInteract(InteractionData data)
         {
             Mod.Log("You interacted me!");
+			return true;
         }
 
-        public override void OnRotate(InteractionData data)
+        public override bool PreRotate(InteractionData data)
         {
             Mod.Log("You Rotated Me!");
+			return false;
         }
     }
 }

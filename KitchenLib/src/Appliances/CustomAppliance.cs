@@ -66,21 +66,10 @@ namespace KitchenLib.Appliances
 		public virtual void OnRegister(Appliance appliance) { }
 
  
-        public virtual void OnRotate(InteractionData data) { }
-
-
-        public virtual bool OnCheckRotatePossible(InteractionData data)
-        {
-            return false;
-        }
-
-        public virtual void OnInteract(InteractionData data) { }
-
-        public virtual bool OnCheckInteractPossible(InteractionData data)
-        {
-            return false;
-        }
-
+        public virtual bool PreRotate(InteractionData data) { return false; }
+		public virtual void PostRotate(InteractionData data) { }
+		public virtual bool PreInteract(InteractionData data) { return false; }
+		public virtual void PostInteract(InteractionData data) { }
 		public int GetHash() {
 			return StringUtils.GetInt32HashCode($"{ModName}:{Name}");
 		}
