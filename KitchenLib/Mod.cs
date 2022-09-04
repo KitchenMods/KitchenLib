@@ -1,6 +1,7 @@
 ﻿using Unity.Entities;
 using KitchenLib.Appliances;
 using KitchenLib.Utils;
+using KitchenLib.Registry;
 
 namespace KitchenLib
 {
@@ -9,5 +10,5 @@ namespace KitchenLib
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName) {
 			SystemUtils.NewSystem<CustomApplianceInteractionSystem>();
 		}
-	}
+  }
 }

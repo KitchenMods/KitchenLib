@@ -11,17 +11,26 @@ namespace KitchenLib
 
         public override void Setup(int player_id) {
             AddLabel("Loaded Mods");
-
             foreach (BaseMod mod in ModRegistery.Registered.Values)
             {
                 if (mod.ModName != null && mod.ModVersion != null)
-                    AddInfo(mod.ModName + "     v" + mod.ModVersion);
+                    if (ModRegistery.isModSafeForVersion(mod))
+                        AddInfo(mod.ModName + "     v" + mod.ModVersion);
             }
-            
+
+            AddLabel("Untested Mods");
+            foreach (BaseMod mod in ModRegistery.Registered.Values)
+            {
+                if (mod.ModName != null && mod.ModVersion != null)
+                    if (!ModRegistery.isModSafeForVersion(mod))
+                        AddInfo(mod.ModName + "     v" + mod.ModVersion);
+            }
+
 
             New<SpacerElement>(true);
             New<SpacerElement>(true);
             AddActionButton("Back", MainMenuAction.Back, ElementStyle.MainMenuBack);
         }
+
     }
 }
