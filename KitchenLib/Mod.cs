@@ -1,16 +1,15 @@
-﻿using KitchenLib.Utils;
-using KitchenLib.Systems;
+using Unity.Entities;
+using KitchenLib.Appliances;
+using KitchenLib.Utils;
+using KitchenLib.Registry;
 
 namespace KitchenLib
 {
 	public class Mod : BaseMod
 	{
-		/*
-		 * These systems are already being registered because our namespace starts with 'Kitchen'
+		public Mod() : base("kitchenlib", ">=1.0.0 <=1.0.5") { }
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName) {
-			SystemUtils.AddSystem<CustomRotateSystem>();
-			SystemUtils.AddSystem<CustomInteractionSystem>();
+			//SystemUtils.NewSystem<CustomApplianceInteractionSystem>();
 		}
-		*/
-	}
+  }
 }
