@@ -1,6 +1,6 @@
 # KitchenLib
 
-Documentation coming soon!
+A library for modding Unity game PlateUp.
 
 License
 -------
