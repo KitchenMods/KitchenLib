@@ -12,7 +12,11 @@ namespace KitchenLib.Systems
 		private CPosition Position;
 		protected override bool IsPossible(ref InteractionData data)
 		{
-			return base.IsPossible(ref data);
+			CustomAppliance customAppliance = GetApplianceFromRotation(ref data);
+			if (customAppliance.ForceIsRotationPossible())
+				return customAppliance.IsRotationPossible(data);
+			else
+				return base.IsPossible(ref data);
 		}
 
 		protected override void Perform(ref InteractionData data)

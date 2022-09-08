@@ -7,7 +7,11 @@ namespace KitchenLib.Systems
     {
         protected override bool IsPossible(ref InteractionData data)
 		{
-			return base.IsPossible(ref data);
+			CustomAppliance customAppliance = GetApplianceFromInteraction(ref data);
+			if (customAppliance.ForceIsInteractionPossible())
+				return customAppliance.IsInteractionPossible(data);
+			else
+				return base.IsPossible(ref data);
 		}
 		
 		protected override void Perform(ref InteractionData data)

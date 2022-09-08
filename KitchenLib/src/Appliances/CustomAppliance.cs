@@ -65,9 +65,13 @@ namespace KitchenLib.Appliances
         
 		public virtual void OnRegister(Appliance appliance) { }
 
- 
-        public virtual bool PreRotate(InteractionData data) { return false; }
+
+		public virtual bool ForceIsRotationPossible() { return false; }
+		public virtual bool IsRotationPossible(InteractionData data) { return true; }
+		public virtual bool PreRotate(InteractionData data) { return false; }
 		public virtual void PostRotate(InteractionData data) { }
+		public virtual bool ForceIsInteractionPossible() { return false; }
+		public virtual bool IsInteractionPossible(InteractionData data) { return true; }
 		public virtual bool PreInteract(InteractionData data) { return false; }
 		public virtual void PostInteract(InteractionData data) { }
 		public int GetHash() {
