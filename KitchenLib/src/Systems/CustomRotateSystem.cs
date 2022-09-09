@@ -13,10 +13,14 @@ namespace KitchenLib.Systems
 		protected override bool IsPossible(ref InteractionData data)
 		{
 			CustomAppliance customAppliance = GetApplianceFromRotation(ref data);
-			if (customAppliance.ForceIsRotationPossible())
-				return customAppliance.IsRotationPossible(data);
-			else
-				return base.IsPossible(ref data);
+			if (customAppliance != null)
+			{
+				if (customAppliance.ForceIsRotationPossible())
+					return customAppliance.IsRotationPossible(data);
+				else
+					return base.IsPossible(ref data);
+			}
+			return base.IsPossible(ref data);
 		}
 
 		protected override void Perform(ref InteractionData data)

@@ -5,18 +5,21 @@ namespace KitchenLib.Systems
 {
     public class CustomInteractionSystem : TriggerActivation
     {
-        protected override bool IsPossible(ref InteractionData data)
+		protected override bool IsPossible(ref InteractionData data)
 		{
 			CustomAppliance customAppliance = GetApplianceFromInteraction(ref data);
-			if (customAppliance.ForceIsInteractionPossible())
-				return customAppliance.IsInteractionPossible(data);
-			else
-				return base.IsPossible(ref data);
+			if (customAppliance != null)
+			{
+				if (customAppliance.ForceIsInteractionPossible())
+					return customAppliance.IsInteractionPossible(data);
+				else
+					return base.IsPossible(ref data);
+			}
+			return base.IsPossible(ref data);
 		}
 		
 		protected override void Perform(ref InteractionData data)
         {
-			Mod.Log("Performing Interaction");
 			CustomAppliance customAppliance = GetApplianceFromInteraction(ref data);
 			if (customAppliance != null)
 			{
