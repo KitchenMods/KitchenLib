@@ -6,6 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Reference Include="Controllers">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Controllers.dll</HintPath>
+    </Reference>
     <Reference Include="MelonLoader">
       <HintPath>$(PlateUpGameFolder)\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>
