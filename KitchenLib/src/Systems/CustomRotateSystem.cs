@@ -1,8 +1,7 @@
 ﻿using Kitchen;
 using KitchenLib.Appliances;
-using Unity.Mathematics;
 using Unity.Entities;
-using System;
+using Controllers;
 
 namespace KitchenLib.Systems
 {
@@ -26,9 +25,10 @@ namespace KitchenLib.Systems
 		protected override void Perform(ref InteractionData data)
 		{
 			CustomAppliance customAppliance = GetApplianceFromRotation(ref data);
+			Require(data.Interactor, out CInputData input);
 			if (customAppliance != null)
 			{
-				if (!customAppliance.PreRotate(data))
+				if (!customAppliance.PreRotate(data, (input.State.StopMoving == ButtonState.Held)))
 				{
 					base.Perform(ref data);
 				}

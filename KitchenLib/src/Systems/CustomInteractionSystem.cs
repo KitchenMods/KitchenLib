@@ -1,5 +1,6 @@
 ﻿using Kitchen;
 using KitchenLib.Appliances;
+using Controllers;
 
 namespace KitchenLib.Systems
 {
@@ -21,9 +22,10 @@ namespace KitchenLib.Systems
 		protected override void Perform(ref InteractionData data)
         {
 			CustomAppliance customAppliance = GetApplianceFromInteraction(ref data);
+			Require(data.Interactor, out CInputData input);
 			if (customAppliance != null)
 			{
-				if (!customAppliance.PreInteract(data))
+				if (!customAppliance.PreInteract(data, (input.State.StopMoving == ButtonState.Held)))
 				{
 					base.Perform(ref data);
 				}

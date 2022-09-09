@@ -68,11 +68,11 @@ namespace KitchenLib.Appliances
 
 		public virtual bool ForceIsRotationPossible() { return false; }
 		public virtual bool IsRotationPossible(InteractionData data) { return true; }
-		public virtual bool PreRotate(InteractionData data) { return false; }
+		public virtual bool PreRotate(InteractionData data, bool isSecondary = false) { return false; }
 		public virtual void PostRotate(InteractionData data) { }
 		public virtual bool ForceIsInteractionPossible() { return false; }
 		public virtual bool IsInteractionPossible(InteractionData data) { return true; }
-		public virtual bool PreInteract(InteractionData data) { return false; }
+		public virtual bool PreInteract(InteractionData data, bool isSecondary = false) { return false; }
 		public virtual void PostInteract(InteractionData data) { }
 		public int GetHash() {
 			return StringUtils.GetInt32HashCode($"{ModName}:{Name}");
