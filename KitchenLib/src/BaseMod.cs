@@ -47,7 +47,7 @@ namespace KitchenLib
 		public T AddAppliance<T>() where T : CustomAppliance, new()  {
 			T appliance = new T();
 			appliance.ModName = Info.Name;
-			return CustomAppliances.Register(appliance);
+			return CustomGDO.RegisterAppliance(appliance);
 		}
 
 		public T AddSystem<T>() where T : GenericSystemBase, new() {

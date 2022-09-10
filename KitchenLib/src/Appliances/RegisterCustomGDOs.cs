@@ -20,7 +20,7 @@ namespace KitchenLib.Appliances
 
 			List<GameDataObject> gameDataObjects = new List<GameDataObject>();
 
-			foreach (CustomAppliance appliance in CustomAppliances.Appliances.Values)
+			foreach (CustomAppliance appliance in CustomGDO.Appliances.Values) //Adds Custom Appliances to GDOs
 			{
 				Appliance newAppliance = createApp(__result, appliance);
 				appliance.OnRegister(newAppliance);
@@ -28,6 +28,14 @@ namespace KitchenLib.Appliances
 				gameDataObjects.Add(newAppliance);
 			}
 
+			foreach (CustomItem item in CustomGDO.Items.Values) //Adds Custom Items to GDOs
+			{
+				Item newItem= createItem(__result, item);
+				item.OnRegister(newItem);
+				item.Item = newItem;
+				gameDataObjects.Add(newItem);
+			}
+			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{
 				try
@@ -120,6 +128,52 @@ namespace KitchenLib.Appliances
                 result.Prefab = gameData.Get<Appliance>().FirstOrDefault(a => a.ID == customAppliance.BasePrefabId).Prefab;
 
             return result;
+		}
+
+		public static Item createItem(GameData gameData, CustomItem customItem)
+		{
+			Item result;
+			Item empty = new Item();
+			if (customItem.BaseItemId != -1)
+				result = UnityEngine.Object.Instantiate(gameData.Get<Item>().FirstOrDefault(a => a.ID == customItem.BaseItemId));
+			else
+				result = UnityEngine.Object.Instantiate(gameData.Get<Item>().FirstOrDefault(a => a.ID == 1));
+
+			if (customItem.Prefab != empty.Prefab) result.Prefab = customItem.Prefab;
+			//if (customItem.Processes != empty.Processes) result.Processes = customItem.Processes;
+			if (customItem.DerivedProcesses != empty.DerivedProcesses) result.DerivedProcesses = customItem.DerivedProcesses;
+			if (customItem.Properties != empty.Properties) result.Properties = customItem.Properties;
+			if (customItem.ExtraTimeGranted != empty.ExtraTimeGranted) result.ExtraTimeGranted = customItem.ExtraTimeGranted;
+			if (customItem.ItemValue != empty.ItemValue) result.ItemValue = customItem.ItemValue;
+			if (customItem.Reward != empty.Reward) result.Reward = customItem.Reward;
+			if (customItem.DirtiesTo != empty.DirtiesTo) result.DirtiesTo = customItem.DirtiesTo;
+			if (customItem.MayRequestExtraItems != empty.MayRequestExtraItems) result.MayRequestExtraItems = customItem.MayRequestExtraItems;
+			if (customItem.MaxOrderSharers != empty.MaxOrderSharers) result.MaxOrderSharers = customItem.MaxOrderSharers;
+			if (customItem.SplitSubItem != empty.SplitSubItem) result.SplitSubItem = customItem.SplitSubItem;
+			if (customItem.SplitCount != empty.SplitCount) result.SplitCount = customItem.SplitCount;
+			if (customItem.SplitSpeed != empty.SplitSpeed) result.SplitSpeed = customItem.SplitSpeed;
+			if (customItem.SplitDepletedItems != empty.SplitDepletedItems) result.SplitDepletedItems = customItem.SplitDepletedItems;
+			if (customItem.AllowSplitMerging != empty.AllowSplitMerging) result.AllowSplitMerging = customItem.AllowSplitMerging;
+			if (customItem.PreventExplicitSplit != empty.PreventExplicitSplit) result.PreventExplicitSplit = customItem.PreventExplicitSplit;
+			if (customItem.SplitByComponents != empty.SplitByComponents) result.SplitByComponents = customItem.SplitByComponents;
+			if (customItem.SplitByComponentsHolder != empty.SplitByComponentsHolder) result.SplitByComponentsHolder = customItem.SplitByComponentsHolder;
+			if (customItem.SplitByCopying != empty.SplitByCopying) result.SplitByCopying = customItem.SplitByCopying;
+			if (customItem.RefuseSplitWith != empty.RefuseSplitWith) result.RefuseSplitWith = customItem.RefuseSplitWith;
+			if (customItem.DisposesTo != empty.DisposesTo) result.DisposesTo = customItem.DisposesTo;
+			if (customItem.IsIndisposable != empty.IsIndisposable) result.IsIndisposable = customItem.IsIndisposable;
+			if (customItem.ItemCategory != empty.ItemCategory) result.ItemCategory = customItem.ItemCategory;
+			if (customItem.ItemStorageFlags != empty.ItemStorageFlags) result.ItemStorageFlags = customItem.ItemStorageFlags;
+			if (customItem.DedicatedProvider != empty.DedicatedProvider) result.DedicatedProvider = customItem.DedicatedProvider;
+			if (customItem.HoldPose != empty.HoldPose) result.HoldPose = customItem.HoldPose;
+			if (customItem.IsMergeableSide != empty.IsMergeableSide) result.IsMergeableSide = customItem.IsMergeableSide;
+
+			result.ID = customItem.ID;
+			result.name = $"{result.Prefab.name}(Clone)";
+
+			if (result.Prefab == null)
+				result.Prefab = gameData.Get<Appliance>().FirstOrDefault(a => a.ID == customItem.BasePrefabId).Prefab;
+			
+			return result;
 		}
 	}
 }

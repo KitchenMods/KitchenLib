@@ -44,7 +44,7 @@ namespace KitchenLib.Systems
 				return null;
 			}
 
-			CustomAppliance customAppliance = CustomAppliances.Get(appliance.ID);
+			CustomAppliance customAppliance = CustomGDO.GetCustomAppliance(appliance.ID);
 			if (customAppliance == null || customAppliance.Appliance == null)
 			{
 				return null;
