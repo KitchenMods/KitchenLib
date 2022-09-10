@@ -18,43 +18,46 @@ namespace KitchenLib.Appliances
 			prefabHostObject.name = "Custom Appliance Prefab Host";
 			prefabHostObject.SetActive(false);
 
-			foreach(var appliance in CustomAppliances.Appliances.Values) {
+			List<GameDataObject> gameDataObjects = new List<GameDataObject>();
 
-                var newApp = createApp(__result, appliance);
+			foreach (CustomAppliance appliance in CustomAppliances.Appliances.Values)
+			{
+				Appliance newAppliance = createApp(__result, appliance);
+				appliance.OnRegister(newAppliance);
+				appliance.Appliance = newAppliance;
+				gameDataObjects.Add(newAppliance);
+			}
 
-                UnityEngine.GameObject prefab = newApp.Prefab;
-                if (appliance.Prefab != null)
-                {
-                    prefab = appliance.Prefab;
-                }
-                else if (appliance.BasePrefabId != appliance.BaseApplianceId)
-                {
-                    var prefabAppliance = __result.Get<Appliance>().FirstOrDefault(a => a.ID == appliance.BasePrefabId);
-                    if (prefabAppliance)
-                        prefab = prefabAppliance.Prefab;
-                }
+			foreach (GameDataObject gameDataObject in gameDataObjects)
+			{
+				try
+				{
+					gameDataObject.SetupForGame();
+					gameDataObject.Localise(Localisation.CurrentLocale, __result.Substitutions);
+					GlobalLocalisation globalLocalisation = gameDataObject as GlobalLocalisation;
+					if (globalLocalisation != null)
+					{
+						__result.GlobalLocalisation = globalLocalisation;
+					}
+				}
+				catch (Exception e) { }
+			}
 
-                var newAppHasPrefab = newApp as IHasPrefab;
-                if (newAppHasPrefab != null)
-                {
-                    newApp.Prefab = UnityEngine.Object.Instantiate(prefab);
-                    newApp.Prefab.transform.SetParent(prefabHostObject.transform);
-                }
-
-                appliance.Appliance = newApp;
-                appliance.OnRegister(newApp);
-
-                newApp.SetupForGame();
-                newApp.Localise(Localisation.CurrentLocale, __result.Substitutions);
-
-                __result.Objects.Add(newApp.ID, newApp);
-                if (newAppHasPrefab != null)
-                    __result.Prefabs.Add(newApp.ID, newAppHasPrefab.Prefab);
-            }
-
-			foreach(var info in CustomAppliances.Appliances.Values)
-				info.Appliance.SetupFinal();
-
+			foreach (GameDataObject gameDataObject in gameDataObjects)
+			{
+				__result.Objects.Add(gameDataObject.ID, gameDataObject);
+				IHasPrefab hasPrefab = gameDataObject as IHasPrefab;
+				if (hasPrefab != null)
+				{
+					__result.Prefabs.Add(gameDataObject.ID, hasPrefab.Prefab);
+				}
+			}
+			
+			foreach (GameDataObject gameDataObject in gameDataObjects)
+			{
+				gameDataObject.SetupFinal();
+			}
+			
 			__result.Dispose();
 			__result.InitialiseViews();
 		}
@@ -116,8 +119,6 @@ namespace KitchenLib.Appliances
             if (result.Prefab == null)
                 result.Prefab = gameData.Get<Appliance>().FirstOrDefault(a => a.ID == customAppliance.BasePrefabId).Prefab;
 
-
-            
             return result;
 		}
 	}
