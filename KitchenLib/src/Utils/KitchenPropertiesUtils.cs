@@ -5,7 +5,7 @@ using Unity.Entities;
 
 namespace KitchenLib.Utils
 {
-	public class KitchenUtils
+	public class KitchenPropertiesUtils
 	{
 		public static CItemProvider GetUnlimitedCItemProvider(int id)
 		{
