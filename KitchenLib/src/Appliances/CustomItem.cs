@@ -9,6 +9,7 @@ namespace KitchenLib.Appliances
 {
 	public abstract class CustomItem
 	{
+		public virtual string Name { get { return "Item"; } }
 		public virtual GameObject Prefab { get; internal set; }
 		public virtual List<Item.ItemProcess> Processes { get; internal set; }
 		public virtual List<Item.ItemProcess> DerivedProcesses { get; internal set; }
@@ -55,7 +56,7 @@ namespace KitchenLib.Appliances
 
 		public int GetHash()
 		{
-			return StringUtils.GetInt32HashCode($"{ModName}:{Prefab}");
+			return StringUtils.GetInt32HashCode($"{ModName}:{Name}");
 		}
 	}
 }

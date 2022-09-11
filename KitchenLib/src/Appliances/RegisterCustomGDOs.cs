@@ -5,20 +5,32 @@ using Kitchen;
 using KitchenData;
 using KitchenLib.Utils;
 using System.Collections.Generic;
+using UnityEngine;
+using KitchenEditor;
+using System.Reflection;
 
 namespace KitchenLib.Appliances
 {
 	[HarmonyPatch(typeof(GameDataConstructor), "BuildGameData", new Type[] { })]
-	class GameDataConstructor_Patch
+	public class GameDataConstructor_Patch
 	{
+
 		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result) {
 			MaterialUtils.SetupMaterialIndex(__result);
+
+			GDOUtils.SetupGDOIndex(__result);			
 
 			var prefabHostObject = new UnityEngine.GameObject();
 			prefabHostObject.name = "Custom Appliance Prefab Host";
 			prefabHostObject.SetActive(false);
 
 			List<GameDataObject> gameDataObjects = new List<GameDataObject>();
+
+			foreach (CustomItemProcess itemProcess in CustomGDO.ItemProcesses.Values)
+			{
+				Item.ItemProcess newItemProcess = createItemProcess(__result, itemProcess);
+				GDOUtils.AddCustomItemProcess(itemProcess.ProcessName, newItemProcess);
+			}
 
 			foreach (CustomAppliance appliance in CustomGDO.Appliances.Values) //Adds Custom Appliances to GDOs
 			{
@@ -48,7 +60,10 @@ namespace KitchenLib.Appliances
 						__result.GlobalLocalisation = globalLocalisation;
 					}
 				}
-				catch (Exception e) { }
+				catch (Exception e)
+				{
+					Mod.Log(e.Message);
+				}
 			}
 
 			foreach (GameDataObject gameDataObject in gameDataObjects)
@@ -65,9 +80,41 @@ namespace KitchenLib.Appliances
 			{
 				gameDataObject.SetupFinal();
 			}
-			
+
+			Item apple = __result.Objects.Values.OfType<Item>().FirstOrDefault(x => x.ID == 681117884);
+
+			foreach (Item.ItemProcess process in apple.DerivedProcesses)
+			{
+				Mod.Log("-----"+process.Process.ToString()+"-----");
+				Mod.Log(process.Process.BasicEnablingAppliance.ToString());
+				Mod.Log(process.Process.BasicEnablingAppliance.ID.ToString());
+				Mod.Log(process.Process.CanObfuscateProgress.ToString());
+				Mod.Log(process.Process.EnablingApplianceCount.ToString());
+				Mod.Log(process.Process.Icon.ToString());
+				Mod.Log(process.Process.ID.ToString());
+				Mod.Log(process.Process.Info.ToString());
+
+				Mod.Log(process.Duration.ToString());
+				Mod.Log(process.IsBad.ToString());
+				Mod.Log(process.Process.ToString());
+				Mod.Log(process.RequiresWrapper.ToString());
+				Mod.Log(process.Result.ToString());
+				Mod.Log(process.Result.ID.ToString());
+			}
+
 			__result.Dispose();
 			__result.InitialiseViews();
+		}
+
+		private static Item.ItemProcess createItemProcess(GameData gameData, CustomItemProcess customItemProcess)
+		{
+			Item.ItemProcess result = new Item.ItemProcess();
+			result.Process = customItemProcess.Process;
+			result.Result = customItemProcess.Result;
+			result.Duration = customItemProcess.Duration;
+			result.IsBad = customItemProcess.IsBad;
+			result.RequiresWrapper = customItemProcess.RequiresWrapper;
+			return result;
 		}
 
 		private static Appliance createApp(GameData gameData, CustomAppliance customAppliance)
@@ -137,11 +184,11 @@ namespace KitchenLib.Appliances
 			if (customItem.BaseItemId != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<Item>().FirstOrDefault(a => a.ID == customItem.BaseItemId));
 			else
-				result = UnityEngine.Object.Instantiate(gameData.Get<Item>().FirstOrDefault(a => a.ID == 1));
+				result = UnityEngine.Object.Instantiate(gameData.Get<Item>().FirstOrDefault(a => a.ID == 681117884));
 
 			if (customItem.Prefab != empty.Prefab) result.Prefab = customItem.Prefab;
 			//if (customItem.Processes != empty.Processes) result.Processes = customItem.Processes;
-			if (customItem.DerivedProcesses != empty.DerivedProcesses) result.DerivedProcesses = customItem.DerivedProcesses;
+			//if (customItem.DerivedProcesses != empty.DerivedProcesses) result.DerivedProcesses = customItem.DerivedProcesses;
 			if (customItem.Properties != empty.Properties) result.Properties = customItem.Properties;
 			if (customItem.ExtraTimeGranted != empty.ExtraTimeGranted) result.ExtraTimeGranted = customItem.ExtraTimeGranted;
 			if (customItem.ItemValue != empty.ItemValue) result.ItemValue = customItem.ItemValue;
@@ -166,6 +213,9 @@ namespace KitchenLib.Appliances
 			if (customItem.DedicatedProvider != empty.DedicatedProvider) result.DedicatedProvider = customItem.DedicatedProvider;
 			if (customItem.HoldPose != empty.HoldPose) result.HoldPose = customItem.HoldPose;
 			if (customItem.IsMergeableSide != empty.IsMergeableSide) result.IsMergeableSide = customItem.IsMergeableSide;
+
+			FieldInfo fi = typeof(Item).GetField("Processes", BindingFlags.NonPublic | BindingFlags.Instance);
+			fi.SetValue(result, customItem.DerivedProcesses);
 
 			result.ID = customItem.ID;
 			result.name = $"{result.Prefab.name}(Clone)";

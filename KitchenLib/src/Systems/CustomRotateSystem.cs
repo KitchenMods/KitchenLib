@@ -8,7 +8,7 @@ namespace KitchenLib.Systems
 	[UpdateBefore(typeof(Kitchen.RotateAppliances))]
 	public class CustomRotateSystem : RotateAppliances
 	{
-		private CPosition Position;
+		//private CPosition Position;
 		protected override bool IsPossible(ref InteractionData data)
 		{
 			CustomAppliance customAppliance = GetApplianceFromRotation(ref data);

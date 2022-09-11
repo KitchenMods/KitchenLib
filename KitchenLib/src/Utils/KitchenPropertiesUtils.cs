@@ -2,11 +2,39 @@
 using KitchenData;
 using UnityEngine;
 using Unity.Entities;
+using System.Diagnostics.SymbolStore;
+using KitchenLib.Appliances;
 
 namespace KitchenLib.Utils
 {
 	public class KitchenPropertiesUtils
 	{
+
+		public static Process GetProcess()
+		{
+			Process result = new Process();
+			
+			result.BasicEnablingAppliance = GDOUtils.GetExistingAppliance(-1248669347);
+			result.CanObfuscateProgress = true;
+			result.EnablingApplianceCount = 1;
+			result.Icon = "<sprite name=\"chop\">";
+
+			return result;
+		}
+
+		public static Item.ItemProcess GetItemProcess(Process process, Item processResult, float duration, bool isBad, bool requiresWrapepr)
+		{
+			Item.ItemProcess result = new Item.ItemProcess();
+
+			result.Process = process;
+			result.Result = processResult;
+			result.Duration = duration;
+			result.IsBad = isBad;
+			result.RequiresWrapper = requiresWrapepr;
+
+			return result;
+		}
+
 		public static CItemProvider GetUnlimitedCItemProvider(int id)
 		{
 			CItemProvider provider = new CItemProvider();
