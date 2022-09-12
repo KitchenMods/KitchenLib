@@ -26,7 +26,7 @@ namespace KitchenLib.Customs
 
 			List<GameDataObject> gameDataObjects = new List<GameDataObject>();
 
-			foreach (CustomItemProcess itemProcess in CustomGDO.ItemProcesses.Values)
+			foreach (CustomItemProcess itemProcess in CustomGDO.ItemProcesses.Values) //Adds Custom Item Process to GDOUtils
 			{
 				Item.ItemProcess newItemProcess = createItemProcess(__result, itemProcess);
 				GDOUtils.AddCustomItemProcess(itemProcess.ProcessName, newItemProcess);
@@ -46,6 +46,13 @@ namespace KitchenLib.Customs
 				item.OnRegister(newItem);
 				item.Item = newItem;
 				gameDataObjects.Add(newItem);
+			}
+
+			foreach (CustomProcess process in CustomGDO.Processes.Values)
+			{
+				Process newProcess = createProcess(__result, process);
+				process.Process = newProcess;
+				gameDataObjects.Add(newProcess);
 			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
@@ -114,6 +121,24 @@ namespace KitchenLib.Customs
 			result.Duration = customItemProcess.Duration;
 			result.IsBad = customItemProcess.IsBad;
 			result.RequiresWrapper = customItemProcess.RequiresWrapper;
+			return result;
+		}
+
+		private static Process createProcess(GameData gameData, CustomProcess customProcess)
+		{
+			Process result = new Process();
+			if (customProcess.BaseProcessId != -1)
+				result = gameData.Get<Process>().FirstOrDefault(a => a.ID == customProcess.BaseProcessId);
+			
+			result.BasicEnablingAppliance = customProcess.BasicEnablingAppliance;
+			result.EnablingApplianceCount = customProcess.EnablingApplianceCount;
+			result.IsPseudoprocessFor = customProcess.IsPseudoprocessFor;
+			result.CanObfuscateProgress = customProcess.CanObfuscateProgress;
+			result.Icon = customProcess.Icon;
+
+			result.ID = customProcess.ID;
+            result.Info = new LocalisationObject<ProcessInfo>();
+			
 			return result;
 		}
 

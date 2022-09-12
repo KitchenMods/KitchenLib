@@ -1,4 +1,3 @@
-using KitchenData;
 using System;
 using System.Collections.Generic;
 
@@ -14,6 +13,9 @@ namespace KitchenLib.Customs
 
 		public static Dictionary<string, CustomItemProcess> ItemProcesses = new Dictionary<string, CustomItemProcess>();
 
+		public static Dictionary<string, CustomProcess> Processes = new Dictionary<string, CustomProcess>();
+		public static Dictionary<Type, CustomProcess> processesByType = new Dictionary<Type, CustomProcess>();
+
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
 			if (ItemProcesses.ContainsKey(process.ProcessName)) {
@@ -21,6 +23,15 @@ namespace KitchenLib.Customs
 			}
 
 			ItemProcesses.Add(process.ProcessName, process);
+			return process;
+		}
+
+		public static T RegisterProcess<T>(T process) where T : CustomProcess
+		{
+			if (process.ID == 0)
+				process.ID = process.GetHash();
+			Processes.Add(process.ProcessName, process);
+			processesByType.Add(process.GetType(), process);
 			return process;
 		}
 
@@ -66,6 +77,12 @@ namespace KitchenLib.Customs
 		public static CustomItemProcess GetCustomItemProcess(string name)
 		{
 			ItemProcesses.TryGetValue(name, out var result);
+			return result;
+		}
+
+		public static CustomProcess GetCustomProcess(string name)
+		{
+			Processes.TryGetValue(name, out var result);
 			return result;
 		}
 
