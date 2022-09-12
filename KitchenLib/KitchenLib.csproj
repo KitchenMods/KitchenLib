@@ -2,8 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>net4.7</TargetFramework>
-    <PlateUpGameFolder>D:\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp</PlateUpGameFolder>
     <NoWarn>0060</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(os)=='Windows_NT'">
+    <PlateUpGameFolder>D:\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp</PlateUpGameFolder>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(os)=='UNIX'">
+    <PlateUpGameFolder>/Users/lachlanleone/Desktop/PlateUp</PlateUpGameFolder>
   </PropertyGroup>
 
   <ItemGroup>
