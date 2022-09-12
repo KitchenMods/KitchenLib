@@ -64,6 +64,7 @@ namespace KitchenLib
 			return CustomGDO.RegisterItemProcess(itemProcess);
 		}
 
+		[Obsolete("System registration is now automatic")]
 		public T AddSystem<T>() where T : GenericSystemBase, new() {
 			return SystemUtils.AddSystem<T>();
 		}
