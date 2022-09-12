@@ -42,7 +42,7 @@
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp\PlateUp_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
