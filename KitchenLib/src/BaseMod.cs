@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using MelonLoader;
 using Kitchen;
 using KitchenLib.Registry;
-using KitchenLib.Appliances;
+using KitchenLib.Customs;
 using KitchenLib.Utils;
 using UnityEngine;
 using Semver;

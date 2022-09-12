@@ -2,7 +2,7 @@ using KitchenData;
 using System;
 using System.Collections.Generic;
 
-namespace KitchenLib.Appliances
+namespace KitchenLib.Customs
 {
 	public class CustomGDO
 	{

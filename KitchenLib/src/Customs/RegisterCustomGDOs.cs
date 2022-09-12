@@ -9,7 +9,7 @@ using UnityEngine;
 using KitchenEditor;
 using System.Reflection;
 
-namespace KitchenLib.Appliances
+namespace KitchenLib.Customs
 {
 	[HarmonyPatch(typeof(GameDataConstructor), "BuildGameData", new Type[] { })]
 	public class GameDataConstructor_Patch

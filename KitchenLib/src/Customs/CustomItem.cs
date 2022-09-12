@@ -5,7 +5,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace KitchenLib.Appliances
+namespace KitchenLib.Customs
 {
 	public abstract class CustomItem
 	{

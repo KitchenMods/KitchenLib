@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KitchenData;
 
-namespace KitchenLib.Appliances
+namespace KitchenLib.Customs
 {
 	public abstract class CustomItemProcess
 	{

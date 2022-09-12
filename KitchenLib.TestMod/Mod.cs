@@ -1,4 +1,4 @@
-using KitchenLib.Appliances;
+using KitchenLib.Customs;
 using UnityEngine;
 
 namespace KitchenLib.TestMod
