@@ -1,9 +1,7 @@
-﻿using Kitchen;
-using KitchenData;
+﻿using KitchenData;
 using KitchenLib.Utils;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Xml.Linq;
 
 namespace KitchenLib.Customs
 {
