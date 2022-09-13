@@ -23,6 +23,20 @@ namespace KitchenLib.Customs
 
 			List<GameDataObject> gameDataObjects = new List<GameDataObject>();
 
+
+			foreach (CustomProcess process in CustomGDO.Processes.Values) //Adds Custom Process to GDOs
+			{
+				Process newProcess = createProcess(__result, process);
+				process.Process = newProcess;
+				gameDataObjects.Add(newProcess);
+			}
+
+			foreach (CustomApplianceProcess applianceProcess in CustomGDO.ApplianceProcesses.Values) //Adds Custom Appliance Process to GDOUtils
+			{
+				Appliance.ApplianceProcesses newApplianceProcess = createApplianceProcess(__result, applianceProcess);
+				GDOUtils.AddCustomApplianceProcess(applianceProcess.ProcessName, newApplianceProcess);
+			}
+
 			foreach (CustomItemProcess itemProcess in CustomGDO.ItemProcesses.Values) //Adds Custom Item Process to GDOUtils
 			{
 				Item.ItemProcess newItemProcess = createItemProcess(__result, itemProcess);
@@ -44,13 +58,6 @@ namespace KitchenLib.Customs
 				item.Item = newItem;
 				gameDataObjects.Add(newItem);
 			}
-
-			foreach (CustomProcess process in CustomGDO.Processes.Values)
-			{
-				Process newProcess = createProcess(__result, process);
-				process.Process = newProcess;
-				gameDataObjects.Add(newProcess);
-			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{
@@ -69,7 +76,6 @@ namespace KitchenLib.Customs
 					Mod.Log(e.Message);
 				}
 			}
-
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{
 				__result.Objects.Add(gameDataObject.ID, gameDataObject);
@@ -83,27 +89,6 @@ namespace KitchenLib.Customs
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{
 				gameDataObject.SetupFinal();
-			}
-
-			Item apple = __result.Objects.Values.OfType<Item>().FirstOrDefault(x => x.ID == 681117884);
-
-			foreach (Item.ItemProcess process in apple.DerivedProcesses)
-			{
-				Mod.Log("-----"+process.Process.ToString()+"-----");
-				Mod.Log(process.Process.BasicEnablingAppliance.ToString());
-				Mod.Log(process.Process.BasicEnablingAppliance.ID.ToString());
-				Mod.Log(process.Process.CanObfuscateProgress.ToString());
-				Mod.Log(process.Process.EnablingApplianceCount.ToString());
-				Mod.Log(process.Process.Icon.ToString());
-				Mod.Log(process.Process.ID.ToString());
-				Mod.Log(process.Process.Info.ToString());
-
-				Mod.Log(process.Duration.ToString());
-				Mod.Log(process.IsBad.ToString());
-				Mod.Log(process.Process.ToString());
-				Mod.Log(process.RequiresWrapper.ToString());
-				Mod.Log(process.Result.ToString());
-				Mod.Log(process.Result.ID.ToString());
 			}
 
 			__result.Dispose();
@@ -121,11 +106,20 @@ namespace KitchenLib.Customs
 			return result;
 		}
 
+		private static Appliance.ApplianceProcesses createApplianceProcess(GameData gameData, CustomApplianceProcess customApplianceProcess)
+		{
+			Appliance.ApplianceProcesses result = new Appliance.ApplianceProcesses();
+			result.Process = customApplianceProcess.Process;
+			result.IsAutomatic = customApplianceProcess.IsAutomatic;
+			result.Speed = customApplianceProcess.Speed;
+			return result;
+		}
+
 		private static Process createProcess(GameData gameData, CustomProcess customProcess)
 		{
 			Process result = new Process();
 			if (customProcess.BaseProcessId != -1)
-				result = gameData.Get<Process>().FirstOrDefault(a => a.ID == customProcess.BaseProcessId);
+				result = UnityEngine.Object.Instantiate(gameData.Get<Process>().FirstOrDefault(a => a.ID == customProcess.BaseProcessId));
 			
 			result.BasicEnablingAppliance = customProcess.BasicEnablingAppliance;
 			result.EnablingApplianceCount = customProcess.EnablingApplianceCount;

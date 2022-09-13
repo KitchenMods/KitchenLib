@@ -14,7 +14,8 @@ namespace KitchenLib.TestMod
 
 		public override Process Process
 		{
-			get { return GDOUtils.GetExistingProcess("Chop"); }
+			//get { return GDOUtils.GetExistingProcess("Chop"); }
+			get { return Mod.rollProcess.Process; }
 		}
 
 		public override Item Result

@@ -12,6 +12,7 @@ namespace KitchenLib.Customs
 		private static Dictionary<Type, CustomItem> itemsByType = new Dictionary<Type, CustomItem>();
 
 		public static Dictionary<string, CustomItemProcess> ItemProcesses = new Dictionary<string, CustomItemProcess>();
+		public static Dictionary<string, CustomApplianceProcess> ApplianceProcesses = new Dictionary<string, CustomApplianceProcess>();
 
 		public static Dictionary<string, CustomProcess> Processes = new Dictionary<string, CustomProcess>();
 		public static Dictionary<Type, CustomProcess> processesByType = new Dictionary<Type, CustomProcess>();
@@ -23,6 +24,16 @@ namespace KitchenLib.Customs
 			}
 
 			ItemProcesses.Add(process.ProcessName, process);
+			return process;
+		}
+
+		public static T RegisterApplianceProcess<T>(T process) where T : CustomApplianceProcess
+		{
+			if (ApplianceProcesses.ContainsKey(process.ProcessName)) {
+				return null;
+			}
+
+			ApplianceProcesses.Add(process.ProcessName, process);
 			return process;
 		}
 
@@ -83,6 +94,12 @@ namespace KitchenLib.Customs
 		public static CustomProcess GetCustomProcess(string name)
 		{
 			Processes.TryGetValue(name, out var result);
+			return result;
+		}
+
+		public static CustomProcess GetCustomProcessByType<T>()
+		{
+			processesByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 
