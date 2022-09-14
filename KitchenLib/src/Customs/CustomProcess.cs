@@ -1,7 +1,6 @@
 using KitchenData;
 using KitchenLib.Utils;
 using UnityEngine;
-using System.Collections.Generic;
 
 namespace KitchenLib.Customs
 {
@@ -15,6 +14,7 @@ namespace KitchenLib.Customs
 		public virtual string Icon { get; internal set; }
 		public virtual LocalisationObject<ProcessInfo> Info { get; internal set; }
 		public virtual int ID { get; internal set; }
+		public virtual AudioClip ProcessAudioClip { get; internal set; }
 
 		public Process Process{ get; internal set; }
 		public string ModName { get; internal set; }

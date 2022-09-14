@@ -29,6 +29,7 @@ namespace KitchenLib.Customs
 				Process newProcess = createProcess(__result, process);
 				process.Process = newProcess;
 				process.OnRegister(newProcess);
+				AudioUtils.AddProcessAudioClip(newProcess.ID, process.ProcessAudioClip);
 				gameDataObjects.Add(newProcess);
 			}
 
