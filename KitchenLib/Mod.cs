@@ -1,8 +1,3 @@
-using Unity.Entities;
-using KitchenLib.Customs;
-using KitchenLib.Utils;
-using KitchenLib.Registry;
-
 namespace KitchenLib
 {
 	public class Mod : BaseMod

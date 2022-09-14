@@ -1,7 +1,5 @@
 using UnityEngine;
-using KitchenData;
 using KitchenLib.Customs;
-using KitchenLib.Utils;
 
 namespace KitchenLib.TestMod
 {

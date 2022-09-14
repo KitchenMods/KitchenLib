@@ -2,8 +2,6 @@
 using KitchenData;
 using UnityEngine;
 using Unity.Entities;
-using System.Diagnostics.SymbolStore;
-using KitchenLib.Customs;
 
 namespace KitchenLib.Utils
 {
