@@ -1,5 +1,5 @@
 ﻿using Kitchen;
-using KitchenLib.Appliances;
+using KitchenLib.Customs;
 using Unity.Entities;
 using Controllers;
 
@@ -8,7 +8,7 @@ namespace KitchenLib.Systems
 	[UpdateBefore(typeof(Kitchen.RotateAppliances))]
 	public class CustomRotateSystem : RotateAppliances
 	{
-		private CPosition Position;
+		//private CPosition Position;
 		protected override bool IsPossible(ref InteractionData data)
 		{
 			CustomAppliance customAppliance = GetApplianceFromRotation(ref data);
@@ -48,7 +48,7 @@ namespace KitchenLib.Systems
 				return null;
 			}
 
-			CustomAppliance customAppliance = CustomAppliances.Get(appliance.ID);
+			CustomAppliance customAppliance = CustomGDO.GetCustomAppliance(appliance.ID);
 			if (customAppliance == null || customAppliance.Appliance == null)
 			{
 				return null;

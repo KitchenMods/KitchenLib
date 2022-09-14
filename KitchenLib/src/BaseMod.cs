@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using MelonLoader;
 using Kitchen;
 using KitchenLib.Registry;
-using KitchenLib.Appliances;
+using KitchenLib.Customs;
 using KitchenLib.Utils;
 using UnityEngine;
 using Semver;
@@ -44,12 +44,39 @@ namespace KitchenLib
 			return AddAppliance<T>();
 		}
 
-		public T AddAppliance<T>() where T : CustomAppliance, new()  {
+		public T AddAppliance<T>() where T : CustomAppliance, new()
+		{
 			T appliance = new T();
 			appliance.ModName = Info.Name;
-			return CustomAppliances.Register(appliance);
+			return CustomGDO.RegisterAppliance(appliance);
 		}
 
+		public T AddItem<T>() where T : CustomItem, new()
+		{
+			T item = new T();
+			item.ModName = Info.Name;
+			return CustomGDO.RegisterItem(item);
+		}
+
+		public T AddItemProcess<T>() where T : CustomItemProcess, new()
+		{
+			T itemProcess = new T();
+			return CustomGDO.RegisterItemProcess(itemProcess);
+		}
+
+		public T AddApplianceProcess<T>() where T : CustomApplianceProcess, new()
+		{
+			T applianceProcess = new T();
+			return CustomGDO.RegisterApplianceProcess(applianceProcess);
+		}
+
+		public T AddProcess<T>() where T : CustomProcess, new()
+		{
+			T process = new T();
+			return CustomGDO.RegisterProcess(process);
+		}
+
+		[Obsolete("System registration is now automatic")]
 		public T AddSystem<T>() where T : GenericSystemBase, new() {
 			return SystemUtils.AddSystem<T>();
 		}

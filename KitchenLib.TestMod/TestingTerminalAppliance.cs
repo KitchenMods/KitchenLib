@@ -1,27 +1,25 @@
-using System;
-using UnityEngine;
-using Kitchen;
 using KitchenData;
-using KitchenLib.Appliances;
+using KitchenLib.Customs;
 using KitchenLib.Utils;
+using System.Collections.Generic;
 
 namespace KitchenLib.TestMod
 {
 	public class TestingTerminalAppliance : CustomAppliance
 	{
-        public override string Name
-        {
-            get { return "Custom Appliance Lol"; }
-        }
+		public override string Name
+		{
+			get { return "Sushi Provider"; }
+		}
 
-        public override bool PreInteract(InteractionData data, bool isSecondary)
-        {
-			return true;
-        }
-
-        public override bool PreRotate(InteractionData data, bool isSecondary)
-        {
-			return false;
-        }
+		public override int BaseApplianceId
+		{
+			get { return -13481890; }
+		}
+		
+		public override List<IApplianceProperty> Properties
+		{
+			get { return new List<IApplianceProperty> { KitchenPropertiesUtils.GetUnlimitedCItemProvider(Mod.sushiRoll.ID) }; }
+		}
     }
 }
