@@ -64,6 +64,12 @@ namespace KitchenLib
 			return CustomGDO.RegisterItemProcess(itemProcess);
 		}
 
+		public T AddApplianceProcess<T>() where T : CustomApplianceProcess, new()
+		{
+			T applianceProcess = new T();
+			return CustomGDO.RegisterApplianceProcess(applianceProcess);
+		}
+
 		public T AddProcess<T>() where T : CustomProcess, new()
 		{
 			T process = new T();
