@@ -10,5 +10,7 @@ namespace KitchenLib.Customs
 		public virtual float Speed { get; internal set; }
         public virtual ProcessValidity Validity {get; internal set;}
 
+		public virtual void OnRegister(Appliance.ApplianceProcesses process) {}
+
 	}
 }

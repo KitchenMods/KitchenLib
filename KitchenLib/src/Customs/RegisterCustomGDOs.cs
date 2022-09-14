@@ -28,18 +28,21 @@ namespace KitchenLib.Customs
 			{
 				Process newProcess = createProcess(__result, process);
 				process.Process = newProcess;
+				process.OnRegister(newProcess);
 				gameDataObjects.Add(newProcess);
 			}
 
 			foreach (CustomApplianceProcess applianceProcess in CustomGDO.ApplianceProcesses.Values) //Adds Custom Appliance Process to GDOUtils
 			{
 				Appliance.ApplianceProcesses newApplianceProcess = createApplianceProcess(__result, applianceProcess);
+				applianceProcess.OnRegister(newApplianceProcess);
 				GDOUtils.AddCustomApplianceProcess(applianceProcess.ProcessName, newApplianceProcess);
 			}
 
 			foreach (CustomItemProcess itemProcess in CustomGDO.ItemProcesses.Values) //Adds Custom Item Process to GDOUtils
 			{
 				Item.ItemProcess newItemProcess = createItemProcess(__result, itemProcess);
+				itemProcess.OnRegister(newItemProcess);
 				GDOUtils.AddCustomItemProcess(itemProcess.ProcessName, newItemProcess);
 			}
 

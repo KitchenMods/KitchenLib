@@ -19,6 +19,8 @@ namespace KitchenLib.Customs
 		public Process Process{ get; internal set; }
 		public string ModName { get; internal set; }
 		public virtual int BaseProcessId { get { return -1; } }
+
+		public virtual void OnRegister(Process process) {}
 		
 		public int GetHash()
 		{

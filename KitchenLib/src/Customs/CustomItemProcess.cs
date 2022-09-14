@@ -11,5 +11,7 @@ namespace KitchenLib.Customs
 		public virtual bool IsBad { get; internal set; }
 		public virtual bool RequiresWrapper { get; internal set; }
 
+		public virtual void OnRegister(Item.ItemProcess process) {}
+
 	}
 }
