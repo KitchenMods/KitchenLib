@@ -2,7 +2,6 @@ using UnityEngine;
 using KitchenData;
 using KitchenLib.Customs;
 using KitchenLib.Utils;
-using System.Collections.Generic;
 
 namespace KitchenLib.TestMod
 {
@@ -29,6 +28,14 @@ namespace KitchenLib.TestMod
             get
             {
                 return "<sprite=14>";
+            }
+        }
+
+        public override AudioClip ProcessAudioClip
+        {
+            get
+            {
+                return(AudioClip)Mod.bundle.LoadAsset("huh");
             }
         }
 

@@ -1,5 +1,10 @@
 using KitchenLib.Customs;
 using UnityEngine;
+using HarmonyLib;
+using Kitchen;
+using KitchenLib;
+using KitchenLib.Utils;
+using System.Collections.Generic;
 
 namespace KitchenLib.TestMod
 {
@@ -16,10 +21,15 @@ namespace KitchenLib.TestMod
 			base.OnApplicationStart();
 			rollProcess = AddProcess<RollProcess>();
 			AddItemProcess<ChopSushi>();
+			AddApplianceProcess<ApplianceChopSushi>();
 			bundle = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/sushimod");
 			d = AddAppliance<TestingTerminalAppliance>();
 			sushiRoll = AddItem<SushiRoll>();
 		}
  
     }
+	/*
+	* This is a custom AudioClip returned for the custom process 'rollProcess' - This needs to be added to KitchenLib
+	*/
+	
 }

@@ -53,6 +53,9 @@
     <Reference Include="UnityEngine.InputModule">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.InputModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <Target Name="CopyToPlateUp" AfterTargets="Build">
