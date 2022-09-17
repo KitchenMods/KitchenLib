@@ -5,6 +5,7 @@ using KitchenData;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
 
 namespace KitchenLib.Customs
 {
@@ -29,7 +30,8 @@ namespace KitchenLib.Customs
 				Process newProcess = createProcess(__result, process);
 				process.Process = newProcess;
 				process.OnRegister(newProcess);
-				AudioUtils.AddProcessAudioClip(newProcess.ID, process.ProcessAudioClip);
+				if (process.ProcessAudioClip != null)
+					AudioUtils.AddProcessAudioClip(newProcess.ID, process.ProcessAudioClip);
 				gameDataObjects.Add(newProcess);
 			}
 
@@ -68,7 +70,6 @@ namespace KitchenLib.Customs
 				try
 				{
 					gameDataObject.SetupForGame();
-					gameDataObject.Localise(Localisation.CurrentLocale, __result.Substitutions);
 					GlobalLocalisation globalLocalisation = gameDataObject as GlobalLocalisation;
 					if (globalLocalisation != null)
 					{
@@ -80,6 +81,7 @@ namespace KitchenLib.Customs
 					Mod.Log(e.Message);
 				}
 			}
+
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{
 				__result.Objects.Add(gameDataObject.ID, gameDataObject);
@@ -125,9 +127,10 @@ namespace KitchenLib.Customs
 			if (customProcess.BaseProcessId != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<Process>().FirstOrDefault(a => a.ID == customProcess.BaseProcessId));
 			
-			result.BasicEnablingAppliance = customProcess.BasicEnablingAppliance;
+			if (customProcess.BasicEnablingAppliance != null) result.BasicEnablingAppliance = customProcess.BasicEnablingAppliance;
+			if (customProcess.IsPseudoprocessFor != null) result.IsPseudoprocessFor = customProcess.IsPseudoprocessFor;
 			result.EnablingApplianceCount = customProcess.EnablingApplianceCount;
-			result.IsPseudoprocessFor = customProcess.IsPseudoprocessFor;
+			
 			result.CanObfuscateProgress = customProcess.CanObfuscateProgress;
 			result.Icon = customProcess.Icon;
 
