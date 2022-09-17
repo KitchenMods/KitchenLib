@@ -34,7 +34,7 @@ namespace KitchenLib.Utils
 				return default(Entity);
 		}
 
-		public static Entity SpawnApplianceBlueprint<T>(int id, float priceModifier = 0f, int forcePrice = -1)
+		public static Entity SpawnApplianceBlueprint<T>(float priceModifier = 0f, int forcePrice = -1)
 		{
 			var appliance = CustomGDO.GetCustomAppliance<T>();
 			if (appliance == null)
