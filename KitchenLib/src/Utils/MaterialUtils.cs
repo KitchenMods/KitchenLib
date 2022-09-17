@@ -38,8 +38,11 @@ namespace KitchenLib.Utils
 
         public static void SetupMaterialIndex(GameData gameData)
         {
+
             foreach (Appliance app in gameData.Get<Appliance>())
                 getChildRecursive(app.Prefab);
+            foreach (Item item in gameData.Get<Item>())
+                getChildRecursive(item.Prefab);
             foreach (GameObject o in MaterialUtils.ListOfChildren)
                 if (o.GetComponent<MeshRenderer>() != null)
                     foreach (Material material in o.GetComponent<MeshRenderer>().materials)
