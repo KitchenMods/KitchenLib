@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="$(os)=='UNIX'">
-    <PlateUpGameFolder>/Users/lachlanleone/Desktop/PlateUp</PlateUpGameFolder>
+    <PlateUpGameFolder>~/.steam/steam/steamapps/common/PlateUp/PlateUp</PlateUpGameFolder>
   </PropertyGroup>
 
   <ItemGroup>

@@ -14,6 +14,10 @@ namespace KitchenLib.Customs
             {
                 __result = AudioUtils.GetProcessAudioClip(process);
             }
+
+            PlayerViewEventArgs playerViewEvent = new PlayerViewEventArgs(process, __result);
+            EventUtils.InvokeEvent(nameof(Events.PlayerViewEvent), Events.PlayerViewEvent?.GetInvocationList(), playerViewEvent);
+            __result = playerViewEvent.audioclip;
         }
     }
 }
