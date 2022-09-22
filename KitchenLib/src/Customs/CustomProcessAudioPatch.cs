@@ -2,6 +2,7 @@ using HarmonyLib;
 using Kitchen;
 using UnityEngine;
 using KitchenLib.Utils;
+using KitchenLib.Event;
 
 namespace KitchenLib.Customs
 {

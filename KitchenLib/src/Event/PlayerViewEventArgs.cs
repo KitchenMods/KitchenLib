@@ -1,3 +1,6 @@
+using System;
+using UnityEngine;
+
 namespace KitchenLib.Event
 {
     public class PlayerViewEventArgs : EventArgs

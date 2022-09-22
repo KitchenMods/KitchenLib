@@ -1,7 +1,7 @@
 using KitchenData;
 using System;
 
-namespace Kitchenlib.Event
+namespace KitchenLib.Event
 {
     public class BuildGameDataEventArgs : EventArgs
     {
