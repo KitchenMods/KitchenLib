@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="$(os)=='Windows_NT'">
-    <PlateUpGameFolder>D:\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp</PlateUpGameFolder>
+    <PlateUpGameFolder>C:\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp</PlateUpGameFolder>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(os)=='UNIX'">
@@ -17,6 +17,7 @@
     <Reference Include="Controllers">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Controllers.dll</HintPath>
     </Reference>
+	
     <Reference Include="MelonLoader">
       <HintPath>$(PlateUpGameFolder)\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>
@@ -52,6 +53,9 @@
     </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Unity.Mathematics.dll</HintPath>
+    </Reference>
+	<Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Serialization">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Sirenix.Serialization.dll</HintPath>
