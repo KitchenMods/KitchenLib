@@ -7,22 +7,29 @@ namespace KitchenLib.Utils
 	{
 		private static Dictionary<int, Appliance> appliances = new Dictionary<int, Appliance>();
 		private static Dictionary<int, Item> items = new Dictionary<int, Item>();
-		private static Dictionary<string, Process> processes = new Dictionary<string, Process>();
+		private static Dictionary<int, Process> processes = new Dictionary<int, Process>();
+
+		private static Dictionary<string, Process> processesNamed = new Dictionary<string, Process>();
+
 		private static Dictionary<string, Item.ItemProcess> customItemProcesses = new Dictionary<string, Item.ItemProcess>();
 		private static Dictionary<string, Appliance.ApplianceProcesses> customApplianceProcesses = new Dictionary<string, Appliance.ApplianceProcesses>();
 
 		public static void SetupGDOIndex(GameData gameData)
 		{
 			foreach (Item item in gameData.Get<Item>())
+			{
 				GDOUtils.items.Add(item.ID, item);
+			}
 
 			foreach (Appliance appliance in gameData.Get<Appliance>())
+			{
 				GDOUtils.appliances.Add(appliance.ID, appliance);
+			}
 
 			foreach (Process process in gameData.Get<Process>())
 			{
-				//Mod.Log(process.ID + " - " + process.name);
-				GDOUtils.processes.Add(process.name, process);
+				GDOUtils.processes.Add(process.ID, process);
+				GDOUtils.processesNamed.Add(process.name, process);
 			}
 		}
 
@@ -38,9 +45,16 @@ namespace KitchenLib.Utils
 			return item;
 		}
 
+
+		public static Process GetExistingProcess(int id)
+		{
+			processes.TryGetValue(id, out Process process);
+			return process;
+		}
+
 		public static Process GetExistingProcess(string name)
 		{
-			processes.TryGetValue(name, out Process process);
+			processesNamed.TryGetValue(name, out Process process);
 			return process;
 		}
 
@@ -65,6 +79,5 @@ namespace KitchenLib.Utils
 		{
 			customApplianceProcesses.Add(name, process);
 		}
-
 	}
 }
