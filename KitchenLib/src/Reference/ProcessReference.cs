@@ -2,6 +2,15 @@
 {
     internal class Process
     {
+        /*
+        string s = string.Empty;
+		foreach (Process process in gameData.Get<Process>())
+		{
+			s+= $"public const int {((string.IsNullOrEmpty(process.Name) ? process.name : process.Name)).Replace(" ","").Replace("-",""} = {process.ID};\n\n";
+		}
+		Mod.Log(s);
+        */
+
         public const int Chop = 2087693779;
 
         public const int CleanSoak = -2048664109;
