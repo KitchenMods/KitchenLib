@@ -1,6 +1,6 @@
 ﻿namespace KitchenLib.Reference
 {
-    internal class Process
+    internal class ProcessReference
     {
         /*
         string s = string.Empty;
