@@ -13,13 +13,13 @@ namespace KitchenLib.TestMod
 
 		public static AssetBundle bundle;
 		public override void OnApplicationStart() {
-			base.OnApplicationStart();
-			rollProcess = AddProcess<RollProcess>();
-			AddItemProcess<ChopSushi>();
-			AddApplianceProcess<ApplianceChopSushi>();
-			bundle = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/sushimod");
-			d = AddAppliance<TestingTerminalAppliance>();
-			sushiRoll = AddItem<SushiRoll>();
+			//base.OnApplicationStart();
+			//rollProcess = AddProcess<RollProcess>();
+			//AddItemProcess<ChopSushi>();
+			//AddApplianceProcess<ApplianceChopSushi>();
+			//bundle = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/sushimod");
+			//d = AddAppliance<TestingTerminalAppliance>();
+			//sushiRoll = AddItem<SushiRoll>();
 		}
  
     }
