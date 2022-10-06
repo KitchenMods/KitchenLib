@@ -2,6 +2,7 @@ using HarmonyLib;
 using Kitchen;
 using UnityEngine;
 using KitchenLib.Utils;
+using KitchenLib.Event;
 
 namespace KitchenLib.Customs
 {
@@ -14,6 +15,10 @@ namespace KitchenLib.Customs
             {
                 __result = AudioUtils.GetProcessAudioClip(process);
             }
+
+            PlayerViewEventArgs playerViewEvent = new PlayerViewEventArgs(process, __result);
+            EventUtils.InvokeEvent(nameof(Events.PlayerViewEvent), Events.PlayerViewEvent?.GetInvocationList(), playerViewEvent);
+            __result = playerViewEvent.audioclip;
         }
     }
 }

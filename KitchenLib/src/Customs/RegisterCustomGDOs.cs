@@ -5,7 +5,7 @@ using KitchenData;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using System.Reflection;
-using UnityEngine;
+using KitchenLib.Event;
 
 namespace KitchenLib.Customs
 {
@@ -18,12 +18,13 @@ namespace KitchenLib.Customs
 
 			GDOUtils.SetupGDOIndex(__result);			
 
+			EventUtils.InvokeEvent(nameof(Events.BuildGameDataEvent), Events.BuildGameDataEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result));
+
 			var prefabHostObject = new UnityEngine.GameObject();
 			prefabHostObject.name = "Custom Appliance Prefab Host";
 			prefabHostObject.SetActive(false);
 
 			List<GameDataObject> gameDataObjects = new List<GameDataObject>();
-
 
 			foreach (CustomProcess process in CustomGDO.Processes.Values) //Adds Custom Process to GDOs
 			{
