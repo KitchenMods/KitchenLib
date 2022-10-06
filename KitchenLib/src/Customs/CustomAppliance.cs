@@ -48,8 +48,8 @@ namespace KitchenLib.Customs
         public virtual GameObject Prefab { get; internal set; }
         public virtual List<Appliance.ApplianceProcesses> Processes { get; internal set; }
         public virtual List<IApplianceProperty> Properties { get; internal set; }
-        public virtual List<Appliance.Section> Sections { get; internal set; }
-        public virtual List<string> Tags { get; internal set; }
+        public virtual List<Appliance.Section> Sections { get { return new List<Appliance.Section>(); } }
+        public virtual List<string> Tags { get { return new List<string>(); } }
 
         /*
          * Custom Fields
