@@ -19,11 +19,19 @@ namespace KitchenLib.Utils
             Match match = Regex.Match(versionString, pattern.ToString());
 
             if (match.Success == false)
-                throw new Exception("Failed to parse game version from version string.");
-            Major = int.Parse(match.Groups[1].Value);
-            Minor = int.Parse(match.Groups[2].Value);
-            Patch = int.Parse(match.Groups[3].Value);
-            Hash = match.Groups[4].Value;
+            {
+                Major = 0;
+                Minor = 0;
+                Patch = 0;
+                Hash = "XXXX";
+                Mod.Log("ERROR - KitchenVersion: Version string is not valid. Using default version.");
+            }else
+            {
+                Major = int.Parse(match.Groups[1].Value);
+                Minor = int.Parse(match.Groups[2].Value);
+                Patch = int.Parse(match.Groups[3].Value);
+                Hash = match.Groups[4].Value;
+            }
         }
     }
 }
