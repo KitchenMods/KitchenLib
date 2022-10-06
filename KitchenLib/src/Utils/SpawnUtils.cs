@@ -25,7 +25,7 @@ namespace KitchenLib.Utils
 		{
 			ProvideStartingEnvelopes provideStartingEnvelopesInstance = SystemUtils.GetSystem<ProvideStartingEnvelopes>();
 			MethodInfo getPostTile = ReflectionUtils.GetMethod<ProvideStartingEnvelopes>("GetPostTiles");
-			List<Vector3> postTiles = (List<Vector3>)getPostTile.Invoke(provideStartingEnvelopesInstance, null);
+			List<Vector3> postTiles = (List<Vector3>)getPostTile.Invoke(provideStartingEnvelopesInstance, new object[]{false});
 			int num = 0;
 			Vector3 position;
 			if (provideStartingEnvelopesInstance.FindTile(ref num, postTiles, out position))
