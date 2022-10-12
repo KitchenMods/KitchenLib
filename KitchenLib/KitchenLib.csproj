@@ -69,6 +69,12 @@
     <Reference Include="TMPro">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Unity.TextMeshPro.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft">
+      <HintPath>$(PlateUpGameFolder)\MelonLoader\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
   </ItemGroup>
 
