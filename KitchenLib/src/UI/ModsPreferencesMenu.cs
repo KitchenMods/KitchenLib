@@ -2,8 +2,11 @@ using UnityEngine;
 using Kitchen;
 using Kitchen.Modules;
 using KitchenLib.Registry;
+using KitchenLib.Event;
+using KitchenLib.Utils;
 using System.Collections.Generic;
 using System;
+using System.Reflection;
 
 namespace KitchenLib
 {
@@ -15,46 +18,70 @@ namespace KitchenLib
             AddLabel("Mod Preferences");
             
             New<SpacerElement>(true);
-            foreach (ModPreference preference in PreferencesRegistry.Preferences.Values)
-            {
-                AddButton(preference.Name, delegate
-		        {
-			        RequestSubMenu(typeof(testmenu<MainMenuAction>));
-		        });
-            }
+            
+            Mod.Log("TestSetup");
+            EventUtils.InvokeEvent(nameof(Events.SetupEvent), Events.SetupEvent?.GetInvocationList(), null, new SetupEventArgs(player_id, this));
+
             New<SpacerElement>(true);
             New<SpacerElement>(true);
             AddActionButton("Back", MainMenuAction.Back, ElementStyle.MainMenuBack);
         }
 
+        public void AddNewButton(Type type, string name)
+        {
+            AddButton(name, delegate
+            {
+                RequestSubMenu(type);
+            });
+        }
+
         public override void CreateSubmenus(ref Dictionary<Type, Menu<MainMenuAction>> menus)
         {
-		    menus.Add(typeof(testmenu<MainMenuAction>), new testmenu<MainMenuAction>(Container, ModuleList));
+            Mod.Log("TestCreate");
+            EventUtils.InvokeEvent(nameof(Events.CreateSubMenusEvent), Events.CreateSubMenusEvent?.GetInvocationList(), null, new CreateSubMenusEventArgs(menus, Container, ModuleList));
         }
     }
 
     public class testmenu<T> : Menu<T>
     {
-        
-	public testmenu(Transform container, ModuleList module_list)
-		: base(container, module_list)
-	{
-	}
+	    public testmenu(Transform container, ModuleList module_list) : base(container, module_list)
+	    {
+	    }
 
-	public override void Setup(int player_id)
-	{
-        /*
-		AddLabel(base.Localisation["SETTING_LETTERS_INSIDE"]);
-		AddBoolOption(Pref.LettersSpawnInside);
-		AddLabel(base.Localisation["SETTING_DESK_AS_PARCEL"]);
-		AddBoolOption(Pref.ProvideStartingEnvelopesAsParcels);
-        */
-		New<SpacerElement>();
-		New<SpacerElement>();
-		AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate
-		{
-			RequestPreviousMenu();
-		});
-	}
+	    public override void Setup(int player_id)
+	    {
+            AddLabel("Enable Mod");
+            BoolOption(PreferencesRegistry.Get<TestA>("kitchenlib:settings").myBool);
+
+
+            New<SpacerElement>();
+		    New<SpacerElement>();
+		    AddButton("Apply", delegate
+		    {
+                PreferencesRegistry.Save();
+                PreferencesRegistry.Load();
+		    });
+            AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate
+		    {
+			    RequestPreviousMenu();
+		    });
+	    }
+
+        private void BoolOption(bool value)
+        {
+            
+			this.Add<bool>(new Option<bool>(new List<bool>
+			{
+				false,
+				true
+			}, value, new List<string>
+			{
+				this.Localisation["SETTING_DISABLED"],
+				this.Localisation["SETTING_ENABLED"]
+			}, null)).OnChanged += delegate(object _, bool f)
+			{
+				value = f;
+			};
+        }
     }
 }

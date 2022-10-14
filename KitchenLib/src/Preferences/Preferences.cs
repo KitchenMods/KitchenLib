@@ -15,7 +15,7 @@ namespace KitchenLib
 		    TypeMapping[typeof(T).FullName] = typeof(T);
 		    T instance = new T();
 		    instance.Key = key;
-            instance.Name = name;
+            instance.DisplayName = name;
 		    Preferences.Add(key, instance);
 		    return instance;
 	    }		
@@ -38,9 +38,10 @@ namespace KitchenLib
                 for(int i = 0; i < count; i++) {
 				    string type = reader.ReadString();
 				    string key = reader.ReadString();
+                    string DisplayName = reader.ReadString();
                     int size = reader.ReadInt32();
                     byte[] preferenceBytes = reader.ReadBytes(size);
-				    ModPreference pref = FromBytes(type, key, preferenceBytes);
+				    ModPreference pref = FromBytes(type, key, DisplayName, preferenceBytes);
 				    Preferences.Add(pref.Key, pref);
                 }
             }
@@ -59,6 +60,7 @@ namespace KitchenLib
 			    foreach(var pref in Preferences.Values) {
 				    writer.Write(pref.GetType().FullName);
 				    writer.Write(pref.Key);
+                    writer.Write(pref.DisplayName);
 				    byte[] bytes = ToBytes(pref);
 				    writer.Write(bytes.Length);
 				    writer.Write(bytes);
@@ -66,7 +68,7 @@ namespace KitchenLib
             }
         }
     
-        public static ModPreference FromBytes(string type, string key, byte[] bytes) {
+        public static ModPreference FromBytes(string type, string key, string displayName, byte[] bytes) {
             if(!TypeMapping.ContainsKey(type))
                 return null;
 		
@@ -77,6 +79,7 @@ namespace KitchenLib
             using(BinaryReader reader = new BinaryReader(memoryStream))
             {
 			    pref.Key = key;
+                pref.DisplayName = displayName;
 			    pref.Deserialize(reader);
                 return pref;
             }
@@ -95,7 +98,7 @@ namespace KitchenLib
 }
     public abstract class ModPreference {
 	    public string Key;
-        public string Name;
+        public string DisplayName;
         public abstract void Deserialize(BinaryReader reader);
         public abstract void Serialize(BinaryWriter writer);   
 	    public ModPreference() { } 
