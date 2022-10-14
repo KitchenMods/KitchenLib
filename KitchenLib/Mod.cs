@@ -21,40 +21,62 @@ namespace KitchenLib
 
 		public override void OnInitializeMelon()
 		{
-            Mod.Log("um");
-			TestA x = PreferencesRegistry.Register<TestA>("kitchenlib:settings", "KL Settings");
-            x.myBool = true;
-            x.myString = "sup";
+			BoolPreference x = PreferencesRegistry.Register<BoolPreference>("kitchenlib", "enabled", "KL Settings");
+			BoolPreference y = PreferencesRegistry.Register<BoolPreference>("kitchenlib", "disabled", "KL Settings");
 
-			PreferencesRegistry.Save();
             PreferencesRegistry.Load();
 			Events.SetupEvent += (s, args) =>
 			{
-                Mod.Log("Setup");
-                args.Menu.AddNewButton(typeof(testmenu<MainMenuAction>), PreferencesRegistry.Get<TestA>("kitchenlib:settings").DisplayName);
+                args.Menu.AddNewButton(typeof(testmenu<MainMenuAction>), PreferencesRegistry.Get<BoolPreference>("kitchenlib","enabled").DisplayName);
+                args.Menu.AddNewButton(typeof(testmenu<MainMenuAction>), PreferencesRegistry.Get<BoolPreference>("kitchenlib","disabled").DisplayName);
 			};
 			Events.CreateSubMenusEvent += (s, args) =>
 			{
-                Mod.Log("Create");
                 args.Menus.Add(typeof(testmenu<MainMenuAction>), new testmenu<MainMenuAction>(args.Container, args.Module_list));
 			};
 		}
   }
-  class TestA : ModPreference {
-        public string myString;
-        public bool myBool;
 
-	
-	    public TestA() : base() { }
     
-        public override void Serialize(BinaryWriter writer) {
-            writer.Write(myString);
-            writer.Write(myBool);
-        }
-    
-        public override void Deserialize(BinaryReader reader) {
-            myString = reader.ReadString();
-            myBool = reader.ReadBoolean();
+
+    public class testmenu<T> : Menu<T>
+    {
+	    public testmenu(Transform container, ModuleList module_list) : base(container, module_list)
+	    {
+	    }
+
+	    public override void Setup(int player_id)
+	    {
+            AddLabel("Enable Mod");
+            BoolOption(PreferencesRegistry.Get<BoolPreference>("kitchenlib","enabled"));
+
+
+            New<SpacerElement>();
+		    New<SpacerElement>();
+		    AddButton("Apply", delegate
+		    {
+                PreferencesRegistry.Save();
+		    });
+            AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate
+		    {
+			    RequestPreviousMenu();
+		    });
+	    }
+
+        private void BoolOption(BoolPreference pref)
+        {
+			this.Add<bool>(new Option<bool>(new List<bool>
+			{
+				false,
+				true
+			}, (bool)pref.Value, new List<string>
+			{
+				this.Localisation["SETTING_DISABLED"],
+				this.Localisation["SETTING_ENABLED"]
+			}, null)).OnChanged += delegate(object _, bool f)
+			{
+				pref.Value = f;
+			};
         }
     }
 }
