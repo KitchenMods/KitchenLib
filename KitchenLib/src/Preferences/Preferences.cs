@@ -9,12 +9,13 @@ namespace KitchenLib
 	
 	    public static Dictionary<string, ModPreference> Preferences = new Dictionary<string, ModPreference>();
     
-	    private static Dictionary<string, Type> TypeMapping = new Dictionary<string, Type>();
+	    public static Dictionary<string, Type> TypeMapping = new Dictionary<string, Type>();
 	
-	    public static T Register<T>(string key) where T : ModPreference, new() {
+	    public static T Register<T>(string key, string name) where T : ModPreference, new() {
 		    TypeMapping[typeof(T).FullName] = typeof(T);
 		    T instance = new T();
 		    instance.Key = key;
+            instance.Name = name;
 		    Preferences.Add(key, instance);
 		    return instance;
 	    }		
@@ -22,8 +23,13 @@ namespace KitchenLib
 	    public static T Get<T>(string key) where T : ModPreference {
 		    return (T)Preferences[key];
 	    }
-    
-        public static void ReadFromFile(string file) {
+
+        public static void Load(string file = "UserData/KitchenLib/preferences.dat")
+        {
+            ReadFromFile(file);
+        }
+
+        private static void ReadFromFile(string file) {
 		    Preferences = new Dictionary<string, ModPreference>();
             using (FileStream fileStream = new FileStream(file, FileMode.Open, FileAccess.Read))
             using(BinaryReader reader = new BinaryReader(fileStream))
@@ -39,8 +45,13 @@ namespace KitchenLib
                 }
             }
         }
-	
-        public static void WriteToFile(string file) {
+    
+        public static void Save(string file = "UserData/KitchenLib/preferences.dat")
+        {
+            WriteToFile(file);
+        }
+
+        private static void WriteToFile(string file) {
             using(FileStream fileStream = new FileStream(file, FileMode.OpenOrCreate, FileAccess.Write))
             using(BinaryWriter writer = new BinaryWriter(fileStream))
             {
@@ -84,6 +95,7 @@ namespace KitchenLib
 }
     public abstract class ModPreference {
 	    public string Key;
+        public string Name;
         public abstract void Deserialize(BinaryReader reader);
         public abstract void Serialize(BinaryWriter writer);   
 	    public ModPreference() { } 

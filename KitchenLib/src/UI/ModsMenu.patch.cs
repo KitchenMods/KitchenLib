@@ -27,6 +27,7 @@ namespace KitchenLib
             addSubmenuButton.Invoke(__instance, new object[] { GameData.Main.GlobalLocalisation["MAIN_MENU_SINGLEPLAYER"], typeof(SingleplayerMainMenu), false });
             addSubmenuButton.Invoke(__instance, new object[] { GameData.Main.GlobalLocalisation["MAIN_MENU_MULTIPLAYER"], typeof(MultiplayerMainMenu), false });
             addSubmenuButton.Invoke(__instance, new object[] { "Mods", typeof(ModsMenu), false });
+            addSubmenuButton.Invoke(__instance, new object[] { "Mod Preferences", typeof(ModsPreferencesMenu), false });
             addSubmenuButton.Invoke(__instance, new object[] { GameData.Main.GlobalLocalisation["MAIN_MENU_OPTIONS"], typeof(OptionsMenu<MainMenuAction>), false });
             addSpacer.Invoke(__instance, new object[] { true });
             addSpacer.Invoke(__instance, new object[] { true });
@@ -53,6 +54,8 @@ namespace KitchenLib
             MainMenuViewEventArgs mainMenuViewEvent = new MainMenuViewEventArgs(__instance, mInfo);
 
             mInfo.Invoke(__instance, new object[] { typeof(ModsMenu), new ModsMenu(__instance.ButtonContainer, mList) });
+            mInfo.Invoke(__instance, new object[] { typeof(ModsPreferencesMenu), new ModsPreferencesMenu(__instance.ButtonContainer, mList) });
+            //mInfo.Invoke(__instance, new object[] { typeof(testmenu), new testmenu(__instance.ButtonContainer, mList) });
 
             EventUtils.InvokeEvent(nameof(Events.MainMenuViewEvent), Events.MainMenuViewEvent?.GetInvocationList(), null, mainMenuViewEvent);
             return true;
