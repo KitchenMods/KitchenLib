@@ -55,7 +55,6 @@ namespace KitchenLib
 
             mInfo.Invoke(__instance, new object[] { typeof(ModsMenu), new ModsMenu(__instance.ButtonContainer, mList) });
             mInfo.Invoke(__instance, new object[] { typeof(ModsPreferencesMenu), new ModsPreferencesMenu(__instance.ButtonContainer, mList) });
-            //mInfo.Invoke(__instance, new object[] { typeof(testmenu), new testmenu(__instance.ButtonContainer, mList) });
 
             EventUtils.InvokeEvent(nameof(Events.MainMenuViewEvent), Events.MainMenuViewEvent?.GetInvocationList(), null, mainMenuViewEvent);
             return true;

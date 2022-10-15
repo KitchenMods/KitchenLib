@@ -1,7 +1,9 @@
+#define USE_GZIP_COMPRESSION
+
 using System;
-using System.Text;
 using System.IO;
 using System.Collections.Generic;
+using System.IO.Compression;
 
 namespace KitchenLib
 {
@@ -31,50 +33,63 @@ namespace KitchenLib
                 ReadFromFile(file);
         }
 
-        private static void ReadFromFile(string file) {
-		    //Preferences = new Dictionary<string, BasePreference>();
-            using (FileStream fileStream = new FileStream(file, FileMode.Open, FileAccess.Read))
-            using(BinaryReader reader = new BinaryReader(fileStream))
-            {
-                int count = reader.ReadInt32();
-                for(int i = 0; i < count; i++) {
+        public static void ReadFromFile(string file) {
+            #if USE_GZIP_COMPRESSION
+                using(var fileStream = new FileStream(file, FileMode.Open, FileAccess.Read))
+                using(var stream = new GZipStream(fileStream, CompressionMode.Decompress))
+            #else
+                using(var stream = new FileStream(file, FileMode.Open, FileAccess.Read))
+            #endif
+            using(var reader = new BinaryReader(stream)) {		
+			    Preferences = new Dictionary<string, BasePreference>();
+			
+			    byte[] magicBytes = reader.ReadBytes(4);
+			    if(magicBytes[0] != 'K' || magicBytes[1] != 'L' || magicBytes[2] != 'I' || magicBytes[3] != 'B')
+				    throw new Exception("Not a valid KitchenLib settings file.");
+	
+			    int count = reader.ReadInt32();
+			    for(int i = 0; i < count; i++) {
 				    string type = reader.ReadString();
                     string modID = reader.ReadString();
 				    string key = reader.ReadString();
                     string DisplayName = reader.ReadString();
-                    int size = reader.ReadInt32();
-                    byte[] preferenceBytes = reader.ReadBytes(size);
+				    int size = reader.ReadInt32();
+				    byte[] preferenceBytes = reader.ReadBytes(size);
 				    BasePreference pref = FromBytes(type, modID, key, DisplayName, preferenceBytes);
                     if (Preferences.ContainsKey(pref.ModID + ":" + pref.Key))
                         Preferences[pref.ModID + ":" + pref.Key] = pref;
                     else
 				        Preferences.Add(pref.ModID + ":" + pref.Key, pref);
-                    Mod.Log("Loaded Value: " + ((BoolPreference)pref).Value);
-                }
-            }
+			    }
+		    }
         }
-    
         public static void Save(string file = "UserData/KitchenLib/preferences.dat")
         {
             WriteToFile(file);
         }
-
-        private static void WriteToFile(string file) {
-            using(FileStream fileStream = new FileStream(file, FileMode.OpenOrCreate, FileAccess.Write))
-            using(BinaryWriter writer = new BinaryWriter(fileStream))
-            {
+        public static void WriteToFile(string file) {
+            #if USE_GZIP_COMPRESSION
+                using(var fileStream = new FileStream(file, FileMode.OpenOrCreate, FileAccess.Write))
+                using(var stream = new GZipStream(fileStream, CompressionMode.Compress))
+            #else
+                using(var stream = new FileStream(file, FileMode.OpenOrCreate, FileAccess.Write))
+            #endif
+            using(var writer = new BinaryWriter(stream)) {
+			    writer.Write((byte)'K');
+			    writer.Write((byte)'L');
+			    writer.Write((byte)'I');
+			    writer.Write((byte)'B');
 			    writer.Write((Int32)Preferences.Values.Count);
 			    foreach(var pref in Preferences.Values) {
 				    writer.Write(pref.GetType().FullName);
                     writer.Write(pref.ModID);
 				    writer.Write(pref.Key);
-                    writer.Write(pref.DisplayName);
+				    writer.Write(pref.DisplayName);
 				    byte[] bytes = ToBytes(pref);
 				    writer.Write(bytes.Length);
 				    writer.Write(bytes);
-                    Mod.Log("Saved Value: " + ((BoolPreference)pref).Value);
 			    }
-            }
+		    }
         }
     
         public static BasePreference FromBytes(string type, string modID, string key, string displayName, byte[] bytes) {
@@ -106,7 +121,7 @@ namespace KitchenLib
         }
     
 }
-    public abstract class BasePreference {
+    public abstract class BasePreference : IBinarySerializable{
         public string ModID;
 	    public string Key;
         public string DisplayName;
@@ -141,5 +156,37 @@ namespace KitchenLib
         {
             Value = reader.ReadString();
         }
+    }
+    public interface IBinarySerializable {
+        void Deserialize(BinaryReader reader);
+        void Serialize(BinaryWriter writer);
+    }
+
+    public static class BinaryReaderWriterExtensions {
+	
+	    public static void Write<T>(this BinaryWriter writer, List<T> list) where T : IBinarySerializable {
+		    writer.Write((UInt32)list.Count);
+		    for(int i = 0; i < list.Count; i++)
+			    writer.Write(list[i]);
+	    }
+	
+	    public static List<T> ReadList<T>(this BinaryReader reader) where T : IBinarySerializable, new() {
+		    var list = new List<T>();
+		    var count = reader.ReadUInt32();
+		    for(int i = 0; i < count; i++)
+			    list.Add(reader.Read<T>());
+		    return list;
+	    }
+	
+	    public static void Write<T>(this BinaryWriter writer, T item) where T : IBinarySerializable {
+		    item.Serialize(writer);
+	    }
+	
+	    public static T Read<T>(this BinaryReader reader) where T : IBinarySerializable, new() {
+		    var item = new T();
+		    item.Deserialize(reader);
+		    return item;
+	    }
+	
     }
 }

@@ -14,9 +14,10 @@ namespace KitchenLib
     {
         public ModsPreferencesMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
 
+        private static Dictionary<string, List<BasePreference>> ModIDS = new Dictionary<string, List<BasePreference>>();
+
         public override void Setup(int player_id) {
             AddLabel("Mod Preferences");
-            
             New<SpacerElement>(true);
             
             EventUtils.InvokeEvent(nameof(Events.SetupEvent), Events.SetupEvent?.GetInvocationList(), null, new SetupEventArgs(player_id, this));

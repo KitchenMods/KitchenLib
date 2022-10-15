@@ -21,62 +21,52 @@ namespace KitchenLib
 
 		public override void OnInitializeMelon()
 		{
-			BoolPreference x = PreferencesRegistry.Register<BoolPreference>("kitchenlib", "enabled", "KL Settings");
-			BoolPreference y = PreferencesRegistry.Register<BoolPreference>("kitchenlib", "disabled", "KL Settings");
+			BoolPreference x = PreferencesRegistry.Register<BoolPreference>("kitchenlib", "enabled", "Is Enabled");
+			BoolPreference y = PreferencesRegistry.Register<BoolPreference>("kitchenlib", "disabled", "Is Disabled");
 
             PreferencesRegistry.Load();
 			Events.SetupEvent += (s, args) =>
 			{
-                args.Menu.AddNewButton(typeof(testmenu<MainMenuAction>), PreferencesRegistry.Get<BoolPreference>("kitchenlib","enabled").DisplayName);
-                args.Menu.AddNewButton(typeof(testmenu<MainMenuAction>), PreferencesRegistry.Get<BoolPreference>("kitchenlib","disabled").DisplayName);
+                args.Menu.AddNewButton(typeof(KLSettingsMenu<MainMenuAction>), "KL Settings");
 			};
 			Events.CreateSubMenusEvent += (s, args) =>
 			{
-                args.Menus.Add(typeof(testmenu<MainMenuAction>), new testmenu<MainMenuAction>(args.Container, args.Module_list));
+                args.Menus.Add(typeof(KLSettingsMenu<MainMenuAction>), new KLSettingsMenu<MainMenuAction>(args.Container, args.Module_list));
 			};
 		}
   }
 
     
 
-    public class testmenu<T> : Menu<T>
+    public class KLSettingsMenu<T> : KLMenu<T>
     {
-	    public testmenu(Transform container, ModuleList module_list) : base(container, module_list)
+	    public KLSettingsMenu(Transform container, ModuleList module_list) : base(container, module_list)
 	    {
 	    }
 
 	    public override void Setup(int player_id)
 	    {
-            AddLabel("Enable Mod");
-            BoolOption(PreferencesRegistry.Get<BoolPreference>("kitchenlib","enabled"));
+			/*
+			* KitchenLib doesn't have any preferences at the moment, this is just a template for developers to follow.
+			*/
+			AddInfo("KitchenLib doesn't actually have any preferences... yet.");
+
+            //AddLabel("Enable Mod");
+            //BoolOption(PreferencesRegistry.Get<BoolPreference>("kitchenlib","enabled"));
 
 
             New<SpacerElement>();
 		    New<SpacerElement>();
+			/*
 		    AddButton("Apply", delegate
 		    {
                 PreferencesRegistry.Save();
 		    });
+			*/
             AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate
 		    {
 			    RequestPreviousMenu();
 		    });
 	    }
-
-        private void BoolOption(BoolPreference pref)
-        {
-			this.Add<bool>(new Option<bool>(new List<bool>
-			{
-				false,
-				true
-			}, (bool)pref.Value, new List<string>
-			{
-				this.Localisation["SETTING_DISABLED"],
-				this.Localisation["SETTING_ENABLED"]
-			}, null)).OnChanged += delegate(object _, bool f)
-			{
-				pref.Value = f;
-			};
-        }
     }
 }
