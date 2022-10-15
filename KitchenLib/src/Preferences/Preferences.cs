@@ -7,6 +7,9 @@ using System.IO.Compression;
 
 namespace KitchenLib
 {
+    /*
+     * Preferences System was 99% made by @R4wizard
+     */
     public static class PreferencesRegistry {
 	
 	    public static Dictionary<string, BasePreference> Preferences = new Dictionary<string, BasePreference>();
@@ -24,7 +27,9 @@ namespace KitchenLib
 	    }		
 	
 	    public static T Get<T>(string modID, string key) where T : BasePreference {
-		    return (T)Preferences[modID + ":" + key];
+            if (Preferences.ContainsKey(modID + ":" + key))
+                return (T)Preferences[modID + ":" + key];
+            return default(T);
 	    }
 
         public static void Load(string file = "UserData/KitchenLib/preferences.dat")
@@ -56,10 +61,11 @@ namespace KitchenLib
 				    int size = reader.ReadInt32();
 				    byte[] preferenceBytes = reader.ReadBytes(size);
 				    BasePreference pref = FromBytes(type, modID, key, DisplayName, preferenceBytes);
-                    if (Preferences.ContainsKey(pref.ModID + ":" + pref.Key))
-                        Preferences[pref.ModID + ":" + pref.Key] = pref;
-                    else
-				        Preferences.Add(pref.ModID + ":" + pref.Key, pref);
+                    if (pref != null)
+                        if (Preferences.ContainsKey(pref.ModID + ":" + pref.Key))
+                            Preferences[pref.ModID + ":" + pref.Key] = pref;
+                        else
+				            Preferences.Add(pref.ModID + ":" + pref.Key, pref);
 			    }
 		    }
         }
