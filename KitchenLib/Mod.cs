@@ -21,8 +21,8 @@ namespace KitchenLib
 
 		public override void OnInitializeMelon()
 		{
+			/*
 			BoolPreference x = PreferencesRegistry.Register<BoolPreference>("kitchenlib", "enabled", "Is Enabled");
-			BoolPreference y = PreferencesRegistry.Register<BoolPreference>("kitchenlib", "disabled", "Is Disabled");
 
             PreferencesRegistry.Load();
 			Events.SetupEvent += (s, args) =>
@@ -33,6 +33,7 @@ namespace KitchenLib
 			{
                 args.Menus.Add(typeof(KLSettingsMenu<MainMenuAction>), new KLSettingsMenu<MainMenuAction>(args.Container, args.Module_list));
 			};
+			*/
 		}
   }
 
