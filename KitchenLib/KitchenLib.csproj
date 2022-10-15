@@ -39,6 +39,9 @@
     <Reference Include="Kitchen.Common">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Kitchen.NetworkSupport">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Networking.dll</HintPath>
+    </Reference>
     <Reference Include="Kitchen.RestaurantMode">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.RestaurantMode.dll</HintPath>
     </Reference>

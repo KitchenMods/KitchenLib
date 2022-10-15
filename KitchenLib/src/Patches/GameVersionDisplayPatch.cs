@@ -1,4 +1,5 @@
 using HarmonyLib;
+using Kitchen.NetworkSupport;
 using Kitchen;
 
 namespace KitchenLib
@@ -9,6 +10,15 @@ namespace KitchenLib
         public static void Postfix(DisplayVersion __instance)
         {
             __instance.Text.text = __instance.Text.text + ".";
+        }
+    }
+
+    [HarmonyPatch(typeof(SteamRichPresenceView), "UpdateDiscordRichPresence")]
+    public class SteamRichPresenceView_Patch
+    {
+        public static void Postfix(SteamRichPresenceView __instance, SteamRichPresenceView.ViewData view_data)
+        {
+            DiscordPlatform.Discord.SetActivity("Plating Up Some Spinach", "", view_data.Data.Players);
         }
     }
 }
