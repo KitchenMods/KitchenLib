@@ -11,7 +11,7 @@ namespace KitchenLib.Utils
      * Preferences System was 99% made by @R4wizard
      */
      
-    public static class PreferencesRegistry {
+    public static class PreferenceUtils {
 	
 	    public static Dictionary<string, BasePreference> Preferences = new Dictionary<string, BasePreference>();
     
