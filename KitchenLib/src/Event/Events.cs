@@ -8,5 +8,7 @@ namespace KitchenLib.Event
         public static EventHandler<PlayerViewEventArgs> PlayerViewEvent;
         public static EventHandler<StartMainMenuEvent> StartMainMenuEvent;
         public static EventHandler<MainMenuViewEventArgs> MainMenuViewEvent;
+        public static EventHandler<CreateSubMenusEventArgs> CreateSubMenusEvent;
+        public static EventHandler<SetupEventArgs> SetupEvent;
     }
 }

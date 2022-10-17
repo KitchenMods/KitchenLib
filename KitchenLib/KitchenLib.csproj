@@ -75,8 +75,8 @@
     <Reference Include="UnityEngine">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft">
-      <HintPath>$(PlateUpGameFolder)\MelonLoader\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="UnityEngine">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
   </ItemGroup>
