@@ -5,11 +5,12 @@ using System.IO;
 using System.Collections.Generic;
 using System.IO.Compression;
 
-namespace KitchenLib
+namespace KitchenLib.Utils
 {
     /*
      * Preferences System was 99% made by @R4wizard
      */
+     
     public static class PreferencesRegistry {
 	
 	    public static Dictionary<string, BasePreference> Preferences = new Dictionary<string, BasePreference>();
@@ -114,7 +115,7 @@ namespace KitchenLib
 			    pref.Deserialize(reader);
                 return pref;
             }
-    }
+        }
     
         public static byte[] ToBytes(BasePreference pref) {
             using(MemoryStream memoryStream = new MemoryStream())
@@ -125,50 +126,10 @@ namespace KitchenLib
 			    return memoryStream.ToArray();
             }
         }
-    
-}
-    public abstract class BasePreference : IBinarySerializable{
-        public string ModID;
-	    public string Key;
-        public string DisplayName;
-        public abstract void Deserialize(BinaryReader reader);
-        public abstract void Serialize(BinaryWriter writer);   
-	    public BasePreference() { } 
+
     }
 
-    public class BoolPreference : BasePreference
-    {
-        public bool Value;
-        public BoolPreference() : base() { }
-        public override void Serialize(BinaryWriter writer)
-        {
-            writer.Write(Value);
-        }
-        public override void Deserialize(BinaryReader reader)
-        {
-            Value = reader.ReadBoolean();
-        }
-    }
-
-    public class StringPreference : BasePreference
-    {
-        public string Value;
-        public StringPreference() : base() { }
-        public override void Serialize(BinaryWriter writer)
-        {
-            writer.Write(Value);
-        }
-        public override void Deserialize(BinaryReader reader)
-        {
-            Value = reader.ReadString();
-        }
-    }
-    public interface IBinarySerializable {
-        void Deserialize(BinaryReader reader);
-        void Serialize(BinaryWriter writer);
-    }
-
-    public static class BinaryReaderWriterExtensions {
+        public static class BinaryReaderWriterExtensions {
 	
 	    public static void Write<T>(this BinaryWriter writer, List<T> list) where T : IBinarySerializable {
 		    writer.Write((UInt32)list.Count);
