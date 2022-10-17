@@ -50,9 +50,12 @@ namespace KitchenLib.Utils
 			    Preferences = new Dictionary<string, BasePreference>();
 			
 			    byte[] magicBytes = reader.ReadBytes(4);
-			    if(magicBytes[0] != 'K' || magicBytes[1] != 'L' || magicBytes[2] != 'I' || magicBytes[3] != 'B')
+				if (magicBytes.Length == 4)
+			    	if(magicBytes[0] != 'K' || magicBytes[1] != 'L' || magicBytes[2] != 'I' || magicBytes[3] != 'B')
+				    	throw new Exception("Not a valid KitchenLib settings file.");
+				else
 				    throw new Exception("Not a valid KitchenLib settings file.");
-	
+					
 			    int count = reader.ReadInt32();
 			    for(int i = 0; i < count; i++) {
 				    string type = reader.ReadString();
