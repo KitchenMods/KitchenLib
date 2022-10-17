@@ -76,6 +76,12 @@ namespace KitchenLib
 			return CustomGDO.RegisterProcess(process);
 		}
 
+		public T AddPreference<T>(string modID, string key, string name) where T : BasePreference, new()
+		{
+			T preference = new T();
+			return PreferenceUtils.Register<T>(modID, key, name);
+		}
+
 		[Obsolete("System registration is now automatic")]
 		public T AddSystem<T>() where T : GenericSystemBase, new() {
 			return SystemUtils.AddSystem<T>();
