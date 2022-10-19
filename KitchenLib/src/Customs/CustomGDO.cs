@@ -38,6 +38,9 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomGameDifficultySettings> GameDifficultySettings = new Dictionary<int, CustomGameDifficultySettings>();
 		public static Dictionary<Type, CustomGameDifficultySettings> gameDifficultySettingsByType = new Dictionary<Type, CustomGameDifficultySettings>();
 
+		public static Dictionary<int, CustomGardenProfile> GardenProfiles = new Dictionary<int, CustomGardenProfile>();
+		public static Dictionary<Type, CustomGardenProfile> gardenProfilesByType = new Dictionary<Type, CustomGardenProfile>();
+
 
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
@@ -220,6 +223,23 @@ namespace KitchenLib.Customs
 			return gameDifficultySettings;
 		}
 
+		public static T RegisterGardenProfile<T>(T gardenProfile) where T : CustomGardenProfile
+		{
+			if (gardenProfile.ID == 0)
+				gardenProfile.ID = gardenProfile.GetHash();
+			
+			if (GardenProfiles.ContainsKey(gardenProfile.ID))
+			{
+				Mod.Error("GardenProfile: " + gardenProfile.Name + " failed to register - key:" + gardenProfile.ID + " already in use. Generating custom key. " + gardenProfile.GetHash());
+				return null;
+			}
+
+			GardenProfiles.Add(gardenProfile.ID, gardenProfile);
+			gardenProfilesByType.Add(gardenProfile.GetType(), gardenProfile);
+			Mod.Log($"Registered garden profile '{gardenProfile.ModName}:{gardenProfile.Name}' as {gardenProfile.ID}");
+			return gardenProfile;
+		}
+
 		//Get Custom Appliance
 		public static CustomAppliance GetCustomAppliance(int id)
 		{
@@ -367,6 +387,18 @@ namespace KitchenLib.Customs
 		public static CustomGameDifficultySettings GetCustomGameDifficultySettings<T>()
 		{
 			gameDifficultySettingsByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom GardenProfile
+		public static CustomGardenProfile GetCustomGardenProfile(int id)
+		{
+			GardenProfiles.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomGardenProfile GetCustomGardenProfile<T>()
+		{
+			gardenProfilesByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 	}

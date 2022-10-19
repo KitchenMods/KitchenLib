@@ -107,6 +107,13 @@ namespace KitchenLib
 			return CustomGDO.RegisterGameDifficultySettings(gameDifficultySettings);
 		}
 
+		public T AddGardenProfile<T>() where T : CustomGardenProfile, new()
+		{
+			T gardenProfile = new T();
+			gardenProfile.ModName = Info.Name;
+			return CustomGDO.RegisterGardenProfile(gardenProfile);
+		}
+
 		public T AddItemProcess<T>() where T : CustomItemProcess, new()
 		{
 			T itemProcess = new T();

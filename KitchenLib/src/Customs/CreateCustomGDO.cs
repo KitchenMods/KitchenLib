@@ -268,5 +268,19 @@ namespace KitchenLib.Customs
 
             return result;
         }
+
+        public static GardenProfile CreateGardenProfile(GameData gameData, CustomGardenProfile custom)
+        {
+            GardenProfile result = default(GardenProfile);
+            GardenProfile empty = default(GardenProfile);
+
+            if (custom.BaseGardenProfileId != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<GardenProfile>().FirstOrDefault(a => a.ID == custom.BaseGardenProfileId));
+
+            if (custom.SpawnHolder != empty.SpawnHolder) result.SpawnHolder = custom.SpawnHolder;
+            if (custom.Spawns != empty.Spawns) result.Spawns = custom.Spawns;
+
+            return result;
+        }
     }
 }

@@ -117,6 +117,14 @@ namespace KitchenLib.Customs
 				gameDifficultySettings.GameDifficultySettings = newGameDifficultySettings;
 				gameDataObjects.Add(newGameDifficultySettings);
 			}
+
+			foreach (CustomGardenProfile gardenProfile in CustomGDO.GardenProfiles.Values) //Adds Custom Garden Profiles to GDOs
+			{
+				GardenProfile newGardenProfile = CreateCustomGDOs.CreateGardenProfile(__result, gardenProfile);
+				gardenProfile.OnRegister(newGardenProfile);
+				gardenProfile.GardenProfile = newGardenProfile;
+				gameDataObjects.Add(newGardenProfile);
+			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{
