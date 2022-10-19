@@ -21,4 +21,20 @@ namespace KitchenLib
             DiscordPlatform.Discord.SetActivity("Plating Up Some Spinach", "", view_data.Data.Players);
         }
     }
+    /*
+    [HarmonyPatch(typeof(PackProgressionSaveSystem), "Serialise")]
+    public class ProgressionSaveSystem_Patch
+    {
+        public static void Prefix(string path, PackSave save)
+        {
+            List<ISaveObject> toDelete = new List<ISaveObject>();
+            foreach (ISaveObject obj in save.SaveObjects)
+                if (obj.GetType() == typeof(PackSaveUpgrades.V1))
+                    toDelete.Add(obj);
+            foreach (ISaveObject obj in toDelete)
+                if (((PackSaveUpgrades.V1)obj).ID == 82131534)
+                    save.SaveObjects.Remove(obj);
+        }
+    }
+    */
 }
