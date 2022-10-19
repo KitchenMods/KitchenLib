@@ -177,5 +177,29 @@ namespace KitchenLib.Customs
 			
 			return result;
         }
+
+        public static Dish CreateDish(GameData gameData, CustomDish customDish)
+        {
+            Dish result = default(Dish);
+            Dish empty = default(Dish);
+
+            if (customDish.BaseDishId != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<Dish>().FirstOrDefault(a => a.ID == customDish.BaseDishId));
+
+            if (customDish.Type != empty.Type) result.Type = customDish.Type;
+            if (customDish.AchievementName != empty.AchievementName) result.AchievementName = customDish.AchievementName;
+            if (customDish.UnlocksMenuItems != empty.UnlocksMenuItems) result.UnlocksMenuItems = customDish.UnlocksMenuItems;
+            if (customDish.UnlocksIngredients != empty.UnlocksIngredients) result.UnlocksIngredients = customDish.UnlocksIngredients;
+            if (customDish.ExtraOrderUnlocks != empty.ExtraOrderUnlocks) result.ExtraOrderUnlocks = customDish.ExtraOrderUnlocks;
+            if (customDish.StartingNameSet != empty.StartingNameSet) result.StartingNameSet = customDish.StartingNameSet;
+            if (customDish.MinimumIngredients != empty.MinimumIngredients) result.MinimumIngredients = customDish.MinimumIngredients;
+            if (customDish.RequiredProcesses != empty.RequiredProcesses) result.RequiredProcesses = customDish.RequiredProcesses;
+            if (customDish.BlockProviders != empty.BlockProviders) result.BlockProviders = customDish.BlockProviders;
+            if (customDish.PrerequisiteDishes != empty.PrerequisiteDishes) result.PrerequisiteDishes = customDish.PrerequisiteDishes;
+            if (customDish.IconPrefab != empty.IconPrefab) result.IconPrefab = customDish.IconPrefab;
+            if (customDish.DisplayPrefab != empty.DisplayPrefab) result.DisplayPrefab = customDish.DisplayPrefab;
+
+            return result;   
+        }
     }
 }

@@ -77,6 +77,14 @@ namespace KitchenLib.Customs
 				decor.Decor = newDecor;
 				gameDataObjects.Add(newDecor);
 			}
+
+			foreach (CustomDish dish in CustomGDO.Dishes.Values) //Adds Custom Dishes to GDOs
+			{
+				Dish newDish = CreateCustomGDOs.CreateDish(__result, dish);
+				dish.OnRegister(newDish);
+				dish.Dish = newDish;
+				gameDataObjects.Add(newDish);
+			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{

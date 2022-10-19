@@ -72,6 +72,13 @@ namespace KitchenLib
 			return CustomGDO.RegisterDecor(decor);
 		}
 
+		public T AddDish<T>() where T : CustomDish, new()
+		{
+			T dish = new T();
+			dish.ModName = Info.Name;
+			return CustomGDO.RegisterDish(dish);
+		}
+
 		public T AddItemProcess<T>() where T : CustomItemProcess, new()
 		{
 			T itemProcess = new T();

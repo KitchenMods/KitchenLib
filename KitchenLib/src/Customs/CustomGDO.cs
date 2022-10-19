@@ -23,6 +23,9 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomDecor> Decors = new Dictionary<int, CustomDecor>();
 		public static Dictionary<Type, CustomDecor> decorsByType = new Dictionary<Type, CustomDecor>();
 
+		public static Dictionary<int, CustomDish> Dishes = new Dictionary<int, CustomDish>();
+		public static Dictionary<Type, CustomDish> dishesByType = new Dictionary<Type, CustomDish>();
+
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
 			if (ItemProcesses.ContainsKey(process.ProcessName)) {
@@ -119,6 +122,23 @@ namespace KitchenLib.Customs
 			return decor;
 		}
 
+		public static T RegisterDish<T>(T dish) where T : CustomDish
+		{
+			if (dish.ID == 0)
+				dish.ID = dish.GetHash();
+			
+			if (Dishes.ContainsKey(dish.ID))
+			{
+				Mod.Error("Dish: " + dish.Name + " failed to register - key:" + dish.ID + " already in use. Generating custom key. " + dish.GetHash());
+				return null;
+			}
+
+			Dishes.Add(dish.ID, dish);
+			dishesByType.Add(dish.GetType(), dish);
+			Mod.Log($"Registered dish '{dish.ModName}:{dish.Name}' as {dish.ID}");
+			return dish;
+		}
+
 		//Get Custom Appliance
 		public static CustomAppliance GetCustomAppliance(int id)
 		{
@@ -206,6 +226,18 @@ namespace KitchenLib.Customs
 		public static CustomDecor GetCustomDecor<T>()
 		{
 			decorsByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom Dish
+		public static CustomDish GetCustomDish(int id)
+		{
+			Dishes.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomDish GetCustomDish<T>()
+		{
+			dishesByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 	}
