@@ -133,6 +133,14 @@ namespace KitchenLib.Customs
 				itemGroup.ItemGroup = newItemGroup;
 				gameDataObjects.Add(newItemGroup);
 			}
+
+			foreach (CustomLayoutProfile layoutProfile in CustomGDO.LayoutProfiles.Values) //Adds Custom Layout Profiles to GDOs
+			{
+				LayoutProfile newLayoutProfile = CreateCustomGDOs.CreateLayoutProfile(__result, layoutProfile);
+				layoutProfile.OnRegister(newLayoutProfile);
+				layoutProfile.LayoutProfile = newLayoutProfile;
+				gameDataObjects.Add(newLayoutProfile);
+			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{

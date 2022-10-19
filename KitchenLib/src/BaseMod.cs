@@ -121,6 +121,13 @@ namespace KitchenLib
 			return CustomGDO.RegisterItemGroup(itemGroup);
 		}
 
+		public T AddLayoutProfile<T>() where T : CustomLayoutProfile, new()
+		{
+			T layoutProfile = new T();
+			layoutProfile.ModName = Info.Name;
+			return CustomGDO.RegisterLayoutProfile(layoutProfile);
+		}
+
 
 
 

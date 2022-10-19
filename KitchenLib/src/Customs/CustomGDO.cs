@@ -44,6 +44,9 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomItemGroup> ItemGroups = new Dictionary<int, CustomItemGroup>();
 		public static Dictionary<Type, CustomItemGroup> itemGroupsByType = new Dictionary<Type, CustomItemGroup>();
 
+		public static Dictionary<int, CustomLayoutProfile> LayoutProfiles = new Dictionary<int, CustomLayoutProfile>();
+		public static Dictionary<Type, CustomLayoutProfile> layoutProfilesByType = new Dictionary<Type, CustomLayoutProfile>();
+
 
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
@@ -260,6 +263,23 @@ namespace KitchenLib.Customs
 			return itemGroup;
 		}
 
+		public static T RegisterLayoutProfile<T>(T layoutProfile) where T : CustomLayoutProfile
+		{
+			if (layoutProfile.ID == 0)
+				layoutProfile.ID = layoutProfile.GetHash();
+			
+			if (LayoutProfiles.ContainsKey(layoutProfile.ID))
+			{
+				Mod.Error("LayoutProfile: " + layoutProfile.Name + " failed to register - key:" + layoutProfile.ID + " already in use. Generating custom key. " + layoutProfile.GetHash());
+				return null;
+			}
+
+			LayoutProfiles.Add(layoutProfile.ID, layoutProfile);
+			layoutProfilesByType.Add(layoutProfile.GetType(), layoutProfile);
+			Mod.Log($"Registered layout profile '{layoutProfile.ModName}:{layoutProfile.Name}' as {layoutProfile.ID}");
+			return layoutProfile;
+		}
+
 		//Get Custom Appliance
 		public static CustomAppliance GetCustomAppliance(int id)
 		{
@@ -431,6 +451,18 @@ namespace KitchenLib.Customs
 		public static CustomItemGroup GetCustomItemGroup<T>()
 		{
 			itemGroupsByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom LayoutProfile
+		public static CustomLayoutProfile GetCustomLayoutProfile(int id)
+		{
+			LayoutProfiles.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomLayoutProfile GetCustomLayoutProfile<T>()
+		{
+			layoutProfilesByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 	}

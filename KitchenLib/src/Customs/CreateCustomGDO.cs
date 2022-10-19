@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using KitchenLib.Event;
 using KitchenLib.Reference;
+using Kitchen.Layouts;
 
 
 namespace KitchenLib.Customs
@@ -295,6 +296,29 @@ namespace KitchenLib.Customs
             if (custom.CanContainSide != empty.CanContainSide) result.CanContainSide = custom.CanContainSide;
             if (custom.ApplyProcessesToComponents != empty.ApplyProcessesToComponents) result.ApplyProcessesToComponents = custom.ApplyProcessesToComponents;
             if (custom.AutoCollapsing != empty.AutoCollapsing) result.AutoCollapsing = custom.AutoCollapsing;
+
+            return result;
+        }
+
+        public static LayoutProfile CreateLayoutProfile(GameData gameData, CustomLayoutProfile custom)
+        {
+            LayoutProfile result = default(LayoutProfile);
+            LayoutProfile empty = default(LayoutProfile);
+
+            if (custom.BaseLayoutProfileId != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<LayoutProfile>().FirstOrDefault(a => a.ID == custom.BaseLayoutProfileId));
+
+            if (custom.Graph != empty.Graph) result.Graph = custom.Graph;
+            if (custom.MaximumTables != empty.MaximumTables) result.MaximumTables = custom.MaximumTables;
+            if (custom.RequiredAppliances != empty.RequiredAppliances) result.RequiredAppliances = custom.RequiredAppliances;
+            if (custom.Table != empty.Table) result.Table = custom.Table;
+            if (custom.Counter != empty.Counter) result.Counter = custom.Counter;
+            if (custom.ExternalBin != empty.ExternalBin) result.ExternalBin = custom.ExternalBin;
+            if (custom.WallPiece != empty.WallPiece) result.WallPiece = custom.WallPiece;
+            if (custom.InternalWallPiece != empty.InternalWallPiece) result.InternalWallPiece = custom.InternalWallPiece;
+            if (custom.StreetPiece != empty.StreetPiece) result.StreetPiece = custom.StreetPiece;
+            if (custom.Name != empty.Name) result.Name = custom.Name;
+            if (custom.Description != empty.Description) result.Description = custom.Description;
 
             return result;
         }

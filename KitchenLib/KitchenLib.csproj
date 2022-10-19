@@ -87,6 +87,12 @@
     <Reference Include="System.Buffers">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\System.Memory.dll</HintPath>
     </Reference>
+    <Reference Include="Kitchen.Layouts">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Layouts.dll</HintPath>
+    </Reference>
+    <Reference Include="XNode">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\XNode.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
   </ItemGroup>
 
