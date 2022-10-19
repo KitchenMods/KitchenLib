@@ -109,6 +109,14 @@ namespace KitchenLib.Customs
 				franchiseUpgrade.FranchiseUpgrade = newFranchiseUpgrade;
 				gameDataObjects.Add(newFranchiseUpgrade);
 			}
+
+			foreach (CustomGameDifficultySettings gameDifficultySettings in CustomGDO.GameDifficultySettings.Values) //Adds Custom Game Difficulty Settings to GDOs
+			{
+				GameDifficultySettings newGameDifficultySettings = CreateCustomGDOs.CreateGameDifficultySettings(__result, gameDifficultySettings);
+				gameDifficultySettings.OnRegister(newGameDifficultySettings);
+				gameDifficultySettings.GameDifficultySettings = newGameDifficultySettings;
+				gameDataObjects.Add(newGameDifficultySettings);
+			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{

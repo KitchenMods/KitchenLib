@@ -100,6 +100,13 @@ namespace KitchenLib
 			return CustomGDO.RegisterFranchiseUpgrade(franchiseUpgrade);
 		}
 
+		public T AddGameDifficultySettings<T>() where T : CustomGameDifficultySettings, new()
+		{
+			T gameDifficultySettings = new T();
+			gameDifficultySettings.ModName = Info.Name;
+			return CustomGDO.RegisterGameDifficultySettings(gameDifficultySettings);
+		}
+
 		public T AddItemProcess<T>() where T : CustomItemProcess, new()
 		{
 			T itemProcess = new T();

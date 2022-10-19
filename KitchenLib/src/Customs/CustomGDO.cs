@@ -35,6 +35,9 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomFranchiseUpgrade> FranchiseUpgrades = new Dictionary<int, CustomFranchiseUpgrade>();
 		public static Dictionary<Type, CustomFranchiseUpgrade> franchiseUpgradesByType = new Dictionary<Type, CustomFranchiseUpgrade>();
 
+		public static Dictionary<int, CustomGameDifficultySettings> GameDifficultySettings = new Dictionary<int, CustomGameDifficultySettings>();
+		public static Dictionary<Type, CustomGameDifficultySettings> gameDifficultySettingsByType = new Dictionary<Type, CustomGameDifficultySettings>();
+
 
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
@@ -200,6 +203,23 @@ namespace KitchenLib.Customs
 			return franchiseUpgrade;
 		}
 
+		public static T RegisterGameDifficultySettings <T>(T gameDifficultySettings) where T : CustomGameDifficultySettings
+		{
+			if (gameDifficultySettings.ID == 0)
+				gameDifficultySettings.ID = gameDifficultySettings.GetHash();
+			
+			if (GameDifficultySettings.ContainsKey(gameDifficultySettings.ID))
+			{
+				Mod.Error("GameDifficultySettings: " + gameDifficultySettings.Name + " failed to register - key:" + gameDifficultySettings.ID + " already in use. Generating custom key. " + gameDifficultySettings.GetHash());
+				return null;
+			}
+
+			GameDifficultySettings.Add(gameDifficultySettings.ID, gameDifficultySettings);
+			gameDifficultySettingsByType.Add(gameDifficultySettings.GetType(), gameDifficultySettings);
+			Mod.Log($"Registered game difficulty settings '{gameDifficultySettings.ModName}:{gameDifficultySettings.Name}' as {gameDifficultySettings.ID}");
+			return gameDifficultySettings;
+		}
+
 		//Get Custom Appliance
 		public static CustomAppliance GetCustomAppliance(int id)
 		{
@@ -335,6 +355,18 @@ namespace KitchenLib.Customs
 		public static CustomFranchiseUpgrade GetCustomFranchiseUpgrade<T>()
 		{
 			franchiseUpgradesByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom GameDifficultySettings
+		public static CustomGameDifficultySettings GetCustomGameDifficultySettings(int id)
+		{
+			GameDifficultySettings.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomGameDifficultySettings GetCustomGameDifficultySettings<T>()
+		{
+			gameDifficultySettingsByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 	}

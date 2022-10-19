@@ -248,5 +248,25 @@ namespace KitchenLib.Customs
 
             return result;
         }
+
+        public static GameDifficultySettings CreateGameDifficultySettings(GameData gameData, CustomGameDifficultySettings custom)
+        {
+            GameDifficultySettings result = default(GameDifficultySettings);
+            GameDifficultySettings empty = default(GameDifficultySettings);
+
+            if (custom.BaseGameDifficultySettingsId != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<GameDifficultySettings>().FirstOrDefault(a => a.ID == custom.BaseGameDifficultySettingsId));
+
+            if (custom.IsActive != empty.IsActive) result.IsActive = custom.IsActive;
+            if (custom.CustomersPerHourBase != empty.CustomersPerHourBase) result.CustomersPerHourBase = custom.CustomersPerHourBase;
+            if (custom.CustomersPerHourIncreasePerDay != empty.CustomersPerHourIncreasePerDay) result.CustomersPerHourIncreasePerDay = custom.CustomersPerHourIncreasePerDay;
+            if (custom.CustomerSideChance != empty.CustomerSideChance) result.CustomerSideChance = custom.CustomerSideChance;
+            if (custom.QueuePatienceTime != empty.QueuePatienceTime) result.QueuePatienceTime = custom.QueuePatienceTime;
+            if (custom.QueuePatienceBoost != empty.QueuePatienceBoost) result.QueuePatienceBoost = custom.QueuePatienceBoost;
+            if (custom.CustomerStarterChance != empty.CustomerStarterChance) result.CustomerStarterChance = custom.CustomerStarterChance;
+            if (custom.GroupDessertChance != empty.GroupDessertChance) result.GroupDessertChance = custom.GroupDessertChance;
+
+            return result;
+        }
     }
 }
