@@ -163,7 +163,7 @@ namespace KitchenLib.Customs
 			return effect;
 		}
 
-		public static T RegsiterEffectRepresentation<T>(T effectRepresentation) where T : CustomEffectRepresentation
+		public static T RegisterEffectRepresentation<T>(T effectRepresentation) where T : CustomEffectRepresentation
 		{
 			if (effectRepresentation.ID == 0)
 				effectRepresentation.ID = effectRepresentation.GetHash();
