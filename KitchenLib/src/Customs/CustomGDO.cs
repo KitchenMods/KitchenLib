@@ -53,6 +53,9 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomPlayerCosmetic> PlayerCosmetics = new Dictionary<int, CustomPlayerCosmetic>();
 		public static Dictionary<Type, CustomPlayerCosmetic> playerCosmeticsByType = new Dictionary<Type, CustomPlayerCosmetic>();
 
+		public static Dictionary<int, CustomRandomUpgradeSet> RandomUpgradeSets = new Dictionary<int, CustomRandomUpgradeSet>();
+		public static Dictionary<Type, CustomRandomUpgradeSet> randomUpgradeSetsByType = new Dictionary<Type, CustomRandomUpgradeSet>();
+
 
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
@@ -320,6 +323,23 @@ namespace KitchenLib.Customs
 			return playerCosmetic;
 		}
 
+		public static T RegisterRandomUpgradeSet<T>(T randomUpgradeSet) where T : CustomRandomUpgradeSet
+		{
+			if (randomUpgradeSet.ID == 0)
+				randomUpgradeSet.ID = randomUpgradeSet.GetHash();
+			
+			if (RandomUpgradeSets.ContainsKey(randomUpgradeSet.ID))
+			{
+				Mod.Error("RandomUpgradeSet: " + randomUpgradeSet.Name + " failed to register - key:" + randomUpgradeSet.ID + " already in use. Generating custom key. " + randomUpgradeSet.GetHash());
+				return null;
+			}
+
+			RandomUpgradeSets.Add(randomUpgradeSet.ID, randomUpgradeSet);
+			randomUpgradeSetsByType.Add(randomUpgradeSet.GetType(), randomUpgradeSet);
+			Mod.Log($"Registered random upgrade set '{randomUpgradeSet.ModName}:{randomUpgradeSet.Name}' as {randomUpgradeSet.ID}");
+			return randomUpgradeSet;
+		}
+
 		//Get Custom Appliance
 		public static CustomAppliance GetCustomAppliance(int id)
 		{
@@ -527,6 +547,18 @@ namespace KitchenLib.Customs
 		public static CustomPlayerCosmetic GetCustomPlayerCosmetic<T>()
 		{
 			playerCosmeticsByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom RandomUpgradeSet
+		public static CustomRandomUpgradeSet GetCustomRandomUpgradeSet(int id)
+		{
+			RandomUpgradeSets.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomRandomUpgradeSet GetCustomRandomUpgradeSet<T>()
+		{
+			randomUpgradeSetsByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 	}

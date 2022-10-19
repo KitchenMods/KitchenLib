@@ -142,6 +142,13 @@ namespace KitchenLib
 			return CustomGDO.RegisterPlayerCosmetic(playerCosmetic);
 		}
 
+		public T AddRandomUpgradeSet<T>() where T : CustomRandomUpgradeSet, new()
+		{
+			T randomUpgradeSet = new T();
+			randomUpgradeSet.ModName = Info.Name;
+			return CustomGDO.RegisterRandomUpgradeSet(randomUpgradeSet);
+		}
+
 
 
 

@@ -157,6 +157,14 @@ namespace KitchenLib.Customs
 				playerCosmetic.PlayerCosmetic = newPlayerCosmetic;
 				gameDataObjects.Add(newPlayerCosmetic);
 			}
+
+			foreach (CustomRandomUpgradeSet randomUpgradeSet in CustomGDO.RandomUpgradeSets.Values) //Adds Custom Random Upgrade Sets to GDOs
+			{
+				RandomUpgradeSet newRandomUpgradeSet = CreateCustomGDOs.CreateRandomUpgradeSet(__result, randomUpgradeSet);
+				randomUpgradeSet.OnRegister(newRandomUpgradeSet);
+				randomUpgradeSet.RandomUpgradeSet = newRandomUpgradeSet;
+				gameDataObjects.Add(newRandomUpgradeSet);
+			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{

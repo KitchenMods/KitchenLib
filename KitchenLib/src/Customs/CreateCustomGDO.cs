@@ -349,5 +349,19 @@ namespace KitchenLib.Customs
 
             return result;
         }
+
+        public static RandomUpgradeSet CreateRandomUpgradeSet(GameData gameData, CustomRandomUpgradeSet custom)
+        {
+            RandomUpgradeSet result = default(RandomUpgradeSet);
+            RandomUpgradeSet empty = default(RandomUpgradeSet);
+
+            if (custom.BaseRandomUpgradeSetId != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<RandomUpgradeSet>().FirstOrDefault(a => a.ID == custom.BaseRandomUpgradeSetId));
+
+            if (custom.Tier != empty.Tier) result.Tier = custom.Tier;
+            if (custom.Rewards != empty.Rewards) result.Rewards = custom.Rewards;
+
+            return result;
+        }
     }
 }
