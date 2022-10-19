@@ -1,6 +1,7 @@
 using HarmonyLib;
 using Kitchen.NetworkSupport;
 using Kitchen;
+using System.Collections.Generic;
 
 namespace KitchenLib
 {
@@ -21,7 +22,7 @@ namespace KitchenLib
             DiscordPlatform.Discord.SetActivity("Plating Up Some Spinach", "", view_data.Data.Players);
         }
     }
-    /*
+    
     [HarmonyPatch(typeof(PackProgressionSaveSystem), "Serialise")]
     public class ProgressionSaveSystem_Patch
     {
@@ -36,5 +37,5 @@ namespace KitchenLib
                     save.SaveObjects.Remove(obj);
         }
     }
-    */
+    
 }
