@@ -6,7 +6,7 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomPlayerCosmetic
 	{
-        public virtual string Name { get {return "New Layout";} }
+        public virtual string Name { get; internal set; }
         public virtual CosmeticType CosmeticType { get; internal set; }
         public virtual GameObject Visual { get; internal set; }
 

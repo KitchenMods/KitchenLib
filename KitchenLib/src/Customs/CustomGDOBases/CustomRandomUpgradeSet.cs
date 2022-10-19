@@ -7,7 +7,7 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomRandomUpgradeSet
 	{
-        public virtual string Name { get {return "New Layout";} }
+        public virtual string Name { get; internal set; }
         public virtual UpgradeRewardTier Tier { get; internal set; }
         public virtual List<IUpgrade> Rewards { get; internal set; }
 

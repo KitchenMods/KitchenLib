@@ -7,7 +7,7 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomLevelUpgradeSet
 	{
-        public virtual string Name { get {return "New Layout";} }
+        public virtual string Name { get; internal set ; }
         public virtual List<LevelUpgrade> Upgrades { get; internal set; }
 
         public virtual int ID { get; internal set; }
