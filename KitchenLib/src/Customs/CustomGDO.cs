@@ -29,6 +29,9 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomEffect> Effects = new Dictionary<int, CustomEffect>();
 		public static Dictionary<Type, CustomEffect> effectsByType = new Dictionary<Type, CustomEffect>();
 
+		public static Dictionary<int, CustomEffectRepresentation> EffectRepresentations = new Dictionary<int, CustomEffectRepresentation>();
+		public static Dictionary<Type, CustomEffectRepresentation> effectRepresentationsByType = new Dictionary<Type, CustomEffectRepresentation>();
+
 
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
@@ -160,6 +163,23 @@ namespace KitchenLib.Customs
 			return effect;
 		}
 
+		public static T RegsiterEffectRepresentation<T>(T effectRepresentation) where T : CustomEffectRepresentation
+		{
+			if (effectRepresentation.ID == 0)
+				effectRepresentation.ID = effectRepresentation.GetHash();
+			
+			if (EffectRepresentations.ContainsKey(effectRepresentation.ID))
+			{
+				Mod.Error("EffectRepresentation: " + effectRepresentation.Name + " failed to register - key:" + effectRepresentation.ID + " already in use. Generating custom key. " + effectRepresentation.GetHash());
+				return null;
+			}
+
+			EffectRepresentations.Add(effectRepresentation.ID, effectRepresentation);
+			effectRepresentationsByType.Add(effectRepresentation.GetType(), effectRepresentation);
+			Mod.Log($"Registered effect representation '{effectRepresentation.ModName}:{effectRepresentation.Name}' as {effectRepresentation.ID}");
+			return effectRepresentation;
+		}
+
 		//Get Custom Appliance
 		public static CustomAppliance GetCustomAppliance(int id)
 		{
@@ -271,6 +291,18 @@ namespace KitchenLib.Customs
 		public static CustomEffect GetCustomEffect<T>()
 		{
 			effectsByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom EffectRepresentation
+		public static CustomEffectRepresentation GetCustomEffectRepresentation(int id)
+		{
+			EffectRepresentations.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomEffectRepresentation GetCustomEffectRepresentation<T>()
+		{
+			effectRepresentationsByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 	}

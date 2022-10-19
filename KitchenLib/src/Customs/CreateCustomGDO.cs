@@ -218,5 +218,20 @@ namespace KitchenLib.Customs
 
             return result;
         }
+
+        public static EffectRepresentation CreateEffectRepresentation(GameData gameData, CustomEffectRepresentation custom)
+        {
+            EffectRepresentation result = default(EffectRepresentation);
+            EffectRepresentation empty = default(EffectRepresentation);
+
+            if (custom.BaseEffectRepresentationId != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<EffectRepresentation>().FirstOrDefault(a => a.ID == custom.BaseEffectRepresentationId));
+
+            if (custom.Name != empty.Name) result.Name = custom.Name;
+            if (custom.Description != empty.Description) result.Description = custom.Description;
+            if (custom.Icon != empty.Icon) result.Icon = custom.Icon;
+
+            return result;
+        }
     }
 }

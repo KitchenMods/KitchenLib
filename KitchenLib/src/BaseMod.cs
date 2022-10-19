@@ -86,6 +86,13 @@ namespace KitchenLib
 			return CustomGDO.RegisterEffect(effect);
 		}
 
+		public T AddEffectRepresentation<T>() where T : CustomEffectRepresentation, new()
+		{
+			T effectRepresentation = new T();
+			effectRepresentation.ModName = Info.Name;
+			return CustomGDO.RegisterEffectRepresentation(effectRepresentation);
+		}
+
 		public T AddItemProcess<T>() where T : CustomItemProcess, new()
 		{
 			T itemProcess = new T();

@@ -93,6 +93,14 @@ namespace KitchenLib.Customs
 				effect.Effect = newEffect;
 				gameDataObjects.Add(newEffect);
 			}
+
+			foreach (CustomEffectRepresentation effectRepresentation in CustomGDO.EffectRepresentations.Values) //Adds Custom Effect Representations to GDOs
+			{
+				EffectRepresentation newEffectRepresentation = CreateCustomGDOs.CreateEffectRepresentation(__result, effectRepresentation);
+				effectRepresentation.OnRegister(newEffectRepresentation);
+				effectRepresentation.EffectRepresentation = newEffectRepresentation;
+				gameDataObjects.Add(newEffectRepresentation);
+			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{
