@@ -201,5 +201,22 @@ namespace KitchenLib.Customs
 
             return result;   
         }
+
+        public static Effect CreateEffect(GameData gameData, CustomEffect customEffect)
+        {
+            Effect result = default(Effect);
+            Effect empty = default(Effect);
+
+            if (customEffect.BaseEffectId != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<Effect>().FirstOrDefault(a => a.ID == customEffect.BaseEffectId));
+
+            if (customEffect.Properties != empty.Properties) result.Properties = customEffect.Properties;
+            if (customEffect.EffectRange != empty.EffectRange) result.EffectRange = customEffect.EffectRange;
+            if (customEffect.EffectCondition != empty.EffectCondition) result.EffectCondition = customEffect.EffectCondition;
+            if (customEffect.EffectType != empty.EffectType) result.EffectType = customEffect.EffectType;
+            if (customEffect.EffectInformation != empty.EffectInformation) result.EffectInformation = customEffect.EffectInformation;
+
+            return result;
+        }
     }
 }

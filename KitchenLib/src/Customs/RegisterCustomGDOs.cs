@@ -85,6 +85,14 @@ namespace KitchenLib.Customs
 				dish.Dish = newDish;
 				gameDataObjects.Add(newDish);
 			}
+
+			foreach (CustomEffect effect in CustomGDO.Effects.Values) //Adds Custom Effects to GDOs
+			{
+				Effect newEffect = CreateCustomGDOs.CreateEffect(__result, effect);
+				effect.OnRegister(newEffect);
+				effect.Effect = newEffect;
+				gameDataObjects.Add(newEffect);
+			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{

@@ -26,6 +26,10 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomDish> Dishes = new Dictionary<int, CustomDish>();
 		public static Dictionary<Type, CustomDish> dishesByType = new Dictionary<Type, CustomDish>();
 
+		public static Dictionary<int, CustomEffect> Effects = new Dictionary<int, CustomEffect>();
+		public static Dictionary<Type, CustomEffect> effectsByType = new Dictionary<Type, CustomEffect>();
+
+
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
 			if (ItemProcesses.ContainsKey(process.ProcessName)) {
@@ -139,6 +143,23 @@ namespace KitchenLib.Customs
 			return dish;
 		}
 
+		public static T RegisterEffect<T>(T effect) where T : CustomEffect
+		{
+			if (effect.ID == 0)
+				effect.ID = effect.GetHash();
+			
+			if (Effects.ContainsKey(effect.ID))
+			{
+				Mod.Error("Effect: " + effect.Name + " failed to register - key:" + effect.ID + " already in use. Generating custom key. " + effect.GetHash());
+				return null;
+			}
+
+			Effects.Add(effect.ID, effect);
+			effectsByType.Add(effect.GetType(), effect);
+			Mod.Log($"Registered effect '{effect.ModName}:{effect.Name}' as {effect.ID}");
+			return effect;
+		}
+
 		//Get Custom Appliance
 		public static CustomAppliance GetCustomAppliance(int id)
 		{
@@ -238,6 +259,18 @@ namespace KitchenLib.Customs
 		public static CustomDish GetCustomDish<T>()
 		{
 			dishesByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom Effect
+		public static CustomEffect GetCustomEffect(int id)
+		{
+			Effects.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomEffect GetCustomEffect<T>()
+		{
+			effectsByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 	}
