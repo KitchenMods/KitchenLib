@@ -14,8 +14,14 @@ namespace KitchenLib.Customs
 		public static Dictionary<string, CustomItemProcess> ItemProcesses = new Dictionary<string, CustomItemProcess>();
 		public static Dictionary<string, CustomApplianceProcess> ApplianceProcesses = new Dictionary<string, CustomApplianceProcess>();
 
-		public static Dictionary<string, CustomProcess> Processes = new Dictionary<string, CustomProcess>();
+		public static Dictionary<int, CustomProcess> Processes = new Dictionary<int, CustomProcess>();
 		public static Dictionary<Type, CustomProcess> processesByType = new Dictionary<Type, CustomProcess>();
+
+		public static Dictionary<int, CustomContract> Contracts = new Dictionary<int, CustomContract>();
+		public static Dictionary<Type, CustomContract> contractsByType = new Dictionary<Type, CustomContract>();
+
+		public static Dictionary<int, CustomDecor> Decors = new Dictionary<int, CustomDecor>();
+		public static Dictionary<Type, CustomDecor> decorsByType = new Dictionary<Type, CustomDecor>();
 
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
@@ -41,7 +47,7 @@ namespace KitchenLib.Customs
 		{
 			if (process.ID == 0)
 				process.ID = process.GetHash();
-			Processes.Add(process.ProcessName, process);
+			Processes.Add(process.ID, process);
 			processesByType.Add(process.GetType(), process);
 			return process;
 		}
@@ -79,27 +85,44 @@ namespace KitchenLib.Customs
 			return item;
 		}
 
+		public static T RegisterContract<T>(T contract) where T : CustomContract
+		{
+			if (contract.ID == 0)
+				contract.ID = contract.GetHash();
+			
+			if (Contracts.ContainsKey(contract.ID))
+			{
+				Mod.Error("Contract: " + contract.Name + " failed to register - key:" + contract.ID + " already in use. Generating custom key. " + contract.GetHash());
+				return null;
+			}
+
+			Contracts.Add(contract.ID, contract);
+			contractsByType.Add(contract.GetType(), contract);
+			Mod.Log($"Registered contract '{contract.ModName}:{contract.Name}' as {contract.ID}");
+			return contract;
+		}
+
+		public static T RegisterDecor<T>(T decor) where T : CustomDecor
+		{
+			if (decor.ID == 0)
+				decor.ID = decor.GetHash();
+			
+			if (Decors.ContainsKey(decor.ID))
+			{
+				Mod.Error("Decor: " + decor.Name + " failed to register - key:" + decor.ID + " already in use. Generating custom key. " + decor.GetHash());
+				return null;
+			}
+
+			Decors.Add(decor.ID, decor);
+			decorsByType.Add(decor.GetType(), decor);
+			Mod.Log($"Registered contract '{decor.ModName}:{decor.Name}' as {decor.ID}");
+			return decor;
+		}
+
+		//Get Custom Appliance
 		public static CustomAppliance GetCustomAppliance(int id)
 		{
 			Appliances.TryGetValue(id, out var result);
-			return result;
-		}
-
-		public static CustomItemProcess GetCustomItemProcess(string name)
-		{
-			ItemProcesses.TryGetValue(name, out var result);
-			return result;
-		}
-
-		public static CustomProcess GetCustomProcess(string name)
-		{
-			Processes.TryGetValue(name, out var result);
-			return result;
-		}
-
-		public static CustomProcess GetCustomProcessByType<T>()
-		{
-			processesByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 
@@ -109,6 +132,7 @@ namespace KitchenLib.Customs
 			return result;
 		}
 
+		//Get Custom Item
 		public static CustomItem GetCustomItem(int id)
 		{
 			Items.TryGetValue(id, out var result);
@@ -118,6 +142,70 @@ namespace KitchenLib.Customs
 		public static CustomItem GetCustomItem<T>()
 		{
 			itemsByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom Process
+		public static CustomProcess GetCustomProcess(int id)
+		{
+			Processes.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomProcess GetCustomProcess<T>()
+		{
+			processesByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom Item Process
+
+		public static CustomItemProcess GetCustomItemProcess(string name)
+		{
+			ItemProcesses.TryGetValue(name, out var result);
+			return result;
+		}
+
+		public static CustomItemProcess GetCustomItemProcess<T>()
+		{
+			ItemProcesses.TryGetValue(typeof(T).Name, out var result);
+			return result;
+		}
+
+		//Get Custom Appliance Process
+
+		public static CustomApplianceProcess GetCustomApplianceProcess(string name)
+		{
+			ApplianceProcesses.TryGetValue(name, out var result);
+			return result;
+		}
+
+		public static CustomApplianceProcess GetCustomApplianceProcess<T>()
+		{
+			ApplianceProcesses.TryGetValue(typeof(T).Name, out var result);
+			return result;
+		}
+
+		//Get Custom Contract
+		public static CustomContract GetCustomContract(int id)
+		{
+			Contracts.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomContract GetCustomContract<T>()
+		{
+			contractsByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom Decor
+		public static CustomDecor GetCustomDecor(int id)
+		{
+			Decors.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomDecor GetCustomDecor<T>()
+		{
+			decorsByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 	}

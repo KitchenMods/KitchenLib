@@ -58,6 +58,20 @@ namespace KitchenLib
 			return CustomGDO.RegisterItem(item);
 		}
 
+		public T AddContract<T>() where T : CustomContract, new()
+		{
+			T contract = new T();
+			contract.ModName = Info.Name;
+			return CustomGDO.RegisterContract(contract);
+		}
+
+		public T AddDecor<T>() where T : CustomDecor, new()
+		{
+			T decor = new T();
+			decor.ModName = Info.Name;
+			return CustomGDO.RegisterDecor(decor);
+		}
+
 		public T AddItemProcess<T>() where T : CustomItemProcess, new()
 		{
 			T itemProcess = new T();
