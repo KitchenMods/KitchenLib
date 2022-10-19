@@ -41,6 +41,9 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomGardenProfile> GardenProfiles = new Dictionary<int, CustomGardenProfile>();
 		public static Dictionary<Type, CustomGardenProfile> gardenProfilesByType = new Dictionary<Type, CustomGardenProfile>();
 
+		public static Dictionary<int, CustomItemGroup> ItemGroups = new Dictionary<int, CustomItemGroup>();
+		public static Dictionary<Type, CustomItemGroup> itemGroupsByType = new Dictionary<Type, CustomItemGroup>();
+
 
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
@@ -240,6 +243,23 @@ namespace KitchenLib.Customs
 			return gardenProfile;
 		}
 
+		public static T RegisterItemGroup<T>(T itemGroup) where T : CustomItemGroup
+		{
+			if (itemGroup.ID == 0)
+				itemGroup.ID = itemGroup.GetHash();
+			
+			if (ItemGroups.ContainsKey(itemGroup.ID))
+			{
+				Mod.Error("ItemGroup: " + itemGroup.Name + " failed to register - key:" + itemGroup.ID + " already in use. Generating custom key. " + itemGroup.GetHash());
+				return null;
+			}
+
+			ItemGroups.Add(itemGroup.ID, itemGroup);
+			itemGroupsByType.Add(itemGroup.GetType(), itemGroup);
+			Mod.Log($"Registered item group '{itemGroup.ModName}:{itemGroup.Name}' as {itemGroup.ID}");
+			return itemGroup;
+		}
+
 		//Get Custom Appliance
 		public static CustomAppliance GetCustomAppliance(int id)
 		{
@@ -399,6 +419,18 @@ namespace KitchenLib.Customs
 		public static CustomGardenProfile GetCustomGardenProfile<T>()
 		{
 			gardenProfilesByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom ItemGroup
+		public static CustomItemGroup GetCustomItemGroup(int id)
+		{
+			ItemGroups.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomItemGroup GetCustomItemGroup<T>()
+		{
+			itemGroupsByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 	}

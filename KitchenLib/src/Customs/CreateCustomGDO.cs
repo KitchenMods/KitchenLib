@@ -282,5 +282,21 @@ namespace KitchenLib.Customs
 
             return result;
         }
+
+        public static ItemGroup CreateItemGroup(GameData gameData, CustomItemGroup custom)
+        {
+            ItemGroup result = default(ItemGroup);
+            ItemGroup empty = default(ItemGroup);
+
+            if (custom.BaseItemGroupId != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<ItemGroup>().FirstOrDefault(a => a.ID == custom.BaseItemGroupId));
+
+            if (custom.DerivedSets != empty.DerivedSets) result.DerivedSets = custom.DerivedSets;
+            if (custom.CanContainSide != empty.CanContainSide) result.CanContainSide = custom.CanContainSide;
+            if (custom.ApplyProcessesToComponents != empty.ApplyProcessesToComponents) result.ApplyProcessesToComponents = custom.ApplyProcessesToComponents;
+            if (custom.AutoCollapsing != empty.AutoCollapsing) result.AutoCollapsing = custom.AutoCollapsing;
+
+            return result;
+        }
     }
 }

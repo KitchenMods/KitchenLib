@@ -125,6 +125,14 @@ namespace KitchenLib.Customs
 				gardenProfile.GardenProfile = newGardenProfile;
 				gameDataObjects.Add(newGardenProfile);
 			}
+
+			foreach (CustomItemGroup itemGroup in CustomGDO.ItemGroups.Values) //Adds Custom Item Groups to GDOs
+			{
+				ItemGroup newItemGroup = CreateCustomGDOs.CreateItemGroup(__result, itemGroup);
+				itemGroup.OnRegister(newItemGroup);
+				itemGroup.ItemGroup = newItemGroup;
+				gameDataObjects.Add(newItemGroup);
+			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{

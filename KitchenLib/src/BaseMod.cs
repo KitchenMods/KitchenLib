@@ -114,6 +114,20 @@ namespace KitchenLib
 			return CustomGDO.RegisterGardenProfile(gardenProfile);
 		}
 
+		public T AddItemGroup<T>() where T : CustomItemGroup, new()
+		{
+			T itemGroup = new T();
+			itemGroup.ModName = Info.Name;
+			return CustomGDO.RegisterItemGroup(itemGroup);
+		}
+
+
+
+
+
+
+
+
 		public T AddItemProcess<T>() where T : CustomItemProcess, new()
 		{
 			T itemProcess = new T();
