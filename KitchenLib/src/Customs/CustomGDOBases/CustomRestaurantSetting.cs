@@ -9,7 +9,7 @@ namespace KitchenLib.Customs
 	{
         public virtual string Name { get; internal set; }
         public virtual WeatherMode WeatherMode { get; internal set; }
-        public virtual LightShadowCasterMode<
+        public virtual List<IDecorationConfiguration> Decorators { get; internal set; }
 
         public virtual int ID { get; internal set; }
         public string ModName { get; internal set; }
