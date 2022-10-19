@@ -59,6 +59,9 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomResearch> Researches = new Dictionary<int, CustomResearch>();
 		public static Dictionary<Type, CustomResearch> researchesByType = new Dictionary<Type, CustomResearch>();
 
+		public static Dictionary<int, CustomRestaurantSetting> RestaurantSettings = new Dictionary<int, CustomRestaurantSetting>();
+		public static Dictionary<Type, CustomRestaurantSetting> restaurantSettingsByType = new Dictionary<Type, CustomRestaurantSetting>();
+
 
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
@@ -360,6 +363,23 @@ namespace KitchenLib.Customs
 			return research;
 		}
 
+		public static T RegisterRestaurantSetting<T>(T restaurantSettings) where T : CustomRestaurantSetting
+		{
+			if (restaurantSettings.ID == 0)
+				restaurantSettings.ID = restaurantSettings.GetHash();
+			
+			if (RestaurantSettings.ContainsKey(restaurantSettings.ID))
+			{
+				Mod.Error("RestaurantSettings: " + restaurantSettings.Name + " failed to register - key:" + restaurantSettings.ID + " already in use. Generating custom key. " + restaurantSettings.GetHash());
+				return null;
+			}
+
+			RestaurantSettings.Add(restaurantSettings.ID, restaurantSettings);
+			restaurantSettingsByType.Add(restaurantSettings.GetType(), restaurantSettings);
+			Mod.Log($"Registered restaurant settings '{restaurantSettings.ModName}:{restaurantSettings.Name}' as {restaurantSettings.ID}");
+			return restaurantSettings;
+		}
+
 		//Get Custom Appliance
 		public static CustomAppliance GetCustomAppliance(int id)
 		{
@@ -591,6 +611,18 @@ namespace KitchenLib.Customs
 		public static CustomResearch GetCustomResearch<T>()
 		{
 			researchesByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom RestaurantSetting
+		public static CustomRestaurantSetting GetCustomRestaurantSetting(int id)
+		{
+			RestaurantSettings.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomRestaurantSetting GetCustomRestaurantSetting<T>()
+		{
+			restaurantSettingsByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 	}

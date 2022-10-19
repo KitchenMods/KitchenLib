@@ -379,5 +379,20 @@ namespace KitchenLib.Customs
 
             return result;
         }
+
+        public static RestaurantSetting CreateRestaurantSetting(GameData gameData, CustomRestaurantSetting custom)
+        {
+            RestaurantSetting result = default(RestaurantSetting);
+            RestaurantSetting empty = default(RestaurantSetting);
+
+            if (custom.BaseRestaurantSettingId != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<RestaurantSetting>().FirstOrDefault(a => a.ID == custom.BaseRestaurantSettingId));
+
+            if (custom.Name != empty.Name) result.Name = custom.Name;
+            if (custom.WeatherMode != empty.WeatherMode) result.WeatherMode = custom.WeatherMode;
+            if (custom.Decorators != empty.Decorators) result.Decorators = custom.Decorators;
+
+            return result;
+        }
     }
 }

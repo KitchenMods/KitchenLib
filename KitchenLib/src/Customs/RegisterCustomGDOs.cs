@@ -173,6 +173,14 @@ namespace KitchenLib.Customs
 				research.Research = newResearch;
 				gameDataObjects.Add(newResearch);
 			}
+
+			foreach (CustomRestaurantSetting restaurantSetting in CustomGDO.RestaurantSettings.Values) //Adds Custom Restaurant Settings to GDOs
+			{
+				RestaurantSetting newRestaurantSetting = CreateCustomGDOs.CreateRestaurantSetting(__result, restaurantSetting);
+				restaurantSetting.OnRegister(newRestaurantSetting);
+				restaurantSetting.RestaurantSetting = newRestaurantSetting;
+				gameDataObjects.Add(newRestaurantSetting);
+			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{

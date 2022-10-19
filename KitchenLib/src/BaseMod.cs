@@ -156,6 +156,13 @@ namespace KitchenLib
 			return CustomGDO.RegisterResearch(research);
 		}
 
+		public T AddRestaurantSetting<T>() where T : CustomRestaurantSetting, new()
+		{
+			T restaurantSettings = new T();
+			restaurantSettings.ModName = Info.Name;
+			return CustomGDO.RegisterRestaurantSetting(restaurantSettings);
+		}
+
 
 
 
