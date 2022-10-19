@@ -32,6 +32,9 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomEffectRepresentation> EffectRepresentations = new Dictionary<int, CustomEffectRepresentation>();
 		public static Dictionary<Type, CustomEffectRepresentation> effectRepresentationsByType = new Dictionary<Type, CustomEffectRepresentation>();
 
+		public static Dictionary<int, CustomFranchiseUpgrade> FranchiseUpgrades = new Dictionary<int, CustomFranchiseUpgrade>();
+		public static Dictionary<Type, CustomFranchiseUpgrade> franchiseUpgradesByType = new Dictionary<Type, CustomFranchiseUpgrade>();
+
 
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
@@ -180,6 +183,23 @@ namespace KitchenLib.Customs
 			return effectRepresentation;
 		}
 
+		public static T RegisterFranchiseUpgrade<T>(T franchiseUpgrade) where T : CustomFranchiseUpgrade
+		{
+			if (franchiseUpgrade.ID == 0)
+				franchiseUpgrade.ID = franchiseUpgrade.GetHash();
+			
+			if (FranchiseUpgrades.ContainsKey(franchiseUpgrade.ID))
+			{
+				Mod.Error("FranchiseUpgrade: " + franchiseUpgrade.Name + " failed to register - key:" + franchiseUpgrade.ID + " already in use. Generating custom key. " + franchiseUpgrade.GetHash());
+				return null;
+			}
+
+			FranchiseUpgrades.Add(franchiseUpgrade.ID, franchiseUpgrade);
+			franchiseUpgradesByType.Add(franchiseUpgrade.GetType(), franchiseUpgrade);
+			Mod.Log($"Registered franchise upgrade '{franchiseUpgrade.ModName}:{franchiseUpgrade.Name}' as {franchiseUpgrade.ID}");
+			return franchiseUpgrade;
+		}
+
 		//Get Custom Appliance
 		public static CustomAppliance GetCustomAppliance(int id)
 		{
@@ -303,6 +323,18 @@ namespace KitchenLib.Customs
 		public static CustomEffectRepresentation GetCustomEffectRepresentation<T>()
 		{
 			effectRepresentationsByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom FranchiseUpgrade
+		public static CustomFranchiseUpgrade GetCustomFranchiseUpgrade(int id)
+		{
+			FranchiseUpgrades.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomFranchiseUpgrade GetCustomFranchiseUpgrade<T>()
+		{
+			franchiseUpgradesByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 	}

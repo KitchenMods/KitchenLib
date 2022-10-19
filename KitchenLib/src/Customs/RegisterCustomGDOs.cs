@@ -101,6 +101,14 @@ namespace KitchenLib.Customs
 				effectRepresentation.EffectRepresentation = newEffectRepresentation;
 				gameDataObjects.Add(newEffectRepresentation);
 			}
+
+			foreach (CustomFranchiseUpgrade franchiseUpgrade in CustomGDO.FranchiseUpgrades.Values) //Adds Custom Franchise Upgrades to GDOs
+			{
+				FranchiseUpgrade newFranchiseUpgrade = CreateCustomGDOs.CreateFranchiseUpgrade(__result, franchiseUpgrade);
+				franchiseUpgrade.OnRegister(newFranchiseUpgrade);
+				franchiseUpgrade.FranchiseUpgrade = newFranchiseUpgrade;
+				gameDataObjects.Add(newFranchiseUpgrade);
+			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{

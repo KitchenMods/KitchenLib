@@ -93,6 +93,13 @@ namespace KitchenLib
 			return CustomGDO.RegisterEffectRepresentation(effectRepresentation);
 		}
 
+		public T AddFranchiseUpgrade<T>() where T : CustomFranchiseUpgrade, new()
+		{
+			T franchiseUpgrade = new T();
+			franchiseUpgrade.ModName = Info.Name;
+			return CustomGDO.RegisterFranchiseUpgrade(franchiseUpgrade);
+		}
+
 		public T AddItemProcess<T>() where T : CustomItemProcess, new()
 		{
 			T itemProcess = new T();

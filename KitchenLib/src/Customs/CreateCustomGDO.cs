@@ -233,5 +233,20 @@ namespace KitchenLib.Customs
 
             return result;
         }
+
+        public static FranchiseUpgrade CreateFranchiseUpgrade(GameData gameData, CustomFranchiseUpgrade custom)
+        {
+            FranchiseUpgrade result = default(FranchiseUpgrade);
+            FranchiseUpgrade empty = default(FranchiseUpgrade);
+
+            if (custom.BaseFranchiseUpgradeId != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<FranchiseUpgrade>().FirstOrDefault(a => a.ID == custom.BaseFranchiseUpgradeId));
+
+            if (custom.Name != empty.Name) result.Name = custom.Name;
+            if (custom.MaximumUpgradeCount != empty.MaximumUpgradeCount) result.MaximumUpgradeCount = custom.MaximumUpgradeCount;
+            if (custom.Upgrades != empty.Upgrades) result.Upgrades = custom.Upgrades;
+
+            return result;
+        }
     }
 }
