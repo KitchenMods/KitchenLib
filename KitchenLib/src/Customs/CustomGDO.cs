@@ -56,6 +56,9 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomRandomUpgradeSet> RandomUpgradeSets = new Dictionary<int, CustomRandomUpgradeSet>();
 		public static Dictionary<Type, CustomRandomUpgradeSet> randomUpgradeSetsByType = new Dictionary<Type, CustomRandomUpgradeSet>();
 
+		public static Dictionary<int, CustomResearch> Researches = new Dictionary<int, CustomResearch>();
+		public static Dictionary<Type, CustomResearch> researchesByType = new Dictionary<Type, CustomResearch>();
+
 
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
@@ -340,6 +343,23 @@ namespace KitchenLib.Customs
 			return randomUpgradeSet;
 		}
 
+		public static T RegisterResearch<T>(T research) where T : CustomResearch
+		{
+			if (research.ID == 0)
+				research.ID = research.GetHash();
+			
+			if (Researches.ContainsKey(research.ID))
+			{
+				Mod.Error("Research: " + research.Name + " failed to register - key:" + research.ID + " already in use. Generating custom key. " + research.GetHash());
+				return null;
+			}
+
+			Researches.Add(research.ID, research);
+			researchesByType.Add(research.GetType(), research);
+			Mod.Log($"Registered research '{research.ModName}:{research.Name}' as {research.ID}");
+			return research;
+		}
+
 		//Get Custom Appliance
 		public static CustomAppliance GetCustomAppliance(int id)
 		{
@@ -559,6 +579,18 @@ namespace KitchenLib.Customs
 		public static CustomRandomUpgradeSet GetCustomRandomUpgradeSet<T>()
 		{
 			randomUpgradeSetsByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom Research
+		public static CustomResearch GetCustomResearch(int id)
+		{
+			Researches.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomResearch GetCustomResearch<T>()
+		{
+			researchesByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 	}

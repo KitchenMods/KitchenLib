@@ -363,5 +363,21 @@ namespace KitchenLib.Customs
 
             return result;
         }
+
+        public static Research CreateResearch(GameData gameData, CustomResearch custom)
+        {
+            Research result = default(Research);
+            Research empty = default(Research);
+
+            if (custom.BaseResearchId != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<Research>().FirstOrDefault(a => a.ID == custom.BaseResearchId));
+
+            if (custom.RequiredResearch != empty.RequiredResearch) result.RequiredResearch = custom.RequiredResearch;
+            if (custom.Rewards != empty.Rewards) result.Rewards = custom.Rewards;
+            if (custom.EnablesResearchOf != empty.EnablesResearchOf) result.EnablesResearchOf = custom.EnablesResearchOf;
+            if (custom.RequiresForResearch != empty.RequiresForResearch) result.RequiresForResearch = custom.RequiresForResearch;
+
+            return result;
+        }
     }
 }

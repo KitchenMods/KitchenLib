@@ -149,6 +149,13 @@ namespace KitchenLib
 			return CustomGDO.RegisterRandomUpgradeSet(randomUpgradeSet);
 		}
 
+		public T AddResearch<T>() where T : CustomResearch, new()
+		{
+			T research = new T();
+			research.ModName = Info.Name;
+			return CustomGDO.RegisterResearch(research);
+		}
+
 
 
 

@@ -165,6 +165,14 @@ namespace KitchenLib.Customs
 				randomUpgradeSet.RandomUpgradeSet = newRandomUpgradeSet;
 				gameDataObjects.Add(newRandomUpgradeSet);
 			}
+
+			foreach (CustomResearch research in CustomGDO.Researches.Values) //Adds Custom Researches to GDOs
+			{
+				Research newResearch = CreateCustomGDOs.CreateResearch(__result, research);
+				research.OnRegister(newResearch);
+				research.Research = newResearch;
+				gameDataObjects.Add(newResearch);
+			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{
