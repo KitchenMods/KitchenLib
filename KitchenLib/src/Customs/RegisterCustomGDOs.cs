@@ -181,6 +181,14 @@ namespace KitchenLib.Customs
 				restaurantSetting.RestaurantSetting = newRestaurantSetting;
 				gameDataObjects.Add(newRestaurantSetting);
 			}
+
+			foreach (CustomShop shop in CustomGDO.Shops.Values) //Adds Custom Shops to GDOs
+			{
+				Shop newShop = CreateCustomGDOs.CreateShop(__result, shop);
+				shop.OnRegister(newShop);
+				shop.Shop = newShop;
+				gameDataObjects.Add(newShop);
+			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{

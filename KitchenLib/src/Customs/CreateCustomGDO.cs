@@ -394,5 +394,24 @@ namespace KitchenLib.Customs
 
             return result;
         }
+
+        public static Shop CreateShop(GameData gameData, CustomShop custom)
+        {
+            Shop result = default(Shop);
+            Shop empty = default(Shop);
+
+            if (custom.BaseShopId != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<Shop>().FirstOrDefault(a => a.ID == custom.BaseShopId));
+
+            if (custom.Stock != empty.Stock) result.Stock = custom.Stock;
+            if (custom.Decors != empty.Decors) result.Decors = custom.Decors;
+            if (custom.Type != empty.Type) result.Type = custom.Type;
+            if (custom.ItemsForSaleCount != empty.ItemsForSaleCount) result.ItemsForSaleCount = custom.ItemsForSaleCount;
+            if (custom.WallpapersForSaleCount != empty.WallpapersForSaleCount) result.WallpapersForSaleCount = custom.WallpapersForSaleCount;
+
+            return result;
+        }
+
+
     }
 }

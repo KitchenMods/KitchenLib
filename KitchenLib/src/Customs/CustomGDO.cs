@@ -62,6 +62,9 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomRestaurantSetting> RestaurantSettings = new Dictionary<int, CustomRestaurantSetting>();
 		public static Dictionary<Type, CustomRestaurantSetting> restaurantSettingsByType = new Dictionary<Type, CustomRestaurantSetting>();
 
+		public static Dictionary<int, CustomShop> Shops = new Dictionary<int, CustomShop>();
+		public static Dictionary<Type, CustomShop> shopsByType = new Dictionary<Type, CustomShop>();
+
 
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
@@ -380,6 +383,23 @@ namespace KitchenLib.Customs
 			return restaurantSettings;
 		}
 
+		public static T RegisterShop<T>(T shop) where T : CustomShop
+		{
+			if (shop.ID == 0)
+				shop.ID = shop.GetHash();
+			
+			if (Shops.ContainsKey(shop.ID))
+			{
+				Mod.Error("Shop: " + shop.Name + " failed to register - key:" + shop.ID + " already in use. Generating custom key. " + shop.GetHash());
+				return null;
+			}
+
+			Shops.Add(shop.ID, shop);
+			shopsByType.Add(shop.GetType(), shop);
+			Mod.Log($"Registered shop '{shop.ModName}:{shop.Name}' as {shop.ID}");
+			return shop;
+		}
+
 		//Get Custom Appliance
 		public static CustomAppliance GetCustomAppliance(int id)
 		{
@@ -623,6 +643,18 @@ namespace KitchenLib.Customs
 		public static CustomRestaurantSetting GetCustomRestaurantSetting<T>()
 		{
 			restaurantSettingsByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom Shop
+		public static CustomShop GetCustomShop(int id)
+		{
+			Shops.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomShop GetCustomShop<T>()
+		{
+			shopsByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 	}

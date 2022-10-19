@@ -163,6 +163,13 @@ namespace KitchenLib
 			return CustomGDO.RegisterRestaurantSetting(restaurantSettings);
 		}
 
+		public T AddShop<T>() where T : CustomShop, new()
+		{
+			T shop = new T();
+			shop.ModName = Info.Name;
+			return CustomGDO.RegisterShop(shop);
+		}
+
 
 
 
