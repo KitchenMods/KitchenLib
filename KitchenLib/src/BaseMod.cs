@@ -135,6 +135,13 @@ namespace KitchenLib
 			return CustomGDO.RegisterLevelUpgradeSet(levelUpgradeSet);
 		}
 
+		public T AddPlayerCosmetic<T>() where T : CustomPlayerCosmetic, new()
+		{
+			T playerCosmetic = new T();
+			playerCosmetic.ModName = Info.Name;
+			return CustomGDO.RegisterPlayerCosmetic(playerCosmetic);
+		}
+
 
 
 

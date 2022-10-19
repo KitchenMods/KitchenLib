@@ -335,5 +335,19 @@ namespace KitchenLib.Customs
 
             return result;
         }
+
+        public static PlayerCosmetic CreatePlayerCosmetic(GameData gameData, CustomPlayerCosmetic custom)
+        {
+            PlayerCosmetic result = default(PlayerCosmetic);
+            PlayerCosmetic empty = default(PlayerCosmetic);
+
+            if (custom.BasePlayerCosmeticId != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<PlayerCosmetic>().FirstOrDefault(a => a.ID == custom.BasePlayerCosmeticId));
+
+            if (custom.CosmeticType != empty.CosmeticType) result.CosmeticType = custom.CosmeticType;
+            if (custom.Visual != empty.Visual) result.Visual = custom.Visual;
+
+            return result;
+        }
     }
 }

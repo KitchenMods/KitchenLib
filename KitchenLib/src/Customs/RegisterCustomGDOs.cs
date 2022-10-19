@@ -149,6 +149,14 @@ namespace KitchenLib.Customs
 				levelUpgradeSet.LevelUpgradeSet = newLevelUpgradeSet;
 				gameDataObjects.Add(newLevelUpgradeSet);
 			}
+
+			foreach (CustomPlayerCosmetic playerCosmetic in CustomGDO.PlayerCosmetics.Values) //Adds Custom Player Cosmetics to GDOs
+			{
+				PlayerCosmetic newPlayerCosmetic = CreateCustomGDOs.CreatePlayerCosmetic(__result, playerCosmetic);
+				playerCosmetic.OnRegister(newPlayerCosmetic);
+				playerCosmetic.PlayerCosmetic = newPlayerCosmetic;
+				gameDataObjects.Add(newPlayerCosmetic);
+			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{

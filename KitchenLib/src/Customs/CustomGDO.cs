@@ -50,6 +50,9 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomLevelUpgradeSet> LevelUpgradeSets = new Dictionary<int, CustomLevelUpgradeSet>();
 		public static Dictionary<Type, CustomLevelUpgradeSet> levelUpgradeSetsByType = new Dictionary<Type, CustomLevelUpgradeSet>();
 
+		public static Dictionary<int, CustomPlayerCosmetic> PlayerCosmetics = new Dictionary<int, CustomPlayerCosmetic>();
+		public static Dictionary<Type, CustomPlayerCosmetic> playerCosmeticsByType = new Dictionary<Type, CustomPlayerCosmetic>();
+
 
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
@@ -300,6 +303,23 @@ namespace KitchenLib.Customs
 			return levelUpgradeSet;
 		}
 
+		public static T RegisterPlayerCosmetic<T>(T playerCosmetic) where T : CustomPlayerCosmetic
+		{
+			if (playerCosmetic.ID == 0)
+				playerCosmetic.ID = playerCosmetic.GetHash();
+			
+			if (PlayerCosmetics.ContainsKey(playerCosmetic.ID))
+			{
+				Mod.Error("PlayerCosmetic: " + playerCosmetic.Name + " failed to register - key:" + playerCosmetic.ID + " already in use. Generating custom key. " + playerCosmetic.GetHash());
+				return null;
+			}
+
+			PlayerCosmetics.Add(playerCosmetic.ID, playerCosmetic);
+			playerCosmeticsByType.Add(playerCosmetic.GetType(), playerCosmetic);
+			Mod.Log($"Registered player cosmetic '{playerCosmetic.ModName}:{playerCosmetic.Name}' as {playerCosmetic.ID}");
+			return playerCosmetic;
+		}
+
 		//Get Custom Appliance
 		public static CustomAppliance GetCustomAppliance(int id)
 		{
@@ -495,6 +515,18 @@ namespace KitchenLib.Customs
 		public static CustomLevelUpgradeSet GetCustomLevelUpgradeSet<T>()
 		{
 			levelUpgradeSetsByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom PlayerCosmetic
+		public static CustomPlayerCosmetic GetCustomPlayerCosmetic(int id)
+		{
+			PlayerCosmetics.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomPlayerCosmetic GetCustomPlayerCosmetic<T>()
+		{
+			playerCosmeticsByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 	}
