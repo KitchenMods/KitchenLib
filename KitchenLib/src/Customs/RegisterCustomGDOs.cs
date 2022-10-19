@@ -141,6 +141,14 @@ namespace KitchenLib.Customs
 				layoutProfile.LayoutProfile = newLayoutProfile;
 				gameDataObjects.Add(newLayoutProfile);
 			}
+
+			foreach (CustomLevelUpgradeSet levelUpgradeSet in CustomGDO.LevelUpgradeSets.Values) //Adds Custom Level Upgrade Sets to GDOs
+			{
+				LevelUpgradeSet newLevelUpgradeSet = CreateCustomGDOs.CreateLevelUpgradeSet(__result, levelUpgradeSet);
+				levelUpgradeSet.OnRegister(newLevelUpgradeSet);
+				levelUpgradeSet.LevelUpgradeSet = newLevelUpgradeSet;
+				gameDataObjects.Add(newLevelUpgradeSet);
+			}
 			
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{

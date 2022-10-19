@@ -47,6 +47,9 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomLayoutProfile> LayoutProfiles = new Dictionary<int, CustomLayoutProfile>();
 		public static Dictionary<Type, CustomLayoutProfile> layoutProfilesByType = new Dictionary<Type, CustomLayoutProfile>();
 
+		public static Dictionary<int, CustomLevelUpgradeSet> LevelUpgradeSets = new Dictionary<int, CustomLevelUpgradeSet>();
+		public static Dictionary<Type, CustomLevelUpgradeSet> levelUpgradeSetsByType = new Dictionary<Type, CustomLevelUpgradeSet>();
+
 
 		public static T RegisterItemProcess<T>(T process) where T : CustomItemProcess
 		{
@@ -280,6 +283,23 @@ namespace KitchenLib.Customs
 			return layoutProfile;
 		}
 
+		public static T RegisterLevelUpgradeSet<T>(T levelUpgradeSet) where T : CustomLevelUpgradeSet
+		{
+			if (levelUpgradeSet.ID == 0)
+				levelUpgradeSet.ID = levelUpgradeSet.GetHash();
+			
+			if (LevelUpgradeSets.ContainsKey(levelUpgradeSet.ID))
+			{
+				Mod.Error("LevelUpgradeSet: " + levelUpgradeSet.Name + " failed to register - key:" + levelUpgradeSet.ID + " already in use. Generating custom key. " + levelUpgradeSet.GetHash());
+				return null;
+			}
+
+			LevelUpgradeSets.Add(levelUpgradeSet.ID, levelUpgradeSet);
+			levelUpgradeSetsByType.Add(levelUpgradeSet.GetType(), levelUpgradeSet);
+			Mod.Log($"Registered level upgrade set '{levelUpgradeSet.ModName}:{levelUpgradeSet.Name}' as {levelUpgradeSet.ID}");
+			return levelUpgradeSet;
+		}
+
 		//Get Custom Appliance
 		public static CustomAppliance GetCustomAppliance(int id)
 		{
@@ -463,6 +483,18 @@ namespace KitchenLib.Customs
 		public static CustomLayoutProfile GetCustomLayoutProfile<T>()
 		{
 			layoutProfilesByType.TryGetValue(typeof(T), out var result);
+			return result;
+		}
+
+		//Get Custom LevelUpgradeSet
+		public static CustomLevelUpgradeSet GetCustomLevelUpgradeSet(int id)
+		{
+			LevelUpgradeSets.TryGetValue(id, out var result);
+			return result;
+		}
+		public static CustomLevelUpgradeSet GetCustomLevelUpgradeSet<T>()
+		{
+			levelUpgradeSetsByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
 	}

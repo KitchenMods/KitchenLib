@@ -322,5 +322,18 @@ namespace KitchenLib.Customs
 
             return result;
         }
+
+        public static LevelUpgradeSet CreateLevelUpgradeSet(GameData gameData, CustomLevelUpgradeSet custom)
+        {
+            LevelUpgradeSet result = default(LevelUpgradeSet);
+            LevelUpgradeSet empty = default(LevelUpgradeSet);
+
+            if (custom.BaseLevelUpgradeSetId != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<LevelUpgradeSet>().FirstOrDefault(a => a.ID == custom.BaseLevelUpgradeSetId));
+
+            if (custom.Upgrades != empty.Upgrades) result.Upgrades = custom.Upgrades;
+
+            return result;
+        }
     }
 }

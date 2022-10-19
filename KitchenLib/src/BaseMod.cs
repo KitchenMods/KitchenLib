@@ -128,6 +128,13 @@ namespace KitchenLib
 			return CustomGDO.RegisterLayoutProfile(layoutProfile);
 		}
 
+		public T AddLevelUpgradeSet<T>() where T : CustomLevelUpgradeSet, new()
+		{
+			T levelUpgradeSet = new T();
+			levelUpgradeSet.ModName = Info.Name;
+			return CustomGDO.RegisterLevelUpgradeSet(levelUpgradeSet);
+		}
+
 
 
 
