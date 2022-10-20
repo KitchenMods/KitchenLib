@@ -12,7 +12,8 @@ namespace KitchenLib.Utils
 		{
 			Process result = new Process();
 			
-			result.BasicEnablingAppliance = GDOUtils.GetExistingAppliance(-1248669347);
+			//result.BasicEnablingAppliance = GDOUtils.GetExistingAppliance(-1248669347);
+			result.BasicEnablingAppliance = (Appliance)GDOUtils.GetExistingGDO(-1248669347);
 			result.CanObfuscateProgress = true;
 			result.EnablingApplianceCount = 1;
 			result.Icon = "<sprite name=\"chop\">";
