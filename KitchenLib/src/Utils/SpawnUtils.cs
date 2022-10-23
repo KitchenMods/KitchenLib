@@ -15,7 +15,7 @@ namespace KitchenLib.Utils
 		}
 
 		public static Entity SpawnApplianceBlueprintAtPlayer<T>(float priceModifier = 0f, int forcePrice = -1) where T : CustomAppliance {
-			var appliance = CustomGDO.GetCustomAppliance<T>();
+			var appliance = CustomGDO.GetGameDataObject<T>();
 			if(appliance == null)
 				return default(Entity);
 			return SpawnApplianceBlueprintAtPlayer(appliance.ID, priceModifier, forcePrice);
@@ -36,7 +36,7 @@ namespace KitchenLib.Utils
 
 		public static Entity SpawnApplianceBlueprint<T>(float priceModifier = 0f, int forcePrice = -1)
 		{
-			var appliance = CustomGDO.GetCustomAppliance<T>();
+			var appliance = CustomGDO.GetGameDataObject<T>();
 			if (appliance == null)
 				return default(Entity);
 			return SpawnApplianceBlueprint(appliance.ID, priceModifier, forcePrice);

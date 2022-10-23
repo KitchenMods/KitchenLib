@@ -39,160 +39,17 @@ namespace KitchenLib
 			MelonLogger.Error(message);
 		}
 
-		[Obsolete("Use the AddAppliance method instead")]
-		public T RegisterCustomAppliance<T>() where T : CustomAppliance, new()  {
-			return AddAppliance<T>();
+		public T AddGameDataObject<T>() where T : CustomGameDataObject, new()
+		{
+			T gdo = new T();
+			gdo.ModName = Info.Name;
+			return CustomGDO.RegisterGameDataObject(gdo);
 		}
 
-		public T AddAppliance<T>() where T : CustomAppliance, new()
+		public T AddSubProcess<T>() where T : CustomSubProcess, new()
 		{
-			T appliance = new T();
-			appliance.ModName = Info.Name;
-			return CustomGDO.RegisterAppliance(appliance);
-		}
-
-		public T AddItem<T>() where T : CustomItem, new()
-		{
-			T item = new T();
-			item.ModName = Info.Name;
-			return CustomGDO.RegisterItem(item);
-		}
-
-		public T AddContract<T>() where T : CustomContract, new()
-		{
-			T contract = new T();
-			contract.ModName = Info.Name;
-			return CustomGDO.RegisterContract(contract);
-		}
-
-		public T AddDecor<T>() where T : CustomDecor, new()
-		{
-			T decor = new T();
-			decor.ModName = Info.Name;
-			return CustomGDO.RegisterDecor(decor);
-		}
-
-		public T AddDish<T>() where T : CustomDish, new()
-		{
-			T dish = new T();
-			dish.ModName = Info.Name;
-			return CustomGDO.RegisterDish(dish);
-		}
-
-		public T AddEffect<T>() where T : CustomEffect, new()
-		{
-			T effect = new T();
-			effect.ModName = Info.Name;
-			return CustomGDO.RegisterEffect(effect);
-		}
-
-		public T AddEffectRepresentation<T>() where T : CustomEffectRepresentation, new()
-		{
-			T effectRepresentation = new T();
-			effectRepresentation.ModName = Info.Name;
-			return CustomGDO.RegisterEffectRepresentation(effectRepresentation);
-		}
-
-		public T AddFranchiseUpgrade<T>() where T : CustomFranchiseUpgrade, new()
-		{
-			T franchiseUpgrade = new T();
-			franchiseUpgrade.ModName = Info.Name;
-			return CustomGDO.RegisterFranchiseUpgrade(franchiseUpgrade);
-		}
-
-		public T AddGameDifficultySettings<T>() where T : CustomGameDifficultySettings, new()
-		{
-			T gameDifficultySettings = new T();
-			gameDifficultySettings.ModName = Info.Name;
-			return CustomGDO.RegisterGameDifficultySettings(gameDifficultySettings);
-		}
-
-		public T AddGardenProfile<T>() where T : CustomGardenProfile, new()
-		{
-			T gardenProfile = new T();
-			gardenProfile.ModName = Info.Name;
-			return CustomGDO.RegisterGardenProfile(gardenProfile);
-		}
-
-		public T AddItemGroup<T>() where T : CustomItemGroup, new()
-		{
-			T itemGroup = new T();
-			itemGroup.ModName = Info.Name;
-			return CustomGDO.RegisterItemGroup(itemGroup);
-		}
-
-		public T AddLayoutProfile<T>() where T : CustomLayoutProfile, new()
-		{
-			T layoutProfile = new T();
-			layoutProfile.ModName = Info.Name;
-			return CustomGDO.RegisterLayoutProfile(layoutProfile);
-		}
-
-		public T AddLevelUpgradeSet<T>() where T : CustomLevelUpgradeSet, new()
-		{
-			T levelUpgradeSet = new T();
-			levelUpgradeSet.ModName = Info.Name;
-			return CustomGDO.RegisterLevelUpgradeSet(levelUpgradeSet);
-		}
-
-		public T AddPlayerCosmetic<T>() where T : CustomPlayerCosmetic, new()
-		{
-			T playerCosmetic = new T();
-			playerCosmetic.ModName = Info.Name;
-			return CustomGDO.RegisterPlayerCosmetic(playerCosmetic);
-		}
-
-		public T AddRandomUpgradeSet<T>() where T : CustomRandomUpgradeSet, new()
-		{
-			T randomUpgradeSet = new T();
-			randomUpgradeSet.ModName = Info.Name;
-			return CustomGDO.RegisterRandomUpgradeSet(randomUpgradeSet);
-		}
-
-		public T AddResearch<T>() where T : CustomResearch, new()
-		{
-			T research = new T();
-			research.ModName = Info.Name;
-			return CustomGDO.RegisterResearch(research);
-		}
-
-		public T AddRestaurantSetting<T>() where T : CustomRestaurantSetting, new()
-		{
-			T restaurantSettings = new T();
-			restaurantSettings.ModName = Info.Name;
-			return CustomGDO.RegisterRestaurantSetting(restaurantSettings);
-		}
-
-		public T AddShop<T>() where T : CustomShop, new()
-		{
-			T shop = new T();
-			shop.ModName = Info.Name;
-			return CustomGDO.RegisterShop(shop);
-		}
-
-
-
-
-
-
-
-
-		public T AddItemProcess<T>() where T : CustomItemProcess, new()
-		{
-			T itemProcess = new T();
-			return CustomGDO.RegisterItemProcess(itemProcess);
-		}
-
-		public T AddApplianceProcess<T>() where T : CustomApplianceProcess, new()
-		{
-			T applianceProcess = new T();
-			return CustomGDO.RegisterApplianceProcess(applianceProcess);
-		}
-
-		public T AddProcess<T>() where T : CustomProcess, new()
-		{
-			T process = new T();
-			return CustomGDO.RegisterProcess(process);
+			T subProcess = new T();
+			return CustomSubProcess.RegisterSubProcess(subProcess);
 		}
 
 		public T AddPreference<T>(string modID, string key, string name) where T : BasePreference, new()
@@ -201,9 +58,37 @@ namespace KitchenLib
 			return PreferenceUtils.Register<T>(modID, key, name);
 		}
 
+
+		/*
+		 * Obsolete Methods
+		 */
+
+		[Obsolete("Use the AddAppliance method instead")]
+		public T RegisterCustomAppliance<T>() where T : CustomAppliance, new()  {
+			return AddAppliance<T>();
+		}
+
 		[Obsolete("System registration is now automatic")]
 		public T AddSystem<T>() where T : GenericSystemBase, new() {
 			return SystemUtils.AddSystem<T>();
+		}
+
+		[Obsolete("Use the AddGameDataObject method instead")]
+		public T AddAppliance<T>() where T : CustomAppliance, new()
+		{
+			return AddGameDataObject<T>();
+		}
+
+		[Obsolete("Use the AddGameDataObject method instead")]
+		public T AddItem<T>() where T : CustomItem, new()
+		{
+			return AddGameDataObject<T>();
+		}
+
+		[Obsolete("Use the AddGameDataObject method instead")]
+		public T AddProcess<T>() where T : CustomProcess, new()
+		{
+			return AddGameDataObject<T>();
 		}
 	}
 }

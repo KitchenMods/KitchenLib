@@ -44,8 +44,8 @@ namespace KitchenLib.Systems
 				return null;
 			}
 
-			CustomAppliance customAppliance = CustomGDO.GetCustomAppliance(appliance.ID);
-			if (customAppliance == null || customAppliance.Appliance == null)
+			CustomAppliance customAppliance = (CustomAppliance)CustomGDO.GetGameDataObject(appliance.ID);
+			if (customAppliance == null || customAppliance.GameDataObject == null)
 			{
 				return null;
 			}

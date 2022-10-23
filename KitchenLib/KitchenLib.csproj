@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net4.7</TargetFramework>
-    <NoWarn>0060</NoWarn>
+    <NoWarn>0436</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(os)=='Windows_NT'">

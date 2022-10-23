@@ -1,63 +1,56 @@
 ﻿using System.Collections.Generic;
 using KitchenData;
+using System;
 
 namespace KitchenLib.Utils
 {
 	public class GDOUtils
 	{
-		private static Dictionary<int, Appliance> appliances = new Dictionary<int, Appliance>();
-		private static Dictionary<int, Item> items = new Dictionary<int, Item>();
-		private static Dictionary<int, Process> processes = new Dictionary<int, Process>();
-
-		private static Dictionary<string, Process> processesNamed = new Dictionary<string, Process>();
+		private static Dictionary<int, GameDataObject> GDOs = new Dictionary<int, GameDataObject>();
 
 		private static Dictionary<string, Item.ItemProcess> customItemProcesses = new Dictionary<string, Item.ItemProcess>();
 		private static Dictionary<string, Appliance.ApplianceProcesses> customApplianceProcesses = new Dictionary<string, Appliance.ApplianceProcesses>();
 
 		public static void SetupGDOIndex(GameData gameData)
 		{
-			foreach (Item item in gameData.Get<Item>())
+			foreach (GameDataObject gdo in gameData.Get<GameDataObject>())
 			{
-				GDOUtils.items.Add(item.ID, item);
-			}
-
-			foreach (Appliance appliance in gameData.Get<Appliance>())
-			{
-				GDOUtils.appliances.Add(appliance.ID, appliance);
-			}
-
-			foreach (Process process in gameData.Get<Process>())
-			{
-				GDOUtils.processes.Add(process.ID, process);
-				GDOUtils.processesNamed.Add(process.name, process);
+				GDOs.Add(gdo.ID, gdo);
 			}
 		}
 
+		public static GameDataObject GetExistingGDO(int id)
+		{
+			GDOs.TryGetValue(id, out GameDataObject gdo);
+			return gdo;
+		}
+
+		/*
+		 * Obsolete Methods
+		 */
+
+		[Obsolete("Use the GetExistingGDO method instead")]
 		public static Appliance GetExistingAppliance(int id)
 		{
-			appliances.TryGetValue(id, out Appliance appliance);
-			return appliance;
+			GDOs.TryGetValue(id, out GameDataObject appliance);
+			return (Appliance)appliance;
 		}
 
+		[Obsolete("Use the GetExistingGDO method instead")]
 		public static Item GetExistingItem(int id)
 		{
-			items.TryGetValue(id, out Item item);
-			return item;
+			GDOs.TryGetValue(id, out GameDataObject item);
+			return (Item)item;
 		}
 
-
+		[Obsolete("Use the GetExistingGDO method instead")]
 		public static Process GetExistingProcess(int id)
 		{
-			processes.TryGetValue(id, out Process process);
-			return process;
+			GDOs.TryGetValue(id, out GameDataObject process);
+			return (Process)process;
 		}
 
-		public static Process GetExistingProcess(string name)
-		{
-			processesNamed.TryGetValue(name, out Process process);
-			return process;
-		}
-
+/*
 		public static Item.ItemProcess GetCustomItemProcess(string name)
 		{
 			customItemProcesses.TryGetValue(name, out Item.ItemProcess process);
@@ -79,5 +72,6 @@ namespace KitchenLib.Utils
 		{
 			customApplianceProcesses.Add(name, process);
 		}
+		*/
 	}
 }
