@@ -27,6 +27,9 @@ namespace KitchenLib.Utils
             if (null == obj)
                 return;
 
+            if (obj.name.ToLower().Contains("wallpaper") || obj.name.ToLower().Contains("flooring"))
+                return;
+
             foreach (Transform child in obj.transform)
             {
                 if (null == child)

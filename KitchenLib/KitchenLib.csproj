@@ -36,11 +36,20 @@
     <Reference Include="Kitchen.GameData">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.GameData.dll</HintPath>
     </Reference>
+    <Reference Include="Kitchen">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Persistence.dll</HintPath>
+    </Reference>
     <Reference Include="Kitchen.Common">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Kitchen.NetworkSupport">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Networking.dll</HintPath>
+    </Reference>
     <Reference Include="Kitchen.RestaurantMode">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.RestaurantMode.dll</HintPath>
+    </Reference>
+    <Reference Include="MessagePack">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\MessagePack.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.dll</HintPath>
@@ -68,6 +77,21 @@
     </Reference>
     <Reference Include="TMPro">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitchen.Layouts">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Layouts.dll</HintPath>
+    </Reference>
+    <Reference Include="XNode">
+      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\XNode.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
   </ItemGroup>

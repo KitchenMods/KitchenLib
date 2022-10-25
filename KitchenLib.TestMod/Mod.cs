@@ -12,7 +12,7 @@ namespace KitchenLib.TestMod
 		public static CustomProcess rollProcess;
 
 		public static AssetBundle bundle;
-		public override void OnApplicationStart() {
+		public override void OnInitializeMelon() {
 			//base.OnApplicationStart();
 			//rollProcess = AddProcess<RollProcess>();
 			//AddItemProcess<ChopSushi>();
