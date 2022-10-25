@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net4.7</TargetFramework>
-    <NoWarn>0436</NoWarn>
+    <TargetFramework>net4.7.1</TargetFramework>
+    <NoWarn>0060</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(os)=='Windows_NT'">
