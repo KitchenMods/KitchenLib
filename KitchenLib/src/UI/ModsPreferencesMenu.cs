@@ -41,7 +41,7 @@ namespace KitchenLib
         public override void CreateSubmenus(ref Dictionary<Type, Menu<T>> menus)
         {
             //menus.Add(typeof(KLSettingsMenu<T>), new KLSettingsMenu<T>(this.Container, this.ModuleList));
-            EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_CreateSubmenusEvent), Events.PreferenceMenu_CreateSubmenusEvent?.GetInvocationList(), null, new PreferenceMenu_CreateSubmenusArgs(this, menus, this.Container, this.ModuleList));
+            EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_CreateSubmenusEvent), Events.PreferenceMenu_CreateSubmenusEvent?.GetInvocationList(), null, new PreferenceMenu_CreateSubmenusArgs<T>(this, menus, this.Container, this.ModuleList));
         }
     }
 }

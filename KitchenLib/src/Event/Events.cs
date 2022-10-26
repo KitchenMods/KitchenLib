@@ -1,4 +1,5 @@
 using System;
+using Kitchen;
 
 namespace KitchenLib.Event
 {
@@ -15,6 +16,6 @@ namespace KitchenLib.Event
 
         //Client
         public static EventHandler<PreferenceMenu_SetupArgs> PreferenceMenu_SetupEvent;
-        public static EventHandler<PreferenceMenu_CreateSubmenusArgs> PreferenceMenu_CreateSubmenusEvent;
+        public static EventHandler<PreferenceMenu_CreateSubmenusArgs<>> PreferenceMenu_CreateSubmenusEvent;
     }
 }

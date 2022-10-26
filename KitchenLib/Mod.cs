@@ -54,7 +54,6 @@ namespace KitchenLib
 			{
 				Type type = args.instance.GetType().GetGenericArguments()[0];
 				//args.menus.Add(typeof(KLSettingsMenu<>).MakeGenericType(type), new KLSettingsMenu<MainMenuAction>(args.Container, args.Module_list));
-				((Dictionary<Type, object>)args.Menus).Add(typeof(KLSettingsMenu<>).MakeGenericType(type), new KLSettingsMenu<MainMenuAction>(args.Container, args.Module_list));
 			};
 			
 		}
