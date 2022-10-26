@@ -6,14 +6,14 @@ using System.Reflection;
 
 namespace KitchenLib.Event
 {
-    public class StartMainMenuEvent : EventArgs
+    public class MainMenu_SetupArgs : EventArgs
     {
         internal StartMainMenu instance;
         internal MethodInfo addActionButton;
         internal MethodInfo addSubmenuButton;
         internal MethodInfo addSpacer;
 
-        internal StartMainMenuEvent(StartMainMenu instance, MethodInfo addActionButton, MethodInfo addSubmenuButton, MethodInfo addSpacer)
+        internal MainMenu_SetupArgs(StartMainMenu instance, MethodInfo addActionButton, MethodInfo addSubmenuButton, MethodInfo addSpacer)
         {
             this.instance = instance;
             this.addActionButton = addActionButton;

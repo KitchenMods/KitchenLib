@@ -5,7 +5,7 @@ using KitchenLib.Registry;
 
 namespace KitchenLib
 {
-    public partial class ModsMenu : StartGameMainMenu
+    public partial class ModsMenu<T> : Menu<T>
     {
         public ModsMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
 
@@ -29,7 +29,10 @@ namespace KitchenLib
 
             New<SpacerElement>(true);
             New<SpacerElement>(true);
-            AddActionButton("Back", MainMenuAction.Back, ElementStyle.MainMenuBack);
+            AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate(int i)
+			{
+				this.RequestPreviousMenu();
+			}, 0, 1f, 0.2f);
         }
 
     }

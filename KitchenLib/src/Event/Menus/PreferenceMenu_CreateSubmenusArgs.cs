@@ -9,19 +9,22 @@ using System.Reflection;
 
 namespace KitchenLib.Event
 {
-    public class CreateSubMenusEventArgs : EventArgs
+    public class PreferenceMenu_CreateSubmenusArgs : EventArgs
     {
-        public readonly Dictionary<Type, Menu<MainMenuAction>> Menus;
+        public readonly Dictionary<Type, object> Menus;
         public readonly Transform Container;
         public readonly ModuleList Module_list;
-        internal CreateSubMenusEventArgs(Dictionary<Type, Menu<MainMenuAction>> menus, Transform container, ModuleList module_list)
+        internal object instance;
+        internal PreferenceMenu_CreateSubmenusArgs(object instance, object menus, Transform container, ModuleList module_list)
         {
-            Menus = menus;
+            this.instance = instance;
+            Menus = (Dictionary<Type, object>)menus;
             Container = container;
             Module_list = module_list;
         }
     }
 
+    /*
     public class SetupEventArgs : EventArgs
     {
         public readonly int PlayerId;
@@ -32,4 +35,5 @@ namespace KitchenLib.Event
             Menu = menu;
         }
     }
+    */
 }
