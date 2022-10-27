@@ -57,8 +57,8 @@ namespace KitchenLib.Customs
             Appliance result = new Appliance();
             Appliance empty = new Appliance();
 
-            if (BaseApplianceId != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == BaseApplianceId));
+            if (BaseGameDataObjectID != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
             else
                 result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == AssetReference.Counter));
 
