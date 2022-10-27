@@ -9,7 +9,7 @@ using KitchenLib.Utils;
 
 namespace KitchenLib
 {
-    public partial class ModsPreferencesMenu<T> : Menu<T>
+    public class ModsPreferencesMenu<T> : Menu<T>
     {
         public ModsPreferencesMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
 
@@ -20,7 +20,10 @@ namespace KitchenLib
             New<SpacerElement>(true);
 
             MethodInfo mInfo = this.GetType().GetMethod("AddSubmenuButton", BindingFlags.NonPublic | BindingFlags.Instance);
-            EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_SetupEvent), Events.PreferenceMenu_SetupEvent?.GetInvocationList(), null, new PreferenceMenu_SetupArgs(this, mInfo));
+            if (this.GetType().GetGenericArguments()[0] == typeof(MainMenuAction))
+                EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_MainMenu_SetupEvent), Events.PreferenceMenu_MainMenu_SetupEvent?.GetInvocationList(), null, new PreferenceMenu_SetupArgs(this, mInfo));
+            else if (this.GetType().GetGenericArguments()[0] == typeof(PauseMenuAction))
+                EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_PauseMenu_SetupEvent), Events.PreferenceMenu_PauseMenu_SetupEvent?.GetInvocationList(), null, new PreferenceMenu_SetupArgs(this, mInfo));
 
             New<SpacerElement>(true);
             New<SpacerElement>(true);
@@ -40,8 +43,10 @@ namespace KitchenLib
 
         public override void CreateSubmenus(ref Dictionary<Type, Menu<T>> menus)
         {
-            //menus.Add(typeof(KLSettingsMenu<T>), new KLSettingsMenu<T>(this.Container, this.ModuleList));
-            EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_CreateSubmenusEvent), Events.PreferenceMenu_CreateSubmenusEvent?.GetInvocationList(), null, new PreferenceMenu_CreateSubmenusArgs<T>(this, menus, this.Container, this.ModuleList));
+            if (this.GetType().GetGenericArguments()[0] == typeof(MainMenuAction))
+                EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_MainMenu_CreateSubmenusEvent), Events.PreferenceMenu_MainMenu_CreateSubmenusEvent?.GetInvocationList(), null, new PreferenceMenu_CreateSubmenusArgs<T>(this, menus, this.Container, this.ModuleList));
+            else if (this.GetType().GetGenericArguments()[0] == typeof(PauseMenuAction))
+                EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent), Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent?.GetInvocationList(), null, new PreferenceMenu_CreateSubmenusArgs<T>(this, menus, this.Container, this.ModuleList));
         }
     }
 }
