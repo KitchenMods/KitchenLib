@@ -6,8 +6,6 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomSubProcess
     {
-        public abstract void Convert(out Item.ItemProcess itemProcess);
-        public abstract void Convert(out Appliance.ApplianceProcesses applianceProcess);
 
         public virtual string UniqueName { get; internal set; }
 
