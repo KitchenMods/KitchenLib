@@ -13,9 +13,11 @@ namespace KitchenLib.Customs
 		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result) {
 			MaterialUtils.SetupMaterialIndex(__result);
 
-			GDOUtils.SetupGDOIndex(__result);			
+			GDOUtils.SetupGDOIndex(__result);
 
-			EventUtils.InvokeEvent(nameof(Events.BuildGameDataEvent), Events.BuildGameDataEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result));
+			BuildGameDataEventArgs buildGameDataEventArgs = new BuildGameDataEventArgs(__result);
+			EventUtils.InvokeEvent(nameof(Events.BuildGameDataEvent), Events.BuildGameDataEvent?.GetInvocationList(), null, buildGameDataEventArgs);
+			__result = buildGameDataEventArgs.gamedata;
 
 			List<GameDataObject> gameDataObjects = new List<GameDataObject>();
 

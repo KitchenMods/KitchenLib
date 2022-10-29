@@ -2,7 +2,7 @@ using KitchenData;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomApplianceProccess : CustomSubProcess
+    public abstract class CustomApplianceProcess : CustomSubProcess
     {
         public virtual Process Process { get; internal set; }
         public virtual bool IsAutomatic { get; internal set; }

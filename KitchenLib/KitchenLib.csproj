@@ -1,103 +1,103 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net4.7.1</TargetFramework>
-    <NoWarn>0060</NoWarn>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net4.7.1</TargetFramework>
+		<NoWarn>0060</NoWarn>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="$(os)=='Windows_NT'">
-    <PlateUpGameFolder>C:\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp</PlateUpGameFolder>
-  </PropertyGroup>
+	<PropertyGroup Condition="$(os)=='Windows_NT'">
+		<PlateUpGameFolder>D:\Program Files (x86)\Steam\steamapps\common\PlateUp(Modded)\PlateUp</PlateUpGameFolder>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="$(os)=='UNIX'">
-    <PlateUpGameFolder>/Users/lachlanleone/Desktop/PlateUp</PlateUpGameFolder>
-  </PropertyGroup>
+	<PropertyGroup Condition="$(os)=='UNIX'">
+		<PlateUpGameFolder>/Users/lachlanleone/Desktop/PlateUp</PlateUpGameFolder>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="Controllers">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Controllers.dll</HintPath>
-    </Reference>
-	
-    <Reference Include="MelonLoader">
-      <HintPath>$(PlateUpGameFolder)\MelonLoader\MelonLoader.dll</HintPath>
-    </Reference>
-    <Reference Include="0Harmony">
-      <HintPath>$(PlateUpGameFolder)\MelonLoader\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="KitchenMode">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\KitchenMode.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.FranchiseMode">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.FranchiseMode.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.GameData">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.GameData.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Persistence.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.Common">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.NetworkSupport">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.RestaurantMode">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.RestaurantMode.dll</HintPath>
-    </Reference>
-    <Reference Include="MessagePack">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\MessagePack.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Serialization">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Unity.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Entities">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Unity.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mathematics">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Unity.Mathematics.dll</HintPath>
-    </Reference>
-	<Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Serialization">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Sirenix.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AudioModule">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
-    </Reference>
-    <Reference Include="TMPro">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Buffers">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\System.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.Layouts">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Layouts.dll</HintPath>
-    </Reference>
-    <Reference Include="XNode">
-      <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\XNode.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core" />
-  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="Controllers">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Controllers.dll</HintPath>
+		</Reference>
 
-  <Target Name="CopyToPlateUp" AfterTargets="Build">
-    <Message Text="Copying KitchenLib to PlateUp Mods folder" Importance="High" />
-    <Copy SourceFiles="$(OutputPath)\KitchenLib.dll" DestinationFolder="$(PlateUpGameFolder)\Mods" ContinueOnError="false" />
-  </Target>
+		<Reference Include="MelonLoader">
+			<HintPath>$(PlateUpGameFolder)\MelonLoader\MelonLoader.dll</HintPath>
+		</Reference>
+		<Reference Include="0Harmony">
+			<HintPath>$(PlateUpGameFolder)\MelonLoader\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="Kitchen">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Common.dll</HintPath>
+		</Reference>
+		<Reference Include="KitchenMode">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\KitchenMode.dll</HintPath>
+		</Reference>
+		<Reference Include="Kitchen.FranchiseMode">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.FranchiseMode.dll</HintPath>
+		</Reference>
+		<Reference Include="Kitchen.GameData">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.GameData.dll</HintPath>
+		</Reference>
+		<Reference Include="Kitchen">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Persistence.dll</HintPath>
+		</Reference>
+		<Reference Include="Kitchen.Common">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Common.dll</HintPath>
+		</Reference>
+		<Reference Include="Kitchen.NetworkSupport">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Networking.dll</HintPath>
+		</Reference>
+		<Reference Include="Kitchen.RestaurantMode">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.RestaurantMode.dll</HintPath>
+		</Reference>
+		<Reference Include="MessagePack">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\MessagePack.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Serialization">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Unity.Serialization.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Entities">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Unity.Entities.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Mathematics">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Unity.Mathematics.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.ImageConversionModule">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+		</Reference>
+		<Reference Include="Sirenix.Serialization">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Sirenix.Serialization.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AudioModule">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+		</Reference>
+		<Reference Include="TMPro">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+		</Reference>
+		<Reference Include="System.Buffers">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\System.Memory.dll</HintPath>
+		</Reference>
+		<Reference Include="Kitchen.Layouts">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.Layouts.dll</HintPath>
+		</Reference>
+		<Reference Include="XNode">
+			<HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\XNode.dll</HintPath>
+		</Reference>
+		<Reference Include="System.Core" />
+	</ItemGroup>
+
+	<Target Name="CopyToPlateUp" AfterTargets="Build">
+		<Message Text="Copying KitchenLib to PlateUp Mods folder" Importance="High" />
+		<Copy SourceFiles="$(OutputPath)\KitchenLib.dll" DestinationFolder="$(PlateUpGameFolder)\Mods" ContinueOnError="false" />
+	</Target>
 </Project>

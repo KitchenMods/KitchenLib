@@ -1,28 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{469C4762-2C54-4E72-8012-A6B5E1447459}") = "KitchenLib", "KitchenLib\KitchenLib.csproj", "{A0AD1719-0E38-4080-A42A-9F764F2F5036}"
-EndProject
-Project("{2AF73D17-0D42-498E-9332-088D2D57BEB9}") = "KitchenLib.TestMod", "KitchenLib.TestMod\KitchenLib.TestMod.csproj", "{8C4CB5F2-1A35-46DF-8DC7-A4C2C6A813DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenLib", "KitchenLib\KitchenLib.csproj", "{A0AD1719-0E38-4080-A42A-9F764F2F5036}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A0AD1719-0E38-4080-A42A-9F764F2F5036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A0AD1719-0E38-4080-A42A-9F764F2F5036}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0AD1719-0E38-4080-A42A-9F764F2F5036}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0AD1719-0E38-4080-A42A-9F764F2F5036}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C4CB5F2-1A35-46DF-8DC7-A4C2C6A813DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C4CB5F2-1A35-46DF-8DC7-A4C2C6A813DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C4CB5F2-1A35-46DF-8DC7-A4C2C6A813DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C4CB5F2-1A35-46DF-8DC7-A4C2C6A813DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CFF45D12-C0E8-4108-9851-502E542FB09A}
 	EndGlobalSection
 EndGlobal
