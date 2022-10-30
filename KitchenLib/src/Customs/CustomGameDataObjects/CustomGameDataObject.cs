@@ -6,9 +6,8 @@ namespace KitchenLib.Customs
     public abstract class CustomGameDataObject
     {
         public virtual int ID {get; internal set; }
-        public virtual string UniqueNameID {get { return "Custom GDO"; } }
+        public virtual string UniqueNameID { get; internal set;}
         public virtual int BaseGameDataObjectID {get { return -1; } }
-        public virtual int BaseApplianceId {get { return -1; } }
         public string ModName = "";
         public GameDataObject GameDataObject;
         public abstract void Convert(GameData gameData, out GameDataObject gameDataObject);

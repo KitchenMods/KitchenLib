@@ -10,7 +10,7 @@ namespace KitchenLib.TestMod
 			get { return "Sushi Provider"; }
 		}
 
-		public override int BaseApplianceId
+		public override int BaseGameDataObjectID
 		{
 			get { return -13481890; }
 		}

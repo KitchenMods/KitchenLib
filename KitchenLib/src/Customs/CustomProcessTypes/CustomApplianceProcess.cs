@@ -9,7 +9,7 @@ namespace KitchenLib.Customs
         public virtual float Speed { get; internal set; }
         public virtual ProcessValidity Validity { get; internal set; }
 
-        public override void Convert(out Appliance.ApplianceProcesses applianceProcess)
+        public virtual void Convert(out Appliance.ApplianceProcesses applianceProcess)
         {
             Appliance.ApplianceProcesses result = new Appliance.ApplianceProcesses();
 

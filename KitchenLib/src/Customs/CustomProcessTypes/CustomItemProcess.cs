@@ -10,7 +10,7 @@ namespace KitchenLib.Customs
         public virtual bool IsBad { get; internal set; }
         public virtual bool RequiresWrapper { get; internal set; }
 
-        public override void Convert(out Item.ItemProcess itemProcess)
+        public virtual void Convert(out Item.ItemProcess itemProcess)
         {
             Item.ItemProcess result = new Item.ItemProcess();
 
