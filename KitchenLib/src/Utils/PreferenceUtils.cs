@@ -69,12 +69,11 @@ namespace KitchenLib.Utils
 				    BasePreference pref = FromBytes(type, modID, key, DisplayName, preferenceBytes);
                     if (pref != null)
 					{
-						
-					}
                         if (Preferences.ContainsKey(pref.ModID + ":" + pref.Key))
                             Preferences[pref.ModID + ":" + pref.Key] = pref;
                         else
-				            Preferences.Add(pref.ModID + ":" + pref.Key, pref);
+				            Preferences.Add(pref.ModID + ":" + pref.Key, pref);	
+					}
 			    }
 		    }
         }
