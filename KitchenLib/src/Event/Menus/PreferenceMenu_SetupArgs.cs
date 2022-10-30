@@ -6,9 +6,9 @@ namespace KitchenLib.Event
 {
     public class PreferenceMenu_SetupArgs : EventArgs
     {
-        internal Type type;
-        internal object instance;
-        internal MethodInfo mInfo;
+        public readonly Type type;
+        public readonly object instance;
+        public readonly MethodInfo mInfo;
         internal PreferenceMenu_SetupArgs(object instance, MethodInfo mInfo)
         {
             this.type = type;

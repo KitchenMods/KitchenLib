@@ -11,7 +11,7 @@ namespace KitchenLib.Event
         public readonly Dictionary<Type, Menu<T>> Menus;
         public readonly Transform Container;
         public readonly ModuleList Module_list;
-        internal object instance;
+        public readonly object instance;
         internal PreferenceMenu_CreateSubmenusArgs(object instance, Dictionary<Type, Menu<T>> menus, Transform container, ModuleList module_list)
         {
             this.instance = instance;

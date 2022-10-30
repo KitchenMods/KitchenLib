@@ -8,7 +8,8 @@ namespace KitchenLib.Event
         public static EventHandler<BuildGameDataEventArgs> BuildGameDataEvent;
         public static EventHandler<PlayerViewEventArgs> PlayerViewEvent;
 
-        
+        public static EventHandler<PreferencesSaveArgs> PreferencesSaveEvent;
+
         public static EventHandler<MainMenuView_SetupMenusArgs> MainMenuView_SetupMenusEvent;
         public static EventHandler<StartMainMenu_SetupArgs> StartMainMenu_SetupEvent;
         public static EventHandler<MainMenu_SetupArgs> MainMenu_SetupEvent;

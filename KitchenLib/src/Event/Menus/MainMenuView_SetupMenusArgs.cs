@@ -7,9 +7,9 @@ namespace KitchenLib.Event
 {
     public class MainMenuView_SetupMenusArgs : EventArgs
     {
-        internal MainMenuView instance;
-        internal MethodInfo addMenu;
-        internal ModuleList module_list;
+        public readonly MainMenuView instance;
+        public readonly MethodInfo addMenu;
+        public readonly ModuleList module_list;
 
         internal MainMenuView_SetupMenusArgs(MainMenuView instance, MethodInfo addMenu, ModuleList module_list)
         {

@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.IO.Compression;
+using KitchenLib.Event;
 
 namespace KitchenLib.Utils
 {
@@ -51,10 +52,11 @@ namespace KitchenLib.Utils
 			
 			    byte[] magicBytes = reader.ReadBytes(4);
 				if (magicBytes.Length == 4)
+				{
 			    	if(magicBytes[0] != 'K' || magicBytes[1] != 'L' || magicBytes[2] != 'I' || magicBytes[3] != 'B')
 				    	throw new Exception("Not a valid KitchenLib settings file.");
-				else
-				    throw new Exception("Not a valid KitchenLib settings file.");
+				}else
+				    throw new Exception("Not a valid KitchenLib settings file.2");
 					
 			    int count = reader.ReadInt32();
 			    for(int i = 0; i < count; i++) {
@@ -66,6 +68,9 @@ namespace KitchenLib.Utils
 				    byte[] preferenceBytes = reader.ReadBytes(size);
 				    BasePreference pref = FromBytes(type, modID, key, DisplayName, preferenceBytes);
                     if (pref != null)
+					{
+						
+					}
                         if (Preferences.ContainsKey(pref.ModID + ":" + pref.Key))
                             Preferences[pref.ModID + ":" + pref.Key] = pref;
                         else
@@ -75,7 +80,16 @@ namespace KitchenLib.Utils
         }
         public static void Save(string file = "UserData/KitchenLib/preferences.dat")
         {
+			//Make sure file path Exists
+			string path = Path.GetDirectoryName(file);
+			if (!Directory.Exists(path))
+				Directory.CreateDirectory(path);
+
+
             WriteToFile(file);
+
+            PreferencesSaveArgs mainMenuViewEvent = new PreferencesSaveArgs();
+            EventUtils.InvokeEvent(nameof(Events.PreferencesSaveEvent), Events.PreferencesSaveEvent?.GetInvocationList(), null, mainMenuViewEvent);
         }
         public static void WriteToFile(string file) {
             #if USE_GZIP_COMPRESSION

@@ -8,10 +8,10 @@ namespace KitchenLib.Event
 {
     public class StartMainMenu_SetupArgs : EventArgs
     {
-        internal StartMainMenu instance;
-        internal MethodInfo addActionButton;
-        internal MethodInfo addSubmenuButton;
-        internal MethodInfo addSpacer;
+        public readonly StartMainMenu instance;
+        public readonly MethodInfo addActionButton;
+        public readonly MethodInfo addSubmenuButton;
+        public readonly MethodInfo addSpacer;
 
         internal StartMainMenu_SetupArgs(StartMainMenu instance, MethodInfo addActionButton, MethodInfo addSubmenuButton, MethodInfo addSpacer)
         {
