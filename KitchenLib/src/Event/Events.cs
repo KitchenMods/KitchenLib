@@ -1,4 +1,5 @@
 using System;
+using Kitchen;
 
 namespace KitchenLib.Event
 {
@@ -6,9 +7,17 @@ namespace KitchenLib.Event
     {
         public static EventHandler<BuildGameDataEventArgs> BuildGameDataEvent;
         public static EventHandler<PlayerViewEventArgs> PlayerViewEvent;
-        public static EventHandler<StartMainMenuEvent> StartMainMenuEvent;
-        public static EventHandler<MainMenuViewEventArgs> MainMenuViewEvent;
-        public static EventHandler<CreateSubMenusEventArgs> CreateSubMenusEvent;
-        public static EventHandler<SetupEventArgs> SetupEvent;
+
+        
+        public static EventHandler<MainMenuView_SetupMenusArgs> MainMenuView_SetupMenusEvent;
+        public static EventHandler<StartMainMenu_SetupArgs> StartMainMenu_SetupEvent;
+        public static EventHandler<MainMenu_SetupArgs> MainMenu_SetupEvent;
+        public static EventHandler<PlayerPauseView_SetupMenusArgs> PlayerPauseView_SetupMenusEvent;
+
+        //Client
+        public static EventHandler<PreferenceMenu_SetupArgs> PreferenceMenu_MainMenu_SetupEvent;
+        public static EventHandler<PreferenceMenu_SetupArgs> PreferenceMenu_PauseMenu_SetupEvent;
+        public static EventHandler<PreferenceMenu_CreateSubmenusArgs<MainMenuAction>> PreferenceMenu_MainMenu_CreateSubmenusEvent;
+        public static EventHandler<PreferenceMenu_CreateSubmenusArgs<PauseMenuAction>> PreferenceMenu_PauseMenu_CreateSubmenusEvent;
     }
 }

@@ -1,5 +1,10 @@
 using UnityEngine;
 using Kitchen.Modules;
+using KitchenLib.Event;
+using KitchenLib.Utils;
+using Kitchen;
+using System.Collections.Generic;
+using System;
 
 
 namespace KitchenLib
@@ -12,17 +17,56 @@ namespace KitchenLib
 
 		public override void OnInitializeMelon()
 		{
-			/*
-			BoolPreference x = PreferencesRegistry.Register<BoolPreference>("kitchenlib", "enabled", "Is Enabled");
 
-            PreferencesRegistry.Load();
-			Events.SetupEvent += (s, args) =>
+			PreferenceUtils.Register<BoolPreference>("kitchenlib","enabled", "Is Enabled");
+
+			//Setting Up For Main Menu
+			Events.StartMainMenu_SetupEvent += (s, args) =>
 			{
-                args.Menu.AddNewButton(typeof(KLSettingsMenu<MainMenuAction>), "KL Settings");
+				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mods", typeof(ModsMenu<MainMenuAction>), false });
+				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mod Preferences", typeof(ModsPreferencesMenu<MainMenuAction>), false });
 			};
-			Events.CreateSubMenusEvent += (s, args) =>
+			Events.MainMenuView_SetupMenusEvent += (s, args) =>
 			{
-                args.Menus.Add(typeof(KLSettingsMenu<MainMenuAction>), new KLSettingsMenu<MainMenuAction>(args.Container, args.Module_list));
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<MainMenuAction>), new ModsMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<MainMenuAction>), new ModsPreferencesMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
+			};
+
+			//Setting Up For Pause Menu
+			Events.MainMenu_SetupEvent += (s, args) =>
+			{
+				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mods", typeof(ModsMenu<PauseMenuAction>), false });
+				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mod Preferences", typeof(ModsPreferencesMenu<PauseMenuAction>), false });
+			};
+			Events.PlayerPauseView_SetupMenusEvent += (s, args) =>
+			{
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<PauseMenuAction>), new ModsMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<PauseMenuAction>), new ModsPreferencesMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
+			};
+			/*
+			//Client Mod Setup
+
+			//Setting Up For Main Menu
+			Events.PreferenceMenu_MainMenu_SetupEvent += (s, args) =>
+			{
+				Type type = args.instance.GetType().GetGenericArguments()[0];
+				args.mInfo.Invoke(args.instance, new object[] { "KitchenLib", typeof(KLSettingsMenu<>).MakeGenericType(type), false });
+			};
+
+			Events.PreferenceMenu_MainMenu_CreateSubmenusEvent += (s, args) =>
+			{
+				args.Menus.Add(typeof(KLSettingsMenu<MainMenuAction>), new KLSettingsMenu<MainMenuAction>(args.Container, args.Module_list));
+			};
+
+			//Setting Up For Pause Menu
+			Events.PreferenceMenu_PauseMenu_SetupEvent += (s, args) =>
+			{
+				Type type = args.instance.GetType().GetGenericArguments()[0];
+				args.mInfo.Invoke(args.instance, new object[] { "KitchenLib", typeof(KLSettingsMenu<>).MakeGenericType(type), false });
+			};
+			Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent += (s, args) =>
+			{
+				args.Menus.Add(typeof(KLSettingsMenu<PauseMenuAction>), new KLSettingsMenu<PauseMenuAction>(args.Container, args.Module_list));
 			};
 			*/
 		}
@@ -41,20 +85,20 @@ namespace KitchenLib
 			/*
 			* KitchenLib doesn't have any preferences at the moment, this is just a template for developers to follow.
 			*/
-			AddInfo("KitchenLib doesn't actually have any preferences... yet.");
+			//AddInfo("KitchenLib doesn't actually have any preferences... yet.");
 
-            //AddLabel("Enable Mod");
-            //BoolOption(PreferencesRegistry.Get<BoolPreference>("kitchenlib","enabled"));
+            AddLabel("Enable Mod");
+            BoolOption(PreferenceUtils.Get<BoolPreference>("kitchenlib","enabled"));
 
 
             New<SpacerElement>();
 		    New<SpacerElement>();
-			/*
+			
 		    AddButton("Apply", delegate
 		    {
-                PreferencesRegistry.Save();
+                PreferenceUtils.Save();
 		    });
-			*/
+			
             AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate
 		    {
 			    RequestPreviousMenu();

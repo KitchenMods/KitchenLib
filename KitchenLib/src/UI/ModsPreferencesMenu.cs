@@ -1,16 +1,15 @@
 using UnityEngine;
 using Kitchen;
 using Kitchen.Modules;
-using KitchenLib.Registry;
-using KitchenLib.Event;
-using KitchenLib.Utils;
 using System.Collections.Generic;
 using System;
 using System.Reflection;
+using KitchenLib.Event;
+using KitchenLib.Utils;
 
 namespace KitchenLib
 {
-    public partial class ModsPreferencesMenu : StartGameMainMenu
+    public class ModsPreferencesMenu<T> : Menu<T>
     {
         public ModsPreferencesMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
 
@@ -19,12 +18,19 @@ namespace KitchenLib
         public override void Setup(int player_id) {
             AddLabel("Mod Preferences");
             New<SpacerElement>(true);
-            
-            EventUtils.InvokeEvent(nameof(Events.SetupEvent), Events.SetupEvent?.GetInvocationList(), null, new SetupEventArgs(player_id, this));
+
+            MethodInfo mInfo = this.GetType().GetMethod("AddSubmenuButton", BindingFlags.NonPublic | BindingFlags.Instance);
+            if (this.GetType().GetGenericArguments()[0] == typeof(MainMenuAction))
+                EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_MainMenu_SetupEvent), Events.PreferenceMenu_MainMenu_SetupEvent?.GetInvocationList(), null, new PreferenceMenu_SetupArgs(this, mInfo));
+            else if (this.GetType().GetGenericArguments()[0] == typeof(PauseMenuAction))
+                EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_PauseMenu_SetupEvent), Events.PreferenceMenu_PauseMenu_SetupEvent?.GetInvocationList(), null, new PreferenceMenu_SetupArgs(this, mInfo));
 
             New<SpacerElement>(true);
             New<SpacerElement>(true);
-            AddActionButton("Back", MainMenuAction.Back, ElementStyle.MainMenuBack);
+            AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate(int i)
+			{
+				this.RequestPreviousMenu();
+			}, 0, 1f, 0.2f);
         }
 
         public void AddNewButton(Type type, string name)
@@ -35,9 +41,12 @@ namespace KitchenLib
             });
         }
 
-        public override void CreateSubmenus(ref Dictionary<Type, Menu<MainMenuAction>> menus)
+        public override void CreateSubmenus(ref Dictionary<Type, Menu<T>> menus)
         {
-            EventUtils.InvokeEvent(nameof(Events.CreateSubMenusEvent), Events.CreateSubMenusEvent?.GetInvocationList(), null, new CreateSubMenusEventArgs(menus, Container, ModuleList));
+            if (this.GetType().GetGenericArguments()[0] == typeof(MainMenuAction))
+                EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_MainMenu_CreateSubmenusEvent), Events.PreferenceMenu_MainMenu_CreateSubmenusEvent?.GetInvocationList(), null, new PreferenceMenu_CreateSubmenusArgs<T>(this, menus, this.Container, this.ModuleList));
+            else if (this.GetType().GetGenericArguments()[0] == typeof(PauseMenuAction))
+                EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent), Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent?.GetInvocationList(), null, new PreferenceMenu_CreateSubmenusArgs<T>(this, menus, this.Container, this.ModuleList));
         }
     }
 }
