@@ -1,26 +1,23 @@
 using KitchenLib.Customs;
 using UnityEngine;
+using System.Reflection;
 
 namespace KitchenLib.TestMod
 {
 	public class Mod : BaseMod
 	{
-		public Mod() : base("kitchenlib.testmod", ">=1.0.0 <=1.0.5") { }
+		#if MelonLoader
+		public Mod() : base("kitchenlib.testmod", "1.1.0") { }
+		#endif
+		#if BepInEx
+		public Mod() : base("1.1.0", Assembly.GetCallingAssembly()) { }
+		#endif
         public static CustomAppliance d;
 		public static CustomItem sushiRoll;
 
 		public static CustomProcess rollProcess;
 
 		public static AssetBundle bundle;
-		public override void OnInitializeMelon() {
-			//base.OnApplicationStart();
-			//rollProcess = AddProcess<RollProcess>();
-			//AddItemProcess<ChopSushi>();
-			//AddApplianceProcess<ApplianceChopSushi>();
-			//bundle = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/sushimod");
-			//d = AddAppliance<TestingTerminalAppliance>();
-			//sushiRoll = AddItem<SushiRoll>();
-		}
  
     }
 	/*

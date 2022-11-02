@@ -1,21 +1,48 @@
-using UnityEngine;
-using Kitchen.Modules;
 using KitchenLib.Event;
-using KitchenLib.Utils;
 using Kitchen;
-using System.Collections.Generic;
-using System;
+using System.Reflection;
+
+#if BepInEx
+using BepInEx;
+#endif
 
 
+#if MelonLoader
+[assembly: MelonInfo(typeof(KitchenLib.Mod), "KitchenLib", "0.1.9", "KitchenMods")]
+[assembly: MelonGame("It's Happening", "PlateUp")]
+[assembly: MelonPriority(-1000000)]
+[assembly: MelonColor(System.ConsoleColor.Green)]
+#endif
 namespace KitchenLib
 {
+	#if BepInEx
+	[BepInPlugin("kitchenmods.kitchenlib", "KitchenLib", "0.1.9")]
+	#endif
 	public class Mod : BaseMod
 	{
+		#if MelonLoader
 		public Mod() : base("kitchenlib", "1.1.0") { }
-		public override void OnSceneWasLoaded(int buildIndex, string sceneName) {
-		}
+		#endif
+		#if BepInEx
+		public Mod() : base("1.1.0", Assembly.GetExecutingAssembly()) { }
+		#endif
+		
 
+		#if MelonLoader
 		public override void OnInitializeMelon()
+		{
+			SetupMenus();
+		}
+		#endif
+
+		#if BepInEx
+		public void Start()
+		{
+			SetupMenus();
+		}
+		#endif
+
+		private void SetupMenus()
 		{
 			//Setting Up For Main Menu
 			Events.StartMainMenu_SetupEvent += (s, args) =>
