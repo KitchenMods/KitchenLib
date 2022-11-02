@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="$(os)=='Windows_NT'">
-    <PlateUpGameFolder>C:\Users\Pilch\OneDrive\Desktop\PlateUp! Workspace\Libraries</PlateUpGameFolder>
+    <PlateUpGameFolder>..\..\..\..\Libraries</PlateUpGameFolder>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(os)=='UNIX'">
