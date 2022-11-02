@@ -5,6 +5,9 @@ using System.Reflection;
 #if BepInEx
 using BepInEx;
 #endif
+#if MelonLoader
+using MelonLoader;
+#endif
 
 
 #if MelonLoader
