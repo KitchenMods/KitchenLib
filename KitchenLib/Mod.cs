@@ -1,7 +1,6 @@
 using KitchenLib.Event;
 using Kitchen;
 using System.Reflection;
-
 #if BepInEx
 using BepInEx;
 #endif
@@ -11,7 +10,7 @@ using MelonLoader;
 
 
 #if MelonLoader
-[assembly: MelonInfo(typeof(KitchenLib.Mod), "KitchenLib", "0.1.9", "KitchenMods")]
+[assembly: MelonInfo(typeof(KitchenLib.Mod), "KitchenLib", "0.2.0", "KitchenMods")]
 [assembly: MelonGame("It's Happening", "PlateUp")]
 [assembly: MelonPriority(-1000000)]
 [assembly: MelonColor(System.ConsoleColor.Green)]
@@ -19,7 +18,8 @@ using MelonLoader;
 namespace KitchenLib
 {
 	#if BepInEx
-	[BepInPlugin("kitchenmods.kitchenlib", "KitchenLib", "0.1.9")]
+	[BepInProcess("PlateUp.exe")]
+	[BepInPlugin("kitchenmods.kitchenlib", "KitchenLib", "0.2.0")]
 	#endif
 	public class Mod : BaseMod
 	{

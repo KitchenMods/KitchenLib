@@ -18,9 +18,6 @@ using BepInEx.Logging;
 
 namespace KitchenLib
 {
-	#if BepInEx
-	[BepInProcess("PlateUp.exe")]
-	#endif
 	public abstract class BaseMod : LoaderMod
 	{
 		#if MelonLoader
@@ -40,22 +37,21 @@ namespace KitchenLib
 		public static KitchenVersion version = new KitchenVersion(Application.version);
 		public static SemVersion semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
         
-		#if MelonLoader
         public BaseMod(string modID, string compatibleVersions, string[] modDependencies = null) : base() {
-		   ModID = modID; CompatibleVersions = compatibleVersions; ModDependencies = modDependencies;
-		   ModRegistery.Register(this);
+			#if MelonLoader
+			ModID = modID; CompatibleVersions = compatibleVersions; ModDependencies = modDependencies;
+			ModRegistery.Register(this);
+			#endif
         }
-		#endif
-		#if BepInEx
         public BaseMod(string compatibleVersions, Assembly assem, string[] modDependencies = null) : base() {
+			#if BepInEx
+            logger = Logger;
 			ModID = this.Info.Metadata.GUID;
 			HarmonyLib.Harmony.CreateAndPatchAll(assem, ModID);
 			CompatibleVersions = compatibleVersions;
-            logger = Logger;
-			Mod.Log("HELLO " + ModID + " " + assem.FullName);
             ModRegistery.Register(this);
+			#endif
         }
-		#endif
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Log(string message) {
