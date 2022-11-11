@@ -37,7 +37,7 @@ namespace KitchenLib
             }
             
             AddLabel("Non-KitchenLib Mods");
-            #if MelonLoader
+            #if MELONLOADER
             System.Collections.ObjectModel.ReadOnlyCollection<MelonLoader.MelonMod> mods = MelonLoader.MelonMod.RegisteredMelons;
 			foreach (MelonLoader.MelonMod mod in mods)
 			{
@@ -47,7 +47,7 @@ namespace KitchenLib
                 }
 			}
             #endif
-            #if BepInEx
+            #if BEPINEX
             Dictionary<string, BepInEx.PluginInfo> plugins = BepInEx.Bootstrap.Chainloader.PluginInfos;
             foreach (BepInEx.PluginInfo plugin in plugins.Values)
             {

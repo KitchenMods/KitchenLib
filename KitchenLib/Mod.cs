@@ -1,15 +1,15 @@
 using KitchenLib.Event;
 using Kitchen;
 using System.Reflection;
-#if BepInEx
+#if BEPINEX
 using BepInEx;
 #endif
-#if MelonLoader
+#if MELONLOADER
 using MelonLoader;
 #endif
 
 
-#if MelonLoader
+#if MELONLOADER
 [assembly: MelonInfo(typeof(KitchenLib.Mod), "KitchenLib", "0.2.0", "KitchenMods")]
 [assembly: MelonGame("It's Happening", "PlateUp")]
 [assembly: MelonPriority(-1000000)]
@@ -17,33 +17,39 @@ using MelonLoader;
 #endif
 namespace KitchenLib
 {
-	#if BepInEx
+#if BEPINEX
 	[BepInProcess("PlateUp.exe")]
 	[BepInPlugin("kitchenmods.kitchenlib", "KitchenLib", "0.2.0")]
-	#endif
+#endif
 	public class Mod : BaseMod
 	{
-		#if MelonLoader
+#if MELONLOADER
 		public Mod() : base("kitchenlib", "1.1.0") { }
-		#endif
-		#if BepInEx
+#endif
+#if BEPINEX
 		public Mod() : base("1.1.0", Assembly.GetExecutingAssembly()) { }
-		#endif
-		
+#endif
 
-		#if MelonLoader
+
+#if MELONLOADER
 		public override void OnInitializeMelon()
 		{
 			SetupMenus();
 		}
-		#endif
+#endif
 
-		#if BepInEx
+#if BEPINEX
 		public void Start()
 		{
 			SetupMenus();
 		}
-		#endif
+#endif
+
+		private void UniversalSetup()
+		{
+			Mod.Log("");
+
+		}
 
 		private void SetupMenus()
 		{

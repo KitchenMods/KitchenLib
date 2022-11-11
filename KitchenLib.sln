@@ -1,42 +1,36 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{469C4762-2C54-4E72-8012-A6B5E1447459}") = "KitchenLib", "KitchenLib\KitchenLib.csproj", "{A0AD1719-0E38-4080-A42A-9F764F2F5036}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenLib", "KitchenLib\KitchenLib.csproj", "{30A21DF6-FA1C-4905-AB62-A9F2894B010D}"
 EndProject
-Project("{2AF73D17-0D42-498E-9332-088D2D57BEB9}") = "KitchenLib.TestMod", "KitchenLib.TestMod\KitchenLib.TestMod.csproj", "{8C4CB5F2-1A35-46DF-8DC7-A4C2C6A813DB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7F7168B3-6218-4423-8F7B-E875327B6F96}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenLib.TestMod", "KitchenLib.TestMod\KitchenLib.TestMod.csproj", "{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-		BepInEx|Any CPU = BepInEx|Any CPU
 		MelonLoader|Any CPU = MelonLoader|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
+		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
+		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
+		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
+		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A0AD1719-0E38-4080-A42A-9F764F2F5036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0AD1719-0E38-4080-A42A-9F764F2F5036}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0AD1719-0E38-4080-A42A-9F764F2F5036}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0AD1719-0E38-4080-A42A-9F764F2F5036}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C4CB5F2-1A35-46DF-8DC7-A4C2C6A813DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C4CB5F2-1A35-46DF-8DC7-A4C2C6A813DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C4CB5F2-1A35-46DF-8DC7-A4C2C6A813DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C4CB5F2-1A35-46DF-8DC7-A4C2C6A813DB}.Release|Any CPU.Build.0 = Release|Any CPU
-
-
-		{A0AD1719-0E38-4080-A42A-9F764F2F5036}.BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
-		{A0AD1719-0E38-4080-A42A-9F764F2F5036}.BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
-		{A0AD1719-0E38-4080-A42A-9F764F2F5036}.MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
-		{A0AD1719-0E38-4080-A42A-9F764F2F5036}.MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
-
-
-		{8C4CB5F2-1A35-46DF-8DC7-A4C2C6A813DB}.BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
-		{8C4CB5F2-1A35-46DF-8DC7-A4C2C6A813DB}.BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
-		{8C4CB5F2-1A35-46DF-8DC7-A4C2C6A813DB}.MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
-		{8C4CB5F2-1A35-46DF-8DC7-A4C2C6A813DB}.MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1FA4EDB7-EE66-485B-84D3-A5F9C795CD3D}
 	EndGlobalSection
 EndGlobal

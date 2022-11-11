@@ -1,21 +1,21 @@
-#if MelonLoader
+#if MELONLOADER
 using MelonLoader;
 #endif
-#if BepInEx
+#if BEPINEX
 using BepInEx;
 #endif
 
 namespace KitchenLib
 {
-    #if MelonLoader
+    #if MELONLOADER
     public abstract class LoaderMod : MelonMod
     {
     }
-    #endif
+#endif
 
-    #if BepInEx
+#if BEPINEX
     public abstract class LoaderMod : BaseUnityPlugin
     {
     }
-    #endif
+#endif
 }

@@ -8,10 +8,10 @@ using UnityEngine;
 using Semver;
 using System.Reflection;
 using HarmonyLib;
-#if MelonLoader
+#if MELONLOADER
 using MelonLoader;
 #endif
-#if BepInEx
+#if BEPINEX
 using BepInEx;
 using BepInEx.Logging;
 #endif
@@ -20,11 +20,11 @@ namespace KitchenLib
 {
 	public abstract class BaseMod : LoaderMod
 	{
-		#if MelonLoader
+		#if MELONLOADER
 		public string ModName { get { return Info.Name; } }
 		public string ModVersion { get { return Info.Version; } }
 		#endif
-		#if BepInEx
+		#if BEPINEX
 		public string ModName { get { return this.Info.Metadata.Name; } }
 		public string ModVersion { get { return this.Info.Metadata.Version.ToString(); } }
 		private static ManualLogSource logger;
@@ -38,39 +38,39 @@ namespace KitchenLib
 		public static SemVersion semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
         
         public BaseMod(string modID, string compatibleVersions, string[] modDependencies = null) : base() {
-			#if MelonLoader
+#if MELONLOADER
 			ModID = modID; CompatibleVersions = compatibleVersions; ModDependencies = modDependencies;
 			ModRegistery.Register(this);
-			#endif
+#endif
         }
         public BaseMod(string compatibleVersions, Assembly assem, string[] modDependencies = null) : base() {
-			#if BepInEx
+#if BEPINEX
             logger = Logger;
 			ModID = this.Info.Metadata.GUID;
 			HarmonyLib.Harmony.CreateAndPatchAll(assem, ModID);
 			CompatibleVersions = compatibleVersions;
             ModRegistery.Register(this);
-			#endif
-        }
+#endif
+		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Log(string message) {
-			#if BepInEx
+#if BEPINEX
 			logger.Log(LogLevel.All, message);
-			#endif
-			#if MelonLoader
+#endif
+#if MELONLOADER
 			MelonLogger.Msg(message);
-			#endif
+#endif
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Error(string message) {
-			#if BepInEx
+#if BEPINEX
 			logger.Log(LogLevel.Error, message);
-			#endif
-			#if MelonLoader
+#endif
+#if MELONLOADER
 			MelonLogger.Error(message);
-			#endif
+#endif
 		}
 
 		public T AddGameDataObject<T>() where T : CustomGameDataObject, new()

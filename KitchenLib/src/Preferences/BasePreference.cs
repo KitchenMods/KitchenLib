@@ -38,6 +38,34 @@ namespace KitchenLib
             Value = reader.ReadString();
         }
     }
+
+    public class IntPreference : BasePreference
+    {
+        public int Value;
+        public IntPreference() : base() { }
+        public override void Serialize(BinaryWriter writer)
+        {
+            writer.Write(Value);
+        }
+        public override void Deserialize(BinaryReader reader)
+        {
+            Value = reader.ReadInt32();
+        }
+    }
+
+    public class FloatPreference : BasePreference
+    {
+        public float Value;
+        public FloatPreference() : base() { }
+        public override void Serialize(BinaryWriter writer)
+        {
+            writer.Write(Value);
+        }
+        public override void Deserialize(BinaryReader reader)
+        {
+            Value = reader.ReadSingle();
+        }
+    }
     public interface IBinarySerializable {
         void Deserialize(BinaryReader reader);
         void Serialize(BinaryWriter writer);
