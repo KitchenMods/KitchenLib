@@ -33,23 +33,26 @@ namespace KitchenLib
 
 		public string CompatibleVersions;
 		public string[] ModDependencies;
+		public static KitchenVersion version;
+		public static SemVersion semVersion;
 
-		public static KitchenVersion version = new KitchenVersion(Application.version);
-		public static SemVersion semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
-        
         public BaseMod(string modID, string compatibleVersions, string[] modDependencies = null) : base() {
 #if MELONLOADER
 			ModID = modID; CompatibleVersions = compatibleVersions; ModDependencies = modDependencies;
+			version = new KitchenVersion(Application.version);
+			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
 			ModRegistery.Register(this);
 #endif
-        }
-        public BaseMod(string compatibleVersions, Assembly assem, string[] modDependencies = null) : base() {
+		}
+		public BaseMod(string compatibleVersions, Assembly assem, string[] modDependencies = null) : base() {
 #if BEPINEX
             logger = Logger;
 			ModID = this.Info.Metadata.GUID;
 			HarmonyLib.Harmony.CreateAndPatchAll(assem, ModID);
 			CompatibleVersions = compatibleVersions;
-            ModRegistery.Register(this);
+			version = new KitchenVersion(Application.version);
+			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
+			ModRegistery.Register(this);
 #endif
 		}
 

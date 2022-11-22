@@ -9,3 +9,9 @@ Added base class `BoolPreference`
 Added base class `StringPreference`
 Added base class `IntPreference`
 Added base class `FloatPreference`
+
+# Release Notes - Other
+
+## Bugs
+
+Fixed a bug where version 1.1.1 ( Thanks Giving Update ) would return a null version.

@@ -24,10 +24,10 @@ namespace KitchenLib
 	public class Mod : BaseMod
 	{
 #if MELONLOADER
-		public Mod() : base("kitchenlib", "1.1.0") { }
+		public Mod() : base("kitchenlib", "1.1.1") { }
 #endif
 #if BEPINEX
-		public Mod() : base("1.1.0", Assembly.GetExecutingAssembly()) { }
+		public Mod() : base("1.1.1", Assembly.GetExecutingAssembly()) { }
 #endif
 
 
