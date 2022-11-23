@@ -7,36 +7,23 @@ using Kitchen.Modules;
 using KitchenData;
 using KitchenLib.Utils;
 using KitchenLib.Event;
+using System.IO;
+using UnityEngine;
+using static MelonLoader.MelonLogger;
 
 namespace KitchenLib
 {
-    [HarmonyPatch(typeof(StartMainMenu), "Setup")]
-    class StartMainMenu_Patch
-    {
-        [HarmonyPrefix]
-        static bool Prefix(StartMainMenu __instance)
-        {
-            ProfileManager.Main.Load();
+	[HarmonyPatch(typeof(MainMenuView), "SetupMenus")]
+	class StartMainMenu_Patch
+	{
+		static void Postfix(MainMenuView __instance)
+		{	
+			MethodInfo setMenu = ReflectionUtils.GetMethod<MainMenuView>("SetMenu");
+			setMenu.Invoke(__instance, new object[] { typeof(RevisedMainMenu), false });
+		}
+	}
 
-            MethodInfo addActionButton = __instance.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).Single(m => m.Name == "AddActionButton" && m.GetParameters().Length == 3);
-            MethodInfo addSubmenuButton = ReflectionUtils.GetMethod<StartMainMenu>("AddSubmenuButton");
-            MethodInfo addSpacer = ReflectionUtils.GetMethod<StartMainMenu>("New").MakeGenericMethod(new Type[] { typeof(SpacerElement) });
-
-            addSubmenuButton.Invoke(__instance, new object[] { GameData.Main.GlobalLocalisation["MAIN_MENU_SINGLEPLAYER"], typeof(SingleplayerMainMenu), false });
-            addSubmenuButton.Invoke(__instance, new object[] { GameData.Main.GlobalLocalisation["MAIN_MENU_MULTIPLAYER"], typeof(MultiplayerMainMenu), false });
-
-            StartMainMenu_SetupArgs startMainMenuEvent = new StartMainMenu_SetupArgs(__instance, addActionButton, addSubmenuButton, addSpacer);
-            EventUtils.InvokeEvent(nameof(Events.StartMainMenu_SetupEvent), Events.StartMainMenu_SetupEvent?.GetInvocationList(), null, startMainMenuEvent);
-
-            addSubmenuButton.Invoke(__instance, new object[] { GameData.Main.GlobalLocalisation["MAIN_MENU_OPTIONS"], typeof(OptionsMenu<MainMenuAction>), false });
-            addSpacer.Invoke(__instance, new object[] { true });
-            addSpacer.Invoke(__instance, new object[] { true });
-            addActionButton.Invoke(__instance, new object[] { GameData.Main.GlobalLocalisation["MAIN_MENU_QUIT"], MainMenuAction.Quit, ElementStyle.MainMenuBack });
-            return false;
-        }
-    }
-
-    [HarmonyPatch(typeof(MainMenuView), "SetupMenus")]
+	[HarmonyPatch(typeof(MainMenuView), "SetupMenus")]
     class MainMenuView_Patch
     {
         [HarmonyPrefix]
@@ -91,4 +78,53 @@ namespace KitchenLib
             return true;
         }
     }
+
+	public class RevisedMainMenu : KLMenu<MainMenuAction>
+	{
+		public RevisedMainMenu(Transform container, ModuleList module_list) : base(container, module_list)
+		{
+		}
+
+		public override void Setup(int player_id)
+		{
+			ProfileManager.Main.Load();
+
+#if BEPINEX
+			string[] newLines;
+			if (File.Exists("BepInEx/config/BepInEx.cfg"))
+			{
+				string[] lines = File.ReadAllLines("BepInEx/config/BepInEx.cfg");
+
+				for (int i = 0; i < lines.Length; i++)
+				{
+					if (lines[i].Contains("EnableAssemblyCache = true"))
+					{
+						lines[i] = "EnableAssemblyCache = false";
+						newLines = lines;
+						AddLabel("BEPINEX WARNING");
+						AddInfo("We have detected that you have enabled the BepInEx assembly cache. This is known to cause issues with the game, and is not supported. Please disable it in the BepInEx config or by using the button below, and restart your game.");
+						AddButton("Disable BepInEx Cache", delegate
+						{
+							File.WriteAllLines("BepInEx/config/BepInEx.cfg", lines);
+							Mod.Log("Disabled BepInEx Caching");
+						});
+						New<SpacerElement>(true);
+						New<SpacerElement>(true);
+					}
+				}
+			}
+#endif
+
+			AddSubmenuButton(GameData.Main.GlobalLocalisation["MAIN_MENU_SINGLEPLAYER"], typeof(SingleplayerMainMenu), false);
+			AddSubmenuButton(GameData.Main.GlobalLocalisation["MAIN_MENU_MULTIPLAYER"], typeof(MultiplayerMainMenu), false);
+			
+			AddSubmenuButton("Mods", typeof(ModsMenu<MainMenuAction>), false);
+			AddSubmenuButton("Mod Preferences", typeof(ModsPreferencesMenu<MainMenuAction>), false);
+
+			AddSubmenuButton(GameData.Main.GlobalLocalisation["MAIN_MENU_OPTIONS"], typeof(OptionsMenu<MainMenuAction>), false);
+			New<SpacerElement>(true);
+			New<SpacerElement>(true);
+			AddActionButton(GameData.Main.GlobalLocalisation["MAIN_MENU_QUIT"], MainMenuAction.Quit, ElementStyle.MainMenuBack);
+		}
+	}
 }

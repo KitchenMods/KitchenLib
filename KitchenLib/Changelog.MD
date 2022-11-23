@@ -15,3 +15,13 @@ Added base class `FloatPreference`
 ## Bugs
 
 Fixed a bug where version 1.1.1 ( Thanks Giving Update ) would return a null version.
+
+
+v0.2.2
+
+# Release Notes - Other
+
+## UI
+
+- Changed how the Main Menu is displayed.
+- Added a warning message when BepInEx's caching is enabled.
