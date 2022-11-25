@@ -39,7 +39,14 @@ namespace KitchenLib
         public BaseMod(string modID, string compatibleVersions, string[] modDependencies = null) : base() {
 #if MELONLOADER
 			ModID = modID; CompatibleVersions = compatibleVersions; ModDependencies = modDependencies;
-			version = new KitchenVersion(Application.version);
+			if (!Debug.isDebugBuild)
+			{
+				version = new KitchenVersion(Application.version);
+			}
+			else
+			{
+				version = new KitchenVersion("");
+			}
 			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
 			ModRegistery.Register(this);
 #endif
@@ -50,7 +57,14 @@ namespace KitchenLib
 			ModID = this.Info.Metadata.GUID;
 			HarmonyLib.Harmony.CreateAndPatchAll(assem, ModID);
 			CompatibleVersions = compatibleVersions;
-			version = new KitchenVersion(Application.version);
+			if (!Debug.isDebugBuild)
+			{
+				version = new KitchenVersion(Application.version);
+			}
+			else
+			{
+				version = new KitchenVersion("");
+			}
 			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
 			ModRegistery.Register(this);
 #endif

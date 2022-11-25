@@ -25,3 +25,7 @@ v0.2.2
 
 - Changed how the Main Menu is displayed.
 - Added a warning message when BepInEx's caching is enabled.
+
+## Other
+
+- DLL names will stay consistant with KitchenLib-BepInEx and KitchenLib-MelonLoader
