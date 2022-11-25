@@ -28,4 +28,6 @@ v0.2.2
 
 ## Other
 
-- DLL names will stay consistant with KitchenLib-BepInEx and KitchenLib-MelonLoader
+- DLL names will stay consistant with KitchenLib-BepInEx and KitchenLib-MelonLoader (Inconsistent names have been causing problems with BepInEx)
+- Assembly names will match up with DLL names (Inconsistent names have been causing problems with BepInEx)
+- Fixed a bug causing debug builds of PlateUp! to throw an exception when loading the mod.

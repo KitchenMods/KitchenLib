@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net471</TargetFramework>
     <Configurations>MelonLoader;BepInEx</Configurations>
+    <AssemblyName>$(MSBuildProjectName)-$(Configuration)</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
