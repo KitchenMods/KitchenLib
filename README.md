@@ -6,12 +6,19 @@ KitchenLib is a ilbrary designed to assist in modding the Unity game PlateUp!
 
 ## Requirements
 
-- MelonLoader >= 0.5.7
+- MelonLoader >= 0.5.7 or BepInEx >= 5.4.21
 
 ## Installation
 
+### MelonLoader
+
 - To install KitchenLib, you need to download `KitchenLib.dll` directly into your `/PlateUp/Mods` directory.
 - Or you can install from our [Package Manager](https://github.com/KitchenMods/PlateUp-Package-Manager) repo `http://plateup.starfluxgames.com/Repo`
+
+### BepInEx
+
+- To install KitchenLib, you need to download `KitchenLib.dll` directly into your `/PlateUp/BepInEx/plugins` directory.
+- Or you can install from our [Package Manager](https://github.com/KitchenMods/PlateUp-Package-Manager) repo `http://plateup.starfluxgames.com/BepInEx`
 
 ## Credits
 
