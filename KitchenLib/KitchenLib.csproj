@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net471</TargetFramework>
-    <Configurations>MelonLoader;BepInEx</Configurations>
+    <TargetFramework>net472</TargetFramework>
+    <Configurations>MelonLoader;BepInEx;Workshop</Configurations>
     <AssemblyName>$(MSBuildProjectName)-$(Configuration)</AssemblyName>
   </PropertyGroup>
 
@@ -43,6 +43,9 @@
     </Reference>
     <Reference Include="KitchenMode">
       <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\KitchenMode.dll</HintPath>
+    </Reference>
+    <Reference Include="KitchenMods">
+      <HintPath>..\..\..\..\..\xd\PlateUp_Data\Managed\KitchenMods.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader">
       <HintPath>..\..\..\..\Libraries\MelonLoader\MelonLoader.dll</HintPath>
@@ -89,6 +92,21 @@
     <Reference Include="XNode">
       <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\XNode.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -8,6 +8,8 @@ using UnityEngine;
 using Semver;
 using System.Reflection;
 using HarmonyLib;
+using System.IO;
+
 #if MELONLOADER
 using MelonLoader;
 #endif
@@ -20,15 +22,20 @@ namespace KitchenLib
 {
 	public abstract class BaseMod : LoaderMod
 	{
-		#if MELONLOADER
+#if MELONLOADER
 		public string ModName { get { return Info.Name; } }
 		public string ModVersion { get { return Info.Version; } }
-		#endif
-		#if BEPINEX
+#endif
+#if BEPINEX
 		public string ModName { get { return this.Info.Metadata.Name; } }
 		public string ModVersion { get { return this.Info.Metadata.Version.ToString(); } }
 		private static ManualLogSource logger;
-		#endif
+#endif
+
+#if WORKSHOP
+		public string ModName = "";
+		public string ModVersion = "";
+#endif
 		public string ModID;
 
 		public string CompatibleVersions;
@@ -36,7 +43,9 @@ namespace KitchenLib
 		public static KitchenVersion version;
 		public static SemVersion semVersion;
 
-        public BaseMod(string modID, string compatibleVersions, string[] modDependencies = null) : base() {
+		public HarmonyLib.Harmony harmony;
+
+		public BaseMod(string modID, string compatibleVersions, string[] modDependencies = null) : base() {
 #if MELONLOADER
 			ModID = modID; CompatibleVersions = compatibleVersions; ModDependencies = modDependencies;
 			if (!Debug.isDebugBuild)
@@ -57,6 +66,29 @@ namespace KitchenLib
 			ModID = this.Info.Metadata.GUID;
 			HarmonyLib.Harmony.CreateAndPatchAll(assem, ModID);
 			CompatibleVersions = compatibleVersions;
+			if (!Debug.isDebugBuild)
+			{
+				version = new KitchenVersion(Application.version);
+			}
+			else
+			{
+				version = new KitchenVersion("");
+			}
+			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
+			ModRegistery.Register(this);
+#endif
+		}
+
+		public BaseMod(string modName, string modVersion, string compatibleVersions, Assembly assem)
+		{
+#if WORKSHOP
+			ModName = modName;
+			ModVersion = modVersion;
+			CompatibleVersions = compatibleVersions;
+
+			harmony = new HarmonyLib.Harmony(modName);
+			harmony.PatchAll(assem);
+
 			if (!Debug.isDebugBuild)
 			{
 				version = new KitchenVersion(Application.version);

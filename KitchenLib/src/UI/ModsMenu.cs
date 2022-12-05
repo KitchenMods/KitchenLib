@@ -15,6 +15,7 @@ namespace KitchenLib
         public override void Setup(int player_id) {
             
             AddLabel("Loaded Mods");
+
             foreach (BaseMod mod in ModRegistery.Registered.Values)
             {
                 if (mod.ModName != null && mod.ModVersion != null)
@@ -37,7 +38,7 @@ namespace KitchenLib
             }
             
             AddLabel("Non-KitchenLib Mods");
-            #if MELONLOADER
+#if MELONLOADER
             System.Collections.ObjectModel.ReadOnlyCollection<MelonLoader.MelonMod> mods = MelonLoader.MelonMod.RegisteredMelons;
 			foreach (MelonLoader.MelonMod mod in mods)
 			{
@@ -46,8 +47,8 @@ namespace KitchenLib
                     AddInfo(mod.Info.Name + "     v" + mod.Info.Version);
                 }
 			}
-            #endif
-            #if BEPINEX
+#endif
+#if BEPINEX
             Dictionary<string, BepInEx.PluginInfo> plugins = BepInEx.Bootstrap.Chainloader.PluginInfos;
             foreach (BepInEx.PluginInfo plugin in plugins.Values)
             {
@@ -56,9 +57,12 @@ namespace KitchenLib
                     AddInfo(plugin.Metadata.Name + "     v" + plugin.Metadata.Version);
                 }
             }
-            #endif
-            
-            New<SpacerElement>(true);
+#endif
+#if WORKSHOP
+			AddInfo("Workshop Mods are unable to be detected by KitchenLib");
+#endif
+
+			New<SpacerElement>(true);
             New<SpacerElement>(true);
             AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate(int i)
 			{

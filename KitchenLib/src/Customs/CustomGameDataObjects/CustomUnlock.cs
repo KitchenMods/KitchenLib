@@ -1,4 +1,5 @@
 using KitchenData;
+using System;
 using System.Collections.Generic;
 
 namespace KitchenLib.Customs
@@ -13,7 +14,13 @@ namespace KitchenLib.Customs
 		public virtual bool IsSpecificFranchiseTier { get; internal set; }
 		public virtual DishCustomerChange CustomerMultiplier { get; internal set; }
 		public virtual float SelectionBias { get { return 0f; } }
+		
+		[Obsolete("Use List<Unlock>HardcodedRequirements instead")]
 		public virtual List<Unlock> Requires { get; internal set; }
+		public virtual List<Unlock> HardcodedRequirements { get; internal set; }
+
+		[Obsolete("Use List<Unlock>HardcodedBlockers instead")]
 		public virtual List<Unlock> BlockedBy { get; internal set; }
+		public virtual List<Unlock> HardcodedBlockers { get; internal set; }
     }
 }

@@ -1,5 +1,8 @@
 using KitchenData;
+using KitchenLib.Utils;
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -7,7 +10,10 @@ namespace KitchenLib.Customs
     public abstract class CustomItem : CustomGameDataObject
     {
 		public virtual GameObject Prefab { get; internal set; }
+
+		[Obsolete("Use the Hashset<Item.ItemProcess>Processes instead")]
 		public virtual List<Item.ItemProcess> DerivedProcesses { get { return new List<Item.ItemProcess>(); } }
+		public virtual List<Item.ItemProcess> Processes { get { return new List<Item.ItemProcess>(); } }
 		public virtual List<IItemProperty> Properties { get { return new List<IItemProperty>(); } }
 		public virtual float ExtraTimeGranted { get; internal set; }
 		public virtual ItemValue ItemValue { get { return ItemValue.Small; } }
@@ -39,7 +45,7 @@ namespace KitchenLib.Customs
             
             if (empty.ID != ID) result.ID = ID;
             if (empty.Prefab != Prefab) result.Prefab = Prefab;
-            if (empty.DerivedProcesses != DerivedProcesses) result.DerivedProcesses = DerivedProcesses;
+            //if (empty.DerivedProcesses != DerivedProcesses) result.DerivedProcesses = DerivedProcesses;
             if (empty.Properties != Properties) result.Properties = Properties;
             if (empty.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
             if (empty.ItemValue != ItemValue) result.ItemValue = ItemValue;
@@ -64,6 +70,10 @@ namespace KitchenLib.Customs
             if (empty.DedicatedProvider != DedicatedProvider) result.DedicatedProvider = DedicatedProvider;
             if (empty.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (empty.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
+
+			FieldInfo processes = ReflectionUtils.GetField<Item>("Processes");
+
+			if (processes.GetValue(empty) != Processes) processes.SetValue(result, Processes);
 
             gameDataObject = result;
         }

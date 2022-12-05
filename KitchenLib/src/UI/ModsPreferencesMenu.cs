@@ -18,8 +18,8 @@ namespace KitchenLib
         public override void Setup(int player_id) {
             AddLabel("Mod Preferences");
             New<SpacerElement>(true);
-
-            MethodInfo mInfo = this.GetType().GetMethod("AddSubmenuButton", BindingFlags.NonPublic | BindingFlags.Instance);
+			
+			MethodInfo mInfo = ReflectionUtils.GetMethod<ModsPreferencesMenu<T>>("AddSubmenuButton");
             if (this.GetType().GetGenericArguments()[0] == typeof(MainMenuAction))
                 EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_MainMenu_SetupEvent), Events.PreferenceMenu_MainMenu_SetupEvent?.GetInvocationList(), null, new PreferenceMenu_SetupArgs(this, mInfo));
             else if (this.GetType().GetGenericArguments()[0] == typeof(PauseMenuAction))

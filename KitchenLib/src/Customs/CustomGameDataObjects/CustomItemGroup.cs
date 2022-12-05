@@ -1,11 +1,16 @@
 using KitchenData;
+using System;
 using System.Collections.Generic;
+using System.Reflection;
+using KitchenLib.Utils;
 
 namespace KitchenLib.Customs
 {
     public abstract class CustomItemGroup : CustomItem
     {
+		[Obsolete("Use List<ItemGroup.ItemSet>Sets instead")]
 		public virtual List<ItemGroup.ItemSet> DerivedSets { get { return new List<ItemGroup.ItemSet>(); } }
+		public virtual List<ItemGroup.ItemSet> Sets { get { return new List<ItemGroup.ItemSet>(); } }
 		public virtual bool CanContainSide { get; internal set; }
 		public virtual bool ApplyProcessesToComponents { get; internal set; }
 		public virtual bool AutoCollapsing { get; internal set; }
@@ -16,7 +21,7 @@ namespace KitchenLib.Customs
             
             if (empty.ID != ID) result.ID = ID;
             if (empty.Prefab != Prefab) result.Prefab = Prefab;
-            if (empty.DerivedProcesses != DerivedProcesses) result.DerivedProcesses = DerivedProcesses;
+            //if (empty.DerivedProcesses != DerivedProcesses) result.DerivedProcesses = DerivedProcesses;
             if (empty.Properties != Properties) result.Properties = Properties;
             if (empty.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
             if (empty.ItemValue != ItemValue) result.ItemValue = ItemValue;
@@ -42,12 +47,17 @@ namespace KitchenLib.Customs
             if (empty.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (empty.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
 
-            if (empty.DerivedSets != DerivedSets) result.DerivedSets = DerivedSets;
-            if (empty.CanContainSide != CanContainSide) result.CanContainSide = CanContainSide;
+			if (empty.CanContainSide != CanContainSide) result.CanContainSide = CanContainSide;
             if (empty.ApplyProcessesToComponents != ApplyProcessesToComponents) result.ApplyProcessesToComponents = ApplyProcessesToComponents;
             if (empty.AutoCollapsing != AutoCollapsing) result.AutoCollapsing = AutoCollapsing;
 
-            gameDataObject = result;
+			FieldInfo sets = ReflectionUtils.GetField<ItemGroup>("Sets");
+			FieldInfo processes = ReflectionUtils.GetField<Item>("Processes");
+
+			if (sets.GetValue(empty) != Sets) sets.SetValue(result, Sets);
+			if (processes.GetValue(empty) != Sets) processes.SetValue(result, Processes);
+
+			gameDataObject = result;
         }
     }
 }

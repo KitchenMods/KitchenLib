@@ -19,14 +19,18 @@ namespace KitchenLib
     {
         public static void Postfix(SteamRichPresenceView __instance, SteamRichPresenceView.ViewData view_data)
         {
-            #if MELONLOADER
+#if MELONLOADER
             DiscordPlatform.Discord.SetActivity("Plating Up Some Spinach", "", view_data.Data.Players);
-            #endif
-            
-            #if BEPINEX
+#endif
+
+#if BEPINEX
             DiscordPlatform.Discord.SetActivity("Plating Up Some Burgers", "", view_data.Data.Players);
-            #endif
-        }
-    }
+#endif
+
+#if WORKSHOP
+            DiscordPlatform.Discord.SetActivity("Plating Up Some Pizza", "", view_data.Data.Players);
+#endif
+		}
+	}
     
 }

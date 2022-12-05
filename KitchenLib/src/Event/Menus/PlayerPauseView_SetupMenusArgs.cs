@@ -7,11 +7,11 @@ namespace KitchenLib.Event
 {
     public class PlayerPauseView_SetupMenusArgs : EventArgs
     {
-        public readonly MainMenuView instance;
+        public readonly PlayerPauseView instance;
         public readonly MethodInfo addMenu;
         public readonly ModuleList module_list;
 
-        internal PlayerPauseView_SetupMenusArgs(MainMenuView instance, MethodInfo addMenu, ModuleList module_list)
+        internal PlayerPauseView_SetupMenusArgs(PlayerPauseView instance, MethodInfo addMenu, ModuleList module_list)
         {
             this.instance = instance;
             this.addMenu = addMenu;

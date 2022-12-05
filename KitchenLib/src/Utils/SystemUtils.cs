@@ -12,7 +12,7 @@ namespace KitchenLib.Utils
 
 		[Obsolete("Check wiki for system registration")]
 		public static T AddSystem<T>() where T : GenericSystemBase, new() {
-			Mod.Log($"Registered system '{typeof(T).ToString()}'");
+			Main.Log($"Registered system '{typeof(T).ToString()}'");
 			return World.DefaultGameObjectInjectionWorld.AddSystem<T>(new T());
 		}
 

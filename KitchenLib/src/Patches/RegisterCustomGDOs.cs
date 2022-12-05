@@ -41,7 +41,7 @@ namespace KitchenLib.Customs
 				}
 				catch (Exception e)
 				{
-					Mod.Log(e.Message);
+					Main.Log(e.Message);
 				}
 			}
 

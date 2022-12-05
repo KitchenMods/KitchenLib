@@ -4,10 +4,18 @@ using MelonLoader;
 #if BEPINEX
 using BepInEx;
 #endif
+#if WORKSHOP
+using KitchenMods;
+#endif
+
+using Kitchen;
+using System.Reflection;
+using System.IO;
+using System;
 
 namespace KitchenLib
 {
-    #if MELONLOADER
+#if MELONLOADER
     public abstract class LoaderMod : MelonMod
     {
     }
@@ -17,5 +25,10 @@ namespace KitchenLib
     public abstract class LoaderMod : BaseUnityPlugin
     {
     }
+#endif
+#if WORKSHOP
+	public abstract class LoaderMod : GenericSystemBase, IModSystem
+	{
+	}
 #endif
 }

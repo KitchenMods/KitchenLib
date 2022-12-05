@@ -1,5 +1,7 @@
 using KitchenData;
+using KitchenLib.Utils;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace KitchenLib.Customs
 {
@@ -22,8 +24,14 @@ namespace KitchenLib.Customs
 			if (empty.IsSpecificFranchiseTier != IsSpecificFranchiseTier) result.IsSpecificFranchiseTier = IsSpecificFranchiseTier;
 			if (empty.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
 			if (empty.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
-			if (empty.Requires != Requires) result.Requires = Requires;
-			if (empty.BlockedBy != BlockedBy) result.BlockedBy = BlockedBy;
+			//if (empty.Requires != Requires) result.Requires = Requires;
+			//if (empty.BlockedBy != BlockedBy) result.BlockedBy = BlockedBy;
+
+			FieldInfo hardcodedRequirements = ReflectionUtils.GetField<UnlockEffect>("HardcodedRequirements");
+			FieldInfo hardcodedBlockers = ReflectionUtils.GetField<UnlockEffect>("HardcodedBlockers");
+
+			if (hardcodedRequirements.GetValue(empty) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
+			if (hardcodedBlockers.GetValue(empty) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
 
             gameDataObject = result;
         }

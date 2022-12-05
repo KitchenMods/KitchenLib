@@ -13,6 +13,7 @@ namespace KitchenLib.Utils
 
 		public static void SetupGDOIndex(GameData gameData)
 		{
+			GDOs.Clear();
 			foreach (GameDataObject gdo in gameData.Get<GameDataObject>())
 			{
 				GDOs.Add(gdo.ID, gdo);

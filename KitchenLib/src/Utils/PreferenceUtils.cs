@@ -5,6 +5,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.IO.Compression;
 using KitchenLib.Event;
+using UnityEngine;
 
 namespace KitchenLib.Utils
 {
@@ -36,6 +37,15 @@ namespace KitchenLib.Utils
 
         public static void Load(string file = "UserData/KitchenLib/preferences.dat")
         {
+			if (File.Exists(file))
+			{
+				ReadFromFile(file);
+				File.Delete(file);
+				file = Path.Combine(Application.persistentDataPath, file);
+				Save(file);
+				return;
+			}
+			file = Path.Combine(Application.persistentDataPath, file);
             if (File.Exists(file))
                 ReadFromFile(file);
         }
@@ -78,7 +88,8 @@ namespace KitchenLib.Utils
 		    }
         }
         public static void Save(string file = "UserData/KitchenLib/preferences.dat")
-        {
+		{
+			file = Path.Combine(Application.persistentDataPath, file);
 			//Make sure file path Exists
 			string path = Path.GetDirectoryName(file);
 			if (!Directory.Exists(path))

@@ -6,13 +6,18 @@ namespace KitchenLib.TestMod
 {
 	public class Mod : BaseMod
 	{
-		#if MELONLOADER
+#if MELONLOADER
 		public Mod() : base("kitchenlib.testmod", "1.1.0") { }
-		#endif
-		#if BEPINEX
+#endif
+#if BEPINEX
 		public Mod() : base("1.1.0", Assembly.GetCallingAssembly()) { }
-		#endif
-        public static CustomAppliance d;
+#endif
+
+#if WORKSHOP
+		public Mod() : base("KitchenLib-TestMod", "0.0.0", "1.1.2", Assembly.GetExecutingAssembly()) { }
+		protected override void OnUpdate() { }
+#endif
+		public static CustomAppliance d;
 		public static CustomItem sushiRoll;
 
 		public static CustomProcess rollProcess;

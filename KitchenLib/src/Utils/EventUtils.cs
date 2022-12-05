@@ -21,7 +21,7 @@ namespace KitchenLib.Utils
                 }
                 catch (Exception e)
                 {
-                    Mod.Error($"Exception while handling event {name}:\n{e}");
+                    Main.Error($"Exception while handling event {name}:\n{e}");
                 }
             }
         }
@@ -39,7 +39,7 @@ namespace KitchenLib.Utils
                 }
                 catch (Exception e)
                 {
-                    Mod.Error($"Exception while handling event {name}:\n{e}");
+                    Main.Error($"Exception while handling event {name}:\n{e}");
                 }
             }
         }

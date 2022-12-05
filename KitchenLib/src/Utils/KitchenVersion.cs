@@ -24,7 +24,7 @@ namespace KitchenLib.Utils
                 Minor = 0;
                 Patch = 0;
                 Hash = "XXXX";
-                Mod.Log("ERROR - KitchenVersion: Version string is not valid. Using default version.");
+                Main.Log("ERROR - KitchenVersion: Version string is not valid. Using default version.");
             }else
             {
                 Major = int.Parse(match.Groups[1].Value);

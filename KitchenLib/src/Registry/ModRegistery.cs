@@ -18,7 +18,7 @@ namespace KitchenLib.Registry
 
 		public static bool isModSafeForVersion(BaseMod mod)
 		{
-			if (Mod.semVersion.SatisfiesNpm(mod.CompatibleVersions))
+			if (Main.semVersion.SatisfiesNpm(mod.CompatibleVersions))
 				return true;
 			return false;
 		}

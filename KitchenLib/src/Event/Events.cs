@@ -1,5 +1,6 @@
 using System;
 using Kitchen;
+using KitchenLib.Event;
 
 namespace KitchenLib.Event
 {
@@ -7,6 +8,8 @@ namespace KitchenLib.Event
     {
         public static EventHandler<BuildGameDataEventArgs> BuildGameDataEvent;
         public static EventHandler<PlayerViewEventArgs> PlayerViewEvent;
+
+		public static EventHandler<PerformInitialSetupEventArgs> PerformInitialSetupEvent;
 
         public static EventHandler<PreferencesSaveArgs> PreferencesSaveEvent;
 
