@@ -1,6 +1,6 @@
-﻿namespace KitchenLib.Reference
+﻿namespace KitchenLib.References
 {
-	public class ApplianceReference
+	public class ApplianceReferences
 	{
 		public const int MixerHeated = 505496455;
 
@@ -563,7 +563,7 @@
 		public const int UpgradeKit = -26827118;
 
 	}
-	public class CompositeUnlockPackReference
+	public class CompositeUnlockPackReferences
 	{
 		public const int DefaultCompositePack = -2020288853;
 
@@ -572,10 +572,10 @@
 		public const int AutumnPack = 698670060;
 
 	}
-	public class CrateSetReference
+	public class CrateSetReferences
 	{
 	}
-	public class DecorReference
+	public class DecorReferences
 	{
 		public const int FloorCarpetBlue = 264635314;
 
@@ -638,7 +638,7 @@
 		public const int WallpaperTurkey = 2057848768;
 
 	}
-	public class DishReference
+	public class DishReferences
 	{
 		public const int CoffeeDessert = -85470894;
 
@@ -779,7 +779,7 @@
 		public const int TurkeyBase = 1551533879;
 
 	}
-	public class EffectReference
+	public class EffectReferences
 	{
 		public const int Breadsticks = 1302953360;
 
@@ -790,7 +790,7 @@
 		public const int SharpCutlery = 510269892;
 
 	}
-	public class EffectRepresentationReference
+	public class EffectRepresentationReferences
 	{
 		public const int CalmingPainting = -2022756845;
 
@@ -803,14 +803,14 @@
 		public const int SinkPenalty = 1715530618;
 
 	}
-	public class GardenProfileReference
+	public class GardenProfileReferences
 	{
 		public const int Flowers = -1099437648;
 
 		public const int OvernightSpawns = 792356959;
 
 	}
-	public class ItemReference
+	public class ItemReferences
 	{
 		public const int BeansCooked = 1286433124;
 
@@ -1357,7 +1357,7 @@
 		public const int ResearchFlask = 56610526;
 
 	}
-	public class ItemGroupReference
+	public class ItemGroupReferences
 	{
 		public const int BeansRawPot = -1921097327;
 
@@ -1502,7 +1502,7 @@
 		public const int TurkeyPlated = 1792757441;
 
 	}
-	public class LayoutProfileReference
+	public class LayoutProfileReferences
 	{
 		public const int BasicLayout = 222370461;
 
@@ -1515,7 +1515,7 @@
 		public const int MediumLayout = -2045800810;
 
 	}
-	public class LevelUpgradeSetReference
+	public class LevelUpgradeSetReferences
 	{
 		public const int Contracts = 1232525840;
 
@@ -1526,7 +1526,7 @@
 		public const int Special = -1300343155;
 
 	}
-	public class ModularUnlockPackReference
+	public class ModularUnlockPackReferences
 	{
 		public const int AutumnDishCards = -320463696;
 
@@ -1541,7 +1541,7 @@
 		public const int ThemeCardsPack = 786043106;
 
 	}
-	public class PlayerCosmeticReference
+	public class PlayerCosmeticReferences
 	{
 		public const int ApronOutfit = 1057760440;
 
@@ -1590,7 +1590,7 @@
 		public const int TurkeyHat = -1920946004;
 
 	}
-	public class ProcessReference
+	public class ProcessReferences
 	{
 		public const int Chop = 2087693779;
 
@@ -1619,7 +1619,7 @@
 		public const int Purchase = 623753606;
 
 	}
-	public class RandomUpgradeSetReference
+	public class RandomUpgradeSetReferences
 	{
 		public const int FailureRewards = 1965532508;
 
@@ -1630,14 +1630,14 @@
 		public const int MediumRewards = -1658553093;
 
 	}
-	public class ResearchReference
+	public class ResearchReferences
 	{
 		public const int Fish = -558005112;
 
 		public const int Steak = -352638173;
 
 	}
-	public class ShopReference
+	public class ShopReferences
 	{
 		public const int Christmas = -206225979;
 
@@ -1658,10 +1658,10 @@
 		public const int Washing = -1807949493;
 
 	}
-	public class ThemeUnlockReference
+	public class ThemeUnlockReferences
 	{
 	}
-	public class UnlockReference
+	public class UnlockReferences
 	{
 		public const int CoffeeDessert = -85470894;
 
@@ -2004,7 +2004,7 @@
 		public const int OldFranchise2PatienceDecrease = 1689349004;
 
 	}
-	public class UnlockCardReference
+	public class UnlockCardReferences
 	{
 		public const int CustomerBursts = 1642577536;
 
@@ -2209,7 +2209,7 @@
 		public const int OldFranchise2PatienceDecrease = 1689349004;
 
 	}
-	public class UnlockPackReference
+	public class UnlockPackReferences
 	{
 		public const int DefaultCompositePack = -2020288853;
 
@@ -2230,7 +2230,7 @@
 		public const int ThemeCardsPack = 786043106;
 
 	}
-	public class WorkshopRecipeReference
+	public class WorkshopRecipeReferences
 	{
 		public const int SameReshuffle = 1792697580;
 
