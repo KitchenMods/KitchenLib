@@ -1,5 +1,7 @@
 using KitchenData;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace KitchenLib.Customs
 {
@@ -10,10 +12,13 @@ namespace KitchenLib.Customs
 
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-            RandomUpgradeSet result = new RandomUpgradeSet();
-            RandomUpgradeSet empty = new RandomUpgradeSet();
+            RandomUpgradeSet result = ScriptableObject.CreateInstance<RandomUpgradeSet>();
+			RandomUpgradeSet empty = ScriptableObject.CreateInstance<RandomUpgradeSet>();
 
-            if (empty.ID != ID) result.ID = ID;
+			if (BaseGameDataObjectID != -1)
+				result = UnityEngine.Object.Instantiate(gameData.Get<RandomUpgradeSet>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
+
+			if (empty.ID != ID) result.ID = ID;
             if (empty.Tier != Tier) result.Tier = Tier;
             if (empty.Rewards != Rewards) result.Rewards = Rewards;
 

@@ -1,4 +1,5 @@
 using KitchenData;
+using System.Linq;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -12,10 +13,13 @@ namespace KitchenLib.Customs
 
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-            Decor result = new Decor();
-            Decor empty = new Decor();
-            
-            if (empty.ID != ID) result.ID = ID;
+            Decor result = ScriptableObject.CreateInstance<Decor>();
+			Decor empty = ScriptableObject.CreateInstance<Decor>();
+
+			if (BaseGameDataObjectID != -1)
+				result = UnityEngine.Object.Instantiate(gameData.Get<Decor>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
+
+			if (empty.ID != ID) result.ID = ID;
             if (empty.Material != Material) result.Material = Material;
             if (empty.ApplicatorAppliance != ApplicatorAppliance) result.ApplicatorAppliance = ApplicatorAppliance;
             if (empty.Type != Type) result.Type = Type;

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using KitchenData;
 using System;
+using KitchenLib.Customs;
 
 namespace KitchenLib.Utils
 {
@@ -26,53 +27,16 @@ namespace KitchenLib.Utils
 			return gdo;
 		}
 
-		/*
-		 * Obsolete Methods
-		 */
-
-		[Obsolete("Use the GetExistingGDO method instead")]
-		public static Appliance GetExistingAppliance(int id)
+		public static CustomGameDataObject GetCustomGameDataObject(int id)
 		{
-			GDOs.TryGetValue(id, out GameDataObject appliance);
-			return (Appliance)appliance;
+			CustomGDO.GDOs.TryGetValue(id, out var result);
+			return result;
 		}
 
-		[Obsolete("Use the GetExistingGDO method instead")]
-		public static Item GetExistingItem(int id)
+		public static CustomGameDataObject GetCustomGameDataObject<T>()
 		{
-			GDOs.TryGetValue(id, out GameDataObject item);
-			return (Item)item;
+			CustomGDO.GDOsByType.TryGetValue(typeof(T), out var result);
+			return result;
 		}
-
-		[Obsolete("Use the GetExistingGDO method instead")]
-		public static Process GetExistingProcess(int id)
-		{
-			GDOs.TryGetValue(id, out GameDataObject process);
-			return (Process)process;
-		}
-
-/*
-		public static Item.ItemProcess GetCustomItemProcess(string name)
-		{
-			customItemProcesses.TryGetValue(name, out Item.ItemProcess process);
-			return process;	
-		}
-
-		public static Appliance.ApplianceProcesses GetCustomApplianceProcess(string name)
-		{
-			customApplianceProcesses.TryGetValue(name, out Appliance.ApplianceProcesses process);
-			return process;	
-		}
-
-		public static void AddCustomItemProcess(string name, Item.ItemProcess process)
-		{
-			customItemProcesses.Add(name, process);
-		}
-
-		public static void AddCustomApplianceProcess(string name, Appliance.ApplianceProcesses process)
-		{
-			customApplianceProcesses.Add(name, process);
-		}
-		*/
 	}
 }

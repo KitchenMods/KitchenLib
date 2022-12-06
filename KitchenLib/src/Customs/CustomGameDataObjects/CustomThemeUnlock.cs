@@ -1,4 +1,8 @@
 using KitchenData;
+using KitchenLib.Utils;
+using System.Linq;
+using System.Reflection;
+using UnityEngine;
 
 namespace KitchenLib.Customs
 {
@@ -10,10 +14,13 @@ namespace KitchenLib.Customs
 		public virtual ThemeUnlock ParentTheme2 { get; internal set; }
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-            ThemeUnlock result = new ThemeUnlock();
-            ThemeUnlock empty = new ThemeUnlock();
-            
-            if (empty.ID != ID) result.ID = ID;
+            ThemeUnlock result = ScriptableObject.CreateInstance<ThemeUnlock>();
+			ThemeUnlock empty = ScriptableObject.CreateInstance<ThemeUnlock>();
+
+			if (BaseGameDataObjectID != -1)
+				result = UnityEngine.Object.Instantiate(gameData.Get<ThemeUnlock>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
+
+			if (empty.ID != ID) result.ID = ID;
 			if (empty.IsPrimary != IsPrimary) result.IsPrimary = IsPrimary;
 			if (empty.Type != Type) result.Type = Type;
 			if (empty.ParentTheme1 != ParentTheme1) result.ParentTheme1 = ParentTheme1;
@@ -27,10 +34,14 @@ namespace KitchenLib.Customs
 			if (empty.IsSpecificFranchiseTier != IsSpecificFranchiseTier) result.IsSpecificFranchiseTier = IsSpecificFranchiseTier;
 			if (empty.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
 			if (empty.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
-			if (empty.Requires != Requires) result.Requires = Requires;
-			if (empty.BlockedBy != BlockedBy) result.BlockedBy = BlockedBy;
 
-            gameDataObject = result;
+			FieldInfo hardcodedRequirements = ReflectionUtils.GetField<UnlockEffect>("HardcodedRequirements");
+			FieldInfo hardcodedBlockers = ReflectionUtils.GetField<UnlockEffect>("HardcodedBlockers");
+
+			if (hardcodedRequirements.GetValue(empty) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
+			if (hardcodedBlockers.GetValue(empty) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
+
+			gameDataObject = result;
         }
     }
 }

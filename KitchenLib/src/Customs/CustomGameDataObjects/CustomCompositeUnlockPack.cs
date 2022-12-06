@@ -1,5 +1,7 @@
 ﻿using KitchenData;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace KitchenLib.Customs
 {
@@ -10,8 +12,11 @@ namespace KitchenLib.Customs
 
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
-			CompositeUnlockPack result = new CompositeUnlockPack();
-			CompositeUnlockPack empty = new CompositeUnlockPack();
+			CompositeUnlockPack result = ScriptableObject.CreateInstance<CompositeUnlockPack>();
+			CompositeUnlockPack empty = ScriptableObject.CreateInstance<CompositeUnlockPack>();
+
+			if (BaseGameDataObjectID != -1)
+				result = UnityEngine.Object.Instantiate(gameData.Get<CompositeUnlockPack>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
 			if (empty.ID != ID) result.ID = ID;
 

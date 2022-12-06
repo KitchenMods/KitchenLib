@@ -1,5 +1,7 @@
 using KitchenData;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace KitchenLib.Customs
 {
@@ -14,10 +16,13 @@ namespace KitchenLib.Customs
 
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-            Effect result = new Effect();
-            Effect empty = new Effect();
-            
-            if (empty.ID != ID) result.ID = ID;
+            Effect result = ScriptableObject.CreateInstance<Effect>();
+			Effect empty = ScriptableObject.CreateInstance<Effect>();
+
+			if (BaseGameDataObjectID != -1)
+				result = UnityEngine.Object.Instantiate(gameData.Get<Effect>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
+
+			if (empty.ID != ID) result.ID = ID;
             if (empty.Properties != Properties) result.Properties = Properties;
             if (empty.EffectRange != EffectRange) result.EffectRange = EffectRange;
             if (empty.EffectCondition != EffectCondition) result.EffectCondition = EffectCondition;

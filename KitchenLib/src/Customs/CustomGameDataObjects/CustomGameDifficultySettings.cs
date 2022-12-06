@@ -1,4 +1,6 @@
 using KitchenData;
+using System.Linq;
+using UnityEngine;
 
 namespace KitchenLib.Customs
 {
@@ -15,10 +17,13 @@ namespace KitchenLib.Customs
 
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-            GameDifficultySettings result = new GameDifficultySettings();
-            GameDifficultySettings empty = new GameDifficultySettings();
+            GameDifficultySettings result = ScriptableObject.CreateInstance<GameDifficultySettings>();
+			GameDifficultySettings empty = ScriptableObject.CreateInstance<GameDifficultySettings>();
 
-            if (empty.ID != ID) result.ID = ID;
+			if (BaseGameDataObjectID != -1)
+				result = UnityEngine.Object.Instantiate(gameData.Get<GameDifficultySettings>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
+
+			if (empty.ID != ID) result.ID = ID;
             if (empty.IsActive != IsActive) result.IsActive = IsActive;
             if (empty.CustomersPerHourBase != CustomersPerHourBase) result.CustomersPerHourBase = CustomersPerHourBase;
             if (empty.CustomersPerHourIncreasePerDay != CustomersPerHourIncreasePerDay) result.CustomersPerHourIncreasePerDay = CustomersPerHourIncreasePerDay;

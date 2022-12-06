@@ -6,29 +6,19 @@ using BepInEx;
 #endif
 #if WORKSHOP
 using KitchenMods;
-#endif
-
 using Kitchen;
-using System.Reflection;
-using System.IO;
-using System;
+#endif
 
 namespace KitchenLib
 {
 #if MELONLOADER
-    public abstract class LoaderMod : MelonMod
-    {
-    }
+    public abstract class LoaderMod : MelonMod { }
 #endif
-
+	
 #if BEPINEX
-    public abstract class LoaderMod : BaseUnityPlugin
-    {
-    }
+    public abstract class LoaderMod : BaseUnityPlugin { }
 #endif
 #if WORKSHOP
-	public abstract class LoaderMod : GenericSystemBase, IModSystem
-	{
-	}
+	public abstract class LoaderMod : GenericSystemBase, IModSystem { }
 #endif
 }

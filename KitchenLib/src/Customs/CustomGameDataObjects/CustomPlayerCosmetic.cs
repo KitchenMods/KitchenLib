@@ -1,6 +1,7 @@
 using KitchenData;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace KitchenLib.Customs
 {
@@ -15,10 +16,13 @@ namespace KitchenLib.Customs
 
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-            PlayerCosmetic result = new PlayerCosmetic();
-            PlayerCosmetic empty = new PlayerCosmetic();
+            PlayerCosmetic result = ScriptableObject.CreateInstance<PlayerCosmetic>();
+			PlayerCosmetic empty = ScriptableObject.CreateInstance<PlayerCosmetic>();
 
-            if (empty.ID != ID) result.ID = ID;
+			if (BaseGameDataObjectID != -1)
+				result = UnityEngine.Object.Instantiate(gameData.Get<PlayerCosmetic>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
+
+			if (empty.ID != ID) result.ID = ID;
             if (empty.CosmeticType != CosmeticType) result.CosmeticType = CosmeticType;
             if (empty.CustomerSettings != CustomerSettings) result.CustomerSettings = CustomerSettings;
             if (empty.DisableInGame != DisableInGame) result.DisableInGame = DisableInGame;

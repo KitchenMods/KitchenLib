@@ -2,6 +2,7 @@ using KitchenData;
 using KitchenLib.Utils;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
@@ -40,12 +41,14 @@ namespace KitchenLib.Customs
 		public virtual bool IsMergeableSide { get; internal set; }
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-            Item result = new Item();
-            Item empty = new Item();
-            
-            if (empty.ID != ID) result.ID = ID;
+            Item result = ScriptableObject.CreateInstance<Item>();
+			Item empty = ScriptableObject.CreateInstance<Item>();
+
+			if (BaseGameDataObjectID != -1)
+				result = UnityEngine.Object.Instantiate(gameData.Get<Item>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
+
+			if (empty.ID != ID) result.ID = ID;
             if (empty.Prefab != Prefab) result.Prefab = Prefab;
-            //if (empty.DerivedProcesses != DerivedProcesses) result.DerivedProcesses = DerivedProcesses;
             if (empty.Properties != Properties) result.Properties = Properties;
             if (empty.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
             if (empty.ItemValue != ItemValue) result.ItemValue = ItemValue;

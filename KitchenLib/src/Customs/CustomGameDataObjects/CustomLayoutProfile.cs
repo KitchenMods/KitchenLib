@@ -1,6 +1,8 @@
 using KitchenData;
 using System.Collections.Generic;
 using Kitchen.Layouts;
+using System.Linq;
+using UnityEngine;
 
 namespace KitchenLib.Customs
 {
@@ -21,10 +23,13 @@ namespace KitchenLib.Customs
 
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-            LayoutProfile result = new LayoutProfile();
-            LayoutProfile empty = new LayoutProfile();
+            LayoutProfile result = ScriptableObject.CreateInstance<LayoutProfile>();
+			LayoutProfile empty = ScriptableObject.CreateInstance<LayoutProfile>();
 
-            if (empty.ID != ID) result.ID = ID;
+			if (BaseGameDataObjectID != -1)
+				result = UnityEngine.Object.Instantiate(gameData.Get<LayoutProfile>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
+
+			if (empty.ID != ID) result.ID = ID;
             if (empty.Graph != Graph) result.Graph = Graph;
             if (empty.MaximumTables != MaximumTables) result.MaximumTables = MaximumTables;
             if (empty.RequiredAppliances != RequiredAppliances) result.RequiredAppliances = RequiredAppliances;

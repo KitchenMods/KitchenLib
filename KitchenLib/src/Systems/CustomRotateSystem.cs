@@ -2,6 +2,7 @@
 using KitchenLib.Customs;
 using Unity.Entities;
 using Controllers;
+using KitchenLib.Utils;
 
 namespace KitchenLib.Systems
 {
@@ -48,7 +49,7 @@ namespace KitchenLib.Systems
 				return null;
 			}
 
-			CustomAppliance customAppliance = (CustomAppliance)CustomGDO.GetGameDataObject(appliance.ID);
+			CustomAppliance customAppliance = (CustomAppliance)GDOUtils.GetCustomGameDataObject(appliance.ID);
 			if (customAppliance == null || customAppliance.GameDataObject == null)
 			{
 				return null;

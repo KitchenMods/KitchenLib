@@ -124,7 +124,7 @@ namespace KitchenLib
 						AddButton("Disable BepInEx Cache", delegate
 						{
 							File.WriteAllLines("BepInEx/config/BepInEx.cfg", lines);
-							Main.Log("Disabled BepInEx Caching");
+							Main.instance.Log("Disabled BepInEx Caching");
 						});
 						New<SpacerElement>(true);
 						New<SpacerElement>(true);

@@ -1,4 +1,5 @@
 ﻿using Kitchen;
+using KitchenLib.Utils;
 using KitchenLib.Customs;
 using Controllers;
 
@@ -44,7 +45,7 @@ namespace KitchenLib.Systems
 				return null;
 			}
 
-			CustomAppliance customAppliance = (CustomAppliance)CustomGDO.GetGameDataObject(appliance.ID);
+			CustomAppliance customAppliance = (CustomAppliance)GDOUtils.GetCustomGameDataObject(appliance.ID);
 			if (customAppliance == null || customAppliance.GameDataObject == null)
 			{
 				return null;

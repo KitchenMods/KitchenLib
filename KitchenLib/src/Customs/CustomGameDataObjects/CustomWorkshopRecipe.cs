@@ -1,6 +1,8 @@
 using KitchenData;
 using KitchenData.Workshop;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace KitchenLib.Customs
 {
@@ -12,10 +14,13 @@ namespace KitchenLib.Customs
 
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-            WorkshopRecipe result = new WorkshopRecipe();
-            WorkshopRecipe empty = new WorkshopRecipe();
+			WorkshopRecipe result = ScriptableObject.CreateInstance<WorkshopRecipe>();
+            WorkshopRecipe empty = ScriptableObject.CreateInstance<WorkshopRecipe>();
 
-            if (empty.ID != ID) result.ID = ID;
+			if (BaseGameDataObjectID != -1)
+				result = UnityEngine.Object.Instantiate(gameData.Get<WorkshopRecipe>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
+
+			if (empty.ID != ID) result.ID = ID;
             if (empty.Conditions != Conditions) result.Conditions = Conditions;
             if (empty.GroupConditions != GroupConditions) result.GroupConditions = GroupConditions;
             if (empty.Output != Output) result.Output = Output;

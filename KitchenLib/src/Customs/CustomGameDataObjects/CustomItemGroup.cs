@@ -3,25 +3,27 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using KitchenLib.Utils;
+using System.Linq;
+using UnityEngine;
 
 namespace KitchenLib.Customs
 {
     public abstract class CustomItemGroup : CustomItem
     {
-		[Obsolete("Use List<ItemGroup.ItemSet>Sets instead")]
-		public virtual List<ItemGroup.ItemSet> DerivedSets { get { return new List<ItemGroup.ItemSet>(); } }
 		public virtual List<ItemGroup.ItemSet> Sets { get { return new List<ItemGroup.ItemSet>(); } }
 		public virtual bool CanContainSide { get; internal set; }
 		public virtual bool ApplyProcessesToComponents { get; internal set; }
 		public virtual bool AutoCollapsing { get; internal set; }
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-            ItemGroup result = new ItemGroup();
-            ItemGroup empty = new ItemGroup();
-            
-            if (empty.ID != ID) result.ID = ID;
+            ItemGroup result = ScriptableObject.CreateInstance<ItemGroup>();
+			ItemGroup empty = ScriptableObject.CreateInstance<ItemGroup>();
+
+			if (BaseGameDataObjectID != -1)
+				result = UnityEngine.Object.Instantiate(gameData.Get<ItemGroup>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
+
+			if (empty.ID != ID) result.ID = ID;
             if (empty.Prefab != Prefab) result.Prefab = Prefab;
-            //if (empty.DerivedProcesses != DerivedProcesses) result.DerivedProcesses = DerivedProcesses;
             if (empty.Properties != Properties) result.Properties = Properties;
             if (empty.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
             if (empty.ItemValue != ItemValue) result.ItemValue = ItemValue;

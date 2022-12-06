@@ -1,15 +1,3 @@
-using System;
-using System.Runtime.CompilerServices;
-using Kitchen;
-using KitchenLib.Registry;
-using KitchenLib.Customs;
-using KitchenLib.Utils;
-using UnityEngine;
-using Semver;
-using System.Reflection;
-using HarmonyLib;
-using System.IO;
-
 #if MELONLOADER
 using MelonLoader;
 #endif
@@ -18,115 +6,121 @@ using BepInEx;
 using BepInEx.Logging;
 #endif
 
+using System.Reflection;
+using Semver;
+using UnityEngine;
+using KitchenLib.Utils;
+using System.Runtime.CompilerServices;
+using HarmonyLib;
+using KitchenLib.Registry;
+using static MelonLoader.MelonLogger;
+using KitchenLib.Customs;
+
 namespace KitchenLib
 {
 	public abstract class BaseMod : LoaderMod
 	{
-#if MELONLOADER
-		public string ModName { get { return Info.Name; } }
-		public string ModVersion { get { return Info.Version; } }
-#endif
-#if BEPINEX
-		public string ModName { get { return this.Info.Metadata.Name; } }
-		public string ModVersion { get { return this.Info.Metadata.Version.ToString(); } }
-		private static ManualLogSource logger;
-#endif
-
-#if WORKSHOP
+		public string ModID = "";
 		public string ModName = "";
 		public string ModVersion = "";
-#endif
-		public string ModID;
+		public string CompatibleVersions = "";
 
-		public string CompatibleVersions;
-		public string[] ModDependencies;
 		public static KitchenVersion version;
 		public static SemVersion semVersion;
 
-		public HarmonyLib.Harmony harmony;
-
-		public BaseMod(string modID, string compatibleVersions, string[] modDependencies = null) : base() {
-#if MELONLOADER
-			ModID = modID; CompatibleVersions = compatibleVersions; ModDependencies = modDependencies;
-			if (!Debug.isDebugBuild)
-			{
-				version = new KitchenVersion(Application.version);
-			}
-			else
-			{
-				version = new KitchenVersion("");
-			}
-			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
-			ModRegistery.Register(this);
+		public static BaseMod instance;
+		
+#if BEPINEX || WORKSHOP
+		public HarmonyLib.Harmony harmonyInstance;
 #endif
-		}
-		public BaseMod(string compatibleVersions, Assembly assem, string[] modDependencies = null) : base() {
-#if BEPINEX
-            logger = Logger;
-			ModID = this.Info.Metadata.GUID;
-			HarmonyLib.Harmony.CreateAndPatchAll(assem, ModID);
-			CompatibleVersions = compatibleVersions;
-			if (!Debug.isDebugBuild)
-			{
-				version = new KitchenVersion(Application.version);
-			}
-			else
-			{
-				version = new KitchenVersion("");
-			}
-			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
-			ModRegistery.Register(this);
-#endif
-		}
-
-		public BaseMod(string modName, string modVersion, string compatibleVersions, Assembly assem)
+		public BaseMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly) : base()
 		{
-#if WORKSHOP
+			instance = this;
+			ModID = modID;
 			ModName = modName;
 			ModVersion = modVersion;
 			CompatibleVersions = compatibleVersions;
 
-			harmony = new HarmonyLib.Harmony(modName);
-			harmony.PatchAll(assem);
-
 			if (!Debug.isDebugBuild)
-			{
 				version = new KitchenVersion(Application.version);
-			}
 			else
-			{
 				version = new KitchenVersion("");
-			}
+			
+#if BEPINEX || WORKSHOP
+			harmonyInstance = new HarmonyLib.Harmony(modID);
+			harmonyInstance.PatchAll(assembly);
+#endif
+
 			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
 			ModRegistery.Register(this);
-#endif
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Log(string message) {
+		public void Log(string message)
+		{
 #if BEPINEX
-			logger.Log(LogLevel.All, message);
+			Logger.Log(LogLevel.Info, message);
 #endif
 #if MELONLOADER
 			MelonLogger.Msg(message);
 #endif
 #if WORKSHOP
-			UnityEngine.Debug.Log(message);
+			Debug.Log(message);
 #endif
 		}
-
+		
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Error(string message) {
+		public void Error(string message)
+		{
 #if BEPINEX
-			logger.Log(LogLevel.Error, message);
+			Logger.Log(LogLevel.Error, message);
 #endif
 #if MELONLOADER
 			MelonLogger.Error(message);
 #endif
 #if WORKSHOP
-			UnityEngine.Debug.LogError(message);
+			Debug.LogError(message);
 #endif
 		}
+		
+		protected abstract void OnFrameUpdate();
+		protected abstract void OnInitialise();
+
+#if BEPINEX
+		void Update()
+		{
+			OnFrameUpdate();
+		}
+
+		void Awake()
+		{
+			OnInitialise();
+		}
+#endif
+
+#if MELONLOADER
+		public override void OnUpdate()
+		{
+			OnFrameUpdate();
+		}
+
+		public override void OnInitializeMelon()
+		{
+			OnInitialise();
+		}
+#endif
+
+#if WORKSHOP
+		protected override void OnUpdate()
+		{
+			OnFrameUpdate();
+		}
+
+		protected override void Initialise()
+		{
+			OnInitialise();
+		}
+#endif
 
 		public T AddGameDataObject<T>() where T : CustomGameDataObject, new()
 		{
@@ -145,39 +139,6 @@ namespace KitchenLib
 		{
 			T preference = new T();
 			return PreferenceUtils.Register<T>(modID, key, name);
-		}
-
-
-		/*
-		 * Obsolete Methods
-		 */
-
-		[Obsolete("Use the AddAppliance method instead")]
-		public T RegisterCustomAppliance<T>() where T : CustomAppliance, new()  {
-			return AddAppliance<T>();
-		}
-
-		[Obsolete("System registration is now automatic")]
-		public T AddSystem<T>() where T : GenericSystemBase, new() {
-			return SystemUtils.AddSystem<T>();
-		}
-
-		[Obsolete("Use the AddGameDataObject method instead")]
-		public T AddAppliance<T>() where T : CustomAppliance, new()
-		{
-			return AddGameDataObject<T>();
-		}
-
-		[Obsolete("Use the AddGameDataObject method instead")]
-		public T AddItem<T>() where T : CustomItem, new()
-		{
-			return AddGameDataObject<T>();
-		}
-
-		[Obsolete("Use the AddGameDataObject method instead")]
-		public T AddProcess<T>() where T : CustomProcess, new()
-		{
-			return AddGameDataObject<T>();
 		}
 	}
 }

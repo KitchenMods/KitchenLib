@@ -54,10 +54,10 @@ namespace KitchenLib.Customs
 		public virtual void PostInteract(InteractionData data) { }
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-            Appliance result = new Appliance();
-            Appliance empty = new Appliance();
+            Appliance result = ScriptableObject.CreateInstance<Appliance>();
+			Appliance empty = ScriptableObject.CreateInstance<Appliance>();
 
-            if (BaseGameDataObjectID != -1)
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
             else
                 result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == AssetReference.Counter));
