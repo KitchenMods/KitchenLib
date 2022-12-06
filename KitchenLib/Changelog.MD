@@ -75,3 +75,35 @@ v0.2.3
 
 - Fixed a bug causing the mod to crash when generating GameData more than once in a session.
 - Fixed a bug causing the Main Menu to crash in some cases.
+
+v0.2.4
+
+# Release Notes - API Related
+
+# References
+
+- Updated `ApplianceReference`
+- Updated `ItemReference`
+- Updated `ProcessReference`
+- Added `CompositeUnlockPackReference`
+- Added `CrateSetReference`
+- Added `DecorReference`
+- Added `DishReference`
+- Added `EffectReference`
+- Added `EffectRepresentationReference`
+- Added `GardenProfileReference`
+- Added `ItemReference`
+- Added `ItemGroupReference`
+- Added `LayourProfileReference`
+- Added `LevelUpgradeSetReference`
+- Added `ModularUnlockPackReference`
+- Added `PlayerCosmeticReference`
+- Added `ProcessReference`
+- Added `RandomUpgradeSetReference`
+- Added `ResearchReference`
+- Added `ShopReference`
+- Added `ThemeUnlockReference`
+- Added `UnlockReference`
+- Added `UnlockCardReference`
+- Added `UnlockPackReference`
+- Added `WorkshopRecipeReference`
