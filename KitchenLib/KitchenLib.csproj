@@ -45,7 +45,7 @@
       <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\KitchenMode.dll</HintPath>
     </Reference>
     <Reference Include="KitchenMods">
-      <HintPath>..\..\..\..\..\xd\PlateUp_Data\Managed\KitchenMods.dll</HintPath>
+      <HintPath>F:\SteamLibrary\steamapps\common\PlateUp\PlateUp\PlateUp_Data\Managed\KitchenMods.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader">
       <HintPath>..\..\..\..\Libraries\MelonLoader\MelonLoader.dll</HintPath>
@@ -88,6 +88,9 @@
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="XNode">
       <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\XNode.dll</HintPath>

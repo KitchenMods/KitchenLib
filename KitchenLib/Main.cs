@@ -18,7 +18,7 @@ using BepInEx;
 using MelonLoader;
 #endif
 #if MELONLOADER
-[assembly: MelonInfo(typeof(KitchenLib.Main), "KitchenLib", "0.2.3", "KitchenMods")]
+[assembly: MelonInfo(typeof(KitchenLib.Main), "KitchenLib", "0.2.4", "KitchenMods")]
 [assembly: MelonGame("It's Happening", "PlateUp")]
 [assembly: MelonPriority(-1000000)]
 [assembly: MelonColor(System.ConsoleColor.Green)]
@@ -27,7 +27,7 @@ namespace KitchenLib
 {
 #if BEPINEX
 	[BepInProcess("PlateUp.exe")]
-	[BepInPlugin(GUID, "KitchenLib", "0.2.3")]
+	[BepInPlugin(GUID, "KitchenLib", "0.2.4")]
 #endif
 	public class Main : BaseMod
 	{
@@ -55,14 +55,65 @@ namespace KitchenLib
 #endif
 
 #if WORKSHOP
-		public Main() : base("KitchenLib", "0.2.3", "1.1.2", Assembly.GetExecutingAssembly()) { }
+		public Main() : base("KitchenLib", "0.2.4", "1.1.2", Assembly.GetExecutingAssembly()) { }
 		protected override void OnUpdate(){}
 
 		protected override void Initialise()
 		{
+			//GenerateReferences();
 			SetupMenus();
 		}
 #endif
+
+		private void GenerateReferences()
+		{
+			Events.BuildGameDataEvent += (s, args) =>
+			{
+				List<string> classGenerator = new List<string>();
+				classGenerator.Add("namespace KitchenLib.Reference");
+				classGenerator.Add("{");
+
+				GenerateClass<Appliance>(ref classGenerator, args.gamedata);
+				GenerateClass<CompositeUnlockPack>(ref classGenerator, args.gamedata);
+				GenerateClass<CrateSet>(ref classGenerator, args.gamedata);
+				GenerateClass<Decor>(ref classGenerator, args.gamedata);
+				GenerateClass<Dish>(ref classGenerator, args.gamedata);
+				GenerateClass<Effect>(ref classGenerator, args.gamedata);
+				GenerateClass<EffectRepresentation>(ref classGenerator, args.gamedata);
+				GenerateClass<GardenProfile>(ref classGenerator, args.gamedata);
+				GenerateClass<Item>(ref classGenerator, args.gamedata);
+				GenerateClass<ItemGroup>(ref classGenerator, args.gamedata);
+				GenerateClass<LayoutProfile>(ref classGenerator, args.gamedata);
+				GenerateClass<LevelUpgradeSet>(ref classGenerator, args.gamedata);
+				GenerateClass<ModularUnlockPack>(ref classGenerator, args.gamedata);
+				GenerateClass<PlayerCosmetic>(ref classGenerator, args.gamedata);
+				GenerateClass<Process>(ref classGenerator, args.gamedata);
+				GenerateClass<RandomUpgradeSet>(ref classGenerator, args.gamedata);
+				GenerateClass<Research>(ref classGenerator, args.gamedata);
+				GenerateClass<Shop>(ref classGenerator, args.gamedata);
+				GenerateClass<ThemeUnlock>(ref classGenerator, args.gamedata);
+				GenerateClass<Unlock>(ref classGenerator, args.gamedata);
+				GenerateClass<UnlockCard>(ref classGenerator, args.gamedata);
+				GenerateClass<UnlockPack>(ref classGenerator, args.gamedata);
+				GenerateClass<WorkshopRecipe>(ref classGenerator, args.gamedata);
+
+				classGenerator.Add("}");
+
+				File.WriteAllLines(Path.Combine(Application.dataPath, "References.cs"), classGenerator.ToArray());
+				UnityEngine.Debug.Log("Data saved to: " + Path.Combine(Application.dataPath, "References.cs"));
+			};
+		}
+
+		private void GenerateClass<T>(ref List<string> list, GameData gamedata) where T : GameDataObject
+		{
+			list.Add($"	public class {typeof(T).Name}Reference");
+			list.Add("	{");
+			foreach (T x in gamedata.Get<T>())
+			{
+				list.Add($"		public const int {(x.name).Replace(" ", "").Replace("-", "")} = {x.ID};\n");
+			}
+			list.Add("	}");
+		}
 
 		private void SetupMenus()
 		{
