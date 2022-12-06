@@ -110,6 +110,9 @@ namespace KitchenLib
 #if MELONLOADER
 			MelonLogger.Msg(message);
 #endif
+#if WORKSHOP
+			UnityEngine.Debug.Log(message);
+#endif
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -119,6 +122,9 @@ namespace KitchenLib
 #endif
 #if MELONLOADER
 			MelonLogger.Error(message);
+#endif
+#if WORKSHOP
+			UnityEngine.Debug.LogError(message);
 #endif
 		}
 

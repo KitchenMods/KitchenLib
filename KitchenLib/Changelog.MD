@@ -80,7 +80,7 @@ v0.2.4
 
 # Release Notes - API Related
 
-# References
+## References
 
 - Updated `ApplianceReference`
 - Updated `ItemReference`
@@ -107,3 +107,17 @@ v0.2.4
 - Added `UnlockCardReference`
 - Added `UnlockPackReference`
 - Added `WorkshopRecipeReference`
+
+v0.2.5
+
+# Release Notes - API Related
+
+## Utilities
+
+### ResourceUtils
+
+- Added string FindModPath(Assembly assembly, bool isNonWorkshop = false)
+
+## Other
+
+- Fixed `base.Log(string);` not working.

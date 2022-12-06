@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using UnityEngine;
+using System;
 
 namespace KitchenLib.Utils
 {
@@ -65,5 +66,26 @@ namespace KitchenLib.Utils
             stream.Read(data, 0, (int)stream.Length);
             return data;
         }
-    }
+
+		public static string FindModPath(Assembly assembly, bool isNonWorkshop = false)
+		{
+			string codeBase = assembly.CodeBase;
+			UriBuilder uri = new UriBuilder(codeBase);
+			string path = Uri.UnescapeDataString(uri.Path);
+			string mods = Path.GetDirectoryName(path) + "\\..\\workshop\\content\\1599600\\";
+			if (isNonWorkshop)
+				mods = Path.GetDirectoryName(path) + "\\PlateUp\\PlateUp\\Mods\\";
+
+			if (!Directory.Exists(mods))
+				return "";
+
+			string[] modFolders = Directory.GetDirectories(mods);
+			foreach (string folder in modFolders)
+			{
+				if (File.Exists(folder + "\\" + assembly.GetName().Name + ".dll"))
+					return folder;
+			}
+			return "";
+		}
+	}
 }
