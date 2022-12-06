@@ -112,6 +112,10 @@ v0.2.5
 
 # Release Notes - API Related
 
+## References
+
+- Updated all reference names
+
 ## Utilities
 
 ### ResourceUtils
