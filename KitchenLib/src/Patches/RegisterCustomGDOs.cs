@@ -13,9 +13,7 @@ namespace KitchenLib.Customs
 		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result) {
 			MaterialUtils.SetupMaterialIndex(__result);
 
-			GDOUtils.SetupGDOIndex(__result);			
-
-			EventUtils.InvokeEvent(nameof(Events.BuildGameDataEvent), Events.BuildGameDataEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result));
+			GDOUtils.SetupGDOIndex(__result);
 
 			List<GameDataObject> gameDataObjects = new List<GameDataObject>();
 
@@ -27,7 +25,7 @@ namespace KitchenLib.Customs
 				gdo.GameDataObject = gameDataObject;
 				gameDataObjects.Add(gameDataObject);
 			}
-			
+
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{
 				try
@@ -47,6 +45,8 @@ namespace KitchenLib.Customs
 
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{
+				if (__result.Objects.ContainsKey(gameDataObject.ID))
+					break;
 				__result.Objects.Add(gameDataObject.ID, gameDataObject);
 				IHasPrefab hasPrefab = gameDataObject as IHasPrefab;
 				if (hasPrefab != null)
@@ -54,14 +54,15 @@ namespace KitchenLib.Customs
 					__result.Prefabs.Add(gameDataObject.ID, hasPrefab.Prefab);
 				}
 			}
-			
+
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{
 				gameDataObject.SetupFinal();
 			}
-
 			__result.Dispose();
 			__result.InitialiseViews();
+
+			EventUtils.InvokeEvent(nameof(Events.BuildGameDataEvent), Events.BuildGameDataEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result));
 		}
 	}
 }

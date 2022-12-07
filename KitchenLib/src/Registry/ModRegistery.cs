@@ -11,9 +11,14 @@ namespace KitchenLib.Registry
 		public static BaseMod Get<T>() {
 			return Registered[typeof(T)];
 		}
-		public static void Register(BaseMod mod)
+		public static bool Register(BaseMod mod)
         {
-            Registered.Add(mod.GetType(), mod);
+			if (!Registered.ContainsKey(mod.GetType()))
+			{
+				Registered.Add(mod.GetType(), mod);
+				return true;
+			}
+			return false;
         }
 
 		public static bool isModSafeForVersion(BaseMod mod)

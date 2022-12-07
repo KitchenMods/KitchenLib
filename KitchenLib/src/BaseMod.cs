@@ -16,6 +16,7 @@ using KitchenLib.Registry;
 using static MelonLoader.MelonLogger;
 using KitchenLib.Customs;
 using System;
+using System.Collections.Generic;
 
 namespace KitchenLib
 {
@@ -30,9 +31,11 @@ namespace KitchenLib
 		public static SemVersion semVersion;
 
 		public static BaseMod instance;
+		private static List<Assembly> PatchedAssemblies = new List<Assembly>();
+		private bool isRegistered = false;
 		
 #if BEPINEX || WORKSHOP
-		public HarmonyLib.Harmony harmonyInstance;
+		public static HarmonyLib.Harmony harmonyInstance;
 #endif
 		public BaseMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly) : base()
 		{
@@ -71,13 +74,20 @@ namespace KitchenLib
 				version = new KitchenVersion("");
 
 #if BEPINEX || WORKSHOP
-			harmonyInstance = new HarmonyLib.Harmony(modID);
-			if (assembly != null)
-				harmonyInstance.PatchAll(assembly);
+			if (harmonyInstance == null)
+				harmonyInstance = new HarmonyLib.Harmony(modID);
+			if (!PatchedAssemblies.Contains(assembly))
+			{
+				if (assembly != null)
+				{
+					harmonyInstance.PatchAll(assembly);
+					PatchedAssemblies.Add(assembly);
+				}
+			}
 #endif
 
 			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
-			ModRegistery.Register(this);
+			isRegistered = ModRegistery.Register(this);
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -143,7 +153,10 @@ namespace KitchenLib
 
 		protected override void Initialise()
 		{
-			OnInitialise();
+			if (isRegistered)
+			{
+				OnInitialise();
+			}
 		}
 #endif
 

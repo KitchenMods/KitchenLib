@@ -18,6 +18,9 @@ namespace KitchenLib.Customs
 				return null;
 			}
 
+			if (GDOs.ContainsKey(gdo.ID))
+				return null;
+
 			GDOs.Add(gdo.ID, gdo);
 			GDOsByType.Add(gdo.GetType(), gdo);
 
