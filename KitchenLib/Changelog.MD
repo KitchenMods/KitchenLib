@@ -180,3 +180,14 @@ Fixed `BaseGameDataObjectID` not working for most base classes.
 
 - Fixed a bug causing logging to not work when using the Workshop loader.
 - Fixed a bug causing the console to have an unnessary warning when registering a `CustomGameDataObject`.
+
+v0.2.6
+
+# Release Notes - API Related
+
+## Base Classes
+
+### BaseMod
+
+- Reimplemented obsolete constructors for temporary backwards compatibility.
+- Changed `OnFrameUpdate()` and `OnInitialise()` from `abstract` to `virtual` for temporary backwards compatibility.

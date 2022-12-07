@@ -15,6 +15,7 @@ using HarmonyLib;
 using KitchenLib.Registry;
 using static MelonLoader.MelonLogger;
 using KitchenLib.Customs;
+using System;
 
 namespace KitchenLib
 {
@@ -35,6 +36,29 @@ namespace KitchenLib
 #endif
 		public BaseMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly) : base()
 		{
+			SetupMod(modID, modName, author, modVersion, compatibleVersions, assembly);
+		}
+
+		[Obsolete("Please use BaseMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly)")]
+		public BaseMod(string modID, string compatibleVersions, string[] modDependencies = null) : base()
+		{
+			SetupMod(modID, "Unsupported Name", "Unsupported Author", "0.0.0", compatibleVersions, null);
+		}
+
+		[Obsolete("Please use BaseMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly)")]
+		public BaseMod(string compatibleVersions, Assembly assembly, string[] modDependencies = null) : base()
+		{
+			SetupMod("unsupportedmodid", "Unsupported Name", "Unsupported Author", "0.0.0", compatibleVersions, assembly);
+		}
+
+		[Obsolete("Please use BaseMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly)")]
+		public BaseMod(string modID, string modVersion, string compatibleVersions, Assembly assembly) : base()
+		{
+			SetupMod(modID, "Unsupported Name", "Unsupported Author", modVersion, compatibleVersions, assembly);
+		}
+
+		private void SetupMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly)
+		{
 			instance = this;
 			ModID = modID;
 			ModName = modName;
@@ -45,10 +69,11 @@ namespace KitchenLib
 				version = new KitchenVersion(Application.version);
 			else
 				version = new KitchenVersion("");
-			
+
 #if BEPINEX || WORKSHOP
 			harmonyInstance = new HarmonyLib.Harmony(modID);
-			harmonyInstance.PatchAll(assembly);
+			if (assembly != null)
+				harmonyInstance.PatchAll(assembly);
 #endif
 
 			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
@@ -82,9 +107,9 @@ namespace KitchenLib
 			Debug.LogError(message);
 #endif
 		}
-		
-		protected abstract void OnFrameUpdate();
-		protected abstract void OnInitialise();
+
+		protected virtual void OnFrameUpdate() { }
+		protected virtual void OnInitialise() { }
 
 #if BEPINEX
 		void Update()
