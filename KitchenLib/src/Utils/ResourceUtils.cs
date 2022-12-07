@@ -6,7 +6,6 @@ using System;
 
 namespace KitchenLib.Utils
 {
-
     public class ResourceUtils
     {
         public static Texture2D LoadTextureRaw(byte[] file)
@@ -67,14 +66,20 @@ namespace KitchenLib.Utils
             return data;
         }
 
-		public static string FindModPath(Assembly assembly, bool isNonWorkshop = false)
+		public static string FindModPath(Assembly assembly, AssetBundleLocation location)
 		{
 			string codeBase = assembly.CodeBase;
 			UriBuilder uri = new UriBuilder(codeBase);
 			string path = Uri.UnescapeDataString(uri.Path);
-			string mods = Path.GetDirectoryName(path) + "\\..\\workshop\\content\\1599600\\";
-			if (isNonWorkshop)
+			string mods = "";
+			if (location == AssetBundleLocation.WorkshopFolder)
+			{
+				mods = Path.GetDirectoryName(path) + "\\..\\workshop\\content\\1599600\\";
+			}
+			if (location == AssetBundleLocation.ModsFolder)
+			{
 				mods = Path.GetDirectoryName(path) + "\\PlateUp\\PlateUp\\Mods\\";
+			}
 
 			if (!Directory.Exists(mods))
 				return "";
@@ -87,5 +92,11 @@ namespace KitchenLib.Utils
 			}
 			return "";
 		}
+	}
+
+	public enum AssetBundleLocation
+	{
+		WorkshopFolder,
+		ModsFolder
 	}
 }

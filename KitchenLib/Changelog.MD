@@ -191,3 +191,17 @@ v0.2.6
 
 - Reimplemented obsolete constructors for temporary backwards compatibility.
 - Changed `OnFrameUpdate()` and `OnInitialise()` from `abstract` to `virtual` for temporary backwards compatibility.
+
+v0.2.7
+
+# Release Notes - API Related
+
+## Utilities
+
+### MaterialUtils
+
+- Added `ApplyMaterial<T>(GameObject prefab, string path, Material[] materials)` to allow for different renderer types ie. `SkinnedMeshRenderer`
+
+### ResourceUtils
+
+- Added `AssetBundleLocation` argument to `FindModPath`
