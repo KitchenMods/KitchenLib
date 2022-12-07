@@ -124,39 +124,42 @@ namespace KitchenLib
 #if BEPINEX
 		void Update()
 		{
-			OnFrameUpdate();
+			if (isRegistered)
+				OnFrameUpdate();
 		}
 
 		void Awake()
 		{
-			OnInitialise();
+			if (isRegistered)
+				OnInitialise();
 		}
 #endif
 
 #if MELONLOADER
 		public override void OnUpdate()
 		{
-			OnFrameUpdate();
+			if (isRegistered)
+				OnFrameUpdate();
 		}
 
 		public override void OnInitializeMelon()
 		{
-			OnInitialise();
+			if (isRegistered)
+				OnInitialise();
 		}
 #endif
 
 #if WORKSHOP
 		protected override void OnUpdate()
 		{
-			OnFrameUpdate();
+			if (isRegistered)
+				OnFrameUpdate();
 		}
 
 		protected override void Initialise()
 		{
 			if (isRegistered)
-			{
 				OnInitialise();
-			}
 		}
 #endif
 
