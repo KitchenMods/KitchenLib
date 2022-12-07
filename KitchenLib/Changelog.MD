@@ -205,3 +205,11 @@ v0.2.7
 ### ResourceUtils
 
 - Added `AssetBundleLocation` argument to `FindModPath`
+
+v0.2.8
+
+# Release Notes - Other
+
+## Bugs
+
+- Fixed a bug causing Harmony to patch twice when trying to load into multiplayer causing a soft-lock
