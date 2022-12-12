@@ -3,6 +3,9 @@ using System.IO;
 using System.Reflection;
 using UnityEngine;
 using System;
+using KitchenMods;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace KitchenLib.Utils
 {
@@ -65,7 +68,21 @@ namespace KitchenLib.Utils
             stream.Read(data, 0, (int)stream.Length);
             return data;
         }
+		
+		public static string GetModsFolder()
+		{
+			return FolderModSource.ModsFolder;
+		}
 
+		public static string GetWorkshopFolder()
+		{
+			List<SteamWorkshop.ModMetadata> result = Task.Run<List<SteamWorkshop.ModMetadata>>(() => SteamWorkshop.GetMods(false)).GetAwaiter().GetResult();
+			if (result.Count > 0)
+				return result[0].Directory + "\\..";
+			return "";
+		}
+
+		[Obsolete("User GetModsFolder or GetWorkshopFolder")]
 		public static string FindModPath(Assembly assembly, AssetBundleLocation location)
 		{
 			string codeBase = assembly.CodeBase;

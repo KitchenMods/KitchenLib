@@ -3,6 +3,10 @@ using KitchenLib.Event;
 using Kitchen;
 using KitchenData;
 using Unity.Entities;
+using KitchenLib.Utils;
+using KitchenMods;
+using System.Collections.Generic;
+using UnityEngine;
 
 #if MELONLOADER
 using MelonLoader;
@@ -25,7 +29,7 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.2.8";
+		public const string MOD_VERSION = "0.2.9";
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.2";
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
 

@@ -213,3 +213,25 @@ v0.2.8
 ## Bugs
 
 - Fixed a bug causing Harmony to patch twice when trying to load into multiplayer causing a soft-lock
+
+v0.2.9
+
+## Release Notes - API Related
+
+## Utilities
+
+### ResourceUtils
+
+- `FindModPath(Assembly assembly, AssetBundleLocation location)` is now obsolete.
+- Added `GetModsFolder()`
+- Added `GetWorkshopFolder()`
+
+## Bugs
+
+- Fixed a bug causing `OnFrameUpdate()` to not get called after joining a multiplayer session.
+
+## Release Notes - Other
+
+##UI
+
+- Non-KitchenLib mods will now show up in the mod list when using the Workshop loader.
