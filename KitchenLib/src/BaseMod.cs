@@ -150,6 +150,7 @@ namespace KitchenLib
 #endif
 
 #if WORKSHOP
+		/*
 		protected override void OnUpdate()
 		{
 			if (isRegistered)
@@ -161,6 +162,7 @@ namespace KitchenLib
 			if (isRegistered)
 				OnInitialise();
 		}
+		*/
 #endif
 
 		public T AddGameDataObject<T>() where T : CustomGameDataObject, new()

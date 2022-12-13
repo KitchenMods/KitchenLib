@@ -24,6 +24,9 @@
     <Reference Include="Kitchen.RestaurantMode">
       <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Kitchen.RestaurantMode.dll</HintPath>
     </Reference>
+    <Reference Include="KitchenMods">
+      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\KitchenMods.dll</HintPath>
+    </Reference>
     <Reference Include="MelonLoader">
       <HintPath>..\..\..\..\Libraries\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>

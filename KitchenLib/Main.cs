@@ -33,13 +33,19 @@ namespace KitchenLib
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.2";
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
 
-		protected override void OnFrameUpdate()
+		public override void PostActivate(Mod mod)
 		{
+			UnityEngine.Debug.Log("PostActivate(Mod mod)");
 		}
 
-		protected override void OnInitialise()
+		public override void PostInject()
 		{
-			SetupMenus();
+			UnityEngine.Debug.Log("PostInject()");
+		}
+
+		public override void PreInject()
+		{
+			UnityEngine.Debug.Log("PreInject()");
 		}
 
 		private void SetupMenus()
