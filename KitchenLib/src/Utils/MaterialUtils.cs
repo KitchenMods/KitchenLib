@@ -54,9 +54,10 @@ namespace KitchenLib.Utils
             }
         }
 
-        public static void SetupMaterialIndex(GameData gameData)
+        public static void SetupMaterialIndex()
         {
-			materialIndex.Clear();
+			if (materialIndex.Count > 0)
+				return;
 
 			foreach (Material material in Resources.FindObjectsOfTypeAll(typeof(Material)))
 			{

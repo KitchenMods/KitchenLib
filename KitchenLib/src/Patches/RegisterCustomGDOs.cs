@@ -11,8 +11,7 @@ namespace KitchenLib.Customs
 	public class GameDataConstructor_Patch
 	{
 		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result) {
-			MaterialUtils.SetupMaterialIndex(__result);
-
+			MaterialUtils.SetupMaterialIndex();
 			GDOUtils.SetupGDOIndex(__result);
 
 			List<GameDataObject> gameDataObjects = new List<GameDataObject>();
