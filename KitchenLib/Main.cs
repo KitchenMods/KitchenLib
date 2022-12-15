@@ -33,11 +33,7 @@ namespace KitchenLib
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.2";
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
 
-		protected override void OnFrameUpdate()
-		{
-		}
-
-		protected override void OnInitialise()
+		protected override void OnPostActivate(Mod mod)
 		{
 			SetupMenus();
 		}

@@ -5,6 +5,8 @@ using KitchenLib.Registry;
 using System.Collections.Generic;
 using KitchenMods;
 using System;
+using System.Reflection;
+using Harmony;
 
 namespace KitchenLib
 {
@@ -14,33 +16,36 @@ namespace KitchenLib
         private List<string> modNames = new List<string>();
 
         public override void Setup(int player_id) {
-            
-            AddLabel("Loaded Mods");
+
+			Dictionary<Type, BaseMod> loadedMods = new Dictionary<Type, BaseMod>();
+			Dictionary<Type, BaseMod> untestedMods = new Dictionary<Type, BaseMod>();
+			Dictionary<Assembly, string> modAssemblies = new Dictionary<Assembly, string>();
 
 			foreach (Type modType in ModRegistery.Registered.Keys)
 			{
 				BaseMod mod = ModRegistery.Registered[modType];
-				if (mod.ModName != null && mod.ModVersion != null)
-					if (ModRegistery.isModSafeForVersion(mod))
-					{
-						AddInfo(mod.ModName + "     v" + mod.ModVersion);
-						modNames.Add(mod.ModName);
-						modNames.Add(ModRegistery.keyValuePairs[modType].GetName().Name);
-					}
+				if (ModRegistery.isModSafeForVersion(mod))
+					loadedMods.Add(modType, mod);
+				else
+					untestedMods.Add(modType, mod);
+
+				modAssemblies.Add(ModRegistery.keyValuePairs[modType], ModRegistery.keyValuePairs[modType].GetName().Name + ".dll");
 			}
 
-            AddLabel("Untested Mods");
+            AddLabel("Loaded Mods");
 
-			foreach (Type modType in ModRegistery.Registered.Keys)
+			foreach (Type modType in loadedMods.Keys)
 			{
-				BaseMod mod = ModRegistery.Registered[modType];
-				if (mod.ModName != null && mod.ModVersion != null)
-					if (!ModRegistery.isModSafeForVersion(mod))
-					{
-						AddInfo(mod.ModName + "     v" + mod.ModVersion);
-						modNames.Add(mod.ModName);
-						modNames.Add(ModRegistery.keyValuePairs[modType].GetName().Name);
-					}
+				BaseMod mod = loadedMods[modType];
+				AddInfo(mod.ModName + "     v" + mod.ModVersion);
+			}
+
+			AddLabel("Untested Mods");
+
+			foreach (Type modType in untestedMods.Keys)
+			{
+				BaseMod mod = untestedMods[modType];
+				AddInfo(mod.ModName + "     v" + mod.ModVersion);
 			}
 
 			AddLabel("Non-KitchenLib Mods");
@@ -65,21 +70,22 @@ namespace KitchenLib
             }
 #endif
 #if WORKSHOP
-			//AddInfo("Workshop Mods are unable to be detected by KitchenLib");
+			
 			List<Mod> mods = ModPreload.Mods;
 			foreach (Mod mod in mods)
 			{
 				if (mod.State == ModState.PostActivated)
 				{
-					if (mod.Packs[0].Name != "KitchenLib-Workshop.dll")
+					foreach (AssemblyModPack pack in mod.GetPacks<AssemblyModPack>())
 					{
-						if (!modNames.Contains(mod.Packs[0].Name.Replace(".dll", "")))
+						if (!modAssemblies.ContainsValue(pack.Name))
 						{
-							AddInfo(mod.Packs[0].Name.Replace(".dll", ""));
+							AddInfo(pack.Name.Replace(".dll", ""));
 						}
 					}
 				}
 			}
+
 #endif
 
 			New<SpacerElement>(true);

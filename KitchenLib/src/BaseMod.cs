@@ -17,9 +17,12 @@ using static MelonLoader.MelonLogger;
 using KitchenLib.Customs;
 using System;
 using System.Collections.Generic;
+using KitchenMods;
+using Kitchen;
 
 namespace KitchenLib
 {
+
 	public abstract class BaseMod : LoaderMod
 	{
 		public string ModID = "";
@@ -62,6 +65,7 @@ namespace KitchenLib
 
 		private void SetupMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly)
 		{
+			
 			instance = this;
 			ModID = modID;
 			ModName = modName;
@@ -73,6 +77,7 @@ namespace KitchenLib
 			else
 				version = new KitchenVersion("");
 
+			
 #if BEPINEX || WORKSHOP
 			if (harmonyInstance == null)
 				harmonyInstance = new HarmonyLib.Harmony(modID);
@@ -85,6 +90,7 @@ namespace KitchenLib
 				}
 			}
 #endif
+			
 
 			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
 			isRegistered = ModRegistery.Register(this);
@@ -117,9 +123,8 @@ namespace KitchenLib
 			Debug.LogError(message);
 #endif
 		}
-
-		protected virtual void OnFrameUpdate() { }
 		protected virtual void OnInitialise() { }
+		protected virtual void OnFrameUpdate() { }
 
 #if BEPINEX
 		void Update()
@@ -150,16 +155,30 @@ namespace KitchenLib
 #endif
 
 #if WORKSHOP
-		protected override void OnUpdate()
+
+		protected virtual void OnPostActivate(Mod mod) { }
+		protected virtual void OnPostInject() { }
+		protected virtual void OnPreInject() { }
+
+		public override void PostActivate(Mod mod)
 		{
-			if (isRegistered)
-				OnFrameUpdate();
+			OnPostActivate(mod);
+			OnInitialise();
 		}
 
-		protected override void Initialise()
+		public override void PostInject()
 		{
-			if (isRegistered)
-				OnInitialise();
+			OnPostInject();
+		}
+
+		public override void PreInject()
+		{
+			OnPreInject();
+		}
+
+		protected override void OnUpdate()
+		{
+			OnFrameUpdate();
 		}
 #endif
 
