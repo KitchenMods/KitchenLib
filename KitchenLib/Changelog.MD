@@ -216,7 +216,7 @@ v0.2.8
 
 v0.2.9
 
-## Release Notes - API Related
+# Release Notes - API Related
 
 ## Utilities
 
@@ -230,8 +230,26 @@ v0.2.9
 
 - Fixed a bug causing `OnFrameUpdate()` to not get called after joining a multiplayer session.
 
-## Release Notes - Other
+# Release Notes - Other
 
-##UI
+## UI
 
 - Non-KitchenLib mods will now show up in the mod list when using the Workshop loader.
+
+v0.3.0
+
+# Release Notes - API Related
+
+## Base Classes
+
+### BaseMod
+
+- Added `ModPostActivate(Mod mod)` for Workshop build.
+- Added `ModPostInject()` for Workshop build.
+- Added `ModPreInject()` for Workshop build.
+
+# Release Notes - Other
+
+## UI
+
+- Fixed Mods menu not displaying mods when using the Workshop loader.
