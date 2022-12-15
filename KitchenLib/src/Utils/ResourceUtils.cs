@@ -73,12 +73,14 @@ namespace KitchenLib.Utils
 		{
 			return FolderModSource.ModsFolder;
 		}
-
+		
 		public static string GetWorkshopFolder()
 		{
+#if WORKSHOP
 			List<SteamWorkshop.ModMetadata> result = Task.Run<List<SteamWorkshop.ModMetadata>>(() => SteamWorkshop.GetMods(false)).GetAwaiter().GetResult();
 			if (result.Count > 0)
 				return result[0].Directory + "\\..";
+#endif
 			return "";
 		}
 

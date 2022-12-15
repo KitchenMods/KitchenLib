@@ -20,21 +20,6 @@ namespace KitchenLib.TestMod
 			throw new NotImplementedException();
 		}
 
-		public override void PostActivate(Mod mod)
-		{
-			throw new NotImplementedException();
-		}
-
-		public override void PostInject()
-		{
-			throw new NotImplementedException();
-		}
-
-		public override void PreInject()
-		{
-			throw new NotImplementedException();
-		}
-
 		public static CustomAppliance d;
 		public static CustomItem sushiRoll;
 

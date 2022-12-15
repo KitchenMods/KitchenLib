@@ -94,6 +94,7 @@ namespace KitchenLib
 
 			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
 			isRegistered = ModRegistery.Register(this);
+			
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

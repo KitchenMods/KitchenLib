@@ -29,6 +29,8 @@ namespace KitchenLib
 				else
 					untestedMods.Add(modType, mod);
 
+				modNames.Add(mod.ModName);
+
 				modAssemblies.Add(ModRegistery.keyValuePairs[modType], ModRegistery.keyValuePairs[modType].GetName().Name + ".dll");
 			}
 

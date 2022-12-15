@@ -248,6 +248,16 @@ v0.3.0
 - Added `ModPostInject()` for Workshop build.
 - Added `ModPreInject()` for Workshop build.
 
+## Utilities
+
+### ResourceUtils
+
+- `GetWorkshopFolder()` now only returns if using the workshop build.
+
+## Bugs
+
+- Fixed a bug from 0.2.9 causing progress to not load correctly on MelonLoader or BepInEx.
+
 # Release Notes - Other
 
 ## UI
