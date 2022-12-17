@@ -17,9 +17,16 @@ namespace KitchenLib
 				CLinkedView linkedView;
 				Require<CLinkedView>(entity, out linkedView);
 
-				ApplyUpdates(linkedView.Identifier, new Action<EntityManagerPassView.ResponceData>(delegate (EntityManagerPassView.ResponceData data)
+				ApplyUpdates(linkedView.Identifier, (data) =>
 				{
-				}), true);
+					foreach (string command in data.commands)
+					{
+						if (command.ToLower().Equals("spawn hob"))
+						{
+							//Spawn a hob
+						}
+					}
+				}, false);
 			}
 		}
 
