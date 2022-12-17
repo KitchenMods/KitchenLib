@@ -45,7 +45,7 @@
       <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\KitchenMode.dll</HintPath>
     </Reference>
     <Reference Include="KitchenMods">
-      <HintPath>F:\SteamLibrary\steamapps\common\PlateUp\PlateUp\PlateUp_Data\Managed\KitchenMods.dll</HintPath>
+      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\KitchenMods.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader">
       <HintPath>..\..\..\..\Libraries\MelonLoader\MelonLoader.dll</HintPath>
