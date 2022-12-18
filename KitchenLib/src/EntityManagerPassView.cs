@@ -6,12 +6,12 @@ using System;
 
 namespace KitchenLib
 {
-	public class EntityManagerPassView : ResponsiveViewSystemBase<EntityManagerPassView.ViewData, EntityManagerPassView.ResponceData>
+	public class CommandSystem : ResponsiveViewSystemBase<CommandSystem.ViewData, CommandSystem.ResponceData>
 	{
 		protected override void OnUpdate()
 		{
 			var Entities = GetEntityQuery(new QueryHelper()
-					.All(typeof(EntityManagerPassView.ViewData)));
+					.All(typeof(CommandSystem.ViewData)));
 			foreach (var entity in Entities.ToEntityArray(Allocator.TempJob))
 			{
 				CLinkedView linkedView;
@@ -30,14 +30,14 @@ namespace KitchenLib
 			}
 		}
 
-		public struct ViewData : IViewData, IViewResponseData, IViewData.ICheckForChanges<EntityManagerPassView.ViewData>, IRollUp
+		public struct ViewData : IViewData, IViewResponseData, IViewData.ICheckForChanges<CommandSystem.ViewData>, IRollUp
 		{
 			public IUpdatableObject GetRelevantSubview(IObjectView view)
 			{
 				return view.GetSubView<CrateView>();
 			}
 
-			public bool IsChangedFrom(EntityManagerPassView.ViewData check)
+			public bool IsChangedFrom(CommandSystem.ViewData check)
 			{
 				return false;
 			}
@@ -47,6 +47,20 @@ namespace KitchenLib
 		public struct ResponceData : IResponseData, IViewResponseData, IRollUp
 		{
 			public List<string> commands;
+		}
+	}
+
+	public class CommandView : ResponsiveObjectView<CommandSystem.ViewData, CommandSystem.ResponceData>
+	{
+		public override bool HasStateUpdate(out IResponseData state)
+		{
+			//Just here to prevent errors at the moment
+			state = null;
+			return false;
+		}
+
+		protected override void UpdateData(CommandSystem.ViewData data)
+		{
 		}
 	}
 
