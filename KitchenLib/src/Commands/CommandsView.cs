@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Entities;
+using MessagePack;
 
 namespace KitchenLib.Commands
 {
 	public class CommandManager : ResponsiveObjectView<CommandManager.ViewData, CommandManager.ResponseData>
 	{
-		protected override void UpdateData(ViewData data)
-		{
-		}
+		protected override void UpdateData(ViewData data) { }
 
 		public class UpdateView : ResponsiveViewSystemBase<CommandManager.ViewData, CommandManager.ResponseData>
 		{
@@ -49,6 +48,7 @@ namespace KitchenLib.Commands
 
 		private CommandManager.ResponseData Response;
 
+		[MessagePackObject]
 		public struct ViewData : IViewData, IViewResponseData, IViewData.ICheckForChanges<CommandManager.ViewData>
 		{
 			public bool IsChangedFrom(CommandManager.ViewData check)
@@ -56,8 +56,10 @@ namespace KitchenLib.Commands
 				return true;
 			}
 		}
+		[MessagePackObject]
 		public struct ResponseData : IResponseData, IViewResponseData
 		{
+			[Key(0)]
 			public Dictionary<int, string> Commands;
 		}
 	}

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
@@ -52,6 +52,9 @@
     </Reference>
     <Reference Include="MessagePack">
       <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\MessagePack.dll</HintPath>
+    </Reference>
+    <Reference Include="MessagePack.Annotations">
+      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\MessagePack.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Serialization">
       <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Sirenix.Serialization.dll</HintPath>
