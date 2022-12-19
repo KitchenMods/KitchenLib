@@ -274,4 +274,10 @@ v0.3.1
 
 - Fixed `OnInitialise()` being called too early
 
+## Utilities
+
+### VariousUtils
+
+- Added `GetID(string name)` to generate a random unique ID.
+
 # Release Notes - Other
