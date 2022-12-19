@@ -263,3 +263,9 @@ v0.3.0
 ## UI
 
 - Fixed Mods menu not displaying mods when using the Workshop loader.
+
+v0.3.1
+
+# Release Notes - API Related
+
+# Release Notes - Other
