@@ -161,25 +161,29 @@ namespace KitchenLib
 		protected virtual void OnPostInject() { }
 		protected virtual void OnPreInject() { }
 
-		public override void PostActivate(Mod mod)
+		public override void PostActivate(Mod mod) //IModInitializer
 		{
 			OnPostActivate(mod);
-			OnInitialise();
 		}
 
-		public override void PostInject()
+		public override void PostInject() //IModInitializer
 		{
 			OnPostInject();
 		}
 
-		public override void PreInject()
+		public override void PreInject() //IModInitializer
 		{
 			OnPreInject();
 		}
 
-		protected override void OnUpdate()
+		protected override void OnUpdate() //IModSystem
 		{
 			OnFrameUpdate();
+		}
+
+		protected override void Initialise() //IModSystem
+		{
+			OnInitialise();
 		}
 #endif
 
