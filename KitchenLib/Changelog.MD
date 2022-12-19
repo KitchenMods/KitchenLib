@@ -268,6 +268,12 @@ v0.3.1
 
 # Release Notes - API Related
 
+## Base Classes
+
+### BaseMod
+
+- Fixed `OnInitialise()` being called too early
+
 ## Utilities
 
 ### VariousUtils
