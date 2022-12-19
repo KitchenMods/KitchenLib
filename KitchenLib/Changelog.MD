@@ -268,4 +268,10 @@ v0.3.1
 
 # Release Notes - API Related
 
+## Utilities
+
+### VariousUtils
+
+- Added `GetID(string name)` to generate a random unique ID.
+
 # Release Notes - Other
