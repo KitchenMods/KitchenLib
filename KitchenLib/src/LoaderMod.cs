@@ -25,6 +25,7 @@ namespace KitchenLib
 		public abstract void PostInject();
 		public abstract void PreInject();
 		protected override void OnUpdate() { }
+		protected override void Initialise() { }
 	}
 #endif
 }
