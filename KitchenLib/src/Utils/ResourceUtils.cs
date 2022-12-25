@@ -11,6 +11,13 @@ namespace KitchenLib.Utils
 {
     public class ResourceUtils
     {
+		public static Texture2D LoadTextureFromBase64(string base64)
+		{
+			byte[] bytes = Convert.FromBase64String(base64);
+			Texture2D image = LoadTextureRaw(bytes);
+			return image;
+		}
+		
         public static Texture2D LoadTextureRaw(byte[] file)
         {
             if (file.Count() > 0)

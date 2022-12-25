@@ -205,5 +205,12 @@ namespace KitchenLib
 			T preference = new T();
 			return PreferenceUtils.Register<T>(modID, key, name);
 		}
+
+		public Material AddMaterial<T>() where T : CustomBaseMaterial, new()
+		{
+			T material = new T();
+			material.ConvertMaterial(out Material newMaterial);
+			return CustomMaterials.AddMaterial(newMaterial.name, newMaterial);
+		}
 	}
 }

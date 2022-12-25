@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using KitchenData;
+using KitchenLib.Customs;
 
 namespace KitchenLib.Utils
 {
@@ -76,5 +77,15 @@ namespace KitchenLib.Utils
             else
                 return null;
         }
+
+		public static Material GetCustomMaterial(string materialName)
+		{
+			return CustomMaterials.CustomMaterialsIndex[materialName];
+		}
+
+		public static void LoadMaterialsFromBundle(AssetBundle bundle)
+		{
+			//
+		}
     }
 }
