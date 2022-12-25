@@ -42,7 +42,7 @@ namespace KitchenLib
 #else
 		protected override void OnPostActivate(Mod mod)
 		{
-			GenerateReferences();
+			//GenerateReferences();
 			SetupMenus();
 			CustomSimpleTransparent x = new CustomSimpleTransparent();
 			x.Name = "";
