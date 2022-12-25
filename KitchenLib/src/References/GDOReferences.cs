@@ -1,4 +1,4 @@
-﻿namespace KitchenLib.References
+﻿namespace KitchenLib.Reference
 {
 	public class ApplianceReferences
 	{
@@ -245,8 +245,6 @@
 		public const int SourceCarrot = -452101383;
 
 		public const int SourceCheese = -117339838;
-
-		public const int SourceChristmasCracker = 303858729;
 
 		public const int SourceEgg = 961148621;
 
@@ -522,6 +520,24 @@
 
 		public const int TutorialFloor = -1235624607;
 
+		public const int SourceChristmasCracker = 303858729;
+
+		public const int SourceCranberry = 735786885;
+
+		public const int SourceSugar = -2133205155;
+
+		public const int BeltChristmasMap = -667884240;
+
+		public const int GrabberChristmapMap = -697441390;
+
+		public const int ShedMagicEverything = -349733673;
+
+		public const int ShedTeleportTarget = 1836107598;
+
+		public const int ShedInputPlaceholder = 369884364;
+
+		public const int ShedOutputPlaceholder = -699013948;
+
 		public const int Cobwebs = -636342486;
 
 		public const int GhostStatue = -1318523640;
@@ -542,17 +558,13 @@
 
 		public const int SourceMilk = 120342736;
 
-		public const int SourceSugar = -2133205155;
-
-		public const int SourceCranberry = 735786885;
-
 		public const int CobblestoneAutumn = -1382019219;
 
 		public const int Fencing = -1403625488;
 
 		public const int GrassAutumn = -1673904972;
 
-		public const int Rock2 = 1752654754;
+		public const int Rock1 = 1752654754;
 
 		public const int TreeAutumn = -1748395084;
 
@@ -565,6 +577,8 @@
 	}
 	public class CompositeUnlockPackReferences
 	{
+		public const int ChristmasPack = 1370599169;
+
 		public const int DefaultCompositePack = -2020288853;
 
 		public const int HalloweenPack = -839658581;
@@ -740,6 +754,14 @@
 
 		public const int OnionRings = -1745179096;
 
+		public const int Cracker = 878396172;
+
+		public const int TurkeyCranberrySauce = 1398180456;
+
+		public const int TurkeyGravy = -1460640973;
+
+		public const int TurkeyStuffing = -1243742384;
+
 		public const int CornOnCob = 1168007081;
 
 		public const int IceCreamBanana = -95393944;
@@ -769,12 +791,6 @@
 		public const int Sweetcorn = -338554380;
 
 		public const int Waffles = -1409566802;
-
-		public const int TurkeyCranberrySauce = 1398180456;
-
-		public const int TurkeyGravy = -1460640973;
-
-		public const int TurkeyStuffing = -1243742384;
 
 		public const int TurkeyBase = 1551533879;
 
@@ -1280,6 +1296,30 @@
 
 		public const int Tray = 869580494;
 
+		public const int ChristmasCracker = 749675166;
+
+		public const int CranberriesChopped = 163163953;
+
+		public const int Cranberries = 1474921248;
+
+		public const int CranberrySauce = -1788071646;
+
+		public const int Sugar = -849164789;
+
+		public const int GravyTurkeyCooked = 294281422;
+
+		public const int GravyTurkeyRaw = 1696315132;
+
+		public const int TurkeyBones = -777417645;
+
+		public const int TurkeyGravy = 1168127977;
+
+		public const int Breadcrumbs = 235356204;
+
+		public const int StuffingRaw = 1427021177;
+
+		public const int Stuffing = -352397598;
+
 		public const int CornCooked = -1640761177;
 
 		public const int CornHusk = 1075166571;
@@ -1309,8 +1349,6 @@
 		public const int SoupPumpkinCooked = 407468560;
 
 		public const int SoupPumpkinRaw = 801092248;
-
-		public const int ChristmasCracker = 749675166;
 
 		public const int NutMixtureBaked = -1945246136;
 
@@ -1479,6 +1517,12 @@
 
 		public const int TestItemGroup = 26858422;
 
+		public const int CranberrySauce = -1788071646;
+
+		public const int GravyTurkeyRaw = 1696315132;
+
+		public const int StuffingRaw = 1427021177;
+
 		public const int PiePumpkinRawBlindBaked = -677830190;
 
 		public const int PiePumpkinRaw = 1776321746;
@@ -1504,6 +1548,8 @@
 	}
 	public class LayoutProfileReferences
 	{
+		public const int LayoutProfile = -791067106;
+
 		public const int BasicLayout = 222370461;
 
 		public const int DinerLayout = -80202533;
@@ -1528,6 +1574,8 @@
 	}
 	public class ModularUnlockPackReferences
 	{
+		public const int ChristmasSpecialCard = 83496670;
+
 		public const int AutumnDishCards = -320463696;
 
 		public const int AutumnSpecialCard = -1306979157;
@@ -1574,6 +1622,12 @@
 		public const int WitchHat = 2124605287;
 
 		public const int HotDogBody = -1194011786;
+
+		public const int ElfHat = -670719672;
+
+		public const int FairyLightsHat = -223786480;
+
+		public const int SantaHat = -95220911;
 
 		public const int BeanieBlue = -999926542;
 
@@ -1763,6 +1817,16 @@
 
 		public const int OnionRings = -1745179096;
 
+		public const int ChristmasConveyors = -361249036;
+
+		public const int Cracker = 878396172;
+
+		public const int TurkeyCranberrySauce = 1398180456;
+
+		public const int TurkeyGravy = -1460640973;
+
+		public const int TurkeyStuffing = -1243742384;
+
 		public const int CustomerBursts = 1642577536;
 
 		public const int MessesSlowCustomers = -1737101581;
@@ -1852,12 +1916,6 @@
 		public const int Sweetcorn = -338554380;
 
 		public const int Waffles = -1409566802;
-
-		public const int TurkeyCranberrySauce = 1398180456;
-
-		public const int TurkeyGravy = -1460640973;
-
-		public const int TurkeyStuffing = -1243742384;
 
 		public const int TurkeyBase = 1551533879;
 
@@ -2006,6 +2064,8 @@
 	}
 	public class UnlockCardReferences
 	{
+		public const int ChristmasConveyors = -361249036;
+
 		public const int CustomerBursts = 1642577536;
 
 		public const int MessesSlowCustomers = -1737101581;
@@ -2211,6 +2271,10 @@
 	}
 	public class UnlockPackReferences
 	{
+		public const int ChristmasPack = 1370599169;
+
+		public const int ChristmasSpecialCard = 83496670;
+
 		public const int DefaultCompositePack = -2020288853;
 
 		public const int HalloweenPack = -839658581;
@@ -2232,15 +2296,15 @@
 	}
 	public class WorkshopRecipeReferences
 	{
-		public const int SameReshuffle = 1792697580;
+		public const int SameReshuffle2 = 1792697580;
 
-		public const int UpgradedintoKit = 1783705474;
+        public const int UpgradedintoKit2 = 1783705474;
 
-		public const int AnyRandom = -710212054;
+        public const int AnyRandom3 = -710212054;
 
-		public const int SameReshuffle2 = -495147897;
+        public const int SameReshuffle3 = -495147897;
 
-		public const int UseUpgradeKit = 1299921510;
+        public const int UseUpgradeKit = 1299921510;
 
 	}
 }

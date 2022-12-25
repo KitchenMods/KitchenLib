@@ -39,7 +39,8 @@ namespace KitchenLib.Customs
 		public virtual Appliance DedicatedProvider { get; internal set; }
 		public virtual ToolAttachPoint HoldPose { get { return ToolAttachPoint.Generic;}}
 		public virtual bool IsMergeableSide { get; internal set; }
-        public override void Convert(GameData gameData, out GameDataObject gameDataObject)
+		public virtual Item ExtendedDirtItem { get; internal set; }
+		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             Item result = ScriptableObject.CreateInstance<Item>();
 			Item empty = ScriptableObject.CreateInstance<Item>();
@@ -73,6 +74,7 @@ namespace KitchenLib.Customs
             if (empty.DedicatedProvider != DedicatedProvider) result.DedicatedProvider = DedicatedProvider;
             if (empty.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (empty.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
+			if (empty.ExtendedDirtItem != ExtendedDirtItem) result.ExtendedDirtItem = ExtendedDirtItem;
 
 			FieldInfo processes = ReflectionUtils.GetField<Item>("Processes");
 

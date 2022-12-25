@@ -281,3 +281,21 @@ v0.3.1
 - Added `GetID(string name)` to generate a random unique ID.
 
 # Release Notes - Other
+
+v0.3.2
+
+# Release Notes - API Related
+
+## Base Classes
+
+### CustomGardenProfile
+
+- Removed `List<Item> Spawns`
+- Added `List<GardenProfile.SpawnProbibility> Spawns`
+
+### CustomItem
+
+- Added `Item ExtendedDirtItem`
+
+## References
+- Updated references to contain new fields.

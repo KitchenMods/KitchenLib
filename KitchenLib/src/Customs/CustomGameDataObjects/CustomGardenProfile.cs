@@ -8,7 +8,7 @@ namespace KitchenLib.Customs
     public abstract class CustomGardenProfile : CustomGameDataObject
     {
 		public virtual Appliance SpawnHolder { get; internal set; }
-		public virtual List<Item> Spawns { get { return new List<Item>(); } }
+		public virtual List<GardenProfile.SpawnProbability> Spawns { get { return new List<GardenProfile.SpawnProbability>(); } }
 
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
