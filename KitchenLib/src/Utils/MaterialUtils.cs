@@ -82,10 +82,5 @@ namespace KitchenLib.Utils
 		{
 			return CustomMaterials.CustomMaterialsIndex[materialName];
 		}
-
-		public static void LoadMaterialsFromBundle(AssetBundle bundle)
-		{
-			//
-		}
     }
 }

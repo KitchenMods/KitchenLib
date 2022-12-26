@@ -327,3 +327,13 @@ v0.3.3
 
 - Added `Material CustomMaterials.GetCustomMaterial(string materialName)`
 - Added `Material CustomMaterials.LoadMaterialFromJson(string json)`
+
+## Utilities
+
+### MaterialUtils
+
+- Added `Material GetCustomMaterial(string materialName)`
+
+### ResourceUtils
+
+- Added `Texture2D LoadTextureFromBase64(string base64)`
