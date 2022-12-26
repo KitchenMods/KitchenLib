@@ -2,11 +2,15 @@ using System.Reflection;
 using KitchenLib.Event;
 using Kitchen;
 using KitchenData;
-using Unity.Entities;
-using KitchenLib.Utils;
 using KitchenMods;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using KitchenLib.DevUI;
+using KitchenLib.UI;
+using System.Linq;
+using System.CodeDom;
+using Newtonsoft.Json;
 using KitchenLib.Customs;
 
 #if MELONLOADER
@@ -30,8 +34,10 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.3.2";
+		public const string MOD_VERSION = "0.3.3";
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.2";
+
+		public static AssetBundle bundle;
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
 
 #if !WORKSHOP
@@ -44,12 +50,12 @@ namespace KitchenLib
 		{
 			//GenerateReferences();
 			SetupMenus();
-			CustomSimpleTransparent x = new CustomSimpleTransparent();
-			x.Name = "";
-			x._ColorW = 1;
-			x._ColorX = 1;
-			x._ColorY = 1;
-			x._ColorZ = 1;
+			RegisterMenu<MaterialsUI>();
+		}
+		protected override void OnInitialise()
+		{
+			GameObject go = new GameObject();
+			go.AddComponent<DevUIController>();
 		}
 #endif
 
@@ -86,7 +92,7 @@ namespace KitchenLib
 			Events.BuildGameDataEvent += (s, args) =>
 			{
 				List<string> classGenerator = new List<string>();
-				classGenerator.Add("namespace KitchenLib.Reference");
+				classGenerator.Add("namespace KitchenLib.References");
 				classGenerator.Add("{");
 
 				GenerateClass<Appliance>(ref classGenerator, args.gamedata);

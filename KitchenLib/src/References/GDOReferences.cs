@@ -1,4 +1,4 @@
-﻿namespace KitchenLib.Reference
+﻿namespace KitchenLib.References
 {
 	public class ApplianceReferences
 	{

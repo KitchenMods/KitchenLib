@@ -299,3 +299,31 @@ v0.3.2
 
 ## References
 - Updated references to contain new fields.
+
+v0.3.3
+
+# Release Notes - API Related
+
+## Base Classes
+
+### BaseMod
+
+- Added `AddCustomMaterial<CustomBaseMaterial>()`
+- Added `AddMaterial<Material>()`
+- Added `AddMaterial(Material material)`
+- Added `RegisterMenu<BaseUI>()`
+
+### BaseUI
+
+- Added `BaseUI`
+
+## References
+
+- Fixed `References` name being incorrect.
+
+## Materials
+
+### CustomMaterials
+
+- Added `Material CustomMaterials.GetCustomMaterial(string materialName)`
+- Added `Material CustomMaterials.LoadMaterialFromJson(string json)`

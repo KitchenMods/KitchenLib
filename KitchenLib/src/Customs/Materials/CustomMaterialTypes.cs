@@ -4,7 +4,7 @@ using KitchenLib.Utils;
 
 namespace KitchenLib.Customs
 {
-	public abstract class CustomBaseMaterial
+	public class CustomBaseMaterial
 	{
 		public int MaterialType = 0;
 		/*
@@ -13,7 +13,7 @@ namespace KitchenLib.Customs
 		 * 2 = Flat Image
 		 */
 
-		public abstract void ConvertMaterial(out Material material);
+		public virtual void ConvertMaterial(out Material material) { material = null; }
 	}
 	public class CustomSimpleFlat : CustomBaseMaterial
 	{
@@ -54,7 +54,7 @@ namespace KitchenLib.Customs
 			result.SetInt("_Highlight", _Highlight);
 			
 			if (_OverlayBase64 != "" && _OverlayBase64 != String.Empty)
-				result.SetTexture("_Image", ResourceUtils.LoadTextureFromBase64(_OverlayBase64));
+				result.SetTexture("_Overlay", ResourceUtils.LoadTextureFromBase64(_OverlayBase64));
 			result.SetFloat("_HasTextureOverlay", _HasTextureOverlay);
 			if (_HasTextureOverlay == 0)
 				result.DisableKeyword("_HASTEXTUREOVERLAY_ON");
