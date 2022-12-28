@@ -338,7 +338,7 @@ v0.3.3
 
 - Added `Texture2D LoadTextureFromBase64(string base64)`
 
-v 0.3.4
+v0.3.4
 
 # Release Notes - API Related
 
