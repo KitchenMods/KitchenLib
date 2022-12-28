@@ -337,3 +337,11 @@ v0.3.3
 ### ResourceUtils
 
 - Added `Texture2D LoadTextureFromBase64(string base64)`
+
+v 0.3.4
+
+# Release Notes - API Related
+
+## Preferences
+
+- Fixed a bug causing Preferences to be loaded incorrectly.
