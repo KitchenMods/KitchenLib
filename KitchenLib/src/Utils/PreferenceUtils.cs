@@ -37,14 +37,6 @@ namespace KitchenLib.Utils
 
         public static void Load(string file = "UserData/KitchenLib/preferences.dat")
         {
-			if (File.Exists(file))
-			{
-				ReadFromFile(file);
-				File.Delete(file);
-				file = Path.Combine(Application.persistentDataPath, file);
-				Save(file);
-				return;
-			}
 			file = Path.Combine(Application.persistentDataPath, file);
             if (File.Exists(file))
                 ReadFromFile(file);
@@ -57,8 +49,9 @@ namespace KitchenLib.Utils
             #else
                 using(var stream = new FileStream(file, FileMode.Open, FileAccess.Read))
             #endif
-            using(var reader = new BinaryReader(stream)) {		
-			    Preferences = new Dictionary<string, BasePreference>();
+            using(var reader = new BinaryReader(stream)) {
+				if (Preferences == null)
+					Preferences = new Dictionary<string, BasePreference>();
 			
 			    byte[] magicBytes = reader.ReadBytes(4);
 				if (magicBytes.Length == 4)
@@ -80,9 +73,9 @@ namespace KitchenLib.Utils
                     if (pref != null)
 					{
                         if (Preferences.ContainsKey(pref.ModID + ":" + pref.Key))
-                            Preferences[pref.ModID + ":" + pref.Key] = pref;
+							Preferences[pref.ModID + ":" + pref.Key] = pref;
                         else
-				            Preferences.Add(pref.ModID + ":" + pref.Key, pref);	
+							Preferences.Add(pref.ModID + ":" + pref.Key, pref);	
 					}
 			    }
 		    }
