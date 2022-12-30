@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using KitchenMods;
 using System;
 using System.Reflection;
-using Harmony;
 
 namespace KitchenLib
 {
