@@ -345,3 +345,22 @@ v0.3.4
 ## Preferences
 
 - Fixed a bug causing Preferences to be loaded incorrectly.
+
+v0.3.5
+
+# Release Notes - API Related
+
+## Base Classes
+
+### CustomLocalisedGameDataObject
+
+- Added `LocalisationObject<T> Info`
+- `CustomAppliance` now inherits from `CustomLocalisedGameDataObject<ApplianceInfo>`
+- `CustomEffectRepresentation` now inherits from `CustomLocalisedGameDataObject<EffectInfo>`
+- `CustomPlayerCosmetic` now inherits from `CustomLocalisedGameDataObject<CosmeticInfo>`
+- `CustomResearch` now inherits from `CustomLocalisedGameDataObject<ResearchLocalisation>`
+- `CustomUnlock` now inherits from `CustomLocalisedGameDataObject<UnlockInfo>`
+
+## CustomItemGroup
+
+- Fixed `Processes` not being set correctly.
