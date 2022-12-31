@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomUnlock : CustomGameDataObject
+    public abstract class CustomUnlock : CustomLocalisedGameDataObject<UnlockInfo>
     {
 		public virtual Unlock.RewardLevel ExpReward { get { return Unlock.RewardLevel.Medium; } }
 		public virtual bool IsUnlockable { get { return true; } }

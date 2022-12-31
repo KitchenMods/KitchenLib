@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomEffectRepresentation : CustomGameDataObject
+    public abstract class CustomEffectRepresentation : CustomLocalisedGameDataObject<EffectInfo>
     {
 		public virtual string Name { get; internal set; }
 		public virtual string Description { get; internal set; }
@@ -22,8 +22,9 @@ namespace KitchenLib.Customs
             if (empty.Name != Name) result.Name = Name;
             if (empty.Description != Description) result.Description = Description;
             if (empty.Icon != Icon) result.Icon = Icon;
+			if (empty.Info != Info) result.Info = Info;
 
-            gameDataObject = result;
+			gameDataObject = result;
         }
     }
 }
