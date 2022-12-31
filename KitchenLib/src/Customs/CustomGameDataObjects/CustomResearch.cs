@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomResearch : CustomGameDataObject
+    public abstract class CustomResearch : CustomLocalisedGameDataObject<ResearchLocalisation>
     {
 		public virtual int RequiredResearch { get; internal set; }
 		public virtual List<IUpgrade> Rewards { get { return new List<IUpgrade>(); } }
@@ -25,8 +25,9 @@ namespace KitchenLib.Customs
             if (empty.Rewards != Rewards) result.Rewards = Rewards;
             if (empty.EnablesResearchOf != EnablesResearchOf) result.EnablesResearchOf = EnablesResearchOf;
             if (empty.RequiresForResearch != RequiresForResearch) result.RequiresForResearch = RequiresForResearch;
+			if (empty.Info != Info) result.Info = Info;
 
-            gameDataObject = result;
+			gameDataObject = result;
         }
     }
 }

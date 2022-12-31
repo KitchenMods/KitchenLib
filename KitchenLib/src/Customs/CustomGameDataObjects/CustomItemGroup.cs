@@ -57,7 +57,7 @@ namespace KitchenLib.Customs
 			FieldInfo processes = ReflectionUtils.GetField<Item>("Processes");
 
 			if (sets.GetValue(empty) != Sets) sets.SetValue(result, Sets);
-			if (processes.GetValue(empty) != Sets) processes.SetValue(result, Processes);
+			if (processes.GetValue(empty) != Processes) processes.SetValue(result, Processes);
 
 			gameDataObject = result;
         }

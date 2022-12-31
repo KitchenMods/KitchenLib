@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomPlayerCosmetic : CustomGameDataObject
+    public abstract class CustomPlayerCosmetic : CustomLocalisedGameDataObject<CosmeticInfo>
     {
 		public virtual CosmeticType CosmeticType { get; internal set; }
         public virtual List<RestaurantSetting> CustomerSettings { get { return new List<RestaurantSetting>(); } }
@@ -29,8 +29,9 @@ namespace KitchenLib.Customs
             if (empty.IsDefault != IsDefault) result.IsDefault = IsDefault;
             if (empty.BlockHats != BlockHats) result.BlockHats = BlockHats;
             if (empty.Visual != Visual) result.Visual = Visual;
+			if (empty.Info != Info) result.Info = Info;
 
-            gameDataObject = result ;
+			gameDataObject = result ;
         }
     }
 }

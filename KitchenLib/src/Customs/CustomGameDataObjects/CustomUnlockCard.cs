@@ -35,8 +35,9 @@ namespace KitchenLib.Customs
 
 			if (hardcodedRequirements.GetValue(empty) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
 			if (hardcodedBlockers.GetValue(empty) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
+			if (empty.Info != Info) result.Info = Info;
 
-            gameDataObject = result;
+			gameDataObject = result;
         }
     }
 }

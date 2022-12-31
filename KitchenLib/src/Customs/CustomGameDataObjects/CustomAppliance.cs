@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomAppliance : CustomGameDataObject
+    public abstract class CustomAppliance : CustomLocalisedGameDataObject<ApplianceInfo>
     {
 		public virtual GameObject Prefab { get; internal set;}
 		public virtual GameObject HeldAppliancePrefab { get; internal set;}
@@ -98,8 +98,8 @@ namespace KitchenLib.Customs
             if (empty.Description != Description) result.Description = Description;
             if (empty.Sections != Sections) result.Sections = Sections;
             if (empty.Tags != Tags) result.Tags = Tags;
-
-            result.Info = new LocalisationObject<ApplianceInfo>();
+            if (empty.Info != Info) result.Info = Info;
+			
             gameDataObject = result;
         }
     }
