@@ -8,56 +8,56 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomAppliance : CustomLocalisedGameDataObject<ApplianceInfo>
     {
-		public virtual GameObject Prefab { get; internal set;}
-		public virtual GameObject HeldAppliancePrefab { get; internal set;}
-		public virtual List<Appliance.ApplianceProcesses> Processes { get { return new List<Appliance.ApplianceProcesses>(); } }
-		public virtual List<IApplianceProperty> Properties { get { return new List<IApplianceProperty>(); } }
-		public virtual IEffectRange EffectRange { get; internal set;}
-		public virtual IEffectCondition EffectCondition { get; internal set;}
-		public virtual IEffectType EffectType { get; internal set;}
-		public virtual EffectRepresentation EffectRepresentation { get; internal set;}
-		public virtual bool IsNonInteractive { get; internal set;}
-		public virtual OccupancyLayer Layer { get; internal set;}
-		public virtual bool ForceHighInteractionPriority { get; internal set;}
-		public virtual int PurchaseCost { get { return 0; } }
-		public virtual EntryAnimation EntryAnimation { get; internal set;}
-		public virtual ExitAnimation ExitAnimation { get; internal set;}
-		public virtual bool SkipRotationAnimation { get; internal set;}
-		public virtual bool IsPurchasable { get { return false; } }
-		public virtual bool IsPurchasableAsUpgrade { get; internal set;}
-		public virtual DecorationType ThemeRequired { get; internal set;}
-		public virtual ShoppingTags ShoppingTags { get { return ShoppingTags.None; } }
-		public virtual RarityTier RarityTier { get { return RarityTier.Common; } }
-		public virtual PriceTier PriceTier { get { return PriceTier.Medium; } }
-		public virtual ShopRequirementFilter ShopRequirementFilter { get; internal set;}
-		public virtual List<Appliance> RequiresForShop { get { return new List<Appliance>(); } }
-		public virtual List<Process> RequiresProcessForShop { get { return new List<Process>(); } }
-		public virtual bool StapleWhenMissing { get; internal set;}
-		public virtual bool SellOnlyAsDuplicate { get; internal set;}
-		public virtual bool PreventSale { get; internal set;}
-		public virtual List<Appliance> Upgrades { get { return new List<Appliance>(); } }
-		public virtual bool IsAnUpgrade { get; internal set;}
-		public virtual bool IsNonCrated { get; internal set;}
-		public virtual Item CrateItem { get; internal set;}
-		public virtual string Name { get { return "Appliance"; } }
-		public virtual string Description { get { return "A little something for your restaurant"; } }
-		public virtual List<Appliance.Section> Sections { get { return new List<Appliance.Section>(); } }
-		public virtual List<string> Tags { get { return new List<string>(); } }
+        public virtual GameObject Prefab { get; internal set; }
+        public virtual GameObject HeldAppliancePrefab { get; internal set; }
+        public virtual List<Appliance.ApplianceProcesses> Processes { get; internal set; }
+        public virtual List<IApplianceProperty> Properties { get; internal set; }
+        public virtual IEffectRange EffectRange { get; internal set; }
+        public virtual IEffectCondition EffectCondition { get; internal set; }
+        public virtual IEffectType EffectType { get; internal set; }
+        public virtual EffectRepresentation EffectRepresentation { get; internal set; }
+        public virtual bool IsNonInteractive { get; internal set; }
+        public virtual OccupancyLayer Layer { get; internal set; }
+        public virtual bool ForceHighInteractionPriority { get; internal set; }
+        public virtual int PurchaseCost { get; internal set; } = 0;
+        public virtual EntryAnimation EntryAnimation { get; internal set; }
+        public virtual ExitAnimation ExitAnimation { get; internal set; }
+        public virtual bool SkipRotationAnimation { get; internal set; }
+        public virtual bool IsPurchasable { get; internal set; } = false;
+        public virtual bool IsPurchasableAsUpgrade { get; internal set; }
+        public virtual DecorationType ThemeRequired { get; internal set; }
+        public virtual ShoppingTags ShoppingTags { get; internal set; }
+        public virtual RarityTier RarityTier { get; internal set; }
+        public virtual PriceTier PriceTier { get; internal set; }
+        public virtual ShopRequirementFilter ShopRequirementFilter { get; internal set; }
+        public virtual List<Appliance> RequiresForShop { get { return new List<Appliance>(); } }
+        public virtual List<Process> RequiresProcessForShop { get { return new List<Process>(); } }
+        public virtual bool StapleWhenMissing { get; internal set; }
+        public virtual bool SellOnlyAsDuplicate { get; internal set; }
+        public virtual bool PreventSale { get; internal set; }
+        public virtual List<Appliance> Upgrades { get { return new List<Appliance>(); } }
+        public virtual bool IsAnUpgrade { get; internal set; }
+        public virtual bool IsNonCrated { get; internal set; }
+        public virtual Item CrateItem { get; internal set; }
+        public virtual string Name { get { return "Appliance"; } }
+        public virtual string Description { get { return "A little something for your restaurant"; } }
+        public virtual List<Appliance.Section> Sections { get { return new List<Appliance.Section>(); } }
+        public virtual List<string> Tags { get { return new List<string>(); } }
 
-		public virtual bool ForceIsRotationPossible() { return false; }
-		public virtual bool IsRotationPossible(InteractionData data) { return true; }
-		public virtual bool PreRotate(InteractionData data, bool isSecondary = false) { return false; }
-		public virtual void PostRotate(InteractionData data) { }
-		public virtual bool ForceIsInteractionPossible() { return false; }
-		public virtual bool IsInteractionPossible(InteractionData data) { return true; }
-		public virtual bool PreInteract(InteractionData data, bool isSecondary = false) { return false; }
-		public virtual void PostInteract(InteractionData data) { }
+        public virtual bool ForceIsRotationPossible() { return false; }
+        public virtual bool IsRotationPossible(InteractionData data) { return true; }
+        public virtual bool PreRotate(InteractionData data, bool isSecondary = false) { return false; }
+        public virtual void PostRotate(InteractionData data) { }
+        public virtual bool ForceIsInteractionPossible() { return false; }
+        public virtual bool IsInteractionPossible(InteractionData data) { return true; }
+        public virtual bool PreInteract(InteractionData data, bool isSecondary = false) { return false; }
+        public virtual void PostInteract(InteractionData data) { }
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             Appliance result = ScriptableObject.CreateInstance<Appliance>();
-			Appliance empty = ScriptableObject.CreateInstance<Appliance>();
+            Appliance empty = ScriptableObject.CreateInstance<Appliance>();
 
-			if (BaseGameDataObjectID != -1)
+            if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
             else
                 result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == AssetReference.Counter));
@@ -99,7 +99,7 @@ namespace KitchenLib.Customs
             if (empty.Sections != Sections) result.Sections = Sections;
             if (empty.Tags != Tags) result.Tags = Tags;
             if (empty.Info != Info) result.Info = Info;
-			
+
             gameDataObject = result;
         }
     }
