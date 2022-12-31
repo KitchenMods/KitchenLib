@@ -18,6 +18,7 @@ namespace KitchenLib
 #if BEPINEX
     public abstract class LoaderMod : BaseUnityPlugin { }
 #endif
+
 #if WORKSHOP
 	public abstract class LoaderMod : GenericSystemBase, IModInitializer, IModSystem
 	{

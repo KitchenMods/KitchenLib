@@ -15,15 +15,6 @@ namespace KitchenLib.src.ContentPack
                 new AssetBundleConverter()
             }
         };
-        internal static void Log(string message)
-        {
-            BaseMod.instance.Log(message);
-        }
-
-        internal static void Error(string message)
-        {
-            BaseMod.instance.Error(message);
-        }
     }
 
     public enum SerializationContext

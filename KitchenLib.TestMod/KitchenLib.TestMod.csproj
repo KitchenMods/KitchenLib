@@ -1,63 +1,38 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
-    <Configurations>MelonLoader;BepInEx;Workshop</Configurations>
-  </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\KitchenLib\KitchenLib.csproj" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net472</TargetFramework>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\Libraries\MelonLoader\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="BepInEx">
-      <HintPath>..\..\..\..\Libraries\BepInEx\core\BepInEx.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.Common">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Kitchen.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.GameData">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Kitchen.GameData.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.RestaurantMode">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Kitchen.RestaurantMode.dll</HintPath>
-    </Reference>
-    <Reference Include="KitchenMods">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\KitchenMods.dll</HintPath>
-    </Reference>
-    <Reference Include="MelonLoader">
-      <HintPath>..\..\..\..\Libraries\MelonLoader\MelonLoader.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Entities">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Unity.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AudioModule">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ClothModule">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.ClothModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputModule">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.InputModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\.editorconfig" Link=".editorconfig" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="BepInEx">
+			<HintPath>..\..\..\..\Libraries\BepInEx\core\BepInEx.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="\home\yariazen\.steam\debian-installation\steamapps\common\PlateUp\PlateUp\PlateUp_Data\Managed\*.dll" />
+    <Reference Include="\home\yariazen\.steam\debian-installation\steamapps\workshop\content\1599600\**\*.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Properties\Settings.Designer.cs">
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
 
 </Project>

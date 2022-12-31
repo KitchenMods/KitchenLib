@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using static KitchenLib.src.ContentPack.ContentPackUtils;
+using static KitchenLib.src.ContentPack.Logger;
 
 namespace KitchenLib.src.ContentPack
 {
@@ -25,7 +26,6 @@ namespace KitchenLib.src.ContentPack
             string WorkshopModsPath = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(path))), "workshop", "content", "1599600");
 
             string LocalModsPath = Path.Combine(Path.GetDirectoryName(path), "PlateUp", "Mods");
-
 
             // Workshop Mods
             SearchDirectories(WorkshopModsPath);

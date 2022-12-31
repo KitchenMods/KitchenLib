@@ -2,7 +2,7 @@
 using Semver;
 using System.Collections.Generic;
 using UnityEngine;
-using static KitchenLib.src.ContentPack.ContentPackUtils;
+using static KitchenLib.src.ContentPack.Logger;
 
 namespace KitchenLib.src.ContentPack
 {
