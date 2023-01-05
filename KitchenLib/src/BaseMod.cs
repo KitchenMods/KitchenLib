@@ -26,6 +26,7 @@ namespace KitchenLib
 	{
 		public string ModID = "";
 		public string ModName = "";
+		public string ModAuthor = "";
 		public string ModVersion = "";
 		public string CompatibleVersions = "";
 
@@ -68,6 +69,7 @@ namespace KitchenLib
 			instance = this;
 			ModID = modID;
 			ModName = modName;
+			ModAuthor = author;
 			ModVersion = modVersion;
 			CompatibleVersions = compatibleVersions;
 
@@ -194,8 +196,11 @@ namespace KitchenLib
 
 		protected override void Initialise() //IModSystem
 		{
-			if (isRegistered)
+			if (!ModRegistery.InitialisedMods.Contains(ModAuthor + ModID))
+			{
 				OnInitialise();
+				ModRegistery.InitialisedMods.Add(ModAuthor + ModID);
+			}
 		}
 #endif
 

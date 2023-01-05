@@ -8,6 +8,7 @@ namespace KitchenLib.Registry
 	{
 		public static Dictionary<Type, BaseMod> Registered = new Dictionary<Type, BaseMod>();
 		public static Dictionary<Type, Assembly> keyValuePairs = new Dictionary<Type, Assembly>();
+		public static List<string> InitialisedMods = new List<string>();
 
 
 		public static BaseMod Get<T>() {
