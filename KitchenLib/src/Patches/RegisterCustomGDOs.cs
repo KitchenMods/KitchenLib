@@ -30,6 +30,7 @@ namespace KitchenLib.Customs
 				try
 				{
 					gameDataObject.SetupForGame();
+					gameDataObject.Localise(Localisation.CurrentLocale, __instance.StringSubstitutions);
 					GlobalLocalisation globalLocalisation = gameDataObject as GlobalLocalisation;
 					if (globalLocalisation != null)
 					{
