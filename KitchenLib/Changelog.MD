@@ -352,6 +352,10 @@ v0.3.5
 
 ## Base Classes
 
+### BaseMod
+
+- `OnInitialise()` now only gets called once for workshop mods.
+
 ### CustomLocalisedGameDataObject
 
 - Added `LocalisationObject<T> Info`
@@ -364,3 +368,7 @@ v0.3.5
 ## CustomItemGroup
 
 - Fixed `Processes` not being set correctly.
+
+# Release Notes - Other
+
+- `BaseMod.Log()` and `BaseMod.Error()` now include the calling mod's name.
