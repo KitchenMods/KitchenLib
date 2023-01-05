@@ -12,6 +12,8 @@ using System.Linq;
 using System.CodeDom;
 using Newtonsoft.Json;
 using KitchenLib.Customs;
+using Kitchen.NetworkSupport;
+using KitchenLib.Registry;
 
 #if MELONLOADER
 using MelonLoader;
@@ -37,6 +39,9 @@ namespace KitchenLib
 		public const string MOD_VERSION = "0.3.6";
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.2";
 
+		private List<long> BlacklistedDiscordIDs = new List<long> { };
+		private List<long> BlacklistedSteamIDs = new List<long> { };
+
 		public static AssetBundle bundle;
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
 
@@ -56,6 +61,17 @@ namespace KitchenLib
 		{
 			GameObject go = new GameObject();
 			go.AddComponent<DevUIController>();
+
+			if (BlacklistedSteamIDs.Contains(SteamPlatform.Steam.Me.ID.AccountId) || BlacklistedDiscordIDs.Contains(DiscordPlatform.Discord.Me.ID))
+			{
+				foreach (BaseMod mod in ModRegistery.Registered.Values)
+				{
+					if (!mod.AllowBlacklistedUsers)
+					{
+						mod.harmonyInstance.UnpatchAll(mod.ModID);
+					}
+				}
+			}
 		}
 #endif
 

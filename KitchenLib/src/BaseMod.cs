@@ -18,6 +18,7 @@ using KitchenLib.DevUI;
 using System;
 using System.Collections.Generic;
 using KitchenMods;
+using Kitchen.NetworkSupport;
 
 namespace KitchenLib
 {
@@ -30,6 +31,8 @@ namespace KitchenLib
 		public string ModVersion = "";
 		public string CompatibleVersions = "";
 
+		public bool AllowBlacklistedUsers = false;
+
 		public static KitchenVersion version;
 		public static SemVersion semVersion;
 
@@ -38,7 +41,7 @@ namespace KitchenLib
 		private bool isRegistered = false;
 		
 #if BEPINEX || WORKSHOP
-		public static HarmonyLib.Harmony harmonyInstance;
+		public HarmonyLib.Harmony harmonyInstance;
 #endif
 		public BaseMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly) : base()
 		{
@@ -63,7 +66,7 @@ namespace KitchenLib
 			SetupMod(modID, "Unsupported Name", "Unsupported Author", modVersion, compatibleVersions, assembly);
 		}
 
-		private void SetupMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly)
+		private void SetupMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly, bool allowBlacklistedUsers = false)
 		{
 			
 			instance = this;
@@ -72,13 +75,14 @@ namespace KitchenLib
 			ModAuthor = author;
 			ModVersion = modVersion;
 			CompatibleVersions = compatibleVersions;
+			AllowBlacklistedUsers = allowBlacklistedUsers;
 
 			if (!Debug.isDebugBuild)
 				version = new KitchenVersion(Application.version);
 			else
 				version = new KitchenVersion("");
 
-			
+
 #if BEPINEX || WORKSHOP
 			if (harmonyInstance == null)
 				harmonyInstance = new HarmonyLib.Harmony(modID);

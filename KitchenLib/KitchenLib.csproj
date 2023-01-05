@@ -12,13 +12,19 @@
 
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\Libraries\MelonLoader\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\..\Libraries\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
       <HintPath>..\..\..\..\Libraries\BepInEx\core\BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="Controllers">
       <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Controllers.dll</HintPath>
+    </Reference>
+    <Reference Include="Discord">
+      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Discord.dll</HintPath>
+    </Reference>
+    <Reference Include="Facepunch.Steamworks.Win64">
+      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
     </Reference>
     <Reference Include="Kitchen.Common">
       <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Kitchen.Common.dll</HintPath>
