@@ -7,6 +7,7 @@ using KitchenMods;
 using System;
 using System.Reflection;
 using Harmony;
+using System.Xml.Linq;
 
 namespace KitchenLib
 {
@@ -15,7 +16,23 @@ namespace KitchenLib
         public ModsMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
         private List<string> modNames = new List<string>();
 
-        public override void Setup(int player_id) {
+		private static List<ModPage> modPages = new List<ModPage>
+		{
+			ModPage.LoadedMods,
+			ModPage.UntestedMods,
+			ModPage.NonKitchenLibMods
+		};
+
+		private static List<string> modPagesNames = new List<string>
+		{
+			"Loaded Mods",
+			"Untested Mods",
+			"Non-KitchenLib Mods"
+		};
+
+		private Option<ModPage> PageSelector = new Option<ModPage>(modPages, ModPage.LoadedMods, modPagesNames);
+
+		public override void Setup(int player_id) {
 
 			Dictionary<Type, BaseMod> loadedMods = new Dictionary<Type, BaseMod>();
 			Dictionary<Type, BaseMod> untestedMods = new Dictionary<Type, BaseMod>();
@@ -28,29 +45,46 @@ namespace KitchenLib
 					loadedMods.Add(modType, mod);
 				else
 					untestedMods.Add(modType, mod);
-
 				modNames.Add(mod.ModName);
-
 				modAssemblies.Add(ModRegistery.keyValuePairs[modType], ModRegistery.keyValuePairs[modType].GetName().Name + ".dll");
 			}
-
-            AddLabel("Loaded Mods");
-
-			foreach (Type modType in loadedMods.Keys)
+			PageSelector.OnChanged += delegate (object _, ModPage result)
 			{
-				BaseMod mod = loadedMods[modType];
-				AddInfo(mod.ModName + "     v" + mod.ModVersion);
-			}
+				Redraw(player_id, result, modAssemblies, untestedMods, loadedMods);
+			};
+			Redraw(player_id, ModPage.LoadedMods, modAssemblies, untestedMods, loadedMods);
+		}
 
-			AddLabel("Untested Mods");
 
-			foreach (Type modType in untestedMods.Keys)
+		private void Redraw(int player_id, ModPage mod_page, Dictionary<Assembly, string> modAssemblies, Dictionary<Type, BaseMod> untestedMods, Dictionary<Type, BaseMod> loadedMods)
+		{
+			ModuleList.Clear();
+			AddSelect<ModPage>(PageSelector);
+			if (mod_page == ModPage.LoadedMods)
 			{
-				BaseMod mod = untestedMods[modType];
-				AddInfo(mod.ModName + "     v" + mod.ModVersion);
-			}
+				AddLabel("Loaded Mods");
 
-			AddLabel("Non-KitchenLib Mods");
+				foreach (Type modType in loadedMods.Keys)
+				{
+					BaseMod mod = loadedMods[modType];
+					AddInfo(mod.ModName + "     v" + mod.ModVersion);
+				}
+			}
+			else if (mod_page == ModPage.UntestedMods)
+			{
+
+				AddLabel("Untested Mods");
+
+				foreach (Type modType in untestedMods.Keys)
+				{
+					BaseMod mod = untestedMods[modType];
+					AddInfo(mod.ModName + "     v" + mod.ModVersion);
+				}
+			}
+			else if (mod_page == ModPage.NonKitchenLibMods)
+			{
+
+				AddLabel("Non-KitchenLib Mods");
 #if MELONLOADER
             System.Collections.ObjectModel.ReadOnlyCollection<MelonLoader.MelonMod> mods = MelonLoader.MelonMod.RegisteredMelons;
 			foreach (MelonLoader.MelonMod mod in mods)
@@ -72,31 +106,38 @@ namespace KitchenLib
             }
 #endif
 #if WORKSHOP
-			
-			List<Mod> mods = ModPreload.Mods;
-			foreach (Mod mod in mods)
-			{
-				if (mod.State == ModState.PostActivated)
+
+				List<Mod> mods = ModPreload.Mods;
+				foreach (Mod mod in mods)
 				{
-					foreach (AssemblyModPack pack in mod.GetPacks<AssemblyModPack>())
+					if (mod.State == ModState.PostActivated)
 					{
-						if (!modAssemblies.ContainsValue(pack.Name))
+						foreach (AssemblyModPack pack in mod.GetPacks<AssemblyModPack>())
 						{
-							AddInfo(pack.Name.Replace(".dll", ""));
+							if (!modAssemblies.ContainsValue(pack.Name))
+							{
+								AddInfo(pack.Name.Replace(".dll", ""));
+							}
 						}
 					}
 				}
+#endif
 			}
 
-#endif
-
 			New<SpacerElement>(true);
-            New<SpacerElement>(true);
-            AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate(int i)
+			New<SpacerElement>(true);
+			AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate (int i)
 			{
 				this.RequestPreviousMenu();
 			}, 0, 1f, 0.2f);
-        }
+		}
 
     }
+
+	public enum ModPage
+	{
+		LoadedMods,
+		UntestedMods,
+		NonKitchenLibMods
+	}
 }

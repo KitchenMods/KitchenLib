@@ -12,7 +12,7 @@ using System.Linq.Expressions;
 
 namespace KitchenLib
 {
-    public class ModsPreferencesMenu<T> : Menu<T>
+    public class ModsPreferencesMenu<T> : KLMenu<T>
     {
         public ModsPreferencesMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
 

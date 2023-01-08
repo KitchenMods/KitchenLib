@@ -264,6 +264,10 @@ namespace KitchenLib.UI
 
 		private static string imgtob64(Texture tex)
 		{
+			if (tex == null)
+				return "";
+			if (!tex.isReadable)
+				return "";
 			string enc = Convert.ToBase64String(((Texture2D)tex).EncodeToPNG());
 			return enc;
 		}
