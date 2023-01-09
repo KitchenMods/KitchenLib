@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
 		<Configurations>MelonLoader;BepInEx;Workshop</Configurations>
 		<AssemblyName>$(MSBuildProjectName)-$(Configuration)</AssemblyName>
 		<LangVersion>latest</LangVersion>
+		<NoWarn>CS0114</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -12,24 +12,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="BepInEx">
-			<HintPath>..\..\..\..\Libraries\BepInEx\core\BepInEx.dll</HintPath>
-		</Reference>
+		<PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.4.16" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<Reference Include="\home\yariazen\.steam\debian-installation\steamapps\common\PlateUp\PlateUp\PlateUp_Data\Managed\*.dll" />
-		<Reference Include="\home\yariazen\.steam\debian-installation\steamapps\workshop\content\1599600\**\*.dll" />
-	</ItemGroup>
-
-	<Target Name="DeployPack" AfterTargets="Build">
-		<Message Text="Running DeployPack target..." />
-		<ItemGroup>
-			<_FilesToCopy Include="$(ProjectDir)/bin/Workshop/net472/KitchenLib-Workshop.dll" />
-		</ItemGroup>
-
-		<Copy SourceFiles="@(_FilesToCopy)" DestinationFiles="@(_FilesToCopy->'D:\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp\Mods\KitchenLib-Workshop\%(RecursiveDir)%(Filename)%(Extension)')" />
-	</Target>
 
 	<ItemGroup>
 		<Compile Update="Properties\Settings.Designer.cs">
@@ -45,5 +29,4 @@
 			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
 		</None>
 	</ItemGroup>
-
 </Project>

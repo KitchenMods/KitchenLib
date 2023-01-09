@@ -1,0 +1,9 @@
+﻿// Appliance
+IApplianceProperty
+IEffectRange
+IEffectCondition
+IEffectType
+
+IItemProperty
+
+

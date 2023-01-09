@@ -14,18 +14,18 @@ namespace KitchenLib.Customs
 
 		[Obsolete("Use the Hashset<Item.ItemProcess>Processes instead")]
 		public virtual List<Item.ItemProcess> DerivedProcesses { get { return new List<Item.ItemProcess>(); } }
-		public virtual List<Item.ItemProcess> Processes { get { return new List<Item.ItemProcess>(); } }
+		public virtual List<Item.ItemProcess> Processes { get; internal set; } = new List<Item.ItemProcess>();
 		public virtual List<IItemProperty> Properties { get { return new List<IItemProperty>(); } }
 		public virtual float ExtraTimeGranted { get; internal set; }
-		public virtual ItemValue ItemValue { get { return ItemValue.Small; } }
-		public virtual int Reward { get { return 1; } }
+		public virtual ItemValue ItemValue { get; internal set; } = ItemValue.Small;
+		public virtual int Reward { get; internal set; } = 1;
 		public virtual Item DirtiesTo  { get; internal set; }
-		public virtual List<Item> MayRequestExtraItems { get { return new List<Item>(); } }
+		public virtual List<Item> MayRequestExtraItems { get; internal set; } = new List<Item>();
 		public virtual int MaxOrderSharers { get; internal set; }
 		public virtual Item SplitSubItem { get; internal set; }
-		public virtual int SplitCount { get { return 0; } }
-		public virtual float SplitSpeed { get { return 1f; } }
-		public virtual List<Item> SplitDepletedItems { get { return new List<Item>(); } }
+		public virtual int SplitCount { get; internal set; } = 0;
+		public virtual float SplitSpeed { get; internal set; } = 1f;
+		public virtual List<Item> SplitDepletedItems { get; internal set; } = new List<Item>();
 		public virtual bool AllowSplitMerging { get; internal set; }
 		public virtual bool PreventExplicitSplit { get; internal set; }
 		public virtual bool SplitByComponents { get; internal set; }
@@ -37,7 +37,7 @@ namespace KitchenLib.Customs
 		public virtual ItemCategory ItemCategory { get; internal set; }
 		public virtual ItemStorage ItemStorageFlags { get; internal set; }
 		public virtual Appliance DedicatedProvider { get; internal set; }
-		public virtual ToolAttachPoint HoldPose { get { return ToolAttachPoint.Generic;}}
+		public virtual ToolAttachPoint HoldPose { get; internal set; } = ToolAttachPoint.Generic;
 		public virtual bool IsMergeableSide { get; internal set; }
 		public virtual Item ExtendedDirtItem { get; internal set; }
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)

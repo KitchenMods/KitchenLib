@@ -1,23 +1,20 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using Semver;
-using System;
 
 namespace KitchenLib.src.ContentPack.JsonConverters
 {
-    public class SemVersionConverter : CustomCreationConverter<SemVersion>
+    public class SemVersionConverter : GenericCustomConverter<SemVersion>
     {
-        private string semver;
-
-        public override SemVersion Create(Type objectType)
+        public override object Create(string str)
         {
-            return SemVersion.Parse(semver, SemVersionStyles.Any);
+            return SemVersion.Parse(str, SemVersionStyles.Any);
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            semver = (string)reader.Value;
-            return base.ReadJson(reader, objectType, existingValue, serializer);
+            JToken jToken = JToken.FromObject(((SemVersion)value).ToVersion().ToString());
+            jToken.WriteTo(writer);
         }
     }
 }

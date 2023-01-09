@@ -26,9 +26,9 @@ namespace KitchenLib.Customs
         public virtual bool IsPurchasable { get; internal set; } = false;
         public virtual bool IsPurchasableAsUpgrade { get; internal set; }
         public virtual DecorationType ThemeRequired { get; internal set; }
-        public virtual ShoppingTags ShoppingTags { get; internal set; }
-        public virtual RarityTier RarityTier { get; internal set; }
-        public virtual PriceTier PriceTier { get; internal set; }
+        public virtual ShoppingTags ShoppingTags { get; internal set; } = ShoppingTags.None;
+        public virtual RarityTier RarityTier { get; internal set; } = RarityTier.Common;
+        public virtual PriceTier PriceTier { get; internal set; } = PriceTier.Medium;
         public virtual ShopRequirementFilter ShopRequirementFilter { get; internal set; }
         public virtual List<Appliance> RequiresForShop { get { return new List<Appliance>(); } }
         public virtual List<Process> RequiresProcessForShop { get { return new List<Process>(); } }

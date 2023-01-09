@@ -14,8 +14,7 @@ namespace KitchenLib.Customs
         [JsonProperty("UniqueNameID")]
         public override string UniqueNameID { get; internal set; }
         [JsonProperty("BaseGameDataObjectID")]
-        [DefaultValue(-1)]
-        public override int BaseGameDataObjectID { get; internal set; }
+        public override int BaseGameDataObjectID { get; internal set; } = -1;
         [JsonProperty("ModName")]
         public new string ModName;
         [JsonProperty("Info")]
@@ -27,14 +26,6 @@ namespace KitchenLib.Customs
         public override GameObject HeldAppliancePrefab { get; internal set; }
         [JsonProperty("Processes")]
         public new List<Appliance.ApplianceProcesses> Processes { get; internal set; }
-        [JsonProperty("Properties")]
-        public new List<IApplianceProperty> Properties { get; internal set; }
-        [JsonProperty("EffectRange")]
-        public override IEffectRange EffectRange { get; internal set; }
-        [JsonProperty("EffectCondition")]
-        public override IEffectCondition EffectCondition { get; internal set; }
-        [JsonProperty("EffectType")]
-        public override IEffectType EffectType { get; internal set; }
         [JsonProperty("EffectRepresentation")]
         public override EffectRepresentation EffectRepresentation { get; internal set; }
         [JsonProperty("IsNonInteractive")]
@@ -44,8 +35,7 @@ namespace KitchenLib.Customs
         [JsonProperty("ForceHighInteractionPriority")]
         public override bool ForceHighInteractionPriority { get; internal set; }
         [JsonProperty("PurchaseCost")]
-        [DefaultValue(0)]
-        public override int PurchaseCost { get; internal set; }
+        public override int PurchaseCost { get; internal set; } = 0;
         [JsonProperty("EntryAnimation")]
         public override EntryAnimation EntryAnimation { get; internal set; }
         [JsonProperty("ExitAnimation")]
@@ -53,21 +43,17 @@ namespace KitchenLib.Customs
         [JsonProperty("SkipRotationAnimation")]
         public override bool SkipRotationAnimation { get; internal set; }
         [JsonProperty("IsPurchasable")]
-        [DefaultValue(false)]
-        public override bool IsPurchasable { get; internal set; }
+        public override bool IsPurchasable { get; internal set; } = false;
         [JsonProperty("IsPurchasableAsUpgrade")]
         public override bool IsPurchasableAsUpgrade { get; internal set; }
         [JsonProperty("ThemeRequired")]
         public override DecorationType ThemeRequired { get; internal set; }
         [JsonProperty("ShoppingTags")]
-        [DefaultValue(ShoppingTags.None)]
-        public override ShoppingTags ShoppingTags { get; internal set; }
+        public override ShoppingTags ShoppingTags { get; internal set; } = ShoppingTags.None;
         [JsonProperty("RarityTier")]
-        [DefaultValue(RarityTier.Common)]
-        public override RarityTier RarityTier { get; internal set; }
+        public override RarityTier RarityTier { get; internal set; } = RarityTier.Common;
         [JsonProperty("PriceTier")]
-        [DefaultValue(PriceTier.Medium)]
-        public override PriceTier PriceTier { get; internal set; }
+        public override PriceTier PriceTier { get; internal set; } = PriceTier.Medium;
         [JsonProperty("ShopRequirementFilter")]
         public override ShopRequirementFilter ShopRequirementFilter {get; internal set;}
         [JsonProperty("RequiresForShop")]
@@ -97,8 +83,6 @@ namespace KitchenLib.Customs
                 base.Processes = Processes;
             if (base.Properties != Properties)
                 base.Properties = Properties;
-            if(base.RequiresForShop != RequiresForShop)
-                base.RequiresForShop = RequiresForShop;
         }
 
     }

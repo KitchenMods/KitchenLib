@@ -1,22 +1,24 @@
 ﻿using KitchenLib.src.ContentPack.Models;
+using KitchenMods;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using static KitchenLib.src.ContentPack.ContentPackUtils;
 using static KitchenLib.src.ContentPack.Logger;
 
 namespace KitchenLib.src.ContentPack
 {
-    internal class ContentPackManager
+    public class ContentPackManager
     {
-        internal static List<ContentPack> ContentPacks = new List<ContentPack>();
+        public static List<ContentPack> ContentPacks = new List<ContentPack>();
 
-        internal static ContentPack CurrentPack;
-        internal static ModChange CurrentChange;
+        public static ContentPack CurrentPack;
+        public static ModChange CurrentChange;
 
-        internal static void Preload()
+        public static void Preload()
         {
             // Get Directory Locations
             string codeBase = Assembly.GetExecutingAssembly().CodeBase;
@@ -34,10 +36,8 @@ namespace KitchenLib.src.ContentPack
             SearchDirectories(LocalModsPath);
         }
 
-        private static void SearchDirectories(string path)
+        public static void SearchDirectories(string path)
         {
-            string KitchenLibID = $"{Main.MOD_AUTHOR}.{Main.MOD_NAME}";
-
             string[] modFolders = Directory.GetDirectories(path);
             foreach (string folder in modFolders)
             {
@@ -49,6 +49,11 @@ namespace KitchenLib.src.ContentPack
                     {
                         try
                         {
+                            string KitchenLibID = $"{Main.MOD_AUTHOR}.{Main.MOD_NAME}";
+                            
+                            List<Mod> Mods = ModPreload.Mods;
+                            string ModName = Path.GetFileName(folder.TrimEnd(Path.DirectorySeparatorChar));
+
                             ModManifest Manifest = JsonConvert.DeserializeObject<ModManifest>(
                                 File.ReadAllText(Path.Combine(folder, "manifest.json")), settings
                             );
@@ -68,9 +73,10 @@ namespace KitchenLib.src.ContentPack
                             pack.ContentPackFor = Manifest.ContentPackFor;
 
                             pack.Format = Content.Format;
-                            pack.Bundle = Content.Bundle;
+                            pack.Bundle = Mods.Where(mod => mod.Name == ModName).First().GetPacks<AssetBundleModPack>().First().AssetBundles[0];
                             pack.Changes = Content.Changes;
 
+                            settings.Context = new System.Runtime.Serialization.StreamingContext(System.Runtime.Serialization.StreamingContextStates.Other, Manifest.ModName);
                             ContentPacks.Add(pack);
                         }
                         catch (Exception e)
@@ -83,10 +89,6 @@ namespace KitchenLib.src.ContentPack
                     {
                         Error($"{folder} missing content.json");
                     }
-                }
-                else
-                {
-                    Error($"{folder} missing manifest.json");
                 }
             }
         }

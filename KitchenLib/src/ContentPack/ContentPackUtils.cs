@@ -1,20 +1,30 @@
 ﻿using KitchenLib.src.ContentPack.JsonConverters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Collections.Generic;
 
 namespace KitchenLib.src.ContentPack
 {
     public class ContentPackUtils
     {
-        internal static JsonSerializerSettings settings = new JsonSerializerSettings()
+        public static JsonSerializerSettings settings = new JsonSerializerSettings()
         {
+            DefaultValueHandling = DefaultValueHandling.Populate,
             Converters = new JsonConverter[]
             {
                 new StringEnumConverter(),
                 new SemVersionConverter(),
-                new AssetBundleConverter()
+                new AssetBundleConverter(),
+                new PrefabConverter(),
+                new ItemProcessConverter(),
+                new GameDataObjectConverter()
             }
         };
+    }
+
+    public static object GetComponent(string type, params KeyValuePair<string, object>[] propertyes)
+    {
+
     }
 
     public enum SerializationContext
@@ -28,11 +38,27 @@ namespace KitchenLib.src.ContentPack
         Dish,
         Effect,
         EffectRepresentation,
+        GameDataObject,
         GameDifficultySettings,
         GardenProfile,
         Item,
         ItemGroup,
+        LayoutProfile,
         LevelUpgradeSet,
-        ModularUnlockPack
+        LocalisedGameDataObject,
+        ModularUnlockPack,
+        PlayerCosmetic,
+        Process,
+        RandomUpgradeSet,
+        Research,
+        Shop,
+        ThemeUnlock,
+        Unlock,
+        UnlockCard,
+        UnlockPack,
+        WorkshopRecipe,
+        ApplianceProcess,
+        ItemProcess,
+        SubProcess
     }
 }

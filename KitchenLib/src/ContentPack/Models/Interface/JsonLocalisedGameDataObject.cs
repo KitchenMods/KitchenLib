@@ -4,7 +4,7 @@ using KitchenData;
 using KitchenLib.Customs;
 using Newtonsoft.Json;
 
-namespace KitchenLib.ContentPack.Models.Json
+namespace KitchenLib.src.ContentPack.Models.Interface
 {
     public abstract class JsonLocalisedGameDataObject<T> : CustomGameDataObject where T : Localisation
     {
@@ -23,7 +23,7 @@ namespace KitchenLib.ContentPack.Models.Json
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
         {
-            if(base.ModName != ModName)
+            if (base.ModName != ModName)
                 base.ModName = ModName;
         }
     }

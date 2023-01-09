@@ -1,26 +1,26 @@
+﻿using KitchenLib.Customs;
+using KitchenLib.src.ContentPack.Models.Interface;
+using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Runtime.Serialization;
-using KitchenLib.Customs;
-using Newtonsoft.Json;
 
-namespace KitchenLib.ContentPack.Models.Json
+namespace KitchenLib.src.ContentPack.Models.Json
 {
-    public abstract class JsonGameDataObject : CustomGameDataObject
+    public class JsonItemGroup : CustomItemGroup
     {
         [JsonProperty("ID")]
         public override int ID { get; internal set; }
         [JsonProperty("UniqueNameID")]
-        public override string UniqueNameID { get; internal set; }
+        public string UniqueNameID { get; set; }
         [JsonProperty("BaseGameDataObjectID")]
         [DefaultValue(-1)]
-        public override int BaseGameDataObjectID { get; internal set; }
-        [JsonProperty("ModName")]
-        public new string ModName;
-        
+        public int BaseGameDataObjectID { get; set; }
+
+
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
         {
-            if(base.ModName != ModName)
+            if (base.ModName != ModName)
                 base.ModName = ModName;
         }
     }
