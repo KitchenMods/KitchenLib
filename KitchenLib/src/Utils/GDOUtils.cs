@@ -39,5 +39,10 @@ namespace KitchenLib.Utils
 			CustomGDO.GDOsByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
+
+		public static T GetCastedGDO<T, C>() where T : GameDataObject where C : CustomGameDataObject
+		{
+			return (T)GetCustomGameDataObject<C>()?.GameDataObject;
+		}
 	}
 }
