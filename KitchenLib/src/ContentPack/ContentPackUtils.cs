@@ -13,7 +13,6 @@ namespace KitchenLib.src.ContentPack
             {
                 new StringEnumConverter(),
                 new SemVersionConverter(),
-                new AssetBundleConverter(),
                 new PrefabConverter(),
                 new ItemProcessConverter(),
                 new GameDataObjectConverter()

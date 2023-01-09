@@ -1,21 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static KitchenLib.src.ContentPack.ContentPackManager;
 
 namespace KitchenLib.src.ContentPack
 {
-    internal class Logger
+    public class Logger
     {
-        internal static void Log(string message)
+        public static void Log(string message)
         {
-            BaseMod.instance.Log(message);
+            if (Debug)
+                Console.WriteLine(message);
+            else
+                BaseMod.instance.Log(message);
         }
 
-        internal static void Error(string message)
+        public static void Error(string message)
         {
-            BaseMod.instance.Error(message);
+            if (Debug)
+                Console.Error.Write(message);
+            else
+                BaseMod.instance.Error(message);
+        }
+
+        public static void NewLine()
+        {
+            if (Debug)
+                Console.WriteLine();
+            else
+                BaseMod.instance.Log(string.Empty);
         }
     }
 }

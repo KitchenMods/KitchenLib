@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace KitchenLib.src.ContentPack.Models
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class ModContent
     {
         [JsonProperty("Format", Required = Required.Always)]
         public SemVersion Format { get; set; }
-        [JsonProperty("AssetBundle")]
-        public AssetBundle Bundle { get; set; }
         [JsonProperty("Changes", Required = Required.Always)]
         public List<ModChange> Changes { get; set; }
+        public List<AssetBundle> Bundles { get; set; }
     }
 }

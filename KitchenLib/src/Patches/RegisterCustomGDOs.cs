@@ -23,12 +23,16 @@ namespace KitchenLib.Customs
 			{
 				GameDataObject gameDataObject;
 				gdo.Convert(__result, out gameDataObject);
-				gdo.OnRegister(gameDataObject);
-				gdo.GameDataObject = gameDataObject;
-				gameDataObjects.Add(gameDataObject);
-			}
+                gdo.GameDataObject = gameDataObject;
+                gameDataObjects.Add(gameDataObject);
+            }
 
-			foreach (GameDataObject gameDataObject in gameDataObjects)
+            foreach (CustomGameDataObject gdo in CustomGDO.GDOs.Values)
+            {
+                
+            }
+
+            foreach (GameDataObject gameDataObject in gameDataObjects)
 			{
 				try
 				{

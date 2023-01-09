@@ -1,11 +1,13 @@
 ﻿using KitchenLib.src.ContentPack.Models;
 using KitchenMods;
 using Newtonsoft.Json;
+using Semver;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using UnityEngine;
 using static KitchenLib.src.ContentPack.ContentPackUtils;
 using static KitchenLib.src.ContentPack.Logger;
 
@@ -13,17 +15,37 @@ namespace KitchenLib.src.ContentPack
 {
     public class ContentPackManager
     {
+        public static SemVersion SemVersion = SemVersion.FromVersion(new Version(1, 0, 0));
+        public static bool Debug = false;
+
         public static List<ContentPack> ContentPacks = new List<ContentPack>();
 
-        public static ContentPack CurrentPack;
-        public static ModChange CurrentChange;
+        // content pack
+        public static string ModDirectory;
+        // manifest
+        public static string ModName;
+        public static string Description;
+        public static string Author;
+        public static SemVersion Version;
+        public static ContentPackTarget ContentPackFor;
+        // content
+        public static SemVersion Format;
+        public static List<ModChange> Changes;
+        public static List<AssetBundle> Bundles;
+        // gdo
+        public static SerializationContext Type;
+        public static string BundleName;
+        public static string Location;
 
-        public static void Preload()
+        public static void Preload(string path = null)
         {
             // Get Directory Locations
-            string codeBase = Assembly.GetExecutingAssembly().CodeBase;
-            UriBuilder uri = new UriBuilder(codeBase);
-            string path = Uri.UnescapeDataString(uri.Path);
+            if(path is null)
+            {
+                string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+                UriBuilder uri = new UriBuilder(codeBase);
+                path = Uri.UnescapeDataString(uri.Path);
+            }
 
             string WorkshopModsPath = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(path))), "workshop", "content", "1599600");
 
@@ -34,6 +56,15 @@ namespace KitchenLib.src.ContentPack
 
             // Local Mods
             SearchDirectories(LocalModsPath);
+        }
+
+        public static void Load()
+        {
+            foreach (ContentPack pack in ContentPacks) 
+            {
+                pack.PreLoad();
+                pack.Load();
+            }
         }
 
         public static void SearchDirectories(string path)
@@ -50,31 +81,27 @@ namespace KitchenLib.src.ContentPack
                         try
                         {
                             string KitchenLibID = $"{Main.MOD_AUTHOR}.{Main.MOD_NAME}";
-                            
-                            List<Mod> Mods = ModPreload.Mods;
-                            string ModName = Path.GetFileName(folder.TrimEnd(Path.DirectorySeparatorChar));
 
                             ModManifest Manifest = JsonConvert.DeserializeObject<ModManifest>(
                                 File.ReadAllText(Path.Combine(folder, "manifest.json")), settings
                             );
+                            if (Debug)
+                                Log(JsonConvert.SerializeObject(Manifest, Formatting.Indented, settings));
                             if (!Manifest.ContentPackFor.isTargetFor(KitchenLibID))
                                 continue;
+                            Manifest.ModName = Path.GetFileName(folder.TrimEnd(Path.DirectorySeparatorChar));
+                            pack.Manifest = Manifest;
 
                             ModContent Content = JsonConvert.DeserializeObject<ModContent>(
                                 File.ReadAllText(Path.Combine(folder, "content.json")), settings
                             );
+                            if (Debug)
+                                Log(JsonConvert.SerializeObject(Content, Formatting.Indented, settings));
+                            Content.Bundles = ModPreload.Mods.Where(mod => mod.Name == Manifest.ModName).First().GetPacks<AssetBundleModPack>().SelectMany(pack => pack.AssetBundles).ToList();
+                            pack.Content = Content;
 
                             pack.ModDirectory = folder;
-                            pack.ModName = ModName;
-                            pack.Description = Manifest.Description;
-                            pack.Author = Manifest.Author;
-                            pack.Version = Manifest.Version;
-                            pack.ContentPackFor = Manifest.ContentPackFor;
-                            pack.Format = Content.Format;
-                            pack.Bundle = Mods.Where(mod => mod.Name == ModName).First().GetPacks<AssetBundleModPack>().SelectMany(pack => pack.AssetBundles).ToList()[0];
-                            pack.Changes = Content.Changes;
 
-                            settings.Context = new System.Runtime.Serialization.StreamingContext(System.Runtime.Serialization.StreamingContextStates.Other, ModName);
                             ContentPacks.Add(pack);
                         }
                         catch (Exception e)

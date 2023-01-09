@@ -3,8 +3,11 @@ using Semver;
 
 namespace KitchenLib.src.ContentPack.Models
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class ModManifest
     {
+        public string ModName { get; set; }
+
         [JsonProperty("Description", Required = Required.Always)]
         public string Description { get; set; }
         [JsonProperty("Author", Required = Required.Always)]
