@@ -8,10 +8,7 @@ using UnityEngine;
 using System.IO;
 using KitchenLib.DevUI;
 using KitchenLib.UI;
-using System.Linq;
-using System.CodeDom;
-using Newtonsoft.Json;
-using KitchenLib.Customs;
+using KitchenLib.Utils;
 
 #if MELONLOADER
 using MelonLoader;
@@ -34,7 +31,7 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.3.4";
+		public const string MOD_VERSION = "0.3.8";
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.2";
 
 		public static AssetBundle bundle;
@@ -51,6 +48,7 @@ namespace KitchenLib
 			//GenerateReferences();
 			SetupMenus();
 			RegisterMenu<MaterialsUI>();
+			PreferenceUtils.Load();
 		}
 		protected override void OnInitialise()
 		{

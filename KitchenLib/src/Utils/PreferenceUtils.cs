@@ -20,13 +20,21 @@ namespace KitchenLib.Utils
 	    public static Dictionary<string, Type> TypeMapping = new Dictionary<string, Type>();
 	
 	    public static T Register<T>(string modID, string key, string name) where T : BasePreference, new() {
+			Main.instance.Log("Registering Preference: " + modID + ":" + key);
 		    TypeMapping[typeof(T).FullName] = typeof(T);
-		    T instance = new T();
-            instance.ModID = modID;
-		    instance.Key = key;
-            instance.DisplayName = name;
-		    Preferences.Add(modID + ":" + key, instance);
-		    return instance;
+			T instance = new T();
+			instance.ModID = modID;
+			instance.Key = key;
+			instance.DisplayName = name;
+			if (Preferences.ContainsKey(modID + ":" + key))
+			{
+				Main.instance.Log("[WARN] " + modID + ":" + key + " already exists! Has another mod already loaded it?");
+			}
+			else
+			{
+				Preferences.Add(modID + ":" + key, instance);
+			}
+			return instance;
 	    }		
 	
 	    public static T Get<T>(string modID, string key) where T : BasePreference {

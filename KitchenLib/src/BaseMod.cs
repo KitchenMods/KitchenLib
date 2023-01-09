@@ -26,6 +26,7 @@ namespace KitchenLib
 	{
 		public string ModID = "";
 		public string ModName = "";
+		public string ModAuthor = "";
 		public string ModVersion = "";
 		public string CompatibleVersions = "";
 
@@ -68,6 +69,7 @@ namespace KitchenLib
 			instance = this;
 			ModID = modID;
 			ModName = modName;
+			ModAuthor = author;
 			ModVersion = modVersion;
 			CompatibleVersions = compatibleVersions;
 
@@ -100,13 +102,13 @@ namespace KitchenLib
 		public void Log(string message)
 		{
 #if BEPINEX
-			Logger.Log(LogLevel.Info, message);
+			Logger.Log(LogLevel.Info, $"[{ModName}] " + message);
 #endif
 #if MELONLOADER
-			MelonLogger.Msg(message);
+			MelonLogger.Msg($"[{ModName}] " + message);
 #endif
 #if WORKSHOP
-			Debug.Log(message);
+			Debug.Log($"[{ModName}] " + message);
 #endif
 		}
 		
@@ -114,13 +116,13 @@ namespace KitchenLib
 		public void Error(string message)
 		{
 #if BEPINEX
-			Logger.Log(LogLevel.Error, message);
+			Logger.Log(LogLevel.Error, $"[{ModName}] " + message);
 #endif
 #if MELONLOADER
-			MelonLogger.Error(message);
+			MelonLogger.Error($"[{ModName}] " + message);
 #endif
 #if WORKSHOP
-			Debug.LogError(message);
+			Debug.LogError($"[{ModName}] " + message);
 #endif
 		}
 		protected virtual void OnInitialise() { }
@@ -194,7 +196,11 @@ namespace KitchenLib
 
 		protected override void Initialise() //IModSystem
 		{
-			OnInitialise();
+			if (!ModRegistery.InitialisedMods.Contains(ModAuthor + ModID))
+			{
+				OnInitialise();
+				ModRegistery.InitialisedMods.Add(ModAuthor + ModID);
+			}
 		}
 #endif
 

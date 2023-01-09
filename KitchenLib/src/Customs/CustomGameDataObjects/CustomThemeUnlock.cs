@@ -35,8 +35,8 @@ namespace KitchenLib.Customs
 			if (empty.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
 			if (empty.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
 
-			FieldInfo hardcodedRequirements = ReflectionUtils.GetField<UnlockEffect>("HardcodedRequirements");
-			FieldInfo hardcodedBlockers = ReflectionUtils.GetField<UnlockEffect>("HardcodedBlockers");
+			FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
+			FieldInfo hardcodedBlockers = ReflectionUtils.GetField<Unlock>("HardcodedBlockers");
 
 			if (hardcodedRequirements.GetValue(empty) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
 			if (hardcodedBlockers.GetValue(empty) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
