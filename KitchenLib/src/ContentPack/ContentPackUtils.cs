@@ -1,7 +1,6 @@
 ﻿using KitchenLib.src.ContentPack.JsonConverters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.Collections.Generic;
 
 namespace KitchenLib.src.ContentPack
 {
@@ -20,11 +19,6 @@ namespace KitchenLib.src.ContentPack
                 new GameDataObjectConverter()
             }
         };
-    }
-
-    public static object GetComponent(string type, params KeyValuePair<string, object>[] propertyes)
-    {
-
     }
 
     public enum SerializationContext

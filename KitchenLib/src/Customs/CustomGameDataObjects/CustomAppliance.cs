@@ -10,8 +10,8 @@ namespace KitchenLib.Customs
     {
         public virtual GameObject Prefab { get; internal set; }
         public virtual GameObject HeldAppliancePrefab { get; internal set; }
-        public virtual List<Appliance.ApplianceProcesses> Processes { get; internal set; }
-        public virtual List<IApplianceProperty> Properties { get; internal set; }
+        public virtual List<Appliance.ApplianceProcesses> Processes { get { return new List<Appliance.ApplianceProcesses>(); } }
+        public virtual List<IApplianceProperty> Properties { get { return new List<IApplianceProperty>(); } }
         public virtual IEffectRange EffectRange { get; internal set; }
         public virtual IEffectCondition EffectCondition { get; internal set; }
         public virtual IEffectType EffectType { get; internal set; }
@@ -19,16 +19,16 @@ namespace KitchenLib.Customs
         public virtual bool IsNonInteractive { get; internal set; }
         public virtual OccupancyLayer Layer { get; internal set; }
         public virtual bool ForceHighInteractionPriority { get; internal set; }
-        public virtual int PurchaseCost { get; internal set; } = 0;
+        public virtual int PurchaseCost { get { return 0; } }
         public virtual EntryAnimation EntryAnimation { get; internal set; }
         public virtual ExitAnimation ExitAnimation { get; internal set; }
         public virtual bool SkipRotationAnimation { get; internal set; }
-        public virtual bool IsPurchasable { get; internal set; } = false;
+        public virtual bool IsPurchasable { get { return false; } }
         public virtual bool IsPurchasableAsUpgrade { get; internal set; }
         public virtual DecorationType ThemeRequired { get; internal set; }
-        public virtual ShoppingTags ShoppingTags { get; internal set; } = ShoppingTags.None;
-        public virtual RarityTier RarityTier { get; internal set; } = RarityTier.Common;
-        public virtual PriceTier PriceTier { get; internal set; } = PriceTier.Medium;
+        public virtual ShoppingTags ShoppingTags { get { return ShoppingTags.None; } }
+        public virtual RarityTier RarityTier { get { return RarityTier.Common; } }
+        public virtual PriceTier PriceTier { get { return PriceTier.Medium; } }
         public virtual ShopRequirementFilter ShopRequirementFilter { get; internal set; }
         public virtual List<Appliance> RequiresForShop { get { return new List<Appliance>(); } }
         public virtual List<Process> RequiresProcessForShop { get { return new List<Process>(); } }

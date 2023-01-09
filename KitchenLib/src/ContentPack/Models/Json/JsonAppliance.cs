@@ -14,7 +14,7 @@ namespace KitchenLib.Customs
         [JsonProperty("UniqueNameID")]
         public override string UniqueNameID { get; internal set; }
         [JsonProperty("BaseGameDataObjectID")]
-        public override int BaseGameDataObjectID { get; internal set; } = -1;
+        public override int BaseGameDataObjectID { get; }
         [JsonProperty("ModName")]
         public new string ModName;
         [JsonProperty("Info")]
@@ -35,7 +35,7 @@ namespace KitchenLib.Customs
         [JsonProperty("ForceHighInteractionPriority")]
         public override bool ForceHighInteractionPriority { get; internal set; }
         [JsonProperty("PurchaseCost")]
-        public override int PurchaseCost { get; internal set; } = 0;
+        public override int PurchaseCost { get; }
         [JsonProperty("EntryAnimation")]
         public override EntryAnimation EntryAnimation { get; internal set; }
         [JsonProperty("ExitAnimation")]
@@ -43,23 +43,23 @@ namespace KitchenLib.Customs
         [JsonProperty("SkipRotationAnimation")]
         public override bool SkipRotationAnimation { get; internal set; }
         [JsonProperty("IsPurchasable")]
-        public override bool IsPurchasable { get; internal set; } = false;
+        public override bool IsPurchasable { get; }
         [JsonProperty("IsPurchasableAsUpgrade")]
         public override bool IsPurchasableAsUpgrade { get; internal set; }
         [JsonProperty("ThemeRequired")]
         public override DecorationType ThemeRequired { get; internal set; }
         [JsonProperty("ShoppingTags")]
-        public override ShoppingTags ShoppingTags { get; internal set; } = ShoppingTags.None;
+        public override ShoppingTags ShoppingTags { get; }
         [JsonProperty("RarityTier")]
-        public override RarityTier RarityTier { get; internal set; } = RarityTier.Common;
+        public override RarityTier RarityTier { get; }
         [JsonProperty("PriceTier")]
-        public override PriceTier PriceTier { get; internal set; } = PriceTier.Medium;
+        public override PriceTier PriceTier { get; }
         [JsonProperty("ShopRequirementFilter")]
-        public override ShopRequirementFilter ShopRequirementFilter {get; internal set;}
+        public override ShopRequirementFilter ShopRequirementFilter { get; internal set; }
         [JsonProperty("RequiresForShop")]
-        public new List<Appliance> RequiresForShop {get; internal set;}
+        public new List<Appliance> RequiresForShop { get; internal set; }
         [JsonProperty("RequiresProcessForShop")]
-        public new List<Process> RequiresProcessForShop {get; internal set;}
+        public new List<Process> RequiresProcessForShop { get; internal set; }
         public virtual bool StapleWhenMissing { get; internal set; }
         public virtual bool SellOnlyAsDuplicate { get; internal set; }
         public virtual bool PreventSale { get; internal set; }

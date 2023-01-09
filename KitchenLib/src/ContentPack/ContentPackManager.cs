@@ -65,18 +65,16 @@ namespace KitchenLib.src.ContentPack
                             );
 
                             pack.ModDirectory = folder;
-
-                            pack.ModName = Manifest.ModName;
+                            pack.ModName = ModName;
                             pack.Description = Manifest.Description;
                             pack.Author = Manifest.Author;
                             pack.Version = Manifest.Version;
                             pack.ContentPackFor = Manifest.ContentPackFor;
-
                             pack.Format = Content.Format;
-                            pack.Bundle = Mods.Where(mod => mod.Name == ModName).First().GetPacks<AssetBundleModPack>().First().AssetBundles[0];
+                            pack.Bundle = Mods.Where(mod => mod.Name == ModName).First().GetPacks<AssetBundleModPack>().SelectMany(pack => pack.AssetBundles).ToList()[0];
                             pack.Changes = Content.Changes;
 
-                            settings.Context = new System.Runtime.Serialization.StreamingContext(System.Runtime.Serialization.StreamingContextStates.Other, Manifest.ModName);
+                            settings.Context = new System.Runtime.Serialization.StreamingContext(System.Runtime.Serialization.StreamingContextStates.Other, ModName);
                             ContentPacks.Add(pack);
                         }
                         catch (Exception e)
@@ -87,7 +85,7 @@ namespace KitchenLib.src.ContentPack
                     }
                     else
                     {
-                        Error($"{folder} missing content.json");
+                        Error($"Found manifest.json at {folder} but missing content.json");
                     }
                 }
             }

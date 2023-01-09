@@ -5,8 +5,6 @@ namespace KitchenLib.src.ContentPack.Models
 {
     public class ModManifest
     {
-        [JsonProperty("ModName", Required = Required.Always)]
-        public string ModName { get; set; }
         [JsonProperty("Description", Required = Required.Always)]
         public string Description { get; set; }
         [JsonProperty("Author", Required = Required.Always)]
