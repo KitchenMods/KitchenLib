@@ -22,12 +22,19 @@ namespace KitchenLib.Customs
 
 			if (empty.ID != ID) result.ID = ID;
             if (empty.RequiredResearch != RequiredResearch) result.RequiredResearch = RequiredResearch;
-            if (empty.Rewards != Rewards) result.Rewards = Rewards;
-            if (empty.EnablesResearchOf != EnablesResearchOf) result.EnablesResearchOf = EnablesResearchOf;
-            if (empty.RequiresForResearch != RequiresForResearch) result.RequiresForResearch = RequiresForResearch;
 			if (empty.Info != Info) result.Info = Info;
 
 			gameDataObject = result;
+        }
+
+        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        {
+            Research result = ScriptableObject.CreateInstance<Research>();
+            Research empty = ScriptableObject.CreateInstance<Research>();
+
+            if (empty.Rewards != Rewards) result.Rewards = Rewards;
+            if (empty.EnablesResearchOf != EnablesResearchOf) result.EnablesResearchOf = EnablesResearchOf;
+            if (empty.RequiresForResearch != RequiresForResearch) result.RequiresForResearch = RequiresForResearch;
         }
     }
 }

@@ -18,9 +18,16 @@ namespace KitchenLib.Customs
 				result = UnityEngine.Object.Instantiate(gameData.Get<CrateSet>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
 			if (empty.ID != ID) result.ID = ID;
-            if (empty.Options != Options) result.Options = Options;
 
             gameDataObject = result ;
+        }
+
+        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        {
+            CrateSet result = (CrateSet)gameDataObject;
+            CrateSet empty = ScriptableObject.CreateInstance<CrateSet>();
+
+            if (empty.Options != Options) result.Options = Options;
         }
     }
 }

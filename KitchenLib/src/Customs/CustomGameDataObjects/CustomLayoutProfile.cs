@@ -32,6 +32,18 @@ namespace KitchenLib.Customs
 			if (empty.ID != ID) result.ID = ID;
             if (empty.Graph != Graph) result.Graph = Graph;
             if (empty.MaximumTables != MaximumTables) result.MaximumTables = MaximumTables;
+            if (empty.Info != Info) result.Info = Info;
+            if (empty.Name != Name) result.Name = Name;
+            if (empty.Description != Description) result.Description = Description;
+
+            gameDataObject = result ;
+        }
+
+        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        {
+            LayoutProfile result = (LayoutProfile)gameDataObject;
+            LayoutProfile empty = ScriptableObject.CreateInstance<LayoutProfile>();
+
             if (empty.RequiredAppliances != RequiredAppliances) result.RequiredAppliances = RequiredAppliances;
             if (empty.Table != Table) result.Table = Table;
             if (empty.Counter != Counter) result.Counter = Counter;
@@ -39,11 +51,6 @@ namespace KitchenLib.Customs
             if (empty.WallPiece != WallPiece) result.WallPiece = WallPiece;
             if (empty.InternalWallPiece != InternalWallPiece) result.InternalWallPiece = InternalWallPiece;
             if (empty.StreetPiece != StreetPiece) result.StreetPiece = StreetPiece;
-            if (empty.Info != Info) result.Info = Info;
-            if (empty.Name != Name) result.Name = Name;
-            if (empty.Description != Description) result.Description = Description;
-
-            gameDataObject = result ;
         }
     }
 }

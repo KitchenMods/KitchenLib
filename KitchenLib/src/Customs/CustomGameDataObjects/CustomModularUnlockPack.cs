@@ -22,12 +22,19 @@ namespace KitchenLib.Customs
 				result = UnityEngine.Object.Instantiate(gameData.Get<ModularUnlockPack>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
 			if (empty.ID != ID) result.ID = ID;
-			if (empty.Sets != Sets) result.Sets = Sets;
 			if (empty.Filter != Filter) result.Filter = Filter;
 			if (empty.Sorters != Sorters) result.Sorters = Sorters;
 			if (empty.ConditionalOptions != ConditionalOptions) result.ConditionalOptions = ConditionalOptions;
 
 			gameDataObject = result;
 		}
-	}
+
+        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        {
+			ModularUnlockPack result = (ModularUnlockPack)gameDataObject;
+			ModularUnlockPack empty = ScriptableObject.CreateInstance<ModularUnlockPack>();
+
+			if (empty.Sets != Sets) result.Sets = Sets;
+		}
+    }
 }

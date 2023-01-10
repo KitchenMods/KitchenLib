@@ -22,14 +22,21 @@ namespace KitchenLib.Customs
 				result = UnityEngine.Object.Instantiate(gameData.Get<Process>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
 			if (empty.ID != ID) result.ID = ID;
-            if (empty.BasicEnablingAppliance != BasicEnablingAppliance) result.BasicEnablingAppliance = BasicEnablingAppliance;
             if (empty.EnablingApplianceCount != EnablingApplianceCount) result.EnablingApplianceCount = EnablingApplianceCount;
-            if (empty.IsPseudoprocessFor != IsPseudoprocessFor) result.IsPseudoprocessFor = IsPseudoprocessFor;
             if (empty.CanObfuscateProgress != CanObfuscateProgress) result.CanObfuscateProgress = CanObfuscateProgress;
             if (empty.Icon != Icon) result.Icon = Icon;
             if (empty.Info != Info) result.Info = Info;
 
             gameDataObject = result;
+        }
+
+        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        {
+            Process result = (Process)gameDataObject;
+            Process empty = ScriptableObject.CreateInstance<Process>();
+
+            if (empty.BasicEnablingAppliance != BasicEnablingAppliance) result.BasicEnablingAppliance = BasicEnablingAppliance;
+            if (empty.IsPseudoprocessFor != IsPseudoprocessFor) result.IsPseudoprocessFor = IsPseudoprocessFor;
         }
     }
 }

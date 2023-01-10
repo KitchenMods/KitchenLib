@@ -24,7 +24,6 @@ namespace KitchenLib.Customs
 
 			if (empty.ID != ID) result.ID = ID;
             if (empty.CosmeticType != CosmeticType) result.CosmeticType = CosmeticType;
-            if (empty.CustomerSettings != CustomerSettings) result.CustomerSettings = CustomerSettings;
             if (empty.DisableInGame != DisableInGame) result.DisableInGame = DisableInGame;
             if (empty.IsDefault != IsDefault) result.IsDefault = IsDefault;
             if (empty.BlockHats != BlockHats) result.BlockHats = BlockHats;
@@ -32,6 +31,14 @@ namespace KitchenLib.Customs
 			if (empty.Info != Info) result.Info = Info;
 
 			gameDataObject = result ;
+        }
+
+        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        {
+            PlayerCosmetic result = (PlayerCosmetic)gameDataObject;
+            PlayerCosmetic empty = ScriptableObject.CreateInstance<PlayerCosmetic>();
+
+            if (empty.CustomerSettings != CustomerSettings) result.CustomerSettings = CustomerSettings;
         }
     }
 }

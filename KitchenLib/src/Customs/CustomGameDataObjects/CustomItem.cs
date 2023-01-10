@@ -12,8 +12,6 @@ namespace KitchenLib.Customs
     {
 		public virtual GameObject Prefab { get; internal set; }
 
-		[Obsolete("Use the Hashset<Item.ItemProcess>Processes instead")]
-		public virtual List<Item.ItemProcess> DerivedProcesses { get { return new List<Item.ItemProcess>(); } }
 		public virtual List<Item.ItemProcess> Processes { get { return new List<Item.ItemProcess>(); } }
 		public virtual List<IItemProperty> Properties { get { return new List<IItemProperty>(); } }
 		public virtual float ExtraTimeGranted { get; internal set; }
@@ -50,37 +48,44 @@ namespace KitchenLib.Customs
 
 			if (empty.ID != ID) result.ID = ID;
             if (empty.Prefab != Prefab) result.Prefab = Prefab;
-            if (empty.Properties != Properties) result.Properties = Properties;
             if (empty.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
             if (empty.ItemValue != ItemValue) result.ItemValue = ItemValue;
             if (empty.Reward != Reward) result.Reward = Reward;
-            if (empty.DirtiesTo != DirtiesTo) result.DirtiesTo = DirtiesTo;
-            if (empty.MayRequestExtraItems != MayRequestExtraItems) result.MayRequestExtraItems = MayRequestExtraItems;
             if (empty.MaxOrderSharers != MaxOrderSharers) result.MaxOrderSharers = MaxOrderSharers;
-            if (empty.SplitSubItem != SplitSubItem) result.SplitSubItem = SplitSubItem;
             if (empty.SplitCount != SplitCount) result.SplitCount = SplitCount;
             if (empty.SplitSpeed != SplitSpeed) result.SplitSpeed = SplitSpeed;
-            if (empty.SplitDepletedItems != SplitDepletedItems) result.SplitDepletedItems = SplitDepletedItems;
             if (empty.AllowSplitMerging != AllowSplitMerging) result.AllowSplitMerging = AllowSplitMerging;
             if (empty.PreventExplicitSplit != PreventExplicitSplit) result.PreventExplicitSplit = PreventExplicitSplit;
             if (empty.SplitByComponents != SplitByComponents) result.SplitByComponents = SplitByComponents;
-            if (empty.SplitByComponentsHolder != SplitByComponentsHolder) result.SplitByComponentsHolder = SplitByComponentsHolder;
             if (empty.SplitByCopying != SplitByCopying) result.SplitByCopying = SplitByCopying;
-            if (empty.RefuseSplitWith != RefuseSplitWith) result.RefuseSplitWith = RefuseSplitWith;
-            if (empty.DisposesTo != DisposesTo) result.DisposesTo = DisposesTo;
             if (empty.IsIndisposable != IsIndisposable) result.IsIndisposable = IsIndisposable;
             if (empty.ItemCategory != ItemCategory) result.ItemCategory = ItemCategory;
             if (empty.ItemStorageFlags != ItemStorageFlags) result.ItemStorageFlags = ItemStorageFlags;
-            if (empty.DedicatedProvider != DedicatedProvider) result.DedicatedProvider = DedicatedProvider;
             if (empty.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (empty.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
-			if (empty.ExtendedDirtItem != ExtendedDirtItem) result.ExtendedDirtItem = ExtendedDirtItem;
-
-			FieldInfo processes = ReflectionUtils.GetField<Item>("Processes");
-
-			if (processes.GetValue(empty) != Processes) processes.SetValue(result, Processes);
 
             gameDataObject = result;
+        }
+
+        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        {
+            Item result = (Item)gameDataObject;
+            Item empty = ScriptableObject.CreateInstance<Item>();
+
+            if (empty.Properties != Properties) result.Properties = Properties;
+            if (empty.DirtiesTo != DirtiesTo) result.DirtiesTo = DirtiesTo;
+            if (empty.MayRequestExtraItems != MayRequestExtraItems) result.MayRequestExtraItems = MayRequestExtraItems;
+            if (empty.SplitSubItem != SplitSubItem) result.SplitSubItem = SplitSubItem;
+            if (empty.SplitDepletedItems != SplitDepletedItems) result.SplitDepletedItems = SplitDepletedItems;
+            if (empty.SplitByComponentsHolder != SplitByComponentsHolder) result.SplitByComponentsHolder = SplitByComponentsHolder;
+            if (empty.RefuseSplitWith != RefuseSplitWith) result.RefuseSplitWith = RefuseSplitWith;
+            if (empty.DisposesTo != DisposesTo) result.DisposesTo = DisposesTo;
+            if (empty.DedicatedProvider != DedicatedProvider) result.DedicatedProvider = DedicatedProvider;
+            if (empty.ExtendedDirtItem != ExtendedDirtItem) result.ExtendedDirtItem = ExtendedDirtItem;
+
+            FieldInfo processes = ReflectionUtils.GetField<Item>("Processes");
+
+            if (processes.GetValue(empty) != Processes) processes.SetValue(result, Processes);
         }
     }
 }

@@ -65,12 +65,9 @@ namespace KitchenLib.Customs
             if (empty.ID != ID) result.ID = ID;
             if (empty.Prefab != Prefab) result.Prefab = Prefab;
             if (empty.HeldAppliancePrefab != HeldAppliancePrefab) result.HeldAppliancePrefab = HeldAppliancePrefab;
-            if (empty.Processes != Processes) result.Processes = Processes;
-            if (empty.Properties != Properties) result.Properties = Properties;
             if (empty.EffectRange != EffectRange) result.EffectRange = EffectRange;
             if (empty.EffectCondition != EffectCondition) result.EffectCondition = EffectCondition;
             if (empty.EffectType != EffectType) result.EffectType = EffectType;
-            if (empty.EffectRepresentation != EffectRepresentation) result.EffectRepresentation = EffectRepresentation;
             if (empty.IsNonInteractive != IsNonInteractive) result.IsNonInteractive = IsNonInteractive;
             if (empty.Layer != Layer) result.Layer = Layer;
             if (empty.ForceHighInteractionPriority != ForceHighInteractionPriority) result.ForceHighInteractionPriority = ForceHighInteractionPriority;
@@ -85,15 +82,11 @@ namespace KitchenLib.Customs
             if (empty.RarityTier != RarityTier) result.RarityTier = RarityTier;
             if (empty.PriceTier != PriceTier) result.PriceTier = PriceTier;
             if (empty.ShopRequirementFilter != ShopRequirementFilter) result.ShopRequirementFilter = ShopRequirementFilter;
-            if (empty.RequiresForShop != RequiresForShop) result.RequiresForShop = RequiresForShop;
-            if (empty.RequiresProcessForShop != RequiresProcessForShop) result.RequiresProcessForShop = RequiresProcessForShop;
             if (empty.StapleWhenMissing != StapleWhenMissing) result.StapleWhenMissing = StapleWhenMissing;
             if (empty.SellOnlyAsDuplicate != SellOnlyAsDuplicate) result.SellOnlyAsDuplicate = SellOnlyAsDuplicate;
             if (empty.PreventSale != PreventSale) result.PreventSale = PreventSale;
-            if (empty.Upgrades != Upgrades) result.Upgrades = Upgrades;
             if (empty.IsAnUpgrade != IsAnUpgrade) result.IsAnUpgrade = IsAnUpgrade;
             if (empty.IsNonCrated != IsNonCrated) result.IsNonCrated = IsNonCrated;
-            if (empty.CrateItem != CrateItem) result.CrateItem = CrateItem;
             if (empty.Name != Name) result.Name = Name;
             if (empty.Description != Description) result.Description = Description;
             if (empty.Sections != Sections) result.Sections = Sections;
@@ -101,6 +94,20 @@ namespace KitchenLib.Customs
             if (empty.Info != Info) result.Info = Info;
 			
             gameDataObject = result;
+        }
+
+        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        {
+            Appliance result = (Appliance)gameDataObject;
+            Appliance empty = ScriptableObject.CreateInstance<Appliance>();
+
+            if (empty.Processes != Processes) result.Processes = Processes;
+            if (empty.Properties != Properties) result.Properties = Properties;
+            if (empty.EffectRepresentation != EffectRepresentation) result.EffectRepresentation = EffectRepresentation;
+            if (empty.RequiresForShop != RequiresForShop) result.RequiresForShop = RequiresForShop;
+            if (empty.RequiresProcessForShop != RequiresProcessForShop) result.RequiresProcessForShop = RequiresProcessForShop;
+            if (empty.Upgrades != Upgrades) result.Upgrades = Upgrades;
+            if (empty.CrateItem != CrateItem) result.CrateItem = CrateItem;
         }
     }
 }

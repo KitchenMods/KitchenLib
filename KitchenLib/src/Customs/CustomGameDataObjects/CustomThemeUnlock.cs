@@ -23,8 +23,6 @@ namespace KitchenLib.Customs
 			if (empty.ID != ID) result.ID = ID;
 			if (empty.IsPrimary != IsPrimary) result.IsPrimary = IsPrimary;
 			if (empty.Type != Type) result.Type = Type;
-			if (empty.ParentTheme1 != ParentTheme1) result.ParentTheme1 = ParentTheme1;
-			if (empty.ParentTheme2 != ParentTheme2) result.ParentTheme2 = ParentTheme2;
 
 			if (empty.ExpReward != ExpReward) result.ExpReward = ExpReward;
 			if (empty.IsUnlockable != IsUnlockable) result.IsUnlockable = IsUnlockable;
@@ -35,14 +33,24 @@ namespace KitchenLib.Customs
 			if (empty.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
 			if (empty.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
 
+			if (empty.Info != Info) result.Info = Info;
+
+			gameDataObject = result;
+        }
+
+        public override void AttachDependentProperties(GameDataObject gameDataObject)
+		{
+			ThemeUnlock result = (ThemeUnlock)gameDataObject;
+			ThemeUnlock empty = ScriptableObject.CreateInstance<ThemeUnlock>();
+
+			if (empty.ParentTheme1 != ParentTheme1) result.ParentTheme1 = ParentTheme1;
+			if (empty.ParentTheme2 != ParentTheme2) result.ParentTheme2 = ParentTheme2;
+
 			FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
 			FieldInfo hardcodedBlockers = ReflectionUtils.GetField<Unlock>("HardcodedBlockers");
 
 			if (hardcodedRequirements.GetValue(empty) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
 			if (hardcodedBlockers.GetValue(empty) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
-			if (empty.Info != Info) result.Info = Info;
-
-			gameDataObject = result;
-        }
+		}
     }
 }

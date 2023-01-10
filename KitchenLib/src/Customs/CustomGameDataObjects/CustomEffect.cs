@@ -27,9 +27,16 @@ namespace KitchenLib.Customs
             if (empty.EffectRange != EffectRange) result.EffectRange = EffectRange;
             if (empty.EffectCondition != EffectCondition) result.EffectCondition = EffectCondition;
             if (empty.EffectType != EffectType) result.EffectType = EffectType;
-            if (empty.EffectInformation != EffectInformation) result.EffectInformation = EffectInformation;
 
             gameDataObject = result;
+        }
+
+        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        {
+            Effect result = (Effect)gameDataObject;
+            Effect empty = ScriptableObject.CreateInstance<Effect>();
+
+            if (empty.EffectInformation != EffectInformation) result.EffectInformation = EffectInformation;
         }
     }
 }

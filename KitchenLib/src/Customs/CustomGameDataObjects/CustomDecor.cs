@@ -21,11 +21,18 @@ namespace KitchenLib.Customs
 
 			if (empty.ID != ID) result.ID = ID;
             if (empty.Material != Material) result.Material = Material;
-            if (empty.ApplicatorAppliance != ApplicatorAppliance) result.ApplicatorAppliance = ApplicatorAppliance;
             if (empty.Type != Type) result.Type = Type;
             if (empty.IsAvailable != IsAvailable) result.IsAvailable = IsAvailable;
 
             gameDataObject = result;
+        }
+
+        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        {
+            Decor result = (Decor)gameDataObject;
+            Decor empty = ScriptableObject.CreateInstance<Decor>();
+
+            if (empty.ApplicatorAppliance != ApplicatorAppliance) result.ApplicatorAppliance = ApplicatorAppliance;
         }
     }
 }

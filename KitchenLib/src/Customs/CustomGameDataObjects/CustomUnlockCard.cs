@@ -30,14 +30,21 @@ namespace KitchenLib.Customs
 			if (empty.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
 			if (empty.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
 			
-			FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
-			FieldInfo hardcodedBlockers = ReflectionUtils.GetField<Unlock>("HardcodedBlockers");
-			
-			if (hardcodedRequirements.GetValue(empty) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
-			if (hardcodedBlockers.GetValue(empty) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
 			if (empty.Info != Info) result.Info = Info;
 
 			gameDataObject = result;
         }
+
+        public override void AttachDependentProperties(GameDataObject gameDataObject)
+		{
+			UnlockCard result = (UnlockCard)gameDataObject;
+			UnlockCard empty = ScriptableObject.CreateInstance<UnlockCard>();
+
+			FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
+			FieldInfo hardcodedBlockers = ReflectionUtils.GetField<Unlock>("HardcodedBlockers");
+
+			if (hardcodedRequirements.GetValue(empty) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
+			if (hardcodedBlockers.GetValue(empty) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
+		}
     }
 }

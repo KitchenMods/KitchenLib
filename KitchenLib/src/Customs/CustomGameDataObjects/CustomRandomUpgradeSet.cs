@@ -20,9 +20,16 @@ namespace KitchenLib.Customs
 
 			if (empty.ID != ID) result.ID = ID;
             if (empty.Tier != Tier) result.Tier = Tier;
-            if (empty.Rewards != Rewards) result.Rewards = Rewards;
 
             gameDataObject = result;
+        }
+
+        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        {
+            RandomUpgradeSet result = (RandomUpgradeSet)gameDataObject;
+            RandomUpgradeSet empty = ScriptableObject.CreateInstance<RandomUpgradeSet>();
+
+            if (empty.Rewards != Rewards) result.Rewards = Rewards;
         }
     }
 }

@@ -35,21 +35,9 @@ namespace KitchenLib.Customs
 			if (empty.ID != ID) result.ID = ID;
 			if (empty.Type != Type) result.Type = Type;
 			if (empty.AchievementName != AchievementName) result.AchievementName = AchievementName;
-			if (empty.ExtraOrderUnlocks != ExtraOrderUnlocks) result.ExtraOrderUnlocks = ExtraOrderUnlocks;
 			if (empty.StartingNameSet != StartingNameSet) result.StartingNameSet = StartingNameSet;
-			if (empty.MinimumIngredients != MinimumIngredients) result.MinimumIngredients = MinimumIngredients;
-			if (empty.RequiredProcesses != RequiredProcesses) result.RequiredProcesses = RequiredProcesses;
-			if (empty.BlockProviders != BlockProviders) result.BlockProviders = BlockProviders;
 			if (empty.IconPrefab != IconPrefab) result.IconPrefab = IconPrefab;
 			if (empty.DisplayPrefab != DisplayPrefab) result.DisplayPrefab = DisplayPrefab;
-			
-			FieldInfo resultingMenuItems = ReflectionUtils.GetField<Dish>("ResultingMenuItems");
-			FieldInfo ingredientsUnlocks = ReflectionUtils.GetField<Dish>("IngredientsUnlocks");
-			FieldInfo prerequisiteDishesEditor = ReflectionUtils.GetField<Dish>("PrerequisiteDishesEditor");
-
-			if (resultingMenuItems.GetValue(empty) != ResultingMenuItems) resultingMenuItems.SetValue(result, ResultingMenuItems);
-			if (ingredientsUnlocks.GetValue(empty) != IngredientsUnlocks) ingredientsUnlocks.SetValue(result, IngredientsUnlocks);
-			if (prerequisiteDishesEditor.GetValue(empty) != PrerequisiteDishesEditor) prerequisiteDishesEditor.SetValue(result, PrerequisiteDishesEditor);
 
 			if (empty.ExpReward != ExpReward) result.ExpReward = ExpReward;
 			if (empty.IsUnlockable != IsUnlockable) result.IsUnlockable = IsUnlockable;
@@ -60,14 +48,34 @@ namespace KitchenLib.Customs
 			if (empty.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
 			if (empty.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
 
+			if (empty.Info != Info) result.Info = Info;
+
+			gameDataObject = result;
+        }
+
+        public override void AttachDependentProperties(GameDataObject gameDataObject)
+		{
+			Dish result = (Dish)gameDataObject;
+			Dish empty = ScriptableObject.CreateInstance<Dish>();
+
+			if (empty.ExtraOrderUnlocks != ExtraOrderUnlocks) result.ExtraOrderUnlocks = ExtraOrderUnlocks;
+			if (empty.MinimumIngredients != MinimumIngredients) result.MinimumIngredients = MinimumIngredients;
+			if (empty.RequiredProcesses != RequiredProcesses) result.RequiredProcesses = RequiredProcesses;
+			if (empty.BlockProviders != BlockProviders) result.BlockProviders = BlockProviders;
+
+			FieldInfo resultingMenuItems = ReflectionUtils.GetField<Dish>("ResultingMenuItems");
+			FieldInfo ingredientsUnlocks = ReflectionUtils.GetField<Dish>("IngredientsUnlocks");
+			FieldInfo prerequisiteDishesEditor = ReflectionUtils.GetField<Dish>("PrerequisiteDishesEditor");
+
+			if (resultingMenuItems.GetValue(empty) != ResultingMenuItems) resultingMenuItems.SetValue(result, ResultingMenuItems);
+			if (ingredientsUnlocks.GetValue(empty) != IngredientsUnlocks) ingredientsUnlocks.SetValue(result, IngredientsUnlocks);
+			if (prerequisiteDishesEditor.GetValue(empty) != PrerequisiteDishesEditor) prerequisiteDishesEditor.SetValue(result, PrerequisiteDishesEditor);
+
 			FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
 			FieldInfo hardcodedBlockers = ReflectionUtils.GetField<Unlock>("HardcodedBlockers");
 
 			if (hardcodedRequirements.GetValue(empty) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
 			if (hardcodedBlockers.GetValue(empty) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
-			if (empty.Info != Info) result.Info = Info;
-
-			gameDataObject = result;
-        }
+		}
     }
 }

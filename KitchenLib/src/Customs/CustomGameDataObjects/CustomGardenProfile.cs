@@ -19,10 +19,17 @@ namespace KitchenLib.Customs
 				result = UnityEngine.Object.Instantiate(gameData.Get<GardenProfile>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
 			if (empty.ID != ID) result.ID = ID;
-            if (empty.SpawnHolder != SpawnHolder) result.SpawnHolder = SpawnHolder;
-            if (empty.Spawns != Spawns) result.Spawns = Spawns;
 
             gameDataObject = result;
+        }
+
+        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        {
+            GardenProfile result = (GardenProfile)gameDataObject;
+            GardenProfile empty = ScriptableObject.CreateInstance<GardenProfile>();
+            
+            if (empty.SpawnHolder != SpawnHolder) result.SpawnHolder = SpawnHolder;
+            if (empty.Spawns != Spawns) result.Spawns = Spawns;
         }
     }
 }
