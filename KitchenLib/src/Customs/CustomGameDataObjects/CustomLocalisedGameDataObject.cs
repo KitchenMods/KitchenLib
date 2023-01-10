@@ -2,10 +2,10 @@
 
 namespace KitchenLib.Customs
 {
-	public abstract class CustomLocalisedGameDataObject<T> : CustomGameDataObject where T : Localisation
-	{
+    public abstract class CustomLocalisedGameDataObject<T> : CustomGameDataObject where T : Localisation
+    {
 
-		public virtual LocalisationObject<T> Info { get; internal set; }
+        public virtual LocalisationObject<T> Info { get; internal set; }
 
-	}
+    }
 }

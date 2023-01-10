@@ -10,19 +10,19 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomItemGroup : CustomItem
     {
-		public virtual List<ItemGroup.ItemSet> Sets { get { return new List<ItemGroup.ItemSet>(); } }
-		public virtual bool CanContainSide { get; internal set; }
-		public virtual bool ApplyProcessesToComponents { get; internal set; }
-		public virtual bool AutoCollapsing { get; internal set; }
+        public virtual List<ItemGroup.ItemSet> Sets { get { return new List<ItemGroup.ItemSet>(); } }
+        public virtual bool CanContainSide { get; internal set; }
+        public virtual bool ApplyProcessesToComponents { get; internal set; }
+        public virtual bool AutoCollapsing { get; internal set; }
+        private static readonly ItemGroup empty = ScriptableObject.CreateInstance<ItemGroup>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             ItemGroup result = ScriptableObject.CreateInstance<ItemGroup>();
-			ItemGroup empty = ScriptableObject.CreateInstance<ItemGroup>();
 
-			if (BaseGameDataObjectID != -1)
-				result = UnityEngine.Object.Instantiate(gameData.Get<ItemGroup>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
+            if (BaseGameDataObjectID != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<ItemGroup>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-			if (empty.ID != ID) result.ID = ID;
+            if (empty.ID != ID) result.ID = ID;
             if (empty.Prefab != Prefab) result.Prefab = Prefab;
             if (empty.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
             if (empty.ItemValue != ItemValue) result.ItemValue = ItemValue;
@@ -40,21 +40,20 @@ namespace KitchenLib.Customs
             if (empty.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (empty.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
 
-			if (empty.CanContainSide != CanContainSide) result.CanContainSide = CanContainSide;
+            if (empty.CanContainSide != CanContainSide) result.CanContainSide = CanContainSide;
             if (empty.ApplyProcessesToComponents != ApplyProcessesToComponents) result.ApplyProcessesToComponents = ApplyProcessesToComponents;
             if (empty.AutoCollapsing != AutoCollapsing) result.AutoCollapsing = AutoCollapsing;
 
-			FieldInfo processes = ReflectionUtils.GetField<Item>("Processes");
+            FieldInfo processes = ReflectionUtils.GetField<Item>("Processes");
 
-			if (processes.GetValue(empty) != Processes) processes.SetValue(result, Processes);
+            if (processes.GetValue(empty) != Processes) processes.SetValue(result, Processes);
 
-			gameDataObject = result;
+            gameDataObject = result;
         }
 
         public override void AttachDependentProperties(GameDataObject gameDataObject)
         {
             ItemGroup result = (ItemGroup)gameDataObject;
-            ItemGroup empty = ScriptableObject.CreateInstance<ItemGroup>();
 
             if (empty.Properties != Properties) result.Properties = Properties;
             if (empty.DirtiesTo != DirtiesTo) result.DirtiesTo = DirtiesTo;

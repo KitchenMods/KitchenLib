@@ -10,10 +10,10 @@ namespace KitchenLib.Customs
 		public virtual string Description { get; internal set; }
 		public virtual string Icon { get; internal set; }
 
+        private static readonly EffectRepresentation empty = ScriptableObject.CreateInstance<EffectRepresentation>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             EffectRepresentation result = ScriptableObject.CreateInstance<EffectRepresentation>();
-			EffectRepresentation empty = ScriptableObject.CreateInstance<EffectRepresentation>();
 
 			if (BaseGameDataObjectID != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<EffectRepresentation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
