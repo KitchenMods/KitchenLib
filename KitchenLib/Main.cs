@@ -56,6 +56,15 @@ namespace KitchenLib
 		{
 			GameObject go = new GameObject();
 			go.AddComponent<DevUIController>();
+
+			GameObject viewObject = new GameObject();
+			viewObject.AddComponent<MyNewView>();
+
+			//AssetDirectory.ViewPrefabs.Add((ViewType)VariousUtils.GetID("customview"), viewObject);
+
+			Entity e = EntityManager.CreateEntity();
+			EntityManager.AddComponent<CRequiresView>(e);
+			EntityManager.SetComponentData(e, new CRequiresView { Type = (ViewType)VariousUtils.GetID("customview") });
 		}
 #endif
 
