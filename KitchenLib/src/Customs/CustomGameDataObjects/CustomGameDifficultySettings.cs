@@ -6,24 +6,24 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomGameDifficultySettings : CustomGameDataObject
     {
-        public virtual bool IsActive { get { return false; }}
-		public virtual float CustomersPerHourBase { get { return 1f; }}
-		public virtual float CustomersPerHourIncreasePerDay { get { return 0.2f; }}
-		public virtual float CustomerSideChance { get { return 1f; }}
-		public virtual float QueuePatienceTime { get { return 100f; }}
-		public virtual float QueuePatienceBoost { get { return 10f; }}
-		public virtual float CustomerStarterChance { get { return 1f; }}
-		public virtual float GroupDessertChance { get { return 1f; }}
+        public virtual bool IsActive { get { return false; } }
+        public virtual float CustomersPerHourBase { get { return 1f; } }
+        public virtual float CustomersPerHourIncreasePerDay { get { return 0.2f; } }
+        public virtual float CustomerSideChance { get { return 1f; } }
+        public virtual float QueuePatienceTime { get { return 100f; } }
+        public virtual float QueuePatienceBoost { get { return 10f; } }
+        public virtual float CustomerStarterChance { get { return 1f; } }
+        public virtual float GroupDessertChance { get { return 1f; } }
 
+        private static readonly GameDifficultySettings empty = ScriptableObject.CreateInstance<GameDifficultySettings>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             GameDifficultySettings result = ScriptableObject.CreateInstance<GameDifficultySettings>();
-			GameDifficultySettings empty = ScriptableObject.CreateInstance<GameDifficultySettings>();
 
-			if (BaseGameDataObjectID != -1)
-				result = UnityEngine.Object.Instantiate(gameData.Get<GameDifficultySettings>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
+            if (BaseGameDataObjectID != -1)
+                result = UnityEngine.Object.Instantiate(gameData.Get<GameDifficultySettings>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-			if (empty.ID != ID) result.ID = ID;
+            if (empty.ID != ID) result.ID = ID;
             if (empty.IsActive != IsActive) result.IsActive = IsActive;
             if (empty.CustomersPerHourBase != CustomersPerHourBase) result.CustomersPerHourBase = CustomersPerHourBase;
             if (empty.CustomersPerHourIncreasePerDay != CustomersPerHourIncreasePerDay) result.CustomersPerHourIncreasePerDay = CustomersPerHourIncreasePerDay;
@@ -33,7 +33,7 @@ namespace KitchenLib.Customs
             if (empty.CustomerStarterChance != CustomerStarterChance) result.CustomerStarterChance = CustomerStarterChance;
             if (empty.GroupDessertChance != GroupDessertChance) result.GroupDessertChance = GroupDessertChance;
 
-            gameDataObject = result ;
+            gameDataObject = result;
         }
     }
 }

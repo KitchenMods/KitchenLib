@@ -20,9 +20,18 @@ namespace KitchenLib.Customs
 			{
 				GameDataObject gameDataObject;
 				gdo.Convert(__result, out gameDataObject);
-				gdo.OnRegister(gameDataObject);
 				gdo.GameDataObject = gameDataObject;
 				gameDataObjects.Add(gameDataObject);
+			}
+
+			foreach (CustomGameDataObject gdo in CustomGDO.GDOs.Values)
+			{
+				gdo.AttachDependentProperties(gdo.GameDataObject);
+			}
+
+			foreach (CustomGameDataObject gdo in CustomGDO.GDOs.Values)
+            {
+				gdo.OnRegister(gdo.GameDataObject);
 			}
 
 			foreach (GameDataObject gameDataObject in gameDataObjects)
