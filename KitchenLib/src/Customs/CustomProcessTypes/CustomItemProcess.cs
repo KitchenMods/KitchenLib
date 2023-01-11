@@ -4,11 +4,11 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomItemProcess : CustomSubProcess
     {
-        public virtual Process Process { get; internal set; }
-        public virtual Item Result { get; internal set; }
-        public virtual float Duration { get; internal set; }
-        public virtual bool IsBad { get; internal set; }
-        public virtual bool RequiresWrapper { get; internal set; }
+        public virtual Process Process { get; protected set; }
+        public virtual Item Result { get; protected set; }
+        public virtual float Duration { get; protected set; }
+        public virtual bool IsBad { get; protected set; }
+        public virtual bool RequiresWrapper { get; protected set; }
 
         public virtual void Convert(out Item.ItemProcess itemProcess)
         {

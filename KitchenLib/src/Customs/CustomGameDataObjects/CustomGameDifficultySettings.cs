@@ -6,14 +6,14 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomGameDifficultySettings : CustomGameDataObject
     {
-        public virtual bool IsActive { get { return false; } }
-        public virtual float CustomersPerHourBase { get { return 1f; } }
-        public virtual float CustomersPerHourIncreasePerDay { get { return 0.2f; } }
-        public virtual float CustomerSideChance { get { return 1f; } }
-        public virtual float QueuePatienceTime { get { return 100f; } }
-        public virtual float QueuePatienceBoost { get { return 10f; } }
-        public virtual float CustomerStarterChance { get { return 1f; } }
-        public virtual float GroupDessertChance { get { return 1f; } }
+        public virtual bool IsActive { get; protected set; } = false;
+        public virtual float CustomersPerHourBase { get; protected set; } = 1f;
+        public virtual float CustomersPerHourIncreasePerDay { get; protected set; } = 0.2f;
+        public virtual float CustomerSideChance { get; protected set; } = 1f;
+        public virtual float QueuePatienceTime { get; protected set; } = 100f;
+        public virtual float QueuePatienceBoost { get; protected set; } = 10f;
+        public virtual float CustomerStarterChance { get; protected set; } = 1f;
+        public virtual float GroupDessertChance { get; protected set; } = 1f;
 
         private static readonly GameDifficultySettings empty = ScriptableObject.CreateInstance<GameDifficultySettings>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)

@@ -8,10 +8,11 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomThemeUnlock : CustomUnlock
     {
-        public virtual bool IsPrimary { get { return true; } }
-        public virtual DecorationType Type { get; internal set; }
-        public virtual ThemeUnlock ParentTheme1 { get; internal set; }
-        public virtual ThemeUnlock ParentTheme2 { get; internal set; }
+        public virtual bool IsPrimary { get; protected set; } = true;
+        public virtual DecorationType Type { get; protected set; }
+        public virtual ThemeUnlock ParentTheme1 { get; protected set; }
+        public virtual ThemeUnlock ParentTheme2 { get; protected set; }
+
         private static readonly ThemeUnlock empty = ScriptableObject.CreateInstance<ThemeUnlock>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {

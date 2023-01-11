@@ -6,12 +6,12 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomProcess : CustomGameDataObject
     {
-        public virtual GameDataObject BasicEnablingAppliance { get; internal set; }
-        public virtual int EnablingApplianceCount { get { return 1; } }
-        public virtual Process IsPseudoprocessFor { get; internal set; }
-        public virtual bool CanObfuscateProgress { get; internal set; }
-        public virtual string Icon { get { return "!"; } }
-        public virtual LocalisationObject<ProcessInfo> Info { get; internal set; }
+        public virtual GameDataObject BasicEnablingAppliance { get; protected set; }
+        public virtual int EnablingApplianceCount { get; protected set; } = 1;
+        public virtual Process IsPseudoprocessFor { get; protected set; }
+        public virtual bool CanObfuscateProgress { get; protected set; }
+        public virtual string Icon { get; protected set; } = "!";
+        public virtual LocalisationObject<ProcessInfo> Info { get; protected set; }
 
         private static readonly Process empty = ScriptableObject.CreateInstance<Process>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)

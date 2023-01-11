@@ -1,124 +1,44 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
-    <Configurations>MelonLoader;BepInEx;Workshop</Configurations>
-    <AssemblyName>$(MSBuildProjectName)-$(Configuration)</AssemblyName>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net472</TargetFramework>
+		<Configurations>MelonLoader;BepInEx;Workshop</Configurations>
+		<AssemblyName>$(MSBuildProjectName)-$(Configuration)</AssemblyName>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\.editorconfig" Link=".editorconfig" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\Libraries\MelonLoader\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="BepInEx">
-      <HintPath>..\..\..\..\Libraries\BepInEx\core\BepInEx.dll</HintPath>
-    </Reference>
-    <Reference Include="Controllers">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Controllers.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.Common">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Kitchen.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.FranchiseMode">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Kitchen.FranchiseMode.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.GameData">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Kitchen.GameData.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.Layouts">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Kitchen.Layouts.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.Networking">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Kitchen.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.Persistence">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Kitchen.Persistence.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.RestaurantMode">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Kitchen.RestaurantMode.dll</HintPath>
-    </Reference>
-    <Reference Include="KitchenMode">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\KitchenMode.dll</HintPath>
-    </Reference>
-    <Reference Include="KitchenMods">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\KitchenMods.dll</HintPath>
-    </Reference>
-    <Reference Include="MelonLoader">
-      <HintPath>..\..\..\..\Libraries\MelonLoader\MelonLoader.dll</HintPath>
-    </Reference>
-    <Reference Include="MessagePack">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\MessagePack.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Serialization">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Sirenix.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Memory">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\System.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Entities">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Unity.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mathematics">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Unity.Mathematics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Serialization">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Unity.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AudioModule">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="XNode">
-      <HintPath>..\..\..\..\Libraries\PlateUp_Data\Managed\XNode.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.5.6" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="0Harmony">
+			<HintPath>..\..\..\..\Libraries\MelonLoader\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="BepInEx">
+			<HintPath>..\..\..\..\Libraries\BepInEx\core\BepInEx.dll</HintPath>
+		</Reference>
+		<Reference Include="MelonLoader">
+			<HintPath>..\..\..\..\Libraries\MelonLoader\MelonLoader.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Settings.Designer.cs">
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
 
 </Project>

@@ -10,10 +10,11 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomItemGroup : CustomItem
     {
-        public virtual List<ItemGroup.ItemSet> Sets { get { return new List<ItemGroup.ItemSet>(); } }
-        public virtual bool CanContainSide { get; internal set; }
-        public virtual bool ApplyProcessesToComponents { get; internal set; }
-        public virtual bool AutoCollapsing { get; internal set; }
+        public virtual List<ItemGroup.ItemSet> Sets { get; protected set; } = new List<ItemGroup.ItemSet>();
+        public virtual bool CanContainSide { get; protected set; }
+        public virtual bool ApplyProcessesToComponents { get; protected set; }
+        public virtual bool AutoCollapsing { get; protected set; }
+
         private static readonly ItemGroup empty = ScriptableObject.CreateInstance<ItemGroup>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
