@@ -1,6 +1,7 @@
 ﻿using KitchenLib.src.ContentPack.JsonConverters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace KitchenLib.src.ContentPack
 {
@@ -9,12 +10,15 @@ namespace KitchenLib.src.ContentPack
         public static JsonSerializerSettings settings = new JsonSerializerSettings()
         {
             DefaultValueHandling = DefaultValueHandling.Populate,
+            ContractResolver = new DefaultContractResolver
+            {
+                SerializeCompilerGeneratedMembers = true
+            },
             Converters = new JsonConverter[]
             {
                 new StringEnumConverter(),
                 new SemVersionConverter(),
                 new PrefabConverter(),
-                new ItemProcessConverter(),
                 new GameDataObjectConverter()
             }
         };

@@ -8,13 +8,17 @@ namespace KitchenLib.src.ContentPack.JsonConverters
     {
         public override object Create(string str)
         {
-            GameDataObject GDO;
-            if (int.TryParse(str, out int ID))
-                GDO = GDOUtils.GetExistingGDO(ID);
-            else
-                GDO = GDOUtils.GetCustomGameDataObject(StringUtils.GetInt32HashCode(str)).GameDataObject;
+            return GetPrefab(GDOUtils.GetCustomGameDataObject(StringUtils.GetInt32HashCode(str)).GameDataObject);
+        }
 
-            return GDO switch
+        public override object Create(int id)
+        {
+            return GetPrefab(GDOUtils.GetExistingGDO(id));
+        }
+
+        public GameObject GetPrefab(GameDataObject gdo)
+        {
+            return gdo switch
             {
                 Item item => item.Prefab,
                 Appliance appliance => appliance.Prefab,

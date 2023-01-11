@@ -89,7 +89,7 @@ namespace KitchenLib.src.ContentPack
                                 Log(JsonConvert.SerializeObject(Manifest, Formatting.Indented, settings));
                             if (!Manifest.ContentPackFor.isTargetFor(KitchenLibID))
                                 continue;
-                            Manifest.ModName = Path.GetFileName(folder.TrimEnd(Path.DirectorySeparatorChar));
+                            
                             pack.Manifest = Manifest;
 
                             ModContent Content = JsonConvert.DeserializeObject<ModContent>(
@@ -97,9 +97,12 @@ namespace KitchenLib.src.ContentPack
                             );
                             if (Debug)
                                 Log(JsonConvert.SerializeObject(Content, Formatting.Indented, settings));
-                            Content.Bundles = ModPreload.Mods.Where(mod => mod.Name == Manifest.ModName).First().GetPacks<AssetBundleModPack>().SelectMany(pack => pack.AssetBundles).ToList();
                             pack.Content = Content;
 
+                            pack.ModName = Path.GetFileName(folder.TrimEnd(Path.DirectorySeparatorChar));
+                            Mod mod = ModPreload.Mods.FirstOrDefault(mod => mod.Name == pack.ModName);
+                            if(mod != null)
+                                pack.Bundles = mod.GetPacks<AssetBundleModPack>().SelectMany(pack => pack.AssetBundles).ToList();
                             pack.ModDirectory = folder;
 
                             ContentPacks.Add(pack);

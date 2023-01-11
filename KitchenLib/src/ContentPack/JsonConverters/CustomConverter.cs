@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 
 namespace KitchenLib.src.ContentPack.JsonConverters
@@ -7,12 +8,27 @@ namespace KitchenLib.src.ContentPack.JsonConverters
     {
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            string str = (string)reader.Value;
-            return Create(str);
+            return reader.Value switch
+            {
+                string str => Create(str),
+                int id => Create(id),
+                _ => null
+            }; ;
         }
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) { }
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) 
+        { 
+            JToken jToken = JToken.FromObject("Not Supported");
+            jToken.WriteTo(writer);
+        }
 
-        public abstract object Create(string str);
+        public virtual object Create(string str) 
+        {
+            return null;
+        }
+        public virtual object Create(int id)
+        {
+            return null;
+        }
     }
 }

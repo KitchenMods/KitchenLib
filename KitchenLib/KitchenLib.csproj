@@ -3,7 +3,7 @@
 		<TargetFramework>net472</TargetFramework>
 		<Configurations>MelonLoader;BepInEx;Workshop</Configurations>
 		<AssemblyName>$(MSBuildProjectName)-$(Configuration)</AssemblyName>
-		<LangVersion>latest</LangVersion>
+		<LangVersion>8</LangVersion>
 		<NoWarn>CS0114</NoWarn>
 	</PropertyGroup>
 

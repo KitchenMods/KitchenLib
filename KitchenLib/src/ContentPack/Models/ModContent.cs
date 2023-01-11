@@ -12,6 +12,5 @@ namespace KitchenLib.src.ContentPack.Models
         public SemVersion Format { get; set; }
         [JsonProperty("Changes", Required = Required.Always)]
         public List<ModChange> Changes { get; set; }
-        public List<AssetBundle> Bundles { get; set; }
     }
 }

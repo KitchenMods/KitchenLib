@@ -13,20 +13,24 @@ namespace KitchenLib.src.ContentPack
                 BaseMod.instance.Log(message);
         }
 
+        public static void Log(object message)
+        {
+            if (Debug) Console.WriteLine(message);
+            else BaseMod.instance.Log(message.ToString());
+        }
+
         public static void Error(string message)
         {
             if (Debug)
-                Console.Error.Write(message);
+                Console.Error.WriteLine(message);
             else
                 BaseMod.instance.Error(message);
         }
 
-        public static void NewLine()
+        public static void Error(object message)
         {
-            if (Debug)
-                Console.WriteLine();
-            else
-                BaseMod.instance.Log(string.Empty);
+            if (Debug) Console.Error.WriteLine(message);
+            else BaseMod.instance.Log(message.ToString());
         }
     }
 }

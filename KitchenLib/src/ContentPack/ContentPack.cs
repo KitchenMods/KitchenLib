@@ -1,6 +1,8 @@
 ﻿using KitchenLib.src.ContentPack.Models;
 using static KitchenLib.src.ContentPack.Logger;
 using static KitchenLib.src.ContentPack.ContentPackManager;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace KitchenLib.src.ContentPack
 {
@@ -9,11 +11,16 @@ namespace KitchenLib.src.ContentPack
         public ModManifest Manifest;
         public ModContent Content;
 
+        public string ModName;
         public string ModDirectory;
+        public List<AssetBundle> Bundles;
 
         public void PreLoad()
         {
-            ModName = Manifest.ModName;
+            ContentPackManager.ModName = ModName;
+            ContentPackManager.Bundles = Bundles;
+            ContentPackManager.ModDirectory = ModDirectory;
+
             Description = Manifest.Description;
             Author = Manifest.Author;
             Version = Manifest.Version;
@@ -21,7 +28,6 @@ namespace KitchenLib.src.ContentPack
 
             Format = Content.Format;
             Changes = Content.Changes;
-            Bundles = Content.Bundles;
         }
 
         public void Load()
