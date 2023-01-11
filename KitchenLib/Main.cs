@@ -9,6 +9,8 @@ using System.IO;
 using KitchenLib.DevUI;
 using KitchenLib.UI;
 using KitchenLib.Utils;
+using Unity.Entities;
+using KitchenLib.Views;
 
 #if MELONLOADER
 using MelonLoader;
@@ -31,7 +33,7 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.3.8";
+		public const string MOD_VERSION = "0.3.9";
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.2";
 
 		public static AssetBundle bundle;
