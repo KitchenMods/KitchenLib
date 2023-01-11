@@ -1,26 +1,30 @@
 ﻿using KitchenData;
 using KitchenLib.Customs;
+using KitchenLib.Utils;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Reflection;
 using System.Runtime.Serialization;
 using UnityEngine;
 
 namespace KitchenLib.src.ContentPack.Models.Json
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class JsonItem : CustomItem
     {
         [JsonProperty("UniqueNameID")]
         public override string UniqueNameID { get; internal set; }
-        [field:JsonProperty("BaseGameDataObjectID")]
-        [field:DefaultValue(-1)]
+        [field: JsonProperty("BaseGameDataObjectID")]
+        [field: DefaultValue(-1)]
         [JsonIgnore]
         public override int BaseGameDataObjectID { get; }
 
         [JsonProperty("Prefab")]
         public override GameObject Prefab { get; internal set; }
         [JsonProperty("Processes")]
-        public override List<Item.ItemProcess> Processes { get { return new List<Item.ItemProcess>(); } }
+        public List<Item.ItemProcess> _Processes { get; private set; }
         public override List<IItemProperty> Properties { get { return new List<IItemProperty>(); } }
         public override float ExtraTimeGranted { get; internal set; }
         public override ItemValue ItemValue { get { return ItemValue.Small; } }
@@ -46,5 +50,14 @@ namespace KitchenLib.src.ContentPack.Models.Json
         public override ToolAttachPoint HoldPose { get { return ToolAttachPoint.Generic; } }
         public override bool IsMergeableSide { get; internal set; }
         public override Item ExtendedDirtItem { get; internal set; }
+
+        public void InjectLists(JsonItem gdo)
+        {
+            if (_Processes == null)
+                _Processes = new List<Item.ItemProcess>();
+
+            FieldInfo ProcessesField = ReflectionUtils.GetField<JsonItem>("Properties");
+            Logger.Log(ProcessesField == null);
+        }
     }
 }

@@ -11,9 +11,6 @@ namespace KitchenLib.Customs
     public abstract class CustomItem : CustomGameDataObject
     {
         public virtual GameObject Prefab { get; internal set; }
-
-        [Obsolete("Use the Hashset<Item.ItemProcess>Processes instead")]
-        public virtual List<Item.ItemProcess> DerivedProcesses { get { return new List<Item.ItemProcess>(); } }
         public virtual List<Item.ItemProcess> Processes { get { return new List<Item.ItemProcess>(); } }
         public virtual List<IItemProperty> Properties { get { return new List<IItemProperty>(); } }
         public virtual float ExtraTimeGranted { get; internal set; }
