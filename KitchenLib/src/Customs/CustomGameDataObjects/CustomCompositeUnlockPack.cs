@@ -1,5 +1,4 @@
 ﻿using KitchenData;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,7 +7,7 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomCompositeUnlockPack : CustomUnlockPack
     {
-        public virtual List<UnlockPack> Packs { get { return new List<UnlockPack>(); } }
+        public virtual List<UnlockPack> Packs { get; protected set; } = new List<UnlockPack>();
 
         private static readonly CompositeUnlockPack empty = ScriptableObject.CreateInstance<CompositeUnlockPack>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)

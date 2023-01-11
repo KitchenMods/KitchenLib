@@ -4,10 +4,10 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomApplianceProccess : CustomSubProcess
     {
-        public virtual Process Process { get; internal set; }
-        public virtual bool IsAutomatic { get; internal set; }
-        public virtual float Speed { get; internal set; }
-        public virtual ProcessValidity Validity { get; internal set; }
+        public virtual Process Process { get; protected set; }
+        public virtual bool IsAutomatic { get; protected set; }
+        public virtual float Speed { get; protected set; }
+        public virtual ProcessValidity Validity { get; protected set; }
 
         public virtual void Convert(out Appliance.ApplianceProcesses applianceProcess)
         {

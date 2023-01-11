@@ -9,7 +9,8 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomUnlockCard : CustomUnlock
     {
-        public virtual List<UnlockEffect> Effects { get { return new List<UnlockEffect>(); } }
+        public virtual List<UnlockEffect> Effects { get; protected set; } = new List<UnlockEffect>();
+
         private static readonly UnlockCard empty = ScriptableObject.CreateInstance<UnlockCard>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {

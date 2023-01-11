@@ -7,7 +7,7 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomLevelUpgradeSet : CustomGameDataObject
     {
-        public virtual List<LevelUpgrade> Upgrades { get { return new List<LevelUpgrade>(); } }
+        public virtual List<LevelUpgrade> Upgrades { get; protected set; } = new List<LevelUpgrade>();
 
         private static readonly LevelUpgradeSet empty = ScriptableObject.CreateInstance<LevelUpgradeSet>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
