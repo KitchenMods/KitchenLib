@@ -1,14 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
-    <Configurations>MelonLoader;BepInEx;Workshop</Configurations>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.5.6" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net472</TargetFramework>
+		<Configurations>MelonLoader;BepInEx;Workshop</Configurations>
+		<EnableModDeployLocal>false</EnableModDeployLocal>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\KitchenLib\KitchenLib.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.5.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\KitchenLib\KitchenLib.csproj" />
+	</ItemGroup>
 
 </Project>

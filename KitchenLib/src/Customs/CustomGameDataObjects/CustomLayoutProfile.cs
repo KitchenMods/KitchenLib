@@ -15,7 +15,7 @@ namespace KitchenLib.Customs
         public virtual GameDataObject Counter { get; protected set; }
         public virtual Appliance ExternalBin { get; protected set; }
         public virtual Appliance WallPiece { get; protected set; }
-        public virtual Appliance protectedWallPiece { get; protected set; }
+        public virtual Appliance InternalWallPiece { get; protected set; }
         public virtual Appliance StreetPiece { get; protected set; }
         public virtual LocalisationObject<BasicInfo> Info { get; protected set; }
         public virtual string Name { get; protected set; } = "New Layout";
@@ -48,7 +48,7 @@ namespace KitchenLib.Customs
             if (empty.Counter != Counter) result.Counter = Counter;
             if (empty.ExternalBin != ExternalBin) result.ExternalBin = ExternalBin;
             if (empty.WallPiece != WallPiece) result.WallPiece = WallPiece;
-            if (empty.protectedWallPiece != protectedWallPiece) result.protectedWallPiece = protectedWallPiece;
+            if (empty.InternalWallPiece != InternalWallPiece) result.InternalWallPiece = InternalWallPiece;
             if (empty.StreetPiece != StreetPiece) result.StreetPiece = StreetPiece;
         }
     }
