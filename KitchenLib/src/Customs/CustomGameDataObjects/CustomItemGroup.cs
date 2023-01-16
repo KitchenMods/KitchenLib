@@ -44,9 +44,6 @@ namespace KitchenLib.Customs
             if (empty.ApplyProcessesToComponents != ApplyProcessesToComponents) result.ApplyProcessesToComponents = ApplyProcessesToComponents;
             if (empty.AutoCollapsing != AutoCollapsing) result.AutoCollapsing = AutoCollapsing;
 
-            FieldInfo processes = ReflectionUtils.GetField<Item>("Processes");
-
-            if (processes.GetValue(empty) != Processes) processes.SetValue(result, Processes);
 
             gameDataObject = result;
         }
@@ -66,7 +63,10 @@ namespace KitchenLib.Customs
             if (empty.DedicatedProvider != DedicatedProvider) result.DedicatedProvider = DedicatedProvider;
             if (empty.ExtendedDirtItem != ExtendedDirtItem) result.ExtendedDirtItem = ExtendedDirtItem;
 
+            FieldInfo processes = ReflectionUtils.GetField<Item>("Processes");
             FieldInfo sets = ReflectionUtils.GetField<ItemGroup>("Sets");
+
+            if (processes.GetValue(empty) != Processes) processes.SetValue(result, Processes);
             if (sets.GetValue(empty) != Sets) sets.SetValue(gameDataObject, Sets);
         }
     }
