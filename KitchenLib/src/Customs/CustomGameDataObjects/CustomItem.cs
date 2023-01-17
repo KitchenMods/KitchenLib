@@ -10,34 +10,34 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomItem : CustomGameDataObject
     {
-        public virtual GameObject Prefab { get; internal set; }
-
-        public virtual List<Item.ItemProcess> Processes { get { return new List<Item.ItemProcess>(); } }
-        public virtual List<IItemProperty> Properties { get { return new List<IItemProperty>(); } }
-        public virtual float ExtraTimeGranted { get; internal set; }
-        public virtual ItemValue ItemValue { get { return ItemValue.Small; } }
+        public virtual GameObject Prefab { get; protected set; }
+        public virtual List<Item.ItemProcess> Processes { get; protected set; }=new List<Item.ItemProcess>();
+        public virtual List<IItemProperty> Properties { get; protected set; } = new List<IItemProperty>();
+        public virtual float ExtraTimeGranted { get; protected set; }
+        public virtual ItemValue ItemValue { get; protected set; } = ItemValue.Small;
         public virtual int Reward { get { return 1; } }
-        public virtual Item DirtiesTo { get; internal set; }
-        public virtual List<Item> MayRequestExtraItems { get { return new List<Item>(); } }
-        public virtual int MaxOrderSharers { get; internal set; }
-        public virtual Item SplitSubItem { get; internal set; }
-        public virtual int SplitCount { get { return 0; } }
-        public virtual float SplitSpeed { get { return 1f; } }
-        public virtual List<Item> SplitDepletedItems { get { return new List<Item>(); } }
-        public virtual bool AllowSplitMerging { get; internal set; }
-        public virtual bool PreventExplicitSplit { get; internal set; }
-        public virtual bool SplitByComponents { get; internal set; }
-        public virtual Item SplitByComponentsHolder { get; internal set; }
-        public virtual bool SplitByCopying { get; internal set; }
-        public virtual Item RefuseSplitWith { get; internal set; }
-        public virtual Item DisposesTo { get; internal set; }
-        public virtual bool IsIndisposable { get; internal set; }
-        public virtual ItemCategory ItemCategory { get; internal set; }
-        public virtual ItemStorage ItemStorageFlags { get; internal set; }
-        public virtual Appliance DedicatedProvider { get; internal set; }
-        public virtual ToolAttachPoint HoldPose { get { return ToolAttachPoint.Generic; } }
-        public virtual bool IsMergeableSide { get; internal set; }
-        public virtual Item ExtendedDirtItem { get; internal set; }
+        public virtual Item DirtiesTo { get; protected set; }
+        public virtual List<Item> MayRequestExtraItems { get; protected set; } = new List<Item>();
+        public virtual int MaxOrderSharers { get; protected set; }
+        public virtual Item SplitSubItem { get; protected set; }
+        public virtual int SplitCount { get; protected set; } = 0;
+        public virtual float SplitSpeed { get; protected set; } = 1f;
+        public virtual List<Item> SplitDepletedItems { get; protected set; } = new List<Item>();
+        public virtual bool AllowSplitMerging { get; protected set; }
+        public virtual bool PreventExplicitSplit { get; protected set; }
+        public virtual bool SplitByComponents { get; protected set; }
+        public virtual Item SplitByComponentsHolder { get; protected set; }
+        public virtual bool SplitByCopying { get; protected set; }
+        public virtual Item RefuseSplitWith { get; protected set; }
+        public virtual Item DisposesTo { get; protected set; }
+        public virtual bool IsIndisposable { get; protected set; }
+        public virtual ItemCategory ItemCategory { get; protected set; }
+        public virtual ItemStorage ItemStorageFlags { get; protected set; }
+        public virtual Appliance DedicatedProvider { get; protected set; }
+        public virtual ToolAttachPoint HoldPose { get; protected set; } = ToolAttachPoint.Generic;
+        public virtual bool IsMergeableSide { get; protected set; }
+        public virtual Item ExtendedDirtItem { get; protected set; }
+
         private static readonly Item empty = ScriptableObject.CreateInstance<Item>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {

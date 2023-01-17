@@ -8,18 +8,18 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomLayoutProfile : CustomGameDataObject
     {
-        public virtual LayoutGraph Graph { get; internal set; }
-        public virtual int MaximumTables { get { return 3; } }
-        public virtual List<GameDataObject> RequiredAppliances { get { return new List<GameDataObject>(); } }
-        public virtual GameDataObject Table { get; internal set; }
-        public virtual GameDataObject Counter { get; internal set; }
-        public virtual Appliance ExternalBin { get; internal set; }
-        public virtual Appliance WallPiece { get; internal set; }
-        public virtual Appliance InternalWallPiece { get; internal set; }
-        public virtual Appliance StreetPiece { get; internal set; }
-        public virtual LocalisationObject<BasicInfo> Info { get; internal set; }
-        public virtual string Name { get { return "New Layout"; } }
-        public virtual string Description { get { return "A new layout type for your restaurants!"; } }
+        public virtual LayoutGraph Graph { get; protected set; }
+        public virtual int MaximumTables { get; protected set; } = 3;
+        public virtual List<GameDataObject> RequiredAppliances { get; protected set; } = new List<GameDataObject>();
+        public virtual GameDataObject Table { get; protected set; }
+        public virtual GameDataObject Counter { get; protected set; }
+        public virtual Appliance ExternalBin { get; protected set; }
+        public virtual Appliance WallPiece { get; protected set; }
+        public virtual Appliance InternalWallPiece { get; protected set; }
+        public virtual Appliance StreetPiece { get; protected set; }
+        public virtual LocalisationObject<BasicInfo> Info { get; protected set; }
+        public virtual string Name { get; protected set; } = "New Layout";
+        public virtual string Description { get; protected set; } = "A new layout type for your restaurants!";
 
         private static readonly LayoutProfile empty = ScriptableObject.CreateInstance<LayoutProfile>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)

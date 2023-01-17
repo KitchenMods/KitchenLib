@@ -6,10 +6,10 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomDecor : CustomGameDataObject
     {
-        public virtual Material Material { get; internal set; }
-        public virtual Appliance ApplicatorAppliance { get; internal set; }
-        public virtual LayoutMaterialType Type { get; internal set; }
-        public virtual bool IsAvailable { get { return true; } }
+        public virtual Material Material { get; protected set; }
+        public virtual Appliance ApplicatorAppliance { get; protected set; }
+        public virtual LayoutMaterialType Type { get; protected set; }
+        public virtual bool IsAvailable { get; protected set; } = true;
 
         private static readonly Decor empty = ScriptableObject.CreateInstance<Decor>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)

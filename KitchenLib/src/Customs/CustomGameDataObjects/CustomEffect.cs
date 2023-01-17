@@ -7,11 +7,11 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomEffect : CustomGameDataObject
     {
-        public virtual List<IEffectProperty> Properties { get { return new List<IEffectProperty>(); } }
-        public virtual IEffectRange EffectRange { get; internal set; }
-        public virtual IEffectCondition EffectCondition { get; internal set; }
-        public virtual IEffectType EffectType { get; internal set; }
-        public virtual EffectRepresentation EffectInformation { get; internal set; }
+        public virtual List<IEffectProperty> Properties { get; protected set; } = new List<IEffectProperty>();
+        public virtual IEffectRange EffectRange { get; protected set; }
+        public virtual IEffectCondition EffectCondition { get; protected set; }
+        public virtual IEffectType EffectType { get; protected set; }
+        public virtual EffectRepresentation EffectInformation { get; protected set; }
 
         private static readonly Effect empty = ScriptableObject.CreateInstance<Effect>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
