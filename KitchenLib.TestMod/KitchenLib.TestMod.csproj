@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
 		<Configurations>MelonLoader;BepInEx;Workshop</Configurations>
@@ -11,6 +11,15 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\KitchenLib\KitchenLib.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="BepInEx">
+	    <HintPath>..\..\..\..\Libraries\BepInEx\core\BepInEx.dll</HintPath>
+	  </Reference>
+	  <Reference Include="MelonLoader">
+	    <HintPath>..\..\..\..\Libraries\MelonLoader\MelonLoader.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 
 </Project>
