@@ -9,6 +9,7 @@ using KitchenLib.Systems;
 using UnityEngine;
 using Kitchen;
 using System.IO;
+using KitchenLib.Colorblind;
 
 namespace KitchenLib.Customs
 {
@@ -130,6 +131,7 @@ namespace KitchenLib.Customs
 			__result.Dispose();
 			__result.InitialiseViews();
 
+			ColorblindUtils.Init(__result);
 			EventUtils.InvokeEvent(nameof(Events.BuildGameDataEvent), Events.BuildGameDataEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result));
 		}
 	}
