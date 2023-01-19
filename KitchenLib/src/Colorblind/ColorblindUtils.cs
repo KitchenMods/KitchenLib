@@ -5,6 +5,7 @@ using KitchenLib.Utils;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace KitchenLib.Colorblind {
 
@@ -13,8 +14,9 @@ namespace KitchenLib.Colorblind {
         private static FieldInfo itemGroupView_colourblindLabel;
         private static FieldInfo itemGroupView_componentLabels;
         private static GameObject existingColourBlindChild;
+		public static List<ItemLabel> itemLabels = new List<ItemLabel>();
 
-        public static void Init(GameData gameData) {
+		public static void Init(GameData gameData) {
             buildReflectionCache();
             getExistingColourBlindChildToCloneFromPie(gameData);
         }

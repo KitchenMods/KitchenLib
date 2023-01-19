@@ -5,6 +5,7 @@ using System.Reflection;
 using KitchenLib.Utils;
 using System.Linq;
 using UnityEngine;
+using KitchenLib.Colorblind;
 
 namespace KitchenLib.Customs
 {
@@ -41,7 +42,10 @@ namespace KitchenLib.Customs
             if (empty.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (empty.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
 
-            if (empty.CanContainSide != CanContainSide) result.CanContainSide = CanContainSide;
+			if (ColourBlindTag != "")
+				ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
+
+			if (empty.CanContainSide != CanContainSide) result.CanContainSide = CanContainSide;
             if (empty.ApplyProcessesToComponents != ApplyProcessesToComponents) result.ApplyProcessesToComponents = ApplyProcessesToComponents;
             if (empty.AutoCollapsing != AutoCollapsing) result.AutoCollapsing = AutoCollapsing;
 

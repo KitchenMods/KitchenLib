@@ -9,6 +9,7 @@ using System.IO;
 using KitchenLib.DevUI;
 using KitchenLib.UI;
 using KitchenLib.Utils;
+using KitchenLib.Colorblind;
 
 #if MELONLOADER
 using MelonLoader;
@@ -32,7 +33,7 @@ namespace KitchenLib
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
 		public const string MOD_VERSION = "0.4.0";
-		public const string MOD_COMPATIBLE_VERSIONS = "1.1.2";
+		public const string MOD_COMPATIBLE_VERSIONS = "1.1.3";
 
 		public static AssetBundle bundle;
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
@@ -45,7 +46,7 @@ namespace KitchenLib
 #else
 		protected override void OnPostActivate(Mod mod)
 		{
-			GenerateReferences();
+			//GenerateReferences();
 			SetupMenus();
 			RegisterMenu<MaterialsUI>();
 			PreferenceUtils.Load();
@@ -54,6 +55,8 @@ namespace KitchenLib
 		{
 			GameObject go = new GameObject();
 			go.AddComponent<DevUIController>();
+
+			ColorblindUtils.AddSingleItemLabels(ColorblindUtils.itemLabels.ToArray());
 		}
 #endif
 

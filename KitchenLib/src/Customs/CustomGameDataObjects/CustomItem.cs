@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using KitchenLib.Colorblind;
 
 namespace KitchenLib.Customs
 {
@@ -37,8 +38,9 @@ namespace KitchenLib.Customs
         public virtual ToolAttachPoint HoldPose { get; protected set; } = ToolAttachPoint.Generic;
         public virtual bool IsMergeableSide { get; protected set; }
         public virtual Item ExtendedDirtItem { get; protected set; }
+		public virtual string ColourBlindTag { get; protected set; }
 
-        private static readonly Item empty = ScriptableObject.CreateInstance<Item>();
+		private static readonly Item empty = ScriptableObject.CreateInstance<Item>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             Item result = ScriptableObject.CreateInstance<Item>();
@@ -63,6 +65,9 @@ namespace KitchenLib.Customs
             if (empty.ItemStorageFlags != ItemStorageFlags) result.ItemStorageFlags = ItemStorageFlags;
             if (empty.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (empty.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
+
+			if (ColourBlindTag != "")
+				ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
 
             gameDataObject = result;
         }

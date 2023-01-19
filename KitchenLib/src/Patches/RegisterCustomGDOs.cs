@@ -107,7 +107,6 @@ namespace KitchenLib.Customs
 
 			/*
 			 * Used to extract assets
-			 */
 			foreach (GameDataObject gameDataObject in gameDataObjects)
 			{
 				Texture2D texture = new Texture2D(1, 1);
@@ -127,6 +126,7 @@ namespace KitchenLib.Customs
 				}
 				File.WriteAllBytes(dirPath + gameDataObject.ID + ".png", bytes);
 			}
+			 */
 
 			__result.Dispose();
 			__result.InitialiseViews();
