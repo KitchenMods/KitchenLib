@@ -24,6 +24,9 @@ namespace KitchenLib.Customs
         public virtual HashSet<Dish.IngredientUnlock> IngredientsUnlocks { get; protected set; } = new HashSet<Dish.IngredientUnlock>();
         public virtual HashSet<Dish> PrerequisiteDishesEditor { get; protected set; } = new HashSet<Dish>();
 
+		public virtual bool IsAvailableAsLobbyOption { get; protected set; } = false;
+		public virtual Dictionary<Locale, string> Recipe { get; protected set; } = new Dictionary<Locale, string>();
+
         private static readonly Dish empty = ScriptableObject.CreateInstance<Dish>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {

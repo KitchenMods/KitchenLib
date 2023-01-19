@@ -4,6 +4,11 @@ using KitchenData;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using KitchenLib.Event;
+using System.CodeDom;
+using KitchenLib.Systems;
+using UnityEngine;
+using Kitchen;
+using System.IO;
 
 namespace KitchenLib.Customs
 {
@@ -68,6 +73,60 @@ namespace KitchenLib.Customs
 			{
 				gameDataObject.SetupFinal();
 			}
+
+			/*
+			 * Setting localisation for Recipes on a per-dish-basis
+			 * Sets to whatever language is set in Preferences, defaults to English if one is not set.
+			 */
+			
+			foreach (GameDataObject gameDataObject in gameDataObjects)
+			{
+				if (gameDataObject.GetType() == typeof(Dish))
+				{
+					Dish dish = (Dish)gameDataObject;
+					CustomDish customDish = (CustomDish)GDOUtils.GetCustomGameDataObject(dish.ID);
+					foreach (Locale locle in customDish.Recipe.Keys)
+					{
+						__result.GlobalLocalisation.Recipes.Info.Get(locle).Text.Add(dish, customDish.Recipe[locle]);
+						foreach (RecipeLocalisation loc in __result.Get<RecipeLocalisation>())
+						{
+							if (!loc.Text.ContainsKey(dish))
+								if (customDish.Recipe.ContainsKey((Locale)Enum.Parse(typeof(Locale), PlayerPrefs.GetString(Pref.Localisation))))
+								loc.Text.Add(dish, customDish.Recipe[(Locale)Enum.Parse(typeof(Locale), PlayerPrefs.GetString(Pref.Localisation))]);
+							else
+								loc.Text.Add(dish, customDish.Recipe[Locale.English]);
+						}
+					}
+					if (customDish.IsAvailableAsLobbyOption)
+					{
+						MainMenuDishSystem.MenuOptions.Add(dish.ID);
+					}
+				}
+			}
+
+			/*
+			 * Used to extract assets
+			 */
+			foreach (GameDataObject gameDataObject in gameDataObjects)
+			{
+				Texture2D texture = new Texture2D(1, 1);
+				if (gameDataObject.GetType() == typeof(Appliance))
+					texture = PrefabSnapshot.GetApplianceSnapshot(((Appliance)gameDataObject).Prefab);
+				if (gameDataObject.GetType() == typeof(Dish))
+					texture = PrefabSnapshot.GetApplianceSnapshot(((Dish)gameDataObject).DisplayPrefab);
+				if (gameDataObject.GetType() == typeof(Item))
+					texture = PrefabSnapshot.GetApplianceSnapshot(((Item)gameDataObject).Prefab);
+
+
+				byte[] bytes = texture.EncodeToPNG();
+				var dirPath = Application.dataPath + "/../SaveImages/";
+				if (!Directory.Exists(dirPath))
+				{
+					Directory.CreateDirectory(dirPath);
+				}
+				File.WriteAllBytes(dirPath + gameDataObject.ID + ".png", bytes);
+			}
+
 			__result.Dispose();
 			__result.InitialiseViews();
 
