@@ -66,7 +66,7 @@ namespace KitchenLib.Customs
             if (empty.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (empty.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
 
-			if (ColourBlindTag != "")
+			if (!string.IsNullOrEmpty(ColourBlindTag))
 				ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
 
             gameDataObject = result;
