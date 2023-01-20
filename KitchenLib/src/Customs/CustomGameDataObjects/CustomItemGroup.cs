@@ -72,7 +72,24 @@ namespace KitchenLib.Customs
             FieldInfo sets = ReflectionUtils.GetField<ItemGroup>("Sets");
 
             if (processes.GetValue(empty) != Processes) processes.SetValue(result, Processes);
-            if (sets.GetValue(empty) != Sets) sets.SetValue(gameDataObject, Sets);
+            if (sets.GetValue(empty) != Sets)
+            {
+                // Check for potential errors
+                for (int setIndex = 0; setIndex < Sets.Count; setIndex++)
+                {
+                    ItemGroup.ItemSet set = Sets[setIndex];
+                    for (int itemIndex = 0; itemIndex < set.Items.Count; itemIndex++)
+                    {
+                        Item item = set.Items[itemIndex];
+                        if (item == null || item.ID == 0)
+                        {
+                            Debug.LogWarning($"[KitchenLib] Found null or zero-ID item in an ItemSet in class {GetType().FullName} (set index {setIndex}, item index {itemIndex}). This will likely cause the game to crash.");
+                        }
+                    }
+                }
+
+                sets.SetValue(gameDataObject, Sets);
+            }
         }
     }
 }

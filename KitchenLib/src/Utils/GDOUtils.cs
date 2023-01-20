@@ -28,6 +28,12 @@ namespace KitchenLib.Utils
 			return gdo;
 		}
 
+		public static CustomGameDataObject GetCustomGameDataObject(string name)
+		{
+			CustomGDO.GDOsByName.TryGetValue(name, out var result);
+			return result;
+		}
+
 		public static CustomGameDataObject GetCustomGameDataObject(int id)
 		{
 			CustomGDO.GDOs.TryGetValue(id, out var result);
@@ -43,6 +49,11 @@ namespace KitchenLib.Utils
 		public static T GetCastedGDO<T, C>() where T : GameDataObject where C : CustomGameDataObject
 		{
 			return (T)GetCustomGameDataObject<C>()?.GameDataObject;
+		}
+
+		public static T GetCastedGDO<T>(string name) where T : GameDataObject
+		{
+			return (T)GetCustomGameDataObject(name)?.GameDataObject;
 		}
 	}
 }
