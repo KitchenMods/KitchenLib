@@ -554,6 +554,24 @@
 
 		public const int SourcePumpkin = -1055654549;
 
+		public const int BunnyPoster = 555321421;
+
+		public const int Lantern = -2084684446;
+
+		public const int SourceBamboo = -2092567672;
+
+		public const int SourceSeaweed = 595306349;
+
+		public const int SourceMandarin = -1210117767;
+
+		public const int SourceSoySauce = -471813067;
+
+		public const int LakeGround = -184765154;
+
+		public const int RedEnvelopeLetter = -707206359;
+
+		public const int TreeLake = 1134699240;
+
 		public const int SourceCherry = 148543530;
 
 		public const int SourceMilk = 120342736;
@@ -582,6 +600,8 @@
 		public const int DefaultCompositePack = -2020288853;
 
 		public const int HalloweenPack = -839658581;
+
+		public const int JanuaryPack = -1893039732;
 
 		public const int AutumnPack = 698670060;
 
@@ -621,6 +641,10 @@
 
 		public const int WallpaperBasicYellow = -247477402;
 
+		public const int WallpaperPatternSnow = 1039076012;
+
+		public const int WallpaperStripesRed = 1327221289;
+
 		public const int FloorPlanksSmart = 1519770899;
 
 		public const int FloorPlanksTattered = -281022317;
@@ -642,6 +666,12 @@
 		public const int WallpaperTilesBlue = 1319696126;
 
 		public const int WallpaperTilesRed = 770049390;
+
+		public const int WallpaperCNY1 = 403272335;
+
+		public const int WallpaperCNY2 = 182226086;
+
+		public const int WallpaperCNY3 = -1951323820;
 
 		public const int WallpaperLeaves = 1802235039;
 
@@ -775,6 +805,22 @@
 		public const int PumpkinSeed = 1393945424;
 
 		public const int PumpkinSoup = 1984233383;
+
+		public const int Bamboo = -1742801708;
+
+		public const int StirFryBamboo = -437161441;
+
+		public const int DumplingSoySauce = -1759612454;
+
+		public const int Dumplings = 367917843;
+
+		public const int DumplingsSeaweed = 137627410;
+
+		public const int Mandarin = 1696424557;
+
+		public const int StirFryMushroom = 1642878331;
+
+		public const int StirFrySoySauce = 1064343768;
 
 		public const int NutRoastBase = 536093200;
 
@@ -1350,6 +1396,38 @@
 
 		public const int SoupPumpkinRaw = 801092248;
 
+		public const int BambooCookedContainerCooked = 880804869;
+
+		public const int BambooCooked = 2037858460;
+
+		public const int BambooPotCooked = 2019756794;
+
+		public const int BambooPot = -1652763586;
+
+		public const int BambooRaw = -1635701703;
+
+		public const int CookedDumplings = 1640282430;
+
+		public const int DumplingsPlated = -1938035042;
+
+		public const int DumplingsRaw = 1867434040;
+
+		public const int PreparedDumplings = 718093067;
+
+		public const int SeaweedCooked = -1847818036;
+
+		public const int Seaweed = 1297982178;
+
+		public const int MandarinRaw = 1291848678;
+
+		public const int MandarinSlice = 448483396;
+
+		public const int MandarinSlices2Serving = -263257027;
+
+		public const int MandarinSlices4Serving = 226055037;
+
+		public const int CondimentSoySauce = 1190974918;
+
 		public const int NutMixtureBaked = -1945246136;
 
 		public const int NutMixturePortion = -1294491269;
@@ -1529,6 +1607,16 @@
 
 		public const int SoupPumpkinRaw = 801092248;
 
+		public const int BambooPot = -1652763586;
+
+		public const int DumplingsPlated = -1938035042;
+
+		public const int DumplingsRaw = 1867434040;
+
+		public const int MandarinSlices2Serving = -263257027;
+
+		public const int MandarinSlices4Serving = 226055037;
+
 		public const int NutMixture = -1515496760;
 
 		public const int NutRoastPlated = -1934880099;
@@ -1549,6 +1637,8 @@
 	public class LayoutProfileReferences
 	{
 		public const int LayoutProfile = -791067106;
+
+		public const int JanuaryLayoutProfile = -1207945624;
 
 		public const int BasicLayout = 222370461;
 
@@ -1575,6 +1665,8 @@
 	public class ModularUnlockPackReferences
 	{
 		public const int ChristmasSpecialCard = 83496670;
+
+		public const int JanuaryCards = 1091353668;
 
 		public const int AutumnDishCards = -320463696;
 
@@ -1899,6 +1991,24 @@
 
 		public const int TrickSlowPlayersThroughDay = -1921275517;
 
+		public const int JanuaryRedEnvelopes = -1273613313;
+
+		public const int Bamboo = -1742801708;
+
+		public const int StirFryBamboo = -437161441;
+
+		public const int DumplingSoySauce = -1759612454;
+
+		public const int Dumplings = 367917843;
+
+		public const int DumplingsSeaweed = 137627410;
+
+		public const int Mandarin = 1696424557;
+
+		public const int StirFryMushroom = 1642878331;
+
+		public const int StirFrySoySauce = 1064343768;
+
 		public const int NovemberTableSizeIncrease = 319209671;
 
 		public const int NutRoastBase = 536093200;
@@ -2124,6 +2234,8 @@
 
 		public const int TrickSlowPlayersThroughDay = -1921275517;
 
+		public const int JanuaryRedEnvelopes = -1273613313;
+
 		public const int NovemberTableSizeIncrease = 319209671;
 
 		public const int AllYouCanEatIncrease = 2055765569;
@@ -2278,6 +2390,10 @@
 		public const int DefaultCompositePack = -2020288853;
 
 		public const int HalloweenPack = -839658581;
+
+		public const int JanuaryCards = 1091353668;
+
+		public const int JanuaryPack = -1893039732;
 
 		public const int AutumnDishCards = -320463696;
 
