@@ -10,6 +10,8 @@ using KitchenLib.DevUI;
 using KitchenLib.UI;
 using KitchenLib.Utils;
 using KitchenLib.Colorblind;
+using KitchenLib.DataDumper;
+using KitchenLib.DataDumper.Dumpers;
 
 #if MELONLOADER
 using MelonLoader;
@@ -57,6 +59,37 @@ namespace KitchenLib
 			go.AddComponent<DevUIController>();
 
 			ColorblindUtils.AddSingleItemLabels(ColorblindUtils.itemLabels.ToArray());
+
+			Dump<CrateSetDumper>();
+			Dump<DecorDumper>();
+			Dump<EffectDumper>();
+			Dump<GameDifficultySettingsDumper>();
+			Dump<GardenProfileDumper>();
+			Dump<ItemDumper>();
+			Dump<ItemGroupDumper>();
+			Dump<LayoutProfileDumper>();
+			Dump<LevelUpgradeSetDumper>();
+			Dump<ProcessDumper>();
+			Dump<RandomUpgradeSetDumper>();
+			Dump<ShopDumper>();
+			Dump<CompositeUnlockPackDumper>();
+			Dump<ModularUnlockPackDumper>();
+			Dump<WorkshopRecipeDumper>();
+			Dump<ApplianceDumper>();
+			Dump<EffectRepresentationDumper>();
+			Dump<PlayerCosmeticDumper>();
+			Dump<ResearchDumper>();
+			Dump<DishDumper>();
+			Dump<ThemeUnlockDumper>();
+			Dump<UnlockCardDumper>();
+			Dump<RestaurantSettingDumper>();
+			Dump<FranchiseUpgradeDumper>();
+			Dump<ContractDumper>();
+		}
+
+		public void Dump<T>() where T : BaseDataDumper, new()
+		{
+			(new T()).Dump();
 		}
 #endif
 
