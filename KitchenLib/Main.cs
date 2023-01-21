@@ -51,6 +51,7 @@ namespace KitchenLib
 			//GenerateReferences();
 			SetupMenus();
 			RegisterMenu<MaterialsUI>();
+			RegisterMenu<DebugMenu>();
 			PreferenceUtils.Load();
 		}
 		protected override void OnInitialise()
@@ -59,37 +60,6 @@ namespace KitchenLib
 			go.AddComponent<DevUIController>();
 
 			ColorblindUtils.AddSingleItemLabels(ColorblindUtils.itemLabels.ToArray());
-
-			Dump<CrateSetDumper>();
-			Dump<DecorDumper>();
-			Dump<EffectDumper>();
-			Dump<GameDifficultySettingsDumper>();
-			Dump<GardenProfileDumper>();
-			Dump<ItemDumper>();
-			Dump<ItemGroupDumper>();
-			Dump<LayoutProfileDumper>();
-			Dump<LevelUpgradeSetDumper>();
-			Dump<ProcessDumper>();
-			Dump<RandomUpgradeSetDumper>();
-			Dump<ShopDumper>();
-			Dump<CompositeUnlockPackDumper>();
-			Dump<ModularUnlockPackDumper>();
-			Dump<WorkshopRecipeDumper>();
-			Dump<ApplianceDumper>();
-			Dump<EffectRepresentationDumper>();
-			Dump<PlayerCosmeticDumper>();
-			Dump<ResearchDumper>();
-			Dump<DishDumper>();
-			Dump<ThemeUnlockDumper>();
-			Dump<UnlockCardDumper>();
-			Dump<RestaurantSettingDumper>();
-			Dump<FranchiseUpgradeDumper>();
-			Dump<ContractDumper>();
-		}
-
-		public void Dump<T>() where T : BaseDataDumper, new()
-		{
-			(new T()).Dump();
 		}
 #endif
 
@@ -119,56 +89,6 @@ namespace KitchenLib
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<PauseMenuAction>), new ModsMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<PauseMenuAction>), new ModsPreferencesMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 			};
-		}
-
-		private void GenerateReferences()
-		{
-			Events.BuildGameDataEvent += (s, args) =>
-			{
-				List<string> classGenerator = new List<string>();
-				classGenerator.Add("namespace KitchenLib.References");
-				classGenerator.Add("{");
-
-				GenerateClass<Appliance>(ref classGenerator, args.gamedata);
-				GenerateClass<CompositeUnlockPack>(ref classGenerator, args.gamedata);
-				GenerateClass<CrateSet>(ref classGenerator, args.gamedata);
-				GenerateClass<Decor>(ref classGenerator, args.gamedata);
-				GenerateClass<Dish>(ref classGenerator, args.gamedata);
-				GenerateClass<Effect>(ref classGenerator, args.gamedata);
-				GenerateClass<EffectRepresentation>(ref classGenerator, args.gamedata);
-				GenerateClass<GardenProfile>(ref classGenerator, args.gamedata);
-				GenerateClass<Item>(ref classGenerator, args.gamedata);
-				GenerateClass<ItemGroup>(ref classGenerator, args.gamedata);
-				GenerateClass<LayoutProfile>(ref classGenerator, args.gamedata);
-				GenerateClass<LevelUpgradeSet>(ref classGenerator, args.gamedata);
-				GenerateClass<ModularUnlockPack>(ref classGenerator, args.gamedata);
-				GenerateClass<PlayerCosmetic>(ref classGenerator, args.gamedata);
-				GenerateClass<Process>(ref classGenerator, args.gamedata);
-				GenerateClass<RandomUpgradeSet>(ref classGenerator, args.gamedata);
-				GenerateClass<Research>(ref classGenerator, args.gamedata);
-				GenerateClass<Shop>(ref classGenerator, args.gamedata);
-				GenerateClass<ThemeUnlock>(ref classGenerator, args.gamedata);
-				GenerateClass<Unlock>(ref classGenerator, args.gamedata);
-				GenerateClass<UnlockCard>(ref classGenerator, args.gamedata);
-				GenerateClass<UnlockPack>(ref classGenerator, args.gamedata);
-				GenerateClass<WorkshopRecipe>(ref classGenerator, args.gamedata);
-
-				classGenerator.Add("}");
-
-				File.WriteAllLines(Path.Combine(Application.dataPath, "References.cs"), classGenerator.ToArray());
-				UnityEngine.Debug.Log("Data saved to: " + Path.Combine(Application.dataPath, "References.cs"));
-			};
-		}
-
-		private void GenerateClass<T>(ref List<string> list, GameData gamedata) where T : GameDataObject
-		{
-			list.Add($"    public class {typeof(T).Name}References");
-			list.Add("    {");
-			foreach (T x in gamedata.Get<T>())
-			{
-				list.Add($"        public const int {(x.name).Replace(" ", "").Replace("-", "")} = {x.ID};\n");
-			}
-			list.Add("    }");
 		}
 	}
 }
