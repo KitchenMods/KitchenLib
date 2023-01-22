@@ -34,7 +34,7 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.4.1";
+		public const string MOD_VERSION = "0.4.2";
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.3";
 
 		public static AssetBundle bundle;

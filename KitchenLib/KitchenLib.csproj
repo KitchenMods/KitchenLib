@@ -4,6 +4,7 @@
 		<TargetFramework>net472</TargetFramework>
 		<Configurations>MelonLoader;BepInEx;Workshop</Configurations>
 		<AssemblyName>$(MSBuildProjectName)-$(Configuration)</AssemblyName>
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
