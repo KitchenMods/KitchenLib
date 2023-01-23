@@ -100,7 +100,10 @@ namespace KitchenLib.Customs
 					}
 					if (customDish.IsAvailableAsLobbyOption)
 					{
-						MainMenuDishSystem.MenuOptions.Add(dish.ID);
+						if (customDish.DestroyAfterModUninstall)
+							MainMenuDishDebugSystem.MenuOptions.Add(dish.ID);
+						else
+							MainMenuDishSystem.MenuOptions.Add(dish.ID);
 					}
 				}
 			}

@@ -5,6 +5,7 @@ using System.IO;
 using KitchenLib.DataDumper;
 using KitchenLib.DataDumper.Dumpers;
 using KitchenData;
+using KitchenLib.Systems;
 
 namespace KitchenLib.UI
 {
@@ -54,6 +55,10 @@ namespace KitchenLib.UI
 				Dump<RestaurantSettingDumper>();
 				Dump<FranchiseUpgradeDumper>();
 				Dump<ContractDumper>();
+			}
+			if (GUILayout.Button("Refresh Dish Options"))
+			{
+				RefreshDishUpgrades.Refresh = true;
 			}
 		}
 

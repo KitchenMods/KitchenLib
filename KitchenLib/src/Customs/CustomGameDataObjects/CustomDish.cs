@@ -25,6 +25,7 @@ namespace KitchenLib.Customs
         public virtual HashSet<Dish> PrerequisiteDishesEditor { get; protected set; } = new HashSet<Dish>();
 
 		public virtual bool IsAvailableAsLobbyOption { get; protected set; } = false;
+		public virtual bool DestroyAfterModUninstall { get; protected set; } = true;
 		public virtual Dictionary<Locale, string> Recipe { get; protected set; } = new Dictionary<Locale, string>();
 
         private static readonly Dish empty = ScriptableObject.CreateInstance<Dish>();
