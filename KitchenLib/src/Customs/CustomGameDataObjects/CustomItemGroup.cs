@@ -6,6 +6,8 @@ using KitchenLib.Utils;
 using System.Linq;
 using UnityEngine;
 using KitchenLib.Colorblind;
+using KitchenLib.References;
+using Kitchen;
 
 namespace KitchenLib.Customs
 {
@@ -53,7 +55,7 @@ namespace KitchenLib.Customs
             gameDataObject = result;
         }
 
-        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             ItemGroup result = (ItemGroup)gameDataObject;
 
@@ -74,7 +76,6 @@ namespace KitchenLib.Customs
             if (processes.GetValue(empty) != Processes) processes.SetValue(result, Processes);
             if (sets.GetValue(empty) != Sets)
             {
-                // Check for potential errors
                 for (int setIndex = 0; setIndex < Sets.Count; setIndex++)
                 {
                     ItemGroup.ItemSet set = Sets[setIndex];
@@ -87,9 +88,37 @@ namespace KitchenLib.Customs
                         }
                     }
                 }
-
                 sets.SetValue(gameDataObject, Sets);
             }
-        }
-    }
+
+			//Setup ItemGroupView for this ItemGroup
+
+			Main.instance.Log("1");
+			ItemGroupView localView = result.Prefab.GetComponent<ItemGroupView>();
+			if (localView == null)
+				localView = result.Prefab.AddComponent<ItemGroupView>();
+
+			Main.instance.Log("2");
+			FieldInfo subviewContainer = ReflectionUtils.GetField<ItemGroupView>("SubviewContainer");
+			FieldInfo subviewPrefab = ReflectionUtils.GetField<ItemGroupView>("SubviewPrefab");
+			Transform sidesContainer = null;
+			if (result.Prefab != null)
+				sidesContainer = result.Prefab.transform.Find("Side Container");
+
+			Main.instance.Log("3");
+			if (sidesContainer != null)
+			{
+				Main.instance.Log("4");
+				subviewContainer.SetValue(localView, sidesContainer.gameObject);
+				ItemGroup plated_burger = gameData.Get<ItemGroup>(ItemGroupReferences.BurgerPlated);
+				ItemGroupView burgerView = plated_burger.Prefab.GetComponent<ItemGroupView>();
+				subviewPrefab.SetValue(localView, subviewPrefab.GetValue(burgerView));
+				Main.instance.Log("5");
+			}
+			else
+			{
+				Main.instance.Log($"Could not find Side Container in prefab for ItemGroup {result.ID} ({result.name}).");
+			}
+		}
+	}
 }
