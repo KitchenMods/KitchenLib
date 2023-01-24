@@ -13,7 +13,7 @@ namespace KitchenLib.Customs
         public GameDataObject GameDataObject;
 
         public abstract void Convert(GameData gameData, out GameDataObject gameDataObject);
-        public virtual void AttachDependentProperties(GameDataObject gameDataObject) { }
+        public virtual void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject) { }
         public virtual void OnRegister(GameDataObject gameDataObject) { }
 
         public int GetHash()

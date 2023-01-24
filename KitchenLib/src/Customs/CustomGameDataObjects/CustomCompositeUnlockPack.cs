@@ -22,7 +22,7 @@ namespace KitchenLib.Customs
             gameDataObject = result;
         }
 
-        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             CompositeUnlockPack result = (CompositeUnlockPack)gameDataObject;
 

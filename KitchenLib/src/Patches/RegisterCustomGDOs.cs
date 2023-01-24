@@ -32,7 +32,7 @@ namespace KitchenLib.Customs
 
 			foreach (CustomGameDataObject gdo in CustomGDO.GDOs.Values)
 			{
-				gdo.AttachDependentProperties(gdo.GameDataObject);
+				gdo.AttachDependentProperties(__result, gdo.GameDataObject);
 			}
 
 			foreach (CustomGameDataObject gdo in CustomGDO.GDOs.Values)
