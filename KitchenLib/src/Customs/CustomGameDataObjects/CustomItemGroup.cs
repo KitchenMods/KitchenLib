@@ -8,11 +8,13 @@ using UnityEngine;
 using KitchenLib.Colorblind;
 using KitchenLib.References;
 using Kitchen;
+using System.CodeDom;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomItemGroup : CustomItem
-    {
+	public abstract class CustomItemGroup : CustomItemGroup<ItemGroupView> { }
+    public abstract class CustomItemGroup<T> : CustomItem where T : ItemGroupView
+	{
         public virtual List<ItemGroup.ItemSet> Sets { get; protected set; } = new List<ItemGroup.ItemSet>();
         public virtual bool CanContainSide { get; protected set; }
         public virtual bool ApplyProcessesToComponents { get; protected set; }
@@ -92,28 +94,22 @@ namespace KitchenLib.Customs
             }
 
 			//Setup ItemGroupView for this ItemGroup
-
-			Main.instance.Log("1");
-			ItemGroupView localView = result.Prefab.GetComponent<ItemGroupView>();
+			T localView = result.Prefab.GetComponent<T>();
 			if (localView == null)
-				localView = result.Prefab.AddComponent<ItemGroupView>();
-
-			Main.instance.Log("2");
+				localView = result.Prefab.AddComponent<T>();
+			
 			FieldInfo subviewContainer = ReflectionUtils.GetField<ItemGroupView>("SubviewContainer");
 			FieldInfo subviewPrefab = ReflectionUtils.GetField<ItemGroupView>("SubviewPrefab");
 			Transform sidesContainer = null;
 			if (result.Prefab != null)
 				sidesContainer = result.Prefab.transform.Find("Side Container");
-
-			Main.instance.Log("3");
+			
 			if (sidesContainer != null)
 			{
-				Main.instance.Log("4");
 				subviewContainer.SetValue(localView, sidesContainer.gameObject);
 				ItemGroup plated_burger = gameData.Get<ItemGroup>(ItemGroupReferences.BurgerPlated);
 				ItemGroupView burgerView = plated_burger.Prefab.GetComponent<ItemGroupView>();
 				subviewPrefab.SetValue(localView, subviewPrefab.GetValue(burgerView));
-				Main.instance.Log("5");
 			}
 			else
 			{

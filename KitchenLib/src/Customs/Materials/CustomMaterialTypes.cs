@@ -4,24 +4,13 @@ using KitchenLib.Utils;
 
 namespace KitchenLib.Customs
 {
-	public class CustomBaseMaterial
+	public abstract class CustomBaseMaterial : BaseJson
 	{
-		public int MaterialType = 0;
-		/*
-		 * 0 = Simple Flat
-		 * 1 = Simple Transparent
-		 * 2 = Flat Image
-		 */
-
 		public virtual void ConvertMaterial(out Material material) { material = null; }
 	}
 	public class CustomSimpleFlat : CustomBaseMaterial
 	{
-		public CustomSimpleFlat()
-		{
-			MaterialType = 0;
-		}
-
+		public override JsonType Type { get => JsonType.FlatColorMaterial; }
 		public string Name;
 
 		public float _Color0W;
@@ -77,11 +66,7 @@ namespace KitchenLib.Customs
 
 	public class CustomSimpleTransparent : CustomBaseMaterial
 	{
-		public CustomSimpleTransparent()
-		{
-			MaterialType = 1;
-		}
-
+		public override JsonType Type { get => JsonType.TransparentMaterial; }
 		public string Name;
 
 		public float _ColorW, _ColorX, _ColorY, _ColorZ;
@@ -99,11 +84,7 @@ namespace KitchenLib.Customs
 
 	public class CustomFlatImage : CustomBaseMaterial
 	{
-		public CustomFlatImage()
-		{
-			MaterialType = 2;
-		}
-
+		public override JsonType Type { get => JsonType.ImageMaterial; }
 		public string Name;
 
 		public string _ImageBase64 = "";

@@ -86,15 +86,15 @@ namespace KitchenLib.UI
 					string jsontext = File.ReadAllText(importText);
 					CustomBaseMaterial baseMaterial = JsonConvert.DeserializeObject<CustomBaseMaterial>(jsontext);
 					Material material = null;
-					if (baseMaterial.MaterialType == 0)
+					if (baseMaterial.Type == JsonType.FlatColorMaterial)
 					{
 						JsonConvert.DeserializeObject<CustomSimpleFlat>(jsontext).ConvertMaterial(out material);
 					}
-					else if (baseMaterial.MaterialType == 1)
+					else if (baseMaterial.Type == JsonType.TransparentMaterial)
 					{
 						JsonConvert.DeserializeObject<CustomSimpleTransparent>(jsontext).ConvertMaterial(out material);
 					}
-					else if (baseMaterial.MaterialType == 2)
+					else if (baseMaterial.Type == JsonType.ImageMaterial)
 					{
 						JsonConvert.DeserializeObject<CustomFlatImage>(jsontext).ConvertMaterial(out material);
 					}
