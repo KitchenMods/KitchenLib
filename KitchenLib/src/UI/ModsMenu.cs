@@ -114,7 +114,16 @@ namespace KitchenLib
 						{
 							if (!modAssemblies.ContainsValue(pack.Name))
 							{
-								AddInfo(pack.Name.Replace(".dll", ""));
+								if (!pack.Name.Equals("Mono.Cecil.dll") &&
+									!pack.Name.Equals("Mono.Cecil.Mdb.dll") &&
+									!pack.Name.Equals("Mono.Cecil.Pdb.dll") &&
+									!pack.Name.Equals("Mono.Cecil.Rocks.dll") &&
+									!pack.Name.Equals("MonoMod.RuntimeDetour.dll") &&
+									!pack.Name.Equals("MonoMod.Utils.dll") &&
+									!pack.Name.Equals("UniverseLib.Mono.dll"))
+								{
+									AddInfo(pack.Name.Replace(".dll", ""));
+								}
 							}
 						}
 					}

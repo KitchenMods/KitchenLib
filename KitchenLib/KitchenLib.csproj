@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
 		<Configurations>MelonLoader;BepInEx;Workshop</Configurations>
 		<AssemblyName>$(MSBuildProjectName)-$(Configuration)</AssemblyName>
-		<LangVersion>8</LangVersion>
-		<NoWarn>CS0114</NoWarn>
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -12,7 +12,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.4.16" />
+	  <PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.5.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="0Harmony">
+			<HintPath>..\..\..\..\Libraries\MelonLoader\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="BepInEx">
+			<HintPath>..\..\..\..\Libraries\BepInEx\core\BepInEx.dll</HintPath>
+		</Reference>
+		<Reference Include="MelonLoader">
+			<HintPath>..\..\..\..\Libraries\MelonLoader\MelonLoader.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -21,6 +33,13 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Settings.settings</DependentUpon>
 		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>

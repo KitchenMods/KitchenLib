@@ -168,13 +168,15 @@ namespace KitchenLib
 			{
 				foreach (AssetBundle bundle in pack.AssetBundles)
 				{
-					foreach (TextAsset asset in bundle.LoadAllAssets<TextAsset>())
-					{
-						Material mat = CustomMaterials.LoadMaterialFromJson(asset.text);
-						if (mat != null)
-							AddMaterial(mat);
-					}
+					JSONManager.LoadAllJsons(bundle);
 				}
+			}
+
+			foreach (CustomSimpleFlat material in JSONManager.LoadedJsons)
+			{
+				Material mat;
+				material.ConvertMaterial(out mat);
+				AddMaterial(mat);
 			}
 			OnPostActivate(mod);
 		}

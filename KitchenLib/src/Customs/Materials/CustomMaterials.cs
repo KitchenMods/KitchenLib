@@ -29,15 +29,15 @@ namespace KitchenLib.Customs
 			try { baseMaterial = JsonConvert.DeserializeObject<CustomBaseMaterial>(json); }
 			catch { return null; }
 			Material material = null;
-			if (baseMaterial.MaterialType == 0)
+			if (baseMaterial.Type == JsonType.FlatColorMaterial)
 			{
 				JsonConvert.DeserializeObject<CustomSimpleFlat>(json).ConvertMaterial(out material);
 			}
-			else if (baseMaterial.MaterialType == 1)
+			else if (baseMaterial.Type == JsonType.TransparentMaterial)
 			{
 				JsonConvert.DeserializeObject<CustomSimpleTransparent>(json).ConvertMaterial(out material);
 			}
-			else if (baseMaterial.MaterialType == 2)
+			else if (baseMaterial.Type == JsonType.ImageMaterial)
 			{
 				JsonConvert.DeserializeObject<CustomFlatImage>(json).ConvertMaterial(out material);
 			}

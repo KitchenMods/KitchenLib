@@ -1,4 +1,3 @@
-using KitchenData;
 using System.Collections.Generic;
 using System;
 
@@ -7,7 +6,7 @@ namespace KitchenLib.Customs
     public abstract class CustomSubProcess
     {
 
-        public virtual string UniqueName { get; internal set; }
+        public virtual string UniqueName { get; protected set; }
 
 		public static Dictionary<string, CustomSubProcess> SubProcesses = new Dictionary<string, CustomSubProcess>();
 		public static Dictionary<Type, CustomSubProcess> SubProcessesByType = new Dictionary<Type, CustomSubProcess>();
