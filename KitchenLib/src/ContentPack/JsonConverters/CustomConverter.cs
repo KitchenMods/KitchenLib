@@ -10,8 +10,8 @@ namespace KitchenLib.src.ContentPack.JsonConverters
         {
             return reader.Value switch
             {
-                string str => Create(str),
                 int id => Create(id),
+                string str => Create(str),
                 _ => null
             }; ;
         }

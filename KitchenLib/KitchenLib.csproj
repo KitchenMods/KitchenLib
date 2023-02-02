@@ -5,6 +5,8 @@
 		<Configurations>MelonLoader;BepInEx;Workshop</Configurations>
 		<AssemblyName>$(MSBuildProjectName)-$(Configuration)</AssemblyName>
 		<LangVersion>latest</LangVersion>
+		<EnableDocumentation>false</EnableDocumentation>
+		<EnablePublicizeAssemblies>false</EnablePublicizeAssemblies>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -12,12 +14,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.5.6" />
+		<PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.7.23" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Reference Include="0Harmony">
 			<HintPath>..\..\..\..\Libraries\MelonLoader\0Harmony.dll</HintPath>
+			<HintPath>$(WorkshopPath)\2898033283\0Harmony.dll</HintPath>
 		</Reference>
 		<Reference Include="BepInEx">
 			<HintPath>..\..\..\..\Libraries\BepInEx\core\BepInEx.dll</HintPath>
@@ -33,13 +36,6 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Settings.settings</DependentUpon>
 		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Update="Properties\Settings.settings">
-			<Generator>SettingsSingleFileGenerator</Generator>
-			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
-		</None>
 	</ItemGroup>
 
 	<ItemGroup>

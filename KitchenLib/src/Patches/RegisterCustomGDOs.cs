@@ -4,11 +4,9 @@ using KitchenData;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using KitchenLib.Event;
-using System.CodeDom;
 using KitchenLib.Systems;
 using UnityEngine;
 using Kitchen;
-using System.IO;
 using KitchenLib.Colorblind;
 
 namespace KitchenLib.Customs
@@ -19,8 +17,6 @@ namespace KitchenLib.Customs
 		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result) {
 			MaterialUtils.SetupMaterialIndex();
 			GDOUtils.SetupGDOIndex(__result);
-
-			ContentPackManager.Preload();
 
 			List<GameDataObject> gameDataObjects = new List<GameDataObject>();
 

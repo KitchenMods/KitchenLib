@@ -1,22 +1,24 @@
 using KitchenData;
 using KitchenLib.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using KitchenLib.Colorblind;
+using Newtonsoft.Json;
 
 namespace KitchenLib.Customs
 {
     public abstract class CustomItem : CustomGameDataObject
     {
+        [JsonIgnore]
         public virtual GameObject Prefab { get; protected set; }
         public virtual List<Item.ItemProcess> Processes { get; protected set; }=new List<Item.ItemProcess>();
+        [JsonIgnore]
         public virtual List<IItemProperty> Properties { get; protected set; } = new List<IItemProperty>();
         public virtual float ExtraTimeGranted { get; protected set; }
         public virtual ItemValue ItemValue { get; protected set; } = ItemValue.Small;
-        public virtual int Reward { get { return 1; } }
+        public virtual int Reward { get; protected set; } = 1;
         public virtual Item DirtiesTo { get; protected set; }
         public virtual List<Item> MayRequestExtraItems { get; protected set; } = new List<Item>();
         public virtual int MaxOrderSharers { get; protected set; }

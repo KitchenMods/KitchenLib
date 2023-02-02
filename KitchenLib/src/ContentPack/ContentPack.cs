@@ -1,53 +1,63 @@
-﻿using KitchenLib.src.ContentPack.Models;
-using static KitchenLib.src.ContentPack.Logger;
-using static KitchenLib.src.ContentPack.ContentPackManager;
+﻿using KitchenLib.Customs;
+using KitchenLib.src.ContentPack.Models;
+using KitchenLib.src.ContentPack.Models.Jsons;
+using Semver;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.IO;
+using static KitchenLib.src.ContentPack.ContentPackUtils;
 
 namespace KitchenLib.src.ContentPack
 {
     public class ContentPack
     {
-        public ModManifest Manifest;
-        public ModContent Content;
+        // Info
+        public string name;
+        public string directory;
 
-        public string ModName;
-        public string ModDirectory;
-        public List<AssetBundle> Bundles;
+        // Manifest
+        public ModManifest manifest;
+        public string description;
+        public string author;
+        public SemVersion version;
 
-        public void PreLoad()
+        // Content
+        public ModContent content;
+        public SemVersion format;
+        public Dictionary<string, SerializationContext> changes { get; set; }
+
+        // ContentPack
+        public Dictionary<string, string> JSONs = new Dictionary<string, string>();
+        public CustomGameDataObject customGDO;
+
+        public ContentPack(string name, string directory, ModManifest manifest, ModContent content)
         {
-            ContentPackManager.ModName = ModName;
-            ContentPackManager.Bundles = Bundles;
-            ContentPackManager.ModDirectory = ModDirectory;
+            this.name = name;
+            this.directory = directory;
 
-            Description = Manifest.Description;
-            Author = Manifest.Author;
-            Version = Manifest.Version;
-            ContentPackFor = Manifest.ContentPackFor;
+            this.manifest = manifest;
+            this.description = manifest.Description;
+            this.author = manifest.Author;
+            this.version = manifest.Version;
 
-            Format = Content.Format;
-            Changes = Content.Changes;
+            this.content = content;
+            this.format = content.Format;
+            this.changes = content.Changes;
         }
 
-        public void Load()
+        public void AddJson(string path, string json)
         {
-
-            if (Content.Format.ComparePrecedenceTo(SemVersion) < 0)
-            {
-                Log($"{Author}.{ModName} is targeted towards an older version of KitchenLib");
-            }
-
-            foreach (ModChange change in Changes)
-            {
-                change.PreLoad();
-                change.Load();
-            }
+            JSONs.Add(path, json);
         }
 
-        public bool HasBundle()
+        public string PrintJson()
         {
-            return Bundles != null;
+            return string.Join(Environment.NewLine, JSONs);
+        }
+
+        public override string ToString()
+        {
+            return $"{name}:{Serialize(manifest)}{Serialize(content)}";
         }
     }
 }

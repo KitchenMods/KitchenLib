@@ -18,6 +18,7 @@ using KitchenLib.DevUI;
 using System;
 using System.Collections.Generic;
 using KitchenMods;
+using KitchenLib.src.ContentPack;
 
 namespace KitchenLib
 {
@@ -111,8 +112,22 @@ namespace KitchenLib
 			Debug.Log($"[{ModName}] " + message);
 #endif
 		}
-		
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Warning(string message)
+        {
+#if BEPINEX
+			Logger.Log(LogLevel.Info, $"[{ModName}] " + message);
+#endif
+#if MELONLOADER
+			MelonLogger.Msg($"[{ModName}] " + message);
+#endif
+#if WORKSHOP
+            Debug.LogWarning($"[{ModName}] " + message);
+#endif
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Error(string message)
 		{
 #if BEPINEX
@@ -125,7 +140,23 @@ namespace KitchenLib
 			Debug.LogError($"[{ModName}] " + message);
 #endif
 		}
-		protected virtual void OnInitialise() { }
+
+        public void Log(object message)
+        {
+			Log(message.ToString());
+        }
+
+		public void Warning(object message)
+		{
+			Warning(message.ToString());
+		}
+
+		public void Error(object message)
+		{
+			Error(message.ToString());
+		}
+
+        protected virtual void OnInitialise() { }
 		protected virtual void OnFrameUpdate() { }
 
 #if BEPINEX
@@ -168,11 +199,11 @@ namespace KitchenLib
 			{
 				foreach (AssetBundle bundle in pack.AssetBundles)
 				{
-					JSONManager.LoadAllJsons(bundle);
+					MaterialsManager.LoadAllJsons(bundle);
 				}
 			}
 
-			foreach (CustomSimpleFlat material in JSONManager.LoadedJsons)
+			foreach (CustomSimpleFlat material in MaterialsManager.LoadedJsons)
 			{
 				Material mat;
 				material.ConvertMaterial(out mat);

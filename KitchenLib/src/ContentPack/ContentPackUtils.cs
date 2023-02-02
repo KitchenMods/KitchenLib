@@ -1,7 +1,11 @@
-﻿using KitchenLib.src.ContentPack.JsonConverters;
+﻿using KitchenData;
+using KitchenLib.Customs;
+using KitchenLib.src.ContentPack.ContractResolver;
+using KitchenLib.src.ContentPack.JsonConverters;
+using KitchenLib.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
+using UnityEngine;
 
 namespace KitchenLib.src.ContentPack
 {
@@ -9,19 +13,44 @@ namespace KitchenLib.src.ContentPack
     {
         public static JsonSerializerSettings settings = new JsonSerializerSettings()
         {
-            DefaultValueHandling = DefaultValueHandling.Populate,
-            ContractResolver = new DefaultContractResolver
-            {
-                SerializeCompilerGeneratedMembers = true
-            },
+            ContractResolver = new ProtectedFieldResolver(),
             Converters = new JsonConverter[]
             {
                 new StringEnumConverter(),
                 new SemVersionConverter(),
-                new PrefabConverter(),
-                new GameDataObjectConverter()
+                new GameDataObjectConverter(),
+                new ItemPropertyConverter()
             }
         };
+
+        public static GameObject PrefabConverter(string str)
+        {
+            GameDataObject customGDO = null;
+            if(int.TryParse(str, out var num))
+            {
+                customGDO = GDOUtils.GetExistingGDO(num);
+            } else
+            {
+                customGDO = GDOUtils.GetCustomGameDataObject(StringUtils.GetInt32HashCode(str)).GameDataObject;
+            }
+            return customGDO switch
+            {
+                Item customItem => customItem.Prefab,
+                _ => null
+            };
+        }
+
+        public static string Serialize(object Object, bool indented = true)
+        {
+            if(indented)
+                return $"\n{JsonConvert.SerializeObject(Object, Formatting.Indented, settings)}";
+            return JsonConvert.SerializeObject(Object, settings);
+        }
+
+        public static T Deserialize<T>(string text)
+        {
+            return JsonConvert.DeserializeObject<T>(text, settings);
+        }
     }
 
     public enum SerializationContext

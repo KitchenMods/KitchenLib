@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace KitchenLib
 {
-	public static class JSONManager
+	public static class MaterialsManager
 	{
 		public static Dictionary<JsonType, Type> keyValuePairs = new Dictionary<JsonType, Type>
 		{

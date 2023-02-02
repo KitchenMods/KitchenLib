@@ -11,6 +11,7 @@ namespace KitchenLib.Customs
         public virtual int BaseGameDataObjectID { get; protected set; } = -1;
 
         public string ModName = "";
+        [JsonIgnore]
         public GameDataObject GameDataObject;
 
         public abstract void Convert(GameData gameData, out GameDataObject gameDataObject);
