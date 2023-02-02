@@ -5,11 +5,9 @@ using KitchenLib.src.ContentPack.Models.Jsons;
 using KitchenMods;
 using Newtonsoft.Json;
 using Semver;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using UnityEngine;
 using static KitchenLib.src.ContentPack.ContentPackUtils;
 
@@ -22,14 +20,7 @@ namespace KitchenLib.src.ContentPack
 
         public static List<ContentPack> Packs = new List<ContentPack>();
 
-        public ContentPackSystem()
-        {
-            Assembly asm = Assembly.GetAssembly(typeof(ItemGroupView));
-            Type itemgroupview = asm.GetType(nameof(ItemGroupView));
-            Type componentgroup = itemgroupview.GetNestedType("ComponentGroup");
-            FieldInfo ispublic = componentgroup.GetType().GetField(nameof(componentgroup.IsNestedPublic), BindingFlags.Instance | BindingFlags.NonPublic);
-            ispublic.SetValue(componentgroup, true);
-        }
+        public ContentPackSystem() {}
 
         protected override void Initialise()
         {
