@@ -84,7 +84,7 @@ namespace KitchenLib.Customs
         private static readonly Appliance empty = ScriptableObject.CreateInstance<Appliance>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-            Appliance result = ScriptableObject.CreateInstance<Appliance>();
+			Appliance result = ScriptableObject.CreateInstance<Appliance>();
 
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
@@ -121,6 +121,24 @@ namespace KitchenLib.Customs
             //if (empty.Sections != Sections) result.Sections = Sections;
             //if (empty.Tags != Tags) result.Tags = Tags;
             if (empty.Info != Info) result.Info = Info;
+
+			if (InfoList.Count > 0)
+			{
+				result.Info = new LocalisationObject<ApplianceInfo>();
+				foreach ((Locale, ApplianceInfo) info in InfoList)
+					result.Info.Add(info.Item1, info.Item2);
+			}
+
+			if (!result.Info.Has(Locale.English))
+			{
+				result.Info.Add(Locale.English, new ApplianceInfo
+				{
+					Name = Name,
+					Description = Description,
+					Sections = Sections,
+					Tags = Tags
+				});
+			}
 
             gameDataObject = result;
         }

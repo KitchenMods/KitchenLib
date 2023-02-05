@@ -30,6 +30,23 @@ namespace KitchenLib.Customs
             //if (empty.Icon != Icon) result.Icon = Icon;
 			if (empty.Info != Info) result.Info = Info;
 
+			if (InfoList.Count > 0)
+			{
+				result.Info = new LocalisationObject<EffectInfo>();
+				foreach ((Locale, EffectInfo) info in InfoList)
+					result.Info.Add(info.Item1, info.Item2);
+			}
+
+			if (!result.Info.Has(Locale.English))
+			{
+				result.Info.Add(Locale.English, new EffectInfo
+				{
+					Name = Name,
+					Description = Description,
+					Icon = Icon
+				});
+			}
+
 			gameDataObject = result;
         }
     }
