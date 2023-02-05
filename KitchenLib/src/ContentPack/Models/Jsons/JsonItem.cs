@@ -1,5 +1,7 @@
 ﻿using KitchenData;
 using KitchenLib.Customs;
+using KitchenLib.src.ContentPack.Models.Containers;
+using KitchenLib.Utils;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,43 +12,30 @@ namespace KitchenLib.src.ContentPack.Models.Jsons
 {
     public class JsonItem : CustomItem 
     {
+        [JsonProperty("GDOName")]
+        string GDOName { get; set; } = "";
         [JsonProperty("Prefab")]
-        string PrefabStr { get; set; }
+        string PrefabStr { get; set; } = "";
         [JsonProperty("Properties")]
-        List<ItemPropertyContainer> ItemPropertyContainers { get; set; }
+        List<ItemPropertyContainer> ItemPropertyContainers { get; set; } = new List<ItemPropertyContainer>();
+        [JsonProperty("Materials")]
+        List<MaterialsContainer> MaterialsContainers { get; set; } = new List<MaterialsContainer>();
 
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
         {
             Prefab = PrefabConverter(PrefabStr);
-            if(ItemPropertyContainers is not null)
-                Properties = ItemPropertyContainers.Select(p => p.Property).ToList();
+            Properties = ItemPropertyContainers.Select(p => p.Property).ToList();
         }
-    }
 
-    public class ItemPropertyContainer
-    {
-        public ItemPropertyContext Type { get; set; }
-        public IItemProperty Property { get; set; }
-    }
+        public override void OnRegister(GameDataObject gameDataObject)
+        {
+            gameDataObject.name = GDOName;
 
-    public enum ItemPropertyContext
-    {
-        CEffectCreator,
-        CTriggerOrderReset,
-        CTriggerPatienceReset,
-        CTriggerLeaveHappy,
-        CRefreshesFlowerProviders,
-        CRefreshesProviderQuantity,
-        CApplyDecor,
-        CEquippableTool,
-        CToolClean,
-        CToolStorage,
-        CDurationTool,
-        CProcessTool,
-        CReturnItem,
-        CPreventItemTransfer,
-        CPreventItemMerge,
-        CSlowPlayer
+            Item item = gameDataObject as Item;
+
+            foreach (MaterialsContainer materialsContainer in MaterialsContainers)
+                MaterialUtils.ApplyMaterial(item.Prefab, materialsContainer.Path, materialsContainer.Materials);
+        }
     }
 }

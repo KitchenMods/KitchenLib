@@ -6,13 +6,8 @@ using System;
 
 namespace KitchenLib.src.ContentPack.JsonConverters
 {
-    public class GameDataObjectConverter : CustomConverter
+    public class GameDataObjectConverter : IdentifierConverter<GameDataObject>
     {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType.IsSubclassOf(typeof(GameDataObject)) || objectType == typeof(GameDataObject);
-        }
-
         public override object Create(string str)
         {
             return GDOUtils.GetCustomGameDataObject(StringUtils.GetInt32HashCode(str));

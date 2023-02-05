@@ -4,8 +4,13 @@ using System;
 
 namespace KitchenLib.src.ContentPack.JsonConverters
 {
-    public abstract class CustomConverter : JsonConverter
+    public abstract class CustomConverter<T> : JsonConverter
     {
+        public override bool CanConvert(Type objectType)
+        {
+            return objectType == typeof(T);
+        }
+
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             return reader.Value switch

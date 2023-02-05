@@ -4,7 +4,7 @@ using Semver;
 
 namespace KitchenLib.src.ContentPack.JsonConverters
 {
-    public class SemVersionConverter : GenericCustomConverter<SemVersion>
+    public class SemVersionConverter : CustomConverter<SemVersion>
     {
         public override object Create(string str)
         {

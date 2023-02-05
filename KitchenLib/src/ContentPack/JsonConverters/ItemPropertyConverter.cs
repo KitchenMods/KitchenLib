@@ -1,20 +1,20 @@
 ﻿using Kitchen;
 using KitchenData;
-using KitchenLib.src.ContentPack.Models.Jsons;
+using KitchenLib.src.ContentPack.Models.Containers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 
 namespace KitchenLib.src.ContentPack.JsonConverters
 {
-    public class ItemPropertyConverter : GenericCustomConverter<ItemPropertyContainer>
+    public class ItemPropertyConverter : CustomConverter<ItemPropertyContainer>
     {
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             JObject jObject = JObject.Load(reader);
             if (jObject.TryGetValue("Type", out JToken type))
             {
-                ItemPropertyContainer itemPropertyContainer= new ItemPropertyContainer();
+                ItemPropertyContainer itemPropertyContainer = new ItemPropertyContainer();
 
                 ItemPropertyContext ItemProperty = type.ToObject<ItemPropertyContext>();
                 itemPropertyContainer.Type = ItemProperty;

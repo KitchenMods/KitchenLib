@@ -1,5 +1,4 @@
 using KitchenData;
-using System;
 using System.Collections.Generic;
 using System.Reflection;
 using KitchenLib.Utils;
@@ -8,7 +7,6 @@ using UnityEngine;
 using KitchenLib.Colorblind;
 using KitchenLib.References;
 using Kitchen;
-using System.CodeDom;
 
 namespace KitchenLib.Customs
 {

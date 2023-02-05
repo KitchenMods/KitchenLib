@@ -1,5 +1,4 @@
 ﻿using KitchenData;
-using KitchenLib.Customs;
 using KitchenLib.src.ContentPack.ContractResolver;
 using KitchenLib.src.ContentPack.JsonConverters;
 using KitchenLib.Utils;
@@ -19,7 +18,9 @@ namespace KitchenLib.src.ContentPack
                 new StringEnumConverter(),
                 new SemVersionConverter(),
                 new GameDataObjectConverter(),
-                new ItemPropertyConverter()
+                new ItemPropertyConverter(),
+                new AppliancePropertyConverter(),
+                new MaterialConverter()
             }
         };
 
@@ -51,40 +52,40 @@ namespace KitchenLib.src.ContentPack
         {
             return JsonConvert.DeserializeObject<T>(text, settings);
         }
-    }
 
-    public enum SerializationContext
-    {
-        ModManifest,
-        ModContent,
-        Appliance,
-        CompositeUnlockPack,
-        CrateSet,
-        Decor,
-        Dish,
-        Effect,
-        EffectRepresentation,
-        GameDataObject,
-        GameDifficultySettings,
-        GardenProfile,
-        Item,
-        ItemGroup,
-        LayoutProfile,
-        LevelUpgradeSet,
-        LocalisedGameDataObject,
-        ModularUnlockPack,
-        PlayerCosmetic,
-        Process,
-        RandomUpgradeSet,
-        Research,
-        Shop,
-        ThemeUnlock,
-        Unlock,
-        UnlockCard,
-        UnlockPack,
-        WorkshopRecipe,
-        ApplianceProcess,
-        ItemProcess,
-        SubProcess
+        public enum SerializationContext
+        {
+            ModManifest,
+            ModContent,
+            Appliance,
+            CompositeUnlockPack,
+            CrateSet,
+            Decor,
+            Dish,
+            Effect,
+            EffectRepresentation,
+            GameDataObject,
+            GameDifficultySettings,
+            GardenProfile,
+            Item,
+            ItemGroup,
+            LayoutProfile,
+            LevelUpgradeSet,
+            LocalisedGameDataObject,
+            ModularUnlockPack,
+            PlayerCosmetic,
+            Process,
+            RandomUpgradeSet,
+            Research,
+            Shop,
+            ThemeUnlock,
+            Unlock,
+            UnlockCard,
+            UnlockPack,
+            WorkshopRecipe,
+            ApplianceProcess,
+            ItemProcess,
+            SubProcess
+        }
     }
 }

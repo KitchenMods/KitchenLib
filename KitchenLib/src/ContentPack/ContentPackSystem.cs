@@ -40,6 +40,8 @@ namespace KitchenLib.src.ContentPack
                     CustomGameDataObject CustomGDO = value switch
                     {
                         SerializationContext.Item => JsonConvert.DeserializeObject<JsonItem>(json, settings),
+                        SerializationContext.ItemGroup => JsonConvert.DeserializeObject<JsonItemGroup>(json, settings),
+                        SerializationContext.Appliance => JsonConvert.DeserializeObject<JsonAppliance>(json, settings),
                         _ => null
                     };
                     CustomGDO.ModName = pack.name;

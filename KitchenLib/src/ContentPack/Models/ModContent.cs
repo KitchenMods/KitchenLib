@@ -1,5 +1,6 @@
 ﻿using Semver;
 using System.Collections.Generic;
+using static KitchenLib.src.ContentPack.ContentPackUtils;
 
 namespace KitchenLib.src.ContentPack.Models
 {
