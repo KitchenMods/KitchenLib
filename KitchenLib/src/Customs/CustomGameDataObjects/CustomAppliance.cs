@@ -129,16 +129,21 @@ namespace KitchenLib.Customs
 					result.Info.Add(info.Item1, info.Item2);
 			}
 
-			if (!result.Info.Has(Locale.English))
+			if (result.Info == null)
 			{
-				result.Info.Add(Locale.English, new ApplianceInfo
+				result.Info = new LocalisationObject<ApplianceInfo>();
+				if (!result.Info.Has(Locale.English))
 				{
-					Name = Name,
-					Description = Description,
-					Sections = Sections,
-					Tags = Tags
-				});
+					result.Info.Add(Locale.English, new ApplianceInfo
+					{
+						Name = Name,
+						Description = Description,
+						Sections = Sections,
+						Tags = Tags
+					});
+				}
 			}
+			
 
             gameDataObject = result;
         }

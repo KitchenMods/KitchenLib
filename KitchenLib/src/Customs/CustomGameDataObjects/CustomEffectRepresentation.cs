@@ -37,14 +37,18 @@ namespace KitchenLib.Customs
 					result.Info.Add(info.Item1, info.Item2);
 			}
 
-			if (!result.Info.Has(Locale.English))
+			if (result.Info == null)
 			{
-				result.Info.Add(Locale.English, new EffectInfo
+				result.Info = new LocalisationObject<EffectInfo>();
+				if (!result.Info.Has(Locale.English))
 				{
-					Name = Name,
-					Description = Description,
-					Icon = Icon
-				});
+					result.Info.Add(Locale.English, new EffectInfo
+					{
+						Name = Name,
+						Description = Description,
+						Icon = Icon
+					});
+				}
 			}
 
 			gameDataObject = result;

@@ -8,6 +8,6 @@ namespace KitchenLib.Customs
     {
 		[Obsolete("Please use InfoList.")]
         public virtual LocalisationObject<T> Info { get; protected set; }
-		public virtual List<(Locale, T)> InfoList { get; protected set; }
-    }
+		public virtual List<(Locale, T)> InfoList { get; protected set; } = new List<(Locale, T)>();
+	}
 }
