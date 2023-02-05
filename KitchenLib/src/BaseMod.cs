@@ -203,7 +203,7 @@ namespace KitchenLib
 				}
 			}
 
-			foreach (CustomSimpleFlat material in MaterialsManager.LoadedJsons)
+			foreach (CustomBaseMaterial material in JSONManager.LoadedJsons)
 			{
 				Material mat;
 				material.ConvertMaterial(out mat);

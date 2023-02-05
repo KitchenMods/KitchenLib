@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Kitchen.Layouts;
 using System.Linq;
 using UnityEngine;
+using System;
 
 namespace KitchenLib.Customs
 {
@@ -18,8 +19,12 @@ namespace KitchenLib.Customs
         public virtual Appliance InternalWallPiece { get; protected set; }
         public virtual Appliance StreetPiece { get; protected set; }
         public virtual LocalisationObject<BasicInfo> Info { get; protected set; }
-        public virtual string Name { get; protected set; } = "New Layout";
-        public virtual string Description { get; protected set; } = "A new layout type for your restaurants!";
+
+		[Obsolete("Please set your Name in Info")]
+		public virtual string Name { get; protected set; } = "New Layout";
+
+		[Obsolete("Please set your Description in Info")]
+		public virtual string Description { get; protected set; } = "A new layout type for your restaurants!";
 
         private static readonly LayoutProfile empty = ScriptableObject.CreateInstance<LayoutProfile>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -33,8 +38,6 @@ namespace KitchenLib.Customs
             if (empty.Graph != Graph) result.Graph = Graph;
             if (empty.MaximumTables != MaximumTables) result.MaximumTables = MaximumTables;
             if (empty.Info != Info) result.Info = Info;
-            if (empty.Name != Name) result.Name = Name;
-            if (empty.Description != Description) result.Description = Description;
 
             gameDataObject = result;
         }

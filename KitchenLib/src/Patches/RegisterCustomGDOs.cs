@@ -17,6 +17,7 @@ namespace KitchenLib.Customs
 		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result) {
 			MaterialUtils.SetupMaterialIndex();
 			GDOUtils.SetupGDOIndex(__result);
+			ColorblindUtils.Init(__result);
 
 			List<GameDataObject> gameDataObjects = new List<GameDataObject>();
 
@@ -132,7 +133,6 @@ namespace KitchenLib.Customs
 			__result.Dispose();
 			__result.InitialiseViews();
 
-			ColorblindUtils.Init(__result);
 			EventUtils.InvokeEvent(nameof(Events.BuildGameDataEvent), Events.BuildGameDataEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result));
 		}
 	}

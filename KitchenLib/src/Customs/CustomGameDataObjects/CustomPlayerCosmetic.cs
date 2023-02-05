@@ -2,6 +2,7 @@ using KitchenData;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
 
 namespace KitchenLib.Customs
 {
@@ -30,7 +31,14 @@ namespace KitchenLib.Customs
             if (empty.Visual != Visual) result.Visual = Visual;
             if (empty.Info != Info) result.Info = Info;
 
-            gameDataObject = result;
+			if (InfoList.Count > 0)
+			{
+				result.Info = new LocalisationObject<CosmeticInfo>();
+				foreach ((Locale, CosmeticInfo) info in InfoList)
+					result.Info.Add(info.Item1, info.Item2);
+			}
+
+			gameDataObject = result;
         }
 
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)

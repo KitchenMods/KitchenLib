@@ -3,15 +3,12 @@ using KitchenLib.Event;
 using Kitchen;
 using KitchenData;
 using KitchenMods;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using KitchenLib.DevUI;
 using KitchenLib.UI;
 using KitchenLib.Utils;
 using KitchenLib.Colorblind;
-using KitchenLib.DataDumper;
-using KitchenLib.DataDumper.Dumpers;
 
 #if MELONLOADER
 using MelonLoader;
@@ -34,7 +31,7 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.4.3";
+		public const string MOD_VERSION = "0.4.5";
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.3";
 
 		public static AssetBundle bundle;
@@ -89,6 +86,35 @@ namespace KitchenLib
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<PauseMenuAction>), new ModsMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<PauseMenuAction>), new ModsPreferencesMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 			};
+		}
+
+		private void ExtractAssets()
+		{
+			foreach (GameDataObject gameDataObject in GameData.Main.Get<GameDataObject>())
+			{
+				Texture2D texture = null;
+				if (gameDataObject.GetType() == typeof(Appliance))
+					if (((Appliance)gameDataObject).Prefab != null)
+						texture = PrefabSnapshot.GetApplianceSnapshot(((Appliance)gameDataObject).Prefab);
+				if (gameDataObject.GetType() == typeof(Item))
+					if (((Item)gameDataObject).Prefab != null)
+						texture = PrefabSnapshot.GetApplianceSnapshot(((Item)gameDataObject).Prefab);
+				if (gameDataObject.GetType() == typeof(PlayerCosmetic))
+					if (((PlayerCosmetic)gameDataObject).Visual != null)
+						texture = PrefabSnapshot.GetApplianceSnapshot(((PlayerCosmetic)gameDataObject).Visual);
+
+				byte[] bytes = null;
+				if (texture != null)
+					bytes = texture.EncodeToPNG();
+
+				var dirPath = Application.dataPath + "/../SaveImages/";
+				if (!Directory.Exists(dirPath))
+				{
+					Directory.CreateDirectory(dirPath);
+				}
+				if (bytes != null)
+					File.WriteAllBytes(dirPath + gameDataObject.ID + "-" + gameDataObject.name + ".png", bytes);
+			}
 		}
 	}
 }

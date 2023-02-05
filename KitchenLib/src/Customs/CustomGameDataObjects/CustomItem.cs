@@ -18,7 +18,9 @@ namespace KitchenLib.Customs
         public virtual List<IItemProperty> Properties { get; protected set; } = new List<IItemProperty>();
         public virtual float ExtraTimeGranted { get; protected set; }
         public virtual ItemValue ItemValue { get; protected set; } = ItemValue.Small;
-        public virtual int Reward { get; protected set; } = 1;
+
+		[Obsolete("Please use ItemValue instead.")]
+		public virtual int Reward { get { return 1; } }
         public virtual Item DirtiesTo { get; protected set; }
         public virtual List<Item> MayRequestExtraItems { get; protected set; } = new List<Item>();
         public virtual int MaxOrderSharers { get; protected set; }
@@ -54,7 +56,6 @@ namespace KitchenLib.Customs
             if (empty.Prefab != Prefab) result.Prefab = Prefab;
             if (empty.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
             if (empty.ItemValue != ItemValue) result.ItemValue = ItemValue;
-            if (empty.Reward != Reward) result.Reward = Reward;
             if (empty.MaxOrderSharers != MaxOrderSharers) result.MaxOrderSharers = MaxOrderSharers;
             if (empty.SplitCount != SplitCount) result.SplitCount = SplitCount;
             if (empty.SplitSpeed != SplitSpeed) result.SplitSpeed = SplitSpeed;
