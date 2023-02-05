@@ -1,4 +1,5 @@
 using KitchenData;
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -10,7 +11,9 @@ namespace KitchenLib.Customs
         public virtual int EnablingApplianceCount { get; protected set; } = 1;
         public virtual Process IsPseudoprocessFor { get; protected set; }
         public virtual bool CanObfuscateProgress { get; protected set; }
-        public virtual string Icon { get; protected set; } = "!";
+
+		[Obsolete("Please set your Icon in Info")]
+		public virtual string Icon { get; protected set; } = "!";
         public virtual LocalisationObject<ProcessInfo> Info { get; protected set; }
 
         private static readonly Process empty = ScriptableObject.CreateInstance<Process>();
@@ -24,7 +27,7 @@ namespace KitchenLib.Customs
             if (empty.ID != ID) result.ID = ID;
             if (empty.EnablingApplianceCount != EnablingApplianceCount) result.EnablingApplianceCount = EnablingApplianceCount;
             if (empty.CanObfuscateProgress != CanObfuscateProgress) result.CanObfuscateProgress = CanObfuscateProgress;
-            if (empty.Icon != Icon) result.Icon = Icon;
+            //if (empty.Icon != Icon) result.Icon = Icon;
             if (empty.Info != Info) result.Info = Info;
 
             gameDataObject = result;
