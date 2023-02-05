@@ -25,9 +25,6 @@ namespace KitchenLib.Customs
 				result = UnityEngine.Object.Instantiate(gameData.Get<EffectRepresentation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
 			if (empty.ID != ID) result.ID = ID;
-            //if (empty.Name != Name) result.Name = Name;
-            //if (empty.Description != Description) result.Description = Description;
-            //if (empty.Icon != Icon) result.Icon = Icon;
 			if (empty.Info != Info) result.Info = Info;
 
 			if (InfoList.Count > 0)

@@ -32,7 +32,6 @@ namespace KitchenLib.Customs
             if (empty.Prefab != Prefab) result.Prefab = Prefab;
             if (empty.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
             if (empty.ItemValue != ItemValue) result.ItemValue = ItemValue;
-            //if (empty.Reward != Reward) result.Reward = Reward;
             if (empty.MaxOrderSharers != MaxOrderSharers) result.MaxOrderSharers = MaxOrderSharers;
             if (empty.SplitCount != SplitCount) result.SplitCount = SplitCount;
             if (empty.SplitSpeed != SplitSpeed) result.SplitSpeed = SplitSpeed;

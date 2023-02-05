@@ -100,7 +100,6 @@ namespace KitchenLib.Customs
             if (empty.IsNonInteractive != IsNonInteractive) result.IsNonInteractive = IsNonInteractive;
             if (empty.Layer != Layer) result.Layer = Layer;
             if (empty.ForceHighInteractionPriority != ForceHighInteractionPriority) result.ForceHighInteractionPriority = ForceHighInteractionPriority;
-            //if (empty.PurchaseCost != PurchaseCost) result.PurchaseCost = PurchaseCost;
             if (empty.EntryAnimation != EntryAnimation) result.EntryAnimation = EntryAnimation;
             if (empty.ExitAnimation != ExitAnimation) result.ExitAnimation = ExitAnimation;
             if (empty.SkipRotationAnimation != SkipRotationAnimation) result.SkipRotationAnimation = SkipRotationAnimation;
@@ -114,12 +113,7 @@ namespace KitchenLib.Customs
             if (empty.StapleWhenMissing != StapleWhenMissing) result.StapleWhenMissing = StapleWhenMissing;
             if (empty.SellOnlyAsDuplicate != SellOnlyAsDuplicate) result.SellOnlyAsDuplicate = SellOnlyAsDuplicate;
             if (empty.PreventSale != PreventSale) result.PreventSale = PreventSale;
-            //if (empty.IsAnUpgrade != IsAnUpgrade) result.IsAnUpgrade = IsAnUpgrade;
             if (empty.IsNonCrated != IsNonCrated) result.IsNonCrated = IsNonCrated;
-            //if (empty.Name != Name) result.Name = Name;
-            //if (empty.Description != Description) result.Description = Description;
-            //if (empty.Sections != Sections) result.Sections = Sections;
-            //if (empty.Tags != Tags) result.Tags = Tags;
             if (empty.Info != Info) result.Info = Info;
 
 			if (InfoList.Count > 0)

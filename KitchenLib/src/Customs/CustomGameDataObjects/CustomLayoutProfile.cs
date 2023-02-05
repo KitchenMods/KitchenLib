@@ -38,8 +38,6 @@ namespace KitchenLib.Customs
             if (empty.Graph != Graph) result.Graph = Graph;
             if (empty.MaximumTables != MaximumTables) result.MaximumTables = MaximumTables;
             if (empty.Info != Info) result.Info = Info;
-            //if (empty.Name != Name) result.Name = Name;
-            //if (empty.Description != Description) result.Description = Description;
 
             gameDataObject = result;
         }

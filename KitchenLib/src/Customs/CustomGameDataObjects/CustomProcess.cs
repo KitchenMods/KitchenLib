@@ -27,7 +27,6 @@ namespace KitchenLib.Customs
             if (empty.ID != ID) result.ID = ID;
             if (empty.EnablingApplianceCount != EnablingApplianceCount) result.EnablingApplianceCount = EnablingApplianceCount;
             if (empty.CanObfuscateProgress != CanObfuscateProgress) result.CanObfuscateProgress = CanObfuscateProgress;
-            //if (empty.Icon != Icon) result.Icon = Icon;
             if (empty.Info != Info) result.Info = Info;
 
             gameDataObject = result;
