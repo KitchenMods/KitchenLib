@@ -28,10 +28,11 @@ namespace KitchenLib.Customs
 			{
 				foreach (CustomGameDataObject gdo in CustomGDO.GDOs.Values)
 				{
-					GameDataObject gameDataObject;
-					gdo.Convert(__result, out gameDataObject);
-					gdo.GameDataObject = gameDataObject;
-					GameDataObjects.Add(gameDataObject);
+				GameDataObject gameDataObject;
+				gdo.Convert(__result, out gameDataObject);
+				gameDataObject.name = $"{gdo.ModName} - {gdo.UniqueNameID}";
+				gdo.GameDataObject = gameDataObject;
+				gameDataObjects.Add(gameDataObject);
 				}
 
 				foreach (CustomGameDataObject gdo in CustomGDO.GDOs.Values)
