@@ -3,12 +3,12 @@ using KitchenLib.Event;
 using Kitchen;
 using KitchenData;
 using KitchenMods;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using KitchenLib.DevUI;
 using KitchenLib.UI;
 using KitchenLib.Utils;
+using KitchenLib.Colorblind;
 
 #if MELONLOADER
 using MelonLoader;
@@ -31,8 +31,8 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.3.8";
-		public const string MOD_COMPATIBLE_VERSIONS = "1.1.2";
+		public const string MOD_VERSION = "0.4.5";
+		public const string MOD_COMPATIBLE_VERSIONS = "1.1.3";
 
 		public static AssetBundle bundle;
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
@@ -48,12 +48,15 @@ namespace KitchenLib
 			//GenerateReferences();
 			SetupMenus();
 			RegisterMenu<MaterialsUI>();
+			RegisterMenu<DebugMenu>();
 			PreferenceUtils.Load();
 		}
 		protected override void OnInitialise()
 		{
 			GameObject go = new GameObject();
 			go.AddComponent<DevUIController>();
+
+			ColorblindUtils.AddSingleItemLabels(ColorblindUtils.itemLabels.ToArray());
 		}
 #endif
 
@@ -85,54 +88,33 @@ namespace KitchenLib
 			};
 		}
 
-		private void GenerateReferences()
+		private void ExtractAssets()
 		{
-			Events.BuildGameDataEvent += (s, args) =>
+			foreach (GameDataObject gameDataObject in GameData.Main.Get<GameDataObject>())
 			{
-				List<string> classGenerator = new List<string>();
-				classGenerator.Add("namespace KitchenLib.References");
-				classGenerator.Add("{");
+				Texture2D texture = null;
+				if (gameDataObject.GetType() == typeof(Appliance))
+					if (((Appliance)gameDataObject).Prefab != null)
+						texture = PrefabSnapshot.GetApplianceSnapshot(((Appliance)gameDataObject).Prefab);
+				if (gameDataObject.GetType() == typeof(Item))
+					if (((Item)gameDataObject).Prefab != null)
+						texture = PrefabSnapshot.GetApplianceSnapshot(((Item)gameDataObject).Prefab);
+				if (gameDataObject.GetType() == typeof(PlayerCosmetic))
+					if (((PlayerCosmetic)gameDataObject).Visual != null)
+						texture = PrefabSnapshot.GetApplianceSnapshot(((PlayerCosmetic)gameDataObject).Visual);
 
-				GenerateClass<Appliance>(ref classGenerator, args.gamedata);
-				GenerateClass<CompositeUnlockPack>(ref classGenerator, args.gamedata);
-				GenerateClass<CrateSet>(ref classGenerator, args.gamedata);
-				GenerateClass<Decor>(ref classGenerator, args.gamedata);
-				GenerateClass<Dish>(ref classGenerator, args.gamedata);
-				GenerateClass<Effect>(ref classGenerator, args.gamedata);
-				GenerateClass<EffectRepresentation>(ref classGenerator, args.gamedata);
-				GenerateClass<GardenProfile>(ref classGenerator, args.gamedata);
-				GenerateClass<Item>(ref classGenerator, args.gamedata);
-				GenerateClass<ItemGroup>(ref classGenerator, args.gamedata);
-				GenerateClass<LayoutProfile>(ref classGenerator, args.gamedata);
-				GenerateClass<LevelUpgradeSet>(ref classGenerator, args.gamedata);
-				GenerateClass<ModularUnlockPack>(ref classGenerator, args.gamedata);
-				GenerateClass<PlayerCosmetic>(ref classGenerator, args.gamedata);
-				GenerateClass<Process>(ref classGenerator, args.gamedata);
-				GenerateClass<RandomUpgradeSet>(ref classGenerator, args.gamedata);
-				GenerateClass<Research>(ref classGenerator, args.gamedata);
-				GenerateClass<Shop>(ref classGenerator, args.gamedata);
-				GenerateClass<ThemeUnlock>(ref classGenerator, args.gamedata);
-				GenerateClass<Unlock>(ref classGenerator, args.gamedata);
-				GenerateClass<UnlockCard>(ref classGenerator, args.gamedata);
-				GenerateClass<UnlockPack>(ref classGenerator, args.gamedata);
-				GenerateClass<WorkshopRecipe>(ref classGenerator, args.gamedata);
+				byte[] bytes = null;
+				if (texture != null)
+					bytes = texture.EncodeToPNG();
 
-				classGenerator.Add("}");
-
-				File.WriteAllLines(Path.Combine(Application.dataPath, "References.cs"), classGenerator.ToArray());
-				UnityEngine.Debug.Log("Data saved to: " + Path.Combine(Application.dataPath, "References.cs"));
-			};
-		}
-
-		private void GenerateClass<T>(ref List<string> list, GameData gamedata) where T : GameDataObject
-		{
-			list.Add($"    public class {typeof(T).Name}References");
-			list.Add("    {");
-			foreach (T x in gamedata.Get<T>())
-			{
-				list.Add($"        public const int {(x.name).Replace(" ", "").Replace("-", "")} = {x.ID};\n");
+				var dirPath = Application.dataPath + "/../SaveImages/";
+				if (!Directory.Exists(dirPath))
+				{
+					Directory.CreateDirectory(dirPath);
+				}
+				if (bytes != null)
+					File.WriteAllBytes(dirPath + gameDataObject.ID + "-" + gameDataObject.name + ".png", bytes);
 			}
-			list.Add("    }");
 		}
 	}
 }

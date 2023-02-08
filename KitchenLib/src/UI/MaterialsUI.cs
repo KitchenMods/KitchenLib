@@ -86,15 +86,15 @@ namespace KitchenLib.UI
 					string jsontext = File.ReadAllText(importText);
 					CustomBaseMaterial baseMaterial = JsonConvert.DeserializeObject<CustomBaseMaterial>(jsontext);
 					Material material = null;
-					if (baseMaterial.MaterialType == 0)
+					if (baseMaterial.Type == JsonType.FlatColorMaterial)
 					{
 						JsonConvert.DeserializeObject<CustomSimpleFlat>(jsontext).ConvertMaterial(out material);
 					}
-					else if (baseMaterial.MaterialType == 1)
+					else if (baseMaterial.Type == JsonType.TransparentMaterial)
 					{
 						JsonConvert.DeserializeObject<CustomSimpleTransparent>(jsontext).ConvertMaterial(out material);
 					}
-					else if (baseMaterial.MaterialType == 2)
+					else if (baseMaterial.Type == JsonType.ImageMaterial)
 					{
 						JsonConvert.DeserializeObject<CustomFlatImage>(jsontext).ConvertMaterial(out material);
 					}
@@ -234,7 +234,7 @@ namespace KitchenLib.UI
 					_Color0W = _Color0.w,
 					_Color0X = _Color0.x,
 					_Color0Y = _Color0.y,
-					_Color0Z = _Color0.x,
+					_Color0Z = _Color0.z,
 					_Highlight = _Highlight,
 					_OverlayBase64 = imgtob64(_Overlay),
 					_HasTextureOverlay = _HasTextureOverlay,
@@ -343,7 +343,7 @@ namespace KitchenLib.UI
 					_ColorW = _Color.w,
 					_ColorX = _Color.x,
 					_ColorY = _Color.y,
-					_ColorZ = _Color.x,
+					_ColorZ = _Color.z,
 				};
 				string json = JsonConvert.SerializeObject(mat, Formatting.Indented);
 				File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/" + name + ".json", json);

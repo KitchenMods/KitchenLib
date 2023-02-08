@@ -7,8 +7,7 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomCompositeUnlockPack : CustomUnlockPack
     {
-
-        public virtual List<UnlockPack> Packs { get { return new List<UnlockPack>(); } }
+        public virtual List<UnlockPack> Packs { get; protected set; } = new List<UnlockPack>();
 
         private static readonly CompositeUnlockPack empty = ScriptableObject.CreateInstance<CompositeUnlockPack>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -23,7 +22,7 @@ namespace KitchenLib.Customs
             gameDataObject = result;
         }
 
-        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             CompositeUnlockPack result = (CompositeUnlockPack)gameDataObject;
 

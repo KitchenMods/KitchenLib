@@ -8,9 +8,9 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomWorkshopRecipe : CustomGameDataObject
     {
-        public virtual List<IWorkshopIndividualCondition> Conditions { get { return new List<IWorkshopIndividualCondition>(); } }
-        public virtual List<IWorkshopGroupCondition> GroupConditions { get { return new List<IWorkshopGroupCondition>(); } }
-        public virtual IWorkshopProduct Output { get; internal set; }
+        public virtual List<IWorkshopIndividualCondition> Conditions { get; protected set; } = new List<IWorkshopIndividualCondition>();
+        public virtual List<IWorkshopGroupCondition> GroupConditions { get; protected set; } = new List<IWorkshopGroupCondition>();
+        public virtual IWorkshopProduct Output { get; protected set; }
 
         private static readonly WorkshopRecipe empty = ScriptableObject.CreateInstance<WorkshopRecipe>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)

@@ -8,10 +8,11 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomThemeUnlock : CustomUnlock
     {
-        public virtual bool IsPrimary { get { return true; } }
-        public virtual DecorationType Type { get; internal set; }
-        public virtual ThemeUnlock ParentTheme1 { get; internal set; }
-        public virtual ThemeUnlock ParentTheme2 { get; internal set; }
+        public virtual bool IsPrimary { get; protected set; } = true;
+        public virtual DecorationType Type { get; protected set; }
+        public virtual ThemeUnlock ParentTheme1 { get; protected set; }
+        public virtual ThemeUnlock ParentTheme2 { get; protected set; }
+
         private static readonly ThemeUnlock empty = ScriptableObject.CreateInstance<ThemeUnlock>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
@@ -35,10 +36,17 @@ namespace KitchenLib.Customs
 
             if (empty.Info != Info) result.Info = Info;
 
-            gameDataObject = result;
+			if (InfoList.Count > 0)
+			{
+				result.Info = new LocalisationObject<UnlockInfo>();
+				foreach ((Locale, UnlockInfo) info in InfoList)
+					result.Info.Add(info.Item1, info.Item2);
+			}
+
+			gameDataObject = result;
         }
 
-        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             ThemeUnlock result = (ThemeUnlock)gameDataObject;
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using KitchenData;
 using System;
+using System.Linq;
 using KitchenLib.Customs;
 
 namespace KitchenLib.Utils
@@ -28,6 +29,17 @@ namespace KitchenLib.Utils
 			return gdo;
 		}
 
+		public static CustomGameDataObject GetCustomGameDataObject(string modName, string name)
+		{
+			CustomGDO.GDOsByGUID.TryGetValue(new KeyValuePair<string, string>(modName, name), out var result);
+			return result;
+		}
+
+		public static List<CustomGameDataObject> GetCustomGameDataObjectsFromMod(string modName)
+		{
+			return CustomGDO.GDOsByGUID.Where(entry => entry.Key.Key == modName).Select(entry => entry.Value).ToList();
+		}
+
 		public static CustomGameDataObject GetCustomGameDataObject(int id)
 		{
 			CustomGDO.GDOs.TryGetValue(id, out var result);
@@ -43,6 +55,11 @@ namespace KitchenLib.Utils
 		public static T GetCastedGDO<T, C>() where T : GameDataObject where C : CustomGameDataObject
 		{
 			return (T)GetCustomGameDataObject<C>()?.GameDataObject;
+		}
+
+		public static T GetCastedGDO<T>(string modName, string name) where T : GameDataObject
+		{
+			return (T)GetCustomGameDataObject(modName, name)?.GameDataObject;
 		}
 	}
 }

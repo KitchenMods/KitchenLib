@@ -7,8 +7,8 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomGardenProfile : CustomGameDataObject
     {
-        public virtual Appliance SpawnHolder { get; internal set; }
-        public virtual List<GardenProfile.SpawnProbability> Spawns { get { return new List<GardenProfile.SpawnProbability>(); } }
+        public virtual Appliance SpawnHolder { get; protected set; }
+        public virtual List<GardenProfile.SpawnProbability> Spawns { get; protected set; } = new List<GardenProfile.SpawnProbability>();
 
         private static readonly GardenProfile empty = ScriptableObject.CreateInstance<GardenProfile>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -23,7 +23,7 @@ namespace KitchenLib.Customs
             gameDataObject = result;
         }
 
-        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             GardenProfile result = (GardenProfile)gameDataObject;
 

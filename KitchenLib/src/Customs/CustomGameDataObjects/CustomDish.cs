@@ -1,4 +1,5 @@
 using KitchenData;
+using KitchenData;
 using KitchenLib.Utils;
 using System;
 using System.Collections.Generic;
@@ -10,20 +11,23 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomDish : CustomUnlock
     {
-        public virtual DishType Type { get; internal set; }
-        public virtual string AchievementName { get; internal set; }
-        public virtual HashSet<Dish.IngredientUnlock> ExtraOrderUnlocks { get { return new HashSet<Dish.IngredientUnlock>(); } }
-        public virtual List<string> StartingNameSet { get { return new List<string>(); } }
-        public virtual HashSet<Item> MinimumIngredients { get { return new HashSet<Item>(); } }
-        public virtual HashSet<Process> RequiredProcesses { get { return new HashSet<Process>(); } }
-        public virtual HashSet<Item> BlockProviders { get { return new HashSet<Item>(); } }
-        public virtual GameObject IconPrefab { get; internal set; }
-        public virtual GameObject DisplayPrefab { get; internal set; }
+        public virtual DishType Type { get; protected set; }
+        public virtual string AchievementName { get; protected set; }
+        public virtual HashSet<Dish.IngredientUnlock> ExtraOrderUnlocks { get; protected set; } = new HashSet<Dish.IngredientUnlock>();
+        public virtual List<string> StartingNameSet { get; protected set; } = new List<string>();
+        public virtual HashSet<Item> MinimumIngredients { get; protected set; } = new HashSet<Item>();
+        public virtual HashSet<Process> RequiredProcesses { get; protected set; } = new HashSet<Process>();
+        public virtual HashSet<Item> BlockProviders { get; protected set; } = new HashSet<Item>();
+        public virtual GameObject IconPrefab { get; protected set; }
+        public virtual GameObject DisplayPrefab { get; protected set; }
+        public virtual List<Dish.MenuItem> ResultingMenuItems { get; protected set; } = new List<Dish.MenuItem>();
+        public virtual HashSet<Dish.IngredientUnlock> IngredientsUnlocks { get; protected set; } = new HashSet<Dish.IngredientUnlock>();
+        public virtual HashSet<Dish> PrerequisiteDishesEditor { get; protected set; } = new HashSet<Dish>();
 
+		public virtual bool IsAvailableAsLobbyOption { get; protected set; } = false;
+		public virtual bool DestroyAfterModUninstall { get; protected set; } = true;
+		public virtual Dictionary<Locale, string> Recipe { get; protected set; } = new Dictionary<Locale, string>();
 
-        public virtual List<Dish.MenuItem> ResultingMenuItems { get { return new List<Dish.MenuItem>(); } }
-        public virtual HashSet<Dish.IngredientUnlock> IngredientsUnlocks { get { return new HashSet<Dish.IngredientUnlock>(); } }
-        public virtual HashSet<Dish> PrerequisiteDishesEditor { get { return new HashSet<Dish>(); } }
         private static readonly Dish empty = ScriptableObject.CreateInstance<Dish>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
@@ -50,10 +54,17 @@ namespace KitchenLib.Customs
 
             if (empty.Info != Info) result.Info = Info;
 
-            gameDataObject = result;
+			if (InfoList.Count > 0)
+			{
+				result.Info = new LocalisationObject<UnlockInfo>();
+				foreach ((Locale, UnlockInfo) info in InfoList)
+					result.Info.Add(info.Item1, info.Item2);
+			}
+
+			gameDataObject = result;
         }
 
-        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             Dish result = (Dish)gameDataObject;
 

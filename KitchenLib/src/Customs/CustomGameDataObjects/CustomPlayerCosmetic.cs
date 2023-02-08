@@ -2,17 +2,18 @@ using KitchenData;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
 
 namespace KitchenLib.Customs
 {
     public abstract class CustomPlayerCosmetic : CustomLocalisedGameDataObject<CosmeticInfo>
     {
-        public virtual CosmeticType CosmeticType { get; internal set; }
-        public virtual List<RestaurantSetting> CustomerSettings { get { return new List<RestaurantSetting>(); } }
-        public virtual bool DisableInGame { get; internal set; }
-        public virtual bool IsDefault { get; internal set; }
-        public virtual bool BlockHats { get; internal set; }
-        public virtual GameObject Visual { get; internal set; }
+        public virtual CosmeticType CosmeticType { get; protected set; }
+        public virtual List<RestaurantSetting> CustomerSettings { get; protected set; } = new List<RestaurantSetting>();
+        public virtual bool DisableInGame { get; protected set; }
+        public virtual bool IsDefault { get; protected set; }
+        public virtual bool BlockHats { get; protected set; }
+        public virtual GameObject Visual { get; protected set; }
 
         private static readonly PlayerCosmetic empty = ScriptableObject.CreateInstance<PlayerCosmetic>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -30,10 +31,17 @@ namespace KitchenLib.Customs
             if (empty.Visual != Visual) result.Visual = Visual;
             if (empty.Info != Info) result.Info = Info;
 
-            gameDataObject = result;
+			if (InfoList.Count > 0)
+			{
+				result.Info = new LocalisationObject<CosmeticInfo>();
+				foreach ((Locale, CosmeticInfo) info in InfoList)
+					result.Info.Add(info.Item1, info.Item2);
+			}
+
+			gameDataObject = result;
         }
 
-        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             PlayerCosmetic result = (PlayerCosmetic)gameDataObject;
 

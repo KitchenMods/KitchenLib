@@ -7,10 +7,10 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomResearch : CustomLocalisedGameDataObject<ResearchLocalisation>
     {
-        public virtual int RequiredResearch { get; internal set; }
-        public virtual List<IUpgrade> Rewards { get { return new List<IUpgrade>(); } }
-        public virtual List<Research> EnablesResearchOf { get { return new List<Research>(); } }
-        public virtual List<Research> RequiresForResearch { get { return new List<Research>(); } }
+        public virtual int RequiredResearch { get; protected set; }
+        public virtual List<IUpgrade> Rewards { get; protected set; } = new List<IUpgrade>();
+        public virtual List<Research> EnablesResearchOf { get; protected set; } = new List<Research>();
+        public virtual List<Research> RequiresForResearch { get; protected set; } = new List<Research>();
 
         private static readonly Research empty = ScriptableObject.CreateInstance<Research>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -24,10 +24,17 @@ namespace KitchenLib.Customs
             if (empty.RequiredResearch != RequiredResearch) result.RequiredResearch = RequiredResearch;
             if (empty.Info != Info) result.Info = Info;
 
-            gameDataObject = result;
+			if (InfoList.Count > 0)
+			{
+				result.Info = new LocalisationObject<ResearchLocalisation>();
+				foreach ((Locale, ResearchLocalisation) info in InfoList)
+					result.Info.Add(info.Item1, info.Item2);
+			}
+
+			gameDataObject = result;
         }
 
-        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             Research result = ScriptableObject.CreateInstance<Research>();
 

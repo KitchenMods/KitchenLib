@@ -9,7 +9,8 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomUnlockCard : CustomUnlock
     {
-        public virtual List<UnlockEffect> Effects { get { return new List<UnlockEffect>(); } }
+        public virtual List<UnlockEffect> Effects { get; protected set; } = new List<UnlockEffect>();
+
         private static readonly UnlockCard empty = ScriptableObject.CreateInstance<UnlockCard>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
@@ -32,10 +33,17 @@ namespace KitchenLib.Customs
 
             if (empty.Info != Info) result.Info = Info;
 
-            gameDataObject = result;
+			if (InfoList.Count > 0)
+			{
+				result.Info = new LocalisationObject<UnlockInfo>();
+				foreach ((Locale, UnlockInfo) info in InfoList)
+					result.Info.Add(info.Item1, info.Item2);
+			}
+
+			gameDataObject = result;
         }
 
-        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             UnlockCard result = (UnlockCard)gameDataObject;
 

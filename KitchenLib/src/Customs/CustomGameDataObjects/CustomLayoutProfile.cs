@@ -3,23 +3,27 @@ using System.Collections.Generic;
 using Kitchen.Layouts;
 using System.Linq;
 using UnityEngine;
+using System;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomLayoutProfile : CustomGameDataObject
+    public abstract class CustomLayoutProfile : CustomLocalisedGameDataObject<BasicInfo>
     {
-        public virtual LayoutGraph Graph { get; internal set; }
-        public virtual int MaximumTables { get { return 3; } }
-        public virtual List<GameDataObject> RequiredAppliances { get { return new List<GameDataObject>(); } }
-        public virtual GameDataObject Table { get; internal set; }
-        public virtual GameDataObject Counter { get; internal set; }
-        public virtual Appliance ExternalBin { get; internal set; }
-        public virtual Appliance WallPiece { get; internal set; }
-        public virtual Appliance InternalWallPiece { get; internal set; }
-        public virtual Appliance StreetPiece { get; internal set; }
-        public virtual LocalisationObject<BasicInfo> Info { get; internal set; }
-        public virtual string Name { get { return "New Layout"; } }
-        public virtual string Description { get { return "A new layout type for your restaurants!"; } }
+        public virtual LayoutGraph Graph { get; protected set; }
+        public virtual int MaximumTables { get; protected set; } = 3;
+        public virtual List<GameDataObject> RequiredAppliances { get; protected set; } = new List<GameDataObject>();
+        public virtual GameDataObject Table { get; protected set; }
+        public virtual GameDataObject Counter { get; protected set; }
+        public virtual Appliance ExternalBin { get; protected set; }
+        public virtual Appliance WallPiece { get; protected set; }
+        public virtual Appliance InternalWallPiece { get; protected set; }
+        public virtual Appliance StreetPiece { get; protected set; }
+
+		[Obsolete("Please set your Name in Info")]
+		public virtual string Name { get; protected set; } = "New Layout";
+
+		[Obsolete("Please set your Description in Info")]
+		public virtual string Description { get; protected set; } = "A new layout type for your restaurants!";
 
         private static readonly LayoutProfile empty = ScriptableObject.CreateInstance<LayoutProfile>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -32,14 +36,32 @@ namespace KitchenLib.Customs
             if (empty.ID != ID) result.ID = ID;
             if (empty.Graph != Graph) result.Graph = Graph;
             if (empty.MaximumTables != MaximumTables) result.MaximumTables = MaximumTables;
-            if (empty.Info != Info) result.Info = Info;
-            if (empty.Name != Name) result.Name = Name;
-            if (empty.Description != Description) result.Description = Description;
+			if (empty.Info != Info) result.Info = Info;
 
-            gameDataObject = result;
+			if (InfoList.Count > 0)
+			{
+				result.Info = new LocalisationObject<BasicInfo>();
+				foreach ((Locale, BasicInfo) info in InfoList)
+					result.Info.Add(info.Item1, info.Item2);
+			}
+
+			if (result.Info == null)
+			{
+				result.Info = new LocalisationObject<BasicInfo>();
+				if (!result.Info.Has(Locale.English))
+				{
+					result.Info.Add(Locale.English, new BasicInfo
+					{
+						Name = Name,
+						Description = Description
+					});
+				}
+			}
+
+			gameDataObject = result;
         }
 
-        public override void AttachDependentProperties(GameDataObject gameDataObject)
+        public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             LayoutProfile result = (LayoutProfile)gameDataObject;
 
