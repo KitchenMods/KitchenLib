@@ -20,6 +20,7 @@ namespace KitchenLib.Customs
 		private static bool FirstRun = true;
 
 		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result) {
+			GameDataObjects.Clear();
 			MaterialUtils.SetupMaterialIndex();
 			GDOUtils.SetupGDOIndex(__result);
 			ColorblindUtils.Init(__result);
