@@ -15,7 +15,6 @@ namespace KitchenLib.src.ContentPack
 {
     public class ContentPackSystem : GenericSystemBase, IModSystem
     {
-        public static string GUID = $"{Main.MOD_AUTHOR}-{Main.MOD_NAME}";
         public static SemVersion Version = SemVersion.Parse("1.0.0", SemVersionStyles.Any);
 
         public static List<ContentPack> Packs = new List<ContentPack>();
@@ -27,6 +26,7 @@ namespace KitchenLib.src.ContentPack
             Main.instance.Log("Loading packs...");
             FindMods(FolderModSource.ModsFolder);
             FindMods(Path.GetFullPath(Path.Combine(Application.dataPath, "..", "..", "..", "..", "workshop", "content", "1599600")));
+
             foreach (ContentPack pack in Packs)
             {
                 foreach (var kvp in pack.changes)
@@ -41,11 +41,10 @@ namespace KitchenLib.src.ContentPack
                     {
                         SerializationContext.Item => JsonConvert.DeserializeObject<JsonItem>(json, settings),
                         SerializationContext.ItemGroup => JsonConvert.DeserializeObject<JsonItemGroup>(json, settings),
-                        SerializationContext.Appliance => JsonConvert.DeserializeObject<JsonAppliance>(json, settings),
                         _ => null
                     };
                     CustomGDO.ModName = pack.name;
-
+                    Main.instance.Log($"Discovered {pack.customGDO.UniqueNameID}");
                     pack.customGDO = CustomGDO;
                 }
             }
@@ -55,6 +54,7 @@ namespace KitchenLib.src.ContentPack
         {
             foreach (ContentPack pack in Packs)
             {
+                Main.instance.Log($"Registering {pack.customGDO.UniqueNameID}");
                 CustomGDO.RegisterGameDataObject(pack.customGDO);
             }
         }
@@ -86,13 +86,13 @@ namespace KitchenLib.src.ContentPack
             if (manifest.Count() == 0)
                 return null;
             ModManifest Manifest = Deserialize<ModManifest>(File.ReadAllText(manifest[0]));
-            List<string> content = files.Where(x => Path.GetFileName(x) == $"{GUID}.json").ToList();
+            List<string> content = files.Where(x => Path.GetFileName(x) == $"content.json").ToList();
             if (content.Count() == 0)
                 return null;
             ModContent Content = Deserialize<ModContent>(File.ReadAllText(content[0]));
             ContentPack pack = new ContentPack(modname, dir, Manifest, Content);
 
-            files = files.Where(x => Path.GetFileName(x) != "manifest.json" || Path.GetFileName(x) != $"{GUID}.json").ToList();
+            files = files.Where(x => Path.GetFileName(x) != "manifest.json" || Path.GetFileName(x) != $"content.json").ToList();
             foreach (string file in files)
             {
                 pack.AddJson(file, File.ReadAllText(file));

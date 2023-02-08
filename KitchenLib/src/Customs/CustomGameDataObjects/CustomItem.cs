@@ -6,6 +6,7 @@ using System.Reflection;
 using UnityEngine;
 using KitchenLib.Colorblind;
 using Newtonsoft.Json;
+using System;
 
 namespace KitchenLib.Customs
 {
@@ -20,6 +21,7 @@ namespace KitchenLib.Customs
         public virtual ItemValue ItemValue { get; protected set; } = ItemValue.Small;
 
 		[Obsolete("Please use ItemValue instead.")]
+        [JsonIgnore]
 		public virtual int Reward { get { return 1; } }
         public virtual Item DirtiesTo { get; protected set; }
         public virtual List<Item> MayRequestExtraItems { get; protected set; } = new List<Item>();

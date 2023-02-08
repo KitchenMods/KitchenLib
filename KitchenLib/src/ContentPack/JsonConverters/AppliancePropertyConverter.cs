@@ -21,7 +21,7 @@ namespace KitchenLib.src.ContentPack.JsonConverters
 
                 IApplianceProperty property = ApplianceProperty switch
                 {
-                    AppliancePropertyContext.CAllowPlacingOver => throw new NotImplementedException(),
+                    AppliancePropertyContext.CAllowPlacingOver => new CAllowPlacingOver(),
                     AppliancePropertyContext.CDoesNotOccupy => throw new NotImplementedException(),
                     AppliancePropertyContext.CDisableAutomation => throw new NotImplementedException(),
                     AppliancePropertyContext.CGivesDecoration => throw new NotImplementedException(),

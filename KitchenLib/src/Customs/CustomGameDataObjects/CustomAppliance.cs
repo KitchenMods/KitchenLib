@@ -4,6 +4,7 @@ using UnityEngine;
 using Kitchen;
 using System.Linq;
 using System;
+using Newtonsoft.Json;
 
 namespace KitchenLib.Customs
 {
@@ -20,6 +21,7 @@ namespace KitchenLib.Customs
         public virtual bool IsNonInteractive { get; protected set; }
         public virtual OccupancyLayer Layer { get; protected set; }
         public virtual bool ForceHighInteractionPriority { get; protected set; }
+        [JsonIgnore]
 		
 		[Obsolete("Please use PriceTier to set your price")]
 		public virtual int PurchaseCost { get; protected set; } = 0;
@@ -41,20 +43,25 @@ namespace KitchenLib.Customs
         public virtual List<Appliance> Upgrades { get; protected set; } = new List<Appliance>();
 		
 		[Obsolete("Should not be used by the user")]
+        [JsonIgnore]
 		public virtual bool IsAnUpgrade { get; protected set; }
         public virtual bool IsNonCrated { get; protected set; }
         public virtual Item CrateItem { get; protected set; }
 		
 		[Obsolete("Please set your Name in Info")]
+        [JsonIgnore]
 		public virtual string Name { get; protected set; } = "Appliance";
 
 		[Obsolete("Please set your Description in Info")]
+        [JsonIgnore]
 		public virtual string Description { get; protected set; } = "A little something for your restaurant";
 		
 		[Obsolete("Please set your Sections in Info")]
+        [JsonIgnore]
 		public virtual List<Appliance.Section> Sections { get; protected set; } = new List<Appliance.Section>();
 		
 		[Obsolete("Please set your Tags in Info")]
+        [JsonIgnore]
 		public virtual List<string> Tags { get; protected set; } = new List<string>();
 
 		[Obsolete("Please create a custom system for rotations")]
