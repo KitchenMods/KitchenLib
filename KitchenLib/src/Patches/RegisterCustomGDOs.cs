@@ -153,7 +153,7 @@ namespace KitchenLib.Customs
 
 			if (FirstRun)
             {
-				FirstRun = false;
+				//FirstRun = false; // Disabled due to preventing GDOs from loading
             }
 		}
 	}
