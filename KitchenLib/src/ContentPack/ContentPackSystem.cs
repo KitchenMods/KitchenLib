@@ -41,6 +41,8 @@ namespace KitchenLib.src.ContentPack
                     {
                         SerializationContext.Item => JsonConvert.DeserializeObject<JsonItem>(json, settings),
                         SerializationContext.ItemGroup => JsonConvert.DeserializeObject<JsonItemGroup>(json, settings),
+                        SerializationContext.Appliance => JsonConvert.DeserializeObject<JsonAppliance>(json, settings),
+                        SerializationContext.Dish => JsonConvert.DeserializeObject<JsonDish>(json, settings),
                         _ => null
                     };
                     CustomGDO.ModName = pack.name;
