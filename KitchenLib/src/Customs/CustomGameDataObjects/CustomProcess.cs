@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomProcess : CustomGameDataObject
+    public abstract class CustomProcess : CustomLocalisedGameDataObject<ProcessInfo>
     {
         public virtual GameDataObject BasicEnablingAppliance { get; protected set; }
         public virtual int EnablingApplianceCount { get; protected set; } = 1;
@@ -14,7 +14,6 @@ namespace KitchenLib.Customs
 
 		[Obsolete("Please set your Icon in Info")]
 		public virtual string Icon { get; protected set; } = "!";
-        public virtual LocalisationObject<ProcessInfo> Info { get; protected set; }
 
         private static readonly Process empty = ScriptableObject.CreateInstance<Process>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -27,9 +26,30 @@ namespace KitchenLib.Customs
             if (empty.ID != ID) result.ID = ID;
             if (empty.EnablingApplianceCount != EnablingApplianceCount) result.EnablingApplianceCount = EnablingApplianceCount;
             if (empty.CanObfuscateProgress != CanObfuscateProgress) result.CanObfuscateProgress = CanObfuscateProgress;
-            if (empty.Info != Info) result.Info = Info;
 
-            gameDataObject = result;
+			if (empty.Info != Info) result.Info = Info;
+
+			if (InfoList.Count > 0)
+			{
+				result.Info = new LocalisationObject<ProcessInfo>();
+				foreach ((Locale, ProcessInfo) info in InfoList)
+					result.Info.Add(info.Item1, info.Item2);
+			}
+
+			if (result.Info == null)
+			{
+				result.Info = new LocalisationObject<ProcessInfo>();
+				if (!result.Info.Has(Locale.English))
+				{
+					result.Info.Add(Locale.English, new ProcessInfo
+					{
+						Name = Icon,
+						Icon = Icon
+					});
+				}
+			}
+
+			gameDataObject = result;
         }
 
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
