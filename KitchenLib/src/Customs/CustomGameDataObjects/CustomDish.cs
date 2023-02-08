@@ -21,7 +21,9 @@ namespace KitchenLib.Customs
         public virtual GameObject DisplayPrefab { get; protected set; }
         public virtual List<Dish.MenuItem> ResultingMenuItems { get; protected set; } = new List<Dish.MenuItem>();
         public virtual HashSet<Dish.IngredientUnlock> IngredientsUnlocks { get; protected set; } = new HashSet<Dish.IngredientUnlock>();
-        public virtual HashSet<Dish> PrerequisiteDishesEditor { get; protected set; } = new HashSet<Dish>();
+		
+		[Obsolete("Please use HardcodedRequirements")]
+		public virtual HashSet<Dish> PrerequisiteDishesEditor { get; protected set; } = new HashSet<Dish>();
 
 		public virtual bool IsAvailableAsLobbyOption { get; protected set; } = false;
 		public virtual bool DestroyAfterModUninstall { get; protected set; } = true;
