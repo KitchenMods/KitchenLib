@@ -47,6 +47,8 @@ namespace KitchenLib.Customs
 				}
 			}
 
+			EventUtils.InvokeEvent(nameof(Events.BuildGameDataPreSetupEvent), Events.BuildGameDataPreSetupEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result, FirstRun));
+
 			foreach (GameDataObject gameDataObject in GameDataObjects)
 			{
 				try
@@ -140,17 +142,12 @@ namespace KitchenLib.Customs
 			}
 			 */
 
+			EventUtils.InvokeEvent(nameof(Events.BuildGameDataEvent), Events.BuildGameDataEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result, FirstRun));
+
 			__result.Dispose();
 			__result.InitialiseViews();
 
-			if (FirstRun) // only call BuildGameDataEvent once
-			{
-				EventUtils.InvokeEvent(nameof(Events.BuildGameDataEvent), Events.BuildGameDataEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result));
-			}
-			else
-			{
-				EventUtils.InvokeEvent(nameof(Events.RebuildGameDataEvent), Events.RebuildGameDataEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result));
-			}
+			EventUtils.InvokeEvent(nameof(Events.BuildGameDataPostViewInitEvent), Events.BuildGameDataPostViewInitEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result, FirstRun));
 
 			if (FirstRun)
             {
