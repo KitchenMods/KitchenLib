@@ -19,6 +19,7 @@ namespace KitchenLib.Customs
         public virtual bool CanContainSide { get; protected set; }
         public virtual bool ApplyProcessesToComponents { get; protected set; }
         public virtual bool AutoCollapsing { get; protected set; }
+        public virtual bool AutoSetupItemGroupView { get; protected set; } = true;
 
         private static readonly ItemGroup empty = ScriptableObject.CreateInstance<ItemGroup>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -93,11 +94,17 @@ namespace KitchenLib.Customs
             }
 
             //Setup ItemGroupView for this ItemGroup
-            T localView = result.Prefab.GetComponent<T>();
-            if (localView == null)
-                localView = result.Prefab.AddComponent<T>();
+            if (AutoSetupItemGroupView)
+            {
+                T localView = result.Prefab.GetComponent<T>();
+                if (localView == null)
+                    localView = result.Prefab.AddComponent<T>();
 
-            ItemGroupViewUtils.AddSideContainer(gameData, result, localView);
+                if (CanContainSide)
+                {
+                    ItemGroupViewUtils.AddSideContainer(gameData, result, localView);
+                }
+            }
         }
     }
 }
