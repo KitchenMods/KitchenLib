@@ -20,7 +20,7 @@ namespace KitchenLib.Customs
 		private static bool FirstRun = true;
 
 		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result) {
-			GameDataObjects.Clear();
+			//GameDataObjects.Clear();
 			MaterialUtils.SetupMaterialIndex();
 			GDOUtils.SetupGDOIndex(__result);
 			ColorblindUtils.Init(__result);
@@ -149,12 +149,13 @@ namespace KitchenLib.Customs
 			}
 			else
 			{
+				EventUtils.InvokeEvent(nameof(Events.BuildGameDataEvent), Events.BuildGameDataEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result));
 				EventUtils.InvokeEvent(nameof(Events.RebuildGameDataEvent), Events.RebuildGameDataEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result));
 			}
 
 			if (FirstRun)
             {
-				//FirstRun = false; // Disabled due to preventing GDOs from loading
+				FirstRun = false; // Disabled due to preventing GDOs from loading
             }
 		}
 	}
