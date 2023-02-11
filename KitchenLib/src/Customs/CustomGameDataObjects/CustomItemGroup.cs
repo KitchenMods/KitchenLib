@@ -12,9 +12,9 @@ using System.CodeDom;
 
 namespace KitchenLib.Customs
 {
-	public abstract class CustomItemGroup : CustomItemGroup<ItemGroupView> { }
+    public abstract class CustomItemGroup : CustomItemGroup<ItemGroupView> { }
     public abstract class CustomItemGroup<T> : CustomItem where T : ItemGroupView
-	{
+    {
         public virtual List<ItemGroup.ItemSet> Sets { get; protected set; } = new List<ItemGroup.ItemSet>();
         public virtual bool CanContainSide { get; protected set; }
         public virtual bool ApplyProcessesToComponents { get; protected set; }
@@ -45,10 +45,10 @@ namespace KitchenLib.Customs
             if (empty.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (empty.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
 
-			if (!string.IsNullOrEmpty(ColourBlindTag))
-				ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
+            if (!string.IsNullOrEmpty(ColourBlindTag))
+                ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
 
-			if (empty.CanContainSide != CanContainSide) result.CanContainSide = CanContainSide;
+            if (empty.CanContainSide != CanContainSide) result.CanContainSide = CanContainSide;
             if (empty.ApplyProcessesToComponents != ApplyProcessesToComponents) result.ApplyProcessesToComponents = ApplyProcessesToComponents;
             if (empty.AutoCollapsing != AutoCollapsing) result.AutoCollapsing = AutoCollapsing;
 
@@ -92,28 +92,12 @@ namespace KitchenLib.Customs
                 sets.SetValue(gameDataObject, Sets);
             }
 
-			//Setup ItemGroupView for this ItemGroup
-			T localView = result.Prefab.GetComponent<T>();
-			if (localView == null)
-				localView = result.Prefab.AddComponent<T>();
-			
-			FieldInfo subviewContainer = ReflectionUtils.GetField<ItemGroupView>("SubviewContainer");
-			FieldInfo subviewPrefab = ReflectionUtils.GetField<ItemGroupView>("SubviewPrefab");
-			Transform sidesContainer = null;
-			if (result.Prefab != null)
-				sidesContainer = result.Prefab.transform.Find("Side Container");
-			
-			if (sidesContainer != null)
-			{
-				subviewContainer.SetValue(localView, sidesContainer.gameObject);
-				ItemGroup plated_burger = gameData.Get<ItemGroup>(ItemGroupReferences.BurgerPlated);
-				ItemGroupView burgerView = plated_burger.Prefab.GetComponent<ItemGroupView>();
-				subviewPrefab.SetValue(localView, subviewPrefab.GetValue(burgerView));
-			}
-			else
-			{
-				Main.instance.Log($"Could not find Side Container in prefab for ItemGroup {result.ID} ({result.name}).");
-			}
-		}
-	}
+            //Setup ItemGroupView for this ItemGroup
+            T localView = result.Prefab.GetComponent<T>();
+            if (localView == null)
+                localView = result.Prefab.AddComponent<T>();
+
+            ItemGroupViewUtils.AddSideContainer(gameData, result, localView);
+        }
+    }
 }

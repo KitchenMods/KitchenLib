@@ -12,6 +12,7 @@ namespace KitchenLib.Customs
     public abstract class CustomItem : CustomGameDataObject
     {
         public virtual GameObject Prefab { get; protected set; }
+        public virtual GameObject SidePrefab { get; protected set; }
         public virtual List<Item.ItemProcess> Processes { get; protected set; }=new List<Item.ItemProcess>();
         public virtual List<IItemProperty> Properties { get; protected set; } = new List<IItemProperty>();
         public virtual float ExtraTimeGranted { get; protected set; }

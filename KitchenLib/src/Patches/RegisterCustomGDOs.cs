@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using HarmonyLib;
 using KitchenData;
 using KitchenLib.Utils;
@@ -10,6 +11,8 @@ using UnityEngine;
 using Kitchen;
 using System.IO;
 using KitchenLib.Colorblind;
+using KitchenLib.References;
+using System.Reflection;
 
 namespace KitchenLib.Customs
 {
@@ -20,7 +23,6 @@ namespace KitchenLib.Customs
 		private static bool FirstRun = true;
 
 		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result) {
-			GameDataObjects.Clear();
 			MaterialUtils.SetupMaterialIndex();
 			GDOUtils.SetupGDOIndex(__result);
 			ColorblindUtils.Init(__result);
@@ -85,13 +87,15 @@ namespace KitchenLib.Customs
 			}
 
 			/*
-			 * Setting localisation for Recipes on a per-dish-basis
-			 * Sets to whatever language is set in Preferences, defaults to English if one is not set.
+			 * Custom setup for specific cases of certain GDOs:
+			 *  - setting localisation for Recipes on a per-dish-basis (sets to whatever language is set in Preferences, defaults to English if one is not set)
+			 *  - attaches all side item prefabs to "Side Prefab"
 			 */
 			if (FirstRun) // only register recipes once
 			{
 				foreach (GameDataObject gameDataObject in GameDataObjects)
 				{
+					// Dishes
 					if (gameDataObject.GetType() == typeof(Dish))
 					{
 						Dish dish = (Dish)gameDataObject;
@@ -116,6 +120,18 @@ namespace KitchenLib.Customs
 								MainMenuDishSystem.MenuOptions.Add(dish.ID);
 						}
 					}
+
+					// Items
+					if (gameDataObject.GetType() == typeof(Item) || gameDataObject.GetType() == typeof(ItemGroup))
+                    {
+						Item item = (Item)gameDataObject;
+						if (!item.IsMergeableSide)
+                        {
+							continue;
+						}
+
+						ItemGroupViewUtils.AddPossibleSide(__result, item);
+                    }
 				}
 			}
 
@@ -151,7 +167,7 @@ namespace KitchenLib.Customs
 
 			if (FirstRun)
             {
-				//FirstRun = false; // Disabled due to preventing GDOs from loading
+                FirstRun = false;
             }
 		}
 	}
