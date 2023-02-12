@@ -54,18 +54,18 @@ namespace KitchenLib.Utils
 
         public static void AddSideContainer<T>(GameData gameData, ItemGroup itemGroup, T localView) where T: ItemGroupView
         {
-            FieldInfo subviewContainer = ReflectionUtils.GetField<ItemGroupView>("SubviewContainer");
-            FieldInfo subviewPrefab = ReflectionUtils.GetField<ItemGroupView>("SubviewPrefab");
+            //FieldInfo subviewContainer = ReflectionUtils.GetField<ItemGroupView>("SubviewContainer");
+            //FieldInfo subviewPrefab = ReflectionUtils.GetField<ItemGroupView>("SubviewPrefab");
             Transform sidesContainer = null;
             if (itemGroup.Prefab != null)
                 sidesContainer = itemGroup.Prefab.transform.Find("Side Container");
 
             if (sidesContainer != null)
             {
-                subviewContainer.SetValue(localView, sidesContainer.gameObject);
+				fSubviewContainer.SetValue(localView, sidesContainer.gameObject);
                 ItemGroup plated_burger = gameData.Get<ItemGroup>(ItemGroupReferences.BurgerPlated);
                 ItemGroupView burgerView = plated_burger.Prefab.GetComponent<ItemGroupView>();
-                subviewPrefab.SetValue(localView, subviewPrefab.GetValue(burgerView));
+				fSubviewPrefab.SetValue(localView, fSubviewPrefab.GetValue(burgerView));
             }
             else
             {
