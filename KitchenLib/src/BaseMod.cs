@@ -36,6 +36,7 @@ namespace KitchenLib
 		public static BaseMod instance;
 		private static List<Assembly> PatchedAssemblies = new List<Assembly>();
 		private bool isRegistered = false;
+		private bool canRegisterGDO = false;
 		
 #if BEPINEX || WORKSHOP
 		public static HarmonyLib.Harmony harmonyInstance;
@@ -111,7 +112,21 @@ namespace KitchenLib
 			Debug.Log($"[{ModName}] " + message);
 #endif
 		}
-		
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void Warning(string message)
+		{
+#if BEPINEX
+			Logger.Log(LogLevel.Warning, $"[{ModName}] " + message);
+#endif
+#if MELONLOADER
+			MelonLogger.Warning($"[{ModName}] " + message);
+#endif
+#if WORKSHOP
+			Debug.LogWarning($"[{ModName}] " + message);
+#endif
+		}
+
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Error(string message)
 		{
@@ -125,6 +140,7 @@ namespace KitchenLib
 			Debug.LogError($"[{ModName}] " + message);
 #endif
 		}
+
 		protected virtual void OnInitialise() { }
 		protected virtual void OnFrameUpdate() { }
 
@@ -178,7 +194,9 @@ namespace KitchenLib
 				material.ConvertMaterial(out mat);
 				AddMaterial(mat);
 			}
+			canRegisterGDO = true;
 			OnPostActivate(mod);
+			canRegisterGDO = false;
 		}
 
 		public override void PostInject() //IModInitializer
@@ -210,7 +228,15 @@ namespace KitchenLib
 		{
 			T gdo = new T();
 			gdo.ModName = ModName;
-			return CustomGDO.RegisterGameDataObject(gdo);
+			if (canRegisterGDO)
+			{
+				return CustomGDO.RegisterGameDataObject(gdo);
+			}
+			else
+			{
+				Main.instance.Warning("Please Register GDOs in OnPostActivate(Mod mod) " + gdo.GetType().FullName);
+				return null;
+			}
 		}
 
 		public T AddSubProcess<T>() where T : CustomSubProcess, new()
