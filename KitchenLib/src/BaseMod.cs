@@ -31,7 +31,6 @@ namespace KitchenLib
 		
 		public static HarmonyLib.Harmony harmonyInstance;
 		
-		[Obsolete("Please use BaseMod(string modID, string modName, string author, string modVersion, string betaVersion, string compatibleVersions, Assembly assembly)")]
 		public BaseMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly) : base()
 		{
 			SetupMod(modID, modName, author, modVersion, "", compatibleVersions, assembly);
