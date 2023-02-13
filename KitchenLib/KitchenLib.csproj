@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
-		<Configurations>MelonLoader;BepInEx;Workshop</Configurations>
+		<Configurations>Workshop</Configurations>
 		<AssemblyName>$(MSBuildProjectName)-$(Configuration)</AssemblyName>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -18,12 +18,6 @@
 	<ItemGroup>
 		<Reference Include="0Harmony">
 			<HintPath>..\..\..\..\Libraries\MelonLoader\0Harmony.dll</HintPath>
-		</Reference>
-		<Reference Include="BepInEx">
-			<HintPath>..\..\..\..\Libraries\BepInEx\core\BepInEx.dll</HintPath>
-		</Reference>
-		<Reference Include="MelonLoader">
-			<HintPath>..\..\..\..\Libraries\MelonLoader\MelonLoader.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 

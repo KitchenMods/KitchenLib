@@ -87,38 +87,16 @@ namespace KitchenLib
 			}
 			else if (mod_page == ModPage.NonKitchenLibMods)
 			{
-#if MELONLOADER
-            System.Collections.ObjectModel.ReadOnlyCollection<MelonLoader.MelonMod> mods = MelonLoader.MelonMod.RegisteredMelons;
-			foreach (MelonLoader.MelonMod mod in mods)
-			{
-                if (!modNames.Contains(mod.Info.Name))
-                {
-                    AddInfo(mod.Info.Name + "     v" + mod.Info.Version);
-                }
-			}
-#endif
-#if BEPINEX
-            Dictionary<string, BepInEx.PluginInfo> plugins = BepInEx.Bootstrap.Chainloader.PluginInfos;
-            foreach (BepInEx.PluginInfo plugin in plugins.Values)
-            {
-                if (!modNames.Contains(plugin.Metadata.Name))
-                {
-                    AddInfo(plugin.Metadata.Name + "     v" + plugin.Metadata.Version);
-                }
-            }
-#endif
-#if WORKSHOP
 				List<string> nonKlMods = ModPreload.Mods
 					.Where(mod => mod.State == ModState.PostActivated)
 					.SelectMany(mod => mod.GetPacks<AssemblyModPack>())
 					.Where(pack => !modAssemblies.ContainsValue(pack.Name) && !modsToFilterOut.Contains(pack.Name))
 					.Select(pack => pack.Name.Replace(".dll", "")).ToList();
 				createModLabels(nonKlMods);
-#endif
 			}
 		}
 
-        private string modToModNameAndVersion(BaseMod mod) => $"{mod.ModName}     v{mod.ModVersion}";
+        private string modToModNameAndVersion(BaseMod mod) => $"{mod.ModName}     v{mod.ModVersion}{mod.BetaVersion}";
 
         private void createModLabels(List<string> modNames) {
             int columns = modNames.Count / modsPerColumn;

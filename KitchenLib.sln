@@ -14,26 +14,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenLib.TestMod", "Kitch
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		BepInEx|Any CPU = BepInEx|Any CPU
-		MelonLoader|Any CPU = MelonLoader|Any CPU
-		Release|Any CPU = Release|Any CPU
 		Workshop|Any CPU = Workshop|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
-		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
-		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
-		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
-		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.Workshop|Any CPU.ActiveCfg = Workshop|Any CPU
 		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.Workshop|Any CPU.Build.0 = Workshop|Any CPU
-		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
-		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
-		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
-		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
-		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.Workshop|Any CPU.ActiveCfg = Workshop|Any CPU
 		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.Workshop|Any CPU.Build.0 = Workshop|Any CPU
 	EndGlobalSection

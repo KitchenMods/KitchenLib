@@ -12,39 +12,20 @@ using KitchenLib.Colorblind;
 using KitchenLib.Customs;
 using KitchenLib.References;
 
-#if MELONLOADER
-using MelonLoader;
-#endif
-#if BEPINEX
-using BepInEx;
-#endif
-#if MELONLOADER
-[assembly: MelonInfo(typeof(KitchenLib.Main), KitchenLib.Main.MOD_NAME, KitchenLib.Main.MOD_VERSION, KitchenLib.Main.MOD_AUTHOR)]
-[assembly: MelonGame("It's Happening", "PlateUp")]
-#endif
 namespace KitchenLib
 {
-#if BEPINEX
-	[BepInProcess("PlateUp.exe")]
-	[BepInPlugin(MOD_ID, MOD_NAME, MOD_VERSION)]
-#endif
 	public class Main : BaseMod
 	{
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.5.1";
+		public const string MOD_VERSION = "0.5.2";
+		public const string MOD_BETA_VERSION = "1";
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.3";
 
 		public static AssetBundle bundle;
-		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
+		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
 
-#if !WORKSHOP
-		protected override void OnInitialise()
-		{
-			SetupMenus();
-		}
-#else
 		protected override void OnPostActivate(Mod mod)
 		{
 			//GenerateReferences();
@@ -60,7 +41,6 @@ namespace KitchenLib
 
 			ColorblindUtils.AddSingleItemLabels(ColorblindUtils.itemLabels.ToArray());
 		}
-#endif
 
 		private void SetupMenus()
 		{

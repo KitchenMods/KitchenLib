@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
-		<Configurations>MelonLoader;BepInEx;Workshop</Configurations>
+		<Configurations>Workshop</Configurations>
 		<EnableModDeployLocal>false</EnableModDeployLocal>
 	</PropertyGroup>
 
