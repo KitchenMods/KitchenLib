@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using KitchenMods;
 using System;
 using System.Reflection;
+using System.Linq;
 
 namespace KitchenLib
 {
@@ -20,6 +21,20 @@ namespace KitchenLib
 			ModPage.UntestedMods,
 			ModPage.NonKitchenLibMods
 		};
+
+        private static readonly float columnWidth = 6f;
+        private static readonly int modsPerColumn = 25;
+        private static readonly Vector2 selectPosition = new Vector2(1, 4);
+        private static readonly Vector2 backButtonPosition = new Vector2(1, 3.5f);
+        private static readonly List<string> modsToFilterOut = new List<string> {
+            "Mono.Cecil.dll",
+            "Mono.Cecil.Mdb.dll",
+            "Mono.Cecil.Pdb.dll",
+            "Mono.Cecil.Rocks.dll",
+            "MonoMod.RuntimeDetour.dll",
+            "MonoMod.Utils.dll",
+            "UniverseLib.Mono.dll",
+        };
 
 		private static List<string> modPagesNames = new List<string>
 		{
@@ -53,92 +68,49 @@ namespace KitchenLib
 			Redraw(player_id, ModPage.LoadedMods, modAssemblies, untestedMods, loadedMods);
 		}
 
-
 		private void Redraw(int player_id, ModPage mod_page, Dictionary<Assembly, string> modAssemblies, Dictionary<Type, BaseMod> untestedMods, Dictionary<Type, BaseMod> loadedMods)
 		{
 			ModuleList.Clear();
-			AddSelect<ModPage>(PageSelector);
+			AddSelect<ModPage>(PageSelector).Position = selectPosition;
+			New<SpacerElement>(true);
+			AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate (int i) {
+				this.RequestPreviousMenu();
+			}, 0, 1f, 0.2f).Position = backButtonPosition;
+
 			if (mod_page == ModPage.LoadedMods)
 			{
-				AddLabel("Loaded Mods");
-
-				foreach (Type modType in loadedMods.Keys)
-				{
-					BaseMod mod = loadedMods[modType];
-					AddInfo(mod.ModName + "     v" + mod.ModVersion);
-				}
+				createModLabels(loadedMods.Values.Select(modToModNameAndVersion).ToList());
 			}
 			else if (mod_page == ModPage.UntestedMods)
 			{
-
-				AddLabel("Untested Mods");
-
-				foreach (Type modType in untestedMods.Keys)
-				{
-					BaseMod mod = untestedMods[modType];
-					AddInfo(mod.ModName + "     v" + mod.ModVersion);
-				}
+				createModLabels(untestedMods.Values.Select(modToModNameAndVersion).ToList());
 			}
 			else if (mod_page == ModPage.NonKitchenLibMods)
 			{
-
-				AddLabel("Non-KitchenLib Mods");
-#if MELONLOADER
-            System.Collections.ObjectModel.ReadOnlyCollection<MelonLoader.MelonMod> mods = MelonLoader.MelonMod.RegisteredMelons;
-			foreach (MelonLoader.MelonMod mod in mods)
-			{
-                if (!modNames.Contains(mod.Info.Name))
-                {
-                    AddInfo(mod.Info.Name + "     v" + mod.Info.Version);
-                }
+				List<string> nonKlMods = ModPreload.Mods
+					.Where(mod => mod.State == ModState.PostActivated)
+					.SelectMany(mod => mod.GetPacks<AssemblyModPack>())
+					.Where(pack => !modAssemblies.ContainsValue(pack.Name) && !modsToFilterOut.Contains(pack.Name))
+					.Select(pack => pack.Name.Replace(".dll", "")).ToList();
+				createModLabels(nonKlMods);
 			}
-#endif
-#if BEPINEX
-            Dictionary<string, BepInEx.PluginInfo> plugins = BepInEx.Bootstrap.Chainloader.PluginInfos;
-            foreach (BepInEx.PluginInfo plugin in plugins.Values)
-            {
-                if (!modNames.Contains(plugin.Metadata.Name))
-                {
-                    AddInfo(plugin.Metadata.Name + "     v" + plugin.Metadata.Version);
-                }
-            }
-#endif
-#if WORKSHOP
-
-				List<Mod> mods = ModPreload.Mods;
-				foreach (Mod mod in mods)
-				{
-					if (mod.State == ModState.PostActivated)
-					{
-						foreach (AssemblyModPack pack in mod.GetPacks<AssemblyModPack>())
-						{
-							if (!modAssemblies.ContainsValue(pack.Name))
-							{
-								if (!pack.Name.Equals("Mono.Cecil.dll") &&
-									!pack.Name.Equals("Mono.Cecil.Mdb.dll") &&
-									!pack.Name.Equals("Mono.Cecil.Pdb.dll") &&
-									!pack.Name.Equals("Mono.Cecil.Rocks.dll") &&
-									!pack.Name.Equals("MonoMod.RuntimeDetour.dll") &&
-									!pack.Name.Equals("MonoMod.Utils.dll") &&
-									!pack.Name.Equals("UniverseLib.Mono.dll"))
-								{
-									AddInfo(pack.Name.Replace(".dll", ""));
-								}
-							}
-						}
-					}
-				}
-#endif
-			}
-
-			New<SpacerElement>(true);
-			New<SpacerElement>(true);
-			AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate (int i)
-			{
-				this.RequestPreviousMenu();
-			}, 0, 1f, 0.2f);
 		}
 
+        private string modToModNameAndVersion(BaseMod mod) => $"{mod.ModName}     v{mod.ModVersion}{mod.BetaVersion}";
+
+        private void createModLabels(List<string> modNames) {
+            int columns = modNames.Count / modsPerColumn;
+            int i = 0;
+
+            modNames.OrderBy(x => x).ToList().ForEach(modName => {
+                InfoBoxElement infoBoxElement = AddInfo(modName);
+                infoBoxElement.SetSize(columnWidth, 1f);
+                infoBoxElement.Position = new Vector2(
+                    Mathf.Floor(i / modsPerColumn) * columnWidth - (columns * columnWidth / 2),
+                    i % modsPerColumn * -0.25f + 3f);
+                i++;
+            });
+        }
     }
 
 	public enum ModPage

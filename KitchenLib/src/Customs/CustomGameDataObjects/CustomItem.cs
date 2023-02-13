@@ -14,6 +14,7 @@ namespace KitchenLib.Customs
     {
         [JsonIgnore]
         public virtual GameObject Prefab { get; protected set; }
+        public virtual GameObject SidePrefab { get; protected set; }
         public virtual List<Item.ItemProcess> Processes { get; protected set; }=new List<Item.ItemProcess>();
         [JsonIgnore]
         public virtual List<IItemProperty> Properties { get; protected set; } = new List<IItemProperty>();

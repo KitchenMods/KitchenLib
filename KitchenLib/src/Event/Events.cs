@@ -1,13 +1,13 @@
 using System;
 using Kitchen;
-using KitchenLib.Event;
 
 namespace KitchenLib.Event
 {
     public static class Events
     {
+        public static EventHandler<BuildGameDataEventArgs> BuildGameDataPreSetupEvent;
         public static EventHandler<BuildGameDataEventArgs> BuildGameDataEvent;
-        public static EventHandler<BuildGameDataEventArgs> RebuildGameDataEvent;
+        public static EventHandler<BuildGameDataEventArgs> BuildGameDataPostViewInitEvent;
         public static EventHandler<PlayerViewEventArgs> PlayerViewEvent;
 
 		public static EventHandler<PerformInitialSetupEventArgs> PerformInitialSetupEvent;

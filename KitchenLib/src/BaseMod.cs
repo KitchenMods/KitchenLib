@@ -1,12 +1,3 @@
-#if MELONLOADER
-using MelonLoader;
-using static MelonLoader.MelonLogger;
-#endif
-#if BEPINEX
-using BepInEx;
-using BepInEx.Logging;
-#endif
-
 using System.Reflection;
 using Semver;
 using UnityEngine;
@@ -22,7 +13,6 @@ using KitchenLib.src.ContentPack;
 
 namespace KitchenLib
 {
-
 	public abstract class BaseMod : LoaderMod
 	{
 		public string ModID = "";
@@ -30,6 +20,7 @@ namespace KitchenLib
 		public string ModAuthor = "";
 		public string ModVersion = "";
 		public string CompatibleVersions = "";
+		public string BetaVersion = "";
 
 		public static KitchenVersion version;
 		public static SemVersion semVersion;
@@ -37,41 +28,46 @@ namespace KitchenLib
 		public static BaseMod instance;
 		private static List<Assembly> PatchedAssemblies = new List<Assembly>();
 		private bool isRegistered = false;
+		private bool canRegisterGDO = false;
 		
-#if BEPINEX || WORKSHOP
 		public static HarmonyLib.Harmony harmonyInstance;
-#endif
+		
 		public BaseMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly) : base()
 		{
-			SetupMod(modID, modName, author, modVersion, compatibleVersions, assembly);
+			SetupMod(modID, modName, author, modVersion, "", compatibleVersions, assembly);
 		}
 
-		[Obsolete("Please use BaseMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly)")]
+		[Obsolete("Please use BaseMod(string modID, string modName, string author, string modVersion, string betaVersion, string compatibleVersions, Assembly assembly)")]
 		public BaseMod(string modID, string compatibleVersions, string[] modDependencies = null) : base()
 		{
-			SetupMod(modID, "Unsupported Name", "Unsupported Author", "0.0.0", compatibleVersions, null);
+			SetupMod(modID, "Unsupported Name", "Unsupported Author", "0.0.0", "", compatibleVersions, null);
 		}
-
-		[Obsolete("Please use BaseMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly)")]
+		[Obsolete("Please use BaseMod(string modID, string modName, string author, string modVersion, string betaVersion, string compatibleVersions, Assembly assembly)")]
 		public BaseMod(string compatibleVersions, Assembly assembly, string[] modDependencies = null) : base()
 		{
-			SetupMod("unsupportedmodid", "Unsupported Name", "Unsupported Author", "0.0.0", compatibleVersions, assembly);
+			SetupMod("unsupportedmodid", "Unsupported Name", "Unsupported Author", "0.0.0", "", compatibleVersions, assembly);
 		}
 
-		[Obsolete("Please use BaseMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly)")]
+		[Obsolete("Please use BaseMod(string modID, string modName, string author, string modVersion, string betaVersion, string compatibleVersions, Assembly assembly)")]
 		public BaseMod(string modID, string modVersion, string compatibleVersions, Assembly assembly) : base()
 		{
-			SetupMod(modID, "Unsupported Name", "Unsupported Author", modVersion, compatibleVersions, assembly);
+			SetupMod(modID, "Unsupported Name", "Unsupported Author", modVersion, "", compatibleVersions, assembly);
 		}
 
-		private void SetupMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly)
+		public BaseMod(string modID, string modName, string author, string modVersion, string betaVersion, string compatibleVersions, Assembly assembly) : base()
 		{
-			
+			SetupMod(modID, modName, author, modVersion, betaVersion, compatibleVersions, assembly);
+		}
+
+		private void SetupMod(string modID, string modName, string author, string modVersion, string betaVersion, string compatibleVersions, Assembly assembly)
+		{
 			instance = this;
 			ModID = modID;
 			ModName = modName;
 			ModAuthor = author;
 			ModVersion = modVersion;
+			if (!string.IsNullOrEmpty(betaVersion))
+				BetaVersion = " b" + betaVersion;
 			CompatibleVersions = compatibleVersions;
 
 			if (!Debug.isDebugBuild)
@@ -92,102 +88,32 @@ namespace KitchenLib
 				}
 			}
 #endif
-			
-
 			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
 			isRegistered = ModRegistery.Register(this);
-			
+			canRegisterGDO = true;
+
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Log(string message)
 		{
-#if BEPINEX
-			Logger.Log(LogLevel.Info, $"[{ModName}] " + message);
-#endif
-#if MELONLOADER
-			MelonLogger.Msg($"[{ModName}] " + message);
-#endif
-#if WORKSHOP
 			Debug.Log($"[{ModName}] " + message);
-#endif
 		}
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Warning(string message)
-        {
-#if BEPINEX
-			Logger.Log(LogLevel.Info, $"[{ModName}] " + message);
-#endif
-#if MELONLOADER
-			MelonLogger.Msg($"[{ModName}] " + message);
-#endif
-#if WORKSHOP
-            Debug.LogWarning($"[{ModName}] " + message);
-#endif
-        }
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void Warning(string message)
+		{
+			Debug.LogWarning($"[{ModName}] " + message);
+		}
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Error(string message)
 		{
-#if BEPINEX
-			Logger.Log(LogLevel.Error, $"[{ModName}] " + message);
-#endif
-#if MELONLOADER
-			MelonLogger.Error($"[{ModName}] " + message);
-#endif
-#if WORKSHOP
 			Debug.LogError($"[{ModName}] " + message);
-#endif
 		}
 
-        public void Log(object message)
-        {
-			Log(message.ToString());
-        }
-
-		public void Warning(object message)
-		{
-			Warning(message.ToString());
-		}
-
-		public void Error(object message)
-		{
-			Error(message.ToString());
-		}
-
-        protected virtual void OnInitialise() { }
+		protected virtual void OnInitialise() { }
 		protected virtual void OnFrameUpdate() { }
-
-#if BEPINEX
-		void Update()
-		{
-			if (isRegistered)
-				OnFrameUpdate();
-		}
-
-		void Awake()
-		{
-			if (isRegistered)
-				OnInitialise();
-		}
-#endif
-
-#if MELONLOADER
-		public override void OnUpdate()
-		{
-			if (isRegistered)
-				OnFrameUpdate();
-		}
-
-		public override void OnInitializeMelon()
-		{
-			if (isRegistered)
-				OnInitialise();
-		}
-#endif
-
-#if WORKSHOP
 
 		protected virtual void OnPostActivate(Mod mod) { }
 		protected virtual void OnPostInject() { }
@@ -210,6 +136,7 @@ namespace KitchenLib
 				AddMaterial(mat);
 			}
 			OnPostActivate(mod);
+			canRegisterGDO = false;
 		}
 
 		public override void PostInject() //IModInitializer
@@ -235,13 +162,20 @@ namespace KitchenLib
 				ModRegistery.InitialisedMods.Add(ModAuthor + ModID);
 			}
 		}
-#endif
 
 		public T AddGameDataObject<T>() where T : CustomGameDataObject, new()
 		{
 			T gdo = new T();
 			gdo.ModName = ModName;
-			return CustomGDO.RegisterGameDataObject(gdo);
+			if (canRegisterGDO)
+			{
+				return CustomGDO.RegisterGameDataObject(gdo);
+			}
+			else
+			{
+				Main.instance.Warning("Please Register GDOs in OnPostActivate(Mod mod) " + gdo.GetType().FullName);
+				return null;
+			}
 		}
 
 		public T AddSubProcess<T>() where T : CustomSubProcess, new()

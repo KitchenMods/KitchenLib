@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using HarmonyLib;
 using KitchenData;
 using KitchenLib.Utils;
@@ -8,6 +9,8 @@ using KitchenLib.Systems;
 using UnityEngine;
 using Kitchen;
 using KitchenLib.Colorblind;
+using KitchenLib.References;
+using System.Reflection;
 
 namespace KitchenLib.Customs
 {
@@ -43,6 +46,8 @@ namespace KitchenLib.Customs
 					gdo.OnRegister(gdo.GameDataObject);
 				}
 			}
+
+			EventUtils.InvokeEvent(nameof(Events.BuildGameDataPreSetupEvent), Events.BuildGameDataPreSetupEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result, FirstRun));
 
 			foreach (GameDataObject gameDataObject in GameDataObjects)
 			{
@@ -80,13 +85,15 @@ namespace KitchenLib.Customs
 			}
 
 			/*
-			 * Setting localisation for Recipes on a per-dish-basis
-			 * Sets to whatever language is set in Preferences, defaults to English if one is not set.
+			 * Custom setup for specific cases of certain GDOs:
+			 *  - setting localisation for Recipes on a per-dish-basis (sets to whatever language is set in Preferences, defaults to English if one is not set)
+			 *  - attaches all side item prefabs to "Side Prefab"
 			 */
 			if (FirstRun) // only register recipes once
 			{
 				foreach (GameDataObject gameDataObject in GameDataObjects)
 				{
+					// Dishes
 					if (gameDataObject.GetType() == typeof(Dish))
 					{
 						Dish dish = (Dish)gameDataObject;
@@ -111,6 +118,18 @@ namespace KitchenLib.Customs
 								MainMenuDishSystem.MenuOptions.Add(dish.ID);
 						}
 					}
+
+					// Items
+					if (gameDataObject.GetType() == typeof(Item) || gameDataObject.GetType() == typeof(ItemGroup))
+                    {
+						Item item = (Item)gameDataObject;
+						if (!item.IsMergeableSide)
+                        {
+							continue;
+						}
+
+						ItemGroupViewUtils.AddPossibleSide(__result, item);
+                    }
 				}
 			}
 
@@ -137,21 +156,16 @@ namespace KitchenLib.Customs
 			}
 			 */
 
+			EventUtils.InvokeEvent(nameof(Events.BuildGameDataEvent), Events.BuildGameDataEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result, FirstRun));
+
 			__result.Dispose();
 			__result.InitialiseViews();
 
-			if (FirstRun) // only call BuildGameDataEvent once
-			{
-				EventUtils.InvokeEvent(nameof(Events.BuildGameDataEvent), Events.BuildGameDataEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result));
-			}
-			else
-			{
-				EventUtils.InvokeEvent(nameof(Events.RebuildGameDataEvent), Events.RebuildGameDataEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result));
-			}
+			EventUtils.InvokeEvent(nameof(Events.BuildGameDataPostViewInitEvent), Events.BuildGameDataPostViewInitEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result, FirstRun));
 
 			if (FirstRun)
             {
-				FirstRun = false;
+                FirstRun = false;
             }
 		}
 	}
