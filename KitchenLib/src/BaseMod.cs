@@ -118,7 +118,7 @@ namespace KitchenLib
 		protected virtual void OnPostInject() { }
 		protected virtual void OnPreInject() { }
 
-		public override void PostActivate(Mod mod) //IModInitializer
+		public sealed override void PostActivate(Mod mod) //IModInitializer
 		{
 			foreach (AssetBundleModPack pack in mod.GetPacks<AssetBundleModPack>())
 			{
@@ -138,22 +138,22 @@ namespace KitchenLib
 			canRegisterGDO = false;
 		}
 
-		public override void PostInject() //IModInitializer
+		public sealed override void PostInject() //IModInitializer
 		{
 			OnPostInject();
 		}
 
-		public override void PreInject() //IModInitializer
+		public sealed override void PreInject() //IModInitializer
 		{
 			OnPreInject();
 		}
 
-		protected override void OnUpdate() //IModSystem
+		protected sealed override void OnUpdate() //IModSystem
 		{
 			OnFrameUpdate();
 		}
 
-		protected override void Initialise() //IModSystem
+		protected sealed override void Initialise() //IModSystem
 		{
 			if (!ModRegistery.InitialisedMods.Contains(ModAuthor + ModID))
 			{
