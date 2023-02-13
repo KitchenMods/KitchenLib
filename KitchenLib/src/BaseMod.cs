@@ -92,11 +92,10 @@ namespace KitchenLib
 				}
 			}
 #endif
-			
-
 			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
 			isRegistered = ModRegistery.Register(this);
-			
+			canRegisterGDO = true;
+
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -194,7 +193,6 @@ namespace KitchenLib
 				material.ConvertMaterial(out mat);
 				AddMaterial(mat);
 			}
-			canRegisterGDO = true;
 			OnPostActivate(mod);
 			canRegisterGDO = false;
 		}
