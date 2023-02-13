@@ -9,7 +9,6 @@ using KitchenLib.DevUI;
 using System;
 using System.Collections.Generic;
 using KitchenMods;
-using KitchenLib.ContentPack;
 
 namespace KitchenLib
 {
