@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace KitchenLib.src.ContentPack.JsonConverters
+namespace KitchenLib.ContentPack.JsonConverters
 {
     public abstract class IdentifierConverter<T> : CustomConverter<T>
     {

@@ -1,7 +1,7 @@
 ﻿using Kitchen;
 using KitchenLib.Customs;
-using KitchenLib.src.ContentPack.Models;
-using KitchenLib.src.ContentPack.Models.Jsons;
+using KitchenLib.ContentPack.Models;
+using KitchenLib.ContentPack.Models.Jsons;
 using KitchenMods;
 using Newtonsoft.Json;
 using Semver;
@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
-using static KitchenLib.src.ContentPack.ContentPackUtils;
+using static KitchenLib.ContentPack.ContentPackUtils;
 
-namespace KitchenLib.src.ContentPack
+namespace KitchenLib.ContentPack
 {
     public class ContentPackSystem : GenericSystemBase, IModSystem
     {

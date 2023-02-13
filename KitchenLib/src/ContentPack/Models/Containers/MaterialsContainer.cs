@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace KitchenLib.src.ContentPack.Models.Containers
+namespace KitchenLib.ContentPack.Models.Containers
 {
     public class MaterialsContainer
     {

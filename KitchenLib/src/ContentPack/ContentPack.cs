@@ -1,11 +1,11 @@
 ﻿using KitchenLib.Customs;
-using KitchenLib.src.ContentPack.Models;
+using KitchenLib.ContentPack.Models;
 using Semver;
 using System;
 using System.Collections.Generic;
-using static KitchenLib.src.ContentPack.ContentPackUtils;
+using static KitchenLib.ContentPack.ContentPackUtils;
 
-namespace KitchenLib.src.ContentPack
+namespace KitchenLib.ContentPack
 {
     public class ContentPack
     {

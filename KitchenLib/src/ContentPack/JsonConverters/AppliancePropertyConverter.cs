@@ -1,13 +1,12 @@
 ﻿using Kitchen;
 using KitchenData;
-using KitchenLib.src.ContentPack.Models.Containers;
+using KitchenLib.ContentPack.Models.Containers;
 using KitchenLib.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Runtime.CompilerServices;
 
-namespace KitchenLib.src.ContentPack.JsonConverters
+namespace KitchenLib.ContentPack.JsonConverters
 {
     public class AppliancePropertyConverter : CustomConverter<AppliancePropertyContainer>
     {

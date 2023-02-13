@@ -1,15 +1,15 @@
 ﻿using Kitchen;
 using KitchenData;
 using KitchenLib.Customs;
-using KitchenLib.src.ContentPack.Models.Containers;
+using KitchenLib.ContentPack.Models.Containers;
 using KitchenLib.Utils;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using static KitchenLib.src.ContentPack.ContentPackUtils;
+using static KitchenLib.ContentPack.ContentPackUtils;
 
-namespace KitchenLib.src.ContentPack.Models.Jsons
+namespace KitchenLib.ContentPack.Models.Jsons
 {
     public class JsonItemGroup : CustomItemGroup
     {

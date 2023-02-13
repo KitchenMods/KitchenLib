@@ -1,12 +1,12 @@
 ﻿using KitchenData;
-using KitchenLib.src.ContentPack.ContractResolver;
-using KitchenLib.src.ContentPack.JsonConverters;
+using KitchenLib.ContentPack.ContractResolver;
+using KitchenLib.ContentPack.JsonConverters;
 using KitchenLib.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using UnityEngine;
 
-namespace KitchenLib.src.ContentPack
+namespace KitchenLib.ContentPack
 {
     public class ContentPackUtils
     {

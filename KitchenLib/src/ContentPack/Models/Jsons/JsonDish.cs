@@ -2,9 +2,9 @@
 using KitchenLib.Customs;
 using Newtonsoft.Json;
 using System.Runtime.Serialization;
-using static KitchenLib.src.ContentPack.ContentPackUtils;
+using static KitchenLib.ContentPack.ContentPackUtils;
 
-namespace KitchenLib.src.ContentPack.Models.Jsons
+namespace KitchenLib.ContentPack.Models.Jsons
 {
     public class JsonDish : CustomDish
     {

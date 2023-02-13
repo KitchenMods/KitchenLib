@@ -1,7 +1,7 @@
 ﻿using Semver;
 using System.Collections.Generic;
 
-namespace KitchenLib.src.ContentPack.Models
+namespace KitchenLib.ContentPack.Models
 {
     public class ModManifest
     {

@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using Semver;
 
-namespace KitchenLib.src.ContentPack.JsonConverters
+namespace KitchenLib.ContentPack.JsonConverters
 {
     public class SemVersionConverter : CustomConverter<SemVersion>
     {

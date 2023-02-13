@@ -1,6 +1,6 @@
 ﻿using KitchenData;
 
-namespace KitchenLib.src.ContentPack.Models.Containers
+namespace KitchenLib.ContentPack.Models.Containers
 {
     public class ItemPropertyContainer
     {

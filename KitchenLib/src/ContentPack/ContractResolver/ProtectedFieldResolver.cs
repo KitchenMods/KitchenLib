@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Serialization;
 using System.Reflection;
 
-namespace KitchenLib.src.ContentPack.ContractResolver
+namespace KitchenLib.ContentPack.ContractResolver
 {
     public class ProtectedFieldResolver : DefaultContractResolver
     {

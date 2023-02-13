@@ -1,8 +1,8 @@
 ﻿using Semver;
 using System.Collections.Generic;
-using static KitchenLib.src.ContentPack.ContentPackUtils;
+using static KitchenLib.ContentPack.ContentPackUtils;
 
-namespace KitchenLib.src.ContentPack.Models
+namespace KitchenLib.ContentPack.Models
 {
     public class ModContent
     {

@@ -9,7 +9,7 @@ using KitchenLib.DevUI;
 using System;
 using System.Collections.Generic;
 using KitchenMods;
-using KitchenLib.src.ContentPack;
+using KitchenLib.ContentPack;
 
 namespace KitchenLib
 {

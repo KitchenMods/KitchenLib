@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 
-namespace KitchenLib.src.ContentPack.JsonConverters
+namespace KitchenLib.ContentPack.JsonConverters
 {
     public abstract class CustomConverter<T> : JsonConverter
     {
