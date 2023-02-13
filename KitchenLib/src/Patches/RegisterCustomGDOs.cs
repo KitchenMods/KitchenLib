@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using HarmonyLib;
 using KitchenData;
 using KitchenLib.Utils;
@@ -9,8 +8,6 @@ using KitchenLib.Systems;
 using UnityEngine;
 using Kitchen;
 using KitchenLib.Colorblind;
-using KitchenLib.References;
-using System.Reflection;
 
 namespace KitchenLib.Customs
 {
