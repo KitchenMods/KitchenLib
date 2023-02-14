@@ -98,17 +98,6 @@ namespace KitchenLib.Utils
 			    }
 		    }
         }
-		public static void Save(string file = "UserData/KitchenLib/preferences.dat")
-		{
-			file = Path.Combine(Application.persistentDataPath, file);
-			string path = Path.GetDirectoryName(file);
-			if (!Directory.Exists(path))
-				Directory.CreateDirectory(path);
-
-			WriteToFile(file, Preferences);
-			PreferencesSaveArgs mainMenuViewEvent = new PreferencesSaveArgs();
-			EventUtils.InvokeEvent(nameof(Events.PreferencesSaveEvent), Events.PreferencesSaveEvent?.GetInvocationList(), null, mainMenuViewEvent);
-		}
         public static void Save(string MOD_ID = "global", string file = "UserData/KitchenLib/preferences.dat")
 		{
 			file = Path.Combine(Application.persistentDataPath, file);
