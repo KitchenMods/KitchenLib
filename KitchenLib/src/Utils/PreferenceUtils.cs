@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO.Compression;
 using KitchenLib.Event;
 using UnityEngine;
+using System.Security.Policy;
 
 namespace KitchenLib.Utils
 {
@@ -16,6 +17,8 @@ namespace KitchenLib.Utils
     public static class PreferenceUtils {
 	
 	    public static Dictionary<string, BasePreference> Preferences = new Dictionary<string, BasePreference>();
+
+		public static Dictionary<string, BasePreference> PreferencesToSave = new Dictionary<string, BasePreference>();
     
 	    public static Dictionary<string, Type> TypeMapping = new Dictionary<string, Type>();
 	
@@ -28,7 +31,7 @@ namespace KitchenLib.Utils
 			instance.DisplayName = name;
 			if (Preferences.ContainsKey(modID + ":" + key))
 			{
-				Main.instance.Log("[WARN] " + modID + ":" + key + " already exists! Has another mod already loaded it?");
+				Main.instance.Warning(modID + ":" + key + " already exists! Has another mod already loaded it?");
 			}
 			else
 			{
@@ -43,14 +46,21 @@ namespace KitchenLib.Utils
             return default(T);
 	    }
 
+		public static void LoadToDictionary(Dictionary<string, BasePreference> dict, string file = "UserData/KitchenLib/preferences.dat")
+		{
+			file = Path.Combine(Application.persistentDataPath, file);
+			if (File.Exists(file))
+				ReadFromFile(file, dict);
+		}
+
         public static void Load(string file = "UserData/KitchenLib/preferences.dat")
         {
 			file = Path.Combine(Application.persistentDataPath, file);
             if (File.Exists(file))
-                ReadFromFile(file);
+                ReadFromFile(file, Preferences);
         }
 
-        public static void ReadFromFile(string file) {
+        public static void ReadFromFile(string file, Dictionary<string, BasePreference> dict) {
             #if USE_GZIP_COMPRESSION
                 using(var fileStream = new FileStream(file, FileMode.Open, FileAccess.Read))
                 using(var stream = new GZipStream(fileStream, CompressionMode.Decompress))
@@ -58,8 +68,8 @@ namespace KitchenLib.Utils
                 using(var stream = new FileStream(file, FileMode.Open, FileAccess.Read))
             #endif
             using(var reader = new BinaryReader(stream)) {
-				if (Preferences == null)
-					Preferences = new Dictionary<string, BasePreference>();
+				if (dict == null)
+					dict = new Dictionary<string, BasePreference>();
 			
 			    byte[] magicBytes = reader.ReadBytes(4);
 				if (magicBytes.Length == 4)
@@ -80,29 +90,46 @@ namespace KitchenLib.Utils
 				    BasePreference pref = FromBytes(type, modID, key, DisplayName, preferenceBytes);
                     if (pref != null)
 					{
-                        if (Preferences.ContainsKey(pref.ModID + ":" + pref.Key))
-							Preferences[pref.ModID + ":" + pref.Key] = pref;
+                        if (dict.ContainsKey(pref.ModID + ":" + pref.Key))
+							dict[pref.ModID + ":" + pref.Key] = pref;
                         else
-							Preferences.Add(pref.ModID + ":" + pref.Key, pref);	
+							dict.Add(pref.ModID + ":" + pref.Key, pref);	
 					}
 			    }
 		    }
         }
-        public static void Save(string file = "UserData/KitchenLib/preferences.dat")
+        public static void Save(string MOD_ID = "global", string file = "UserData/KitchenLib/preferences.dat")
 		{
 			file = Path.Combine(Application.persistentDataPath, file);
-			//Make sure file path Exists
 			string path = Path.GetDirectoryName(file);
 			if (!Directory.Exists(path))
 				Directory.CreateDirectory(path);
 
+			if (MOD_ID.Equals("global"))
+			{
+				WriteToFile(file, Preferences);
+			}
+			else
+			{
+				LoadToDictionary(PreferencesToSave);
 
-            WriteToFile(file);
-
-            PreferencesSaveArgs mainMenuViewEvent = new PreferencesSaveArgs();
-            EventUtils.InvokeEvent(nameof(Events.PreferencesSaveEvent), Events.PreferencesSaveEvent?.GetInvocationList(), null, mainMenuViewEvent);
-        }
-        public static void WriteToFile(string file) {
+				foreach (string prefID in Preferences.Keys)
+				{
+					if (prefID.StartsWith(MOD_ID))
+					{
+						if (PreferencesToSave.ContainsKey(prefID))
+							PreferencesToSave[prefID] = Preferences[prefID];
+						else
+							PreferencesToSave.Add(prefID, Preferences[prefID]);
+					}
+				}
+				WriteToFile(file, PreferencesToSave);
+				PreferencesToSave.Clear();
+			}
+			PreferencesSaveArgs mainMenuViewEvent = new PreferencesSaveArgs();
+			EventUtils.InvokeEvent(nameof(Events.PreferencesSaveEvent), Events.PreferencesSaveEvent?.GetInvocationList(), null, mainMenuViewEvent);
+		}
+        public static void WriteToFile(string file, Dictionary<string, BasePreference> dict) {
             #if USE_GZIP_COMPRESSION
                 using(var fileStream = new FileStream(file, FileMode.OpenOrCreate, FileAccess.Write))
                 using(var stream = new GZipStream(fileStream, CompressionMode.Compress))
@@ -114,8 +141,8 @@ namespace KitchenLib.Utils
 			    writer.Write((byte)'L');
 			    writer.Write((byte)'I');
 			    writer.Write((byte)'B');
-			    writer.Write((Int32)Preferences.Values.Count);
-			    foreach(var pref in Preferences.Values) {
+			    writer.Write((Int32)dict.Values.Count);
+			    foreach(var pref in dict.Values) {
 				    writer.Write(pref.GetType().FullName);
                     writer.Write(pref.ModID);
 				    writer.Write(pref.Key);
