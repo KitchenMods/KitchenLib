@@ -1,4 +1,5 @@
 using KitchenData;
+using KitchenLib.Patches;
 using KitchenLib.Utils;
 using System.Linq;
 using System.Reflection;
@@ -42,6 +43,11 @@ namespace KitchenLib.Customs
 				foreach ((Locale, UnlockInfo) info in InfoList)
 					result.Info.Add(info.Item1, info.Item2);
 			}
+
+			if (!string.IsNullOrEmpty(IconOverride))
+				Unlock_Patch.IconOverrides.Add(result.ID, IconOverride);
+			if (ColourOverride != null)
+				Unlock_Patch.ColourOverrides.Add(result.ID, ColourOverride);
 
 			gameDataObject = result;
         }

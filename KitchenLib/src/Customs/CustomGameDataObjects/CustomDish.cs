@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using KitchenLib.Patches;
 
 namespace KitchenLib.Customs
 {
@@ -61,6 +62,11 @@ namespace KitchenLib.Customs
 				foreach ((Locale, UnlockInfo) info in InfoList)
 					result.Info.Add(info.Item1, info.Item2);
 			}
+
+			if (!string.IsNullOrEmpty(IconOverride))
+				Unlock_Patch.IconOverrides.Add(result.ID, IconOverride);
+			if (ColourOverride != null)
+				Unlock_Patch.ColourOverrides.Add(result.ID, ColourOverride);
 
 			gameDataObject = result;
         }

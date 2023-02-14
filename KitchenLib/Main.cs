@@ -9,8 +9,7 @@ using KitchenLib.DevUI;
 using KitchenLib.UI;
 using KitchenLib.Utils;
 using KitchenLib.Colorblind;
-using KitchenLib.Customs;
-using KitchenLib.References;
+using HarmonyLib;
 
 namespace KitchenLib
 {
@@ -20,7 +19,7 @@ namespace KitchenLib
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
 		public const string MOD_VERSION = "0.5.2";
-		public const string MOD_BETA_VERSION = "4";
+		public const string MOD_BETA_VERSION = "5";
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.3";
 
 		public static AssetBundle bundle;
@@ -28,7 +27,6 @@ namespace KitchenLib
 
 		protected override void OnPostActivate(Mod mod)
 		{
-			//GenerateReferences();
 			SetupMenus();
 			RegisterMenu<MaterialsUI>();
 			RegisterMenu<DebugMenu>();
