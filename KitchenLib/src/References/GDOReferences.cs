@@ -538,6 +538,18 @@
 
 		public const int ShedOutputPlaceholder = -699013948;
 
+		public const int FlowerArch = -471643137;
+
+		public const int FriendsPoster = 142298503;
+
+		public const int HeartBalloons = -2001861712;
+
+		public const int HeartBunting = -1314508999;
+
+		public const int LoveSign = 785615801;
+
+		public const int SettingSelector = 645876063;
+
 		public const int Cobwebs = -636342486;
 
 		public const int GhostStatue = -1318523640;
@@ -599,6 +611,8 @@
 
 		public const int DefaultCompositePack = -2020288853;
 
+		public const int FebruaryPack = -654728586;
+
 		public const int HalloweenPack = -839658581;
 
 		public const int JanuaryPack = -1893039732;
@@ -644,6 +658,14 @@
 		public const int WallpaperPatternSnow = 1039076012;
 
 		public const int WallpaperStripesRed = 1327221289;
+
+		public const int FloorMarbleDark = 1239121153;
+
+		public const int FloorMarble = 1542896199;
+
+		public const int WallpaperHeartsIcons = 770196872;
+
+		public const int WallpaperHearts = -98508441;
 
 		public const int FloorPlanksSmart = 1519770899;
 
@@ -1638,6 +1660,8 @@
 	{
 		public const int LayoutProfile = -791067106;
 
+		public const int FebruaryLayout = -1017771555;
+
 		public const int JanuaryLayoutProfile = -1207945624;
 
 		public const int BasicLayout = 222370461;
@@ -1659,12 +1683,16 @@
 
 		public const int FranchiseUpgrades = 1567961099;
 
+		public const int Settings = 616825469;
+
 		public const int Special = -1300343155;
 
 	}
 	public class ModularUnlockPackReferences
 	{
 		public const int ChristmasSpecialCard = 83496670;
+
+		public const int FebruarySpecialCard = 2136512392;
 
 		public const int JanuaryCards = 1091353668;
 
@@ -1690,6 +1718,8 @@
 		public const int WaiterOutfit = -96950831;
 
 		public const int ArrowHat = 825204978;
+
+		public const int BunnyEarHat = -724222583;
 
 		public const int BunnyHat = 1872813840;
 
@@ -1720,6 +1750,14 @@
 		public const int FairyLightsHat = -223786480;
 
 		public const int SantaHat = -95220911;
+
+		public const int CoupleEffect = 959269165;
+
+		public const int FirstDateEffect = -1206765141;
+
+		public const int PlayerCoupleEffect = 1422541752;
+
+		public const int PlayerFirstDateEffect = 940774659;
 
 		public const int BeanieBlue = -999926542;
 
@@ -1918,6 +1956,14 @@
 		public const int TurkeyGravy = -1460640973;
 
 		public const int TurkeyStuffing = -1243742384;
+
+		public const int Couples = -2106646073;
+
+		public const int DoubleDates = 2028238661;
+
+		public const int FirstDates = 587399881;
+
+		public const int StapleFlowerPots = 1491215862;
 
 		public const int CustomerBursts = 1642577536;
 
@@ -2176,6 +2222,14 @@
 	{
 		public const int ChristmasConveyors = -361249036;
 
+		public const int Couples = -2106646073;
+
+		public const int DoubleDates = 2028238661;
+
+		public const int FirstDates = 587399881;
+
+		public const int StapleFlowerPots = 1491215862;
+
 		public const int CustomerBursts = 1642577536;
 
 		public const int MessesSlowCustomers = -1737101581;
@@ -2389,6 +2443,10 @@
 
 		public const int DefaultCompositePack = -2020288853;
 
+		public const int FebruaryPack = -654728586;
+
+		public const int FebruarySpecialCard = 2136512392;
+
 		public const int HalloweenPack = -839658581;
 
 		public const int JanuaryCards = 1091353668;
@@ -2421,6 +2479,17 @@
         public const int SameReshuffle3 = -495147897;
 
         public const int UseUpgradeKit = 1299921510;
+
+	}
+	public class CustomerTypeReferences
+	{
+		public const int Couple = -1011723507;
+
+		public const int DoubleDates = 294644687;
+
+		public const int FirstDate = -1977969432;
+
+		public const int GenericCustomer = -260015680;
 
 	}
 }

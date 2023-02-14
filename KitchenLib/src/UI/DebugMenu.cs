@@ -55,6 +55,7 @@ namespace KitchenLib.UI
 				Dump<RestaurantSettingDumper>();
 				Dump<FranchiseUpgradeDumper>();
 				Dump<ContractDumper>();
+				Dump<CustomerTypeDumper>();
 			}
 			if (GUILayout.Button("Refresh Dish Options"))
 			{
@@ -100,6 +101,7 @@ namespace KitchenLib.UI
 			GenerateClass<UnlockCard>(ref classGenerator, gameData);
 			GenerateClass<UnlockPack>(ref classGenerator, gameData);
 			GenerateClass<WorkshopRecipe>(ref classGenerator, gameData);
+			GenerateClass<CustomerType>(ref classGenerator, gameData);
 
 			classGenerator.Add("}");
 

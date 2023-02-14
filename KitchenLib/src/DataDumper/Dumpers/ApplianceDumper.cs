@@ -19,7 +19,7 @@ namespace KitchenLib.DataDumper.Dumpers
 				"EffectCondition,EffectType,EffectRepresentation,IsNonInteractive,Layer," +
 				"ForceHighInteractionPriority,PurchaseCost,EntryAnimation,ExitAnimation,SkipRotationAnimation," +
 				"IsPurchasable,IsPurchasableAsUpgrade,ThemeRequired,ShoppingTags,RarityTier," +
-				"ShopRequirementFilter,StapleWhenMissing,SellOnlyAsDuplicate,PreventSale,IsAnUpgrade," +
+				"ShopRequirementFilter,StapleWhenMissing,SellOnlyAsDuplicate,SellOnlyAsUnique,PreventSale,IsAnUpgrade," +
 				"IsNonCrated,CrateItem,Name,Description");
 			applianceProcessesDump.AppendLine("ID,Type,Process,IsAutomatic,Speed,Validity");
 			appliancePropertiesDump.AppendLine("ID,Type,IApplianceProperty");
@@ -34,7 +34,7 @@ namespace KitchenLib.DataDumper.Dumpers
 					$"{appliance.EffectCondition},{appliance.EffectType},{appliance.EffectRepresentation},{appliance.IsNonInteractive},{appliance.Layer}," +
 					$"{appliance.ForceHighInteractionPriority},{appliance.PurchaseCost},{appliance.EntryAnimation},{appliance.ExitAnimation},{appliance.SkipRotationAnimation}," +
 					$"{appliance.IsPurchasable},{appliance.IsPurchasableAsUpgrade},{appliance.ThemeRequired},{appliance.ShoppingTags.ToString().Replace(",", ";")},{appliance.RarityTier}," +
-					$"{appliance.ShopRequirementFilter},{appliance.StapleWhenMissing},{appliance.SellOnlyAsDuplicate},{appliance.PreventSale},{appliance.IsAnUpgrade}," +
+					$"{appliance.ShopRequirementFilter},{appliance.StapleWhenMissing},{appliance.SellOnlyAsDuplicate},{appliance.SellOnlyAsUnique},{appliance.PreventSale},{appliance.IsAnUpgrade}," +
 					$"{appliance.IsNonCrated},{appliance.CrateItem},{appliance.Name},{appliance.Description.Replace(",", "")}");
 
 				foreach (Appliance.ApplianceProcesses process in appliance.Processes)
