@@ -7,9 +7,8 @@ using UnityEngine;
 using System.IO;
 using KitchenLib.DevUI;
 using KitchenLib.UI;
-using KitchenLib.Utils;
 using KitchenLib.Colorblind;
-using HarmonyLib;
+using KitchenLib.Preferences;
 
 namespace KitchenLib
 {
@@ -19,7 +18,7 @@ namespace KitchenLib
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
 		public const string MOD_VERSION = "0.5.2";
-		public const string MOD_BETA_VERSION = "7";
+		public const string MOD_BETA_VERSION = "8-Pref";
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.3";
 
 		public static AssetBundle bundle;
@@ -30,7 +29,19 @@ namespace KitchenLib
 			SetupMenus();
 			RegisterMenu<MaterialsUI>();
 			RegisterMenu<DebugMenu>();
-			PreferenceUtils.Load();
+
+			/*
+			PreferenceManager manager = new PreferenceManager(MOD_ID); // Setting up the preference manager
+			
+			manager.RegisterPreference(new PreferenceBool("isEnabled")).Set(true); // Registering a preference and setting it's default value
+			manager.RegisterPreference(new PreferenceInt("CustomerCount")).Set(5);
+			manager.RegisterPreference(new PreferenceBool("CustomerCats")).Set(false);
+
+			manager.Load(); // Loading the preferences from the save file (if any exists)
+
+			Log("Are cats going to spawn? " + manager.Get<PreferenceBool>("CustomerCats")); // Getting the value of the preference
+			*/
+
 		}
 		protected override void OnInitialise()
 		{
