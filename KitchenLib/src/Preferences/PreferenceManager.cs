@@ -8,15 +8,27 @@ namespace KitchenLib.Preferences
 {
 	public class PreferenceManager
 	{
-		private readonly string preference_path = Application.persistentDataPath + "/UserData/Preferences/";
+		private readonly string preference_path = Application.persistentDataPath + "/UserData/Preferences";
 		private string mod_id;
 		private Dictionary<(string, string), PreferenceBase> preferences = new Dictionary<(string, string), PreferenceBase>();
 		private Dictionary<string, Type> preferenceTypes = new Dictionary<string, Type>();
+		private string preference_profile = "";
+		private string preference_file_path = "";
 		public PreferenceManager(string MOD_ID)
 		{
 			mod_id = MOD_ID;
 			if (!Directory.Exists(preference_path))
 				Directory.CreateDirectory(preference_path);
+
+			preference_file_path = $"{preference_path}/{mod_id}/{mod_id}{preference_profile}.json";
+		}
+
+		public void SetProfile(string profile = "")
+		{
+			if (!string.IsNullOrEmpty(profile))
+				profile = $"-{profile}";
+			preference_profile = profile;
+			preference_file_path = $"{preference_path}/{mod_id}/{mod_id}{preference_profile}.json";
 		}
 
 		public object Get<T>(string key)
@@ -30,7 +42,7 @@ namespace KitchenLib.Preferences
 			}
 		}
 
-		public void Get<T>(string key, object value)
+		public void Set<T>(string key, object value)
 		{
 			if (preferences.ContainsKey((key, typeof(T).Name)))
 				preferences[(key, typeof(T).Name)].Set(value);
@@ -57,14 +69,14 @@ namespace KitchenLib.Preferences
 			}
 
 			string json = JsonConvert.SerializeObject(storedPreferences, Formatting.Indented);
-			File.WriteAllText(preference_path + mod_id + ".json", json);
+			File.WriteAllText(preference_file_path, json);
 		}
 		public void Load()
 		{
 			List<StoredPreference> storedPreferences = new List<StoredPreference>();
 			string json = "";
-			if (File.Exists(preference_path + mod_id + ".json"))
-				json = File.ReadAllText(preference_path + mod_id + ".json");
+			if (File.Exists(preference_file_path))
+				json = File.ReadAllText(preference_file_path);
 			if (string.IsNullOrEmpty(json))
 			{
 				Main.instance.Warning($"Unable to load preferences, file empty or not saved.");
