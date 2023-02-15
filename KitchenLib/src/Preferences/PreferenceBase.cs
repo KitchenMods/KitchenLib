@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Kitchen;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -77,6 +79,34 @@ namespace KitchenLib.Preferences
 		public override void Deserialize()
 		{
 			Value = float.Parse(raw_value);
+		}
+	}
+
+	public class PreferenceList<T> : PreferenceBase
+	{
+		public PreferenceList(string key) : base(key) { }
+		public override void Serialize()
+		{
+			string json = JsonConvert.SerializeObject(Value);
+			raw_value = json;
+		}
+		public override void Deserialize()
+		{
+			Value = JsonConvert.DeserializeObject<List<T>>(raw_value);
+		}
+	}
+
+	public class PreferenceDictionary<T1, T2> : PreferenceBase
+	{
+		public PreferenceDictionary(string key) : base(key) { }
+		public override void Serialize()
+		{
+			string json = JsonConvert.SerializeObject(Value);
+			raw_value = json;
+		}
+		public override void Deserialize()
+		{
+			Value = JsonConvert.DeserializeObject<Dictionary<T1, T2>>(raw_value);
 		}
 	}
 }

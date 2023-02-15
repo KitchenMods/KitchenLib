@@ -9,6 +9,7 @@ using KitchenLib.DevUI;
 using KitchenLib.UI;
 using KitchenLib.Colorblind;
 using KitchenLib.Preferences;
+using System.Collections.Generic;
 
 namespace KitchenLib
 {
@@ -18,7 +19,7 @@ namespace KitchenLib
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
 		public const string MOD_VERSION = "0.5.2";
-		public const string MOD_BETA_VERSION = "RC-1";
+		public const string MOD_BETA_VERSION = "RC-2";
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.3";
 
 		public static AssetBundle bundle;

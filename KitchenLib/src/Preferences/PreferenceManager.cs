@@ -17,8 +17,8 @@ namespace KitchenLib.Preferences
 		public PreferenceManager(string MOD_ID)
 		{
 			mod_id = MOD_ID;
-			if (!Directory.Exists(preference_path))
-				Directory.CreateDirectory(preference_path);
+			if (!Directory.Exists($"{preference_path}/{mod_id}"))
+				Directory.CreateDirectory($"{preference_path}/{mod_id}");
 
 			preference_file_path = $"{preference_path}/{mod_id}/{mod_id}{preference_profile}.json";
 		}

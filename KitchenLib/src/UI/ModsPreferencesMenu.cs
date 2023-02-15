@@ -6,6 +6,7 @@ using System;
 using System.Reflection;
 using KitchenLib.Event;
 using KitchenLib.Utils;
+using KitchenLib.Preferences;
 
 namespace KitchenLib
 {
@@ -108,11 +109,18 @@ namespace KitchenLib
 			Redraw(CurrentPage);
 		}
 
+		private void test(string d)
+		{
+			Main.instance.Log("Selected Profile + " + d);
+			GlobalPreferences.SetProfile("kitchenlib", d);
+		}
+
 		private void Redraw(int pageNumber = 0)
 		{
 			ModuleList.Clear();
 			
 			AddLabel("Mod Preferences");
+			//AddProfileSelector("kitchenlib", new Action<string>(test));
 			New<SpacerElement>(true);
 
 			if (Pages[GetType().GetGenericArguments()[0]].Count >= 2)
