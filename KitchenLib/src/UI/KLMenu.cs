@@ -82,6 +82,8 @@ namespace KitchenLib
 					}
 					else
 						manager.SetProfile();
+					
+					manager.Save();
 				};
 			}
 			else
@@ -103,6 +105,8 @@ namespace KitchenLib
 						}
 						else
 							manager.SetProfile();
+
+						manager.Save();
 					}
 				};
 			}
