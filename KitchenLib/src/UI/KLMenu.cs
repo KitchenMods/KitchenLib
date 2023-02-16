@@ -30,7 +30,7 @@ namespace KitchenLib
         }
 		private string mod_id = "";
 		private int CreateNewProfileIndex;
-		protected void AddProfileSelector(string mod_id, Action<string> action)
+		protected void AddProfileSelector(string mod_id, Action<string> action, bool updateOnHighlight = false)
 		{
 			this.mod_id = mod_id;
 			List<string> profiles = GlobalPreferences.GetProfiles(mod_id).ToList();
@@ -60,20 +60,45 @@ namespace KitchenLib
 			{
 				current_profile = args;
 			};
-			element.OnOptionChosen += CreateNew;
-			element.OnOptionHighlighted += (i) =>
-			{
-				if (current_profile != "Create")
-					action(current_profile);
-			};
-		}
 
-		private void CreateNew(int i)
-		{
-			if (i == CreateNewProfileIndex)
+			if (updateOnHighlight)
 			{
-				base.RequestSubMenu(typeof(TextEntryMainMenu), true);
-				TextInputView.RequestTextInput(base.Localisation["NEW_PROFILE_PROMPT"], "", 20, new Action<TextInputView.TextInputState, string>(this.CreateNewProfile));
+
+				element.OnOptionChosen += (i) =>
+				{
+					if (i == CreateNewProfileIndex)
+					{
+						base.RequestSubMenu(typeof(TextEntryMainMenu), true);
+						TextInputView.RequestTextInput(base.Localisation["NEW_PROFILE_PROMPT"], "", 20, new Action<TextInputView.TextInputState, string>(this.CreateNewProfile));
+					}
+				};
+				element.OnOptionHighlighted += (i) =>
+				{
+					if (current_profile != "Create")
+					{
+						GlobalPreferences.SetProfile(mod_id, current_profile);
+						action(current_profile);
+					}
+				};
+			}
+			else
+			{
+				element.OnOptionChosen += (i) =>
+				{
+					if (i == CreateNewProfileIndex)
+					{
+						base.RequestSubMenu(typeof(TextEntryMainMenu), true);
+						TextInputView.RequestTextInput(base.Localisation["NEW_PROFILE_PROMPT"], "", 20, new Action<TextInputView.TextInputState, string>(this.CreateNewProfile));
+					}
+					else
+					{
+						if (current_profile != "Create")
+						{
+							GlobalPreferences.SetProfile(mod_id, current_profile);
+							action(current_profile);
+						}
+					}
+				};
 			}
 		}
 
