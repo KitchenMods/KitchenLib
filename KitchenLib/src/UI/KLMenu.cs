@@ -30,7 +30,7 @@ namespace KitchenLib
         }
 		private string mod_id = "";
 		private int CreateNewProfileIndex;
-		protected void AddProfileSelector(string mod_id, Action<string> action, bool updateOnHighlight = true)
+		protected void AddProfileSelector(string mod_id, Action<string> action, PreferenceManager manager, bool updateOnHighlight = true)
 		{
 			this.mod_id = mod_id;
 			List<string> profiles = GlobalPreferences.GetProfiles(mod_id).ToList();
@@ -78,11 +78,10 @@ namespace KitchenLib
 					{
 						GlobalPreferences.SetProfile(mod_id, current_profile);
 						action(current_profile);
+						manager.SetProfile(current_profile);
 					}
 					else
-					{
-						current_profile = "";
-					}
+						manager.SetProfile();
 				};
 			}
 			else
@@ -100,7 +99,10 @@ namespace KitchenLib
 						{
 							GlobalPreferences.SetProfile(mod_id, current_profile);
 							action(current_profile);
+							manager.SetProfile(current_profile);
 						}
+						else
+							manager.SetProfile();
 					}
 				};
 			}
@@ -110,8 +112,11 @@ namespace KitchenLib
 		{
 			if (result == TextInputView.TextInputState.TextEntryComplete)
 			{
-				GlobalPreferences.AddProfile(mod_id, name);
-				GlobalPreferences.SetProfile(mod_id, name);
+				if (name != "Create")
+				{
+					GlobalPreferences.AddProfile(mod_id, name);
+					GlobalPreferences.SetProfile(mod_id, name);
+				}
 			}
 			base.RequestSubMenu(base.GetType(), true);
 		}

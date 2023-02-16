@@ -148,7 +148,7 @@ namespace KitchenLib
 			OnPreInject();
 		}
 
-		protected sealed override void OnUpdate() //IModSystem
+		protected override void OnUpdate() //IModSystem
 		{
 			OnFrameUpdate();
 		}
