@@ -112,7 +112,6 @@ namespace KitchenLib
 		private void test(string d)
 		{
 			Main.instance.Log("Selected Profile + " + d);
-			GlobalPreferences.SetProfile("kitchenlib", d);
 		}
 
 		private void Redraw(int pageNumber = 0)
@@ -120,7 +119,7 @@ namespace KitchenLib
 			ModuleList.Clear();
 			
 			AddLabel("Mod Preferences");
-			//AddProfileSelector("kitchenlib", new Action<string>(test));
+			AddProfileSelector("kitchenlib", new Action<string>(test));
 			New<SpacerElement>(true);
 
 			if (Pages[GetType().GetGenericArguments()[0]].Count >= 2)

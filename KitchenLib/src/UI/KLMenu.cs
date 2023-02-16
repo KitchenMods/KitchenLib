@@ -79,6 +79,10 @@ namespace KitchenLib
 						GlobalPreferences.SetProfile(mod_id, current_profile);
 						action(current_profile);
 					}
+					else
+					{
+						current_profile = "";
+					}
 				};
 			}
 			else
@@ -105,7 +109,10 @@ namespace KitchenLib
 		private void CreateNewProfile(TextInputView.TextInputState result, string name)
 		{
 			if (result == TextInputView.TextInputState.TextEntryComplete)
+			{
 				GlobalPreferences.AddProfile(mod_id, name);
+				GlobalPreferences.SetProfile(mod_id, name);
+			}
 			base.RequestSubMenu(base.GetType(), true);
 		}
     }
