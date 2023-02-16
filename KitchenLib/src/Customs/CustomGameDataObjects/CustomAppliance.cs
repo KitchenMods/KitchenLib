@@ -39,6 +39,7 @@ namespace KitchenLib.Customs
         public virtual List<Process> RequiresProcessForShop { get; protected set; } = new List<Process>();
         public virtual bool StapleWhenMissing { get; protected set; }
         public virtual bool SellOnlyAsDuplicate { get; protected set; }
+        public virtual bool SellOnlyAsUnique { get; protected set; }
         public virtual bool PreventSale { get; protected set; }
         public virtual List<Appliance> Upgrades { get; protected set; } = new List<Appliance>();
 		
@@ -119,6 +120,7 @@ namespace KitchenLib.Customs
             if (empty.ShopRequirementFilter != ShopRequirementFilter) result.ShopRequirementFilter = ShopRequirementFilter;
             if (empty.StapleWhenMissing != StapleWhenMissing) result.StapleWhenMissing = StapleWhenMissing;
             if (empty.SellOnlyAsDuplicate != SellOnlyAsDuplicate) result.SellOnlyAsDuplicate = SellOnlyAsDuplicate;
+            if (empty.SellOnlyAsUnique != SellOnlyAsUnique) result.SellOnlyAsUnique = SellOnlyAsUnique;
             if (empty.PreventSale != PreventSale) result.PreventSale = PreventSale;
             if (empty.IsNonCrated != IsNonCrated) result.IsNonCrated = IsNonCrated;
             if (empty.Info != Info) result.Info = Info;

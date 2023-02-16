@@ -9,10 +9,11 @@ using UnityEngine;
 
 namespace KitchenLib.Utils
 {
-    /*
+	/*
      * Preferences System was 99% made by @R4wizard
      */
-     
+
+	[Obsolete("Please use PreferenceManager")]
     public static class PreferenceUtils {
 	
 	    public static Dictionary<string, BasePreference> Preferences = new Dictionary<string, BasePreference>();

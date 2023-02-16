@@ -6,6 +6,7 @@ using System;
 using System.Reflection;
 using KitchenLib.Event;
 using KitchenLib.Utils;
+using KitchenLib.Preferences;
 
 namespace KitchenLib
 {

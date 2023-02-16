@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace KitchenLib
 {
-    public partial class ModsMenu<T> : Menu<T>
+    public partial class ModsMenu<T> : KLMenu<T>
     {
         public ModsMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
         private List<string> modNames = new List<string>();
