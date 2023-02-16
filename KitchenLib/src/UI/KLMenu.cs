@@ -50,6 +50,8 @@ namespace KitchenLib
 
 			profiles.Add("Create");
 			CreateNewProfileIndex = profiles.Count - 1;
+			manager.SetProfile(current_profile);
+			manager.Load();
 
 
 			Option<string> options = new Option<string>(
@@ -78,13 +80,18 @@ namespace KitchenLib
 				{
 					if (current_profile != "Create")
 					{
+						Main.instance.Log("------------------------ Selected Profile " + current_profile);
 						GlobalPreferences.SetProfile(mod_id, current_profile);
 						action(current_profile);
 						manager.SetProfile(current_profile);
+						manager.Load();
 					}
 					else
+					{
 						manager.SetProfile();
-					
+						manager.Load();
+					}
+
 					manager.Save();
 				};
 			}
@@ -101,12 +108,17 @@ namespace KitchenLib
 					{
 						if (current_profile != "Create")
 						{
+							Main.instance.Log("------------------------ Selected Profile " + current_profile);
 							GlobalPreferences.SetProfile(mod_id, current_profile);
 							action(current_profile);
 							manager.SetProfile(current_profile);
+							manager.Load();
 						}
 						else
+						{
 							manager.SetProfile();
+							manager.Load();
+						}
 
 						manager.Save();
 					}
