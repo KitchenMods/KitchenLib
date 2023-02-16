@@ -30,7 +30,7 @@ namespace KitchenLib
         }
 		private string mod_id = "";
 		private int CreateNewProfileIndex;
-		protected void AddProfileSelector(string mod_id, Action<string> action, bool updateOnHighlight = false)
+		protected void AddProfileSelector(string mod_id, Action<string> action, bool updateOnHighlight = true)
 		{
 			this.mod_id = mod_id;
 			List<string> profiles = GlobalPreferences.GetProfiles(mod_id).ToList();
