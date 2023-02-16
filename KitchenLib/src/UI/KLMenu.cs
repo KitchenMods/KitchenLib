@@ -137,6 +137,7 @@ namespace KitchenLib
 						GlobalPreferences.AddProfile(mod_id, name);
 					GlobalPreferences.SetProfile(mod_id, name);
 					manager.SetProfile(name);
+					manager.Load();
 					manager.Save();
 				}
 			}
