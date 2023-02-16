@@ -119,7 +119,8 @@ namespace KitchenLib
 			ModuleList.Clear();
 			
 			AddLabel("Mod Preferences");
-			AddProfileSelector("kitchenlib", new Action<string>(test));
+			//PreferenceManager manager = new PreferenceManager("kitchenlib");
+			//AddProfileSelector("kitchenlib", new Action<string>(test), manager);
 			New<SpacerElement>(true);
 
 			if (Pages[GetType().GetGenericArguments()[0]].Count >= 2)

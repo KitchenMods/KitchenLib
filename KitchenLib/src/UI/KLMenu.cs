@@ -118,7 +118,9 @@ namespace KitchenLib
 			{
 				if (name != "Create")
 				{
-					GlobalPreferences.AddProfile(mod_id, name);
+					List<string> profiles = GlobalPreferences.GetProfiles(mod_id).ToList();
+					if (!profiles.Contains(name))
+						GlobalPreferences.AddProfile(mod_id, name);
 					GlobalPreferences.SetProfile(mod_id, name);
 				}
 			}
