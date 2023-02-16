@@ -30,9 +30,11 @@ namespace KitchenLib
         }
 		private string mod_id = "";
 		private int CreateNewProfileIndex;
+		private PreferenceManager manager;
 		protected void AddProfileSelector(string mod_id, Action<string> action, PreferenceManager manager, bool updateOnHighlight = true)
 		{
 			this.mod_id = mod_id;
+			this.manager = manager;
 			List<string> profiles = GlobalPreferences.GetProfiles(mod_id).ToList();
 			string current_profile = GlobalPreferences.GetProfile(mod_id);
 			
@@ -122,6 +124,8 @@ namespace KitchenLib
 					if (!profiles.Contains(name))
 						GlobalPreferences.AddProfile(mod_id, name);
 					GlobalPreferences.SetProfile(mod_id, name);
+					manager.SetProfile(name);
+					manager.Save();
 				}
 			}
 			base.RequestSubMenu(base.GetType(), true);
