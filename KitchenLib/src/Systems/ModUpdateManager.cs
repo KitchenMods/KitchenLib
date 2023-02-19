@@ -3,18 +3,26 @@ using Kitchen;
 using KitchenLib.UI;
 using KitchenLib.Utils;
 using KitchenMods;
+using Newtonsoft.Json;
 using Steamworks;
 using Steamworks.Ugc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
+using UnityEngine;
 
 namespace KitchenLib.Systems
 {
+    internal struct DataFile
+    {
+        public Dictionary<ulong, long> data;
+    }
+
     internal struct UpdatedMod
     {
         public ulong Id;
@@ -33,8 +41,15 @@ namespace KitchenLib.Systems
     internal class ModUpdateManager : FranchiseFirstFrameSystem, IModSystem
     {
         private static readonly Regex CHANGELOG_REGEX = new Regex(@"<p id=""\d+"">(.+)</p>", RegexOptions.IgnoreCase);
+        private readonly string DATA_FILE_PATH = Path.Combine(Application.persistentDataPath, "UserData/KitchenLib/modUpdateCache.json");
 
         public static ModUpdateManager Instance;
+
+        private DataFile FileData = new()
+        {
+            data = new()
+        };
+        private Dictionary<ulong, long> PreviousData => FileData.data;
 
         protected override void Initialise()
         {
@@ -49,7 +64,7 @@ namespace KitchenLib.Systems
 
         public async void LookForUpdates()
         {
-            List<UpdatedMod> changelogs = new();
+            List<UpdatedMod> updatedMods = new();
             List<OutOfDateMod> outOfDateMods = new();
 
             var fInitializers = ReflectionUtils.GetField<AssemblyModPack>("Initializers");
@@ -96,7 +111,7 @@ namespace KitchenLib.Systems
                                 foreach (var baseMod in possibleMods.Value)
                                 {
                                     Main.instance.Log($"Found KL updated mod '{baseMod.ModName}'");
-                                    changelogs.Add(new UpdatedMod
+                                    updatedMods.Add(new UpdatedMod
                                     {
                                         Id = id,
                                         Name = baseMod.ModName,
@@ -113,7 +128,7 @@ namespace KitchenLib.Systems
                         if (!foundBaseMod)
                         {
                             Main.instance.Log($"Found non-KL updated mod '{name}'");
-                            changelogs.Add(new UpdatedMod
+                            updatedMods.Add(new UpdatedMod
                             {
                                 Id = id,
                                 Name = name,
@@ -122,9 +137,9 @@ namespace KitchenLib.Systems
                                 Timestamp = timestamp
                             });
                         }
-                    //}
-                    //else
-                    //{
+                    }
+                    else
+                    {
                         // Mod needs update
                         Main.instance.Log($"Found out of date mod '{name}'");
                         outOfDateMods.Add(new OutOfDateMod
@@ -136,29 +151,42 @@ namespace KitchenLib.Systems
                 }
             }
 
-            // Display popups
-            foreach (var changelog in changelogs)
-            {
-                var date = new DateTime(changelog.Timestamp);
-                var subtitle = changelog.Version.IsNullOrEmpty() ? date.ToString("MMMM dd, yyyy, HH:mm") : $"v{changelog.Version} ({date:MMM dd, HH:mm})";
+            // Read previous data
+            ReadDataFile();
 
-                GenericPopupManager.CreatePopup(
-                    "A mod has been updated!",
-                    $"<line-height=2><align=\"center\"><size=2.25>{changelog.Name}\n{subtitle}</size></align></line-height>\n\n{changelog.Content}",
-                    GenericChoiceType.OnlyAccept,
-                    () => RecordChangelogView(changelog),
-                    null,
-                    TMPro.TextAlignmentOptions.Center
-                );
+            // Display popups
+            foreach (var updatedMod in updatedMods)
+            {
+                var date = new DateTime(updatedMod.Timestamp).ToLocalTime();
+                var subtitle = updatedMod.Version.IsNullOrEmpty() ? date.ToString("MMMM dd, yyyy, HH:mm") : $"v{updatedMod.Version} ({date:MMM dd, HH:mm})";
+                
+                if (!PreviousData.ContainsKey(updatedMod.Id))
+                {
+                    // First time playing the mod
+                    RecordChangelogView(updatedMod);
+                }
+                else if (PreviousData[updatedMod.Id] != updatedMod.Timestamp)
+                {
+                    // This is a newer version than previous
+                    GenericPopupManager.CreatePopup(
+                        "A mod has been updated!",
+                        $"<line-height=2><align=\"center\"><size=2.25>{updatedMod.Name}\n{subtitle}</size></align></line-height>\n\n{updatedMod.Content}",
+                        GenericChoiceType.OnlyAccept,
+                        () => RecordChangelogView(updatedMod),
+                        null,
+                        TMPro.TextAlignmentOptions.Center
+                    );
+                }
             }
             if (!outOfDateMods.IsNullOrEmpty())
             {
                 GenericPopupManager.CreatePopup(
                     "Some mods are out of date!",
-                    $"<line-height=2><align=\"center\"><size=2.25>The following mods need to be updated:</size></align></line-height>\n\n{outOfDateMods.Join(mod => mod.Name, "\n")}",
+                    $"<line-height=2><size=2.25>The following mods need to be updated:\n(restart your game/verify game files)</size></line-height>\n\n{outOfDateMods.Join(mod => mod.Name, "\n")}",
                     GenericChoiceType.OnlyAccept,
                     null,
                     null,
+                    TMPro.TextAlignmentOptions.Center,
                     TMPro.TextAlignmentOptions.Center
                 );
             }
@@ -166,7 +194,8 @@ namespace KitchenLib.Systems
 
         private void RecordChangelogView(UpdatedMod mod)
         {
-            // TODO
+            PreviousData[mod.Id] = mod.Timestamp;
+            WriteDataFile();
         }
 
         private async Task<string> GetLatestUpdateChangelog(string changelogUrl)
@@ -178,6 +207,27 @@ namespace KitchenLib.Systems
             string extractedContent = CHANGELOG_REGEX.Match(pageContent).Groups[1].Value;
             string cleanedContent = HttpUtility.HtmlDecode(extractedContent);
             return cleanedContent;
+        }
+
+        private void ReadDataFile()
+        {
+            if (!File.Exists(DATA_FILE_PATH))
+            {
+                return;
+            }
+
+            FileData = JsonConvert.DeserializeObject<DataFile>(File.ReadAllText(DATA_FILE_PATH));
+        }
+
+        private void WriteDataFile()
+        {
+            var directory = Path.Combine(DATA_FILE_PATH, "..");
+            if (!Directory.Exists(directory)) {
+                Directory.CreateDirectory(directory);
+            }
+
+            var text = JsonConvert.SerializeObject(FileData);
+            File.WriteAllText(DATA_FILE_PATH, text);
         }
     }
 }
