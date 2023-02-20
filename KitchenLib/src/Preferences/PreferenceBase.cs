@@ -1,112 +1,123 @@
-﻿using Kitchen;
-using Newtonsoft.Json;
-using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine.Rendering;
 
 namespace KitchenLib.Preferences
 {
-	public abstract class PreferenceBase
-	{
-		public string Key { get; protected set; }
-		public object Value { get; protected set; }
-		public string raw_value { get; set; }
+    public abstract class PreferenceBase
+    {
+        public string Key { get; protected set; }
 
-		public abstract void Serialize();
-		public abstract void Deserialize();
-		public PreferenceBase(string key) { Key = key; }
+        internal PreferenceBase(string key)
+        {
+            Key = key;
+        }
 
-		public void Set(object value)
-		{
-			Value = value;
-		}
-		public object Get()
-		{
-			return Value;
-		}
-	}
+        public abstract string Serialize();
 
-	public class PreferenceBool : PreferenceBase
-	{
-		public PreferenceBool(string key) : base(key) { }
+        public abstract void Deserialize(string json);
+    }
 
-		public override void Serialize()
-		{
-			raw_value = Value.ToString();
-		}
-		public override void Deserialize()
-		{
-			Value = bool.Parse(raw_value);
-		}
-	}
+    public abstract class PreferenceBase<T> : PreferenceBase
+    {
+        public T Value { get; protected set; }
 
-	public class PreferenceString : PreferenceBase
-	{
-		public PreferenceString(string key) : base(key) { }
-		public override void Serialize()
-		{
-			raw_value = Value.ToString();
-		}
-		public override void Deserialize()
-		{
-			Value = raw_value;
-		}
-	}
+        public PreferenceBase(string key, T defaultValue = default) : base(key)
+        {
+            Value = defaultValue;
+        }
 
-	public class PreferenceInt : PreferenceBase
-	{
-		public PreferenceInt(string key) : base(key) { }
-		public override void Serialize()
-		{
-			raw_value = Value.ToString();
-		}
-		public override void Deserialize()
-		{
-			Value = int.Parse(raw_value);
-		}
-	}
+        public void Set(T value)
+        {
+            Value = value;
+        }
 
-	public class PreferenceFloat : PreferenceBase
-	{
-		public PreferenceFloat(string key) : base(key) { }
-		public override void Serialize()
-		{
-			raw_value = Value.ToString();
-		}
-		public override void Deserialize()
-		{
-			Value = float.Parse(raw_value);
-		}
-	}
+        public T Get()
+        {
+            return Value;
+        }
+    }
 
-	public class PreferenceList<T> : PreferenceBase
-	{
-		public PreferenceList(string key) : base(key) { }
-		public override void Serialize()
-		{
-			string json = JsonConvert.SerializeObject(Value);
-			raw_value = json;
-		}
-		public override void Deserialize()
-		{
-			Value = JsonConvert.DeserializeObject<List<T>>(raw_value);
-		}
-	}
+    public class PreferenceBool : PreferenceBase<bool>
+    {
+        public PreferenceBool(string key, bool defaultValue = false) : base(key, defaultValue) { }
 
-	public class PreferenceDictionary<T1, T2> : PreferenceBase
-	{
-		public PreferenceDictionary(string key) : base(key) { }
-		public override void Serialize()
-		{
-			string json = JsonConvert.SerializeObject(Value);
-			raw_value = json;
-		}
-		public override void Deserialize()
-		{
-			Value = JsonConvert.DeserializeObject<Dictionary<T1, T2>>(raw_value);
-		}
-	}
+        public override string Serialize()
+        {
+            return Value.ToString();
+        }
+
+        public override void Deserialize(string json)
+        {
+            Value = bool.Parse(json);
+        }
+    }
+
+    public class PreferenceString : PreferenceBase<string>
+    {
+        public PreferenceString(string key, string defaultValue = null) : base(key, defaultValue) { }
+
+        public override string Serialize()
+        {
+            return Value.ToString();
+        }
+
+        public override void Deserialize(string json)
+        {
+            Value = json;
+        }
+    }
+
+    public class PreferenceInt : PreferenceBase<int>
+    {
+        public PreferenceInt(string key, int defaultValue = 0) : base(key, defaultValue) { }
+
+        public override string Serialize()
+        {
+            return Value.ToString();
+        }
+
+        public override void Deserialize(string json)
+        {
+            Value = int.Parse(json);
+        }
+    }
+
+    public class PreferenceFloat : PreferenceBase<float>
+    {
+        public PreferenceFloat(string key, float defaultValue = 0) : base(key, defaultValue) { }
+        public override string Serialize()
+        {
+            return Value.ToString();
+        }
+        public override void Deserialize(string json)
+        {
+            Value = float.Parse(json);
+        }
+    }
+
+    public class PreferenceList<T> : PreferenceBase<List<T>>
+    {
+        public PreferenceList(string key, List<T> defaultValue = null) : base(key, defaultValue) { }
+        public override string Serialize()
+        {
+            return JsonConvert.SerializeObject(Value);
+        }
+        public override void Deserialize(string json)
+        {
+            Value = JsonConvert.DeserializeObject<List<T>>(json);
+        }
+    }
+
+    public class PreferenceDictionary<T1, T2> : PreferenceBase<Dictionary<T1, T2>>
+    {
+        public PreferenceDictionary(string key, Dictionary<T1, T2> defaultValue = null) : base(key, defaultValue) { }
+        public override string Serialize()
+        {
+            return JsonConvert.SerializeObject(Value);
+        }
+        public override void Deserialize(string json)
+        {
+            Value = JsonConvert.DeserializeObject<Dictionary<T1, T2>>(json);
+        }
+    }
 }
