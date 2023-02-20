@@ -7,14 +7,16 @@ namespace KitchenLib.Preferences
 	public static class GlobalPreferences
 	{
 		private static PreferenceManager Manager = null;
+		private static PreferenceDictionary<string, string> CurrentProfilePreference;
+		private static PreferenceDictionary<string, string[]> ModProfilesPreference;
 
 		public static void Setup()
 		{
 			if (Manager == null)
 				Manager = new PreferenceManager("global");
 
-			Manager.RegisterPreference(new PreferenceDictionary<string, string>("modCurrentProfile")).Set(new Dictionary<string, string>());
-			Manager.RegisterPreference(new PreferenceDictionary<string, string[]>("modProfiles")).Set(new Dictionary<string, string[]>());
+			CurrentProfilePreference = Manager.RegisterPreference(new PreferenceDictionary<string, string>("modCurrentProfile", new Dictionary<string, string>()));
+			ModProfilesPreference = Manager.RegisterPreference(new PreferenceDictionary<string, string[]>("modProfiles", new Dictionary<string, string[]>()));
 
 			Manager.Load();
 		}
@@ -23,8 +25,8 @@ namespace KitchenLib.Preferences
 		{
 			if (Manager == null)
 				Setup();
-			if (((Dictionary<string, string[]>)Manager.Get<PreferenceDictionary<string, string[]>>("modProfiles")).ContainsKey(mod_id))
-				return ((Dictionary<string, string[]>)Manager.Get<PreferenceDictionary<string, string[]>>("modProfiles"))[mod_id];
+			if (ModProfilesPreference.Get().ContainsKey(mod_id))
+				return ModProfilesPreference.Get()[mod_id];
 			else
 				return new string[] { };
 		}
@@ -34,7 +36,7 @@ namespace KitchenLib.Preferences
 				Setup();
 			List<string> profiles = GetProfiles(mod_id).ToList();
 			profiles.Add(profile);
-			((Dictionary<string, string[]>)Manager.Get<PreferenceDictionary<string, string[]>>("modProfiles"))[mod_id] = profiles.ToArray();
+			ModProfilesPreference.Get()[mod_id] = profiles.ToArray();
 			Manager.Save();
 		}
 		public static void RemoveProfile(string mod_id, string profile)
@@ -43,7 +45,7 @@ namespace KitchenLib.Preferences
 				Setup();
 			List<string> profiles = GetProfiles(mod_id).ToList();
 			profiles.Remove(profile);
-			((Dictionary<string, string[]>)Manager.Get<PreferenceDictionary<string, string[]>>("modProfiles"))[mod_id] = profiles.ToArray();
+			ModProfilesPreference.Get()[mod_id] = profiles.ToArray();
 			Manager.Save();
 		}
 		public static bool DoesProfileExist(string mod_id, string profile)
@@ -58,8 +60,8 @@ namespace KitchenLib.Preferences
 			if (Manager == null)
 				Setup();
 
-			if (((Dictionary<string, string>)Manager.Get<PreferenceDictionary<string, string>>("modCurrentProfile")).ContainsKey(mod_id))
-				return ((Dictionary<string, string>)Manager.Get<PreferenceDictionary<string, string>>("modCurrentProfile"))[mod_id];
+			if (CurrentProfilePreference.Get().ContainsKey(mod_id))
+				return CurrentProfilePreference.Get()[mod_id];
 			else
 				return "";
 		}
@@ -69,10 +71,10 @@ namespace KitchenLib.Preferences
 			if (Manager == null)
 				Setup();
 
-			if (((Dictionary<string, string>)Manager.Get<PreferenceDictionary<string, string>>("modCurrentProfile")).ContainsKey(mod_id))
-				((Dictionary<string, string>)Manager.Get<PreferenceDictionary<string, string>>("modCurrentProfile"))[mod_id] = profile;
+			if (CurrentProfilePreference.Get().ContainsKey(mod_id))
+				CurrentProfilePreference.Get()[mod_id] = profile;
 			else
-				((Dictionary<string, string>)Manager.Get<PreferenceDictionary<string, string>>("modCurrentProfile")).Add(mod_id, profile);
+				CurrentProfilePreference.Get().Add(mod_id, profile);
 
 			Manager.Save();
 		}
