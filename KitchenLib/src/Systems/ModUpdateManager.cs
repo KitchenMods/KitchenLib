@@ -158,7 +158,7 @@ namespace KitchenLib.Systems
             foreach (var updatedMod in updatedMods)
             {
                 var date = new DateTime(updatedMod.Timestamp).ToLocalTime();
-                var subtitle = updatedMod.Version.IsNullOrEmpty() ? date.ToString("MMMM dd, yyyy, HH:mm") : $"v{updatedMod.Version} ({date:MMM dd, HH:mm})";
+                var subtitle = string.IsNullOrEmpty(updatedMod.Version) ? date.ToString("MMMM dd, yyyy, HH:mm") : $"v{updatedMod.Version} ({date:MMM dd, HH:mm})";
                 
                 if (!PreviousData.ContainsKey(updatedMod.Id))
                 {
@@ -178,18 +178,21 @@ namespace KitchenLib.Systems
                     );
                 }
             }
-            if (!outOfDateMods.IsNullOrEmpty())
-            {
-                GenericPopupManager.CreatePopup(
-                    "Some mods are out of date!",
-                    $"<line-height=2><size=2.25>The following mods need to be updated:\n(restart your game/verify game files)</size></line-height>\n\n{outOfDateMods.Join(mod => mod.Name, "\n")}",
-                    GenericChoiceType.OnlyAccept,
-                    null,
-                    null,
-                    TMPro.TextAlignmentOptions.Center,
-                    TMPro.TextAlignmentOptions.Center
-                );
-            }
+			if (outOfDateMods != null)
+			{
+				if (outOfDateMods.Count > 0)
+				{
+					GenericPopupManager.CreatePopup(
+						"Some mods are out of date!",
+						$"<line-height=2><size=2.25>The following mods need to be updated:\n(restart your game/verify game files)</size></line-height>\n\n{outOfDateMods.Join(mod => mod.Name, "\n")}",
+						GenericChoiceType.OnlyAccept,
+						null,
+						null,
+						TMPro.TextAlignmentOptions.Center,
+						TMPro.TextAlignmentOptions.Center
+					);
+				}
+			}
         }
 
         private void RecordChangelogView(UpdatedMod mod)

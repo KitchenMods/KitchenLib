@@ -87,10 +87,10 @@ namespace KitchenLib.UI
         private void NextPopup()
         {
             ActivePopup = null;
-            if (PopupQueue.IsNullOrEmpty())
-            {
-                return;
-            }
+			if (PopupQueue == null)
+				return;
+			if (PopupQueue.Count == 0)
+				return;
 
             ActivePopup = PopupQueue.First();
             PopupQueue.RemoveAt(0);
