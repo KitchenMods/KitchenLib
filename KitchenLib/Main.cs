@@ -8,12 +8,10 @@ using System.IO;
 using KitchenLib.DevUI;
 using KitchenLib.UI;
 using KitchenLib.Colorblind;
-using KitchenLib.Preferences;
-using System.Collections.Generic;
 
 namespace KitchenLib
 {
-	public class Main : BaseMod
+    public class Main : BaseMod
 	{
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
@@ -22,8 +20,11 @@ namespace KitchenLib
 		public const string MOD_BETA_VERSION = "";
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.4";
 
+		public static BaseMod instance;
 		public static AssetBundle bundle;
-		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
+		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) {
+			instance = this;
+		}
 
 		protected override void OnPostActivate(Mod mod)
 		{

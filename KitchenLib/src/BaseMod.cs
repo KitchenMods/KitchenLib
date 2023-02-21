@@ -24,7 +24,6 @@ namespace KitchenLib
 		public static KitchenVersion version;
 		public static SemVersion semVersion;
 
-		public static BaseMod instance;
 		private static List<Assembly> PatchedAssemblies = new List<Assembly>();
 		private bool isRegistered = false;
 		private bool canRegisterGDO = false;
@@ -60,7 +59,6 @@ namespace KitchenLib
 
 		private void SetupMod(string modID, string modName, string author, string modVersion, string betaVersion, string compatibleVersions, Assembly assembly)
 		{
-			instance = this;
 			ModID = modID;
 			ModName = modName;
 			ModAuthor = author;
