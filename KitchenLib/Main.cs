@@ -20,7 +20,7 @@ namespace KitchenLib
 		public const string MOD_BETA_VERSION = "";
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.4";
 
-		public static BaseMod instance;
+		public static new Main instance;
 		public static AssetBundle bundle;
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) {
 			instance = this;

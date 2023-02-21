@@ -66,7 +66,7 @@ namespace KitchenLib.Preferences
         /// <typeparam name="T">The type of the preference.</typeparam>
         /// <param name="key">The key of the preference.</param>
         /// <returns>The value associated with the preference.</returns>
-        public object Get<T>(string key)
+        public object Get<T>(string key) where T : PreferenceBase
         {
             if (preferences.ContainsKey((key, typeof(T).Name)))
                 return ((dynamic)preferences[(key, typeof(T).Name)]).Get();
