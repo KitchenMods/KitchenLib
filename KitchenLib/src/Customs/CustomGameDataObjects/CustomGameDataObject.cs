@@ -9,7 +9,7 @@ namespace KitchenLib.Customs
         public virtual string UniqueNameID { get; protected set; }
         public virtual int BaseGameDataObjectID { get; protected set; } = -1;
 
-        public string ModName = "";
+        public string ModID = "";
         public GameDataObject GameDataObject;
 
         public abstract void Convert(GameData gameData, out GameDataObject gameDataObject);
@@ -18,7 +18,7 @@ namespace KitchenLib.Customs
 
         public int GetHash()
         {
-            return StringUtils.GetInt32HashCode($"{ModName}:{UniqueNameID}");
+            return StringUtils.GetInt32HashCode($"{ModID}:{UniqueNameID}");
         }
     }
 }
