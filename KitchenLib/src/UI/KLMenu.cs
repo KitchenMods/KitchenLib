@@ -80,7 +80,7 @@ namespace KitchenLib
 				{
 					if (current_profile != "Create")
 					{
-						Main.instance.Log("------------------------ Selected Profile " + current_profile);
+						Main.LogInfo("------------------------ Selected Profile " + current_profile);
 						GlobalPreferences.SetProfile(mod_id, current_profile);
 						action(current_profile);
 						manager.SetProfile(current_profile);
@@ -108,7 +108,7 @@ namespace KitchenLib
 					{
 						if (current_profile != "Create")
 						{
-							Main.instance.Log("------------------------ Selected Profile " + current_profile);
+							Main.LogInfo("------------------------ Selected Profile " + current_profile);
 							GlobalPreferences.SetProfile(mod_id, current_profile);
 							action(current_profile);
 							manager.SetProfile(current_profile);

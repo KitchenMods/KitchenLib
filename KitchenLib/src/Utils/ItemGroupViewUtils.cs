@@ -50,7 +50,7 @@ namespace KitchenLib.Utils
 
             SideItems.Add(item.ID);
 
-            Main.instance.Log($"Added item prefab to side registry for item {item.ID} ({item.name}).");
+            Main.LogInfo($"Added item prefab to side registry for item {item.ID} ({item.name}).");
         }
 
         public static void AddSideContainer<T>(GameData gameData, ItemGroup itemGroup, T localView) where T: ItemGroupView
@@ -70,7 +70,7 @@ namespace KitchenLib.Utils
             }
             else
             {
-                Main.instance.Log($"Could not find Side Container in prefab for ItemGroup {itemGroup.ID} ({itemGroup.name}).");
+                Main.LogWarning($"Could not find Side Container in prefab for ItemGroup {itemGroup.ID} ({itemGroup.name}).");
             }
         }
     }

@@ -8,6 +8,7 @@ using System.IO;
 using KitchenLib.DevUI;
 using KitchenLib.UI;
 using KitchenLib.Colorblind;
+using System.Runtime.CompilerServices;
 
 namespace KitchenLib
 {
@@ -20,11 +21,7 @@ namespace KitchenLib
 		public const string MOD_BETA_VERSION = "";
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.4";
 
-		public static new Main instance;
-		public static AssetBundle bundle;
-		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) {
-			instance = this;
-		}
+		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
 
 		protected override void OnPostActivate(Mod mod)
 		{
@@ -95,6 +92,24 @@ namespace KitchenLib
 				if (bytes != null)
 					File.WriteAllBytes(dirPath + gameDataObject.ID + "-" + gameDataObject.name + ".png", bytes);
 			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void LogInfo(string message)
+		{
+			Debug.Log($"[{MOD_NAME}] " + message);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void LogWarning(string message)
+		{
+			Debug.LogWarning($"[{MOD_NAME}] " + message);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void LogError(string message)
+		{
+			Debug.LogError($"[{MOD_NAME}] " + message);
 		}
 	}
 }

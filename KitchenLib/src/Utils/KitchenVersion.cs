@@ -13,7 +13,7 @@ namespace KitchenLib.Utils
 
         private Regex pattern = new Regex(@"([0-9])\.([0-9])\.([0-9])([a-z]*) \(([^)]*)");
 
-        public KitchenVersion(string versionString)
+        public KitchenVersion(string versionString, BaseMod mod)
         {
             string VersionString = versionString;
 
@@ -26,7 +26,7 @@ namespace KitchenLib.Utils
                 Patch = 0;
                 Hotfix = "";
                 Hash = "XXXX";
-                Main.instance.Log("ERROR - KitchenVersion: Version string is not valid. Using default version.");
+                mod.Error("ERROR - KitchenVersion: Version string is not valid. Using default version.");
             }
             else
             {

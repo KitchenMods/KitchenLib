@@ -68,9 +68,9 @@ namespace KitchenLib
 			CompatibleVersions = compatibleVersions;
 
 			if (!Debug.isDebugBuild)
-				version = new KitchenVersion(Application.version);
+				version = new KitchenVersion(Application.version, this);
 			else
-				version = new KitchenVersion("");
+				version = new KitchenVersion("", this);
 
 			
 #if BEPINEX || WORKSHOP
@@ -170,7 +170,7 @@ namespace KitchenLib
 			}
 			else
 			{
-				Main.instance.Warning("Please Register GDOs in OnPostActivate(Mod mod) " + gdo.GetType().FullName);
+				Main.LogWarning("Please Register GDOs in OnPostActivate(Mod mod) " + gdo.GetType().FullName);
 				return null;
 			}
 		}

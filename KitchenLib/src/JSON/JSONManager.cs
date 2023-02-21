@@ -26,7 +26,7 @@ namespace KitchenLib
 		{
 			foreach (TextAsset asset in bundle.LoadAllAssets<TextAsset>())
 			{
-				Main.instance.Log("Loading " + asset.name);
+				Main.LogInfo($"Loading JSON-based material asset '{asset.name}'");
 				BaseJson baseJson = null;
 				try
 				{
@@ -34,7 +34,7 @@ namespace KitchenLib
 				}
 				catch
 				{
-					Main.instance.Log(asset.name + " Could Not Be Loaded");
+					Main.LogWarning($"Material asset '{asset.name}' could not be loaded");
 				}
 
 				if (baseJson != null)

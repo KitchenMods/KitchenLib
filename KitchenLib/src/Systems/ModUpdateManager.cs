@@ -81,7 +81,7 @@ namespace KitchenLib.Systems
             {
                 foreach (var baseMod in possibleMods.Value)
                 {
-                    Main.instance.Log($"Found mod: {possibleMods.Key.Name} {baseMod.ModName}");
+                    Main.LogInfo($"[Update Manager] Found mod: {possibleMods.Key.Name} {baseMod.ModName}");
                 }
             }
 
@@ -98,7 +98,7 @@ namespace KitchenLib.Systems
                     string version = null;
                     var changelog = await GetLatestUpdateChangelog(changelogUrl);
 
-                    Main.instance.Log($"Found subscribed workshop mod: {id} {name} {timestamp} {changelogUrl}");
+                    Main.LogInfo($"[Update Manager] Found subscribed workshop mod: {id} {name} {timestamp} {changelogUrl}");
 
                     if (!entry.NeedsUpdate)
                     {
@@ -110,7 +110,7 @@ namespace KitchenLib.Systems
                             {
                                 foreach (var baseMod in possibleMods.Value)
                                 {
-                                    Main.instance.Log($"Found KL updated mod '{baseMod.ModName}'");
+                                    Main.LogInfo($"[Update Manager] Found KL mod '{baseMod.ModName}'");
                                     updatedMods.Add(new UpdatedMod
                                     {
                                         Id = id,
@@ -127,7 +127,7 @@ namespace KitchenLib.Systems
 
                         if (!foundBaseMod)
                         {
-                            Main.instance.Log($"Found non-KL updated mod '{name}'");
+                            Main.LogInfo($"[Update Manager] Found non-KL mod '{name}'");
                             updatedMods.Add(new UpdatedMod
                             {
                                 Id = id,
@@ -141,7 +141,7 @@ namespace KitchenLib.Systems
                     else
                     {
                         // Mod needs update
-                        Main.instance.Log($"Found out of date mod '{name}'");
+                        Main.LogInfo($"[Update Manager] Found out of date mod '{name}'");
                         outOfDateMods.Add(new OutOfDateMod
                         {
                             ModId = id,

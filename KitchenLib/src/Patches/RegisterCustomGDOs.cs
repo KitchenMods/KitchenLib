@@ -1,22 +1,17 @@
 using System;
-using System.Linq;
 using HarmonyLib;
 using KitchenData;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using KitchenLib.Event;
-using System.CodeDom;
 using KitchenLib.Systems;
 using UnityEngine;
 using Kitchen;
-using System.IO;
 using KitchenLib.Colorblind;
-using KitchenLib.References;
-using System.Reflection;
 
 namespace KitchenLib.Customs
 {
-	[HarmonyPatch(typeof(GameDataConstructor), "BuildGameData", new Type[] { })]
+    [HarmonyPatch(typeof(GameDataConstructor), "BuildGameData", new Type[] { })]
 	public class GameDataConstructor_Patch
 	{
 		private static readonly List<GameDataObject> GameDataObjects = new List<GameDataObject>();
@@ -65,7 +60,7 @@ namespace KitchenLib.Customs
 				}
 				catch (Exception e)
 				{
-					Main.instance.Log(e.Message);
+					Main.LogInfo(e.Message);
 				}
 			}
 

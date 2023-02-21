@@ -52,7 +52,7 @@ namespace KitchenLib.Preferences
                 return (T)preferences[(key, typeof(T).Name)];
             else
             {
-                Main.instance.Warning($"Unable to get preference with {key}, key not registered.");
+                Main.LogWarning($"Unable to get preference with {key}, key not registered.");
                 return null;
             }
         }
@@ -72,7 +72,7 @@ namespace KitchenLib.Preferences
                 return ((dynamic)preferences[(key, typeof(T).Name)]).Get();
             else
             {
-                Main.instance.Warning($"Unable to get value of {key}, key not registered.");
+                Main.LogWarning($"Unable to get value of {key}, key not registered.");
                 return null;
             }
         }
@@ -93,7 +93,7 @@ namespace KitchenLib.Preferences
                 ((dynamic)preferences[(key, typeof(T).Name)]).Set((dynamic)value);
             else
             {
-                Main.instance.Warning($"Unable to set value of {key}, key not registered.");
+                Main.LogWarning($"Unable to set value of {key}, key not registered.");
                 return;
             }
         }
@@ -131,7 +131,7 @@ namespace KitchenLib.Preferences
                 json = File.ReadAllText(preferenceFilePath);
             if (string.IsNullOrEmpty(json))
             {
-                Main.instance.Warning($"Unable to load preferences, file empty or not saved.");
+                Main.LogWarning($"Unable to load preferences, file empty or not saved.");
                 return;
             }
 
@@ -140,7 +140,7 @@ namespace KitchenLib.Preferences
             {
                 if (!preferences.ContainsKey((pref.Key, pref.Type)))
                 {
-                    Main.instance.Warning($"Unable to load {pref.Key}, key not registered.");
+                    Main.LogWarning($"Unable to load {pref.Key}, key not registered.");
                 }
                 else
                 {
@@ -160,7 +160,7 @@ namespace KitchenLib.Preferences
         {
             if (preferences.ContainsKey((preference.Key, preference.GetType().Name)))
             {
-                Main.instance.Warning($"Unable to register {preference.Key}, key already registered.");
+                Main.LogWarning($"Unable to register {preference.Key}, key already registered.");
                 return null;
             }
             preferences.Add((preference.Key, preference.GetType().Name), preference);
