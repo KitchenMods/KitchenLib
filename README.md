@@ -12,22 +12,21 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2898069883
 
 ## BepInEx and MelonLoader support
 
-As of v0.3.9, support for BepInEx and MelonLoader will officially be dropped, and all development focus will be Workshop related.
+As of v0.5.2, support for BepInEx and MelonLoader has been completely dropped.
 
-I will keep posting builds for BepInEx and MelonLoader, although I will no longer be actively patching bugs related to those direct loaders.
+## Contributors
 
-I will look at Pull Requests, which fix loader-based bugs.
+`R4wizard#5960`
 
-Down the line, I plan to completely phase out these loaders from KitchenLib as the workshop is ultimately the best method for mod distribution.
+`StarFluxGames#7646`
 
-## Credits
+`blarglebottoms#6086`
 
-`R4wizard#5960` for kickstarting the KitchenLib project.
+`Rolo#7645`
 
-`Yariazen#8367` for implementing the Events system.
+`Yariazen#8367`
 
-`Rolo#7645` for implementing GDO references.
+`ZekNikZ#0878`
 
-`MissMonica#9871` for providing us a space to kickstart the entire modding scene!
 
 Semver is licensed under the MIT License, see [LICENSE.txt](https://github.com/maxhauser/semver/blob/master/License.txt) for more information.
