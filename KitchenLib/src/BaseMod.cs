@@ -166,6 +166,7 @@ namespace KitchenLib
 		{
 			T gdo = new T();
 			gdo.ModID = ModID;
+			gdo.ModName = ModName;
 			if (canRegisterGDO)
 			{
 				return CustomGDO.RegisterGameDataObject(gdo);

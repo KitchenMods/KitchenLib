@@ -33,7 +33,7 @@ namespace KitchenLib.Customs
 				{
 					GameDataObject gameDataObject;
 					gdo.Convert(__result, out gameDataObject);
-					gameDataObject.name = $"{gdo.ModName} - {gdo.UniqueNameID}";
+					gameDataObject.name = $"{gdo.ModID} - {gdo.UniqueNameID}";
 					gdo.GameDataObject = gameDataObject;
 					GameDataObjects.Add(gameDataObject);
 				}
