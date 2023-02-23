@@ -29,15 +29,15 @@ namespace KitchenLib.Utils
 			return gdo;
 		}
 
-		public static CustomGameDataObject GetCustomGameDataObject(string modName, string name)
+		public static CustomGameDataObject GetCustomGameDataObject(string modID, string name)
 		{
-			CustomGDO.GDOsByGUID.TryGetValue(new KeyValuePair<string, string>(modName, name), out var result);
+			CustomGDO.GDOsByGUID.TryGetValue(new KeyValuePair<string, string>(modID, name), out var result);
 			return result;
 		}
 
-		public static List<CustomGameDataObject> GetCustomGameDataObjectsFromMod(string modName)
+		public static List<CustomGameDataObject> GetCustomGameDataObjectsFromMod(string modID)
 		{
-			return CustomGDO.GDOsByGUID.Where(entry => entry.Key.Key == modName).Select(entry => entry.Value).ToList();
+			return CustomGDO.GDOsByGUID.Where(entry => entry.Key.Key == modID).Select(entry => entry.Value).ToList();
 		}
 
 		public static CustomGameDataObject GetCustomGameDataObject(int id)
@@ -57,9 +57,9 @@ namespace KitchenLib.Utils
 			return (T)GetCustomGameDataObject<C>()?.GameDataObject;
 		}
 
-		public static T GetCastedGDO<T>(string modName, string name) where T : GameDataObject
+		public static T GetCastedGDO<T>(string modID, string name) where T : GameDataObject
 		{
-			return (T)GetCustomGameDataObject(modName, name)?.GameDataObject;
+			return (T)GetCustomGameDataObject(modID, name)?.GameDataObject;
 		}
 	}
 }
