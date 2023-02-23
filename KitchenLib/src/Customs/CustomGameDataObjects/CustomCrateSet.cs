@@ -9,7 +9,7 @@ namespace KitchenLib.Customs
     {
         public virtual List<Appliance> Options { get; protected set; } = new List<Appliance>();
 
-        private static readonly CrateSet empty = ScriptableObject.CreateInstance<CrateSet>();
+        //private static readonly CrateSet empty = ScriptableObject.CreateInstance<CrateSet>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             CrateSet result = ScriptableObject.CreateInstance<CrateSet>();
@@ -17,7 +17,7 @@ namespace KitchenLib.Customs
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<CrateSet>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (empty.ID != ID) result.ID = ID;
+            if (result.ID != ID) result.ID = ID;
 
             gameDataObject = result;
         }
@@ -26,7 +26,7 @@ namespace KitchenLib.Customs
         {
             CrateSet result = (CrateSet)gameDataObject;
 
-            if (empty.Options != Options) result.Options = Options;
+            if (result.Options != Options) result.Options = Options;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace KitchenLib.Customs
 		[Obsolete("Please set your Icon in Info")]
 		public virtual string Icon { get; protected set; } = "!";
 
-        private static readonly Process empty = ScriptableObject.CreateInstance<Process>();
+        //private static readonly Process result = ScriptableObject.CreateInstance<Process>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             Process result = ScriptableObject.CreateInstance<Process>();
@@ -23,11 +23,11 @@ namespace KitchenLib.Customs
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Process>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (empty.ID != ID) result.ID = ID;
-            if (empty.EnablingApplianceCount != EnablingApplianceCount) result.EnablingApplianceCount = EnablingApplianceCount;
-            if (empty.CanObfuscateProgress != CanObfuscateProgress) result.CanObfuscateProgress = CanObfuscateProgress;
+            if (result.ID != ID) result.ID = ID;
+            if (result.EnablingApplianceCount != EnablingApplianceCount) result.EnablingApplianceCount = EnablingApplianceCount;
+            if (result.CanObfuscateProgress != CanObfuscateProgress) result.CanObfuscateProgress = CanObfuscateProgress;
 
-			if (empty.Info != Info) result.Info = Info;
+			if (result.Info != Info) result.Info = Info;
 
 			if (InfoList.Count > 0)
 			{
@@ -56,8 +56,8 @@ namespace KitchenLib.Customs
         {
             Process result = (Process)gameDataObject;
 
-            if (empty.BasicEnablingAppliance != BasicEnablingAppliance) result.BasicEnablingAppliance = BasicEnablingAppliance;
-            if (empty.IsPseudoprocessFor != IsPseudoprocessFor) result.IsPseudoprocessFor = IsPseudoprocessFor;
+            if (result.BasicEnablingAppliance != BasicEnablingAppliance) result.BasicEnablingAppliance = BasicEnablingAppliance;
+            if (result.IsPseudoprocessFor != IsPseudoprocessFor) result.IsPseudoprocessFor = IsPseudoprocessFor;
         }
     }
 }

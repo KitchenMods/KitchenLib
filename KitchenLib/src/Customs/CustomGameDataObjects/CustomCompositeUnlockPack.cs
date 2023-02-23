@@ -9,7 +9,7 @@ namespace KitchenLib.Customs
     {
         public virtual List<UnlockPack> Packs { get; protected set; } = new List<UnlockPack>();
 
-        private static readonly CompositeUnlockPack empty = ScriptableObject.CreateInstance<CompositeUnlockPack>();
+        //private static readonly CompositeUnlockPack empty = ScriptableObject.CreateInstance<CompositeUnlockPack>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             CompositeUnlockPack result = ScriptableObject.CreateInstance<CompositeUnlockPack>();
@@ -17,7 +17,7 @@ namespace KitchenLib.Customs
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<CompositeUnlockPack>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (empty.ID != ID) result.ID = ID;
+            if (result.ID != ID) result.ID = ID;
 
             gameDataObject = result;
         }
@@ -26,7 +26,7 @@ namespace KitchenLib.Customs
         {
             CompositeUnlockPack result = (CompositeUnlockPack)gameDataObject;
 
-            if (empty.Packs != Packs) result.Packs = Packs;
+            if (result.Packs != Packs) result.Packs = Packs;
         }
     }
 }

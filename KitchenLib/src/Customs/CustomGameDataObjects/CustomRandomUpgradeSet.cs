@@ -10,7 +10,7 @@ namespace KitchenLib.Customs
         public virtual UpgradeRewardTier Tier { get; protected set; }
         public virtual List<IUpgrade> Rewards { get; protected set; } = new List<IUpgrade>();
 
-        private static readonly RandomUpgradeSet empty = ScriptableObject.CreateInstance<RandomUpgradeSet>();
+        //private static readonly RandomUpgradeSet empty = ScriptableObject.CreateInstance<RandomUpgradeSet>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             RandomUpgradeSet result = ScriptableObject.CreateInstance<RandomUpgradeSet>();
@@ -18,8 +18,8 @@ namespace KitchenLib.Customs
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<RandomUpgradeSet>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (empty.ID != ID) result.ID = ID;
-            if (empty.Tier != Tier) result.Tier = Tier;
+            if (result.ID != ID) result.ID = ID;
+            if (result.Tier != Tier) result.Tier = Tier;
 
             gameDataObject = result;
         }
@@ -28,7 +28,7 @@ namespace KitchenLib.Customs
         {
             RandomUpgradeSet result = (RandomUpgradeSet)gameDataObject;
 
-            if (empty.Rewards != Rewards) result.Rewards = Rewards;
+            if (result.Rewards != Rewards) result.Rewards = Rewards;
         }
     }
 }

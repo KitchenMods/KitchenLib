@@ -12,7 +12,7 @@ namespace KitchenLib.Customs
         public virtual List<Research> EnablesResearchOf { get; protected set; } = new List<Research>();
         public virtual List<Research> RequiresForResearch { get; protected set; } = new List<Research>();
 
-        private static readonly Research empty = ScriptableObject.CreateInstance<Research>();
+        //private static readonly Research empty = ScriptableObject.CreateInstance<Research>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             Research result = ScriptableObject.CreateInstance<Research>();
@@ -20,9 +20,9 @@ namespace KitchenLib.Customs
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Research>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (empty.ID != ID) result.ID = ID;
-            if (empty.RequiredResearch != RequiredResearch) result.RequiredResearch = RequiredResearch;
-            if (empty.Info != Info) result.Info = Info;
+            if (result.ID != ID) result.ID = ID;
+            if (result.RequiredResearch != RequiredResearch) result.RequiredResearch = RequiredResearch;
+            if (result.Info != Info) result.Info = Info;
 
 			if (InfoList.Count > 0)
 			{
@@ -38,9 +38,9 @@ namespace KitchenLib.Customs
         {
             Research result = ScriptableObject.CreateInstance<Research>();
 
-            if (empty.Rewards != Rewards) result.Rewards = Rewards;
-            if (empty.EnablesResearchOf != EnablesResearchOf) result.EnablesResearchOf = EnablesResearchOf;
-            if (empty.RequiresForResearch != RequiresForResearch) result.RequiresForResearch = RequiresForResearch;
+            if (result.Rewards != Rewards) result.Rewards = Rewards;
+            if (result.EnablesResearchOf != EnablesResearchOf) result.EnablesResearchOf = EnablesResearchOf;
+            if (result.RequiresForResearch != RequiresForResearch) result.RequiresForResearch = RequiresForResearch;
         }
     }
 }

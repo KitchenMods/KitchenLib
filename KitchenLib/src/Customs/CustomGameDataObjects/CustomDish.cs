@@ -30,7 +30,7 @@ namespace KitchenLib.Customs
 		public virtual bool DestroyAfterModUninstall { get; protected set; } = true;
 		public virtual Dictionary<Locale, string> Recipe { get; protected set; } = new Dictionary<Locale, string>();
 
-        private static readonly Dish empty = ScriptableObject.CreateInstance<Dish>();
+        //private static readonly Dish empty = ScriptableObject.CreateInstance<Dish>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             Dish result = ScriptableObject.CreateInstance<Dish>();
@@ -38,23 +38,23 @@ namespace KitchenLib.Customs
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Dish>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (empty.ID != ID) result.ID = ID;
-            if (empty.Type != Type) result.Type = Type;
-            if (empty.AchievementName != AchievementName) result.AchievementName = AchievementName;
-            if (empty.StartingNameSet != StartingNameSet) result.StartingNameSet = StartingNameSet;
-            if (empty.IconPrefab != IconPrefab) result.IconPrefab = IconPrefab;
-            if (empty.DisplayPrefab != DisplayPrefab) result.DisplayPrefab = DisplayPrefab;
+            if (result.ID != ID) result.ID = ID;
+            if (result.Type != Type) result.Type = Type;
+            if (result.AchievementName != AchievementName) result.AchievementName = AchievementName;
+            if (result.StartingNameSet != StartingNameSet) result.StartingNameSet = StartingNameSet;
+            if (result.IconPrefab != IconPrefab) result.IconPrefab = IconPrefab;
+            if (result.DisplayPrefab != DisplayPrefab) result.DisplayPrefab = DisplayPrefab;
 
-            if (empty.ExpReward != ExpReward) result.ExpReward = ExpReward;
-            if (empty.IsUnlockable != IsUnlockable) result.IsUnlockable = IsUnlockable;
-            if (empty.UnlockGroup != UnlockGroup) result.UnlockGroup = UnlockGroup;
-            if (empty.CardType != CardType) result.CardType = CardType;
-            if (empty.MinimumFranchiseTier != MinimumFranchiseTier) result.MinimumFranchiseTier = MinimumFranchiseTier;
-            if (empty.IsSpecificFranchiseTier != IsSpecificFranchiseTier) result.IsSpecificFranchiseTier = IsSpecificFranchiseTier;
-            if (empty.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
-            if (empty.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
+            if (result.ExpReward != ExpReward) result.ExpReward = ExpReward;
+            if (result.IsUnlockable != IsUnlockable) result.IsUnlockable = IsUnlockable;
+            if (result.UnlockGroup != UnlockGroup) result.UnlockGroup = UnlockGroup;
+            if (result.CardType != CardType) result.CardType = CardType;
+            if (result.MinimumFranchiseTier != MinimumFranchiseTier) result.MinimumFranchiseTier = MinimumFranchiseTier;
+            if (result.IsSpecificFranchiseTier != IsSpecificFranchiseTier) result.IsSpecificFranchiseTier = IsSpecificFranchiseTier;
+            if (result.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
+            if (result.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
 
-            if (empty.Info != Info) result.Info = Info;
+            if (result.Info != Info) result.Info = Info;
 
 			if (InfoList.Count > 0)
 			{
@@ -75,24 +75,24 @@ namespace KitchenLib.Customs
         {
             Dish result = (Dish)gameDataObject;
 
-            if (empty.ExtraOrderUnlocks != ExtraOrderUnlocks) result.ExtraOrderUnlocks = ExtraOrderUnlocks;
-            if (empty.MinimumIngredients != MinimumIngredients) result.MinimumIngredients = MinimumIngredients;
-            if (empty.RequiredProcesses != RequiredProcesses) result.RequiredProcesses = RequiredProcesses;
-            if (empty.BlockProviders != BlockProviders) result.BlockProviders = BlockProviders;
+            if (result.ExtraOrderUnlocks != ExtraOrderUnlocks) result.ExtraOrderUnlocks = ExtraOrderUnlocks;
+            if (result.MinimumIngredients != MinimumIngredients) result.MinimumIngredients = MinimumIngredients;
+            if (result.RequiredProcesses != RequiredProcesses) result.RequiredProcesses = RequiredProcesses;
+            if (result.BlockProviders != BlockProviders) result.BlockProviders = BlockProviders;
 
             FieldInfo resultingMenuItems = ReflectionUtils.GetField<Dish>("ResultingMenuItems");
             FieldInfo ingredientsUnlocks = ReflectionUtils.GetField<Dish>("IngredientsUnlocks");
             FieldInfo prerequisiteDishesEditor = ReflectionUtils.GetField<Dish>("PrerequisiteDishesEditor");
 
-            if (resultingMenuItems.GetValue(empty) != ResultingMenuItems) resultingMenuItems.SetValue(result, ResultingMenuItems);
-            if (ingredientsUnlocks.GetValue(empty) != IngredientsUnlocks) ingredientsUnlocks.SetValue(result, IngredientsUnlocks);
-            if (prerequisiteDishesEditor.GetValue(empty) != PrerequisiteDishesEditor) prerequisiteDishesEditor.SetValue(result, PrerequisiteDishesEditor);
+            if (resultingMenuItems.GetValue(result) != ResultingMenuItems) resultingMenuItems.SetValue(result, ResultingMenuItems);
+            if (ingredientsUnlocks.GetValue(result) != IngredientsUnlocks) ingredientsUnlocks.SetValue(result, IngredientsUnlocks);
+            if (prerequisiteDishesEditor.GetValue(result) != PrerequisiteDishesEditor) prerequisiteDishesEditor.SetValue(result, PrerequisiteDishesEditor);
 
             FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
             FieldInfo hardcodedBlockers = ReflectionUtils.GetField<Unlock>("HardcodedBlockers");
 
-            if (hardcodedRequirements.GetValue(empty) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
-            if (hardcodedBlockers.GetValue(empty) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
+            if (hardcodedRequirements.GetValue(result) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
+            if (hardcodedBlockers.GetValue(result) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
         }
     }
 }

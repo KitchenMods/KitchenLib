@@ -82,41 +82,41 @@ namespace KitchenLib.Customs
 		[Obsolete("Please create a custom system for interactions")]
 		public virtual void PostInteract(InteractionData data) { }
 
-        private static readonly Appliance empty = ScriptableObject.CreateInstance<Appliance>();
+        //private static readonly Appliance empty = ScriptableObject.CreateInstance<Appliance>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
 			Appliance result = ScriptableObject.CreateInstance<Appliance>();
-
+			
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
             else
                 result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == AssetReference.Counter));
 
-            if (empty.ID != ID) result.ID = ID;
-            if (empty.Prefab != Prefab) result.Prefab = Prefab;
-            if (empty.HeldAppliancePrefab != HeldAppliancePrefab) result.HeldAppliancePrefab = HeldAppliancePrefab;
-            if (empty.EffectRange != EffectRange) result.EffectRange = EffectRange;
-            if (empty.EffectCondition != EffectCondition) result.EffectCondition = EffectCondition;
-            if (empty.EffectType != EffectType) result.EffectType = EffectType;
-            if (empty.IsNonInteractive != IsNonInteractive) result.IsNonInteractive = IsNonInteractive;
-            if (empty.Layer != Layer) result.Layer = Layer;
-            if (empty.ForceHighInteractionPriority != ForceHighInteractionPriority) result.ForceHighInteractionPriority = ForceHighInteractionPriority;
-            if (empty.EntryAnimation != EntryAnimation) result.EntryAnimation = EntryAnimation;
-            if (empty.ExitAnimation != ExitAnimation) result.ExitAnimation = ExitAnimation;
-            if (empty.SkipRotationAnimation != SkipRotationAnimation) result.SkipRotationAnimation = SkipRotationAnimation;
-            if (empty.IsPurchasable != IsPurchasable) result.IsPurchasable = IsPurchasable;
-            if (empty.IsPurchasableAsUpgrade != IsPurchasableAsUpgrade) result.IsPurchasableAsUpgrade = IsPurchasableAsUpgrade;
-            if (empty.ThemeRequired != ThemeRequired) result.ThemeRequired = ThemeRequired;
-            if (empty.ShoppingTags != ShoppingTags) result.ShoppingTags = ShoppingTags;
-            if (empty.RarityTier != RarityTier) result.RarityTier = RarityTier;
-            if (empty.PriceTier != PriceTier) result.PriceTier = PriceTier;
-            if (empty.ShopRequirementFilter != ShopRequirementFilter) result.ShopRequirementFilter = ShopRequirementFilter;
-            if (empty.StapleWhenMissing != StapleWhenMissing) result.StapleWhenMissing = StapleWhenMissing;
-            if (empty.SellOnlyAsDuplicate != SellOnlyAsDuplicate) result.SellOnlyAsDuplicate = SellOnlyAsDuplicate;
-            if (empty.SellOnlyAsUnique != SellOnlyAsUnique) result.SellOnlyAsUnique = SellOnlyAsUnique;
-            if (empty.PreventSale != PreventSale) result.PreventSale = PreventSale;
-            if (empty.IsNonCrated != IsNonCrated) result.IsNonCrated = IsNonCrated;
-            if (empty.Info != Info) result.Info = Info;
+            if (result.ID != ID) result.ID = ID;
+            if (result.Prefab != Prefab) result.Prefab = Prefab;
+            if (result.HeldAppliancePrefab != HeldAppliancePrefab) result.HeldAppliancePrefab = HeldAppliancePrefab;
+            if (result.EffectRange != EffectRange) result.EffectRange = EffectRange;
+            if (result.EffectCondition != EffectCondition) result.EffectCondition = EffectCondition;
+            if (result.EffectType != EffectType) result.EffectType = EffectType;
+            if (result.IsNonInteractive != IsNonInteractive) result.IsNonInteractive = IsNonInteractive;
+            if (result.Layer != Layer) result.Layer = Layer;
+            if (result.ForceHighInteractionPriority != ForceHighInteractionPriority) result.ForceHighInteractionPriority = ForceHighInteractionPriority;
+            if (result.EntryAnimation != EntryAnimation) result.EntryAnimation = EntryAnimation;
+            if (result.ExitAnimation != ExitAnimation) result.ExitAnimation = ExitAnimation;
+            if (result.SkipRotationAnimation != SkipRotationAnimation) result.SkipRotationAnimation = SkipRotationAnimation;
+            if (result.IsPurchasable != IsPurchasable) result.IsPurchasable = IsPurchasable;
+            if (result.IsPurchasableAsUpgrade != IsPurchasableAsUpgrade) result.IsPurchasableAsUpgrade = IsPurchasableAsUpgrade;
+            if (result.ThemeRequired != ThemeRequired) result.ThemeRequired = ThemeRequired;
+            if (result.ShoppingTags != ShoppingTags) result.ShoppingTags = ShoppingTags;
+            if (result.RarityTier != RarityTier) result.RarityTier = RarityTier;
+            if (result.PriceTier != PriceTier) result.PriceTier = PriceTier;
+            if (result.ShopRequirementFilter != ShopRequirementFilter) result.ShopRequirementFilter = ShopRequirementFilter;
+            if (result.StapleWhenMissing != StapleWhenMissing) result.StapleWhenMissing = StapleWhenMissing;
+            if (result.SellOnlyAsDuplicate != SellOnlyAsDuplicate) result.SellOnlyAsDuplicate = SellOnlyAsDuplicate;
+            if (result.SellOnlyAsUnique != SellOnlyAsUnique) result.SellOnlyAsUnique = SellOnlyAsUnique;
+            if (result.PreventSale != PreventSale) result.PreventSale = PreventSale;
+            if (result.IsNonCrated != IsNonCrated) result.IsNonCrated = IsNonCrated;
+            if (result.Info != Info) result.Info = Info;
 
 			if (InfoList.Count > 0)
 			{
@@ -148,13 +148,13 @@ namespace KitchenLib.Customs
         {
             Appliance result = (Appliance)gameDataObject;
 
-            if (empty.Processes != Processes) result.Processes = Processes;
-            if (empty.Properties != Properties) result.Properties = Properties;
-            if (empty.EffectRepresentation != EffectRepresentation) result.EffectRepresentation = EffectRepresentation;
-            if (empty.RequiresForShop != RequiresForShop) result.RequiresForShop = RequiresForShop;
-            if (empty.RequiresProcessForShop != RequiresProcessForShop) result.RequiresProcessForShop = RequiresProcessForShop;
-            if (empty.Upgrades != Upgrades) result.Upgrades = Upgrades;
-            if (empty.CrateItem != CrateItem) result.CrateItem = CrateItem;
+            if (result.Processes != Processes) result.Processes = Processes;
+            if (result.Properties != Properties) result.Properties = Properties;
+            if (result.EffectRepresentation != EffectRepresentation) result.EffectRepresentation = EffectRepresentation;
+            if (result.RequiresForShop != RequiresForShop) result.RequiresForShop = RequiresForShop;
+            if (result.RequiresProcessForShop != RequiresProcessForShop) result.RequiresProcessForShop = RequiresProcessForShop;
+            if (result.Upgrades != Upgrades) result.Upgrades = Upgrades;
+            if (result.CrateItem != CrateItem) result.CrateItem = CrateItem;
         }
     }
 }
