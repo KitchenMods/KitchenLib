@@ -58,30 +58,6 @@ namespace KitchenLib.Customs
 		[Obsolete("Please set your Tags in Info")]
 		public virtual List<string> Tags { get; protected set; } = new List<string>();
 
-		[Obsolete("Please create a custom system for rotations")]
-		public virtual bool ForceIsRotationPossible() { return false; }
-
-		[Obsolete("Please create a custom system for rotations")]
-		public virtual bool IsRotationPossible(InteractionData data) { return true; }
-
-		[Obsolete("Please create a custom system for rotations")]
-		public virtual bool PreRotate(InteractionData data, bool isSecondary = false) { return false; }
-
-		[Obsolete("Please create a custom system for rotations")]
-		public virtual void PostRotate(InteractionData data) { }
-
-		[Obsolete("Please create a custom system for interactions")]
-		public virtual bool ForceIsInteractionPossible() { return false; }
-
-		[Obsolete("Please create a custom system for interactions")]
-		public virtual bool IsInteractionPossible(InteractionData data) { return true; }
-
-		[Obsolete("Please create a custom system for interactions")]
-		public virtual bool PreInteract(InteractionData data, bool isSecondary = false) { return false; }
-		
-		[Obsolete("Please create a custom system for interactions")]
-		public virtual void PostInteract(InteractionData data) { }
-
         //private static readonly Appliance empty = ScriptableObject.CreateInstance<Appliance>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
