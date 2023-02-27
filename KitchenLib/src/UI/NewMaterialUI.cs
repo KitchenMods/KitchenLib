@@ -78,7 +78,7 @@ namespace KitchenLib.UI
 			GUILayout.EndScrollView();
 			GUILayout.EndArea();
 
-			GUILayout.BeginArea(new Rect(0, 200, 795, 750)); //Material Value Editor
+			GUILayout.BeginArea(new Rect(0, 200, 795, 800)); //Material Value Editor
 
 			GUILayout.Label("Material Name");
 			selectedMaterial.name = GUILayout.TextField(selectedMaterial.name);
