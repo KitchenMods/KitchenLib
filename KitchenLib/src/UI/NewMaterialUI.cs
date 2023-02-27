@@ -1,12 +1,8 @@
 ﻿using KitchenLib.DevUI;
 using UnityEngine;
 using KitchenLib.Utils;
-using Newtonsoft.Json.Bson;
 using KitchenLib.Customs;
-using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.IO;
-using System.Collections;
 
 namespace KitchenLib.UI
 {
@@ -22,6 +18,8 @@ namespace KitchenLib.UI
 		public Material selectedMaterial = null;
 
 		private static Vector2 templateScrollPosition;
+		private static Vector2 materialSelectorScrollPosition;
+		private static string materialSelectorSearchBar = "";
 		public static List<Material> MaterialTemplates = new List<Material>();
 
 		public override void OnInit()
@@ -45,15 +43,14 @@ namespace KitchenLib.UI
 			UpdateMaterialCube();
 			SetupDefaultTemplates();
 		}
-
 		public override void Setup()
 		{
 			if (IsEnabled)
 				cube.SetActive(true);
 			else
 				cube.SetActive(false);
-			
-			GUILayout.BeginArea(new Rect(0, 0, 795, 250)); //Default Material Selector
+
+			GUILayout.BeginArea(new Rect(0, 0, 795, 100)); //Default Material Selector
 			templateScrollPosition = GUILayout.BeginScrollView(templateScrollPosition, false, false, GUIStyle.none, GUI.skin.verticalScrollbar);
 			for (int i = 0; i < MaterialTemplates.Count; i++)
 			{
@@ -65,12 +62,64 @@ namespace KitchenLib.UI
 			GUILayout.EndScrollView();
 			GUILayout.EndArea();
 
-			GUILayout.BeginArea(new Rect(0, 250, 795, 750)); //Material Value Editor
+			GUILayout.BeginArea(new Rect(0, 100, 795, 100)); //Material Selector
+			materialSelectorSearchBar = GUILayout.TextField(materialSelectorSearchBar);
+			materialSelectorScrollPosition = GUILayout.BeginScrollView(materialSelectorScrollPosition, false, false, GUIStyle.none, GUI.skin.verticalScrollbar);
+			foreach (Material material in MaterialUtils.GetAllMaterials(true, new List<string> { "Simple Flat", "Simple Transparent", "Flat", "Indicator Light", "Ghost", "Foliage", "Flat Image", "Fairy Lights", "Walls" }))
+			{
+				if (material.name.Contains(materialSelectorSearchBar))
+				{
+					if (GUILayout.Button(material.name))
+					{
+						SetCubeMaterial(material);
+					}
+				}
+			}
+			GUILayout.EndScrollView();
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(0, 200, 795, 750)); //Material Value Editor
+
+			GUILayout.Label("Material Name");
+			selectedMaterial.name = GUILayout.TextField(selectedMaterial.name);
+
 			switch (selectedMaterial.shader.name)
 			{
 				case "Simple Flat":
 					CSimpleFlat.GUI(selectedMaterial);
 					CSimpleFlat.Export(selectedMaterial);
+					break;
+				case "Simple Transparent":
+					CSimpleTransparent.GUI(selectedMaterial);
+					CSimpleTransparent.Export(selectedMaterial);
+					break;
+				case "Flat Image":
+					CFlatImage.GUI(selectedMaterial);
+					CFlatImage.Export(selectedMaterial);
+					break;
+				case "Flat":
+					CFlat.GUI(selectedMaterial);
+					CFlat.Export(selectedMaterial);
+					break;
+				case "Indicator Light":
+					CIndicatorLight.GUI(selectedMaterial);
+					CIndicatorLight.Export(selectedMaterial);
+					break;
+				case "Ghost":
+					CGhost.GUI(selectedMaterial);
+					CGhost.Export(selectedMaterial);
+					break;
+				case "Fairy Light":
+					CFairyLight.GUI(selectedMaterial);
+					CFairyLight.Export(selectedMaterial);
+					break;
+				case "Foliage":
+					CFoliage.GUI(selectedMaterial);
+					CFoliage.Export(selectedMaterial);
+					break;
+				case "Walls":
+					CWalls.GUI(selectedMaterial);
+					CWalls.Export(selectedMaterial);
 					break;
 			}
 			SetCubeMaterial(selectedMaterial);
@@ -104,17 +153,14 @@ namespace KitchenLib.UI
 		private void SetupDefaultTemplates()
 		{
 			MaterialTemplates.Add(CreateTemplate(Shader.Find("Simple Flat")));
-			//MaterialTemplates.Add(CreateTemplate(Shader.Find("Simple Transparent")));
-			//MaterialTemplates.Add(CreateTemplate(Shader.Find("Flat Image")));
-			//MaterialTemplates.Add(CreateTemplate(Shader.Find("Folliage")));
-			//MaterialTemplates.Add(CreateTemplate(Shader.Find("Walls")));
-			//MaterialTemplates.Add(CreateTemplate(Shader.Find("Blueprint Light")));
-			//MaterialTemplates.Add(CreateTemplate(Shader.Find("Indicator Light")));
-			//MaterialTemplates.Add(CreateTemplate(Shader.Find("Flat")));
-			//MaterialTemplates.Add(CreateTemplate(Shader.Find("Fairy Light")));
-			//MaterialTemplates.Add(CreateTemplate(Shader.Find("Preview Wall")));
-			//MaterialTemplates.Add(CreateTemplate(Shader.Find("Preview Floor")));
-			//MaterialTemplates.Add(CreateTemplate(Shader.Find("Ghost")));
+			MaterialTemplates.Add(CreateTemplate(Shader.Find("Simple Transparent")));
+			MaterialTemplates.Add(CreateTemplate(Shader.Find("Flat Image")));
+			MaterialTemplates.Add(CreateTemplate(Shader.Find("Flat")));
+			MaterialTemplates.Add(CreateTemplate(Shader.Find("Indicator Light")));
+			MaterialTemplates.Add(CreateTemplate(Shader.Find("Ghost")));
+			MaterialTemplates.Add(CreateTemplate(Shader.Find("Fairy Light")));
+			MaterialTemplates.Add(CreateTemplate(Shader.Find("Foliage")));
+			MaterialTemplates.Add(CreateTemplate(Shader.Find("Walls")));
 		}
 		private Material CreateTemplate(Shader shader)
 		{

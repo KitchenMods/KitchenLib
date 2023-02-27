@@ -4,17 +4,10 @@ using KitchenLib.Utils;
 
 namespace KitchenLib.Customs
 {
-	public enum MaterialType
-	{
-		SimpleFlat,
-		SimpleTransparent,
-		FlatImage
-	}
 	public abstract class CustomMaterial : BaseJson
 	{
 		public virtual void ConvertMaterial(out Material material) { material = null; }
-		public override JsonType Type => JsonType.CustomMaterial;
-		public virtual MaterialType MaterialType { get; set; }
+		public virtual void Deserialise() { }
 		public virtual string Name { get; set; } = "";
 
 		protected static string imgtob64(Texture texture)

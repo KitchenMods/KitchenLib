@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -23,6 +24,10 @@ namespace KitchenLib.Customs
 			return material;
 		}
 
+		public static List<Material> GetCustomMaterials()
+		{
+			return CustomMaterialsIndex.Values.ToList<Material>();
+		}
 		public static Material LoadMaterialFromJson(string json)
 		{
 			CustomBaseMaterial baseMaterial = null;

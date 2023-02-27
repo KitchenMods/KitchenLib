@@ -2,12 +2,13 @@
 using Newtonsoft.Json;
 using System;
 using UnityEngine;
+using System.IO;
 
 namespace KitchenLib.Customs
 {
 	public class CSimpleFlat : CustomMaterial
 	{
-		public override MaterialType MaterialType => MaterialType.SimpleFlat;
+		public override JsonType Type => JsonType.CSimpleFlat;
 		[JsonIgnore]
 		public virtual Color _Color { get; set; } = Color.black;
 		public float _ColorX = 0.0f;
@@ -25,12 +26,10 @@ namespace KitchenLib.Customs
 		public virtual Vector4 _OverlayOffset { get; set; } = Vector4.zero;
 		public float _OverlayOffsetX = 0.0f;
 		public float _OverlayOffsetY = 0.0f;
-		public float _OverlayOffsetZ = 0.0f;
 		[JsonIgnore]
 		public virtual Vector4 _OverlayTextureScale { get; set; } = Vector4.zero;
 		public float _OverlayTextureScaleX = 0.0f;
 		public float _OverlayTextureScaleY = 0.0f;
-		public float _OverlayTextureScaleZ = 0.0f;
 		[JsonIgnore]
 		public virtual Color _OverlayColour { get; set; } = Color.black;
 		public float _OverlayColourX = 0.0f;
@@ -48,6 +47,7 @@ namespace KitchenLib.Customs
 			result.SetColor("_Color0", _Color);
 			result.SetInt("_Highlight", _Highlight ? 1 : 0);
 			result.SetInt("_HasTextureOverlay", _HasTextureOverlay ? 1 : 0);
+			result.SetTexture("_Overlay", _Overlay);
 			result.SetFloat("_Shininess", _Shininess);
 			result.SetFloat("_OverlayLowerBound", _OverlayLowerBound);
 			result.SetFloat("_OverlayUpperBound", _OverlayUpperBound);
@@ -58,10 +58,20 @@ namespace KitchenLib.Customs
 			result.SetVector("_OverlayTextureScale", _OverlayTextureScale);
 			result.SetColor("_OverlayColour", _OverlayColour);
 			result.SetFloat("_Flatness", _Flatness);
+			result.name = Name;
 
 			material = result;
 		}
 
+		public override void Deserialise()
+		{
+			_Color = new Vector4(_ColorX, _ColorY, _ColorZ, 0);
+			_OverlayOffset = new Vector4(_OverlayOffsetX, _OverlayOffsetY, 0, 0);
+			_OverlayTextureScale = new Vector4(_OverlayTextureScaleX, _OverlayTextureScaleY, 0, 0);
+			_OverlayColour = new Vector4(_OverlayColourX, _OverlayColourY, _OverlayColourZ, 0);
+			_Overlay = ResourceUtils.LoadTextureFromBase64(_OverlayAsBase64);
+		}
+		private static string overlayFile = "";
 		public static void GUI(Material material)
 		{
 			Vector4 _Color0 = material.GetVector("_Color0");
@@ -77,6 +87,16 @@ namespace KitchenLib.Customs
 
 			GUILayout.Label("_HasTextureOverlay");
 			material.SetInt("_HasTextureOverlay", GUILayout.Toggle(material.GetInt("_HasTextureOverlay") == 1, "") ? 1 : 0);
+			if (material.GetInt("_HasTextureOverlay") == 0)
+				material.DisableKeyword("_HASTEXTUREOVERLAY_ON");
+			else
+				material.EnableKeyword("_HASTEXTUREOVERLAY_ON");
+
+			GUILayout.Label("_Overlay");
+			overlayFile = GUILayout.TextField(overlayFile);
+			Main.instance.Log(overlayFile);
+			if (File.Exists(overlayFile))
+				material.SetTexture("_Overlay", ResourceUtils.LoadTextureFromFile(overlayFile));
 
 			GUILayout.Label("_Shininess");
 			material.SetFloat("_Shininess", GUILayout.HorizontalSlider(material.GetFloat("_Shininess"), 0.0f, 1.0f));
@@ -101,15 +121,13 @@ namespace KitchenLib.Customs
 			GUILayout.Label("_OverlayOffset");
 			_OverlayOffset.x = GUILayout.HorizontalSlider(_OverlayOffset.x, 0.0f, 1.0f);
 			_OverlayOffset.y = GUILayout.HorizontalSlider(_OverlayOffset.y, 0.0f, 1.0f);
-			_OverlayOffset.z = GUILayout.HorizontalSlider(_OverlayOffset.z, 0.0f, 1.0f);
 			material.SetVector("_OverlayOffset", _OverlayOffset);
 
 			Vector4 _OverlayTextureScale = material.GetVector("_OverlayTextureScale");
 
 			GUILayout.Label("_OverlayTextureScale");
-			_OverlayTextureScale.x = GUILayout.HorizontalSlider(_OverlayTextureScale.x, 0.0f, 1.0f);
-			_OverlayTextureScale.y = GUILayout.HorizontalSlider(_OverlayTextureScale.y, 0.0f, 1.0f);
-			_OverlayTextureScale.z = GUILayout.HorizontalSlider(_OverlayTextureScale.z, 0.0f, 1.0f);
+			_OverlayTextureScale.x = GUILayout.HorizontalSlider(_OverlayTextureScale.x, 0.0f, 100.0f);
+			_OverlayTextureScale.y = GUILayout.HorizontalSlider(_OverlayTextureScale.y, 0.0f, 100.0f);
 			material.SetVector("_OverlayTextureScale", _OverlayTextureScale);
 
 			Vector4 _OverlayColour = material.GetVector("_OverlayColour");
@@ -142,10 +160,8 @@ namespace KitchenLib.Customs
 				result._OverlayMax = material.GetFloat("_OverlayMax");
 				result._OverlayOffsetX = material.GetVector("_OverlayOffset").x;
 				result._OverlayOffsetY = material.GetVector("_OverlayOffset").y;
-				result._OverlayOffsetZ = material.GetVector("_OverlayOffset").z;
 				result._OverlayTextureScaleX = material.GetVector("_OverlayTextureScale").x;
 				result._OverlayTextureScaleY = material.GetVector("_OverlayTextureScale").y;
-				result._OverlayTextureScaleZ = material.GetVector("_OverlayTextureScale").z;
 
 				result._OverlayColourX = material.GetVector("_OverlayColour").x;
 				result._OverlayColourY = material.GetVector("_OverlayColour").y;
