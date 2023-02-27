@@ -31,7 +31,7 @@ namespace KitchenLib.DevUI
 		{
 			if (isEnabled)
 			{
-				WindowRect = GUILayout.Window(VariousUtils.GetID("kitchenlibdevui"), WindowRect, DevWindow, "KitchenLib DevUI", GUILayout.Width(900), GUILayout.Height(1000));
+				WindowRect = GUILayout.Window(VariousUtils.GetID("kitchenlibdevui"), WindowRect, DevWindow, "KitchenLib DevUI", GUILayout.Width(900), GUILayout.Height(1100));
 			}
 			else
 			{
@@ -59,7 +59,7 @@ namespace KitchenLib.DevUI
 		{
 			hasBeenLoaded = true;
 			GUILayout.Space(2);
-			GUILayout.BeginArea(new Rect(0, 20, 100, 1000));
+			GUILayout.BeginArea(new Rect(0, 20, 100, 1100));
 			scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, false, GUIStyle.none, GUI.skin.verticalScrollbar);
 			foreach (var menu in _uiList)
 			{
@@ -80,7 +80,7 @@ namespace KitchenLib.DevUI
 			GUILayout.EndScrollView();
 			GUILayout.EndArea();
 
-			GUILayout.BeginArea(new Rect(100, 20, 795, 1000));
+			GUILayout.BeginArea(new Rect(100, 20, 795, 1100));
 			foreach (var menu in _uiList)
 			{
 				if (menu.IsEnabled)
