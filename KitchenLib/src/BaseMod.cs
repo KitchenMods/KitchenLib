@@ -9,6 +9,10 @@ using KitchenLib.DevUI;
 using System;
 using System.Collections.Generic;
 using KitchenMods;
+using System.CodeDom;
+using Newtonsoft.Json;
+using Unity.Entities;
+using System.Web.WebSockets;
 
 namespace KitchenLib
 {
@@ -127,13 +131,27 @@ namespace KitchenLib
 					JSONManager.LoadAllJsons(bundle);
 				}
 			}
-
-			foreach (CustomBaseMaterial material in JSONManager.LoadedJsons)
+			
+			foreach (BaseJson json in JSONManager.LoadedJsons)
 			{
-				Material mat;
-				material.ConvertMaterial(out mat);
-				AddMaterial(mat);
+				Main.instance.Log(json.GetType().ToString());
+				if (json is CustomBaseMaterial)
+				{
+					CustomBaseMaterial customBaseMaterial = json as CustomBaseMaterial;
+					Material mat;
+					customBaseMaterial.ConvertMaterial(out mat);
+					AddMaterial(mat);
+				}
+				else if (json is CustomMaterial)
+				{
+					CustomMaterial customBaseMaterial = json as CustomMaterial;
+					Material mat;
+					customBaseMaterial.Deserialise();
+					customBaseMaterial.ConvertMaterial(out mat);
+					AddMaterial(mat);
+				}
 			}
+			
 			OnPostActivate(mod);
 			canRegisterGDO = false;
 		}

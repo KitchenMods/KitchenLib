@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using KitchenData;
 using KitchenLib.Customs;
+using UnityEngine.Rendering.Universal.Internal;
 
 namespace KitchenLib.Utils
 {
@@ -70,7 +71,41 @@ namespace KitchenLib.Utils
 
 		}
 
-        public static Material GetExistingMaterial(string materialName)
+		public static List<Material> GetAllMaterials(bool includeCustom)
+		{
+			List<Material> materials = new List<Material>();
+			foreach (Material material in materialIndex.Values)
+			{
+				materials.Add(material);
+			}
+
+			return materials;
+		}
+
+		public static List<Material> GetAllMaterials(bool includeCustom, List<string> shaders)
+		{
+			List<Material> materials = new List<Material>();
+			foreach (Material material in materialIndex.Values)
+			{
+				if (shaders.Contains(material.shader.name))
+					materials.Add(material);
+			}
+
+			foreach (Material material in CustomMaterials.GetCustomMaterials())
+			{
+				Main.instance.Log("1");
+				Main.instance.Log(material.shader.name);
+				if (shaders.Contains(material.shader.name))
+				{
+					Main.instance.Log("2");
+					materials.Add(material);
+				}
+			}
+
+			return materials;
+		}
+
+		public static Material GetExistingMaterial(string materialName)
         {
             if (materialIndex.ContainsKey(materialName))
                 return materialIndex[materialName];

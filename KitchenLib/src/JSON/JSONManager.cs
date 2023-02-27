@@ -17,7 +17,17 @@ namespace KitchenLib
 		{
 			{ JsonType.FlatColorMaterial, typeof(CustomSimpleFlat) },
 			{ JsonType.TransparentMaterial, typeof(CustomSimpleTransparent) },
-			{ JsonType.ImageMaterial, typeof(CustomFlatImage) }
+			{ JsonType.ImageMaterial, typeof(CustomFlatImage) },
+			{ JsonType.CustomMaterial, typeof(CustomMaterial) },
+			{ JsonType.CSimpleFlat, typeof(CSimpleFlat) },
+			{ JsonType.CSimpleTransparent, typeof(CSimpleTransparent) },
+			{ JsonType.CFlatImage, typeof(CFlatImage) },
+			{ JsonType.CFlat, typeof(CFlat) },
+			{ JsonType.CIndicatorLight, typeof(CIndicatorLight) },
+			{ JsonType.CGhost, typeof(CGhost) },
+			{ JsonType.CFairyLight, typeof(CFairyLight) },
+			{ JsonType.CFoliage, typeof(CFoliage) },
+			{ JsonType.CWalls, typeof(CWalls) },
 		};
 
 		public static List<BaseJson> LoadedJsons = new List<BaseJson>();
@@ -36,7 +46,7 @@ namespace KitchenLib
 				{
 					Main.instance.Log(asset.name + " Could Not Be Loaded");
 				}
-
+				
 				if (baseJson != null)
 				{
 					var newJson = JsonConvert.DeserializeObject(asset.text, keyValuePairs[baseJson.Type]);
@@ -56,6 +66,16 @@ namespace KitchenLib
 		Base,
 		FlatColorMaterial,
 		TransparentMaterial,
-		ImageMaterial
+		ImageMaterial,
+		CustomMaterial,
+		CSimpleFlat,
+		CSimpleTransparent,
+		CFlatImage,
+		CFlat,
+		CIndicatorLight,
+		CGhost,
+		CFairyLight,
+		CFoliage,
+		CWalls
 	}
 }

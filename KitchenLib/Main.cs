@@ -28,7 +28,7 @@ namespace KitchenLib
 		protected override void OnPostActivate(Mod mod)
 		{
 			SetupMenus();
-			RegisterMenu<MaterialsUI>();
+			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
 		}
 		protected override void OnInitialise()

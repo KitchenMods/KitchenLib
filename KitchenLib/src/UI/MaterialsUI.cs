@@ -9,6 +9,7 @@ using KitchenLib.Utils;
 
 namespace KitchenLib.UI
 {
+	/*
 	public class MaterialsUI : BaseUI
 	{
 		public GameObject MaterialDisplay = null;
@@ -350,4 +351,5 @@ namespace KitchenLib.UI
 			}
 		}
 	}
+	*/
 }
