@@ -17,7 +17,8 @@ namespace KitchenLib
 		{
 			{ JsonType.FlatColorMaterial, typeof(CustomSimpleFlat) },
 			{ JsonType.TransparentMaterial, typeof(CustomSimpleTransparent) },
-			{ JsonType.ImageMaterial, typeof(CustomFlatImage) }
+			{ JsonType.ImageMaterial, typeof(CustomFlatImage) },
+			{ JsonType.CustomMaterial, typeof(CustomMaterial) },
 		};
 
 		public static List<BaseJson> LoadedJsons = new List<BaseJson>();
@@ -56,6 +57,7 @@ namespace KitchenLib
 		Base,
 		FlatColorMaterial,
 		TransparentMaterial,
-		ImageMaterial
+		ImageMaterial,
+		CustomMaterial
 	}
 }
