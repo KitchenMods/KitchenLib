@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using KitchenData;
-using System;
 using System.Linq;
 using KitchenLib.Customs;
+using KitchenLib;
 
 namespace KitchenLib.Utils
 {
@@ -60,6 +60,20 @@ namespace KitchenLib.Utils
 		public static T GetCastedGDO<T>(string modName, string name) where T : GameDataObject
 		{
 			return (T)GetCustomGameDataObject(modName, name)?.GameDataObject;
+		}
+
+
+		public static Dictionary<int, List<int>> BlacklistedDishSides = new Dictionary<int, List<int>>();
+		public static void BlacklistSide(Item item, int side)
+		{
+			if (!BlacklistedDishSides.ContainsKey(item.ID))
+			{
+				BlacklistedDishSides.Add(item.ID, new List<int>());
+			}
+			if (!BlacklistedDishSides[item.ID].Contains(side))
+			{
+				BlacklistedDishSides[item.ID].Add(side);
+			}
 		}
 	}
 }
