@@ -75,7 +75,7 @@ namespace KitchenLib.Utils
 				BlacklistedDishSides[item.ID].Add(side);
 			}
 		}
-		public static void WhitelistSide(Item item, int side, GameData gamedata)
+		public static void WhitelistSide(Item item, int side)
 		{
 			if (GameData.Main == null)
 			{
