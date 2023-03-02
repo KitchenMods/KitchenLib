@@ -75,5 +75,31 @@ namespace KitchenLib.Utils
 				BlacklistedDishSides[item.ID].Add(side);
 			}
 		}
+		public static void WhitelistSide(Item item, int side, GameData gamedata)
+		{
+			if (GameData.Main == null)
+			{
+				Main.instance.Warning("Please use WhitelistSide in OnInitialise");
+				return;
+			}
+			foreach (Dish dish in GameData.Main.Get<Dish>())
+			{
+				foreach (Dish.MenuItem menuItem in dish.UnlocksMenuItems)
+				{
+					if (!BlacklistedDishSides.ContainsKey(menuItem.Item.ID))
+						BlacklistedDishSides.Add(menuItem.Item.ID, new List<int>());
+					if (!BlacklistedDishSides[menuItem.Item.ID].Contains(side))
+						BlacklistedDishSides[menuItem.Item.ID].Add(side);
+				}
+			}
+
+			if (BlacklistedDishSides.ContainsKey(item.ID))
+			{
+				if (BlacklistedDishSides[item.ID].Contains(side))
+				{
+					BlacklistedDishSides[item.ID].Remove(side);
+				}
+			}
+		}
 	}
 }
