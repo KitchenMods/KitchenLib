@@ -16,7 +16,7 @@ namespace KitchenLib.Customs
 		[Obsolete("Please set your Icon in Info")]
 		public virtual string Icon { get; protected set; }
 
-        private static readonly EffectRepresentation empty = ScriptableObject.CreateInstance<EffectRepresentation>();
+        //private static readonly EffectRepresentation empty = ScriptableObject.CreateInstance<EffectRepresentation>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             EffectRepresentation result = ScriptableObject.CreateInstance<EffectRepresentation>();
@@ -24,8 +24,8 @@ namespace KitchenLib.Customs
 			if (BaseGameDataObjectID != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<EffectRepresentation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-			if (empty.ID != ID) result.ID = ID;
-			if (empty.Info != Info) result.Info = Info;
+			if (result.ID != ID) result.ID = ID;
+			if (result.Info != Info) result.Info = Info;
 
 			if (InfoList.Count > 0)
 			{

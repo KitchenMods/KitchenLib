@@ -10,7 +10,7 @@ namespace KitchenLib.Customs
         public virtual Appliance SpawnHolder { get; protected set; }
         public virtual List<GardenProfile.SpawnProbability> Spawns { get; protected set; } = new List<GardenProfile.SpawnProbability>();
 
-        private static readonly GardenProfile empty = ScriptableObject.CreateInstance<GardenProfile>();
+        //private static readonly GardenProfile empty = ScriptableObject.CreateInstance<GardenProfile>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             GardenProfile result = ScriptableObject.CreateInstance<GardenProfile>();
@@ -18,7 +18,7 @@ namespace KitchenLib.Customs
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<GardenProfile>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (empty.ID != ID) result.ID = ID;
+            if (result.ID != ID) result.ID = ID;
 
             gameDataObject = result;
         }
@@ -27,8 +27,8 @@ namespace KitchenLib.Customs
         {
             GardenProfile result = (GardenProfile)gameDataObject;
 
-            if (empty.SpawnHolder != SpawnHolder) result.SpawnHolder = SpawnHolder;
-            if (empty.Spawns != Spawns) result.Spawns = Spawns;
+            if (result.SpawnHolder != SpawnHolder) result.SpawnHolder = SpawnHolder;
+            if (result.Spawns != Spawns) result.Spawns = Spawns;
         }
     }
 }

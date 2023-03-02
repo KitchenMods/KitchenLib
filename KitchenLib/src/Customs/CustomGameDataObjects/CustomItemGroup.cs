@@ -19,7 +19,7 @@ namespace KitchenLib.Customs
         public virtual bool AutoCollapsing { get; protected set; }
         public virtual bool AutoSetupItemGroupView { get; protected set; } = true;
 
-        private static readonly ItemGroup empty = ScriptableObject.CreateInstance<ItemGroup>();
+        //private static readonly ItemGroup empty = ScriptableObject.CreateInstance<ItemGroup>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             ItemGroup result = ScriptableObject.CreateInstance<ItemGroup>();
@@ -27,29 +27,29 @@ namespace KitchenLib.Customs
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<ItemGroup>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (empty.ID != ID) result.ID = ID;
-            if (empty.Prefab != Prefab) result.Prefab = Prefab;
-            if (empty.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
-            if (empty.ItemValue != ItemValue) result.ItemValue = ItemValue;
-            if (empty.MaxOrderSharers != MaxOrderSharers) result.MaxOrderSharers = MaxOrderSharers;
-            if (empty.SplitCount != SplitCount) result.SplitCount = SplitCount;
-            if (empty.SplitSpeed != SplitSpeed) result.SplitSpeed = SplitSpeed;
-            if (empty.AllowSplitMerging != AllowSplitMerging) result.AllowSplitMerging = AllowSplitMerging;
-            if (empty.PreventExplicitSplit != PreventExplicitSplit) result.PreventExplicitSplit = PreventExplicitSplit;
-            if (empty.SplitByComponents != SplitByComponents) result.SplitByComponents = SplitByComponents;
-            if (empty.SplitByCopying != SplitByCopying) result.SplitByCopying = SplitByCopying;
-            if (empty.IsIndisposable != IsIndisposable) result.IsIndisposable = IsIndisposable;
-            if (empty.ItemCategory != ItemCategory) result.ItemCategory = ItemCategory;
-            if (empty.ItemStorageFlags != ItemStorageFlags) result.ItemStorageFlags = ItemStorageFlags;
-            if (empty.HoldPose != HoldPose) result.HoldPose = HoldPose;
-            if (empty.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
+            if (result.ID != ID) result.ID = ID;
+            if (result.Prefab != Prefab) result.Prefab = Prefab;
+            if (result.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
+            if (result.ItemValue != ItemValue) result.ItemValue = ItemValue;
+            if (result.MaxOrderSharers != MaxOrderSharers) result.MaxOrderSharers = MaxOrderSharers;
+            if (result.SplitCount != SplitCount) result.SplitCount = SplitCount;
+            if (result.SplitSpeed != SplitSpeed) result.SplitSpeed = SplitSpeed;
+            if (result.AllowSplitMerging != AllowSplitMerging) result.AllowSplitMerging = AllowSplitMerging;
+            if (result.PreventExplicitSplit != PreventExplicitSplit) result.PreventExplicitSplit = PreventExplicitSplit;
+            if (result.SplitByComponents != SplitByComponents) result.SplitByComponents = SplitByComponents;
+            if (result.SplitByCopying != SplitByCopying) result.SplitByCopying = SplitByCopying;
+            if (result.IsIndisposable != IsIndisposable) result.IsIndisposable = IsIndisposable;
+            if (result.ItemCategory != ItemCategory) result.ItemCategory = ItemCategory;
+            if (result.ItemStorageFlags != ItemStorageFlags) result.ItemStorageFlags = ItemStorageFlags;
+            if (result.HoldPose != HoldPose) result.HoldPose = HoldPose;
+            if (result.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
 
             if (!string.IsNullOrEmpty(ColourBlindTag))
                 ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
 
-            if (empty.CanContainSide != CanContainSide) result.CanContainSide = CanContainSide;
-            if (empty.ApplyProcessesToComponents != ApplyProcessesToComponents) result.ApplyProcessesToComponents = ApplyProcessesToComponents;
-            if (empty.AutoCollapsing != AutoCollapsing) result.AutoCollapsing = AutoCollapsing;
+            if (result.CanContainSide != CanContainSide) result.CanContainSide = CanContainSide;
+            if (result.ApplyProcessesToComponents != ApplyProcessesToComponents) result.ApplyProcessesToComponents = ApplyProcessesToComponents;
+            if (result.AutoCollapsing != AutoCollapsing) result.AutoCollapsing = AutoCollapsing;
 
 
             gameDataObject = result;
@@ -59,22 +59,22 @@ namespace KitchenLib.Customs
         {
             ItemGroup result = (ItemGroup)gameDataObject;
 
-            if (empty.Properties != Properties) result.Properties = Properties;
-            if (empty.DirtiesTo != DirtiesTo) result.DirtiesTo = DirtiesTo;
-            if (empty.MayRequestExtraItems != MayRequestExtraItems) result.MayRequestExtraItems = MayRequestExtraItems;
-            if (empty.SplitSubItem != SplitSubItem) result.SplitSubItem = SplitSubItem;
-            if (empty.SplitDepletedItems != SplitDepletedItems) result.SplitDepletedItems = SplitDepletedItems;
-            if (empty.SplitByComponentsHolder != SplitByComponentsHolder) result.SplitByComponentsHolder = SplitByComponentsHolder;
-            if (empty.RefuseSplitWith != RefuseSplitWith) result.RefuseSplitWith = RefuseSplitWith;
-            if (empty.DisposesTo != DisposesTo) result.DisposesTo = DisposesTo;
-            if (empty.DedicatedProvider != DedicatedProvider) result.DedicatedProvider = DedicatedProvider;
-            if (empty.ExtendedDirtItem != ExtendedDirtItem) result.ExtendedDirtItem = ExtendedDirtItem;
+            if (result.Properties != Properties) result.Properties = Properties;
+            if (result.DirtiesTo != DirtiesTo) result.DirtiesTo = DirtiesTo;
+            if (result.MayRequestExtraItems != MayRequestExtraItems) result.MayRequestExtraItems = MayRequestExtraItems;
+            if (result.SplitSubItem != SplitSubItem) result.SplitSubItem = SplitSubItem;
+            if (result.SplitDepletedItems != SplitDepletedItems) result.SplitDepletedItems = SplitDepletedItems;
+            if (result.SplitByComponentsHolder != SplitByComponentsHolder) result.SplitByComponentsHolder = SplitByComponentsHolder;
+            if (result.RefuseSplitWith != RefuseSplitWith) result.RefuseSplitWith = RefuseSplitWith;
+            if (result.DisposesTo != DisposesTo) result.DisposesTo = DisposesTo;
+            if (result.DedicatedProvider != DedicatedProvider) result.DedicatedProvider = DedicatedProvider;
+            if (result.ExtendedDirtItem != ExtendedDirtItem) result.ExtendedDirtItem = ExtendedDirtItem;
 
             FieldInfo processes = ReflectionUtils.GetField<Item>("Processes");
             FieldInfo sets = ReflectionUtils.GetField<ItemGroup>("Sets");
 
-            if (processes.GetValue(empty) != Processes) processes.SetValue(result, Processes);
-            if (sets.GetValue(empty) != Sets)
+            if (processes.GetValue(result) != Processes) processes.SetValue(result, Processes);
+            if (sets.GetValue(result) != Sets)
             {
                 for (int setIndex = 0; setIndex < Sets.Count; setIndex++)
                 {

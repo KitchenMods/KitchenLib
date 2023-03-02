@@ -14,7 +14,7 @@ namespace KitchenLib.Customs
         public virtual ThemeUnlock ParentTheme1 { get; protected set; }
         public virtual ThemeUnlock ParentTheme2 { get; protected set; }
 
-        private static readonly ThemeUnlock empty = ScriptableObject.CreateInstance<ThemeUnlock>();
+        //private static readonly ThemeUnlock empty = ScriptableObject.CreateInstance<ThemeUnlock>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             ThemeUnlock result = ScriptableObject.CreateInstance<ThemeUnlock>();
@@ -22,20 +22,20 @@ namespace KitchenLib.Customs
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<ThemeUnlock>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (empty.ID != ID) result.ID = ID;
-            if (empty.IsPrimary != IsPrimary) result.IsPrimary = IsPrimary;
-            if (empty.Type != Type) result.Type = Type;
+            if (result.ID != ID) result.ID = ID;
+            if (result.IsPrimary != IsPrimary) result.IsPrimary = IsPrimary;
+            if (result.Type != Type) result.Type = Type;
 
-            if (empty.ExpReward != ExpReward) result.ExpReward = ExpReward;
-            if (empty.IsUnlockable != IsUnlockable) result.IsUnlockable = IsUnlockable;
-            if (empty.UnlockGroup != UnlockGroup) result.UnlockGroup = UnlockGroup;
-            if (empty.CardType != CardType) result.CardType = CardType;
-            if (empty.MinimumFranchiseTier != MinimumFranchiseTier) result.MinimumFranchiseTier = MinimumFranchiseTier;
-            if (empty.IsSpecificFranchiseTier != IsSpecificFranchiseTier) result.IsSpecificFranchiseTier = IsSpecificFranchiseTier;
-            if (empty.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
-            if (empty.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
+            if (result.ExpReward != ExpReward) result.ExpReward = ExpReward;
+            if (result.IsUnlockable != IsUnlockable) result.IsUnlockable = IsUnlockable;
+            if (result.UnlockGroup != UnlockGroup) result.UnlockGroup = UnlockGroup;
+            if (result.CardType != CardType) result.CardType = CardType;
+            if (result.MinimumFranchiseTier != MinimumFranchiseTier) result.MinimumFranchiseTier = MinimumFranchiseTier;
+            if (result.IsSpecificFranchiseTier != IsSpecificFranchiseTier) result.IsSpecificFranchiseTier = IsSpecificFranchiseTier;
+            if (result.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
+            if (result.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
 
-            if (empty.Info != Info) result.Info = Info;
+            if (result.Info != Info) result.Info = Info;
 
 			if (InfoList.Count > 0)
 			{
@@ -46,7 +46,7 @@ namespace KitchenLib.Customs
 
 			if (!string.IsNullOrEmpty(IconOverride))
 				Unlock_Patch.IconOverrides.Add(result.ID, IconOverride);
-			if (ColourOverride != null)
+			if (ColourOverride != new Color())
 				Unlock_Patch.ColourOverrides.Add(result.ID, ColourOverride);
 
 			gameDataObject = result;
@@ -56,14 +56,14 @@ namespace KitchenLib.Customs
         {
             ThemeUnlock result = (ThemeUnlock)gameDataObject;
 
-            if (empty.ParentTheme1 != ParentTheme1) result.ParentTheme1 = ParentTheme1;
-            if (empty.ParentTheme2 != ParentTheme2) result.ParentTheme2 = ParentTheme2;
+            if (result.ParentTheme1 != ParentTheme1) result.ParentTheme1 = ParentTheme1;
+            if (result.ParentTheme2 != ParentTheme2) result.ParentTheme2 = ParentTheme2;
 
             FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
             FieldInfo hardcodedBlockers = ReflectionUtils.GetField<Unlock>("HardcodedBlockers");
 
-            if (hardcodedRequirements.GetValue(empty) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
-            if (hardcodedBlockers.GetValue(empty) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
+            if (hardcodedRequirements.GetValue(result) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
+            if (hardcodedBlockers.GetValue(result) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
         }
     }
 }

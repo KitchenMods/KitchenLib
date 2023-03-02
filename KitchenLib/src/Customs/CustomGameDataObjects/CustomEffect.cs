@@ -13,7 +13,7 @@ namespace KitchenLib.Customs
         public virtual IEffectType EffectType { get; protected set; }
         public virtual EffectRepresentation EffectInformation { get; protected set; }
 
-        private static readonly Effect empty = ScriptableObject.CreateInstance<Effect>();
+        //private static readonly Effect empty = ScriptableObject.CreateInstance<Effect>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             Effect result = ScriptableObject.CreateInstance<Effect>();
@@ -21,11 +21,11 @@ namespace KitchenLib.Customs
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Effect>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (empty.ID != ID) result.ID = ID;
-            if (empty.Properties != Properties) result.Properties = Properties;
-            if (empty.EffectRange != EffectRange) result.EffectRange = EffectRange;
-            if (empty.EffectCondition != EffectCondition) result.EffectCondition = EffectCondition;
-            if (empty.EffectType != EffectType) result.EffectType = EffectType;
+            if (result.ID != ID) result.ID = ID;
+            if (result.Properties != Properties) result.Properties = Properties;
+            if (result.EffectRange != EffectRange) result.EffectRange = EffectRange;
+            if (result.EffectCondition != EffectCondition) result.EffectCondition = EffectCondition;
+            if (result.EffectType != EffectType) result.EffectType = EffectType;
 
             gameDataObject = result;
         }
@@ -34,7 +34,7 @@ namespace KitchenLib.Customs
         {
             Effect result = (Effect)gameDataObject;
 
-            if (empty.EffectInformation != EffectInformation) result.EffectInformation = EffectInformation;
+            if (result.EffectInformation != EffectInformation) result.EffectInformation = EffectInformation;
         }
     }
 }

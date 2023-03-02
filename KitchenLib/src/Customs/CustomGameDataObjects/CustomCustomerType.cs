@@ -21,7 +21,7 @@ namespace KitchenLib.Customs
 		public virtual List<ICustomerProperty> Properties { get; protected set; } = new List<ICustomerProperty>();
 
 		
-		private static readonly CustomerType empty = ScriptableObject.CreateInstance<CustomerType>();
+		//private static readonly CustomerType empty = ScriptableObject.CreateInstance<CustomerType>();
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			CustomerType result = ScriptableObject.CreateInstance<CustomerType>();
@@ -29,14 +29,14 @@ namespace KitchenLib.Customs
 			if (BaseGameDataObjectID != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<CustomerType>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-			if (empty.ID != ID) result.ID = ID;
-			if (empty.IsGenericGroup != IsGenericGroup) result.IsGenericGroup = IsGenericGroup;
-			if (empty.RelativeGroupSize != RelativeGroupSize) result.RelativeGroupSize = RelativeGroupSize;
-			if (empty.MinGroupSize != MinGroupSize) result.MinGroupSize = MinGroupSize;
-			if (empty.MaxGroupSize != MaxGroupSize) result.MaxGroupSize = MaxGroupSize;
-			if (!empty.PatienceModifiers.Equals(PatienceModifiers)) result.PatienceModifiers = PatienceModifiers;
-			if (!empty.OrderingModifiers.Equals(OrderingModifiers)) result.OrderingModifiers = OrderingModifiers;
-			if (empty.Properties != Properties) result.Properties = Properties;
+			if (result.ID != ID) result.ID = ID;
+			if (result.IsGenericGroup != IsGenericGroup) result.IsGenericGroup = IsGenericGroup;
+			if (result.RelativeGroupSize != RelativeGroupSize) result.RelativeGroupSize = RelativeGroupSize;
+			if (result.MinGroupSize != MinGroupSize) result.MinGroupSize = MinGroupSize;
+			if (result.MaxGroupSize != MaxGroupSize) result.MaxGroupSize = MaxGroupSize;
+			if (!result.PatienceModifiers.Equals(PatienceModifiers)) result.PatienceModifiers = PatienceModifiers;
+			if (!result.OrderingModifiers.Equals(OrderingModifiers)) result.OrderingModifiers = OrderingModifiers;
+			if (result.Properties != Properties) result.Properties = Properties;
 
 			gameDataObject = result;
 		}
@@ -45,7 +45,7 @@ namespace KitchenLib.Customs
 		{
 			CustomerType result = (CustomerType)gameDataObject;
 
-			if (empty.Cosmetics != Cosmetics) result.Cosmetics = Cosmetics;
+			if (result.Cosmetics != Cosmetics) result.Cosmetics = Cosmetics;
 		}
 	}
 }

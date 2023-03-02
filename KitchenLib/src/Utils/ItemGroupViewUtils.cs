@@ -41,6 +41,7 @@ namespace KitchenLib.Utils
             GameObject newPrefab = UnityEngine.Object.Instantiate((CustomGDO.GDOs[item.ID] as CustomItem)?.SidePrefab ?? item.Prefab);
             Transform transform = newPrefab.transform;
             transform.parent = sidePrefab.transform;
+			transform.transform.localPosition = new Vector3(transform.transform.localPosition.x, transform.transform.localPosition.y + 0.185f, transform.transform.localPosition.z); // Moving the prefab up ever so slightly
             fGameObject.SetValue(newComponentGroup, newPrefab);
             fItem.SetValue(newComponentGroup, item);
 

@@ -5,7 +5,7 @@
 		<EnableModDeployLocal>false</EnableModDeployLocal>
 	</PropertyGroup>
 	<ItemGroup>
-	  <PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.7.15" />
+		<PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.6.16" />
 	</ItemGroup>
 
 	<ItemGroup>

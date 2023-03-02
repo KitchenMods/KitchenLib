@@ -15,7 +15,7 @@ namespace KitchenLib.Customs
         public virtual float CustomerStarterChance { get; protected set; } = 1f;
         public virtual float GroupDessertChance { get; protected set; } = 1f;
 
-        private static readonly GameDifficultySettings empty = ScriptableObject.CreateInstance<GameDifficultySettings>();
+        //private static readonly GameDifficultySettings empty = ScriptableObject.CreateInstance<GameDifficultySettings>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             GameDifficultySettings result = ScriptableObject.CreateInstance<GameDifficultySettings>();
@@ -23,15 +23,15 @@ namespace KitchenLib.Customs
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<GameDifficultySettings>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (empty.ID != ID) result.ID = ID;
-            if (empty.IsActive != IsActive) result.IsActive = IsActive;
-            if (empty.CustomersPerHourBase != CustomersPerHourBase) result.CustomersPerHourBase = CustomersPerHourBase;
-            if (empty.CustomersPerHourIncreasePerDay != CustomersPerHourIncreasePerDay) result.CustomersPerHourIncreasePerDay = CustomersPerHourIncreasePerDay;
-            if (empty.CustomerSideChance != CustomerSideChance) result.CustomerSideChance = CustomerSideChance;
-            if (empty.QueuePatienceTime != QueuePatienceTime) result.QueuePatienceTime = QueuePatienceTime;
-            if (empty.QueuePatienceBoost != QueuePatienceBoost) result.QueuePatienceBoost = QueuePatienceBoost;
-            if (empty.CustomerStarterChance != CustomerStarterChance) result.CustomerStarterChance = CustomerStarterChance;
-            if (empty.GroupDessertChance != GroupDessertChance) result.GroupDessertChance = GroupDessertChance;
+            if (result.ID != ID) result.ID = ID;
+            if (result.IsActive != IsActive) result.IsActive = IsActive;
+            if (result.CustomersPerHourBase != CustomersPerHourBase) result.CustomersPerHourBase = CustomersPerHourBase;
+            if (result.CustomersPerHourIncreasePerDay != CustomersPerHourIncreasePerDay) result.CustomersPerHourIncreasePerDay = CustomersPerHourIncreasePerDay;
+            if (result.CustomerSideChance != CustomerSideChance) result.CustomerSideChance = CustomerSideChance;
+            if (result.QueuePatienceTime != QueuePatienceTime) result.QueuePatienceTime = QueuePatienceTime;
+            if (result.QueuePatienceBoost != QueuePatienceBoost) result.QueuePatienceBoost = QueuePatienceBoost;
+            if (result.CustomerStarterChance != CustomerStarterChance) result.CustomerStarterChance = CustomerStarterChance;
+            if (result.GroupDessertChance != GroupDessertChance) result.GroupDessertChance = GroupDessertChance;
 
             gameDataObject = result;
         }

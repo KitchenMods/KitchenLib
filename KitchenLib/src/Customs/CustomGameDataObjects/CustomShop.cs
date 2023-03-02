@@ -13,7 +13,7 @@ namespace KitchenLib.Customs
         public virtual int ItemsForSaleCount { get; protected set; } = 3;
         public virtual int WallpapersForSaleCount { get; protected set; } = 6;
 
-        private static readonly Shop empty = ScriptableObject.CreateInstance<Shop>();
+        //private static readonly Shop empty = ScriptableObject.CreateInstance<Shop>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             Shop result = ScriptableObject.CreateInstance<Shop>();
@@ -21,10 +21,10 @@ namespace KitchenLib.Customs
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Shop>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (empty.ID != ID) result.ID = ID;
-            if (empty.Type != Type) result.Type = Type;
-            if (empty.ItemsForSaleCount != ItemsForSaleCount) result.ItemsForSaleCount = ItemsForSaleCount;
-            if (empty.WallpapersForSaleCount != WallpapersForSaleCount) result.WallpapersForSaleCount = WallpapersForSaleCount;
+            if (result.ID != ID) result.ID = ID;
+            if (result.Type != Type) result.Type = Type;
+            if (result.ItemsForSaleCount != ItemsForSaleCount) result.ItemsForSaleCount = ItemsForSaleCount;
+            if (result.WallpapersForSaleCount != WallpapersForSaleCount) result.WallpapersForSaleCount = WallpapersForSaleCount;
 
             gameDataObject = result;
         }
@@ -33,8 +33,8 @@ namespace KitchenLib.Customs
         {
             Shop result = (Shop)gameDataObject;
 
-            if (empty.Stock != Stock) result.Stock = Stock;
-            if (empty.Decors != Decors) result.Decors = Decors;
+            if (result.Stock != Stock) result.Stock = Stock;
+            if (result.Decors != Decors) result.Decors = Decors;
         }
     }
 }

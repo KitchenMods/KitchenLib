@@ -11,7 +11,7 @@ namespace KitchenLib.Customs
         public virtual LayoutMaterialType Type { get; protected set; }
         public virtual bool IsAvailable { get; protected set; } = true;
 
-        private static readonly Decor empty = ScriptableObject.CreateInstance<Decor>();
+        //private static readonly Decor empty = ScriptableObject.CreateInstance<Decor>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             Decor result = ScriptableObject.CreateInstance<Decor>();
@@ -19,10 +19,10 @@ namespace KitchenLib.Customs
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Decor>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (empty.ID != ID) result.ID = ID;
-            if (empty.Material != Material) result.Material = Material;
-            if (empty.Type != Type) result.Type = Type;
-            if (empty.IsAvailable != IsAvailable) result.IsAvailable = IsAvailable;
+            if (result.ID != ID) result.ID = ID;
+            if (result.Material != Material) result.Material = Material;
+            if (result.Type != Type) result.Type = Type;
+            if (result.IsAvailable != IsAvailable) result.IsAvailable = IsAvailable;
 
             gameDataObject = result;
         }
@@ -31,7 +31,7 @@ namespace KitchenLib.Customs
         {
             Decor result = (Decor)gameDataObject;
 
-            if (empty.ApplicatorAppliance != ApplicatorAppliance) result.ApplicatorAppliance = ApplicatorAppliance;
+            if (result.ApplicatorAppliance != ApplicatorAppliance) result.ApplicatorAppliance = ApplicatorAppliance;
         }
     }
 }

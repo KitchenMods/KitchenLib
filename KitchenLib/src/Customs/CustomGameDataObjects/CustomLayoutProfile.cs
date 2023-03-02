@@ -25,7 +25,7 @@ namespace KitchenLib.Customs
 		[Obsolete("Please set your Description in Info")]
 		public virtual string Description { get; protected set; } = "A new layout type for your restaurants!";
 
-        private static readonly LayoutProfile empty = ScriptableObject.CreateInstance<LayoutProfile>();
+        //private static readonly LayoutProfile empty = ScriptableObject.CreateInstance<LayoutProfile>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             LayoutProfile result = ScriptableObject.CreateInstance<LayoutProfile>();
@@ -33,10 +33,10 @@ namespace KitchenLib.Customs
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<LayoutProfile>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (empty.ID != ID) result.ID = ID;
-            if (empty.Graph != Graph) result.Graph = Graph;
-            if (empty.MaximumTables != MaximumTables) result.MaximumTables = MaximumTables;
-			if (empty.Info != Info) result.Info = Info;
+            if (result.ID != ID) result.ID = ID;
+            if (result.Graph != Graph) result.Graph = Graph;
+            if (result.MaximumTables != MaximumTables) result.MaximumTables = MaximumTables;
+			if (result.Info != Info) result.Info = Info;
 
 			if (InfoList.Count > 0)
 			{
@@ -65,13 +65,13 @@ namespace KitchenLib.Customs
         {
             LayoutProfile result = (LayoutProfile)gameDataObject;
 
-            if (empty.RequiredAppliances != RequiredAppliances) result.RequiredAppliances = RequiredAppliances;
-            if (empty.Table != Table) result.Table = Table;
-            if (empty.Counter != Counter) result.Counter = Counter;
-            if (empty.ExternalBin != ExternalBin) result.ExternalBin = ExternalBin;
-            if (empty.WallPiece != WallPiece) result.WallPiece = WallPiece;
-            if (empty.InternalWallPiece != InternalWallPiece) result.InternalWallPiece = InternalWallPiece;
-            if (empty.StreetPiece != StreetPiece) result.StreetPiece = StreetPiece;
+            if (result.RequiredAppliances != RequiredAppliances) result.RequiredAppliances = RequiredAppliances;
+            if (result.Table != Table) result.Table = Table;
+            if (result.Counter != Counter) result.Counter = Counter;
+            if (result.ExternalBin != ExternalBin) result.ExternalBin = ExternalBin;
+            if (result.WallPiece != WallPiece) result.WallPiece = WallPiece;
+            if (result.InternalWallPiece != InternalWallPiece) result.InternalWallPiece = InternalWallPiece;
+            if (result.StreetPiece != StreetPiece) result.StreetPiece = StreetPiece;
         }
     }
 }
