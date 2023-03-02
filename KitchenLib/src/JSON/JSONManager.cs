@@ -32,6 +32,29 @@ namespace KitchenLib
 
 		public static List<BaseJson> LoadedJsons = new List<BaseJson>();
 
+		public static Material LoadMaterialFromJson(string json)
+		{
+			BaseJson baseJson = null;
+			try
+			{
+				baseJson = JsonConvert.DeserializeObject<BaseJson>(json);
+			}
+			catch { }
+
+			if (baseJson != null)
+			{
+				var newJson = JsonConvert.DeserializeObject(json, keyValuePairs[baseJson.Type]);
+				CustomMaterial customMaterial = newJson as CustomMaterial;
+				Material material;
+				customMaterial.Deserialise();
+				customMaterial.ConvertMaterial(out material);
+				return material;
+			}
+			Main.instance.Log("Unable to load JSON");
+			return new Material(Shader.Find("Simple Flat"));
+
+		}
+
 		public static void LoadAllJsons(AssetBundle bundle)
 		{
 			foreach (TextAsset asset in bundle.LoadAllAssets<TextAsset>())
