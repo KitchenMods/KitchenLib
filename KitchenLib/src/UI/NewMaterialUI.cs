@@ -3,6 +3,7 @@ using UnityEngine;
 using KitchenLib.Utils;
 using KitchenLib.Customs;
 using System.Collections.Generic;
+using System.IO;
 
 namespace KitchenLib.UI
 {
@@ -20,6 +21,7 @@ namespace KitchenLib.UI
 		private static Vector2 templateScrollPosition;
 		private static Vector2 materialSelectorScrollPosition;
 		private static string materialSelectorSearchBar = "";
+		public static string importFileText = "";
 		public static List<Material> MaterialTemplates = new List<Material>();
 
 		public override void OnInit()
@@ -50,7 +52,8 @@ namespace KitchenLib.UI
 			else
 				cube.SetActive(false);
 
-			GUILayout.BeginArea(new Rect(0, 0, 795, 100)); //Default Material Selector
+			GUILayout.BeginArea(new Rect(0, 0, 397, 100)); //Default Material Selector
+			GUILayout.Label("Material Templates");
 			templateScrollPosition = GUILayout.BeginScrollView(templateScrollPosition, false, false, GUIStyle.none, GUI.skin.verticalScrollbar);
 			for (int i = 0; i < MaterialTemplates.Count; i++)
 			{
@@ -62,7 +65,8 @@ namespace KitchenLib.UI
 			GUILayout.EndScrollView();
 			GUILayout.EndArea();
 
-			GUILayout.BeginArea(new Rect(0, 100, 795, 100)); //Material Selector
+			GUILayout.BeginArea(new Rect(397, 0, 397, 100)); //Material Selector
+			GUILayout.Label("Existing Materials");
 			materialSelectorSearchBar = GUILayout.TextField(materialSelectorSearchBar);
 			materialSelectorScrollPosition = GUILayout.BeginScrollView(materialSelectorScrollPosition, false, false, GUIStyle.none, GUI.skin.verticalScrollbar);
 			foreach (Material material in MaterialUtils.GetAllMaterials(true, new List<string> { "Simple Flat", "Simple Transparent", "Flat", "Indicator Light", "Ghost", "Foliage", "Flat Image", "Fairy Lights", "Walls" }))
@@ -76,6 +80,33 @@ namespace KitchenLib.UI
 				}
 			}
 			GUILayout.EndScrollView();
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(0, 100, 397, 25));
+			GUILayout.Label("Material Importer");
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(397, 100, 397, 25));
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(0, 125, 397, 25));
+			importFileText = GUILayout.TextField(importFileText);
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(397, 125, 397, 25));
+			if (GUILayout.Button("Import"))
+			{
+				string json = "";
+				if (File.Exists(importFileText))
+				{
+					json = File.ReadAllText(importFileText);
+				}
+				if (!json.IsNullOrEmpty())
+				{
+					Material material = JSONManager.LoadMaterialFromJson(json);
+					SetCubeMaterial(material);
+				}
+			}
 			GUILayout.EndArea();
 
 			GUILayout.BeginArea(new Rect(0, 200, 795, 800)); //Material Value Editor
