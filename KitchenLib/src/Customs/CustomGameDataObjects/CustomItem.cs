@@ -42,6 +42,7 @@ namespace KitchenLib.Customs
         public virtual bool IsMergeableSide { get; protected set; }
         public virtual Item ExtendedDirtItem { get; protected set; }
 		public virtual string ColourBlindTag { get; protected set; }
+		public virtual int RewardOverride { get; protected set; } = -1;
 
 		//private static readonly Item empty = ScriptableObject.CreateInstance<Item>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -71,7 +72,10 @@ namespace KitchenLib.Customs
 			if (!string.IsNullOrEmpty(ColourBlindTag))
 				ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
 
-            gameDataObject = result;
+			if (RewardOverride != -1)
+				Item_Patch.AddRewardOverride(result.ID, RewardOverride);
+
+			gameDataObject = result;
         }
 
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)

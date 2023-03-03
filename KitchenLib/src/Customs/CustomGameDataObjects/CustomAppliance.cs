@@ -4,6 +4,7 @@ using UnityEngine;
 using Kitchen;
 using System.Linq;
 using System;
+using KitchenLib.src.Patches;
 
 namespace KitchenLib.Customs
 {
@@ -82,8 +83,10 @@ namespace KitchenLib.Customs
 		[Obsolete("Please create a custom system for interactions")]
 		public virtual void PostInteract(InteractionData data) { }
 
-        //private static readonly Appliance empty = ScriptableObject.CreateInstance<Appliance>();
-        public override void Convert(GameData gameData, out GameDataObject gameDataObject)
+		public virtual int PurchaseCostOverride { get; protected set; } = -1;
+
+		//private static readonly Appliance empty = ScriptableObject.CreateInstance<Appliance>();
+		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
 			Appliance result = ScriptableObject.CreateInstance<Appliance>();
 			
@@ -117,6 +120,11 @@ namespace KitchenLib.Customs
             if (result.PreventSale != PreventSale) result.PreventSale = PreventSale;
             if (result.IsNonCrated != IsNonCrated) result.IsNonCrated = IsNonCrated;
             if (result.Info != Info) result.Info = Info;
+
+			if (PurchaseCostOverride != -1)
+			{
+				Appliance_Patch.AddPurchaseCostOverride(result.ID, PurchaseCostOverride);
+			}
 
 			if (InfoList.Count > 0)
 			{
