@@ -183,6 +183,7 @@ namespace KitchenLib
 		public T AddGameDataObject<T>() where T : CustomGameDataObject, new()
 		{
 			T gdo = new T();
+			gdo.ModID = ModID;
 			gdo.ModName = ModName;
 			if (canRegisterGDO)
 			{
