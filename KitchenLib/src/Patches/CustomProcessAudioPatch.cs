@@ -4,7 +4,7 @@ using KitchenLib.Event;
 using KitchenLib.Utils;
 using UnityEngine;
 
-namespace KitchenLib.Customs
+namespace KitchenLib.Patches
 {
 	[HarmonyPatch(typeof(PlayerView), "GetSound")]
 	public class PlayerViewPatch

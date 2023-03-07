@@ -2,7 +2,7 @@
 using KitchenData;
 using System.Collections.Generic;
 
-namespace KitchenLib
+namespace KitchenLib.Patches
 {
 	[HarmonyPatch(typeof(Item), "SetupForGame")]
 	public class Item_Patch

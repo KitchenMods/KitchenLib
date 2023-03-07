@@ -2,7 +2,7 @@ using HarmonyLib;
 using Kitchen;
 using Kitchen.NetworkSupport;
 
-namespace KitchenLib
+namespace KitchenLib.Patches
 {
 	[HarmonyPatch(typeof(DisplayVersion), "Awake")]
 	public class DisplayVersion_Patch

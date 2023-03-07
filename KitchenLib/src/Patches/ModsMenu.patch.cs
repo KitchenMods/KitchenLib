@@ -9,7 +9,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace KitchenLib
+namespace KitchenLib.Patches
 {
 	[HarmonyPatch(typeof(MainMenuView), "SetupMenus")]
 	class MainMenuView_Patch
@@ -93,32 +93,6 @@ namespace KitchenLib
 		public override void Setup(int player_id)
 		{
 			ProfileManager.Main.Load();
-
-#if BEPINEX
-			string[] newLines;
-			if (File.Exists("BepInEx/config/BepInEx.cfg"))
-			{
-				string[] lines = File.ReadAllLines("BepInEx/config/BepInEx.cfg");
-
-				for (int i = 0; i < lines.Length; i++)
-				{
-					if (lines[i].Contains("EnableAssemblyCache = true"))
-					{
-						lines[i] = "EnableAssemblyCache = false";
-						newLines = lines;
-						AddLabel("BEPINEX WARNING");
-						AddInfo("We have detected that you have enabled the BepInEx assembly cache. This is known to cause issues with the game, and is not supported. Please disable it in the BepInEx config or by using the button below, and restart your game.");
-						AddButton("Disable BepInEx Cache", delegate
-						{
-							File.WriteAllLines("BepInEx/config/BepInEx.cfg", lines);
-							Main.instance.Log("Disabled BepInEx Caching");
-						});
-						New<SpacerElement>(true);
-						New<SpacerElement>(true);
-					}
-				}
-			}
-#endif
 
 			AddSubmenuButton(GameData.Main.GlobalLocalisation["MAIN_MENU_SINGLEPLAYER"], typeof(SingleplayerMainMenu), false);
 			AddSubmenuButton(GameData.Main.GlobalLocalisation["MAIN_MENU_MULTIPLAYER"], typeof(MultiplayerMainMenu), false);

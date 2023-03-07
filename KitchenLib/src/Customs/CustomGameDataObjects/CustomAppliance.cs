@@ -1,6 +1,6 @@
 using Kitchen;
 using KitchenData;
-using KitchenLib.src.Patches;
+using KitchenLib.Patches;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -2,6 +2,7 @@ using HarmonyLib;
 using Kitchen;
 using KitchenData;
 using KitchenLib.Colorblind;
+using KitchenLib.Customs;
 using KitchenLib.Event;
 using KitchenLib.Systems;
 using KitchenLib.Utils;
@@ -9,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace KitchenLib.Customs
+namespace KitchenLib.Patches
 {
 	[HarmonyPatch(typeof(GameDataConstructor), "BuildGameData", new Type[] { })]
 	public class GameDataConstructor_Patch

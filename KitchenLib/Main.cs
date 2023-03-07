@@ -3,6 +3,7 @@ using KitchenData;
 using KitchenLib.Colorblind;
 using KitchenLib.DevUI;
 using KitchenLib.Event;
+using KitchenLib.Patches;
 using KitchenLib.UI;
 using KitchenMods;
 using System.IO;
@@ -17,7 +18,7 @@ namespace KitchenLib
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
 		public const string MOD_VERSION = "0.5.6";
-		public const string MOD_BETA_VERSION = "3";
+		public const string MOD_BETA_VERSION = "4";
 		public const string MOD_COMPATIBLE_VERSIONS = "1.1.4";
 
 		public static AssetBundle bundle;
