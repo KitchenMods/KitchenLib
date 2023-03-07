@@ -4,7 +4,8 @@ using KitchenMods;
 using Unity.Collections;
 using Unity.Entities;
 
-namespace KitchenLib {
+namespace KitchenLib
+{
 	[UpdateAfter(typeof(AssignMenuRequests))]
 	public class RemoveBlacklistedSides : GameSystemBase, IModSystem
 	{

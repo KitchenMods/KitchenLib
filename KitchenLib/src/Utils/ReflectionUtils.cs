@@ -1,7 +1,7 @@
-﻿using System;
+﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
-using HarmonyLib;
 
 namespace KitchenLib.Utils
 {

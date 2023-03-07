@@ -5,27 +5,27 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomProcess : CustomLocalisedGameDataObject<ProcessInfo>
-    {
-        public virtual GameDataObject BasicEnablingAppliance { get; protected set; }
-        public virtual int EnablingApplianceCount { get; protected set; } = 1;
-        public virtual Process IsPseudoprocessFor { get; protected set; }
-        public virtual bool CanObfuscateProgress { get; protected set; }
+	public abstract class CustomProcess : CustomLocalisedGameDataObject<ProcessInfo>
+	{
+		public virtual GameDataObject BasicEnablingAppliance { get; protected set; }
+		public virtual int EnablingApplianceCount { get; protected set; } = 1;
+		public virtual Process IsPseudoprocessFor { get; protected set; }
+		public virtual bool CanObfuscateProgress { get; protected set; }
 
 		[Obsolete("Please set your Icon in Info")]
 		public virtual string Icon { get; protected set; } = "!";
 
-        //private static readonly Process result = ScriptableObject.CreateInstance<Process>();
-        public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-        {
-            Process result = ScriptableObject.CreateInstance<Process>();
+		//private static readonly Process result = ScriptableObject.CreateInstance<Process>();
+		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
+		{
+			Process result = ScriptableObject.CreateInstance<Process>();
 
-            if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<Process>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
+			if (BaseGameDataObjectID != -1)
+				result = UnityEngine.Object.Instantiate(gameData.Get<Process>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (result.ID != ID) result.ID = ID;
-            if (result.EnablingApplianceCount != EnablingApplianceCount) result.EnablingApplianceCount = EnablingApplianceCount;
-            if (result.CanObfuscateProgress != CanObfuscateProgress) result.CanObfuscateProgress = CanObfuscateProgress;
+			if (result.ID != ID) result.ID = ID;
+			if (result.EnablingApplianceCount != EnablingApplianceCount) result.EnablingApplianceCount = EnablingApplianceCount;
+			if (result.CanObfuscateProgress != CanObfuscateProgress) result.CanObfuscateProgress = CanObfuscateProgress;
 
 			if (result.Info != Info) result.Info = Info;
 
@@ -50,14 +50,14 @@ namespace KitchenLib.Customs
 			}
 
 			gameDataObject = result;
-        }
+		}
 
-        public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
-        {
-            Process result = (Process)gameDataObject;
+		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
+		{
+			Process result = (Process)gameDataObject;
 
-            if (result.BasicEnablingAppliance != BasicEnablingAppliance) result.BasicEnablingAppliance = BasicEnablingAppliance;
-            if (result.IsPseudoprocessFor != IsPseudoprocessFor) result.IsPseudoprocessFor = IsPseudoprocessFor;
-        }
-    }
+			if (result.BasicEnablingAppliance != BasicEnablingAppliance) result.BasicEnablingAppliance = BasicEnablingAppliance;
+			if (result.IsPseudoprocessFor != IsPseudoprocessFor) result.IsPseudoprocessFor = IsPseudoprocessFor;
+		}
+	}
 }

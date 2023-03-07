@@ -1,10 +1,6 @@
-﻿using Kitchen;
-using KitchenData;
-using System;
+﻿using KitchenData;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -20,7 +16,7 @@ namespace KitchenLib.Customs
 		public virtual List<PlayerCosmetic> Cosmetics { get; protected set; } = new List<PlayerCosmetic>();
 		public virtual List<ICustomerProperty> Properties { get; protected set; } = new List<ICustomerProperty>();
 
-		
+
 		//private static readonly CustomerType empty = ScriptableObject.CreateInstance<CustomerType>();
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{

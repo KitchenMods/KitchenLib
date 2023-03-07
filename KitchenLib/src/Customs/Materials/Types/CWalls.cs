@@ -1,8 +1,8 @@
 ﻿using KitchenLib.Utils;
 using Newtonsoft.Json;
 using System;
-using UnityEngine;
 using System.IO;
+using UnityEngine;
 
 namespace KitchenLib.Customs
 {
@@ -151,11 +151,11 @@ namespace KitchenLib.Customs
 				result._Color0X = material.GetVector("_Color0").x;
 				result._Color0Y = material.GetVector("_Color0").y;
 				result._Color0Z = material.GetVector("_Color0").z;
-				
+
 				result._Colour1X = material.GetVector("_Colour1").x;
 				result._Colour1Y = material.GetVector("_Colour1").y;
 				result._Colour1Z = material.GetVector("_Colour1").z;
-				
+
 				result._Highlight = material.GetInt("_Highlight") == 1;
 				result._HasTextureOverlay = material.GetInt("_HasTextureOverlay") == 1;
 				result._Shininess = material.GetFloat("_Shininess");

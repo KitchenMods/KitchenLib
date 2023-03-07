@@ -1,8 +1,6 @@
-﻿using KitchenLib.Utils;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using UnityEngine;
-using System.IO;
 
 namespace KitchenLib.Customs
 {
@@ -44,7 +42,7 @@ namespace KitchenLib.Customs
 			_Color0.y = GUILayout.HorizontalSlider(_Color0.y, 0.0f, 1.0f);
 			_Color0.z = GUILayout.HorizontalSlider(_Color0.z, 0.0f, 1.0f);
 			material.SetVector("_Color0", _Color0);
-			
+
 			Vector4 _Color1 = material.GetVector("_Color1");
 
 			GUILayout.Label("_Color1");
@@ -62,7 +60,7 @@ namespace KitchenLib.Customs
 				result._Color0X = material.GetVector("_Color0").x;
 				result._Color0Y = material.GetVector("_Color0").y;
 				result._Color0Z = material.GetVector("_Color0").z;
-				
+
 				result._Color1X = material.GetVector("_Color1").x;
 				result._Color1Y = material.GetVector("_Color1").y;
 				result._Color1Z = material.GetVector("_Color1").z;

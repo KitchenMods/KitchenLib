@@ -1,20 +1,20 @@
-using System.Collections.Generic;
-using UnityEngine;
 using Kitchen;
 using Kitchen.Modules;
 using KitchenLib.Preferences;
-using System.Linq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace KitchenLib
 {
-    public class KLMenu<T> : Menu<T>
-    {
-        public KLMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
+	public class KLMenu<T> : Menu<T>
+	{
+		public KLMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
 
-        public override void Setup(int player_id) { }
-        protected void BoolOption(BoolPreference pref)
-        {
+		public override void Setup(int player_id) { }
+		protected void BoolOption(BoolPreference pref)
+		{
 			this.Add<bool>(new Option<bool>(new List<bool>
 			{
 				false,
@@ -23,11 +23,11 @@ namespace KitchenLib
 			{
 				this.Localisation["SETTING_DISABLED"],
 				this.Localisation["SETTING_ENABLED"]
-			}, null)).OnChanged += delegate(object _, bool f)
+			}, null)).OnChanged += delegate (object _, bool f)
 			{
 				pref.Value = f;
 			};
-        }
+		}
 		private string mod_id = "";
 		private int CreateNewProfileIndex;
 		private PreferenceManager manager;
@@ -37,7 +37,7 @@ namespace KitchenLib
 			this.manager = manager;
 			List<string> profiles = GlobalPreferences.GetProfiles(mod_id).ToList();
 			string current_profile = GlobalPreferences.GetProfile(mod_id);
-			
+
 			if (profiles.Count > 0)
 			{
 				if (!profiles.Contains(current_profile))
@@ -143,5 +143,5 @@ namespace KitchenLib
 			}
 			base.RequestSubMenu(base.GetType(), true);
 		}
-    }
+	}
 }

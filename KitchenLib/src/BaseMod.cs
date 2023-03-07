@@ -1,18 +1,14 @@
-using System.Reflection;
-using Semver;
-using UnityEngine;
-using KitchenLib.Utils;
-using System.Runtime.CompilerServices;
-using KitchenLib.Registry;
 using KitchenLib.Customs;
 using KitchenLib.DevUI;
+using KitchenLib.Registry;
+using KitchenLib.Utils;
+using KitchenMods;
+using Semver;
 using System;
 using System.Collections.Generic;
-using KitchenMods;
-using System.CodeDom;
-using Newtonsoft.Json;
-using Unity.Entities;
-using System.Web.WebSockets;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using UnityEngine;
 
 namespace KitchenLib
 {
@@ -32,9 +28,9 @@ namespace KitchenLib
 		private static List<Assembly> PatchedAssemblies = new List<Assembly>();
 		private bool isRegistered = false;
 		private bool canRegisterGDO = false;
-		
+
 		public static HarmonyLib.Harmony harmonyInstance;
-		
+
 		public BaseMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly) : base()
 		{
 			SetupMod(modID, modName, author, modVersion, "", compatibleVersions, assembly);
@@ -78,7 +74,7 @@ namespace KitchenLib
 			else
 				version = new KitchenVersion("");
 
-			
+
 #if BEPINEX || WORKSHOP
 			if (harmonyInstance == null)
 				harmonyInstance = new HarmonyLib.Harmony(modID);
@@ -131,7 +127,7 @@ namespace KitchenLib
 					JSONManager.LoadAllJsons(bundle);
 				}
 			}
-			
+
 			foreach (BaseJson json in JSONManager.LoadedJsons)
 			{
 				Main.instance.Log(json.GetType().ToString());
@@ -151,7 +147,7 @@ namespace KitchenLib
 					AddMaterial(mat);
 				}
 			}
-			
+
 			OnPostActivate(mod);
 			canRegisterGDO = false;
 		}

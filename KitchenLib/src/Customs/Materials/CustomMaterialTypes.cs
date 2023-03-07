@@ -1,6 +1,6 @@
-﻿using System;
+﻿using KitchenLib.Utils;
+using System;
 using UnityEngine;
-using KitchenLib.Utils;
 
 namespace KitchenLib.Customs
 {
@@ -41,7 +41,7 @@ namespace KitchenLib.Customs
 			result.name = Name;
 			result.SetVector("_Color0", new Vector4(_Color0X, _Color0Y, _Color0Z, _Color0W));
 			result.SetInt("_Highlight", _Highlight);
-			
+
 			if (_OverlayBase64 != "" && _OverlayBase64 != String.Empty)
 				result.SetTexture("_Overlay", ResourceUtils.LoadTextureFromBase64(_OverlayBase64));
 			result.SetFloat("_HasTextureOverlay", _HasTextureOverlay);
@@ -60,7 +60,7 @@ namespace KitchenLib.Customs
 			result.SetVector("_OverlayTextureScale", new Vector4(_OverlayTextureScaleX, _OverlayTextureScaleY, _OverlayTextureScaleZ, _OverlayTextureScaleW));
 			result.SetVector("_OverlayColour", new Vector4(_OverlayColourX, _OverlayColourY, _OverlayColourZ, _OverlayColourW));
 
-			material =  result;
+			material = result;
 		}
 	}
 

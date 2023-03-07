@@ -1,9 +1,9 @@
-using UnityEngine;
-using Unity.Entities;
+using Kitchen;
 using KitchenLib.Customs;
 using System.Collections.Generic;
 using System.Reflection;
-using Kitchen;
+using Unity.Entities;
+using UnityEngine;
 
 namespace KitchenLib.Utils
 {
@@ -20,9 +20,10 @@ namespace KitchenLib.Utils
 			return PostHelpers.CreateBlueprintLetter(EntityUtils.GetEntityManager(), position, id, priceModifier, forcePrice, false);
 		}
 
-		public static Entity SpawnApplianceBlueprintAtPlayer<T>(float priceModifier = 0f, int forcePrice = -1, bool use_red = false) where T : CustomAppliance {
+		public static Entity SpawnApplianceBlueprintAtPlayer<T>(float priceModifier = 0f, int forcePrice = -1, bool use_red = false) where T : CustomAppliance
+		{
 			var appliance = GDOUtils.GetCustomGameDataObject<T>();
-			if(appliance == null)
+			if (appliance == null)
 				return default(Entity);
 			return SpawnApplianceBlueprintAtPlayer(appliance.ID, priceModifier, forcePrice, use_red);
 		}
@@ -31,7 +32,7 @@ namespace KitchenLib.Utils
 		{
 			ProvideStartingEnvelopes provideStartingEnvelopesInstance = SystemUtils.GetSystem<ProvideStartingEnvelopes>();
 			MethodInfo getPostTile = ReflectionUtils.GetMethod<ProvideStartingEnvelopes>("GetPostTiles");
-			List<Vector3> postTiles = (List<Vector3>)getPostTile.Invoke(provideStartingEnvelopesInstance, new object[]{false});
+			List<Vector3> postTiles = (List<Vector3>)getPostTile.Invoke(provideStartingEnvelopesInstance, new object[] { false });
 			int num = 0;
 			Vector3 position;
 			if (provideStartingEnvelopesInstance.FindTile(ref num, postTiles, out position))

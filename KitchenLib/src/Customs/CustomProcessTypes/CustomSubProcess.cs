@@ -1,17 +1,17 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomSubProcess
-    {
+	public abstract class CustomSubProcess
+	{
 
-        public virtual string UniqueName { get; protected set; }
+		public virtual string UniqueName { get; protected set; }
 
 		public static Dictionary<string, CustomSubProcess> SubProcesses = new Dictionary<string, CustomSubProcess>();
 		public static Dictionary<Type, CustomSubProcess> SubProcessesByType = new Dictionary<Type, CustomSubProcess>();
 
-        public static T RegisterSubProcess<T>(T subproc) where T : CustomSubProcess
+		public static T RegisterSubProcess<T>(T subproc) where T : CustomSubProcess
 		{
 
 			if (SubProcesses.ContainsKey(subproc.UniqueName))
@@ -36,5 +36,5 @@ namespace KitchenLib.Customs
 			SubProcessesByType.TryGetValue(typeof(T), out var result);
 			return result;
 		}
-    }
+	}
 }

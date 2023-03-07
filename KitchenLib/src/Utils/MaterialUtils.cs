@@ -1,14 +1,12 @@
-using UnityEngine;
-using System.Collections.Generic;
-using KitchenData;
 using KitchenLib.Customs;
-using UnityEngine.Rendering.Universal.Internal;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace KitchenLib.Utils
 {
 	public class MaterialUtils
 	{
-        private static Dictionary<string, Material> materialIndex = new Dictionary<string, Material>();
+		private static Dictionary<string, Material> materialIndex = new Dictionary<string, Material>();
 
 		public static void ApplyMaterial(GameObject prefab, string path, Material[] materials)
 		{
@@ -30,7 +28,7 @@ namespace KitchenLib.Utils
 			var splitPath = path.Split('/');
 			foreach (var part in splitPath)
 				currentRef = currentRef?.Find(part);
-			
+
 			var component = currentRef?.GetComponent<T>();
 			if (component == null)
 				return; // or throw?
@@ -39,25 +37,25 @@ namespace KitchenLib.Utils
 		}
 
 		private static List<GameObject> ListOfChildren = new List<GameObject>();
-        private static void getChildRecursive(GameObject obj)
-        {
-            if (null == obj)
-                return;
+		private static void getChildRecursive(GameObject obj)
+		{
+			if (null == obj)
+				return;
 
-            if (obj.name.ToLower().Contains("wallpaper") || obj.name.ToLower().Contains("flooring"))
-                return;
+			if (obj.name.ToLower().Contains("wallpaper") || obj.name.ToLower().Contains("flooring"))
+				return;
 
-            foreach (Transform child in obj.transform)
-            {
-                if (null == child)
-                    continue;
-                ListOfChildren.Add(child.gameObject);
-                getChildRecursive(child.gameObject);
-            }
-        }
+			foreach (Transform child in obj.transform)
+			{
+				if (null == child)
+					continue;
+				ListOfChildren.Add(child.gameObject);
+				getChildRecursive(child.gameObject);
+			}
+		}
 
-        public static void SetupMaterialIndex()
-        {
+		public static void SetupMaterialIndex()
+		{
 			if (materialIndex.Count > 0)
 				return;
 
@@ -106,16 +104,16 @@ namespace KitchenLib.Utils
 		}
 
 		public static Material GetExistingMaterial(string materialName)
-        {
-            if (materialIndex.ContainsKey(materialName))
-                return materialIndex[materialName];
-            else
-                return null;
-        }
+		{
+			if (materialIndex.ContainsKey(materialName))
+				return materialIndex[materialName];
+			else
+				return null;
+		}
 
 		public static Material GetCustomMaterial(string materialName)
 		{
 			return CustomMaterials.CustomMaterialsIndex[materialName];
 		}
-    }
+	}
 }

@@ -2,13 +2,8 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unity.Entities;
 using UnityEngine;
 
 namespace KitchenLib
@@ -60,27 +55,6 @@ namespace KitchenLib
 
 		public static void LoadAllJsons(AssetBundle bundle)
 		{
-			/*
-			foreach (TextAsset asset in bundle.LoadAllAssets<TextAsset>())
-			{
-				Main.instance.Log("Loading " + asset.name);
-				BaseJson baseJson = null;
-				try
-				{
-					baseJson = JsonConvert.DeserializeObject<BaseJson>(asset.text);
-				}
-				catch
-				{
-					Main.instance.Log(asset.name + " Could Not Be Loaded");
-				}
-				
-				if (baseJson != null)
-				{
-					var newJson = JsonConvert.DeserializeObject(asset.text, keyValuePairs[baseJson.Type]);
-					LoadedJsons.Add(newJson as BaseJson);
-				}
-			}
-			*/
 			foreach (TextAsset asset in bundle.LoadAllAssets<TextAsset>())
 			{
 				Main.instance.Log("Loading " + asset.name);
