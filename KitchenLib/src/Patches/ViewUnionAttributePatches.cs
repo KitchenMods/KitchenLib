@@ -32,7 +32,7 @@ namespace KitchenLib.src.Patches
             {
                 var oldKey = key;
                 key = GenerateKey(subType);
-                Main.instance.Log($"Changed UnionAttribute({oldKey} => {key}, {subType.FullName} (in {subType.Namespace}))");
+                Main.LogInfo($"Changed UnionAttribute({oldKey} => {key}, {subType.FullName} (in {subType.Namespace}))");
             }
         }
 

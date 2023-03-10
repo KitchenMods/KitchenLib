@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace KitchenLib.src.Patches
+namespace KitchenLib.Patches
 {
 
 	[HarmonyPatch(typeof(Debug), "LogWarning", new[] { typeof(object) })]

@@ -1,11 +1,11 @@
 using KitchenData;
+using KitchenLib.Patches;
 using KitchenLib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
-using KitchenLib.Patches;
 
 namespace KitchenLib.Customs
 {
@@ -64,9 +64,9 @@ namespace KitchenLib.Customs
 			}
 
 			if (!string.IsNullOrEmpty(IconOverride))
-				Unlock_Patch.IconOverrides.Add(result.ID, IconOverride);
+				Unlock_Patch.AddIconOverride(result.ID, IconOverride);
 			if (ColourOverride != new Color())
-				Unlock_Patch.ColourOverrides.Add(result.ID, ColourOverride);
+				Unlock_Patch.AddColourOverride(result.ID, ColourOverride);
 
 			gameDataObject = result;
         }
@@ -104,7 +104,7 @@ namespace KitchenLib.Customs
             }
             else
             {
-                Main.instance.Warning($"Dish with ID '{UniqueNameID}' does not have a display prefab set.");
+                Main.LogWarning($"Dish with ID '{UniqueNameID}' does not have a display prefab set.");
             }
             if (dish?.IconPrefab != null)
             {
@@ -112,7 +112,7 @@ namespace KitchenLib.Customs
             }
             else
             {
-                Main.instance.Warning($"Dish with ID '{UniqueNameID}' does not have an icon prefab set.");
+                Main.LogWarning($"Dish with ID '{UniqueNameID}' does not have an icon prefab set.");
             }
 
             base.OnRegister(gameDataObject);

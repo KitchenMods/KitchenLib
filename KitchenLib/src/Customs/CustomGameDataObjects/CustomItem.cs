@@ -1,11 +1,12 @@
 using KitchenData;
+using KitchenLib.Colorblind;
+using KitchenLib.Patches;
 using KitchenLib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
-using KitchenLib.Colorblind;
 
 namespace KitchenLib.Customs
 {
@@ -14,7 +15,7 @@ namespace KitchenLib.Customs
     {
         public virtual GameObject Prefab { get; protected set; }
         public virtual GameObject SidePrefab { get; protected set; }
-        public virtual List<Item.ItemProcess> Processes { get; protected set; }=new List<Item.ItemProcess>();
+		public virtual List<Item.ItemProcess> Processes { get; protected set; } = new List<Item.ItemProcess>();
         public virtual List<IItemProperty> Properties { get; protected set; } = new List<IItemProperty>();
         public virtual float ExtraTimeGranted { get; protected set; }
         public virtual ItemValue ItemValue { get; protected set; } = ItemValue.Small;
@@ -43,6 +44,7 @@ namespace KitchenLib.Customs
         public virtual bool IsMergeableSide { get; protected set; }
         public virtual Item ExtendedDirtItem { get; protected set; }
 		public virtual string ColourBlindTag { get; protected set; }
+		public virtual int RewardOverride { get; protected set; } = -1;
 
 		//private static readonly Item empty = ScriptableObject.CreateInstance<Item>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -71,6 +73,9 @@ namespace KitchenLib.Customs
 
 			if (!string.IsNullOrEmpty(ColourBlindTag))
 				ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
+
+			if (RewardOverride != -1)
+				Item_Patch.AddRewardOverride(result.ID, RewardOverride);
 
             gameDataObject = result;
         }
@@ -104,7 +109,7 @@ namespace KitchenLib.Customs
             }
             else
             {
-                Main.instance.Warning($"Item/ItemGroup with ID '{UniqueNameID}' does not have a prefab set.");
+                Main.LogWarning($"Item/ItemGroup with ID '{UniqueNameID}' does not have a prefab set.");
             }
 
             base.OnRegister(gameDataObject);

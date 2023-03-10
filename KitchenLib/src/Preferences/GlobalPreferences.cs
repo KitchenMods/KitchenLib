@@ -54,7 +54,7 @@ namespace KitchenLib.Preferences
 				Setup();
 			return GetProfiles(mod_id).Contains<string>(profile);
 		}
-		
+
 		public static string GetProfile(string mod_id)
 		{
 			if (Manager == null)

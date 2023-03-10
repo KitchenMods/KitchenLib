@@ -1,12 +1,9 @@
 ﻿using KitchenLib.Customs;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unity.Entities;
+using System.IO;
 using UnityEngine;
 
 namespace KitchenLib
@@ -15,33 +12,83 @@ namespace KitchenLib
 	{
 		public static Dictionary<JsonType, Type> keyValuePairs = new Dictionary<JsonType, Type>
 		{
+			{ JsonType.Base, typeof(BaseJson) },
 			{ JsonType.FlatColorMaterial, typeof(CustomSimpleFlat) },
 			{ JsonType.TransparentMaterial, typeof(CustomSimpleTransparent) },
-			{ JsonType.ImageMaterial, typeof(CustomFlatImage) }
+			{ JsonType.ImageMaterial, typeof(CustomFlatImage) },
+			{ JsonType.CustomMaterial, typeof(CustomMaterial) },
+			{ JsonType.CSimpleFlat, typeof(CSimpleFlat) },
+			{ JsonType.CSimpleTransparent, typeof(CSimpleTransparent) },
+			{ JsonType.CFlatImage, typeof(CFlatImage) },
+			{ JsonType.CFlat, typeof(CFlat) },
+			{ JsonType.CIndicatorLight, typeof(CIndicatorLight) },
+			{ JsonType.CGhost, typeof(CGhost) },
+			{ JsonType.CFairyLight, typeof(CFairyLight) },
+			{ JsonType.CFoliage, typeof(CFoliage) },
+			{ JsonType.CWalls, typeof(CWalls) },
+			{ JsonType.CBlueprintLight, typeof(CBlueprintLight) },
 		};
 
 		public static List<BaseJson> LoadedJsons = new List<BaseJson>();
+
+		public static Material LoadMaterialFromJson(string json)
+		{
+			BaseJson baseJson = null;
+			try
+			{
+				baseJson = JsonConvert.DeserializeObject<BaseJson>(json);
+			}
+			catch { }
+
+			if (baseJson != null)
+			{
+				var newJson = JsonConvert.DeserializeObject(json, keyValuePairs[baseJson.Type]);
+				CustomMaterial customMaterial = newJson as CustomMaterial;
+				Material material;
+				customMaterial.Deserialise();
+				customMaterial.ConvertMaterial(out material);
+				return material;
+			}
+			Main.LogWarning("Unable to load JSON");
+			return new Material(Shader.Find("Simple Flat"));
+
+		}
 
 		public static void LoadAllJsons(AssetBundle bundle)
 		{
 			foreach (TextAsset asset in bundle.LoadAllAssets<TextAsset>())
 			{
-				Main.instance.Log("Loading " + asset.name);
+				Main.LogInfo($"Loading JSON-based material asset '{asset.name}'");
 				BaseJson baseJson = null;
 				try
 				{
-					baseJson = JsonConvert.DeserializeObject<BaseJson>(asset.text);
+					try
+					{
+						JObject jObject = JObject.Parse(asset.text);
+						if (jObject.TryGetValue("Type", out JToken jToken))
+						{
+							JsonType type = jToken.ToObject<JsonType>();
+							var json = jObject.ToObject(keyValuePairs[type]);
+							LoadedJsons.Add(json as BaseJson);
+						}
+					}
+					catch (Exception e)
+					{
+						Main.LogWarning(asset.name + " Could Not Be Loaded");
+						Main.LogWarning(e.Message);
+					}
 				}
-				catch
+				catch (Exception e)
 				{
-					Main.instance.Log(asset.name + " Could Not Be Loaded");
+					Main.LogWarning($"Material asset '{asset.name}' could not be loaded");
 				}
+			}
 
-				if (baseJson != null)
-				{
-					var newJson = JsonConvert.DeserializeObject(asset.text, keyValuePairs[baseJson.Type]);
-					LoadedJsons.Add(newJson as BaseJson);
-				}
+			foreach (CustomMaterial material in LoadedJsons)
+			{
+				material.Deserialise();
+				material.ConvertMaterial(out Material newMaterial);
+				CustomMaterials.AddMaterial(material.Name, newMaterial);
 			}
 		}
 	}
@@ -56,6 +103,17 @@ namespace KitchenLib
 		Base,
 		FlatColorMaterial,
 		TransparentMaterial,
-		ImageMaterial
+		ImageMaterial,
+		CustomMaterial,
+		CSimpleFlat,
+		CSimpleTransparent,
+		CFlatImage,
+		CFlat,
+		CIndicatorLight,
+		CGhost,
+		CFairyLight,
+		CFoliage,
+		CWalls,
+		CBlueprintLight
 	}
 }

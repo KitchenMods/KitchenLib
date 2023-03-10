@@ -1,6 +1,6 @@
-using UnityEngine;
-using System.Collections.Generic;
 using KitchenLib.Customs;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace KitchenLib.Utils
 {
@@ -200,6 +200,37 @@ namespace KitchenLib.Utils
 					MaterialIndex.Add(material.name, material);
 				}
 			}
+		}
+
+		public static List<Material> GetAllMaterials(bool includeCustom)
+		{
+			List<Material> materials = new List<Material>();
+			foreach (Material material in MaterialIndex.Values)
+			{
+				materials.Add(material);
+			}
+
+			return materials;
+		}
+
+		public static List<Material> GetAllMaterials(bool includeCustom, List<string> shaders)
+		{
+			List<Material> materials = new List<Material>();
+			foreach (Material material in MaterialIndex.Values)
+			{
+				if (shaders.Contains(material.shader.name))
+					materials.Add(material);
+			}
+
+			foreach (Material material in CustomMaterials.GetCustomMaterials())
+			{
+				if (shaders.Contains(material.shader.name))
+				{
+					materials.Add(material);
+				}
+			}
+
+			return materials;
 		}
 
         /// <summary>

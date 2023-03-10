@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
 using KitchenData;
-using System.Linq;
 using KitchenLib.Customs;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace KitchenLib.Utils
 {
@@ -28,15 +28,15 @@ namespace KitchenLib.Utils
 			return gdo;
 		}
 
-		public static CustomGameDataObject GetCustomGameDataObject(string modName, string name)
+		public static CustomGameDataObject GetCustomGameDataObject(string modID, string name)
 		{
-			CustomGDO.GDOsByGUID.TryGetValue(new KeyValuePair<string, string>(modName, name), out var result);
+			CustomGDO.GDOsByGUID.TryGetValue(new KeyValuePair<string, string>(modID, name), out var result);
 			return result;
 		}
 
-		public static List<CustomGameDataObject> GetCustomGameDataObjectsFromMod(string modName)
+		public static List<CustomGameDataObject> GetCustomGameDataObjectsFromMod(string modID)
 		{
-			return CustomGDO.GDOsByGUID.Where(entry => entry.Key.Key == modName).Select(entry => entry.Value).ToList();
+			return CustomGDO.GDOsByGUID.Where(entry => entry.Key.Key == modID).Select(entry => entry.Value).ToList();
 		}
 
 		public static CustomGameDataObject GetCustomGameDataObject(int id)
@@ -56,9 +56,49 @@ namespace KitchenLib.Utils
 			return (T)GetCustomGameDataObject<C>()?.GameDataObject;
 		}
 
-		public static T GetCastedGDO<T>(string modName, string name) where T : GameDataObject
+		public static T GetCastedGDO<T>(string modID, string name) where T : GameDataObject
 		{
-			return (T)GetCustomGameDataObject(modName, name)?.GameDataObject;
+			return (T)GetCustomGameDataObject(modID, name)?.GameDataObject;
+		}
+
+
+		public static Dictionary<int, List<int>> BlacklistedDishSides = new Dictionary<int, List<int>>();
+		public static void BlacklistSide(Item item, int side)
+		{
+			if (!BlacklistedDishSides.ContainsKey(item.ID))
+			{
+				BlacklistedDishSides.Add(item.ID, new List<int>());
+			}
+			if (!BlacklistedDishSides[item.ID].Contains(side))
+			{
+				BlacklistedDishSides[item.ID].Add(side);
+			}
+		}
+		public static void WhitelistSide(Item item, int side)
+		{
+			if (GameData.Main == null)
+			{
+				Main.LogWarning("Please use WhitelistSide in OnInitialise");
+				return;
+			}
+			foreach (Dish dish in GameData.Main.Get<Dish>())
+			{
+				foreach (Dish.MenuItem menuItem in dish.UnlocksMenuItems)
+				{
+					if (!BlacklistedDishSides.ContainsKey(menuItem.Item.ID))
+						BlacklistedDishSides.Add(menuItem.Item.ID, new List<int>());
+					if (!BlacklistedDishSides[menuItem.Item.ID].Contains(side))
+						BlacklistedDishSides[menuItem.Item.ID].Add(side);
+				}
+			}
+
+			if (BlacklistedDishSides.ContainsKey(item.ID))
+			{
+				if (BlacklistedDishSides[item.ID].Contains(side))
+				{
+					BlacklistedDishSides[item.ID].Remove(side);
+				}
+			}
 		}
 	}
 }
