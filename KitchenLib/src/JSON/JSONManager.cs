@@ -3,12 +3,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 namespace KitchenLib
 {
-	public static class JSONManager
+    public static class JSONManager
 	{
 		public static Dictionary<JsonType, Type> keyValuePairs = new Dictionary<JsonType, Type>
 		{

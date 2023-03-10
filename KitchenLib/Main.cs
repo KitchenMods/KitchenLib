@@ -5,7 +5,6 @@ using KitchenLib.DevUI;
 using KitchenLib.Event;
 using KitchenLib.Patches;
 using KitchenLib.UI;
-using KitchenLib.Colorblind;
 using System.Runtime.CompilerServices;
 using KitchenMods;
 using System.IO;
