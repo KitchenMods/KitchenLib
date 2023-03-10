@@ -1,19 +1,16 @@
 using KitchenData;
-using System;
 using System.Collections.Generic;
 using System.Reflection;
 using KitchenLib.Utils;
 using System.Linq;
 using UnityEngine;
 using KitchenLib.Colorblind;
-using KitchenLib.References;
 using Kitchen;
-using System.CodeDom;
 
 namespace KitchenLib.Customs
 {
     public abstract class CustomItemGroup : CustomItemGroup<ItemGroupView> { }
-    public abstract class CustomItemGroup<T> : CustomItem where T : ItemGroupView
+    public abstract class CustomItemGroup<T> : CustomItem<ItemGroup> where T : ItemGroupView
     {
         public virtual List<ItemGroup.ItemSet> Sets { get; protected set; } = new List<ItemGroup.ItemSet>();
         public virtual bool CanContainSide { get; protected set; }
@@ -52,7 +49,6 @@ namespace KitchenLib.Customs
             if (result.CanContainSide != CanContainSide) result.CanContainSide = CanContainSide;
             if (result.ApplyProcessesToComponents != ApplyProcessesToComponents) result.ApplyProcessesToComponents = ApplyProcessesToComponents;
             if (result.AutoCollapsing != AutoCollapsing) result.AutoCollapsing = AutoCollapsing;
-
 
             gameDataObject = result;
         }

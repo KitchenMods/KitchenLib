@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomResearch : CustomLocalisedGameDataObject<ResearchLocalisation>
+    public abstract class CustomResearch : CustomLocalisedGameDataObject<Research, ResearchLocalisation>
     {
         public virtual int RequiredResearch { get; protected set; }
         public virtual List<IUpgrade> Rewards { get; protected set; } = new List<IUpgrade>();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomUnlock : CustomLocalisedGameDataObject<UnlockInfo>
+    public abstract class CustomUnlock<T> : CustomLocalisedGameDataObject<T, UnlockInfo> where T : Unlock
     {
         public virtual Unlock.RewardLevel ExpReward { get; protected set; } = Unlock.RewardLevel.Medium;
         public virtual bool IsUnlockable { get; protected set; } = true;

@@ -9,7 +9,7 @@ using KitchenLib.Patches;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomDish : CustomUnlock
+    public abstract class CustomDish : CustomUnlock<Dish>
     {
         public virtual DishType Type { get; protected set; }
         public virtual string AchievementName { get; protected set; }
@@ -94,5 +94,31 @@ namespace KitchenLib.Customs
             if (hardcodedRequirements.GetValue(result) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
             if (hardcodedBlockers.GetValue(result) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
         }
+
+        public override void OnRegister(GameDataObject gameDataObject)
+        {
+            Dish dish = gameDataObject as Dish;
+            if (dish?.DisplayPrefab != null)
+            {
+                SetupDisplayPrefab(dish.DisplayPrefab);
+            }
+            else
+            {
+                Main.instance.Warning($"Dish with ID '{UniqueNameID}' does not have a display prefab set.");
+            }
+            if (dish?.IconPrefab != null)
+            {
+                SetupDisplayPrefab(dish.IconPrefab);
+            }
+            else
+            {
+                Main.instance.Warning($"Dish with ID '{UniqueNameID}' does not have an icon prefab set.");
+            }
+
+            base.OnRegister(gameDataObject);
+        }
+
+        public virtual void SetupDisplayPrefab(GameObject prefab) { }
+        public virtual void SetupIconPrefab(GameObject prefab) { }
     }
 }

@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-	public class CustomGDO
+    public class CustomGDO
 	{
 		public static Dictionary<int, CustomGameDataObject> GDOs = new Dictionary<int, CustomGameDataObject>();
 		public static Dictionary<Type, CustomGameDataObject> GDOsByType = new Dictionary<Type, CustomGameDataObject>();

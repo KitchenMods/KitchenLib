@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomPlayerCosmetic : CustomLocalisedGameDataObject<CosmeticInfo>
+    public abstract class CustomPlayerCosmetic : CustomLocalisedGameDataObject<PlayerCosmetic, CosmeticInfo>
     {
         public virtual CosmeticType CosmeticType { get; protected set; }
         public virtual List<RestaurantSetting> CustomerSettings { get; protected set; } = new List<RestaurantSetting>();

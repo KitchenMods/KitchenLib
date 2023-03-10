@@ -9,7 +9,8 @@ using KitchenLib.Colorblind;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomItem : CustomGameDataObject
+    public abstract class CustomItem : CustomItem<Item> { }
+    public abstract class CustomItem<T> : CustomGameDataObject<T>, ICustomHasPrefab where T : Item
     {
         public virtual GameObject Prefab { get; protected set; }
         public virtual GameObject SidePrefab { get; protected set; }
@@ -93,5 +94,22 @@ namespace KitchenLib.Customs
 
             if (processes.GetValue(result) != Processes) processes.SetValue(result, Processes);
         }
+
+        public override void OnRegister(GameDataObject gameDataObject)
+        {
+            IHasPrefab gdo = gameDataObject as IHasPrefab;
+            if (gdo?.Prefab != null)
+            {
+                SetupPrefab(gdo.Prefab);
+            }
+            else
+            {
+                Main.instance.Warning($"Item/ItemGroup with ID '{UniqueNameID}' does not have a prefab set.");
+            }
+
+            base.OnRegister(gameDataObject);
+        }
+
+        public virtual void SetupPrefab(GameObject prefab) { }
     }
 }

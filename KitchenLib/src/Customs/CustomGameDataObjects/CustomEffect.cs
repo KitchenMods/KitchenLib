@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomEffect : CustomGameDataObject
+    public abstract class CustomEffect : CustomGameDataObject<Effect>
     {
         public virtual List<IEffectProperty> Properties { get; protected set; } = new List<IEffectProperty>();
         public virtual IEffectRange EffectRange { get; protected set; }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomEffectRepresentation : CustomLocalisedGameDataObject<EffectInfo>
+    public abstract class CustomEffectRepresentation : CustomLocalisedGameDataObject<EffectRepresentation, EffectInfo>
     {
 		[Obsolete("Please set your Name in Info")]
 		public virtual string Name { get; protected set; }

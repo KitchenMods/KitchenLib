@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomThemeUnlock : CustomUnlock
+    public abstract class CustomThemeUnlock : CustomUnlock<ThemeUnlock>
     {
         public virtual bool IsPrimary { get; protected set; } = true;
         public virtual DecorationType Type { get; protected set; }

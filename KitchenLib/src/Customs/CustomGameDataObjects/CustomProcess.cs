@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomProcess : CustomLocalisedGameDataObject<ProcessInfo>
+    public abstract class CustomProcess : CustomLocalisedGameDataObject<Process, ProcessInfo>
     {
         public virtual GameDataObject BasicEnablingAppliance { get; protected set; }
         public virtual int EnablingApplianceCount { get; protected set; } = 1;

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomUnlockCard : CustomUnlock
+    public abstract class CustomUnlockCard : CustomUnlock<UnlockCard>
     {
         public virtual List<UnlockEffect> Effects { get; protected set; } = new List<UnlockEffect>();
 

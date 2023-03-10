@@ -7,7 +7,7 @@ using System;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomLayoutProfile : CustomLocalisedGameDataObject<BasicInfo>
+    public abstract class CustomLayoutProfile : CustomLocalisedGameDataObject<LayoutProfile, BasicInfo>
     {
         public virtual LayoutGraph Graph { get; protected set; }
         public virtual int MaximumTables { get; protected set; } = 3;

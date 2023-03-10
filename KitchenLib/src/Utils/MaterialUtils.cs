@@ -11,16 +11,7 @@ namespace KitchenLib.Utils
 
 		public static void ApplyMaterial(GameObject prefab, string path, Material[] materials)
 		{
-			var currentRef = prefab.transform;
-			var splitPath = path.Split('/');
-			foreach (var part in splitPath)
-				currentRef = currentRef?.Find(part);
-
-			var component = currentRef?.GetComponent<MeshRenderer>();
-			if (component == null)
-				return; // or throw?
-
-			component.materials = materials;
+			ApplyMaterial<MeshRenderer>(prefab, path, materials);
 		}
 
 		public static void ApplyMaterial<T>(GameObject prefab, string path, Material[] materials) where T : Renderer
@@ -37,24 +28,6 @@ namespace KitchenLib.Utils
 			component.materials = materials;
 		}
 
-		private static List<GameObject> ListOfChildren = new List<GameObject>();
-        private static void getChildRecursive(GameObject obj)
-        {
-            if (null == obj)
-                return;
-
-            if (obj.name.ToLower().Contains("wallpaper") || obj.name.ToLower().Contains("flooring"))
-                return;
-
-            foreach (Transform child in obj.transform)
-            {
-                if (null == child)
-                    continue;
-                ListOfChildren.Add(child.gameObject);
-                getChildRecursive(child.gameObject);
-            }
-        }
-
         public static void SetupMaterialIndex()
         {
 			if (materialIndex.Count > 0)
@@ -67,7 +40,6 @@ namespace KitchenLib.Utils
 					materialIndex.Add(material.name, material);
 				}
 			}
-
 		}
 
         public static Material GetExistingMaterial(string materialName)

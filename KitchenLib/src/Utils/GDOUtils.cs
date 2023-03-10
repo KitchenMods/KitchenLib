@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using KitchenData;
-using System;
 using System.Linq;
 using KitchenLib.Customs;
 
 namespace KitchenLib.Utils
 {
-	public class GDOUtils
+    public class GDOUtils
 	{
 		private static Dictionary<int, GameDataObject> GDOs = new Dictionary<int, GameDataObject>();
 

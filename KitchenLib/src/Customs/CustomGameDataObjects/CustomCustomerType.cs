@@ -1,15 +1,11 @@
-﻿using Kitchen;
-using KitchenData;
-using System;
+﻿using KitchenData;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-	public class CustomCustomerType : CustomGameDataObject
+    public abstract class CustomCustomerType : CustomGameDataObject<CustomerType>
 	{
 		public virtual bool IsGenericGroup { get; protected set; }
 		public virtual bool RelativeGroupSize { get; protected set; }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomDecor : CustomGameDataObject
+    public abstract class CustomDecor : CustomGameDataObject<Decor>
     {
         public virtual Material Material { get; protected set; }
         public virtual Appliance ApplicatorAppliance { get; protected set; }
