@@ -1,3 +1,4 @@
+using System;
 using HarmonyLib;
 using Kitchen;
 using KitchenData;
@@ -9,10 +10,12 @@ using KitchenLib.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Kitchen;
+using KitchenLib.Colorblind;
 
 namespace KitchenLib.Patches
 {
-	[HarmonyPatch(typeof(GameDataConstructor), "BuildGameData", new Type[] { })]
+    [HarmonyPatch(typeof(GameDataConstructor), "BuildGameData", new Type[] { })]
 	public class GameDataConstructor_Patch
 	{
 		private static readonly List<GameDataObject> GameDataObjects = new List<GameDataObject>();
@@ -62,7 +65,7 @@ namespace KitchenLib.Patches
 				}
 				catch (Exception e)
 				{
-					Main.instance.Log(e.Message);
+					Main.LogInfo(e.Message);
 				}
 			}
 

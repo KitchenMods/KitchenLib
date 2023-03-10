@@ -87,13 +87,13 @@ namespace KitchenLib.Customs
 						Item item = set.Items[itemIndex];
 						if (item == null || item.ID == 0)
 						{
-							Main.instance.Log($"Found null or zero-ID item in an ItemSet in class {GetType().FullName} (set index {setIndex}, item index {itemIndex}). This will likely cause the game to crash.");
+							Main.LogWarning($"Found null or zero-ID item in an ItemSet in class {GetType().FullName} (set index {setIndex}, item index {itemIndex}). This will likely cause the game to crash.");
 						}
 					}
 				}
 				sets.SetValue(gameDataObject, Sets);
 			}
-
+      
 			//Setup ItemGroupView for this ItemGroup
 			if (AutoSetupItemGroupView)
 			{

@@ -20,7 +20,7 @@ namespace KitchenLib.Customs
 
 			if (GDOs.ContainsKey(gdo.ID))
 			{
-				Main.instance.Log($"Error while registering custom GDO of type {gdo.GetType().FullName} with ID={gdo.ID} and Name=\"{gdo.ModName}:{gdo.UniqueNameID}\". Double-check to ensure that the UniqueNameID is actually unique. (Clashing with : {GDOs[gdo.ID]})");
+				Main.LogInfo($"Error while registering custom GDO of type {gdo.GetType().FullName} with ID={gdo.ID} and Name=\"{gdo.ModName}:{gdo.UniqueNameID}\". Double-check to ensure that the UniqueNameID is actually unique. (Clashing with : {GDOs[gdo.ID]})");
 				return null;
 			}
 

@@ -5,6 +5,8 @@ using KitchenLib.DevUI;
 using KitchenLib.Event;
 using KitchenLib.Patches;
 using KitchenLib.UI;
+using KitchenLib.Colorblind;
+using System.Runtime.CompilerServices;
 using KitchenMods;
 using System.IO;
 using System.Reflection;
@@ -12,7 +14,7 @@ using UnityEngine;
 
 namespace KitchenLib
 {
-	public class Main : BaseMod
+    public class Main : BaseMod
 	{
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
@@ -21,7 +23,6 @@ namespace KitchenLib
 		public const string MOD_BETA_VERSION = "RC-2";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
-		public static AssetBundle bundle;
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
 
 		protected override void OnPostActivate(Mod mod)
@@ -93,6 +94,24 @@ namespace KitchenLib
 				if (bytes != null)
 					File.WriteAllBytes(dirPath + gameDataObject.ID + "-" + gameDataObject.name + ".png", bytes);
 			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void LogInfo(string message)
+		{
+			Debug.Log($"[{MOD_NAME}] " + message);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void LogWarning(string message)
+		{
+			Debug.LogWarning($"[{MOD_NAME}] " + message);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void LogError(string message)
+		{
+			Debug.LogError($"[{MOD_NAME}] " + message);
 		}
 	}
 }

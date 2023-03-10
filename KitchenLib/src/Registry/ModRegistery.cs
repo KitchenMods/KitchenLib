@@ -19,7 +19,7 @@ namespace KitchenLib.Registry
 		{
 			if (!Registered.ContainsKey(mod.GetType()))
 			{
-				Main.instance.Log("Registered: " + mod.ModName + ":" + mod.ModID + " v" + mod.ModVersion);
+				mod.Log($"Registered: {mod.ModName}:{mod.ModID} v{mod.ModVersion}");
 				Registered.Add(mod.GetType(), mod);
 				keyValuePairs.Add(mod.GetType(), Assembly.GetAssembly(mod.GetType()));
 				return true;

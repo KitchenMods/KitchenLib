@@ -49,9 +49,8 @@ namespace KitchenLib.Utils
 			mAdd.Invoke(componentGroups, new object[] { newComponentGroup });
 
 			SideItems.Add(item.ID);
-
-			Main.instance.Log($"Added item prefab to side registry for item {item.ID} ({item.name}).");
-		}
+            Main.LogInfo($"Added item prefab to side registry for item {item.ID} ({item.name}).");
+        }
 
 		public static void AddSideContainer<T>(GameData gameData, ItemGroup itemGroup, T localView) where T : ItemGroupView
 		{
@@ -67,11 +66,11 @@ namespace KitchenLib.Utils
 				ItemGroup plated_burger = gameData.Get<ItemGroup>(ItemGroupReferences.BurgerPlated);
 				ItemGroupView burgerView = plated_burger.Prefab.GetComponent<ItemGroupView>();
 				fSubviewPrefab.SetValue(localView, fSubviewPrefab.GetValue(burgerView));
-			}
-			else
-			{
-				Main.instance.Log($"Could not find Side Container in prefab for ItemGroup {itemGroup.ID} ({itemGroup.name}).");
-			}
-		}
-	}
+            }
+            else
+            {
+                Main.LogWarning($"Could not find Side Container in prefab for ItemGroup {itemGroup.ID} ({itemGroup.name}).");
+            }
+        }
+    }
 }

@@ -14,24 +14,22 @@ namespace KitchenLib.Utils
      */
 
 	[Obsolete("Please use PreferenceManager")]
-	public static class PreferenceUtils
-	{
-
-		public static Dictionary<string, BasePreference> Preferences = new Dictionary<string, BasePreference>();
-
-		public static Dictionary<string, Type> TypeMapping = new Dictionary<string, Type>();
-
-		public static T Register<T>(string modID, string key, string name) where T : BasePreference, new()
-		{
-			Main.instance.Log("Registering Preference: " + modID + ":" + key);
-			TypeMapping[typeof(T).FullName] = typeof(T);
+    public static class PreferenceUtils {
+	
+	    public static Dictionary<string, BasePreference> Preferences = new Dictionary<string, BasePreference>();
+    
+	    public static Dictionary<string, Type> TypeMapping = new Dictionary<string, Type>();
+	
+	    public static T Register<T>(string modID, string key, string name) where T : BasePreference, new() {
+			Main.LogInfo("Registering Preference: " + modID + ":" + key);
+		    TypeMapping[typeof(T).FullName] = typeof(T);
 			T instance = new T();
 			instance.ModID = modID;
 			instance.Key = key;
 			instance.DisplayName = name;
 			if (Preferences.ContainsKey(modID + ":" + key))
 			{
-				Main.instance.Log("[WARN] " + modID + ":" + key + " already exists! Has another mod already loaded it?");
+				Main.LogWarning("[WARN] " + modID + ":" + key + " already exists! Has another mod already loaded it?");
 			}
 			else
 			{
