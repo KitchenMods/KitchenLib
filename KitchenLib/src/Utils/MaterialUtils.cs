@@ -40,7 +40,7 @@ namespace KitchenLib.Utils
         /// <returns>The input GameObject.</returns>
         public static GameObject ApplyMaterial<T>(this GameObject gameObject, params Material[] materials) where T : Renderer
         {
-            var comp = gameObject.GetComponent<T>();
+            var comp = gameObject?.GetComponent<T>();
             if (comp == null)
                 return gameObject;
 
