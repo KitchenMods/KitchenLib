@@ -26,6 +26,7 @@ namespace KitchenLib
 			{ JsonType.CFairyLight, typeof(CFairyLight) },
 			{ JsonType.CFoliage, typeof(CFoliage) },
 			{ JsonType.CWalls, typeof(CWalls) },
+			{ JsonType.CBlueprintLight, typeof(CBlueprintLight) },
 		};
 
 		public static List<BaseJson> LoadedJsons = new List<BaseJson>();
@@ -57,8 +58,7 @@ namespace KitchenLib
 		{
 			foreach (TextAsset asset in bundle.LoadAllAssets<TextAsset>())
 			{
-				Main.instance.Log("Loading " + asset.name);
-				if (Path.GetExtension(asset.name) == ".json")
+				try
 				{
 					try
 					{
@@ -75,9 +75,18 @@ namespace KitchenLib
 						Main.instance.Log(asset.name + " Could Not Be Loaded");
 						Main.instance.Log(e.Message);
 					}
-
-
 				}
+				catch (Exception e)
+				{
+					Main.instance.Log(asset.name + " Could Not Be Loaded. Is it a JSON?");
+				}
+			}
+
+			foreach (CustomMaterial material in LoadedJsons)
+			{
+				material.Deserialise();
+				material.ConvertMaterial(out Material newMaterial);
+				CustomMaterials.AddMaterial(material.Name, newMaterial);
 			}
 		}
 	}
@@ -102,6 +111,7 @@ namespace KitchenLib
 		CGhost,
 		CFairyLight,
 		CFoliage,
-		CWalls
+		CWalls,
+		CBlueprintLight
 	}
 }

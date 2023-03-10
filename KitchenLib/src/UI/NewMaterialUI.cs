@@ -69,7 +69,7 @@ namespace KitchenLib.UI
 			GUILayout.Label("Existing Materials");
 			materialSelectorSearchBar = GUILayout.TextField(materialSelectorSearchBar);
 			materialSelectorScrollPosition = GUILayout.BeginScrollView(materialSelectorScrollPosition, false, false, GUIStyle.none, GUI.skin.verticalScrollbar);
-			foreach (Material material in MaterialUtils.GetAllMaterials(true, new List<string> { "Simple Flat", "Simple Transparent", "Flat", "Indicator Light", "Ghost", "Foliage", "Flat Image", "Fairy Lights", "Walls" }))
+			foreach (Material material in MaterialUtils.GetAllMaterials(true, new List<string> { "Simple Flat", "Simple Transparent", "Flat", "Indicator Light", "Ghost", "Foliage", "Flat Image", "Fairy Lights", "Walls", "Blueprint Light" }))
 			{
 				if (material.name.Contains(materialSelectorSearchBar))
 				{
@@ -101,7 +101,7 @@ namespace KitchenLib.UI
 				{
 					json = File.ReadAllText(importFileText);
 				}
-				if (!json.IsNullOrEmpty())
+				if (!string.IsNullOrEmpty(json))
 				{
 					Material material = JSONManager.LoadMaterialFromJson(json);
 					SetCubeMaterial(material);
@@ -152,6 +152,10 @@ namespace KitchenLib.UI
 					CWalls.GUI(selectedMaterial);
 					CWalls.Export(selectedMaterial);
 					break;
+				case "Blueprint Light":
+					CBlueprintLight.GUI(selectedMaterial);
+					CBlueprintLight.Export(selectedMaterial);
+					break;
 			}
 			SetCubeMaterial(selectedMaterial);
 			GUILayout.EndArea();
@@ -192,6 +196,7 @@ namespace KitchenLib.UI
 			MaterialTemplates.Add(CreateTemplate(Shader.Find("Fairy Light")));
 			MaterialTemplates.Add(CreateTemplate(Shader.Find("Foliage")));
 			MaterialTemplates.Add(CreateTemplate(Shader.Find("Walls")));
+			MaterialTemplates.Add(CreateTemplate(Shader.Find("Blueprint Light")));
 		}
 		private Material CreateTemplate(Shader shader)
 		{
