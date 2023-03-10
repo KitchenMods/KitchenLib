@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace KitchenLib.src.Patches
+namespace KitchenLib.Patches
 {
     [HarmonyPatch]
     internal class UnionAttributePatch
