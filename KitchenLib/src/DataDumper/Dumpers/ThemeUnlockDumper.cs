@@ -1,6 +1,4 @@
 ﻿using KitchenData;
-using KitchenData.Workshop;
-using System.Collections.Generic;
 using System.Text;
 
 namespace KitchenLib.DataDumper.Dumpers
@@ -16,7 +14,7 @@ namespace KitchenLib.DataDumper.Dumpers
 
 			themeUnlockDump.AppendLine("ID,Type,IsPrimary,Type,ParentTheme1,ParentTheme2,ExpReward,IsUnlockable,UnlockGroup,CardType," +
 				"MinimumFranchiseTier,IsSpecificFranchiseTier,CustomerMultiplier,SelectionBias");
-			
+
 			themeUnlockRequiresDump.AppendLine("ID,Type,Unlock");
 			themeUnlockBlockedByDump.AppendLine("ID,Type,Unlock");
 

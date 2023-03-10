@@ -11,11 +11,12 @@ namespace KitchenLib.Registry
 		public static List<string> InitialisedMods = new List<string>();
 
 
-		public static BaseMod Get<T>() {
+		public static BaseMod Get<T>()
+		{
 			return Registered[typeof(T)];
 		}
 		public static bool Register(BaseMod mod)
-        {
+		{
 			if (!Registered.ContainsKey(mod.GetType()))
 			{
 				mod.Log($"Registered: {mod.ModName}:{mod.ModID} v{mod.ModVersion}");
@@ -24,7 +25,7 @@ namespace KitchenLib.Registry
 				return true;
 			}
 			return false;
-        }
+		}
 
 		public static bool isModSafeForVersion(BaseMod mod)
 		{

@@ -1,6 +1,5 @@
-
-using KitchenMods;
 using Kitchen;
+using KitchenMods;
 
 namespace KitchenLib
 {

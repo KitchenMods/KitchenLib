@@ -1,14 +1,14 @@
-using System.Reflection;
-using Semver;
-using UnityEngine;
-using KitchenLib.Utils;
-using System.Runtime.CompilerServices;
-using KitchenLib.Registry;
 using KitchenLib.Customs;
 using KitchenLib.DevUI;
+using KitchenLib.Registry;
+using KitchenLib.Utils;
+using KitchenMods;
+using Semver;
 using System;
 using System.Collections.Generic;
-using KitchenMods;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using UnityEngine;
 
 namespace KitchenLib
 {
@@ -27,9 +27,9 @@ namespace KitchenLib
 		private static List<Assembly> PatchedAssemblies = new List<Assembly>();
 		private bool isRegistered = false;
 		private bool canRegisterGDO = false;
-		
+
 		public static HarmonyLib.Harmony harmonyInstance;
-		
+
 		public BaseMod(string modID, string modName, string author, string modVersion, string compatibleVersions, Assembly assembly) : base()
 		{
 			SetupMod(modID, modName, author, modVersion, "", compatibleVersions, assembly);
@@ -72,7 +72,7 @@ namespace KitchenLib
 			else
 				version = new KitchenVersion("", this);
 
-			
+
 #if BEPINEX || WORKSHOP
 			if (harmonyInstance == null)
 				harmonyInstance = new HarmonyLib.Harmony(modID);
@@ -126,12 +126,26 @@ namespace KitchenLib
 				}
 			}
 
-			foreach (CustomBaseMaterial material in JSONManager.LoadedJsons)
+			foreach (BaseJson json in JSONManager.LoadedJsons)
 			{
-				Material mat;
-				material.ConvertMaterial(out mat);
-				AddMaterial(mat);
+				Main.instance.Log(json.GetType().ToString());
+				if (json is CustomBaseMaterial)
+				{
+					CustomBaseMaterial customBaseMaterial = json as CustomBaseMaterial;
+					Material mat;
+					customBaseMaterial.ConvertMaterial(out mat);
+					AddMaterial(mat);
+				}
+				else if (json is CustomMaterial)
+				{
+					CustomMaterial customBaseMaterial = json as CustomMaterial;
+					Material mat;
+					customBaseMaterial.Deserialise();
+					customBaseMaterial.ConvertMaterial(out mat);
+					AddMaterial(mat);
+				}
 			}
+
 			OnPostActivate(mod);
 			canRegisterGDO = false;
 		}
@@ -163,6 +177,7 @@ namespace KitchenLib
 		public T AddGameDataObject<T>() where T : CustomGameDataObject, new()
 		{
 			T gdo = new T();
+			gdo.ModID = ModID;
 			gdo.ModName = ModName;
 			if (canRegisterGDO)
 			{

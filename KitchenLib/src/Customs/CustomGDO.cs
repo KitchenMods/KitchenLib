@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace KitchenLib.Customs
 {
@@ -9,11 +8,15 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomGameDataObject> GDOs = new Dictionary<int, CustomGameDataObject>();
 		public static Dictionary<Type, CustomGameDataObject> GDOsByType = new Dictionary<Type, CustomGameDataObject>();
 		public static Dictionary<KeyValuePair<string, string>, CustomGameDataObject> GDOsByGUID = new Dictionary<KeyValuePair<string, string>, CustomGameDataObject>();
+		public static Dictionary<int, CustomGameDataObject> GDOsByLegacyID = new Dictionary<int, CustomGameDataObject>();
+		public static Dictionary<int, int> LegacyGDOIDs = new Dictionary<int, int>();
 
 		public static T RegisterGameDataObject<T>(T gdo) where T : CustomGameDataObject
 		{
 			if (gdo.ID == 0)
 				gdo.ID = gdo.GetHash();
+
+			gdo.LegacyID = gdo.GetLegacyHash();
 
 			if (GDOs.ContainsKey(gdo.ID))
 			{
@@ -22,8 +25,10 @@ namespace KitchenLib.Customs
 			}
 
 			GDOs.Add(gdo.ID, gdo);
+			GDOsByLegacyID.Add(gdo.LegacyID, gdo);
+			LegacyGDOIDs.Add(gdo.LegacyID, gdo.ID);
 			GDOsByType.Add(gdo.GetType(), gdo);
-			GDOsByGUID.Add(new KeyValuePair<string, string>(gdo.ModName, gdo.UniqueNameID), gdo);
+			GDOsByGUID.Add(new KeyValuePair<string, string>(gdo.ModID, gdo.UniqueNameID), gdo);
 
 			return gdo;
 		}

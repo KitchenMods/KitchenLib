@@ -1,17 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace KitchenLib.Utils
 {
-    public class EventUtils
-    {
-        internal static void InvokeEvent(string name, IEnumerable<Delegate> handlers, object sender)
-        {
-            if (handlers == null)
-                return;
-
+	public class EventUtils
+	{
+		internal static void InvokeEvent(string name, IEnumerable<Delegate> handlers, object sender)
+		{
+			if (handlers == null)
+				return;
+        
             var args = new EventArgs();
             foreach (EventHandler handler in handlers.Cast<EventHandler>())
             {
@@ -26,10 +25,10 @@ namespace KitchenLib.Utils
             }
         }
 
-        internal static void InvokeEvent<T>(string name, IEnumerable<Delegate> handlers, object sender, T args) where T : EventArgs
-        {
-            if (handlers == null)
-                return;
+		internal static void InvokeEvent<T>(string name, IEnumerable<Delegate> handlers, object sender, T args) where T : EventArgs
+		{
+			if (handlers == null)
+				return;
 
             foreach (EventHandler<T> handler in handlers.Cast<EventHandler<T>>())
             {
