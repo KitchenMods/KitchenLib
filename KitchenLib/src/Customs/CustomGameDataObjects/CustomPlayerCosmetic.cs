@@ -30,14 +30,14 @@ namespace KitchenLib.Customs
             if (result.Visual != Visual) result.Visual = Visual;
             if (result.Info != Info) result.Info = Info;
 
-			if (InfoList.Count > 0)
-			{
-				result.Info = new LocalisationObject<CosmeticInfo>();
-				foreach ((Locale, CosmeticInfo) info in InfoList)
-					result.Info.Add(info.Item1, info.Item2);
-			}
+            if (InfoList.Count > 0)
+            {
+                result.Info = new LocalisationObject<CosmeticInfo>();
+                foreach ((Locale, CosmeticInfo) info in InfoList)
+                    result.Info.Add(info.Item1, info.Item2);
+            }
 
-			gameDataObject = result;
+            gameDataObject = result;
         }
 
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)

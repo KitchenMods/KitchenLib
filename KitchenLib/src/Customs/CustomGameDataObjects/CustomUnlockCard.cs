@@ -34,19 +34,19 @@ namespace KitchenLib.Customs
 
             if (result.Info != Info) result.Info = Info;
 
-			if (InfoList.Count > 0)
-			{
-				result.Info = new LocalisationObject<UnlockInfo>();
-				foreach ((Locale, UnlockInfo) info in InfoList)
-					result.Info.Add(info.Item1, info.Item2);
-			}
+            if (InfoList.Count > 0)
+            {
+                result.Info = new LocalisationObject<UnlockInfo>();
+                foreach ((Locale, UnlockInfo) info in InfoList)
+                    result.Info.Add(info.Item1, info.Item2);
+            }
 
-			if (!string.IsNullOrEmpty(IconOverride))
-				Unlock_Patch.AddIconOverride(result.ID, IconOverride);
-			if (ColourOverride != new Color())
-				Unlock_Patch.AddColourOverride(result.ID, ColourOverride);
+            if (!string.IsNullOrEmpty(IconOverride))
+                Unlock_Patch.AddIconOverride(result.ID, IconOverride);
+            if (ColourOverride != new Color())
+                Unlock_Patch.AddColourOverride(result.ID, ColourOverride);
 
-			gameDataObject = result;
+            gameDataObject = result;
         }
 
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)

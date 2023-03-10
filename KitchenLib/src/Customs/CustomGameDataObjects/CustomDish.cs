@@ -22,13 +22,13 @@ namespace KitchenLib.Customs
         public virtual GameObject DisplayPrefab { get; protected set; }
         public virtual List<Dish.MenuItem> ResultingMenuItems { get; protected set; } = new List<Dish.MenuItem>();
         public virtual HashSet<Dish.IngredientUnlock> IngredientsUnlocks { get; protected set; } = new HashSet<Dish.IngredientUnlock>();
-		
-		[Obsolete("Please use HardcodedRequirements")]
-		public virtual HashSet<Dish> PrerequisiteDishesEditor { get; protected set; } = new HashSet<Dish>();
 
-		public virtual bool IsAvailableAsLobbyOption { get; protected set; } = false;
-		public virtual bool DestroyAfterModUninstall { get; protected set; } = true;
-		public virtual Dictionary<Locale, string> Recipe { get; protected set; } = new Dictionary<Locale, string>();
+        [Obsolete("Please use HardcodedRequirements")]
+        public virtual HashSet<Dish> PrerequisiteDishesEditor { get; protected set; } = new HashSet<Dish>();
+
+        public virtual bool IsAvailableAsLobbyOption { get; protected set; } = false;
+        public virtual bool DestroyAfterModUninstall { get; protected set; } = true;
+        public virtual Dictionary<Locale, string> Recipe { get; protected set; } = new Dictionary<Locale, string>();
 
         //private static readonly Dish empty = ScriptableObject.CreateInstance<Dish>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -56,19 +56,19 @@ namespace KitchenLib.Customs
 
             if (result.Info != Info) result.Info = Info;
 
-			if (InfoList.Count > 0)
-			{
-				result.Info = new LocalisationObject<UnlockInfo>();
-				foreach ((Locale, UnlockInfo) info in InfoList)
-					result.Info.Add(info.Item1, info.Item2);
-			}
+            if (InfoList.Count > 0)
+            {
+                result.Info = new LocalisationObject<UnlockInfo>();
+                foreach ((Locale, UnlockInfo) info in InfoList)
+                    result.Info.Add(info.Item1, info.Item2);
+            }
 
-			if (!string.IsNullOrEmpty(IconOverride))
-				Unlock_Patch.AddIconOverride(result.ID, IconOverride);
-			if (ColourOverride != new Color())
-				Unlock_Patch.AddColourOverride(result.ID, ColourOverride);
+            if (!string.IsNullOrEmpty(IconOverride))
+                Unlock_Patch.AddIconOverride(result.ID, IconOverride);
+            if (ColourOverride != new Color())
+                Unlock_Patch.AddColourOverride(result.ID, ColourOverride);
 
-			gameDataObject = result;
+            gameDataObject = result;
         }
 
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)

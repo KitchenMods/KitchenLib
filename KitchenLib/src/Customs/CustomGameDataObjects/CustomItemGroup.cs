@@ -47,8 +47,8 @@ namespace KitchenLib.Customs
             if (!string.IsNullOrEmpty(ColourBlindTag))
                 ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
 
-			if (RewardOverride != -1)
-				Item_Patch.AddRewardOverride(result.ID, RewardOverride);
+            if (RewardOverride != -1)
+                Item_Patch.AddRewardOverride(result.ID, RewardOverride);
 
             if (result.CanContainSide != CanContainSide) result.CanContainSide = CanContainSide;
             if (result.ApplyProcessesToComponents != ApplyProcessesToComponents) result.ApplyProcessesToComponents = ApplyProcessesToComponents;
@@ -86,7 +86,7 @@ namespace KitchenLib.Customs
                         Item item = set.Items[itemIndex];
                         if (item == null || item.ID == 0)
                         {
-							Main.LogWarning($"Found null or zero-ID item in an ItemSet in class {GetType().FullName} (set index {setIndex}, item index {itemIndex}). This will likely cause the game to crash.");
+                            Main.LogWarning($"Found null or zero-ID item in an ItemSet in class {GetType().FullName} (set index {setIndex}, item index {itemIndex}). This will likely cause the game to crash.");
                         }
                     }
                 }

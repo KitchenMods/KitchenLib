@@ -16,7 +16,7 @@ namespace KitchenLib.Customs
         public virtual float SelectionBias { get; protected set; } = 0f;
         public virtual List<Unlock> HardcodedRequirements { get; protected set; }
         public virtual List<Unlock> HardcodedBlockers { get; protected set; }
-		public virtual string IconOverride { get; protected set; }
-		public virtual Color ColourOverride { get; protected set; }	
+        public virtual string IconOverride { get; protected set; }
+        public virtual Color ColourOverride { get; protected set; }
     }
 }

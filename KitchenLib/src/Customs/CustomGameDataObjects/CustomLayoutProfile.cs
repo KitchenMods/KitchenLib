@@ -19,11 +19,11 @@ namespace KitchenLib.Customs
         public virtual Appliance InternalWallPiece { get; protected set; }
         public virtual Appliance StreetPiece { get; protected set; }
 
-		[Obsolete("Please set your Name in Info")]
-		public virtual string Name { get; protected set; } = "New Layout";
+        [Obsolete("Please set your Name in Info")]
+        public virtual string Name { get; protected set; } = "New Layout";
 
-		[Obsolete("Please set your Description in Info")]
-		public virtual string Description { get; protected set; } = "A new layout type for your restaurants!";
+        [Obsolete("Please set your Description in Info")]
+        public virtual string Description { get; protected set; } = "A new layout type for your restaurants!";
 
         //private static readonly LayoutProfile empty = ScriptableObject.CreateInstance<LayoutProfile>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -36,29 +36,29 @@ namespace KitchenLib.Customs
             if (result.ID != ID) result.ID = ID;
             if (result.Graph != Graph) result.Graph = Graph;
             if (result.MaximumTables != MaximumTables) result.MaximumTables = MaximumTables;
-			if (result.Info != Info) result.Info = Info;
+            if (result.Info != Info) result.Info = Info;
 
-			if (InfoList.Count > 0)
-			{
-				result.Info = new LocalisationObject<BasicInfo>();
-				foreach ((Locale, BasicInfo) info in InfoList)
-					result.Info.Add(info.Item1, info.Item2);
-			}
+            if (InfoList.Count > 0)
+            {
+                result.Info = new LocalisationObject<BasicInfo>();
+                foreach ((Locale, BasicInfo) info in InfoList)
+                    result.Info.Add(info.Item1, info.Item2);
+            }
 
-			if (result.Info == null)
-			{
-				result.Info = new LocalisationObject<BasicInfo>();
-				if (!result.Info.Has(Locale.English))
-				{
-					result.Info.Add(Locale.English, new BasicInfo
-					{
-						Name = Name,
-						Description = Description
-					});
-				}
-			}
+            if (result.Info == null)
+            {
+                result.Info = new LocalisationObject<BasicInfo>();
+                if (!result.Info.Has(Locale.English))
+                {
+                    result.Info.Add(Locale.English, new BasicInfo
+                    {
+                        Name = Name,
+                        Description = Description
+                    });
+                }
+            }
 
-			gameDataObject = result;
+            gameDataObject = result;
         }
 
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)

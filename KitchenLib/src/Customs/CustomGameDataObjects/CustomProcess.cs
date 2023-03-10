@@ -12,8 +12,8 @@ namespace KitchenLib.Customs
         public virtual Process IsPseudoprocessFor { get; protected set; }
         public virtual bool CanObfuscateProgress { get; protected set; }
 
-		[Obsolete("Please set your Icon in Info")]
-		public virtual string Icon { get; protected set; } = "!";
+        [Obsolete("Please set your Icon in Info")]
+        public virtual string Icon { get; protected set; } = "!";
 
         //private static readonly Process result = ScriptableObject.CreateInstance<Process>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -27,29 +27,29 @@ namespace KitchenLib.Customs
             if (result.EnablingApplianceCount != EnablingApplianceCount) result.EnablingApplianceCount = EnablingApplianceCount;
             if (result.CanObfuscateProgress != CanObfuscateProgress) result.CanObfuscateProgress = CanObfuscateProgress;
 
-			if (result.Info != Info) result.Info = Info;
+            if (result.Info != Info) result.Info = Info;
 
-			if (InfoList.Count > 0)
-			{
-				result.Info = new LocalisationObject<ProcessInfo>();
-				foreach ((Locale, ProcessInfo) info in InfoList)
-					result.Info.Add(info.Item1, info.Item2);
-			}
+            if (InfoList.Count > 0)
+            {
+                result.Info = new LocalisationObject<ProcessInfo>();
+                foreach ((Locale, ProcessInfo) info in InfoList)
+                    result.Info.Add(info.Item1, info.Item2);
+            }
 
-			if (result.Info == null)
-			{
-				result.Info = new LocalisationObject<ProcessInfo>();
-				if (!result.Info.Has(Locale.English))
-				{
-					result.Info.Add(Locale.English, new ProcessInfo
-					{
-						Name = Icon,
-						Icon = Icon
-					});
-				}
-			}
+            if (result.Info == null)
+            {
+                result.Info = new LocalisationObject<ProcessInfo>();
+                if (!result.Info.Has(Locale.English))
+                {
+                    result.Info.Add(Locale.English, new ProcessInfo
+                    {
+                        Name = Icon,
+                        Icon = Icon
+                    });
+                }
+            }
 
-			gameDataObject = result;
+            gameDataObject = result;
         }
 
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)

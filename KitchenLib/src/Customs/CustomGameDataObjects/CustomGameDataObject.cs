@@ -7,11 +7,11 @@ namespace KitchenLib.Customs
     public abstract class CustomGameDataObject
     {
         public virtual int ID { get; internal set; }
-		public int LegacyID { get; internal set; }
-		public abstract string UniqueNameID { get; }
+        public int LegacyID { get; internal set; }
+        public abstract string UniqueNameID { get; }
         public virtual int BaseGameDataObjectID { get; protected set; } = -1;
 
-		public string ModID = "";
+        public string ModID = "";
         public string ModName = "";
         public GameDataObject GameDataObject;
 
@@ -22,10 +22,10 @@ namespace KitchenLib.Customs
 
         public int GetHash()
         {
-			return StringUtils.GetInt32HashCode($"{ModID}:{UniqueNameID}");
-		}
-		public int GetLegacyHash()
-		{
+            return StringUtils.GetInt32HashCode($"{ModID}:{UniqueNameID}");
+        }
+        public int GetLegacyHash()
+        {
             return StringUtils.GetInt32HashCode($"{ModName}:{UniqueNameID}");
         }
     }

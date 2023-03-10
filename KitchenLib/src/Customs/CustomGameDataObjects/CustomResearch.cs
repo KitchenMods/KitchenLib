@@ -24,14 +24,14 @@ namespace KitchenLib.Customs
             if (result.RequiredResearch != RequiredResearch) result.RequiredResearch = RequiredResearch;
             if (result.Info != Info) result.Info = Info;
 
-			if (InfoList.Count > 0)
-			{
-				result.Info = new LocalisationObject<ResearchLocalisation>();
-				foreach ((Locale, ResearchLocalisation) info in InfoList)
-					result.Info.Add(info.Item1, info.Item2);
-			}
+            if (InfoList.Count > 0)
+            {
+                result.Info = new LocalisationObject<ResearchLocalisation>();
+                foreach ((Locale, ResearchLocalisation) info in InfoList)
+                    result.Info.Add(info.Item1, info.Item2);
+            }
 
-			gameDataObject = result;
+            gameDataObject = result;
         }
 
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
