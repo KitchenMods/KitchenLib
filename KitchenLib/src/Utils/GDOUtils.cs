@@ -78,7 +78,7 @@ namespace KitchenLib.Utils
 		{
 			if (GameData.Main == null)
 			{
-				Main.instance.Warning("Please use WhitelistSide in OnInitialise");
+				Main.LogWarning("Please use WhitelistSide in OnInitialise");
 				return;
 			}
 			foreach (Dish dish in GameData.Main.Get<Dish>())

@@ -49,7 +49,7 @@ namespace KitchenLib
 				customMaterial.ConvertMaterial(out material);
 				return material;
 			}
-			Main.instance.Log("Unable to load JSON");
+			Main.LogWarning("Unable to load JSON");
 			return new Material(Shader.Find("Simple Flat"));
 
 		}
@@ -74,8 +74,8 @@ namespace KitchenLib
 					}
 					catch (Exception e)
 					{
-						Main.instance.Log(asset.name + " Could Not Be Loaded");
-						Main.instance.Log(e.Message);
+						Main.LogWarning(asset.name + " Could Not Be Loaded");
+						Main.LogWarning(e.Message);
 					}
 				}
 				catch (Exception e)

@@ -37,7 +37,6 @@ namespace KitchenLib.Customs
 
 			GUILayout.Label("_Image");
 			imageFile = GUILayout.TextField(imageFile);
-			Main.instance.Log(imageFile);
 			if (File.Exists(imageFile))
 				material.SetTexture("_Image", ResourceUtils.LoadTextureFromFile(imageFile));
 

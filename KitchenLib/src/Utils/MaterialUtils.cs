@@ -91,11 +91,8 @@ namespace KitchenLib.Utils
 
 			foreach (Material material in CustomMaterials.GetCustomMaterials())
 			{
-				Main.instance.Log("1");
-				Main.instance.Log(material.shader.name);
 				if (shaders.Contains(material.shader.name))
 				{
-					Main.instance.Log("2");
 					materials.Add(material);
 				}
 			}
