@@ -63,7 +63,7 @@ namespace KitchenLib.src.Patches {
     public class MenuBackgroundItemScroller_CreateItem_Patch {
 
         public static void Postfix(ref GameObject __result) {
-            changeRotationSoItemsAreNotTopDown(__result);
+            //changeRotationSoItemsAreNotTopDown(__result);
             bringItemForwardSlightlyAfterRotationSoItDoesNotClipWithBackground(__result);
         }
 

@@ -11,12 +11,13 @@ namespace KitchenLib.Utils
 		public string Hash { get; private set; }
 
 		private Regex pattern = new Regex(@"([0-9])\.([0-9])\.([0-9])([a-z]*) \(([^)]*)");
+		private Regex pattern2 = new Regex("(\\d+)\\.(\\d+)\\.(\\d+)([a-z]*\\d+)?");
 
         public KitchenVersion(string versionString, BaseMod mod)
         {
             string VersionString = versionString;
 
-			Match match = Regex.Match(versionString, pattern.ToString());
+			Match match = Regex.Match(versionString, pattern2.ToString());
 
             if (match.Success == false)
             {
