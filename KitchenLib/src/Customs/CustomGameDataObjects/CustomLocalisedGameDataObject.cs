@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace KitchenLib.Customs
 {
-	public abstract class CustomLocalisedGameDataObject<T> : CustomGameDataObject where T : Localisation
-	{
-		[Obsolete("Please use InfoList.")]
-		public virtual LocalisationObject<T> Info { get; protected set; }
-		public virtual List<(Locale, T)> InfoList { get; protected set; } = new List<(Locale, T)>();
-	}
+    public abstract class CustomLocalisedGameDataObject<T, L> : CustomGameDataObject<T> where T : GameDataObject where L : Localisation
+    {
+        [Obsolete("Please use InfoList.")]
+        public virtual LocalisationObject<L> Info { get; protected set; }
+        public virtual List<(Locale, L)> InfoList { get; protected set; } = new List<(Locale, L)>();
+    }
 }

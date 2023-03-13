@@ -7,11 +7,8 @@ using KitchenLib.Customs;
 using KitchenLib.Event;
 using KitchenLib.Systems;
 using KitchenLib.Utils;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Kitchen;
-using KitchenLib.Colorblind;
 
 namespace KitchenLib.Patches
 {
