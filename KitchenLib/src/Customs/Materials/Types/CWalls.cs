@@ -103,7 +103,7 @@ namespace KitchenLib.Customs
 
 			GUILayout.Label("_Overlay");
 			overlayFile = GUILayout.TextField(overlayFile);
-			Main.instance.Log(overlayFile);
+			Main.LogInfo(overlayFile);
 			if (File.Exists(overlayFile))
 				material.SetTexture("_Overlay", ResourceUtils.LoadTextureFromFile(overlayFile));
 

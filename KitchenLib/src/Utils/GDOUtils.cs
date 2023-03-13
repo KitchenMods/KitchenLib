@@ -1,11 +1,11 @@
-﻿using KitchenData;
+using KitchenData;
 using KitchenLib.Customs;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace KitchenLib.Utils
 {
-	public class GDOUtils
+    public class GDOUtils
 	{
 		private static Dictionary<int, GameDataObject> GDOs = new Dictionary<int, GameDataObject>();
 
@@ -78,7 +78,7 @@ namespace KitchenLib.Utils
 		{
 			if (GameData.Main == null)
 			{
-				Main.instance.Warning("Please use WhitelistSide in OnInitialise");
+				Main.LogWarning("Please use WhitelistSide in OnInitialise");
 				return;
 			}
 			foreach (Dish dish in GameData.Main.Get<Dish>())

@@ -128,7 +128,7 @@ namespace KitchenLib
 
 			foreach (BaseJson json in JSONManager.LoadedJsons)
 			{
-				Main.instance.Log(json.GetType().ToString());
+				Main.LogInfo(json.GetType().ToString());
 				if (json is CustomBaseMaterial)
 				{
 					CustomBaseMaterial customBaseMaterial = json as CustomBaseMaterial;

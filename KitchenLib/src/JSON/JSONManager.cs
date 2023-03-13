@@ -3,12 +3,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 namespace KitchenLib
 {
-	public static class JSONManager
+    public static class JSONManager
 	{
 		public static Dictionary<JsonType, Type> keyValuePairs = new Dictionary<JsonType, Type>
 		{
@@ -49,7 +48,7 @@ namespace KitchenLib
 				customMaterial.ConvertMaterial(out material);
 				return material;
 			}
-			Main.instance.Log("Unable to load JSON");
+			Main.LogWarning("Unable to load JSON");
 			return new Material(Shader.Find("Simple Flat"));
 
 		}
@@ -74,8 +73,8 @@ namespace KitchenLib
 					}
 					catch (Exception e)
 					{
-						Main.instance.Log(asset.name + " Could Not Be Loaded");
-						Main.instance.Log(e.Message);
+						Main.LogWarning(asset.name + " Could Not Be Loaded");
+						Main.LogWarning(e.Message);
 					}
 				}
 				catch (Exception e)
