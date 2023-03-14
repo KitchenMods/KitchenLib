@@ -111,7 +111,25 @@ namespace KitchenLib
 			Debug.LogError($"[{ModName}] " + message);
 		}
 
-		protected virtual void OnInitialise() { }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Log(object message)
+        {
+			Log(message.ToString());
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Warning(object message)
+        {
+			Warning(message.ToString());
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Error(object message)
+        {
+			Error(message.ToString());
+        }
+
+        protected virtual void OnInitialise() { }
 		protected virtual void OnFrameUpdate() { }
 
 		protected virtual void OnPostActivate(Mod mod) { }
@@ -124,11 +142,11 @@ namespace KitchenLib
 			{
 				foreach (AssetBundle bundle in pack.AssetBundles)
 				{
-					MaterialsManager.LoadAllJsons(bundle);
+					JSONManager.LoadAllJsons(bundle);
 				}
 			}
 
-			foreach (CustomBaseMaterial material in MaterialsManager.LoadedJsons)
+			foreach (CustomBaseMaterial material in JSONManager.LoadedJsons)
 			{
 				Material mat;
 				material.ConvertMaterial(out mat);

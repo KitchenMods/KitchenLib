@@ -3,9 +3,9 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using UnityEngine;
 using System;
-using KitchenLib.ContentPack.Models.Containers;
+using KitchenLib.src.JSON.Models.Containers;
 
-namespace KitchenLib.ContentPack.JsonConverters
+namespace KitchenLib.src.JSON.JsonConverters
 {
     public class MaterialConverter : CustomConverter<Material>
     {

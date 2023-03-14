@@ -1,23 +1,23 @@
 ﻿using KitchenData;
 using KitchenLib.Customs;
-using KitchenLib.ContentPack.Models.Containers;
 using KitchenLib.Utils;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using static KitchenLib.ContentPack.ContentPackUtils;
+using static KitchenLib.src.JSON.ContentPackUtils;
+using KitchenLib.src.JSON.Models.Containers;
 
-namespace KitchenLib.ContentPack.Models.Jsons
+namespace KitchenLib.src.JSON.Models.Jsons
 {
-    public class JsonItem : CustomItem 
+    public class JsonAppliance : CustomAppliance
     {
         [JsonProperty("GDOName")]
         string GDOName { get; set; } = "";
         [JsonProperty("Prefab")]
         string PrefabStr { get; set; } = "";
         [JsonProperty("Properties")]
-        List<ItemPropertyContainer> ItemPropertyContainers { get; set; } = new List<ItemPropertyContainer>();
+        List<AppliancePropertyContainer> AppliancePropertyContainers { get; set; } = new List<AppliancePropertyContainer>();
         [JsonProperty("Materials")]
         List<MaterialsContainer> MaterialsContainers { get; set; } = new List<MaterialsContainer>();
 
@@ -25,17 +25,17 @@ namespace KitchenLib.ContentPack.Models.Jsons
         internal void OnDeserializedMethod(StreamingContext context)
         {
             Prefab = PrefabConverter(PrefabStr);
-            Properties = ItemPropertyContainers.Select(p => p.Property).ToList();
+            Properties = AppliancePropertyContainers.Select(p => p.Property).ToList();
         }
 
         public override void OnRegister(GameDataObject gameDataObject)
         {
             gameDataObject.name = GDOName;
 
-            Item item = gameDataObject as Item;
+            Appliance appliance = gameDataObject as Appliance;
 
             foreach (MaterialsContainer materialsContainer in MaterialsContainers)
-                MaterialUtils.ApplyMaterial(item.Prefab, materialsContainer.Path, materialsContainer.Materials);
+                MaterialUtils.ApplyMaterial(appliance.Prefab, materialsContainer.Path, materialsContainer.Materials);
         }
     }
 }

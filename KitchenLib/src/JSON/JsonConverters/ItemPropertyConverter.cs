@@ -1,11 +1,11 @@
 ﻿using Kitchen;
 using KitchenData;
-using KitchenLib.ContentPack.Models.Containers;
+using KitchenLib.src.JSON.Models.Containers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 
-namespace KitchenLib.ContentPack.JsonConverters
+namespace KitchenLib.src.JSON.JsonConverters
 {
     public class ItemPropertyConverter : CustomConverter<ItemPropertyContainer>
     {

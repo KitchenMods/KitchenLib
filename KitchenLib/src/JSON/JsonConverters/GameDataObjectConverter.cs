@@ -2,11 +2,10 @@
 using KitchenLib.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
 
-namespace KitchenLib.ContentPack.JsonConverters
+namespace KitchenLib.src.JSON.JsonConverters
 {
-    public class GameDataObjectConverter : IdentifierConverter<GameDataObject>
+    public class GameDataObjectConverter : DerivedClassConverter<GameDataObject>
     {
         public override object Create(string str)
         {
