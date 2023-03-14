@@ -30,7 +30,13 @@ namespace KitchenLib.Utils
 
 		public static CustomGameDataObject GetCustomGameDataObject(string modID, string name)
 		{
-			CustomGDO.GDOsByGUID.TryGetValue(new KeyValuePair<string, string>(modID, name), out var result);
+			CustomGameDataObject result;
+			CustomGDO.GDOsByGUID.TryGetValue(new KeyValuePair<string, string>(modID, name), out result);
+			if (result == null)
+			{
+				CustomGDO.GDOsByModName.TryGetValue(new KeyValuePair<string, string>(modID, name), out result);
+				Main.LogWarning($"Mod Name {modID}:{name} should not be used to find GDOs. Use Mod ID instead.");
+			}
 			return result;
 		}
 

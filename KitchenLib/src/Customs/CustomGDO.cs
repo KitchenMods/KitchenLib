@@ -8,6 +8,7 @@ namespace KitchenLib.Customs
 		public static Dictionary<int, CustomGameDataObject> GDOs = new Dictionary<int, CustomGameDataObject>();
 		public static Dictionary<Type, CustomGameDataObject> GDOsByType = new Dictionary<Type, CustomGameDataObject>();
 		public static Dictionary<KeyValuePair<string, string>, CustomGameDataObject> GDOsByGUID = new Dictionary<KeyValuePair<string, string>, CustomGameDataObject>();
+		public static Dictionary<KeyValuePair<string, string>, CustomGameDataObject> GDOsByModName = new Dictionary<KeyValuePair<string, string>, CustomGameDataObject>();
 		public static Dictionary<int, CustomGameDataObject> GDOsByLegacyID = new Dictionary<int, CustomGameDataObject>();
 		public static Dictionary<int, int> LegacyGDOIDs = new Dictionary<int, int>();
 
@@ -29,6 +30,7 @@ namespace KitchenLib.Customs
 			LegacyGDOIDs.Add(gdo.LegacyID, gdo.ID);
 			GDOsByType.Add(gdo.GetType(), gdo);
 			GDOsByGUID.Add(new KeyValuePair<string, string>(gdo.ModID, gdo.UniqueNameID), gdo);
+			GDOsByModName.Add(new KeyValuePair<string, string>(gdo.ModName, gdo.UniqueNameID), gdo);
 
 			return gdo;
 		}

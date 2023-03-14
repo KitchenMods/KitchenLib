@@ -85,7 +85,6 @@ namespace KitchenLib
 			
 			foreach (BaseJson json in LoadedJsons)
 			{
-				Main.LogInfo("++++" + json.GetType());
 				if (json is CustomMaterial)
 				{
 					var material = json as CustomMaterial;
