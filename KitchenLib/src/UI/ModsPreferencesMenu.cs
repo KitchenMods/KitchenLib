@@ -1,18 +1,17 @@
-using UnityEngine;
 using Kitchen;
 using Kitchen.Modules;
-using System.Collections.Generic;
-using System;
-using System.Reflection;
 using KitchenLib.Event;
 using KitchenLib.Utils;
-using KitchenLib.Preferences;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using UnityEngine;
 
 namespace KitchenLib
 {
-    public class ModsPreferencesMenu<T> : KLMenu<T>
-    {
-        public ModsPreferencesMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
+	public class ModsPreferencesMenu<T> : KLMenu<T>
+	{
+		public ModsPreferencesMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
 
 		private static Dictionary<(Type, Type), string> RegisteredMenus = new Dictionary<(Type, Type), string>();
 		private static Dictionary<(Type, Type), int> MenuPages = new Dictionary<(Type, Type), int>();
@@ -23,11 +22,11 @@ namespace KitchenLib
 
 		private static Dictionary<Type, List<int>> Pages = new Dictionary<Type, List<int>>();
 		private static Dictionary<Type, List<string>> PageNames = new Dictionary<Type, List<string>>();
-		
+
 		private Option<int> PageSelector = null;
-		
+
 		private static int CurrentPage = 0;
-		
+
 
 		public static void RegisterMenu(string name, Type type, Type generic)
 		{
@@ -37,7 +36,7 @@ namespace KitchenLib
 					Pages.Add(generic, new List<int>());
 				if (!PageNames.ContainsKey(generic))
 					PageNames.Add(generic, new List<string>());
-				
+
 				bool foundValidPage = false;
 				int page = 0;
 				RegisteredMenus.Add((type, generic), name);
@@ -84,7 +83,7 @@ namespace KitchenLib
 		}
 
 		private bool HasBeenSetup = false;
-        public override void Setup(int player_id)
+		public override void Setup(int player_id)
 		{
 			if (!HasBeenSetup)
 			{
@@ -98,7 +97,7 @@ namespace KitchenLib
 				Pages.Add(GetType().GetGenericArguments()[0], new List<int>());
 			if (!PageNames.ContainsKey(GetType().GetGenericArguments()[0]))
 				PageNames.Add(GetType().GetGenericArguments()[0], new List<string>());
-			
+
 			PageSelector = new Option<int>(Pages[GetType().GetGenericArguments()[0]], CurrentPage, PageNames[GetType().GetGenericArguments()[0]]);
 			PageSelector.OnChanged += delegate (object _, int result)
 			{
@@ -112,7 +111,7 @@ namespace KitchenLib
 		private void Redraw(int pageNumber = 0)
 		{
 			ModuleList.Clear();
-			
+
 			AddLabel("Mod Preferences");
 			New<SpacerElement>(true);
 
@@ -143,11 +142,11 @@ namespace KitchenLib
 		}
 
 		public override void CreateSubmenus(ref Dictionary<Type, Menu<T>> menus)
-        {
-            if (this.GetType().GetGenericArguments()[0] == typeof(MainMenuAction))
-                EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_MainMenu_CreateSubmenusEvent), Events.PreferenceMenu_MainMenu_CreateSubmenusEvent?.GetInvocationList(), null, new PreferenceMenu_CreateSubmenusArgs<T>(this, menus, this.Container, this.ModuleList));
-            else if (this.GetType().GetGenericArguments()[0] == typeof(PauseMenuAction))
-                EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent), Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent?.GetInvocationList(), null, new PreferenceMenu_CreateSubmenusArgs<T>(this, menus, this.Container, this.ModuleList));
-        }
-    }
+		{
+			if (this.GetType().GetGenericArguments()[0] == typeof(MainMenuAction))
+				EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_MainMenu_CreateSubmenusEvent), Events.PreferenceMenu_MainMenu_CreateSubmenusEvent?.GetInvocationList(), null, new PreferenceMenu_CreateSubmenusArgs<T>(this, menus, this.Container, this.ModuleList));
+			else if (this.GetType().GetGenericArguments()[0] == typeof(PauseMenuAction))
+				EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent), Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent?.GetInvocationList(), null, new PreferenceMenu_CreateSubmenusArgs<T>(this, menus, this.Container, this.ModuleList));
+		}
+	}
 }

@@ -1,4 +1,6 @@
-﻿namespace KitchenLib.Customs
+﻿using KitchenData;
+
+namespace KitchenLib.Customs
 {
-    public abstract class CustomUnlockPack : CustomGameDataObject { }
+    public abstract class CustomUnlockPack<T> : CustomGameDataObject<T> where T : UnlockPack { }
 }

@@ -10,8 +10,8 @@ namespace KitchenLib.DataDumper.Dumpers
 			StringBuilder sb = new StringBuilder();
 
 			sb.AppendLine("ID,Type,Name,Description,Icon");
-			
-			
+
+
 			foreach (EffectRepresentation effectRepresentation in GameData.Main.Get<EffectRepresentation>())
 			{
 				sb.AppendLine($"{effectRepresentation.ID},{effectRepresentation.name},{effectRepresentation.Name},{effectRepresentation.Description},{effectRepresentation.Icon}");

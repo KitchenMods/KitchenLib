@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomLevelUpgradeSet : CustomGameDataObject
+    public abstract class CustomLevelUpgradeSet : CustomGameDataObject<LevelUpgradeSet>
     {
         public virtual List<LevelUpgrade> Upgrades { get; protected set; } = new List<LevelUpgrade>();
 

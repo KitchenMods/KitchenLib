@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomRandomUpgradeSet : CustomGameDataObject
+    public abstract class CustomRandomUpgradeSet : CustomGameDataObject<RandomUpgradeSet>
     {
         public virtual UpgradeRewardTier Tier { get; protected set; }
         public virtual List<IUpgrade> Rewards { get; protected set; } = new List<IUpgrade>();

@@ -30,19 +30,19 @@ namespace KitchenLib.DataDumper.Dumpers
 					$"{item.SplitSpeed},{item.AllowSplitMerging},{item.PreventExplicitSplit},{item.SplitByComponents},{item.SplitByComponentsHolder}," +
 					$"{item.SplitByCopying},{item.RefuseSplitWith},{item.DisposesTo},{item.IsIndisposable},{item.ItemCategory.ToString().Replace(",", ".")}," +
 					$"{item.ItemStorageFlags},{item.DedicatedProvider},{item.HoldPose},{item.IsMergeableSide},{item.ExtendedDirtItem}");
-				
+
 				foreach (Item.ItemProcess process in item.DerivedProcesses)
 				{
 					itemProcesses.AppendLine($"{item.ID},{item.name},{process.Process},{process.Result}," +
 						$"{process.Duration},{process.IsBad},{process.RequiresWrapper}");
 				}
-				
+
 				foreach (IItemProperty property in item.Properties)
 					itemProperties.AppendLine($"{item.ID},{item.name},{property.GetType().Name}");
 
 				foreach (Item mayRequestExtraItem in item.MayRequestExtraItems)
 					itemMayRequestExtraItems.AppendLine($"{item.ID},{item.name},{mayRequestExtraItem}:");
-				
+
 				foreach (Item splitDepletedItem in item.SplitDepletedItems)
 					itemSplitDepletedItems.AppendLine($"{item.ID},{item.name},{splitDepletedItem}");
 			}

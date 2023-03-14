@@ -1,7 +1,7 @@
-﻿ using System;
+﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
-using HarmonyLib;
 
 namespace KitchenLib.Utils
 {
@@ -44,14 +44,5 @@ namespace KitchenLib.Utils
 			cachedFields[tuple] = AccessTools.Field(typeof(T), fieldName);
 			return cachedFields[tuple];
 		}
-
-        public static FieldInfo GetField<T>(string fieldName, T generic)
-        {
-            var tuple = (typeof(T), fieldName);
-            if (cachedFields.TryGetValue(tuple, out var cachedVal))
-                return cachedVal;
-            cachedFields[tuple] = AccessTools.Field(typeof(T), fieldName);
-            return cachedFields[tuple];
-        }
-    }
+	}
 }

@@ -1,14 +1,14 @@
-using KitchenData;
-using System.Collections.Generic;
-using UnityEngine;
 using Kitchen;
-using System.Linq;
+using KitchenData;
+using KitchenLib.Patches;
 using System;
-using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomAppliance : CustomLocalisedGameDataObject<ApplianceInfo>
+    public abstract class CustomAppliance : CustomLocalisedGameDataObject<Appliance, ApplianceInfo>, ICustomHasPrefab
     {
         public virtual GameObject Prefab { get; protected set; }
         public virtual GameObject HeldAppliancePrefab { get; protected set; }
@@ -21,10 +21,9 @@ namespace KitchenLib.Customs
         public virtual bool IsNonInteractive { get; protected set; }
         public virtual OccupancyLayer Layer { get; protected set; }
         public virtual bool ForceHighInteractionPriority { get; protected set; }
-        [JsonIgnore]
-		
-		[Obsolete("Please use PriceTier to set your price")]
-		public virtual int PurchaseCost { get; protected set; } = 0;
+
+        [Obsolete("Please use PriceTier to set your price")]
+        public virtual int PurchaseCost { get; protected set; } = 0;
         public virtual EntryAnimation EntryAnimation { get; protected set; }
         public virtual ExitAnimation ExitAnimation { get; protected set; }
         public virtual bool SkipRotationAnimation { get; protected set; }
@@ -42,58 +41,55 @@ namespace KitchenLib.Customs
         public virtual bool SellOnlyAsUnique { get; protected set; }
         public virtual bool PreventSale { get; protected set; }
         public virtual List<Appliance> Upgrades { get; protected set; } = new List<Appliance>();
-		
-		[Obsolete("Should not be used by the user")]
-        [JsonIgnore]
-		public virtual bool IsAnUpgrade { get; protected set; }
+
+        [Obsolete("Should not be used by the user")]
+        public virtual bool IsAnUpgrade { get; protected set; }
         public virtual bool IsNonCrated { get; protected set; }
         public virtual Item CrateItem { get; protected set; }
-		
-		[Obsolete("Please set your Name in Info")]
-        [JsonIgnore]
-		public virtual string Name { get; protected set; } = "Appliance";
 
-		[Obsolete("Please set your Description in Info")]
-        [JsonIgnore]
-		public virtual string Description { get; protected set; } = "A little something for your restaurant";
-		
-		[Obsolete("Please set your Sections in Info")]
-        [JsonIgnore]
-		public virtual List<Appliance.Section> Sections { get; protected set; } = new List<Appliance.Section>();
-		
-		[Obsolete("Please set your Tags in Info")]
-        [JsonIgnore]
-		public virtual List<string> Tags { get; protected set; } = new List<string>();
+        [Obsolete("Please set your Name in Info")]
+        public virtual string Name { get; protected set; } = "Appliance";
 
-		[Obsolete("Please create a custom system for rotations")]
-		public virtual bool ForceIsRotationPossible() { return false; }
+        [Obsolete("Please set your Description in Info")]
+        public virtual string Description { get; protected set; } = "A little something for your restaurant";
 
-		[Obsolete("Please create a custom system for rotations")]
-		public virtual bool IsRotationPossible(InteractionData data) { return true; }
+        [Obsolete("Please set your Sections in Info")]
+        public virtual List<Appliance.Section> Sections { get; protected set; } = new List<Appliance.Section>();
 
-		[Obsolete("Please create a custom system for rotations")]
-		public virtual bool PreRotate(InteractionData data, bool isSecondary = false) { return false; }
+        [Obsolete("Please set your Tags in Info")]
+        public virtual List<string> Tags { get; protected set; } = new List<string>();
 
-		[Obsolete("Please create a custom system for rotations")]
-		public virtual void PostRotate(InteractionData data) { }
+        [Obsolete("Please create a custom system for rotations")]
+        public virtual bool ForceIsRotationPossible() { return false; }
 
-		[Obsolete("Please create a custom system for interactions")]
-		public virtual bool ForceIsInteractionPossible() { return false; }
+        [Obsolete("Please create a custom system for rotations")]
+        public virtual bool IsRotationPossible(InteractionData data) { return true; }
 
-		[Obsolete("Please create a custom system for interactions")]
-		public virtual bool IsInteractionPossible(InteractionData data) { return true; }
+        [Obsolete("Please create a custom system for rotations")]
+        public virtual bool PreRotate(InteractionData data, bool isSecondary = false) { return false; }
 
-		[Obsolete("Please create a custom system for interactions")]
-		public virtual bool PreInteract(InteractionData data, bool isSecondary = false) { return false; }
-		
-		[Obsolete("Please create a custom system for interactions")]
-		public virtual void PostInteract(InteractionData data) { }
+        [Obsolete("Please create a custom system for rotations")]
+        public virtual void PostRotate(InteractionData data) { }
+
+        [Obsolete("Please create a custom system for interactions")]
+        public virtual bool ForceIsInteractionPossible() { return false; }
+
+        [Obsolete("Please create a custom system for interactions")]
+        public virtual bool IsInteractionPossible(InteractionData data) { return true; }
+
+        [Obsolete("Please create a custom system for interactions")]
+        public virtual bool PreInteract(InteractionData data, bool isSecondary = false) { return false; }
+
+        [Obsolete("Please create a custom system for interactions")]
+        public virtual void PostInteract(InteractionData data) { }
+
+        public virtual int PurchaseCostOverride { get; protected set; } = -1;
 
         //private static readonly Appliance empty = ScriptableObject.CreateInstance<Appliance>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-			Appliance result = ScriptableObject.CreateInstance<Appliance>();
-			
+            Appliance result = ScriptableObject.CreateInstance<Appliance>();
+
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
             else
@@ -125,28 +121,33 @@ namespace KitchenLib.Customs
             if (result.IsNonCrated != IsNonCrated) result.IsNonCrated = IsNonCrated;
             if (result.Info != Info) result.Info = Info;
 
-			if (InfoList.Count > 0)
-			{
-				result.Info = new LocalisationObject<ApplianceInfo>();
-				foreach ((Locale, ApplianceInfo) info in InfoList)
-					result.Info.Add(info.Item1, info.Item2);
-			}
+            if (PurchaseCostOverride != -1)
+            {
+                Appliance_Patch.AddPurchaseCostOverride(result.ID, PurchaseCostOverride);
+            }
 
-			if (result.Info == null)
-			{
-				result.Info = new LocalisationObject<ApplianceInfo>();
-				if (!result.Info.Has(Locale.English))
-				{
-					result.Info.Add(Locale.English, new ApplianceInfo
-					{
-						Name = Name,
-						Description = Description,
-						Sections = Sections,
-						Tags = Tags
-					});
-				}
-			}
-			
+            if (InfoList.Count > 0)
+            {
+                result.Info = new LocalisationObject<ApplianceInfo>();
+                foreach ((Locale, ApplianceInfo) info in InfoList)
+                    result.Info.Add(info.Item1, info.Item2);
+            }
+
+            if (result.Info == null)
+            {
+                result.Info = new LocalisationObject<ApplianceInfo>();
+                if (!result.Info.Has(Locale.English))
+                {
+                    result.Info.Add(Locale.English, new ApplianceInfo
+                    {
+                        Name = Name,
+                        Description = Description,
+                        Sections = Sections,
+                        Tags = Tags
+                    });
+                }
+            }
+
 
             gameDataObject = result;
         }
@@ -163,5 +164,22 @@ namespace KitchenLib.Customs
             if (result.Upgrades != Upgrades) result.Upgrades = Upgrades;
             if (result.CrateItem != CrateItem) result.CrateItem = CrateItem;
         }
+
+        public override void OnRegister(GameDataObject gameDataObject)
+        {
+            IHasPrefab gdo = gameDataObject as IHasPrefab;
+            if (gdo?.Prefab != null)
+            {
+                SetupPrefab(gdo.Prefab);
+            }
+            else
+            {
+                Main.LogWarning($"Appliance with ID '{UniqueNameID}' does not have a prefab set.");
+            }
+
+            base.OnRegister(gameDataObject);
+        }
+
+        public virtual void SetupPrefab(GameObject prefab) { }
     }
 }

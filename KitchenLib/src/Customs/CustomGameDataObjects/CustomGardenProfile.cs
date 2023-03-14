@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomGardenProfile : CustomGameDataObject
+    public abstract class CustomGardenProfile : CustomGameDataObject<GardenProfile>
     {
         public virtual Appliance SpawnHolder { get; protected set; }
         public virtual List<GardenProfile.SpawnProbability> Spawns { get; protected set; } = new List<GardenProfile.SpawnProbability>();

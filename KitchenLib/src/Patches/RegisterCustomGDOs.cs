@@ -1,23 +1,25 @@
 using System;
 using HarmonyLib;
+using Kitchen;
 using KitchenData;
-using KitchenLib.Utils;
-using System.Collections.Generic;
+using KitchenLib.Colorblind;
+using KitchenLib.Customs;
 using KitchenLib.Event;
 using KitchenLib.Systems;
+using KitchenLib.Utils;
+using System.Collections.Generic;
 using UnityEngine;
-using Kitchen;
-using KitchenLib.Colorblind;
 
-namespace KitchenLib.Customs
+namespace KitchenLib.Patches
 {
-	[HarmonyPatch(typeof(GameDataConstructor), "BuildGameData", new Type[] { })]
+    [HarmonyPatch(typeof(GameDataConstructor), "BuildGameData", new Type[] { })]
 	public class GameDataConstructor_Patch
 	{
 		private static readonly List<GameDataObject> GameDataObjects = new List<GameDataObject>();
 		private static bool FirstRun = true;
 
-		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result) {
+		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result)
+		{
 			MaterialUtils.SetupMaterialIndex();
 			GDOUtils.SetupGDOIndex(__result);
 			ColorblindUtils.Init(__result);
@@ -28,7 +30,7 @@ namespace KitchenLib.Customs
 				{
 					GameDataObject gameDataObject;
 					gdo.Convert(__result, out gameDataObject);
-					gameDataObject.name = $"{gdo.ModName} - {gdo.UniqueNameID}";
+					gameDataObject.name = $"{gdo.ModID} - {gdo.UniqueNameID}";
 					gdo.GameDataObject = gameDataObject;
 					GameDataObjects.Add(gameDataObject);
 				}
@@ -60,7 +62,7 @@ namespace KitchenLib.Customs
 				}
 				catch (Exception e)
 				{
-					Main.instance.Log(e.Message);
+					Main.LogInfo(e.Message);
 				}
 			}
 
@@ -118,15 +120,15 @@ namespace KitchenLib.Customs
 
 					// Items
 					if (gameDataObject.GetType() == typeof(Item) || gameDataObject.GetType() == typeof(ItemGroup))
-                    {
+					{
 						Item item = (Item)gameDataObject;
 						if (!item.IsMergeableSide)
-                        {
+						{
 							continue;
 						}
 
 						ItemGroupViewUtils.AddPossibleSide(__result, item);
-                    }
+					}
 				}
 			}
 
@@ -161,9 +163,9 @@ namespace KitchenLib.Customs
 			EventUtils.InvokeEvent(nameof(Events.BuildGameDataPostViewInitEvent), Events.BuildGameDataPostViewInitEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result, FirstRun));
 
 			if (FirstRun)
-            {
-                FirstRun = false;
-            }
+			{
+				FirstRun = false;
+			}
 		}
 	}
 }

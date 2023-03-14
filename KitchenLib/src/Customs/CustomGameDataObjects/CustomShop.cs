@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomShop : CustomGameDataObject
+    public abstract class CustomShop : CustomGameDataObject<Shop>
     {
         public virtual List<Appliance> Stock { get; protected set; } = new List<Appliance>();
         public virtual List<Decor> Decors { get; protected set; } = new List<Decor>();

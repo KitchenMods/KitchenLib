@@ -1,29 +1,27 @@
 using KitchenData;
+using KitchenLib.Colorblind;
+using KitchenLib.Patches;
 using KitchenLib.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
-using KitchenLib.Colorblind;
-using Newtonsoft.Json;
-using System;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomItem : CustomGameDataObject
+    public abstract class CustomItem : CustomItem<Item> { }
+    public abstract class CustomItem<T> : CustomGameDataObject<T>, ICustomHasPrefab where T : Item
     {
-        [JsonIgnore]
         public virtual GameObject Prefab { get; protected set; }
         public virtual GameObject SidePrefab { get; protected set; }
-        public virtual List<Item.ItemProcess> Processes { get; protected set; }=new List<Item.ItemProcess>();
-        [JsonIgnore]
+        public virtual List<Item.ItemProcess> Processes { get; protected set; } = new List<Item.ItemProcess>();
         public virtual List<IItemProperty> Properties { get; protected set; } = new List<IItemProperty>();
         public virtual float ExtraTimeGranted { get; protected set; }
         public virtual ItemValue ItemValue { get; protected set; } = ItemValue.Small;
 
-		[Obsolete("Please use ItemValue instead.")]
-        [JsonIgnore]
-		public virtual int Reward { get { return 1; } }
+        [Obsolete("Please use ItemValue instead.")]
+        public virtual int Reward { get { return 1; } }
         public virtual Item DirtiesTo { get; protected set; }
         public virtual List<Item> MayRequestExtraItems { get; protected set; } = new List<Item>();
         public virtual int MaxOrderSharers { get; protected set; }
@@ -45,9 +43,10 @@ namespace KitchenLib.Customs
         public virtual ToolAttachPoint HoldPose { get; protected set; } = ToolAttachPoint.Generic;
         public virtual bool IsMergeableSide { get; protected set; }
         public virtual Item ExtendedDirtItem { get; protected set; }
-		public virtual string ColourBlindTag { get; protected set; }
+        public virtual string ColourBlindTag { get; protected set; }
+        public virtual int RewardOverride { get; protected set; } = -1;
 
-		//private static readonly Item empty = ScriptableObject.CreateInstance<Item>();
+        //private static readonly Item empty = ScriptableObject.CreateInstance<Item>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             Item result = ScriptableObject.CreateInstance<Item>();
@@ -72,8 +71,11 @@ namespace KitchenLib.Customs
             if (result.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (result.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
 
-			if (!string.IsNullOrEmpty(ColourBlindTag))
-				ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
+            if (!string.IsNullOrEmpty(ColourBlindTag))
+                ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
+
+            if (RewardOverride != -1)
+                Item_Patch.AddRewardOverride(result.ID, RewardOverride);
 
             gameDataObject = result;
         }
@@ -97,5 +99,22 @@ namespace KitchenLib.Customs
 
             if (processes.GetValue(result) != Processes) processes.SetValue(result, Processes);
         }
+
+        public override void OnRegister(GameDataObject gameDataObject)
+        {
+            IHasPrefab gdo = gameDataObject as IHasPrefab;
+            if (gdo?.Prefab != null)
+            {
+                SetupPrefab(gdo.Prefab);
+            }
+            else
+            {
+                Main.LogWarning($"Item/ItemGroup with ID '{UniqueNameID}' does not have a prefab set.");
+            }
+
+            base.OnRegister(gameDataObject);
+        }
+
+        public virtual void SetupPrefab(GameObject prefab) { }
     }
 }

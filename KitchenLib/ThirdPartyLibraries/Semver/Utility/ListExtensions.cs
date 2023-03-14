@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
-
-namespace Semver.Utility
+﻿namespace Semver.Utility
 {
 #if NETSTANDARD1_1
     internal static class ListExtensions

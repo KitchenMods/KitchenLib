@@ -3,9 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
-using KitchenLib.src.JSON;
 
 namespace KitchenLib
 {
@@ -16,40 +14,91 @@ namespace KitchenLib
 			{ JsonType.Base, typeof(BaseJson) },
 			{ JsonType.FlatColorMaterial, typeof(CustomSimpleFlat) },
 			{ JsonType.TransparentMaterial, typeof(CustomSimpleTransparent) },
-			{ JsonType.ImageMaterial, typeof(CustomFlatImage) }
+			{ JsonType.ImageMaterial, typeof(CustomFlatImage) },
+			{ JsonType.CustomMaterial, typeof(CustomMaterial) },
+			{ JsonType.CSimpleFlat, typeof(CSimpleFlat) },
+			{ JsonType.CSimpleTransparent, typeof(CSimpleTransparent) },
+			{ JsonType.CFlatImage, typeof(CFlatImage) },
+			{ JsonType.CFlat, typeof(CFlat) },
+			{ JsonType.CIndicatorLight, typeof(CIndicatorLight) },
+			{ JsonType.CGhost, typeof(CGhost) },
+			{ JsonType.CFairyLight, typeof(CFairyLight) },
+			{ JsonType.CFoliage, typeof(CFoliage) },
+			{ JsonType.CWalls, typeof(CWalls) },
+			{ JsonType.CBlueprintLight, typeof(CBlueprintLight) },
 		};
 
 		public static List<BaseJson> LoadedJsons = new List<BaseJson>();
+
+		public static Material LoadMaterialFromJson(string json)
+		{
+			BaseJson baseJson = null;
+			try
+			{
+				baseJson = JsonConvert.DeserializeObject<BaseJson>(json);
+			}
+			catch { }
+
+			if (baseJson != null)
+			{
+				var newJson = JsonConvert.DeserializeObject(json, keyValuePairs[baseJson.Type]);
+				CustomMaterial customMaterial = newJson as CustomMaterial;
+				Material material;
+				customMaterial.Deserialise();
+				customMaterial.ConvertMaterial(out material);
+				return material;
+			}
+			Main.LogWarning("Unable to load JSON");
+			return new Material(Shader.Find("Simple Flat"));
+
+		}
 
 		public static void LoadAllJsons(AssetBundle bundle)
 		{
 			foreach (TextAsset asset in bundle.LoadAllAssets<TextAsset>())
 			{
-				Main.instance.Log("Loading " + asset.name);
-				if(Path.GetExtension(asset.name) == ".json")
+				Main.LogInfo($"Loading JSON-based material asset '{asset.name}'");
+				BaseJson baseJson = null;
+				try
 				{
 					try
 					{
-                        JObject jObject = JObject.Parse(asset.text);
-                        if (jObject.TryGetValue("JSONType", out JToken jsonType))
-                        {
-							if (jsonType is JValue jValue)
-							{
-								var json = jObject.ToObject(keyValuePairs[jValue.ToObject<JsonType>()]);
-                                LoadedJsons.Add(json as BaseJson);
-                            }
-							else if (jsonType is JObject Container)
-							{
-								ContentPackSystem.RawJObjects.Add(Main.instance.ModName, jObject);
-							}
-                        }
-                    }
-					catch(Exception e)
+						JObject jObject = JObject.Parse(asset.text);
+						if (jObject.TryGetValue("Type", out JToken jToken))
+						{
+							JsonType type = jToken.ToObject<JsonType>();
+							var json = jObject.ToObject(keyValuePairs[type]);
+							LoadedJsons.Add(json as BaseJson);
+						}
+					}
+					catch (Exception e)
 					{
-                        Main.instance.Log(asset.name + " Could Not Be Loaded");
-						Main.instance.Log(e.Message);
-                    }
-                }
+						Main.LogWarning(asset.name + " Could Not Be Loaded");
+						Main.LogWarning(e.Message);
+					}
+				}
+				catch (Exception e)
+				{
+					Main.LogWarning($"Material asset '{asset.name}' could not be loaded");
+				}
+			}
+			
+			foreach (BaseJson json in LoadedJsons)
+			{
+				if (json is CustomMaterial)
+				{
+					var material = json as CustomMaterial;
+					material.Deserialise();
+					material.ConvertMaterial(out Material newMaterial);
+					CustomMaterials.AddMaterial(material.Name, newMaterial);
+				}
+				if (json is CustomBaseMaterial)
+				{
+					var material = json as CustomBaseMaterial;
+					Material mat;
+					material.ConvertMaterial(out mat);
+					CustomMaterials.AddMaterial(mat.name, mat);
+				}
 			}
 		}
 	}
@@ -64,6 +113,17 @@ namespace KitchenLib
 		Base,
 		FlatColorMaterial,
 		TransparentMaterial,
-		ImageMaterial
+		ImageMaterial,
+		CustomMaterial,
+		CSimpleFlat,
+		CSimpleTransparent,
+		CFlatImage,
+		CFlat,
+		CIndicatorLight,
+		CGhost,
+		CFairyLight,
+		CFoliage,
+		CWalls,
+		CBlueprintLight
 	}
 }

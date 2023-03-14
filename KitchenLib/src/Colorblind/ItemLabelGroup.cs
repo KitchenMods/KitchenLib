@@ -1,8 +1,10 @@
-﻿namespace KitchenLib.Colorblind {
+﻿namespace KitchenLib.Colorblind
+{
 
-    public class ItemLabelGroup {
+	public class ItemLabelGroup
+	{
 
-        public int itemId { get; set; }
-        public ItemLabel[] itemLabels { get; set; }
-    }
+		public int itemId { get; set; }
+		public ItemLabel[] itemLabels { get; set; }
+	}
 }
