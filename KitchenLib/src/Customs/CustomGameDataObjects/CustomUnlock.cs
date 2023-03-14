@@ -18,5 +18,9 @@ namespace KitchenLib.Customs
         public virtual List<Unlock> HardcodedBlockers { get; protected set; }
         public virtual string IconOverride { get; protected set; }
         public virtual Color ColourOverride { get; protected set; }
-    }
+	}
+
+	public abstract class CustomUnlock : CustomUnlock<Unlock>
+	{
+	}
 }

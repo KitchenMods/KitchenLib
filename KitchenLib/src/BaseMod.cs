@@ -27,6 +27,7 @@ namespace KitchenLib
 		private static List<Assembly> PatchedAssemblies = new List<Assembly>();
 		private bool isRegistered = false;
 		private bool canRegisterGDO = false;
+		public static BaseMod instance;
 
 		public static HarmonyLib.Harmony harmonyInstance;
 
@@ -59,6 +60,7 @@ namespace KitchenLib
 
 		private void SetupMod(string modID, string modName, string author, string modVersion, string betaVersion, string compatibleVersions, Assembly assembly)
 		{
+			instance = this;
 			ModID = modID;
 			ModName = modName;
 			ModAuthor = author;
@@ -94,19 +96,19 @@ namespace KitchenLib
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Log(string message)
 		{
-			Debug.Log($"[{ModName}] " + message);
+			Debug.Log($"*[{ModName}] " + message);
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Warning(string message)
 		{
-			Debug.LogWarning($"[{ModName}] " + message);
+			Debug.LogWarning($"*[{ModName}] " + message);
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Error(string message)
 		{
-			Debug.LogError($"[{ModName}] " + message);
+			Debug.LogError($"*[{ModName}] " + message);
 		}
 
 		protected virtual void OnInitialise() { }
