@@ -82,12 +82,24 @@ namespace KitchenLib
 					Main.LogWarning($"Material asset '{asset.name}' could not be loaded");
 				}
 			}
-
-			foreach (CustomMaterial material in LoadedJsons)
+			
+			foreach (BaseJson json in LoadedJsons)
 			{
-				material.Deserialise();
-				material.ConvertMaterial(out Material newMaterial);
-				CustomMaterials.AddMaterial(material.Name, newMaterial);
+				Main.LogInfo("++++" + json.GetType());
+				if (json is CustomMaterial)
+				{
+					var material = json as CustomMaterial;
+					material.Deserialise();
+					material.ConvertMaterial(out Material newMaterial);
+					CustomMaterials.AddMaterial(material.Name, newMaterial);
+				}
+				if (json is CustomBaseMaterial)
+				{
+					var material = json as CustomBaseMaterial;
+					Material mat;
+					material.ConvertMaterial(out mat);
+					CustomMaterials.AddMaterial(mat.name, mat);
+				}
 			}
 		}
 	}

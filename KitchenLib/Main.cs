@@ -19,7 +19,7 @@ namespace KitchenLib
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
 		public const string MOD_VERSION = "0.5.6";
-		public const string MOD_BETA_VERSION = "RC-3";
+		public const string MOD_BETA_VERSION = "RC-4";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
