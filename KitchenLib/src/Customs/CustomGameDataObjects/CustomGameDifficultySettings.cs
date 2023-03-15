@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomGameDifficultySettings : CustomGameDataObject
+    public abstract class CustomGameDifficultySettings : CustomGameDataObject<GameDifficultySettings>
     {
         public virtual bool IsActive { get; protected set; } = false;
         public virtual float CustomersPerHourBase { get; protected set; } = 1f;

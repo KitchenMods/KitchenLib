@@ -81,7 +81,7 @@ namespace KitchenLib.Systems
             {
                 foreach (var baseMod in possibleMods.Value)
                 {
-                    Main.instance.Log($"Found mod: {possibleMods.Key.Name} {baseMod.ModName}");
+                    Main.LogInfo($"[Update Manager] Found mod: {possibleMods.Key.Name} {baseMod.ModName}");
                 }
             }
 
@@ -98,7 +98,7 @@ namespace KitchenLib.Systems
                     string version = null;
                     var changelog = await GetLatestUpdateChangelog(changelogUrl);
 
-                    Main.instance.Log($"Found subscribed workshop mod: {id} {name} {timestamp} {changelogUrl}");
+                    Main.LogInfo($"[Update Manager] Found subscribed workshop mod: {id} {name} {timestamp} {changelogUrl}");
 
                     if (!entry.NeedsUpdate)
                     {
@@ -110,7 +110,7 @@ namespace KitchenLib.Systems
                             {
                                 foreach (var baseMod in possibleMods.Value)
                                 {
-                                    Main.instance.Log($"Found KL updated mod '{baseMod.ModName}'");
+                                    Main.LogInfo($"[Update Manager] Found KL mod '{baseMod.ModName}'");
                                     updatedMods.Add(new UpdatedMod
                                     {
                                         Id = id,
@@ -127,7 +127,7 @@ namespace KitchenLib.Systems
 
                         if (!foundBaseMod)
                         {
-                            Main.instance.Log($"Found non-KL updated mod '{name}'");
+                            Main.LogInfo($"[Update Manager] Found non-KL mod '{name}'");
                             updatedMods.Add(new UpdatedMod
                             {
                                 Id = id,
@@ -141,7 +141,7 @@ namespace KitchenLib.Systems
                     else
                     {
                         // Mod needs update
-                        Main.instance.Log($"Found out of date mod '{name}'");
+                        Main.LogInfo($"[Update Manager] Found out of date mod '{name}'");
                         outOfDateMods.Add(new OutOfDateMod
                         {
                             ModId = id,
@@ -193,44 +193,45 @@ namespace KitchenLib.Systems
 					);
 				}
 			}
-        }
+		}
 
-        private void RecordChangelogView(UpdatedMod mod)
-        {
-            PreviousData[mod.Id] = mod.Timestamp;
-            WriteDataFile();
-        }
+		private void RecordChangelogView(UpdatedMod mod)
+		{
+			PreviousData[mod.Id] = mod.Timestamp;
+			WriteDataFile();
+		}
 
-        private async Task<string> GetLatestUpdateChangelog(string changelogUrl)
-        {
-            HttpClient client = new();
-            using HttpResponseMessage response = await client.GetAsync(changelogUrl);
-            using HttpContent content = response.Content;
-            string pageContent = await content.ReadAsStringAsync();
-            string extractedContent = CHANGELOG_REGEX.Match(pageContent).Groups[1].Value;
-            string cleanedContent = HttpUtility.HtmlDecode(extractedContent);
-            return cleanedContent;
-        }
+		private async Task<string> GetLatestUpdateChangelog(string changelogUrl)
+		{
+			HttpClient client = new();
+			using HttpResponseMessage response = await client.GetAsync(changelogUrl);
+			using HttpContent content = response.Content;
+			string pageContent = await content.ReadAsStringAsync();
+			string extractedContent = CHANGELOG_REGEX.Match(pageContent).Groups[1].Value;
+			string cleanedContent = HttpUtility.HtmlDecode(extractedContent);
+			return cleanedContent;
+		}
 
-        private void ReadDataFile()
-        {
-            if (!File.Exists(DATA_FILE_PATH))
-            {
-                return;
-            }
+		private void ReadDataFile()
+		{
+			if (!File.Exists(DATA_FILE_PATH))
+			{
+				return;
+			}
 
-            FileData = JsonConvert.DeserializeObject<DataFile>(File.ReadAllText(DATA_FILE_PATH));
-        }
+			FileData = JsonConvert.DeserializeObject<DataFile>(File.ReadAllText(DATA_FILE_PATH));
+		}
 
-        private void WriteDataFile()
-        {
-            var directory = Path.Combine(DATA_FILE_PATH, "..");
-            if (!Directory.Exists(directory)) {
-                Directory.CreateDirectory(directory);
-            }
+		private void WriteDataFile()
+		{
+			var directory = Path.Combine(DATA_FILE_PATH, "..");
+			if (!Directory.Exists(directory))
+			{
+				Directory.CreateDirectory(directory);
+			}
 
-            var text = JsonConvert.SerializeObject(FileData);
-            File.WriteAllText(DATA_FILE_PATH, text);
-        }
-    }
+			var text = JsonConvert.SerializeObject(FileData);
+			File.WriteAllText(DATA_FILE_PATH, text);
+		}
+	}
 }

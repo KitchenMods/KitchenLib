@@ -1,7 +1,7 @@
 ﻿using Kitchen;
 using KitchenData;
-using UnityEngine;
 using Unity.Entities;
+using UnityEngine;
 
 namespace KitchenLib.Utils
 {
@@ -11,7 +11,7 @@ namespace KitchenLib.Utils
 		public static Process GetProcess()
 		{
 			Process result = new Process();
-			
+
 			//result.BasicEnablingAppliance = GDOUtils.GetExistingAppliance(-1248669347);
 			result.BasicEnablingAppliance = (Appliance)GDOUtils.GetExistingGDO(-1248669347);
 			result.CanObfuscateProgress = true;
@@ -166,7 +166,7 @@ namespace KitchenLib.Utils
 		public static CItemTransferRestrictions GetCItemTransferRestrictions(bool allowWhenActive, bool allowWhenInactive)
 		{
 			CItemTransferRestrictions result = new CItemTransferRestrictions();
-			
+
 			result.AllowWhenActive = allowWhenActive;
 			result.AllowWhenInactive = allowWhenInactive;
 
@@ -176,18 +176,18 @@ namespace KitchenLib.Utils
 		public static CApplianceHostStand GetCApplianceHostStand(bool automatic)
 		{
 			CApplianceHostStand result = new CApplianceHostStand();
-			
+
 			result.Automatic = automatic;
-			
+
 			return result;
 		}
 
 		public static COrderEncourager GetCOrderEncourager(float probability)
 		{
 			COrderEncourager result = new COrderEncourager();
-			
+
 			result.Probability = probability;
-			
+
 			return result;
 		}
 
@@ -333,9 +333,9 @@ namespace KitchenLib.Utils
 		public static CRemovesShopBlueprint GetCRemovesShopBlueprint(int count)
 		{
 			CRemovesShopBlueprint result = new CRemovesShopBlueprint();
-			
+
 			result.Count = count;
-			
+
 			return result;
 		}
 

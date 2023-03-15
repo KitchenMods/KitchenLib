@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomWorkshopRecipe : CustomGameDataObject
+    public abstract class CustomWorkshopRecipe : CustomGameDataObject<WorkshopRecipe>
     {
         public virtual List<IWorkshopIndividualCondition> Conditions { get; protected set; } = new List<IWorkshopIndividualCondition>();
         public virtual List<IWorkshopGroupCondition> GroupConditions { get; protected set; } = new List<IWorkshopGroupCondition>();

@@ -7,11 +7,16 @@
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<EnableDocumentation>true</EnableDocumentation>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<None Include="..\.editorconfig" Link=".editorconfig" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="MessagePack" Version="2.4.59" />
 	  <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 	  <PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.6.16" />
 	</ItemGroup>

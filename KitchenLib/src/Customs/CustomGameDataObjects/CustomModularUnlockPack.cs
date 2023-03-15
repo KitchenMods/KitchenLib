@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomModularUnlockPack : CustomUnlockPack
+    public abstract class CustomModularUnlockPack : CustomUnlockPack<ModularUnlockPack>
     {
 
         public virtual List<IUnlockSet> Sets { get; protected set; } = new List<IUnlockSet>();

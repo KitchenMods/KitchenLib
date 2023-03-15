@@ -1,12 +1,11 @@
 using KitchenData;
-using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using System.Drawing;
+using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomPlayerCosmetic : CustomLocalisedGameDataObject<CosmeticInfo>
+    public abstract class CustomPlayerCosmetic : CustomLocalisedGameDataObject<PlayerCosmetic, CosmeticInfo>
     {
         public virtual CosmeticType CosmeticType { get; protected set; }
         public virtual List<RestaurantSetting> CustomerSettings { get; protected set; } = new List<RestaurantSetting>();
@@ -31,14 +30,14 @@ namespace KitchenLib.Customs
             if (result.Visual != Visual) result.Visual = Visual;
             if (result.Info != Info) result.Info = Info;
 
-			if (InfoList.Count > 0)
-			{
-				result.Info = new LocalisationObject<CosmeticInfo>();
-				foreach ((Locale, CosmeticInfo) info in InfoList)
-					result.Info.Add(info.Item1, info.Item2);
-			}
+            if (InfoList.Count > 0)
+            {
+                result.Info = new LocalisationObject<CosmeticInfo>();
+                foreach ((Locale, CosmeticInfo) info in InfoList)
+                    result.Info.Add(info.Item1, info.Item2);
+            }
 
-			gameDataObject = result;
+            gameDataObject = result;
         }
 
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)

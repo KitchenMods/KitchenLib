@@ -1,19 +1,19 @@
-using UnityEngine;
 using Kitchen;
 using Kitchen.Modules;
 using KitchenLib.Registry;
-using System.Collections.Generic;
 using KitchenMods;
 using System;
-using System.Reflection;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using UnityEngine;
 
 namespace KitchenLib
 {
-    public partial class ModsMenu<T> : KLMenu<T>
-    {
-        public ModsMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
-        private List<string> modNames = new List<string>();
+	public partial class ModsMenu<T> : KLMenu<T>
+	{
+		public ModsMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
+		private List<string> modNames = new List<string>();
 
 		private static List<ModPage> modPages = new List<ModPage>
 		{
@@ -22,19 +22,19 @@ namespace KitchenLib
 			ModPage.NonKitchenLibMods
 		};
 
-        private static readonly float columnWidth = 6f;
-        private static readonly int modsPerColumn = 25;
-        private static readonly Vector2 selectPosition = new Vector2(1, 4);
-        private static readonly Vector2 backButtonPosition = new Vector2(1, 3.5f);
-        private static readonly List<string> modsToFilterOut = new List<string> {
-            "Mono.Cecil.dll",
-            "Mono.Cecil.Mdb.dll",
-            "Mono.Cecil.Pdb.dll",
-            "Mono.Cecil.Rocks.dll",
-            "MonoMod.RuntimeDetour.dll",
-            "MonoMod.Utils.dll",
-            "UniverseLib.Mono.dll",
-        };
+		private static readonly float columnWidth = 6f;
+		private static readonly int modsPerColumn = 25;
+		private static readonly Vector2 selectPosition = new Vector2(1, 4);
+		private static readonly Vector2 backButtonPosition = new Vector2(1, 3.5f);
+		private static readonly List<string> modsToFilterOut = new List<string> {
+			"Mono.Cecil.dll",
+			"Mono.Cecil.Mdb.dll",
+			"Mono.Cecil.Pdb.dll",
+			"Mono.Cecil.Rocks.dll",
+			"MonoMod.RuntimeDetour.dll",
+			"MonoMod.Utils.dll",
+			"UniverseLib.Mono.dll",
+		};
 
 		private static List<string> modPagesNames = new List<string>
 		{
@@ -45,7 +45,8 @@ namespace KitchenLib
 
 		private Option<ModPage> PageSelector = new Option<ModPage>(modPages, ModPage.LoadedMods, modPagesNames);
 
-		public override void Setup(int player_id) {
+		public override void Setup(int player_id)
+		{
 
 			Dictionary<Type, BaseMod> loadedMods = new Dictionary<Type, BaseMod>();
 			Dictionary<Type, BaseMod> untestedMods = new Dictionary<Type, BaseMod>();
@@ -73,7 +74,8 @@ namespace KitchenLib
 			ModuleList.Clear();
 			AddSelect<ModPage>(PageSelector).Position = selectPosition;
 			New<SpacerElement>(true);
-			AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate (int i) {
+			AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate (int i)
+			{
 				this.RequestPreviousMenu();
 			}, 0, 1f, 0.2f).Position = backButtonPosition;
 
@@ -96,22 +98,24 @@ namespace KitchenLib
 			}
 		}
 
-        private string modToModNameAndVersion(BaseMod mod) => $"{mod.ModName}     v{mod.ModVersion}{mod.BetaVersion}";
+		private string modToModNameAndVersion(BaseMod mod) => $"{mod.ModName}     v{mod.ModVersion}{mod.BetaVersion}";
 
-        private void createModLabels(List<string> modNames) {
-            int columns = modNames.Count / modsPerColumn;
-            int i = 0;
+		private void createModLabels(List<string> modNames)
+		{
+			int columns = modNames.Count / modsPerColumn;
+			int i = 0;
 
-            modNames.OrderBy(x => x).ToList().ForEach(modName => {
-                InfoBoxElement infoBoxElement = AddInfo(modName);
-                infoBoxElement.SetSize(columnWidth, 1f);
-                infoBoxElement.Position = new Vector2(
-                    Mathf.Floor(i / modsPerColumn) * columnWidth - (columns * columnWidth / 2),
-                    i % modsPerColumn * -0.25f + 3f);
-                i++;
-            });
-        }
-    }
+			modNames.OrderBy(x => x).ToList().ForEach(modName =>
+			{
+				InfoBoxElement infoBoxElement = AddInfo(modName);
+				infoBoxElement.SetSize(columnWidth, 1f);
+				infoBoxElement.Position = new Vector2(
+					Mathf.Floor(i / modsPerColumn) * columnWidth - (columns * columnWidth / 2),
+					i % modsPerColumn * -0.25f + 3f);
+				i++;
+			});
+		}
+	}
 
 	public enum ModPage
 	{

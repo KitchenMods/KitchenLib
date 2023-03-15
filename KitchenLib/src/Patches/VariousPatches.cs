@@ -1,24 +1,23 @@
 using HarmonyLib;
-using Kitchen.NetworkSupport;
 using Kitchen;
-using System.Collections.Generic;
+using Kitchen.NetworkSupport;
 
-namespace KitchenLib
+namespace KitchenLib.Patches
 {
-    [HarmonyPatch(typeof(DisplayVersion), "Awake")]
-    public class DisplayVersion_Patch
-    {
-        public static void Postfix(DisplayVersion __instance)
-        {
-            __instance.Text.text = __instance.Text.text + ".";
-        }
-    }
+	[HarmonyPatch(typeof(DisplayVersion), "Awake")]
+	public class DisplayVersion_Patch
+	{
+		public static void Postfix(DisplayVersion __instance)
+		{
+			__instance.Text.text = __instance.Text.text + ".";
+		}
+	}
 
-    [HarmonyPatch(typeof(SteamRichPresenceView), "UpdateDiscordRichPresence")]
-    public class SteamRichPresenceView_Patch
-    {
-        public static void Postfix(SteamRichPresenceView __instance, SteamRichPresenceView.ViewData view_data)
-        {
+	[HarmonyPatch(typeof(SteamRichPresenceView), "UpdateDiscordRichPresence")]
+	public class SteamRichPresenceView_Patch
+	{
+		public static void Postfix(SteamRichPresenceView __instance, SteamRichPresenceView.ViewData view_data)
+		{
 #if MELONLOADER
             DiscordPlatform.Discord.SetActivity("Plating Up Some Spinach", "", view_data.Data.Players);
 #endif
@@ -28,9 +27,9 @@ namespace KitchenLib
 #endif
 
 #if WORKSHOP
-            DiscordPlatform.Discord.SetActivity("Plating Up Some Pizza", "", view_data.Data.Players);
+			DiscordPlatform.Discord.SetActivity("Plating Up Some Pizza", "", view_data.Data.Players);
 #endif
 		}
 	}
-    
+
 }

@@ -2472,13 +2472,13 @@
 	{
 		public const int SameReshuffle2 = 1792697580;
 
-        public const int UpgradedintoKit2 = 1783705474;
+		public const int UpgradedintoKit2 = 1783705474;
 
-        public const int AnyRandom3 = -710212054;
+		public const int AnyRandom3 = -710212054;
 
-        public const int SameReshuffle3 = -495147897;
+		public const int SameReshuffle3 = -495147897;
 
-        public const int UseUpgradeKit = 1299921510;
+		public const int UseUpgradeKit = 1299921510;
 
 	}
 	public class CustomerTypeReferences
