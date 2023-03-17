@@ -12,7 +12,9 @@ namespace KitchenLib.src.JSON.Models.Jsons
 {
     public class JsonItem : CustomItem
     {
-        [JsonProperty("GDOName")]
+		[JsonProperty("UniqueNameID")]
+		public override string UniqueNameID { get; internal set; } = "";
+		[JsonProperty("GDOName")]
         string GDOName { get; set; } = "";
         [JsonProperty("Prefab")]
         string PrefabStr { get; set; } = "";
@@ -28,14 +30,12 @@ namespace KitchenLib.src.JSON.Models.Jsons
             Properties = ItemPropertyContainers.Select(p => p.Property).ToList();
         }
 
-        public override void OnRegister(GameDataObject gameDataObject)
+        public override void OnRegister(Item gameDataObject)
         {
             gameDataObject.name = GDOName;
 
-            Item item = gameDataObject as Item;
-
             foreach (MaterialsContainer materialsContainer in MaterialsContainers)
-                MaterialUtils.ApplyMaterial(item.Prefab, materialsContainer.Path, materialsContainer.Materials);
+                MaterialUtils.ApplyMaterial(gameDataObject.Prefab, materialsContainer.Path, materialsContainer.Materials);
         }
     }
 }

@@ -88,12 +88,6 @@ namespace KitchenLib.src.JSON
                     JToken value = kvp.Value;
                     Main.instance.Log(key);
                     Main.instance.Log(value.GetType());
-
-
-
-                    FieldInfo field = ReflectionUtils.GetField(key, typeof(Dish));
-                    Main.instance.Log(field == null);
-                    //field.SetValue(gdo, value.ToObject(field.FieldType));
                 }
 
                 Main.instance.Log($"Applying Modifications to {gdo.name}");

@@ -8,7 +8,9 @@ namespace KitchenLib.src.JSON.Models.Jsons
 {
     public class JsonDish : CustomDish
     {
-        [JsonProperty("GDOName")]
+		[JsonProperty("UniqueNameID")]
+		public override string UniqueNameID { get; internal set; } = "";
+		[JsonProperty("GDOName")]
         string GDOName { get; set; } = "";
         [JsonProperty("IconPrefab")]
         string IconPrefabStr { get; set; } = "";
@@ -22,7 +24,7 @@ namespace KitchenLib.src.JSON.Models.Jsons
             DisplayPrefab = PrefabConverter(DisplayPrefabStr);
         }
 
-        public override void OnRegister(GameDataObject gameDataObject)
+        public override void OnRegister(Dish gameDataObject)
         {
             gameDataObject.name = GDOName;
         }

@@ -8,7 +8,7 @@ namespace KitchenLib.Customs
     {
         public virtual int ID { get; internal set; }
         public int LegacyID { get; internal set; }
-        public abstract string UniqueNameID { get; }
+        public abstract string UniqueNameID { get; internal set; }
         public virtual int BaseGameDataObjectID { get; protected set; } = -1;
 
         public string ModID = "";
