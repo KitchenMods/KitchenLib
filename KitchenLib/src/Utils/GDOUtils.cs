@@ -67,6 +67,15 @@ namespace KitchenLib.Utils
 			return (T)GetCustomGameDataObject(modID, name)?.GameDataObject;
 		}
 
+		public static List<int> AutomatedParcelItems = new();
+		public static void AddAutomatedParcel(Item item)
+		{
+			if (item.DedicatedProvider == null)
+				return;
+			if (!AutomatedParcelItems.Contains(item.ID))
+				AutomatedParcelItems.Add(item.ID);
+		}
+
 
 		public static Dictionary<int, List<int>> BlacklistedDishSides = new Dictionary<int, List<int>>();
 		public static void BlacklistSide(Item item, int side)
