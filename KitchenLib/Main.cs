@@ -16,6 +16,11 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using MessagePack;
+using KitchenLib.IMMS;
+using System.Linq;
+using System;
+using KitchenLib.Stats;
 
 namespace KitchenLib
 {
@@ -66,6 +71,41 @@ namespace KitchenLib
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
+
+			// IMMS logger
+			IMMSManager.RegisterAll((string key, IMMSContext ctx, object[] args) =>
+			{
+				LogInfo($"[IMMS] channel={ctx.Channel} key={key} source={ctx.Source} target={ctx.Target} type={ctx.Type} args={string.Join(",", args.Select(Convert.ToString))}");
+				return null;
+			});
+
+			// TODO: remove
+			IMMSManager.Register("test_channel1", (string key, IMMSContext ctx, object[] args) =>
+			{
+				LogInfo($"[IMMS TEST LISTENER] found test message with key '{key}'");
+				return null;
+			});
+			IMMSManager.SendLocalMessage("test_channel1", "test_message1");
+			IMMSManager.SendLocalMessage("test_channel2", "test_message1");
+			IMMSManager.SendLocalMessage("test_channel1", "test_message2");
+			IMMSManager.SendLocalMessage("test_channel2", "test_message2");
+
+			// TODO: remove
+			IMMSNetworkMessage start = new IMMSNetworkMessage
+			{
+				Channel = "test_channel",
+				Key = "test_key",
+				Source = -1,
+				Target = -2,
+				Type = IMMSMessageType.ClientToHost,
+				Arguments = new object[] { 1, "abc", 3.0f, new IntStat() {
+					Key = "my thing",
+					Value = 123
+				} }
+			};
+			byte[] bytes = MessagePackSerializer.Serialize(start);
+			IMMSNetworkMessage end = MessagePackSerializer.Deserialize<IMMSNetworkMessage>(bytes);
+			LogInfo($"channel={end.Channel} key={end.Key} source={end.Source} target={end.Target} args={string.Join(",", ((object[])end.Arguments[3]).Select(Convert.ToString))}");
 		}
 		protected override void OnInitialise()
 		{
@@ -116,6 +156,12 @@ namespace KitchenLib
 			{
 				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mods", typeof(ModsMenu<PauseMenuAction>), false });
 				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mod Preferences", typeof(ModsPreferencesMenu<PauseMenuAction>), false });
+
+				// TODO: remove
+				IMMSManager.SendNetworkMessage("test_channel1", "broadcast", IMMSTarget.Broadcast);
+				IMMSManager.SendNetworkMessage("test_channel1", "host target", IMMSTarget.Host);
+				IMMSManager.SendNetworkMessage("test_channel1", "random target", 13);
+				IMMSManager.SendNetworkMessage("test_channel1", "me target", IMMSTarget.Me);
 			};
 			Events.PlayerPauseView_SetupMenusEvent += (s, args) =>
 			{
