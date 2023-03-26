@@ -21,8 +21,14 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Simple Flat"));
+			Material result = new Material(Shader.Find("Flat Image"));
+			
 			result.name = Name;
+			result.SetFloat("_Alpha", _Alpha);
+			result.SetFloat("_BlowoutScale1", _BlowoutScale1);
+			result.SetFloat("_BlowoutOffset1", _BlowoutOffset1);
+			result.SetFloat("_IsBlowout", _IsBlowout);
+			result.SetTexture("_Image", _Image);
 
 			material = result;
 		}
