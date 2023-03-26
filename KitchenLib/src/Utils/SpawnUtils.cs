@@ -14,6 +14,10 @@ namespace KitchenLib.Utils
 			var position = GameObject.Find("Player(Clone)").transform.position;
 			return PostHelpers.CreateBlueprintLetter(EntityUtils.GetEntityManager(), position, id, priceModifier, forcePrice, use_red);
 		}
+		public static Entity SpawnApplianceBlueprintAtPosition(int id, Vector3 position, float priceModifier = 0f, int forcePrice = -1, bool use_red = false)
+		{
+			return PostHelpers.CreateBlueprintLetter(EntityUtils.GetEntityManager(), position, id, priceModifier, forcePrice, use_red);
+		}
 		public static Entity SpawnApplianceBlueprintAtPlayer(int id, float priceModifier = 0f, int forcePrice = -1)
 		{
 			var position = GameObject.Find("Player(Clone)").transform.position;
