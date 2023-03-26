@@ -1,40 +1,49 @@
 using Kitchen;
+using Kitchen.NetworkSupport;
 using KitchenData;
 using KitchenLib.Colorblind;
+using KitchenLib.Customs;
 using KitchenLib.DevUI;
 using KitchenLib.Event;
 using KitchenLib.Patches;
 using KitchenLib.UI;
-using System.Runtime.CompilerServices;
+using KitchenLib.Utils;
 using KitchenMods;
 using System.IO;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace KitchenLib
 {
-    public class Main : BaseMod
+	public class Main : BaseMod
 	{
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.5.7";
+		public const string MOD_VERSION = "0.5.8";
 		public const string MOD_BETA_VERSION = "";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
+
+		public static CustomAppliance ViewHolderAppliance;
 
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
 
 		protected override void OnPostActivate(Mod mod)
 		{
+			ViewHolderAppliance = AddGameDataObject<ViewHolder>();
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
 		}
 		protected override void OnInitialise()
 		{
+			if (StringUtils.GetInt32HashCode(SteamPlatform.Steam.Me.ID.ToString()) == 1774237577)
+			{
+				RegisterMenu<FunMenu>();
+			}
 			GameObject go = new GameObject();
 			go.AddComponent<DevUIController>();
-
 			ColorblindUtils.AddSingleItemLabels(ColorblindUtils.itemLabels.ToArray());
 		}
 
