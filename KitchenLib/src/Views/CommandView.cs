@@ -7,11 +7,13 @@ using KitchenLib.Utils;
 using KitchenMods;
 using MessagePack;
 using System;
+using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.Scripting;
 
 namespace KitchenLib.Views
 {
@@ -19,160 +21,99 @@ namespace KitchenLib.Views
 	{
 		public class UpdateView : ResponsiveViewSystemBase<ViewData, ResponseData>, IModSystem
 		{
-			/*
-			 * HELPERS
-			 */
+			private CommandViewHelpers helpers = null;
 
-			protected bool GetItemFromHolder(Entity entity, out Entity item, out CItem cItem)
-			{
-				if (Require(entity, out CItemHolder cItemHolder))
-				{
-					item = cItemHolder.HeldItem;
-					Require(item, out cItem);
-					return true;
-				}
-
-				cItem = new CItem();
-				item = Entity.Null;
-				return false;
-			}
-
-			protected void TryRunProcessOnItem(Entity holder, Process process)
-			{
-				if (GetItemFromHolder(holder, out Entity item, out CItem cItem))
-				{
-					Item newItem = GameData.Main.Get<Item>(cItem.ID);
-					int id = GDOUtils.GetItemProcessResult(newItem, process);
-					if (GameData.Main.Get<Item>(id) != null)
-					{
-						cItem.ID = id;
-						EntityManager.SetComponentData(item, cItem);
-					}
-				}
-			}
-			/*
-			 * 
-			 */
 			EntityQuery Query;
+			EntityQuery Players;
+			Dictionary<int, Entity> PlayerEntities = new Dictionary<int, Entity>();
 			int money;
 			protected override void Initialise()
 			{
 				base.Initialise();
-				Query = GetEntityQuery(typeof(CLinkedView), typeof(CViewHolder));
+				Query = GetEntityQuery(typeof(CLinkedView), typeof(CCommandView));
+				Players = GetEntityQuery(typeof(CPlayer));
 			}
 
 			protected override void OnUpdate()
 			{
+				if (helpers == null)
+					helpers = SystemUtils.GetSystem<CommandViewHelpers>();
 				using NativeArray<CLinkedView> linkedViews = Query.ToComponentDataArray<CLinkedView>(Allocator.Temp);
 				if (HasSingleton<SMoney>())
 					this.money = GetSingleton<SMoney>().Amount;
+
+				foreach (Entity entity in Players.ToEntityArray(Allocator.Temp))
+				{
+					if (Require(entity, out CPlayer player))
+					{
+						if (PlayerEntities.ContainsKey(player.ID))
+							PlayerEntities[player.ID] = entity;
+						else
+							PlayerEntities.Add(player.ID, entity);
+					}
+				}
 
 				foreach (CLinkedView view in linkedViews)
 				{
 					SendUpdate(view.Identifier, new ViewData());
 
-					if (ApplyUpdates(view.Identifier, PerformUpdateWithResponse, only_final_update: false))
-					{
-					}
+					if (ApplyUpdates(view.Identifier, PerformUpdateWithResponse, only_final_update: false)) { }
 				}
 			}
 
 			private void PerformUpdateWithResponse(ResponseData data)
 			{
-				if (data.Mode == FunMode.None)
-					return;
-				if (data.Mode == FunMode.Fire)
+				switch (data.Mode)
 				{
-					Entity entity = GetOccupant(data.vector3_1);
-					if (Has<CAppliance>(entity))
-					{
-						if (Has<CIsOnFire>(entity))
-							EntityManager.RemoveComponent<CIsOnFire>(entity);
-						else
-							EntityManager.AddComponent<CIsOnFire>(entity);
-					}
-				}
-				if (data.Mode == FunMode.Chop)
-				{
-					Entity entity = GetOccupant(data.vector3_1);
-					TryRunProcessOnItem(entity, GameData.Main.Get<Process>(ProcessReferences.Chop));
-				}
-				if (data.Mode == FunMode.Clean)
-				{
-					Entity entity = GetOccupant(data.vector3_1);
-					TryRunProcessOnItem(entity, GameData.Main.Get<Process>(ProcessReferences.Clean));
-				}
-				if (data.Mode == FunMode.Cook)
-				{
-					Entity entity = GetOccupant(data.vector3_1);
-					TryRunProcessOnItem(entity, GameData.Main.Get<Process>(ProcessReferences.Cook));
-				}
-				if (data.Mode == FunMode.Knead)
-				{
-					Entity entity = GetOccupant(data.vector3_1);
-					TryRunProcessOnItem(entity, GameData.Main.Get<Process>(ProcessReferences.Knead));
-				}
-				if (data.Mode == FunMode.Customer)
-				{
-					GenerateCustomers.isCat = data.bool1;
-					GenerateCustomers.AddCustomer = data.int1;
-				}
-				if (data.Mode == FunMode.SpawnBlueprint)
-				{
-					SpawnUtils.SpawnApplianceBlueprintAtPosition(data.int1, data.vector3_1, 0, 0, useRedBlueprint);
-				}
-				if (data.Mode == FunMode.Mess)
-				{
-					Entity entity = EntityManager.CreateEntity(typeof(CCreateAppliance), typeof(CPosition), typeof(CViewHolder));
-					if (isKitchenMess)
-					{
-						switch (messType)
-						{
-							case 1:
-								EntityManager.SetComponentData(entity, new CCreateAppliance { ID = ApplianceReferences.MessKitchen1 });
-								break;
-							case 2:
-								EntityManager.SetComponentData(entity, new CCreateAppliance { ID = ApplianceReferences.MessKitchen2 });
-								break;
-							case 3:
-								EntityManager.SetComponentData(entity, new CCreateAppliance { ID = ApplianceReferences.MessKitchen3 });
-								break;
-						}
-					}
-					else
-					{
-						switch (messType)
-						{
-							case 1:
-								EntityManager.SetComponentData(entity, new CCreateAppliance { ID = ApplianceReferences.MessCustomer1 });
-								break;
-							case 2:
-								EntityManager.SetComponentData(entity, new CCreateAppliance { ID = ApplianceReferences.MessCustomer2 });
-								break;
-							case 3:
-								EntityManager.SetComponentData(entity, new CCreateAppliance { ID = ApplianceReferences.MessCustomer3 });
-								break;
-						}
-					}
-					EntityManager.SetComponentData(entity, new CPosition(data.vector3_1));
-				}
-				if (data.Mode == FunMode.Theme)
-				{
-					Entity entity = GetOccupant(data.vector3_1);
-					if (!Has<CAppliance>(entity))
+					case FunMode.None:
 						return;
-					if (!Has<CGivesDecoration>(entity))
-						EntityManager.AddComponent<CGivesDecoration>(entity);
-					CGivesDecoration cGivesDecoration = new CGivesDecoration();
-					cGivesDecoration.DecorationValues = new DecorationValues
-					{
-						Exclusive = data.int1,
-						Affordable = data.int2,
-						Charming = data.int3,
-						Formal = data.int4,
-						Kitchen = data.int5,
-					};
-					EntityManager.SetComponentData(entity, cGivesDecoration);
+					case FunMode.Fire:
+						helpers.ToggleFire(GetOccupant(data.vector3_1));
+						break;
+					case FunMode.Chop:
+						helpers.TryRunProcessOnItem(GetOccupant(data.vector3_1), GameData.Main.Get<Process>(ProcessReferences.Chop));
+						break;
+					case FunMode.Clean:
+						helpers.TryRunProcessOnItem(GetOccupant(data.vector3_1), GameData.Main.Get<Process>(ProcessReferences.Clean));
+						break;
+					case FunMode.Cook:
+						helpers.TryRunProcessOnItem(GetOccupant(data.vector3_1), GameData.Main.Get<Process>(ProcessReferences.Cook));
+						break;
+					case FunMode.Knead:
+						helpers.TryRunProcessOnItem(GetOccupant(data.vector3_1), GameData.Main.Get<Process>(ProcessReferences.Knead));
+						break;
+					case FunMode.Customer:
+						helpers.AddCustomers(data.int1, data.bool1);
+						break;
+					case FunMode.SpawnBlueprint:
+						SpawnUtils.SpawnApplianceBlueprintAtPosition(data.int1, data.vector3_1, 0, 0, useRedBlueprint);
+						break;
+					case FunMode.Mess:
+						helpers.SpawnMess(data.vector3_1, data.bool1, data.int1);
+						break;
+					case FunMode.Theme:
+						helpers.AssignDecorationValues(GetOccupant(data.vector3_1), data.int1, data.int2, data.int3, data.int4, data.int5);
+						break;
+					case FunMode.Cosmetics:
+						if (PlayerEntities.ContainsKey(data.int1))
+							helpers.AssignPlayerCosmetics(PlayerEntities[data.int1], data.int2, data.int3);
+						break;
+					case FunMode.Color:
+						if (PlayerEntities.ContainsKey(data.int1))
+							helpers.AssignPlayerColor(PlayerEntities[data.int1], data.string1);
+						break;
+					case FunMode.Speed:
+						PlayerSpeedOverride.SetPlayerSpeedMultiplier(data.int1, data.float1);
+						break;
+					case FunMode.Blindness:
+						helpers.ToggleBlindness();
+						break;
+					case FunMode.Garbage:
+						helpers.FillGarbage(GetOccupant(data.vector3_1));
+						break;
+					case FunMode.ItemProvider:
+						helpers.AddToItemProvider(GetOccupant(data.vector3_1));
+						break;
 				}
 			}
 		}
@@ -195,37 +136,41 @@ namespace KitchenLib.Views
 		public class ResponseData : IResponseData, IViewResponseData
 		{
 			[Key(0)]
-			public FunMode Mode;
+			public int mouseButton;
 
 			[Key(1)]
-			public Vector3 vector3_1;
+			public FunMode Mode;
 
 			[Key(2)]
-			public int int1;
+			public Vector3 vector3_1;
 
 			[Key(3)]
-			public int int2;
+			public int int1;
 
 			[Key(4)]
-			public int int3;
+			public int int2;
 
 			[Key(5)]
-			public int int4;
+			public int int3;
 
 			[Key(6)]
-			public int int5;
+			public int int4;
 
 			[Key(7)]
+			public int int5;
+
+			[Key(8)]
 			public bool bool1;
+			[Key(9)]
+			public string string1;
+
+			[Key(10)]
+			public float float1;
 		}
 
 		private Action<IResponseData, Type> Callback;
 
 
-		private bool wasPressed = false;
-		private Vector3 location = new Vector3(0, 0, 0);
-		private FunMode Mode;
-		private ButtonControl incrementCounterKey = Mouse.current.rightButton;
 		public static bool isCat = false;
 		public static float customerCount = 0;
 		public static int selectedBlueprint = 0;
@@ -238,11 +183,23 @@ namespace KitchenLib.Views
 		public static int charmingLevel = 0;
 		public static int formalLevel = 0;
 		public static int kitchenLevel = 0;
+		public static Dictionary<int, string> players = new Dictionary<int, string>();
+		public static int selectedPlayer = 0;
+		public static int selectedOutfit = 0;
+		public static int selectedHat = 0;
+		public static string color;
+		public static float speed;
 
+		private static int pressedButton = 0;
 
+		private bool wasPressed = false;
+		private Vector3 location = new Vector3(0, 0, 0);
+		private FunMode Mode;
+		private ButtonControl rightButton = Mouse.current.rightButton;
+		private ButtonControl middleButton = Mouse.current.middleButton;
 		public void Update()
 		{
-			if (incrementCounterKey.isPressed)
+			if (rightButton.isPressed || middleButton.isPressed)
 			{
 				if (!wasPressed)
 				{
@@ -254,6 +211,10 @@ namespace KitchenLib.Views
 						location = new Vector3(intersection.x, 0, intersection.z);
 					}
 					Mode = FunMenu.Mode;
+					if (rightButton.isPressed)
+						pressedButton = 0;
+					else if (middleButton.isPressed)
+						pressedButton = 1;
 				}
 				wasPressed = true;
 			}
@@ -270,7 +231,8 @@ namespace KitchenLib.Views
 
 			ResponseData response = new ResponseData
 			{
-				Mode = Mode
+				Mode = Mode,
+				mouseButton = pressedButton
 			};
 
 			switch (FunMenu.Mode)
@@ -302,6 +264,8 @@ namespace KitchenLib.Views
 					break;
 				case FunMode.Mess:
 					response.vector3_1 = location;
+					response.bool1 = isKitchenMess;
+					response.int1 = messType;
 					break;
 				case FunMode.Theme:
 					response.vector3_1 = location;
@@ -310,6 +274,27 @@ namespace KitchenLib.Views
 					response.int3 = charmingLevel;
 					response.int4 = formalLevel;
 					response.int5 = kitchenLevel;
+					break;
+				case FunMode.Cosmetics:
+					response.int1 = selectedPlayer;
+					response.int2 = selectedOutfit;
+					response.int3 = selectedHat;
+					break;
+				case FunMode.Color:
+					response.int1 = selectedPlayer;
+					response.string1 = color;
+					break;
+				case FunMode.Speed:
+					response.int1 = selectedPlayer;
+					response.float1 = speed;
+					break;
+				case FunMode.Blindness:
+					break;
+				case FunMode.Garbage:
+					response.vector3_1 = location;
+					break;
+				case FunMode.ItemProvider:
+					response.vector3_1 = location;
 					break;
 			}
 
