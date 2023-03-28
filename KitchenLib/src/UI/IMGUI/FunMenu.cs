@@ -253,8 +253,10 @@ namespace KitchenLib.UI
 
 		public static FunMode Mode = FunMode.None;
 
+		private static Texture2D tex = new Texture2D(1, 1);
 		private Texture2D GetBackground(int width, int height, Color32 color)
 		{
+			/*
 			Texture2D tex = new Texture2D(width, height);
 			Color32 resetColor = color;
 			Color32[] resetColorArray = tex.GetPixels32();
@@ -265,6 +267,7 @@ namespace KitchenLib.UI
 
 			tex.SetPixels32(resetColorArray);
 			tex.Apply();
+			*/
 			return tex;
 		}
 	}
