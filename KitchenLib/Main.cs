@@ -21,17 +21,22 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.5.8";
+		public const string MOD_VERSION = "0.5.9";
 		public const string MOD_BETA_VERSION = "";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
-		public static CustomAppliance ViewHolderAppliance;
+		public static CustomAppliance CommandViewHolder;
+		public static CustomAppliance InfoViewHolder;
+		public static CustomAppliance SendToClientViewHolder;
+		public AssetBundle bundle;
 
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
 
 		protected override void OnPostActivate(Mod mod)
 		{
-			ViewHolderAppliance = AddGameDataObject<ViewHolder>();
+			CommandViewHolder = AddGameDataObject<CommandViewHolder>();
+			InfoViewHolder = AddGameDataObject<InfoViewHolder>();
+			SendToClientViewHolder = AddGameDataObject<SendToClientViewHolder>();
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
