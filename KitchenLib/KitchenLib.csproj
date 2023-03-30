@@ -51,4 +51,8 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="src\Views\" />
+	</ItemGroup>
+
 </Project>

@@ -1,5 +1,5 @@
 ﻿using KitchenData;
-using KitchenLib.Views;
+using KitchenLib.ShhhDontTellAnyone;
 using UnityEngine;
 
 namespace KitchenLib.Customs
