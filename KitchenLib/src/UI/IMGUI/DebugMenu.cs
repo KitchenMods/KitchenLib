@@ -56,6 +56,7 @@ namespace KitchenLib.UI
 				Dump<FranchiseUpgradeDumper>();
 				Dump<ContractDumper>();
 				Dump<CustomerTypeDumper>();
+				Dump<CustomerGroupDumper>();
 			}
 			if (GUILayout.Button("Refresh Dish Options"))
 			{

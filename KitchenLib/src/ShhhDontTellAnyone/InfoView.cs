@@ -1,15 +1,13 @@
 ﻿using Kitchen;
 using KitchenLib.Systems;
-using KitchenLib.Utils;
 using KitchenMods;
 using MessagePack;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Unity.Collections;
 using Unity.Entities;
 
-namespace KitchenLib.Views
+namespace KitchenLib.ShhhDontTellAnyone
 {
 	internal class InfoView : UpdatableObjectView<InfoView.ViewData>
 	{
@@ -18,7 +16,6 @@ namespace KitchenLib.Views
 		{
 			private EntityQuery Views;
 			private EntityQuery PlayersQuery;
-			private static Dictionary<int, string> playerCache = new Dictionary<int, string>();
 
 			protected override void Initialise()
 			{
@@ -26,78 +23,72 @@ namespace KitchenLib.Views
 				Views = GetEntityQuery(typeof(CLinkedView), typeof(CInfoView));
 				PlayersQuery = GetEntityQuery(typeof(CPlayer));
 			}
-			//Dictionary<int, string> _players = new Dictionary<int, string>();
-			public List<int> PlayerIDs = new List<int>();
-			public List<string> PlayerNames = new List<string>();
+
+			private FixedListInt64 playerIDs = new FixedListInt64();
+			private List<string> playerNames = new List<string>();
 			protected override void OnUpdate()
 			{
-				using var entities = Views.ToEntityArray(Allocator.Temp);
 				using var views = Views.ToComponentDataArray<CLinkedView>(Allocator.Temp);
 				using NativeArray<CPlayer> players = PlayersQuery.ToComponentDataArray<CPlayer>(Allocator.Temp);
 
 				for (var i = 0; i < views.Length; i++)
 				{
-
 					var view = views[i];
-
+					playerIDs.Clear();
+					playerNames.Clear();
 					foreach (CPlayer p in players)
 					{
-						if (!playerCache.ContainsKey(p.ID))
-							playerCache.Add(p.ID, Players.Main.Get(p.ID).Profile.Name);
-						else if (string.IsNullOrEmpty(playerCache[p.ID]))
-							playerCache[p.ID] = Players.Main.Get(p.ID).Profile.Name;
+						playerIDs.Add(p.ID);
+						playerNames.Add(Players.Main.Get(p.ID).Profile.Name);
 					}
 
-					foreach (CPlayer p in players)
+					ViewData data = new ViewData
 					{
-						ViewData data = new ViewData
-						{
-							playerID = p.ID,
-							playerName = playerCache[p.ID]
-						};
+						PlayerIDs = playerIDs,
+						PlayerNames = string.Join(",", playerNames)
+					};
 
-						SendUpdate(view, data);
-					}
+					SendUpdate(view, data);
 				}
 			}
 		}
 		#endregion
 
-		
+
 		#region Message Packet
 		[MessagePackObject(false)]
 		public struct ViewData : ISpecificViewData, IViewData.ICheckForChanges<ViewData>
 		{
-			[Key(0)] public int playerID;
-			[Key(1)] public string playerName;
-
 			public IUpdatableObject GetRelevantSubview(IObjectView view) => view.GetSubView<InfoView>();
+
+			[Key(0)]
+			public FixedListInt64 PlayerIDs;
+			[Key(1)]
+			public string PlayerNames;
 
 			public bool IsChangedFrom(ViewData cached)
 			{
-				return playerID != cached.playerID || playerName != cached.playerName;
+				return PlayerIDs != cached.PlayerIDs ||
+					PlayerNames != cached.PlayerNames;
 			}
 		}
 		#endregion
 
-		private int playerID;
-		private string playerName;
+		private FixedListInt64 playerIDs = new FixedListInt64();
+		private List<string> playerNames = new List<string>();
 
 		protected override void UpdateData(ViewData view_data)
 		{
-			playerID = view_data.playerID;
-			playerName = view_data.playerName;
+			playerIDs = view_data.PlayerIDs;
+			playerNames = view_data.PlayerNames.Split(',').ToList();
 		}
 
 		void Update()
 		{
-			if (CommandView.players.ContainsKey(playerID))
+			RefVars.CurrentPlayers.Clear();
+			for (var i = 0; i < playerIDs.Length; i++)
 			{
-				CommandView.players[playerID] = playerName;
-			}
-			else
-			{
-				CommandView.players.Add(playerID, playerName);
+				RefVars.CurrentPlayers.Add(playerIDs[i], playerNames[i]);
 			}
 		}
 	}

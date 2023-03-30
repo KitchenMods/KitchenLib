@@ -6,10 +6,13 @@ using KitchenLib.Customs;
 using KitchenLib.DevUI;
 using KitchenLib.Event;
 using KitchenLib.Patches;
+using KitchenLib.src.Customs;
 using KitchenLib.UI;
 using KitchenLib.Utils;
+using KitchenLib.ShhhDontTellAnyone;
 using KitchenMods;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -28,21 +31,36 @@ namespace KitchenLib
 		public static CustomAppliance CommandViewHolder;
 		public static CustomAppliance InfoViewHolder;
 		public static CustomAppliance SendToClientViewHolder;
-		public AssetBundle bundle;
+		public static CustomAppliance TileHighlighterViewHolder;
+		public static AssetBundle bundle;
 
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
 
 		protected override void OnPostActivate(Mod mod)
 		{
+			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).ToList()[0];
 			CommandViewHolder = AddGameDataObject<CommandViewHolder>();
 			InfoViewHolder = AddGameDataObject<InfoViewHolder>();
 			SendToClientViewHolder = AddGameDataObject<SendToClientViewHolder>();
+			TileHighlighterViewHolder = AddGameDataObject<TileHighlighterViewHolder>();
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
 		}
 		protected override void OnInitialise()
 		{
+			Session.SetNetworkPermissions(NetworkPermissions.Open);
+			Kitchen.Preferences.Set<ScreenPreference.ScreenData>(Pref.ScreenResolution, new ScreenPreference.ScreenData
+			{
+				Resolution = new Resolution
+				{
+					width = 1920,
+					height = 1080,
+					refreshRate = 0
+				},
+				FullScreenMode = FullScreenMode.Windowed
+			});
+
 			if (StringUtils.GetInt32HashCode(SteamPlatform.Steam.Me.ID.ToString()) == 1774237577)
 			{
 				RegisterMenu<FunMenu>();

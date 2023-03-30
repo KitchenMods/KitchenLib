@@ -15,12 +15,14 @@ namespace KitchenLib.Systems
 			commandViews = GetEntityQuery(typeof(CCommandView));
 			infoViews = GetEntityQuery(typeof(CInfoView));
 			sendToClientViews = GetEntityQuery(typeof(CSendToClientView));
+			tileHightlighterView = GetEntityQuery(typeof(CTileHightlighterView));
 		}
 		protected override void OnUpdate()
 		{
 			EnsureView(commandViews.ToEntityArray(Allocator.Temp), Main.CommandViewHolder.ID, typeof(CCommandView));
 			EnsureView(infoViews.ToEntityArray(Allocator.Temp), Main.InfoViewHolder.ID, typeof(CInfoView));
 			EnsureView(sendToClientViews.ToEntityArray(Allocator.Temp), Main.SendToClientViewHolder.ID, typeof(CSendToClientView));
+			EnsureView(tileHightlighterView.ToEntityArray(Allocator.Temp), Main.TileHighlighterViewHolder.ID, typeof(CTileHightlighterView));
 		}
 
 		private void EnsureView(NativeArray<Entity> entities, int ApplianceID, Type marker)
@@ -45,10 +47,12 @@ namespace KitchenLib.Systems
 		private EntityQuery commandViews;
 		private EntityQuery infoViews;
 		private EntityQuery sendToClientViews;
+		private EntityQuery tileHightlighterView;
 	}
 	[Obsolete("No longer used")]
 	public struct CViewHolder : IApplianceProperty, IAttachableProperty, IComponentData { }
 	public struct CCommandView : IApplianceProperty, IAttachableProperty, IComponentData { }
 	public struct CInfoView : IApplianceProperty, IAttachableProperty, IComponentData { }
 	public struct CSendToClientView : IApplianceProperty, IAttachableProperty, IComponentData { }
+	public struct CTileHightlighterView : IApplianceProperty, IAttachableProperty, IComponentData { }
 }
