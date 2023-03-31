@@ -24,7 +24,7 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.6.0";
+		public const string MOD_VERSION = "0.6.1";
 		public const string MOD_BETA_VERSION = "";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
@@ -50,6 +50,7 @@ namespace KitchenLib
 			cosmeticManager.RegisterPreference(new PreferenceBool("isPlateUpStaff", false));
 			cosmeticManager.RegisterPreference(new PreferenceBool("isPlateUpSupport", false));
 			cosmeticManager.RegisterPreference(new PreferenceBool("isKitchenLibDeveloper", false));
+			cosmeticManager.RegisterPreference(new PreferenceBool("isTwitchStreamer", false));
 
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).ToList()[0];
 			CommandViewHolder = AddGameDataObject<CommandViewHolder>();
@@ -60,6 +61,7 @@ namespace KitchenLib
 			AddGameDataObject<PlateUp_Staff_Cape>();
 			AddGameDataObject<PlateUp_Support_Cape>();
 			AddGameDataObject<KitchenLib_Cape>();
+			AddGameDataObject<Twitch_Cape>();
 			AddGameDataObject<_21_Balloon>();
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
