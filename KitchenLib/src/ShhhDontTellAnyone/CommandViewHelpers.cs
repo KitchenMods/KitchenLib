@@ -17,11 +17,13 @@ namespace KitchenLib.ShhhDontTellAnyone
 		private Dictionary<int, Entity> currentPlayers = new Dictionary<int, Entity>();
 		private EntityQuery playerQuery;
 		private EntityQuery unlockQuery;
+		private EntityQuery applianceQuery;
 		protected override void Initialise()
 		{
 			Main = this;
 			playerQuery = EntityManager.CreateEntityQuery(typeof(CPlayer));
 			unlockQuery = EntityManager.CreateEntityQuery(typeof(CProgressionUnlock));
+			applianceQuery = EntityManager.CreateEntityQuery(typeof(CAppliance));
 		}
 		protected override void OnUpdate()
 		{
@@ -281,6 +283,47 @@ namespace KitchenLib.ShhhDontTellAnyone
 		private void RemoveUnlock(int id, Entity e)
 		{
 			UnlockManager.Main.TryRemoveActiveUnlock(id);
+		}
+
+		public void BurnEverything()
+		{
+			using NativeArray<Entity> appliances = applianceQuery.ToEntityArray(Allocator.Temp);
+			foreach (Entity appliance in appliances)
+			{
+				EntityManager.AddComponent<CIsOnFire>(appliance);
+			}
+		}
+
+		public void UnBurnEverything()
+		{
+			using NativeArray<Entity> appliances = applianceQuery.ToEntityArray(Allocator.Temp);
+			foreach (Entity appliance in appliances)
+			{
+				EntityManager.RemoveComponent<CIsOnFire>(appliance);
+			}
+		}
+
+		public void ResetOrder(Vector3 location)
+		{
+			Entity chair = GetOccupant(location);
+			if (Require(chair, out CApplianceChair cApplianceChair))
+			{
+				Entity occupant = cApplianceChair.Occupant;
+				if (Require(occupant, out CBelongsToGroup cBelongsToGroup))
+				{
+					Entity group = cBelongsToGroup.Group;
+					EntityManager.AddComponent<CGroupForceChangedMind>(group);
+				}
+			}
+		}
+
+		public CPlayer getplayer(Entity entity)
+		{
+			if (Require(entity, out CPlayer player))
+			{
+				return player;
+			}
+			return new CPlayer();
 		}
 	}
 }

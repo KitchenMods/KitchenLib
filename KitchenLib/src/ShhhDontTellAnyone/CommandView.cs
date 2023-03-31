@@ -89,6 +89,15 @@ namespace KitchenLib.ShhhDontTellAnyone
 					case FunMode.Unlock:
 						CommandViewHelpers.Main.ToggleDish(data.int1);
 						break;
+					case FunMode.Arsonist:
+						CommandViewHelpers.Main.BurnEverything();
+						break;
+					case FunMode.FireFighter:
+						CommandViewHelpers.Main.UnBurnEverything();
+						break;
+					case FunMode.ResetOrder:
+						CommandViewHelpers.Main.ResetOrder(data.Location);
+						break;
 				}
 			}
 		}

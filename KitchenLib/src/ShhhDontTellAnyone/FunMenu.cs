@@ -346,15 +346,45 @@ namespace KitchenLib.ShhhDontTellAnyone
 		{
 			BuildFire();
 			BuildThemeBuilder();
+			BuildArsonist();
+			BuildFireFighter();
+			BuildResetOrder();
 		}
 
 		#region BuildAppliancePage
 		private void BuildFire()
 		{
 			GUILayout.BeginArea(new Rect(10, 10, 139, 20));
-			if (GUILayout.Button("Arsonist"))
+			if (GUILayout.Button("Fire"))
 			{
 				RefVars.ToggleFunMode(FunMode.Fire);
+			}
+			GUILayout.EndArea();
+		}
+		private void BuildArsonist()
+		{
+			GUILayout.BeginArea(new Rect(10, 40, 139, 20));
+			if (GUILayout.Button("Arsonist"))
+			{
+				RefVars.ForceUpdate(FunMode.Arsonist);
+			}
+			GUILayout.EndArea();
+		}
+		private void BuildFireFighter()
+		{
+			GUILayout.BeginArea(new Rect(10, 70, 139, 20));
+			if (GUILayout.Button("FireFighter"))
+			{
+				RefVars.ForceUpdate(FunMode.FireFighter);
+			}
+			GUILayout.EndArea();
+		}
+		private void BuildResetOrder()
+		{
+			GUILayout.BeginArea(new Rect(10, 100, 139, 20));
+			if (GUILayout.Button("Reset Order"))
+			{
+				RefVars.ToggleFunMode(FunMode.ResetOrder);
 			}
 			GUILayout.EndArea();
 		}

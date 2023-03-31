@@ -28,6 +28,9 @@
 		<Reference Include="Facepunch.Steamworks.Win64">
 			<HintPath>$(GamePath)\PlateUp_Data\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
 		</Reference>
+		<Reference Include="ShapesRuntime">
+		  <HintPath>H:\SteamLibrary\steamapps\common\PlateUp\PlateUp\PlateUp_Data\Managed\ShapesRuntime.dll</HintPath>
+		</Reference>
 		<Reference Include="System.Net.Http">
 			<HintPath>$(GamePath)\PlateUp_Data\Managed\System.Net.Http.dll</HintPath>
 		</Reference>
@@ -49,10 +52,6 @@
 			<Generator>SettingsSingleFileGenerator</Generator>
 			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="src\Views\" />
 	</ItemGroup>
 
 </Project>

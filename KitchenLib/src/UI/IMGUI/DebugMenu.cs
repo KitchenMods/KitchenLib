@@ -62,6 +62,10 @@ namespace KitchenLib.UI
 			{
 				RefreshDishUpgrades.Refresh = true;
 			}
+			if (GUILayout.Button("Force Netwok Refresh"))
+			{
+				UpdateData.CollectData("http://api.plateupmodding.com", true);
+			}
 		}
 
 		public override void Disable()

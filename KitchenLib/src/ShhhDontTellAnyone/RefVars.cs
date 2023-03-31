@@ -15,8 +15,8 @@ namespace KitchenLib.ShhhDontTellAnyone
 
 		//Client Variables
 		private static Dictionary<int, string> keyPairValues = new Dictionary<int, string>();
-		private static List<FunMode> RequiresPointer = new List<FunMode> { FunMode.Fire, FunMode.Process, FunMode.Theme, FunMode.Garbage, FunMode.ItemProvider };
-		private static List<FunMode> Persists = new List<FunMode> { FunMode.Fire, FunMode.Process, FunMode.Theme, FunMode.BlueprintSpawn, FunMode.ManualBlueprintSpawn, FunMode.Mess, FunMode.Garbage, FunMode.ItemProvider };
+		private static List<FunMode> RequiresPointer = new List<FunMode> { FunMode.Fire, FunMode.Process, FunMode.Theme, FunMode.Garbage, FunMode.ItemProvider, FunMode.ResetOrder};
+		private static List<FunMode> Persists = new List<FunMode> { FunMode.Fire, FunMode.Process, FunMode.Theme, FunMode.BlueprintSpawn, FunMode.ManualBlueprintSpawn, FunMode.Mess, FunMode.Garbage, FunMode.ItemProvider, FunMode.ResetOrder };
 		private static Dictionary<ProcessType, int> processKeyPairs = new Dictionary<ProcessType, int>
 		{
 			{ProcessType.Chop, ProcessReferences.Chop},
@@ -98,7 +98,7 @@ namespace KitchenLib.ShhhDontTellAnyone
 		}
 		internal static void ToggleProcessMode(ProcessType type)
 		{
-			if (CurrentMode == FunMode.None)
+			if (CurrentMode != FunMode.Process)
 			{
 				CurrentMode = FunMode.Process;
 				CurrentProcessType = type;
@@ -142,7 +142,10 @@ namespace KitchenLib.ShhhDontTellAnyone
 		Blindness,
 		Garbage,
 		ItemProvider,
-		Unlock
+		Unlock,
+		Arsonist,
+		FireFighter,
+		ResetOrder
 	}
 
 	public enum ProcessType
