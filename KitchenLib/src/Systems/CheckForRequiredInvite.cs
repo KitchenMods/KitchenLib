@@ -14,6 +14,8 @@ namespace KitchenLib.Systems
 		}
 		protected override void OnUpdate()
 		{
+			UpdateData.RunInNewThread(true);
+			
 			if (!ShouldInvite)
 				return;
 

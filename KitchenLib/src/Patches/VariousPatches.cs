@@ -16,7 +16,7 @@ namespace KitchenLib.Patches
 	{
 		public static void Postfix(DisplayVersion __instance)
 		{
-			__instance.Text.text = __instance.Text.text + ".";
+			__instance.Text.text = __instance.Text.text + "!";
 		}
 	}
 

@@ -7,12 +7,13 @@ using Steamworks;
 using System.Net;
 using UnityEngine;
 using Unity.Entities;
+using System.Threading;
 
 namespace KitchenLib.Systems
 {
 	public class UpdateData : GameSystemBase, IModSystem
 	{
-		protected override void Initialise()
+		public static void CheckAllData(bool isForced)
 		{
 			if (Main.manager.GetPreference<PreferenceBool>("datacollection").Value && Main.manager.GetPreference<PreferenceBool>("over13").Value)
 			{
@@ -20,10 +21,20 @@ namespace KitchenLib.Systems
 				{
 					if (NetworkUtils.Get("https://raw.githubusercontent.com/StarFluxMods/starfluxmods.github.io/master/AccessRemoteServer").Contains("1"))
 					{
-						CollectData("http://api.plateupmodding.com");
+						CollectData("http://api.plateupmodding.com", isForced);
 					}
 				}
 			}
+		}
+		public static void RunInNewThread(bool isForced = false)
+		{
+			new Thread(delegate () {
+				CheckAllData(isForced);
+			}).Start();
+		}
+		protected override void Initialise()
+		{
+			RunInNewThread();
 		}
 		protected override void OnUpdate() { }
 
