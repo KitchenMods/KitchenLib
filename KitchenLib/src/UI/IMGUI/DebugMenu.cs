@@ -62,9 +62,9 @@ namespace KitchenLib.UI
 			{
 				RefreshDishUpgrades.Refresh = true;
 			}
-			if (GUILayout.Button("Force Netwok Refresh"))
+			if (GUILayout.Button("Force Network Refresh"))
 			{
-				UpdateData.CollectData("http://api.plateupmodding.com", true);
+				UpdateData.RunInNewThread(true);
 			}
 		}
 
