@@ -45,7 +45,7 @@ namespace KitchenLib.Patches
 		public static void Prefix(PlayerCosmeticSubview __instance)
 		{
 			FieldInfo AttachmentPoints = ReflectionUtils.GetField<PlayerCosmeticSubview>("AttachmentPoints");
-			List<PlayerCosmeticSubview.AttachmentPoint> attachmentPoints = (List<PlayerCosmeticSubview.AttachmentPoint>)AttachmentPoints.GetValue(__instance);
+			//List<PlayerCosmeticSubview.AttachmentPoint> attachmentPoints = (List<PlayerCosmeticSubview.AttachmentPoint>)AttachmentPoints.GetValue(__instance);
 		}
 	}
 
