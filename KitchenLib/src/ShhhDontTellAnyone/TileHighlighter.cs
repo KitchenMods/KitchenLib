@@ -1,5 +1,6 @@
 ﻿using Kitchen;
 using KitchenLib.Systems;
+using KitchenLib.Utils;
 using KitchenMods;
 using MessagePack;
 using System;
@@ -73,17 +74,46 @@ namespace KitchenLib.ShhhDontTellAnyone
 		private Action<IResponseData, Type> Callback;
 
 		private static GameObject tileHighlighter = null;
+		private static MeshRenderer renderer = null;
 		private Vector3 location = new Vector3(0, 0, 0);
 		private Vector3 gridLocation = new Vector3(0, 0, 0);
 		public void Update()
 		{
 			if (tileHighlighter == null)
+			{
 				tileHighlighter = Instantiate(Main.bundle.LoadAsset<GameObject>("TileHighlight"));
+				renderer = tileHighlighter.transform.Find("TileHighlight").GetComponent<MeshRenderer>();
+			}
 
 			if (!RefVars.DoesModeRequirePointer(RefVars.CurrentMode))
 				tileHighlighter.SetActive(false);
 			else
 				tileHighlighter.SetActive(true);
+
+			switch (RefVars.CurrentMode)
+			{
+				case FunMode.Fire:
+					renderer.material = MaterialUtils.GetExistingMaterial("Balloon - Red");
+					break;
+				case FunMode.Process:
+					renderer.material = MaterialUtils.GetExistingMaterial("Plastic - White");
+					break;
+				case FunMode.Theme:
+					renderer.material = MaterialUtils.GetExistingMaterial("Plastic - Shiny Gold");
+					break;
+				case FunMode.Garbage:
+					renderer.material = MaterialUtils.GetExistingMaterial("AppleBurnt");
+					break;
+				case FunMode.ItemProvider:
+					renderer.material = MaterialUtils.GetExistingMaterial("Plastic - White");
+					break;
+				case FunMode.ResetOrder:
+					renderer.material = MaterialUtils.GetExistingMaterial("Balloon - Blue");
+					break;
+				default:
+					renderer.material = MaterialUtils.GetExistingMaterial("Apple Flesh");
+					break;
+			}
 
 			tileHighlighter.transform.position = gridLocation;
 
