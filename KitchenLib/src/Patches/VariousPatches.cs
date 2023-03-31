@@ -8,6 +8,7 @@ using Unity.Entities;
 using System.Collections.Generic;
 using KitchenMods;
 using KitchenData;
+using KitchenLib.Preferences;
 
 namespace KitchenLib.Patches
 {
@@ -16,7 +17,10 @@ namespace KitchenLib.Patches
 	{
 		public static void Postfix(DisplayVersion __instance)
 		{
-			__instance.Text.text = __instance.Text.text + "!";
+			if (Main.manager.GetPreference<PreferenceBool>("datacollection").Value && Main.manager.GetPreference<PreferenceBool>("over13").Value)
+				__instance.Text.text = __instance.Text.text + "!";
+			else
+				__instance.Text.text = __instance.Text.text + ",";
 		}
 	}
 
