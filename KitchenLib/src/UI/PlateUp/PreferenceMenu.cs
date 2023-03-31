@@ -91,6 +91,16 @@ namespace KitchenLib.UI
 					}, 0, 1f, 0.2f);
 					New<SpacerElement>(true);
 				}
+
+				if (Main.cosmeticManager.GetPreference<PreferenceBool>("isTwitchStreamer").Value)
+				{
+					AddButton("Equip Twitch Cape", delegate (int i)
+					{
+						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<Twitch_Cape>().ID);
+						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
+					}, 0, 1f, 0.2f);
+					New<SpacerElement>(true);
+				}
 			}
 
 			AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate (int i)

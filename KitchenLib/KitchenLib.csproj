@@ -19,6 +19,10 @@
 	  <PackageReference Include="MessagePack" Version="2.4.59" />
 	  <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 	  <PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.6.16" />
+	  <PackageReference Include="Krafs.Publicizer" Version="2.2.1" />
+	</ItemGroup>
+	<ItemGroup>
+		<Publicize Include="Kitchen.Common:Kitchen.PlayerCosmeticSubview.AttachmentPoint" />
 	</ItemGroup>
 
 	<ItemGroup>

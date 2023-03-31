@@ -1,7 +1,7 @@
 using HarmonyLib;
 using Kitchen;
 using Kitchen.NetworkSupport;
-using KitchenLib.ShhhDontTellAnyone;
+using KitchenLib.Utils;
 using System.Reflection;
 using Unity.Collections;
 using Unity.Entities;
@@ -39,6 +39,16 @@ namespace KitchenLib.Patches
 		}
 	}
 	
+	[HarmonyPatch(typeof(PlayerCosmeticSubview), "Start")]
+	public class PlayerCosmeticSubview_Patch
+	{
+		public static void Prefix(PlayerCosmeticSubview __instance)
+		{
+			FieldInfo AttachmentPoints = ReflectionUtils.GetField<PlayerCosmeticSubview>("AttachmentPoints");
+			List<PlayerCosmeticSubview.AttachmentPoint> attachmentPoints = (List<PlayerCosmeticSubview.AttachmentPoint>)AttachmentPoints.GetValue(__instance);
+		}
+	}
+
 	/*
 	 *  START OF BASE GAME BUG FIX
 	 */
