@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using KitchenLib.Preferences;
+using UniverseLib;
 
 namespace KitchenLib.UI
 {
@@ -52,7 +53,7 @@ namespace KitchenLib.UI
 			}, 0, 1f, 0.2f);
 		}
 
-		private Option<bool> _over_13 = new Option<bool>(new List<bool> { true, false }, true, new List<string> { "Yes", "No" });
-		private Option<bool> _data_consent = new Option<bool>(new List<bool> { true, false }, true, new List<string> { "Yes", "No" });
+		private Option<bool> _over_13 = new Option<bool>(new List<bool> { true, false }, Main.manager.GetPreference<PreferenceBool>("over13").Value, new List<string> { "Yes", "No" });
+		private Option<bool> _data_consent = new Option<bool>(new List<bool> { true, false }, Main.manager.GetPreference<PreferenceBool>("datacollection").Value, new List<string> { "Yes", "No" });
 	}
 }
