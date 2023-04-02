@@ -1,8 +1,5 @@
 using HarmonyLib;
 using Kitchen;
-using Kitchen.NetworkSupport;
-using KitchenLib.Utils;
-using System.Reflection;
 using Unity.Collections;
 using Unity.Entities;
 using System.Collections.Generic;
@@ -12,8 +9,9 @@ using KitchenLib.Preferences;
 
 namespace KitchenLib.Patches
 {
+	#region Main menu data collection indicator
 	[HarmonyPatch(typeof(DisplayVersion), "Awake")]
-	public class DisplayVersion_Patch
+	internal class DisplayVersion_Patch
 	{
 		public static void Postfix(DisplayVersion __instance)
 		{
@@ -23,18 +21,26 @@ namespace KitchenLib.Patches
 				__instance.Text.text = __instance.Text.text + ".";
 		}
 	}
+	#endregion
 
+	#region TOREMOVE: Rich presence modifications
+	/*
 	[HarmonyPatch(typeof(SteamRichPresenceView), "UpdateDiscordRichPresence")]
-	public class SteamRichPresenceView_Patch
+	internal class SteamRichPresenceView_Patch
 	{
 		public static void Postfix(SteamRichPresenceView __instance, SteamRichPresenceView.ViewData view_data)
 		{
-			DiscordPlatform.Discord.SetActivity("Plating Up Some Pizza", "", view_data.Data.Players);
+			// Temporarily disabled to re-enable vanilla rich presense
+			// DiscordPlatform.Discord.SetActivity("Plating Up Some Pizza", "", view_data.Data.Players);
 		}
 	}
-	
+	*/
+	#endregion
+
+	#region TOREMOVE: Player cosmetic attachment point modifications
+	/*
 	[HarmonyPatch(typeof(PlayerCosmeticSubview), "Start")]
-	public class PlayerCosmeticSubview_Patch
+	internal class PlayerCosmeticSubview_Patch
 	{
 		public static void Prefix(PlayerCosmeticSubview __instance)
 		{
@@ -42,12 +48,12 @@ namespace KitchenLib.Patches
 			//List<PlayerCosmeticSubview.AttachmentPoint> attachmentPoints = (List<PlayerCosmeticSubview.AttachmentPoint>)AttachmentPoints.GetValue(__instance);
 		}
 	}
+	*/
+	#endregion
 
-	/*
-	 *  START OF BASE GAME BUG FIX
-	 */
+	#region Multiplayer player profiles bug fix
 	[HarmonyPatch(typeof(PlayerInfoManager.UpdateView), "HandleResponse")]
-	public class PlayerInfoManager_Patch
+	internal class PlayerInfoManager_Patch
 	{
 		public static Dictionary<int, PlayerInfoManager.ResponseUpdate> Updates = new Dictionary<int, PlayerInfoManager.ResponseUpdate>();
 		public static void Prefix(NativeArray<Entity> users, PlayerInfoManager.ResponseData responses)
@@ -59,7 +65,7 @@ namespace KitchenLib.Patches
 		}
 	}
 
-	public class EnsurePlayerProfile : GameSystemBase, IModSystem
+	internal class EnsurePlayerProfile : GameSystemBase, IModSystem
 	{
 		private EntityQuery cPlayers;
 		protected override void Initialise()
@@ -94,9 +100,5 @@ namespace KitchenLib.Patches
 			}
 		}
 	}
-
-	/*
-	 * END OF BASE GAME BUG FIX
-	 */
-
+	#endregion
 }
