@@ -5,13 +5,9 @@ using UnityEngine;
 
 namespace KitchenLib.Customs.GDOs
 {
-	public class PlateUp_Support_Cape : CustomPlayerCosmetic
+	internal class PlateUpStaffCape : BaseCape
 	{
-		public override string UniqueNameID => "PlateUp_Support_Cape";
-		public override CosmeticType CosmeticType => CosmeticType.Hat;
-		public override GameObject Visual => Main.bundle.LoadAsset<GameObject>("PlateUp_Support_Cape");
-		public override bool BlockHats => false;
-		public override bool DisableInGame => true;
+		public override string PrefabName => "PlateUp_Staff_Cape";
 
 		public override void OnRegister(PlayerCosmetic gameDataObject)
 		{

@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace KitchenLib.Customs.GDOs
 {
-	internal class PlateUp_Staff_Cape : BaseCape
+	internal class PlateUpSupportCape : BaseCape
 	{
-		public override string PrefabName => "PlateUp_Staff_Cape";
+		public override string PrefabName => "PlateUp_Support_Cape";
 
 		public override void OnRegister(PlayerCosmetic gameDataObject)
 		{

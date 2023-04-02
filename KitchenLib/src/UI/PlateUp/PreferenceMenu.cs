@@ -2,6 +2,7 @@
 using Kitchen.Modules;
 using KitchenData;
 using KitchenLib.Customs;
+using KitchenLib.Customs.GDOs;
 using KitchenLib.Preferences;
 using KitchenLib.Utils;
 using System.Collections.Generic;
@@ -54,7 +55,7 @@ namespace KitchenLib.UI
 
 					AddButton("Equip PlateUp! Cape", delegate (int i)
 					{
-						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<PlateUp_Cape>().ID);
+						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<PlateUpCape>().ID);
 						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
 					}, 0, 1f, 0.2f);
 					New<SpacerElement>(true);
@@ -65,7 +66,7 @@ namespace KitchenLib.UI
 
 					AddButton("Equip Support Cape", delegate (int i)
 					{
-						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<PlateUp_Support_Cape>().ID);
+						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<PlateUpSupportCape>().ID);
 						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
 					}, 0, 1f, 0.2f);
 					New<SpacerElement>(true);
@@ -76,7 +77,7 @@ namespace KitchenLib.UI
 
 					AddButton("Equip Staff Cape", delegate (int i)
 					{
-						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<PlateUp_Staff_Cape>().ID);
+						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<PlateUpStaffCape>().ID);
 						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
 					}, 0, 1f, 0.2f);
 					New<SpacerElement>(true);
@@ -86,7 +87,7 @@ namespace KitchenLib.UI
 				{
 					AddButton("Equip KitchenLib Cape", delegate (int i)
 					{
-						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<KitchenLib_Cape>().ID);
+						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<KitchenLibCape>().ID);
 						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
 					}, 0, 1f, 0.2f);
 					New<SpacerElement>(true);
@@ -96,7 +97,7 @@ namespace KitchenLib.UI
 				{
 					AddButton("Equip Twitch Cape", delegate (int i)
 					{
-						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<Twitch_Cape>().ID);
+						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<TwitchCape>().ID);
 						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
 					}, 0, 1f, 0.2f);
 					New<SpacerElement>(true);

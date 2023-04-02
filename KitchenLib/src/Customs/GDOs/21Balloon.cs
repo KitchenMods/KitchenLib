@@ -6,7 +6,7 @@ using Shapes;
 
 namespace KitchenLib.Customs.GDOs
 {
-	public class _21_Balloon : CustomAppliance
+	internal class _21Balloon : CustomAppliance
 	{
 		public override string UniqueNameID => "_21_Balloon";
 		public override int BaseGameDataObjectID => ApplianceReferences.HeartBalloons;
