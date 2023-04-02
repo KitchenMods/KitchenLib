@@ -6,7 +6,7 @@ using KitchenLib.Utils;
 namespace KitchenLib.Patches
 {
 	[HarmonyPatch(typeof(GameCreator), "PerformInitialSetup")]
-	public class PerformInitialSetup_Patch
+	internal class PerformInitialSetupEventPatch
 	{
 		static void Postfix()
 		{

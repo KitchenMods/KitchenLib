@@ -64,9 +64,9 @@ namespace KitchenLib.Customs
             }
 
             if (!string.IsNullOrEmpty(IconOverride))
-                Unlock_Patch.AddIconOverride(result.ID, IconOverride);
+                UnlockOverrides.AddIconOverride(result.ID, IconOverride);
             if (ColourOverride != new Color())
-                Unlock_Patch.AddColourOverride(result.ID, ColourOverride);
+				UnlockOverrides.AddColourOverride(result.ID, ColourOverride);
 
             gameDataObject = result;
         }

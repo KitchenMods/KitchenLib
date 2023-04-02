@@ -1,20 +1,18 @@
 using HarmonyLib;
 using Kitchen;
 using Kitchen.Modules;
-using KitchenData;
 using KitchenLib.Event;
 using KitchenLib.Utils;
 using System;
 using System.Linq;
 using System.Reflection;
-using UnityEngine;
 using KitchenLib.UI;
 using KitchenLib.Preferences;
 
 namespace KitchenLib.Patches
 {
 	[HarmonyPatch(typeof(MainMenuView), "SetupMenus")]
-	class MainMenuView_Patch
+	internal class MainMenuViewPatch
 	{
 		static bool Prefix(MainMenuView __instance)
 		{
@@ -40,7 +38,7 @@ namespace KitchenLib.Patches
 	}
 
 	[HarmonyPatch(typeof(MainMenu), "Setup")]
-	class MainMenu_Patch
+	internal class MainMenuPatch
 	{
 		[HarmonyPrefix]
 		static bool Prefix(StartMainMenu __instance)
@@ -59,7 +57,7 @@ namespace KitchenLib.Patches
 	}
 
 	[HarmonyPatch(typeof(PlayerPauseView), "SetupMenus")]
-	class PlayerPauseView_Patch
+	internal class PlayerPauseViewPatch
 	{
 		[HarmonyPrefix]
 		static bool Prefix(PlayerPauseView __instance)

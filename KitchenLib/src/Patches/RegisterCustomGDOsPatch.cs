@@ -13,7 +13,7 @@ using UnityEngine;
 namespace KitchenLib.Patches
 {
     [HarmonyPatch(typeof(GameDataConstructor), "BuildGameData", new Type[] { })]
-	public class GameDataConstructor_Patch
+	internal class RegisterCustomGDOsPatch
 	{
 		private static readonly List<GameDataObject> GameDataObjects = new List<GameDataObject>();
 		private static bool FirstRun = true;

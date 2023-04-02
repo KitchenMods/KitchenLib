@@ -6,7 +6,7 @@ namespace KitchenLib.Patches
 {
 
 	[HarmonyPatch(typeof(Debug), "LogWarning", new[] { typeof(object) })]
-	public class Debug_Patch
+	internal class LogCleaningPatch
 	{
 		static void Prefix(ref object message)
 		{

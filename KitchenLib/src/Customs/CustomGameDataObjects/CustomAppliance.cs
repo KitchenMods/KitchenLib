@@ -1,6 +1,7 @@
 using Kitchen;
 using KitchenData;
 using KitchenLib.Patches;
+using KitchenLib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -123,7 +124,7 @@ namespace KitchenLib.Customs
 
             if (PurchaseCostOverride != -1)
             {
-                Appliance_Patch.AddPurchaseCostOverride(result.ID, PurchaseCostOverride);
+                ApplianceOverrides.AddPurchaseCostOverride(result.ID, PurchaseCostOverride);
             }
 
             if (InfoList.Count > 0)
