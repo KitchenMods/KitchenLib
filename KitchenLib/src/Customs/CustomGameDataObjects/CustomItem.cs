@@ -75,7 +75,7 @@ namespace KitchenLib.Customs
                 ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
 
             if (RewardOverride != -1)
-                Item_Patch.AddRewardOverride(result.ID, RewardOverride);
+                ItemOverrides.AddRewardOverride(result.ID, RewardOverride);
 
             gameDataObject = result;
         }
