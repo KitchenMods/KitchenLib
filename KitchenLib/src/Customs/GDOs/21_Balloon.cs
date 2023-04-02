@@ -1,11 +1,10 @@
 ﻿using Kitchen;
 using KitchenData;
-using KitchenLib.Customs;
 using KitchenLib.References;
 using UnityEngine;
 using Shapes;
 
-namespace KitchenLib.src.Customs
+namespace KitchenLib.Customs.GDOs
 {
 	public class _21_Balloon : CustomAppliance
 	{

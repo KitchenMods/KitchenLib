@@ -3,7 +3,7 @@ using KitchenData;
 using KitchenLib.Utils;
 using UnityEngine;
 
-namespace KitchenLib.Customs
+namespace KitchenLib.Customs.GDOs
 {
 	public class PlateUp_Support_Cape : CustomPlayerCosmetic
 	{

@@ -2,7 +2,7 @@
 using KitchenLib.ShhhDontTellAnyone;
 using UnityEngine;
 
-namespace KitchenLib.Customs
+namespace KitchenLib.Customs.GDOs
 {
 	public class InfoViewHolder : CustomAppliance
 	{

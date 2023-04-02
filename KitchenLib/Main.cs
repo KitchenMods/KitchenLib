@@ -66,6 +66,8 @@ namespace KitchenLib
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
+
+			FeatureFlags.Init();
 		}
 		protected override void OnInitialise()
 		{
@@ -82,7 +84,7 @@ namespace KitchenLib
 			});
 			*/
 
-			if (StringUtils.GetInt32HashCode(SteamPlatform.Steam.Me.ID.ToString()) == 1774237577)
+			if (FeatureFlags.FunMenu)
 			{
 				RegisterMenu<FunMenu>();
 			}

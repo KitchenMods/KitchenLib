@@ -3,15 +3,11 @@ using KitchenData;
 using KitchenLib.Utils;
 using UnityEngine;
 
-namespace KitchenLib.Customs
+namespace KitchenLib.Customs.GDOs
 {
-	public class Twitch_Cape : CustomPlayerCosmetic
+	internal class TwitchCape : BaseCape
 	{
-		public override string UniqueNameID => "Twitch_Cape";
-		public override CosmeticType CosmeticType => CosmeticType.Hat;
-		public override GameObject Visual => Main.bundle.LoadAsset<GameObject>("Twitch_Cape");
-		public override bool BlockHats => false;
-		public override bool DisableInGame => true;
+		public override string PrefabName => "Twitch_Cape";
 
 		public override void OnRegister(PlayerCosmetic gameDataObject)
 		{

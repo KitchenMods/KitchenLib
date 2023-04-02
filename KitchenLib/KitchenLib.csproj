@@ -16,9 +16,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="MessagePack" Version="2.4.59" />
 	  <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-	  <PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.6.16" />
+	  <PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.7.26" />
 	  <PackageReference Include="Krafs.Publicizer" Version="2.2.1" />
 	</ItemGroup>
 	<ItemGroup>
@@ -29,17 +28,8 @@
 		<Reference Include="0Harmony">
 			<HintPath>..\..\..\..\Libraries\MelonLoader\0Harmony.dll</HintPath>
 		</Reference>
-		<Reference Include="Facepunch.Steamworks.Win64">
-			<HintPath>$(GamePath)\PlateUp_Data\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
-		</Reference>
 		<Reference Include="ShapesRuntime">
-		  <HintPath>H:\SteamLibrary\steamapps\common\PlateUp\PlateUp\PlateUp_Data\Managed\ShapesRuntime.dll</HintPath>
-		</Reference>
-		<Reference Include="System.Net.Http">
-			<HintPath>$(GamePath)\PlateUp_Data\Managed\System.Net.Http.dll</HintPath>
-		</Reference>
-		<Reference Include="System.Web">
-			<HintPath>$(GamePath)\PlateUp_Data\Managed\System.Web.dll</HintPath>
+		  <HintPath>$(GamePath)\PlateUp_Data\Managed\ShapesRuntime.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 

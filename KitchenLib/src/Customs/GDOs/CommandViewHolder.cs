@@ -2,11 +2,12 @@
 using KitchenLib.ShhhDontTellAnyone;
 using UnityEngine;
 
-namespace KitchenLib.Customs
+namespace KitchenLib.Customs.GDOs
 {
 	public class CommandViewHolder : CustomAppliance
 	{
 		public override string UniqueNameID => "ViewHolder";
+		// TODO: integrate my prefab thing into KL
 		public override GameObject Prefab => new GameObject("Command View Holder");
 		public override bool IsPurchasable => false;
 		public override bool IsNonInteractive => true;

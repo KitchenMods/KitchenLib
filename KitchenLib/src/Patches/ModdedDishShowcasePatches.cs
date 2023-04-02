@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace KitchenLib.src.Patches {
+namespace KitchenLib.Patches {
 
     [HarmonyPatch(typeof(MenuBackgroundItemScroller), "Update")]
     public class MenuBackgroundItemScroller_Update_Patch {
