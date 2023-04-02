@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
-		<Configurations>Workshop</Configurations>
+		<Configurations>Workshop;Workshop - Feature Flags Enabled</Configurations>
 		<AssemblyName>$(MSBuildProjectName)-$(Configuration)</AssemblyName>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -25,9 +25,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="0Harmony">
-			<HintPath>..\..\..\..\Libraries\MelonLoader\0Harmony.dll</HintPath>
-		</Reference>
 		<Reference Include="ShapesRuntime">
 		  <HintPath>$(GamePath)\PlateUp_Data\Managed\ShapesRuntime.dll</HintPath>
 		</Reference>

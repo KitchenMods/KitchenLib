@@ -27,6 +27,8 @@ namespace KitchenLib
 		private static List<Assembly> PatchedAssemblies = new List<Assembly>();
 		private bool isRegistered = false;
 		private bool canRegisterGDO = false;
+
+		[Obsolete("This will point to different mods at different times, use your own singleton variable instead.")]
 		public static BaseMod instance;
 
 		public static HarmonyLib.Harmony harmonyInstance;
@@ -74,8 +76,6 @@ namespace KitchenLib
 			else
 				version = new KitchenVersion("", this);
 
-
-#if BEPINEX || WORKSHOP
 			if (harmonyInstance == null)
 				harmonyInstance = new HarmonyLib.Harmony(modID);
 			if (!PatchedAssemblies.Contains(assembly))
@@ -86,7 +86,7 @@ namespace KitchenLib
 					PatchedAssemblies.Add(assembly);
 				}
 			}
-#endif
+
 			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
 			isRegistered = ModRegistery.Register(this);
 			canRegisterGDO = true;

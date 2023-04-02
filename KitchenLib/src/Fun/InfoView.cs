@@ -7,7 +7,7 @@ using System.Linq;
 using Unity.Collections;
 using Unity.Entities;
 
-namespace KitchenLib.ShhhDontTellAnyone
+namespace KitchenLib.Fun
 {
 	internal class InfoView : UpdatableObjectView<InfoView.ViewData>
 	{

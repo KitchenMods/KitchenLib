@@ -4,7 +4,7 @@
  * ALL THIS CODE CAME FROM ICEDMILO'S CARD MANAGER
  * MASSIVE THANKS FOR MAKING THIS SO I DONT HAVE TO <3
  */
-namespace KitchenLib.ShhhDontTellAnyone
+namespace KitchenLib.Fun
 {
 	internal static class EffectTypeComparer
 	{

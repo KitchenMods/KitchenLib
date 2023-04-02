@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace KitchenLib.ShhhDontTellAnyone
+namespace KitchenLib.Fun
 {
 	public class FunMenu : BaseUI
 	{

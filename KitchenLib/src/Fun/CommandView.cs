@@ -10,7 +10,7 @@ using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace KitchenLib.ShhhDontTellAnyone
+namespace KitchenLib.Fun
 {
 	public class CommandView : UpdatableObjectView<CommandView.ViewData>, ISpecificViewResponse
 	{

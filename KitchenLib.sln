@@ -14,11 +14,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenLib.TestMod", "Kitch
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Workshop - Feature Flags Enabled|Any CPU = Workshop - Feature Flags Enabled|Any CPU
 		Workshop|Any CPU = Workshop|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.Workshop - Feature Flags Enabled|Any CPU.ActiveCfg = Workshop - Feature Flags Enabled|Any CPU
+		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.Workshop - Feature Flags Enabled|Any CPU.Build.0 = Workshop - Feature Flags Enabled|Any CPU
 		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.Workshop|Any CPU.ActiveCfg = Workshop|Any CPU
 		{30A21DF6-FA1C-4905-AB62-A9F2894B010D}.Workshop|Any CPU.Build.0 = Workshop|Any CPU
+		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.Workshop - Feature Flags Enabled|Any CPU.ActiveCfg = Workshop|Any CPU
+		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.Workshop - Feature Flags Enabled|Any CPU.Build.0 = Workshop|Any CPU
 		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.Workshop|Any CPU.ActiveCfg = Workshop|Any CPU
 		{79BD0F25-9C46-4E45-8C13-0B8F1E44F91F}.Workshop|Any CPU.Build.0 = Workshop|Any CPU
 	EndGlobalSection

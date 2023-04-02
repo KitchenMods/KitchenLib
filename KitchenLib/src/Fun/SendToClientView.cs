@@ -9,7 +9,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Kitchen.Layouts.Modules;
 
-namespace KitchenLib.ShhhDontTellAnyone
+namespace KitchenLib.Fun
 {
 	public class SendToClientView : UpdatableObjectView<SendToClientView.ViewData>
 	{

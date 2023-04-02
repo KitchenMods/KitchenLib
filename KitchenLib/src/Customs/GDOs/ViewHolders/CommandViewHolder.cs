@@ -1,4 +1,4 @@
-﻿using KitchenLib.ShhhDontTellAnyone;
+﻿using KitchenLib.Fun;
 using UnityEngine;
 
 namespace KitchenLib.Customs.GDOs

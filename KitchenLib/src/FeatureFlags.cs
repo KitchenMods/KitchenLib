@@ -4,7 +4,11 @@ namespace KitchenLib
 {
 	internal class FeatureFlags
 	{
+#if WORKSHOP___FEATURE_FLAGS_ENABLED
+		private const bool FEATURE_FLAGS_ENABLED = true;
+#else
 		private const bool FEATURE_FLAGS_ENABLED = false;
+#endif
 
 		private static readonly PreferenceManager PreferenceManager = new PreferenceManager($"{Main.MOD_ID}.features");
 

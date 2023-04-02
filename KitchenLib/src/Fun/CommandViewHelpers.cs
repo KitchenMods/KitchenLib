@@ -9,7 +9,7 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
-namespace KitchenLib.ShhhDontTellAnyone
+namespace KitchenLib.Fun
 {
 	internal class CommandViewHelpers : GameSystemBase
 	{

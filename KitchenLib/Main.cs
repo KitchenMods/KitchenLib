@@ -6,7 +6,7 @@ using KitchenLib.Customs.GDOs;
 using KitchenLib.DevUI;
 using KitchenLib.Event;
 using KitchenLib.Preferences;
-using KitchenLib.ShhhDontTellAnyone;
+using KitchenLib.Fun;
 using KitchenLib.UI;
 using KitchenMods;
 using System.IO;
@@ -30,7 +30,9 @@ namespace KitchenLib
 		public static CustomAppliance InfoViewHolder;
 		public static CustomAppliance SendToClientViewHolder;
 		public static CustomAppliance TileHighlighterViewHolder;
+
 		public static AssetBundle bundle;
+
 		public static PreferenceManager manager;
 		public static PreferenceManager cosmeticManager;
 

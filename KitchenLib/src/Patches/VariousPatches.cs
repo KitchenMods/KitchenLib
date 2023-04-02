@@ -20,7 +20,7 @@ namespace KitchenLib.Patches
 			if (Main.manager.GetPreference<PreferenceBool>("datacollection").Value && Main.manager.GetPreference<PreferenceBool>("over13").Value)
 				__instance.Text.text = __instance.Text.text + "!";
 			else
-				__instance.Text.text = __instance.Text.text + ",";
+				__instance.Text.text = __instance.Text.text + ".";
 		}
 	}
 
@@ -29,17 +29,7 @@ namespace KitchenLib.Patches
 	{
 		public static void Postfix(SteamRichPresenceView __instance, SteamRichPresenceView.ViewData view_data)
 		{
-#if MELONLOADER
-            DiscordPlatform.Discord.SetActivity("Plating Up Some Spinach", "", view_data.Data.Players);
-#endif
-
-#if BEPINEX
-            DiscordPlatform.Discord.SetActivity("Plating Up Some Burgers", "", view_data.Data.Players);
-#endif
-
-#if WORKSHOP
 			DiscordPlatform.Discord.SetActivity("Plating Up Some Pizza", "", view_data.Data.Players);
-#endif
 		}
 	}
 	
