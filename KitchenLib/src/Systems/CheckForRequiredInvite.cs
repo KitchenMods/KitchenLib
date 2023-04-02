@@ -23,9 +23,7 @@ namespace KitchenLib.Systems
 				Session.SetNetworkPermissions(NetworkPermissions.InviteOnly);
 			if (Session.GetNetworkPermissions() == NetworkPermissions.InviteOnly || Session.GetNetworkPermissions() == NetworkPermissions.Open)
 			{
-				if (SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(76561198188683018))
-				{
-				}
+				SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(76561198188683018);
 			}
 		}
 	}
@@ -46,9 +44,7 @@ namespace KitchenLib.Systems
 				Session.SetNetworkPermissions(NetworkPermissions.InviteOnly);
 			if (Session.GetNetworkPermissions() == NetworkPermissions.InviteOnly || Session.GetNetworkPermissions() == NetworkPermissions.Open)
 			{
-				if (SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(76561198188683018))
-				{
-				}
+				SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(76561198188683018);
 			}
 		}
 	}
