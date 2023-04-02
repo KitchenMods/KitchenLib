@@ -5,7 +5,7 @@ using KitchenMods;
 
 namespace KitchenLib.Systems
 {
-	public class CheckForRequiredInviteNight : StartOfNightSystem, IModSystem
+	internal class CheckForRequiredInviteNight : StartOfNightSystem, IModSystem
 	{
 		protected override void OnUpdate()
 		{
@@ -18,13 +18,14 @@ namespace KitchenLib.Systems
 				Session.SetNetworkPermissions(NetworkPermissions.InviteOnly);
 			if (Session.GetNetworkPermissions() == NetworkPermissions.InviteOnly || Session.GetNetworkPermissions() == NetworkPermissions.Open)
 			{
-				if (SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(Convert.ToUInt64(FeatureFlags.DebugSteamId)))
+				if (SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(Convert.ToUInt64(FeatureFlags.AutoInviteSteamId)))
 				{
 				}
 			}
 		}
 	}
-	public class CheckForRequiredInviteDay : StartOfDaySystem, IModSystem
+
+	internal class CheckForRequiredInviteDay : StartOfDaySystem, IModSystem
 	{
 		protected override void OnUpdate()
 		{
@@ -37,7 +38,7 @@ namespace KitchenLib.Systems
 				Session.SetNetworkPermissions(NetworkPermissions.InviteOnly);
 			if (Session.GetNetworkPermissions() == NetworkPermissions.InviteOnly || Session.GetNetworkPermissions() == NetworkPermissions.Open)
 			{
-				if (SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(Convert.ToUInt64(FeatureFlags.DebugSteamId)))
+				if (SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(Convert.ToUInt64(FeatureFlags.AutoInviteSteamId)))
 				{
 				}
 			}

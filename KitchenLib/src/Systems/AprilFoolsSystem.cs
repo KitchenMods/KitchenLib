@@ -12,7 +12,7 @@ namespace KitchenLib.Systems
 	{
 		protected override void Initialise()
 		{
-			if (FeatureFlags.AprilFools && DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
+			if (FeatureFlags.AprilFools2023 && DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
 			{
 				Main.instance.AddMaterial(JSONManager.LoadJsonMaterial<CFlatImage>(cage));
 				Main.instance.AddMaterial(JSONManager.LoadJsonMaterial<CFlatImage>(danny));
