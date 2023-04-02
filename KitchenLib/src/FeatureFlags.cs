@@ -8,25 +8,24 @@ namespace KitchenLib
 
 		private static readonly PreferenceManager PreferenceManager = new PreferenceManager($"{Main.MOD_ID}.features");
 
-		private static PreferenceBool AprilFools2023Pref;
+		// April Fools 2023
+		private static PreferenceBool AprilFools2023Pref = PreferenceManager.RegisterPreference(new PreferenceBool("AprilFools2023", true));
 		internal static bool AprilFools2023 => GetPref(AprilFools2023Pref, true);
 
-		private static PreferenceBool AutoInvitePref;
+		// Auto Invite
+		private static PreferenceBool AutoInvitePref = PreferenceManager.RegisterPreference(new PreferenceBool("AutoInvite", false));
 		internal static bool AutoInvite => GetPref(AutoInvitePref, false);
 
-		private static PreferenceString AutoInviteSteamIdPref;
+		// Auto Invite (Steam ID)
+		private static PreferenceString AutoInviteSteamIdPref = PreferenceManager.RegisterPreference(new PreferenceString("AutoInviteSteamId", "0"));
 		internal static string AutoInviteSteamId => GetPref(AutoInviteSteamIdPref, "0");
 
-		private static PreferenceBool FunMenuPref;
+		// Fun Menu
+		private static PreferenceBool FunMenuPref = PreferenceManager.RegisterPreference(new PreferenceBool("FunMenu", false));
 		internal static bool FunMenu => GetPref(FunMenuPref, false);
 
 		internal static void Init()
 		{
-			AprilFools2023Pref = PreferenceManager.RegisterPreference(new PreferenceBool("AprilFools2023", true));
-			AutoInvitePref = PreferenceManager.RegisterPreference(new PreferenceBool("AutoInvite", false));
-			AutoInviteSteamIdPref = PreferenceManager.RegisterPreference(new PreferenceString("AutoInviteSteamId", "0"));
-			FunMenuPref = PreferenceManager.RegisterPreference(new PreferenceBool("FunMenu", false));
-
 			PreferenceManager.Load();
 			PreferenceManager.Save();
 		}
