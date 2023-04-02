@@ -1,5 +1,4 @@
-﻿using System;
-using KitchenLib.Preferences;
+﻿using KitchenLib.Preferences;
 
 namespace KitchenLib
 {
