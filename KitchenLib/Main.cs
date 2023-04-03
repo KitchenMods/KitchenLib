@@ -96,6 +96,24 @@ namespace KitchenLib
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void LogInfo(object message)
+		{
+			LogInfo(message.ToString());
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void LogWarning(object message)
+		{
+			LogWarning(message.ToString());
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void LogError(object message)
+		{
+			LogError(message.ToString());
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LogInfo(string message)
 		{
 			Debug.Log($"[{MOD_NAME}] " + message);
