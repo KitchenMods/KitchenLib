@@ -1,5 +1,6 @@
 using KitchenLib.Customs;
 using KitchenLib.DevUI;
+using KitchenLib.Patches;
 using KitchenLib.Registry;
 using KitchenLib.Utils;
 using KitchenMods;
@@ -62,6 +63,8 @@ namespace KitchenLib
 
 		private void SetupMod(string modID, string modName, string author, string modVersion, string betaVersion, string compatibleVersions, Assembly assembly)
 		{
+			DebugLogPatch.SetupCustomLogHandler();
+
 			instance = this;
 			ModID = modID;
 			ModName = modName;
@@ -90,7 +93,6 @@ namespace KitchenLib
 			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
 			isRegistered = ModRegistery.Register(this);
 			canRegisterGDO = true;
-
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

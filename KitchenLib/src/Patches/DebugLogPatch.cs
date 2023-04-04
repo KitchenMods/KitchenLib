@@ -1,58 +1,67 @@
-﻿using HarmonyLib;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
 namespace KitchenLib.Patches
 {
-
-	[HarmonyPatch]
 	internal class DebugLogPatch
 	{
-		static IEnumerable<MethodBase> TargetMethods()
+		private static bool hasBeenSetup = false;
+
+		public static void SetupCustomLogHandler()
 		{
-			foreach (var method in AccessTools.GetDeclaredMethods(typeof(Logger)))
-			{
-				if (method.Name.Contains("Log") && method.GetParameters().Any(param => param.ParameterType == typeof(LogType)) && method.GetParameters().Any(param => param.ParameterType == typeof(object) && param.Name == "message"))
-				{
-					yield return method;
-				}
-			}
+			if (hasBeenSetup) return;
+
+			Debug.unityLogger.logHandler = new KLLogHandler(Debug.unityLogger.logHandler);
+			hasBeenSetup = true;
 		}
 
-		static void Prefix(LogType logType, ref object message)
+		private class KLLogHandler : ILogHandler
 		{
-			var typePrefix = "";
-			switch (logType)
+			private readonly ILogHandler logHandler;
+
+			public KLLogHandler(ILogHandler logHandler)
 			{
-				case LogType.Error:
-					typePrefix = "ERROR";
-					break;
-				case LogType.Assert:
-					typePrefix = "ASSERT";
-					break;
-				case LogType.Warning:
-					typePrefix = "WARN";
-					break;
-				case LogType.Log:
-					typePrefix = "INFO";
-					break;
-				case LogType.Exception:
-					typePrefix = "EXCEPTION";
-					break;
+				this.logHandler = logHandler;
 			}
 
-			var modIdPrefix = "";
-			if (!Regex.IsMatch(message.ToString(), "\\[.+\\]"))
+			public void LogException(Exception exception, UnityEngine.Object context)
 			{
-				modIdPrefix = "[PlateUp!] ";
+				logHandler.LogException(exception, context);
 			}
 
-			message = $"[{typePrefix}] " + modIdPrefix + message.ToString().Replace(Environment.UserName, "[USERNAME]");
+			public void LogFormat(LogType logType, UnityEngine.Object context, string format, params object[] args)
+			{
+				var typePrefix = "";
+				switch (logType)
+				{
+					case LogType.Error:
+						typePrefix = "ERROR";
+						break;
+					case LogType.Assert:
+						typePrefix = "ASSERT";
+						break;
+					case LogType.Warning:
+						typePrefix = "WARN";
+						break;
+					case LogType.Log:
+						typePrefix = "INFO";
+						break;
+					case LogType.Exception:
+						typePrefix = "EXCEPTION";
+						break;
+				}
+
+				var modIdPrefix = "";
+				if (!Regex.IsMatch(string.Format(format, args), "^\\*?\\[.+\\]"))
+				{
+					modIdPrefix = "[PlateUp!] ";
+				}
+
+				var newFormat = $"[{typePrefix}] " + modIdPrefix + format.Replace(Environment.UserName, "[USERNAME]");
+
+				logHandler.LogFormat(logType, context, newFormat, args);
+			}
 		}
 	}
 }
