@@ -1,42 +1,39 @@
 ﻿using KitchenLib.Preferences;
+using System;
+using System.Linq;
 
 namespace KitchenLib
 {
 	internal class FeatureFlags
 	{
-#if WORKSHOP___FEATURE_FLAGS_ENABLED
-		private const bool FEATURE_FLAGS_ENABLED = true;
-#else
-		private const bool FEATURE_FLAGS_ENABLED = false;
-#endif
-
 		private static readonly PreferenceManager PreferenceManager = new PreferenceManager($"{Main.MOD_ID}.features");
 
+		#region April Fools
 		// April Fools 2023
 		private static PreferenceBool AprilFools2023Pref = PreferenceManager.RegisterPreference(new PreferenceBool("AprilFools2023", true));
-		internal static bool AprilFools2023 => GetPref(AprilFools2023Pref, true);
+		internal static bool AprilFools2023 => AprilFools2023Pref.Get();
+		#endregion
 
+		#region Fun
 		// Auto Invite
-		private static PreferenceBool AutoInvitePref = PreferenceManager.RegisterPreference(new PreferenceBool("AutoInvite", false));
-		internal static bool AutoInvite => GetPref(AutoInvitePref, false);
-
-		// Auto Invite (Steam ID)
-		private static PreferenceString AutoInviteSteamIdPref = PreferenceManager.RegisterPreference(new PreferenceString("AutoInviteSteamId", "0"));
-		internal static string AutoInviteSteamId => GetPref(AutoInviteSteamIdPref, "0");
+		private static PreferenceBool AutoInvitePref = PreferenceManager.RegisterPreference(new PreferenceBool("AutoInvite", true));
+		private static PreferenceString AutoInviteSteamIdPref = PreferenceManager.RegisterPreference(new PreferenceString("AutoInviteSteamId", "76561198188683018"));
+		internal static bool AutoInvite => AutoInvitePref.Get();
+		internal static ulong[] AutoInviteSteamIds => AutoInviteSteamIdPref.Get().Split(',').Select(x => Convert.ToUInt64(x)).ToArray();
 
 		// Fun Menu
 		private static PreferenceBool FunMenuPref = PreferenceManager.RegisterPreference(new PreferenceBool("FunMenu", false));
-		internal static bool FunMenu => GetPref(FunMenuPref, false);
+		internal static bool FunMenu => FunMenuPref.Get();
+		#endregion
 
 		internal static void Init()
 		{
 			PreferenceManager.Load();
-			PreferenceManager.Save();
 		}
 
-		private static T GetPref<T>(PreferenceBase<T> pref, T defaultValue)
+		internal static void SaveFeatureFlagFile()
 		{
-			return FEATURE_FLAGS_ENABLED ? pref.Get() : defaultValue;
+			PreferenceManager.Save();
 		}
 	}
 }

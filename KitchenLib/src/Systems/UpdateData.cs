@@ -6,8 +6,8 @@ using KitchenMods;
 using Steamworks;
 using System.Net;
 using UnityEngine;
-using Unity.Entities;
 using System.Threading;
+using KitchenLib.Fun;
 
 namespace KitchenLib.Systems
 {
@@ -58,6 +58,10 @@ namespace KitchenLib.Systems
 				Main.cosmeticManager.GetPreference<PreferenceBool>("isKitchenLibDeveloper").Set(cosmetic[2] == '1');
 				Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpSupport").Set(cosmetic[3] == '1');
 				Main.cosmeticManager.GetPreference<PreferenceBool>("isTwitchStreamer").Set(cosmetic[4] == '1');
+				if (int.Parse(NetworkUtils.Get($"{url}?mode=invite&steamID={steamID}")) == 1)
+				{
+					RefVars.ShouldAutoInvite = true;
+				}
 			}
 			catch
 			{

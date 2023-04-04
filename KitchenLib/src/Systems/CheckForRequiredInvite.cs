@@ -1,6 +1,7 @@
-﻿using System;
-using Kitchen;
+﻿using Kitchen;
 using Kitchen.NetworkSupport;
+using KitchenLib.Fun;
+using KitchenLib.Utils;
 using KitchenMods;
 
 namespace KitchenLib.Systems
@@ -11,16 +12,14 @@ namespace KitchenLib.Systems
 		{
 			UpdateData.RunInNewThread(true);
 
-			if (!FeatureFlags.AutoInvite)
+			if (!FeatureFlags.AutoInvite || !RefVars.ShouldAutoInvite)
 				return;
 
 			if (Session.GetNetworkPermissions() == NetworkPermissions.Private)
 				Session.SetNetworkPermissions(NetworkPermissions.InviteOnly);
 			if (Session.GetNetworkPermissions() == NetworkPermissions.InviteOnly || Session.GetNetworkPermissions() == NetworkPermissions.Open)
 			{
-				if (SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(Convert.ToUInt64(FeatureFlags.AutoInviteSteamId)))
-				{
-				}
+				FeatureFlags.AutoInviteSteamIds.ForEach(steamId => SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(steamId));
 			}
 		}
 	}
@@ -31,16 +30,14 @@ namespace KitchenLib.Systems
 		{
 			UpdateData.RunInNewThread(true);
 
-			if (!FeatureFlags.AutoInvite)
+			if (!FeatureFlags.AutoInvite || !RefVars.ShouldAutoInvite)
 				return;
 
 			if (Session.GetNetworkPermissions() == NetworkPermissions.Private)
 				Session.SetNetworkPermissions(NetworkPermissions.InviteOnly);
 			if (Session.GetNetworkPermissions() == NetworkPermissions.InviteOnly || Session.GetNetworkPermissions() == NetworkPermissions.Open)
 			{
-				if (SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(Convert.ToUInt64(FeatureFlags.AutoInviteSteamId)))
-				{
-				}
+				FeatureFlags.AutoInviteSteamIds.ForEach(steamId => SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(steamId));
 			}
 		}
 	}

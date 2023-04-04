@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
-		<Configurations>Workshop;Workshop - Feature Flags Enabled</Configurations>
+		<Configurations>Workshop</Configurations>
 		<AssemblyName>$(MSBuildProjectName)-Workshop</AssemblyName>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
