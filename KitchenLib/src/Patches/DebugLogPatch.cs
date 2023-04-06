@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
@@ -6,11 +7,17 @@ namespace KitchenLib.Patches
 {
 	internal class DebugLogPatch
 	{
+		internal static Dictionary<LogType, bool> EnabledLevels = new Dictionary<LogType, bool>();
 		private static bool hasBeenSetup = false;
 
 		public static void SetupCustomLogHandler()
 		{
 			if (hasBeenSetup) return;
+
+			foreach (LogType logType in Enum.GetValues(typeof(LogType)))
+			{
+				EnabledLevels.Add(logType, true);
+			}
 
 			Debug.unityLogger.logHandler = new KLLogHandler(Debug.unityLogger.logHandler);
 			hasBeenSetup = true;
@@ -32,6 +39,11 @@ namespace KitchenLib.Patches
 
 			public void LogFormat(LogType logType, UnityEngine.Object context, string format, params object[] args)
 			{
+				if (!EnabledLevels[logType])
+				{
+					return;
+				}
+
 				var typePrefix = "";
 				switch (logType)
 				{
