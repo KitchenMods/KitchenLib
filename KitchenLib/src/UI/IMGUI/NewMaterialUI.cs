@@ -71,7 +71,7 @@ namespace KitchenLib.UI
 			materialSelectorScrollPosition = GUILayout.BeginScrollView(materialSelectorScrollPosition, false, false, GUIStyle.none, GUI.skin.verticalScrollbar);
 			foreach (Material material in MaterialUtils.GetAllMaterials(true, new List<string> { "Simple Flat", "Simple Transparent", "Flat", "Indicator Light", "Ghost", "Foliage", "Flat Image", "Fairy Lights", "Walls", "Blueprint Light" }))
 			{
-				if (material.name.Contains(materialSelectorSearchBar))
+				if (material.name.ToLower().Contains(materialSelectorSearchBar.ToLower()))
 				{
 					if (GUILayout.Button(material.name))
 					{

@@ -19,25 +19,28 @@ namespace KitchenLib
 			using var ents = AllOrderedItems.ToEntityArray(Allocator.Temp);
 			foreach (Entity ent in ents)
 			{
-				var buffer = EntityManager.GetBuffer<CWaitingForItem>(ent);
-				int DishHasBlacklist = -1;
-				for (int i = 0; i < buffer.Length; i++)
+				DynamicBuffer<CWaitingForItem> buffer;
+				if (EntityManager.RequireBuffer<CWaitingForItem>(ent, out buffer))
 				{
-					CWaitingForItem orderedItem = buffer[i];
-					if (GDOUtils.BlacklistedDishSides.ContainsKey(orderedItem.ItemID))
+					int DishHasBlacklist = -1;
+					for (int i = 0; i < buffer.Length; i++)
 					{
-						DishHasBlacklist = orderedItem.ItemID;
-						break;
-					}
-				}
-				for (int i = 0; i < buffer.Length; i++)
-				{
-					CWaitingForItem orderedItem = buffer[i];
-					if (DishHasBlacklist != -1)
-					{
-						if (GDOUtils.BlacklistedDishSides[DishHasBlacklist].Contains(orderedItem.ItemID))
+						CWaitingForItem orderedItem = buffer[i];
+						if (GDOUtils.BlacklistedDishSides.ContainsKey(orderedItem.ItemID))
 						{
-							buffer.RemoveAt(i);
+							DishHasBlacklist = orderedItem.ItemID;
+							break;
+						}
+					}
+					for (int i = 0; i < buffer.Length; i++)
+					{
+						CWaitingForItem orderedItem = buffer[i];
+						if (DishHasBlacklist != -1)
+						{
+							if (GDOUtils.BlacklistedDishSides[DishHasBlacklist].Contains(orderedItem.ItemID))
+							{
+								buffer.RemoveAt(i);
+							}
 						}
 					}
 				}

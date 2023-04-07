@@ -32,6 +32,21 @@ namespace KitchenLib
 
 		public static List<BaseJson> LoadedJsons = new List<BaseJson>();
 
+		public static T LoadJsonFromString<T>(string json) where T : BaseJson
+		{
+			var newJson = JsonConvert.DeserializeObject<T>(json);
+			return newJson;
+		}
+
+		public static Material LoadJsonMaterial<T>(string json) where T : CustomMaterial
+		{
+			var newJson = JsonConvert.DeserializeObject<T>(json);
+			newJson.Deserialise();
+			newJson.ConvertMaterial(out Material material);
+			return material;
+		}
+
+		[Obsolete]
 		public static Material LoadMaterialFromJson(string json)
 		{
 			BaseJson baseJson = null;

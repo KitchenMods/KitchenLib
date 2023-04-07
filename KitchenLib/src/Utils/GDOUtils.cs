@@ -106,5 +106,17 @@ namespace KitchenLib.Utils
 				}
 			}
 		}
+
+		public static int GetItemProcessResult(Item item, Process process)
+		{
+			foreach (Item.ItemProcess process1 in item.DerivedProcesses)
+			{
+				if (process1.Process == process)
+				{
+					return process1.Result.ID;
+				}
+			}
+			return 0;
+		}
 	}
 }

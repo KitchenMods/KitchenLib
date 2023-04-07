@@ -1,45 +1,102 @@
 using Kitchen;
+using Kitchen.NetworkSupport;
 using KitchenData;
 using KitchenLib.Colorblind;
+using KitchenLib.Customs;
 using KitchenLib.DevUI;
 using KitchenLib.Event;
-using KitchenLib.Patches;
+using KitchenLib.Preferences;
+using KitchenLib.ShhhDontTellAnyone;
+using KitchenLib.src.Customs;
 using KitchenLib.UI;
-using System.Runtime.CompilerServices;
+using KitchenLib.Utils;
 using KitchenMods;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace KitchenLib
 {
-    public class Main : BaseMod
+	public class Main : BaseMod
 	{
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.5.6";
+		public const string MOD_VERSION = "0.6.4";
 		public const string MOD_BETA_VERSION = "";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
-		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
+		public static CustomAppliance CommandViewHolder;
+		public static CustomAppliance InfoViewHolder;
+		public static CustomAppliance SendToClientViewHolder;
+		public static CustomAppliance TileHighlighterViewHolder;
+		public static AssetBundle bundle;
+		public static PreferenceManager manager;
+		public static PreferenceManager cosmeticManager;
 
+		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
 		protected override void OnPostActivate(Mod mod)
 		{
+			manager = new PreferenceManager(MOD_ID);
+			cosmeticManager = new PreferenceManager(MOD_ID + ".cosmetics");
+			manager.RegisterPreference(new PreferenceBool("hasrequested", false));
+			manager.RegisterPreference(new PreferenceBool("over13", true));
+			manager.RegisterPreference(new PreferenceBool("datacollection", true));
+			manager.Load();
+
+			cosmeticManager.RegisterPreference(new PreferenceBool("isPlateUpDeveloper", false));
+			cosmeticManager.RegisterPreference(new PreferenceBool("isPlateUpStaff", false));
+			cosmeticManager.RegisterPreference(new PreferenceBool("isPlateUpSupport", false));
+			cosmeticManager.RegisterPreference(new PreferenceBool("isKitchenLibDeveloper", false));
+			cosmeticManager.RegisterPreference(new PreferenceBool("isTwitchStreamer", false));
+
+			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).ToList()[0];
+			CommandViewHolder = AddGameDataObject<CommandViewHolder>();
+			InfoViewHolder = AddGameDataObject<InfoViewHolder>();
+			SendToClientViewHolder = AddGameDataObject<SendToClientViewHolder>();
+			TileHighlighterViewHolder = AddGameDataObject<TileHighlighterViewHolder>();
+			AddGameDataObject<PlateUp_Cape>();
+			AddGameDataObject<PlateUp_Staff_Cape>();
+			AddGameDataObject<PlateUp_Support_Cape>();
+			AddGameDataObject<KitchenLib_Cape>();
+			AddGameDataObject<Twitch_Cape>();
+			AddGameDataObject<_21_Balloon>();
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
 		}
 		protected override void OnInitialise()
 		{
+			/*
+			Kitchen.Preferences.Set<ScreenPreference.ScreenData>(Pref.ScreenResolution, new ScreenPreference.ScreenData
+			{
+				Resolution = new Resolution
+				{
+					width = 1920,
+					height = 1080,
+					refreshRate = 0
+				},
+				FullScreenMode = FullScreenMode.Windowed
+			});
+			*/
+
+			if (StringUtils.GetInt32HashCode(SteamPlatform.Steam.Me.ID.ToString()) == 1774237577)
+			{
+				RegisterMenu<FunMenu>();
+			}
 			GameObject go = new GameObject();
 			go.AddComponent<DevUIController>();
-
 			ColorblindUtils.AddSingleItemLabels(ColorblindUtils.itemLabels.ToArray());
 		}
 
 		private void SetupMenus()
 		{
+
+			ModsPreferencesMenu<PauseMenuAction>.RegisterMenu("KitchenLib", typeof(PreferenceMenu<PauseMenuAction>), typeof(PauseMenuAction));
+			ModsPreferencesMenu<MainMenuAction>.RegisterMenu("KitchenLib", typeof(PreferenceMenu<MainMenuAction>), typeof(MainMenuAction));
+
 			//Setting Up For Main Menu
 			Events.StartMainMenu_SetupEvent += (s, args) =>
 			{
@@ -49,6 +106,7 @@ namespace KitchenLib
 			Events.MainMenuView_SetupMenusEvent += (s, args) =>
 			{
 				args.addMenu.Invoke(args.instance, new object[] { typeof(RevisedMainMenu), new RevisedMainMenu(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(DataCollectionMenu), new DataCollectionMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<MainMenuAction>), new ModsMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<MainMenuAction>), new ModsPreferencesMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
 			};
@@ -63,6 +121,16 @@ namespace KitchenLib
 			{
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<PauseMenuAction>), new ModsMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<PauseMenuAction>), new ModsPreferencesMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
+			};
+
+			Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent += (s, args) =>
+			{
+				args.Menus.Add(typeof(PreferenceMenu<PauseMenuAction>), new PreferenceMenu<PauseMenuAction>(args.Container, args.Module_list));
+			};
+
+			Events.PreferenceMenu_MainMenu_CreateSubmenusEvent += (s, args) =>
+			{
+				args.Menus.Add(typeof(PreferenceMenu<MainMenuAction>), new PreferenceMenu<MainMenuAction>(args.Container, args.Module_list));
 			};
 		}
 
