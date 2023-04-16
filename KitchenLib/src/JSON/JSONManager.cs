@@ -1,7 +1,9 @@
 ﻿using KitchenLib.Customs;
+using KitchenLib.JSON;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,6 +32,21 @@ namespace KitchenLib
 
 		public static List<BaseJson> LoadedJsons = new List<BaseJson>();
 
+		public static T LoadJsonFromString<T>(string json) where T : BaseJson
+		{
+			var newJson = JsonConvert.DeserializeObject<T>(json);
+			return newJson;
+		}
+
+		public static Material LoadJsonMaterial<T>(string json) where T : CustomMaterial
+		{
+			var newJson = JsonConvert.DeserializeObject<T>(json);
+			newJson.Deserialise();
+			newJson.ConvertMaterial(out Material material);
+			return material;
+		}
+
+		[Obsolete]
 		public static Material LoadMaterialFromJson(string json)
 		{
 			BaseJson baseJson = null;
@@ -66,9 +83,16 @@ namespace KitchenLib
 						JObject jObject = JObject.Parse(asset.text);
 						if (jObject.TryGetValue("Type", out JToken jToken))
 						{
-							JsonType type = jToken.ToObject<JsonType>();
-							var json = jObject.ToObject(keyValuePairs[type]);
-							LoadedJsons.Add(json as BaseJson);
+							if(keyValuePairs.TryGetValue(jToken.ToObject<JsonType>(), out Type type))
+							{
+								var json = jObject.ToObject(type);
+								LoadedJsons.Add(json as BaseJson);
+							}
+							else
+							{
+								GDOType key = jToken.ToObject<GDOType>();
+								ContentPackManager.RegisterJSONGDO(key, jObject);
+							}
 						}
 					}
 					catch (Exception e)

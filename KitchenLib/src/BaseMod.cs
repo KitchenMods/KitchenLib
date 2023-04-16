@@ -231,12 +231,26 @@ namespace KitchenLib
 		public Material AddMaterial<T>() where T : Material, new()
 		{
 			T material = new T();
-			return CustomMaterials.AddMaterial(material.name, material);
+			if (CustomMaterials.CustomMaterialsIndex.ContainsKey(material.name))
+			{
+				return material;
+			}
+			else
+			{
+				return CustomMaterials.AddMaterial(material.name, material);
+			}
 		}
 
 		public Material AddMaterial(Material material)
 		{
-			return CustomMaterials.AddMaterial(material.name, material);
+			if (CustomMaterials.CustomMaterialsIndex.ContainsKey(material.name))
+			{
+				return material;
+			}
+			else
+			{
+				return CustomMaterials.AddMaterial(material.name, material);
+			}
 		}
 
 		public void RegisterMenu<T>() where T : BaseUI, new()
