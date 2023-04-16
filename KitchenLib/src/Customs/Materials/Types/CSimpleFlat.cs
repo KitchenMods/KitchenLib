@@ -47,6 +47,10 @@ namespace KitchenLib.Customs
 			result.SetColor("_Color0", _Color);
 			result.SetInt("_Highlight", _Highlight ? 1 : 0);
 			result.SetInt("_HasTextureOverlay", _HasTextureOverlay ? 1 : 0);
+			if (!_HasTextureOverlay)
+				result.DisableKeyword("_HASTEXTUREOVERLAY_ON");
+			else
+				result.EnableKeyword("_HASTEXTUREOVERLAY_ON");
 			result.SetTexture("_Overlay", _Overlay);
 			result.SetFloat("_Shininess", _Shininess);
 			result.SetFloat("_OverlayLowerBound", _OverlayLowerBound);

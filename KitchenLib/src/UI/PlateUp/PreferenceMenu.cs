@@ -3,6 +3,7 @@ using Kitchen.Modules;
 using KitchenData;
 using KitchenLib.Customs;
 using KitchenLib.Preferences;
+using KitchenLib.src.Systems;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,8 +16,39 @@ namespace KitchenLib.UI
 		{
 		}
 
+		public Dictionary<(bool, int), string> Capes = new Dictionary<(bool, int), string>
+		{
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpDeveloper").Value, GDOUtils.GetCustomGameDataObject<PlateUp_Cape>().ID),"Equip PlateUp! Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpSupport").Value, GDOUtils.GetCustomGameDataObject<PlateUp_Support_Cape>().ID),"Equip Support Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpStaff").Value, GDOUtils.GetCustomGameDataObject<PlateUp_Staff_Cape>().ID),"Equip Staff Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isKitchenLibDeveloper").Value, GDOUtils.GetCustomGameDataObject<KitchenLib_Cape>().ID),"Equip KitchenLib Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isTwitchStreamer").Value, GDOUtils.GetCustomGameDataObject<Twitch_Cape>().ID),"Equip Twitch Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isEasterChampion").Value, GDOUtils.GetCustomGameDataObject<Easter_Champion_Cape>().ID),"Equip Easter Champion Cape"},
+		};
+
+		private List<int> capeIDs = new List<int>();
+		private List<string> capeNames = new List<string>();
+		
+		private Option<int> capeSelector;
+
+		private void SetCosmetic(int playerID, int capeID)
+		{
+			ClientEquipCapes.CapeID = capeID;
+			ClientEquipCapes.PlayerID = playerID;
+		}
 		public override void Setup(int player_id)
 		{
+			foreach ((bool, int) key in Capes.Keys)
+			{
+				if (key.Item1)
+				{
+					capeIDs.Add(key.Item2);
+					capeNames.Add(Capes[key]);
+				}
+			}
+
+			capeSelector = new Option<int>(capeIDs, 0, capeNames);
+
 			Player player = null;
 			CPlayerCosmetics cosmetics = new CPlayerCosmetics();
 			PlayerManager pm = null;
@@ -49,57 +81,16 @@ namespace KitchenLib.UI
 
 			if (pm != null && player != null)
 			{
-				if (Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpDeveloper").Value)
+				foreach ((bool, int) key in Capes.Keys)
 				{
-
-					AddButton("Equip PlateUp! Cape", delegate (int i)
+					if (key.Item1)
 					{
-						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<PlateUp_Cape>().ID);
-						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
-					}, 0, 1f, 0.2f);
-					New<SpacerElement>(true);
-				}
-
-				if (Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpSupport").Value)
-				{
-
-					AddButton("Equip Support Cape", delegate (int i)
-					{
-						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<PlateUp_Support_Cape>().ID);
-						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
-					}, 0, 1f, 0.2f);
-					New<SpacerElement>(true);
-				}
-
-				if (Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpStaff").Value)
-				{
-
-					AddButton("Equip Staff Cape", delegate (int i)
-					{
-						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<PlateUp_Staff_Cape>().ID);
-						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
-					}, 0, 1f, 0.2f);
-					New<SpacerElement>(true);
-				}
-
-				if (Main.cosmeticManager.GetPreference<PreferenceBool>("isKitchenLibDeveloper").Value)
-				{
-					AddButton("Equip KitchenLib Cape", delegate (int i)
-					{
-						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<KitchenLib_Cape>().ID);
-						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
-					}, 0, 1f, 0.2f);
-					New<SpacerElement>(true);
-				}
-
-				if (Main.cosmeticManager.GetPreference<PreferenceBool>("isTwitchStreamer").Value)
-				{
-					AddButton("Equip Twitch Cape", delegate (int i)
-					{
-						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<Twitch_Cape>().ID);
-						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
-					}, 0, 1f, 0.2f);
-					New<SpacerElement>(true);
+						AddButton(Capes[key], delegate (int i)
+						{
+							SetCosmetic(player_id, key.Item2);
+						}, 0, 1f, 0.2f);
+						New<SpacerElement>(true);
+					}
 				}
 			}
 
