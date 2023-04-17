@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using KitchenMods;
 using KitchenData;
 using KitchenLib.Preferences;
+using UnityEngine;
 
 namespace KitchenLib.Patches
 {
@@ -59,6 +60,7 @@ namespace KitchenLib.Patches
 		}
 	}
 
+	[UpdateAfter(typeof(PlayerInfoManager.UpdateView))]
 	public class EnsurePlayerProfile : GameSystemBase, IModSystem
 	{
 		private EntityQuery cPlayers;
@@ -79,11 +81,12 @@ namespace KitchenLib.Patches
 						if (Require(players[i], out CPlayerColour cPlayerColour) && Require(players[i], out CPlayerCosmetics cPlayerCosmetics))
 						{
 							cPlayerColour.Color = PlayerInfoManager_Patch.Updates[cPlayer.ID].Profile.Colour;
-
 							foreach (int cosmeticID in PlayerInfoManager_Patch.Updates[cPlayer.ID].Profile.Cosmetics)
 							{
 								if (GameData.Main.TryGet<PlayerCosmetic>(cosmeticID, out PlayerCosmetic cosmetic))
+								{
 									cPlayerCosmetics.Set(cosmetic.CosmeticType, cosmeticID);
+								}
 							}
 							EntityManager.SetComponentData(players[i], cPlayerColour);
 							EntityManager.SetComponentData(players[i], cPlayerCosmetics);

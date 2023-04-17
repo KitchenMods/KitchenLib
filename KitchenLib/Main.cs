@@ -25,7 +25,7 @@ namespace KitchenLib
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
 		public const string MOD_VERSION = "0.6.6";
-		public const string MOD_BETA_VERSION = "1";
+		public const string MOD_BETA_VERSION = "2";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
 		public static CustomAppliance CommandViewHolder;
@@ -33,6 +33,7 @@ namespace KitchenLib
 		public static CustomAppliance SendToClientViewHolder;
 		public static CustomAppliance TileHighlighterViewHolder;
 		public static CustomAppliance ClientEquipCapeViewHolder;
+		public static CustomAppliance SyncModsViewHolder;
 		public static AssetBundle bundle;
 		public static PreferenceManager manager;
 		public static PreferenceManager cosmeticManager;
@@ -61,6 +62,7 @@ namespace KitchenLib
 			SendToClientViewHolder = AddGameDataObject<SendToClientViewHolder>();
 			TileHighlighterViewHolder = AddGameDataObject<TileHighlighterViewHolder>();
 			ClientEquipCapeViewHolder = AddGameDataObject<ClientEquipCapeViewHolder>();
+			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
 			AddGameDataObject<PlateUp_Cape>();
 			AddGameDataObject<PlateUp_Staff_Cape>();
 			AddGameDataObject<PlateUp_Support_Cape>();
@@ -127,6 +129,7 @@ namespace KitchenLib
 			{
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<PauseMenuAction>), new ModsMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<PauseMenuAction>), new ModsPreferencesMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ConfirmModSync), new ConfirmModSync(args.instance.ButtonContainer, args.module_list) });
 			};
 
 			Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent += (s, args) =>

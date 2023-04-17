@@ -23,6 +23,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Publicize Include="Kitchen.Common:Kitchen.PlayerCosmeticSubview+AttachmentPoint" />
+		<Publicize Include="Kitchen.Common:Kitchen.PlayerCosmeticSubview+AttachedCosmetic" />
 	</ItemGroup>
 
 	<ItemGroup>

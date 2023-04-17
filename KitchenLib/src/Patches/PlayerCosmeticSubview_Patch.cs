@@ -8,7 +8,7 @@ using System.Reflection;
 namespace KitchenLib.Patches
 {
 
-	[HarmonyPatch(typeof(PlayerCosmeticSubview), "Start")]
+	[HarmonyPatch(typeof(PlayerCosmeticSubview), "AddAttachment")]
 	public class PlayerCosmeticSubview_Patch
 	{
 		static void Prefix(PlayerCosmeticSubview __instance)

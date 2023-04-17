@@ -11,7 +11,7 @@ using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace KitchenLib.src.Systems
+namespace KitchenLib.Views
 {
 	public class ClientEquipCapes : UpdatableObjectView<ClientEquipCapes.ViewData>, ISpecificViewResponse
 	{

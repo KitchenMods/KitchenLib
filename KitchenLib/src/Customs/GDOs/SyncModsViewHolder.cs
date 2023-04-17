@@ -11,17 +11,17 @@ using UnityEngine;
 
 namespace KitchenLib.src.Customs
 {
-	public class ClientEquipCapeViewHolder : CustomAppliance
+	public class SyncModsViewHolder : CustomAppliance
 	{
-		public override string UniqueNameID => "ClientEquipCapeViewHolder";
-		public override GameObject Prefab => new GameObject("Client Equip Cape View Holder");
+		public override string UniqueNameID => "SyncModsViewHolder";
+		public override GameObject Prefab => new GameObject("SyncModsViewHolder");
 		public override bool IsPurchasable => false;
 		public override bool IsNonInteractive => true;
-		public override string Name => "Client Equip Cape View Holder";
+		public override string Name => "SyncModsViewHolder";
 
 		public override void OnRegister(Appliance gameDataObject)
 		{
-			gameDataObject.Prefab.AddComponent<ClientEquipCapes>();
+			gameDataObject.Prefab.AddComponent<SyncMods>();
 		}
 	}
 }

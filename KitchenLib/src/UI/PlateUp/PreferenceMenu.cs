@@ -3,7 +3,7 @@ using Kitchen.Modules;
 using KitchenData;
 using KitchenLib.Customs;
 using KitchenLib.Preferences;
-using KitchenLib.src.Systems;
+using KitchenLib.Views;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +11,10 @@ using System.IO.Compression;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Steamworks.Data;
+using Steamworks.Ugc;
+using System.Drawing.Text;
+using KitchenMods;
 
 namespace KitchenLib.UI
 {
@@ -33,6 +37,7 @@ namespace KitchenLib.UI
 		private List<int> capeIDs = new List<int>();
 		private List<string> capeNames = new List<string>();
 		private int selectedID;
+		private Dictionary<ulong, Steamworks.Ugc.Item> Mods = new Dictionary<ulong, Steamworks.Ugc.Item>();
 
 		private Option<int> capeSelector;
 
@@ -93,7 +98,7 @@ namespace KitchenLib.UI
 					File.Delete(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp.zip");
 
 				CopyFilesRecursively(Application.persistentDataPath, System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp");
-				
+
 				ZipFile.CreateFromDirectory(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp", System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp.zip");
 
 				if (Directory.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp"))
@@ -101,38 +106,61 @@ namespace KitchenLib.UI
 			}, 0, 1f, 0.2f);
 
 			New<SpacerElement>(true);
-
-			if (pm != null && player != null)
+			if (SyncMods._isMissingMod)
 			{
-				capeIDs.Clear();
-				capeNames.Clear();
-				foreach ((bool, int) key in Capes.Keys)
+				AddButton("Sync Mods", async delegate (int i)
 				{
-					if (key.Item1)
+					Mods.Clear();
+					List<ulong> _mods = new List<ulong>();
+					foreach (Mod _mod in ModPreload.Mods)
 					{
-						capeIDs.Add(key.Item2);
-						capeNames.Add(Capes[key]);
+						_mods.Add(_mod.ID);
 					}
-				}
+					foreach (ulong mod in SyncMods._mods)
+					{
+						if (!_mods.Contains(mod))
+						{
+							Steamworks.Ugc.Item item = new Steamworks.Ugc.Item(new PublishedFileId { Value = mod});
+							var _mod = await Steamworks.Ugc.Item.GetAsync(item.Id);
+							Mods.Add(mod, _mod.Value);
+						}
+					}
+					ConfirmModSync.Mods = Mods;
+					RequestSubMenu(typeof(ConfirmModSync));
+				}, 0, 1f, 0.2f);
 
+				New<SpacerElement>(true);
+			}
+			
+			capeIDs.Clear();
+			capeNames.Clear();
+			foreach ((bool, int) key in Capes.Keys)
+			{
+				if (key.Item1)
+				{
+					capeIDs.Add(key.Item2);
+					capeNames.Add(Capes[key]);
+				}
+			}
+
+			if (capeIDs.Count > 0)
+			{
+				AddLabel("Equip Cape");
 				if (capeIDs.Count > 0)
 				{
-					AddLabel("Equip Cape");
-					if (capeIDs.Count > 0)
+					capeSelector = new Option<int>(capeIDs, capeIDs.First(), capeNames);
+					selectedID = capeIDs.First();
+					capeSelector.OnChanged += (s, args) =>
 					{
-						capeSelector = new Option<int>(capeIDs, capeIDs.First(), capeNames);
-						capeSelector.OnChanged += (s, args) =>
-						{
-							selectedID = args;
-						};
-					}
-					AddSelect<int>(capeSelector);
-					AddButton("Equip Cape", delegate (int i)
-					{
-						SetCosmetic(player_id, selectedID);
-					}, 0, 1f, 0.2f);
-					New<SpacerElement>(true);
+						selectedID = args;
+					};
 				}
+				AddSelect<int>(capeSelector);
+				AddButton("Equip Cape", delegate (int i)
+				{
+					SetCosmetic(player_id, selectedID);
+				}, 0, 1f, 0.2f);
+				New<SpacerElement>(true);
 			}
 
 			AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate (int i)
