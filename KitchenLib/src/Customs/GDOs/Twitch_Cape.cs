@@ -8,7 +8,7 @@ namespace KitchenLib.Customs
 	public class Twitch_Cape : CustomPlayerCosmetic
 	{
 		public override string UniqueNameID => "Twitch_Cape";
-		public override CosmeticType CosmeticType => CosmeticType.Hat;
+		public override CosmeticType CosmeticType => (CosmeticType)VariousUtils.GetID("Cape");
 		public override GameObject Visual => Main.bundle.LoadAsset<GameObject>("Twitch_Cape");
 		public override bool BlockHats => false;
 		public override bool DisableInGame => true;

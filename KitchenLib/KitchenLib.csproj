@@ -22,7 +22,7 @@
 	  <PackageReference Include="Krafs.Publicizer" Version="2.2.1" />
 	</ItemGroup>
 	<ItemGroup>
-		<Publicize Include="Kitchen.Common:Kitchen.PlayerCosmeticSubview.AttachmentPoint" />
+		<Publicize Include="Kitchen.Common:Kitchen.PlayerCosmeticSubview+AttachmentPoint" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -33,7 +33,7 @@
 			<HintPath>$(GamePath)\PlateUp_Data\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
 		</Reference>
 		<Reference Include="ShapesRuntime">
-		  <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp\PlateUp_Data\Managed\ShapesRuntime.dll</HintPath>
+		  <HintPath>H:\SteamLibrary\steamapps\common\PlateUp\PlateUp\PlateUp_Data\Managed\ShapesRuntime.dll</HintPath>
 		</Reference>
 		<Reference Include="System.Net.Http">
 			<HintPath>$(GamePath)\PlateUp_Data\Managed\System.Net.Http.dll</HintPath>

@@ -49,7 +49,7 @@ namespace KitchenLib.src.Systems
 					{
 						if (Require(player.Entity, out CPlayerCosmetics cosmetics))
 						{
-							cosmetics.Set(CosmeticType.Hat, data.CapeID);
+							cosmetics.Set((CosmeticType)VariousUtils.GetID("Cape"), data.CapeID);
 							EntityManager.SetComponentData(player.Entity, cosmetics);
 						}
 					}

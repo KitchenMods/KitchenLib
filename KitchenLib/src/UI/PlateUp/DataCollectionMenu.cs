@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using KitchenLib.Preferences;
-using UniverseLib;
 
 namespace KitchenLib.UI
 {

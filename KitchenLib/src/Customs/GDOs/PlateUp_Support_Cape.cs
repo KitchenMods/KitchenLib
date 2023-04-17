@@ -8,7 +8,7 @@ namespace KitchenLib.Customs
 	public class PlateUp_Support_Cape : CustomPlayerCosmetic
 	{
 		public override string UniqueNameID => "PlateUp_Support_Cape";
-		public override CosmeticType CosmeticType => CosmeticType.Hat;
+		public override CosmeticType CosmeticType => (CosmeticType)VariousUtils.GetID("Cape");
 		public override GameObject Visual => Main.bundle.LoadAsset<GameObject>("PlateUp_Support_Cape");
 		public override bool BlockHats => false;
 		public override bool DisableInGame => true;
