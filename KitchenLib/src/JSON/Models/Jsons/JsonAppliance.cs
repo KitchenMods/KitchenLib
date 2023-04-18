@@ -5,15 +5,15 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using static KitchenLib.src.JSON.ContentPackUtils;
 using KitchenLib.src.JSON.Models.Containers;
 
 namespace KitchenLib.src.JSON.Models.Jsons
 {
     public class JsonAppliance : CustomAppliance
     {
-		[JsonProperty("UniqueNameID")]
-		public override string UniqueNameID { get; internal set; } = "";
+		[field:JsonProperty("UniqueNameID")]
+		[JsonIgnore]
+		public override string UniqueNameID { get; }
 		[JsonProperty("GDOName")]
         string GDOName { get; set; } = "";
         [JsonProperty("Prefab")]
@@ -26,7 +26,7 @@ namespace KitchenLib.src.JSON.Models.Jsons
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
         {
-            Prefab = PrefabConverter(PrefabStr);
+            //Prefab = PrefabConverter(PrefabStr);
             Properties = AppliancePropertyContainers.Select(p => p.Property).ToList();
         }
 

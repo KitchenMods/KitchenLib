@@ -7,9 +7,14 @@ using KitchenLib.src.JSON.Models.Containers;
 
 namespace KitchenLib.src.JSON.JsonConverters
 {
-    public class MaterialConverter : CustomConverter<Material>
+    public class MaterialConverter : JsonConverter
     {
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+		public override bool CanConvert(Type objectType)
+		{
+			return objectType == typeof(Material);
+		}
+
+		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             JObject jObject = JObject.Load(reader);
             if (jObject.TryGetValue("Type", out JToken type))

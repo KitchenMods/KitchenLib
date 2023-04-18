@@ -2,20 +2,21 @@
 using KitchenLib.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace KitchenLib.src.JSON.JsonConverters
 {
-    public class GameDataObjectConverter : DerivedClassConverter<GameDataObject>
+    public class GameDataObjectConverter : JsonConverter
     {
-        public override object Create(string str)
-        {
-            return GDOUtils.GetCustomGameDataObject(StringUtils.GetInt32HashCode(str));
-        }
+		public override bool CanConvert(Type objectType)
+		{
+			return objectType.IsSubclassOf(typeof(GameDataObject)) || objectType == typeof(GameDataObject);
+		}
 
-        public override object Create(int id)
-        {
-            return GDOUtils.GetExistingGDO(id);
-        }
+		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+		{
+			return reader.Value.ToString();
+		}
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

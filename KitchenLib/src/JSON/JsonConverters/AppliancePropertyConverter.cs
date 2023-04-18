@@ -8,9 +8,14 @@ using System;
 
 namespace KitchenLib.src.JSON.JsonConverters
 {
-    public class AppliancePropertyConverter : CustomConverter<AppliancePropertyContainer>
+    public class AppliancePropertyConverter : JsonConverter
     {
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+		public override bool CanConvert(Type objectType)
+		{
+			return objectType == typeof(AppliancePropertyContainer);
+		}
+
+		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             JObject jObject = JObject.Load(reader);
             if (jObject.TryGetValue("Type", out JToken type))

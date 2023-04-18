@@ -1,3 +1,4 @@
+using HarmonyLib;
 using Kitchen;
 using Kitchen.NetworkSupport;
 using KitchenData;
@@ -5,6 +6,8 @@ using KitchenLib.Colorblind;
 using KitchenLib.Customs;
 using KitchenLib.DevUI;
 using KitchenLib.Event;
+using KitchenLib.JSON;
+using KitchenLib.JSON.Models.Jsons;
 using KitchenLib.Preferences;
 using KitchenLib.ShhhDontTellAnyone;
 using KitchenLib.src.Customs;
@@ -40,6 +43,10 @@ namespace KitchenLib
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
 		protected override void OnPostActivate(Mod mod)
 		{
+			ContentPackManager.Initialise();
+			ContentPackManager.InjectGDOs();
+			ContentPackManager.ApplyPatches();
+
 			manager = new PreferenceManager(MOD_ID);
 			cosmeticManager = new PreferenceManager(MOD_ID + ".cosmetics");
 			manager.RegisterPreference(new PreferenceBool("hasrequested", false));

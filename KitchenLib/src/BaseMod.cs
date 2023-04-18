@@ -1,5 +1,6 @@
 using KitchenLib.Customs;
 using KitchenLib.DevUI;
+using KitchenLib.JSON;
 using KitchenLib.Registry;
 using KitchenLib.Utils;
 using KitchenMods;
@@ -140,6 +141,7 @@ namespace KitchenLib
 		{
 			foreach (AssetBundleModPack pack in mod.GetPacks<AssetBundleModPack>())
 			{
+				ContentPackManager.RegisterAssetBundles(pack.AssetBundles);
 				foreach (AssetBundle bundle in pack.AssetBundles)
 				{
 					JSONManager.LoadAllJsons(bundle);

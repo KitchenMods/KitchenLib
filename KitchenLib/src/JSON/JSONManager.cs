@@ -3,7 +3,6 @@ using KitchenLib.JSON;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -89,10 +88,7 @@ namespace KitchenLib
 								LoadedJsons.Add(json as BaseJson);
 							}
 							else
-							{
-								GDOType key = jToken.ToObject<GDOType>();
-								ContentPackManager.RegisterJSONGDO(key, jObject);
-							}
+								ContentPackManager.RegisterJSONGDO(jObject);
 						}
 					}
 					catch (Exception e)

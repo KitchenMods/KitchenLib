@@ -4,8 +4,13 @@ using System.Reflection;
 
 namespace KitchenLib.src.JSON.ContractResolver
 {
-	public class ProtectedFieldResolver : DefaultContractResolver
+	public class CustomContractResolver : DefaultContractResolver
 	{
+		public CustomContractResolver()
+		{
+			SerializeCompilerGeneratedMembers = true;
+		}
+
 		protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
 		{
 			var prop = base.CreateProperty(member, memberSerialization);
