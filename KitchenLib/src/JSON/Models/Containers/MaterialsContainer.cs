@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace KitchenLib.src.JSON.Models.Containers
+namespace KitchenLib.JSON.Models.Containers
 {
     public class MaterialsContainer
     {

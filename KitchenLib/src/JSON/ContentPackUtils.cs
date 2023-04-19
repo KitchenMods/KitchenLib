@@ -1,15 +1,12 @@
-﻿using KitchenLib.src.JSON.ContractResolver;
-using Newtonsoft.Json.Converters;
+﻿using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System;
 using KitchenLib.JSON.Models.Jsons;
 using Newtonsoft.Json.Linq;
 using KitchenLib.Customs;
-using KitchenLib.src.JSON.JsonConverters;
-using KitchenData;
-using Unity.Entities.UniversalDelegates;
-using KitchenLib.Utils;
+using KitchenLib.JSON.ContractResolver;
+using KitchenLib.JSON.JsonConverters;
 
 namespace KitchenLib.JSON
 {
@@ -29,19 +26,12 @@ namespace KitchenLib.JSON
 				new StringEnumConverter(),
 				new GameDataObjectConverter(),
 				new ItemPropertyConverter(),
-				new AppliancePropertyConverter()
+				new AppliancePropertyConverter(),
+				new MaterialConverter()
 			}
 		};
 
 		public static JsonSerializer serializer;
-
-		public static T Find<T>(string str) where T : GameDataObject
-		{
-			if (int.TryParse(str, out int id))
-				return (T)GDOUtils.GetExistingGDO(id);
-			else
-				return (T)GDOUtils.GetCustomGameDataObject(StringUtils.GetInt32HashCode(str)).GameDataObject;
-		}
 
 		public static CustomGameDataObject DeserializeJson(JObject jObject, Type type)
 		{
@@ -70,7 +60,9 @@ namespace KitchenLib.JSON
 	public enum GDOType
 	{
 		Item,
-		ItemGroup
+		ItemGroup,
+		Dish,
+		Appliance
 	}
 
 	public enum ModificationType

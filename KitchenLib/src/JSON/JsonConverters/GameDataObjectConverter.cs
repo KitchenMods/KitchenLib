@@ -1,10 +1,9 @@
 ﻿using KitchenData;
-using KitchenLib.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 
-namespace KitchenLib.src.JSON.JsonConverters
+namespace KitchenLib.JSON.JsonConverters
 {
     public class GameDataObjectConverter : JsonConverter
     {

@@ -1,7 +1,5 @@
-﻿using HarmonyLib;
-using KitchenLib.Customs;
+﻿using KitchenLib.Customs;
 using KitchenLib.JSON.Models.Jsons;
-using KitchenLib.src.JSON;
 using KitchenMods;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -9,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.Serialization;
 using UnityEngine;
 
@@ -19,7 +16,6 @@ namespace KitchenLib.JSON
 	{
 		public static Dictionary<string, List<JObject>> JSONTable = new Dictionary<string, List<JObject>>();
 		public static Dictionary<string, List<AssetBundle>> AssetBundleTable = new Dictionary<string, List<AssetBundle>>();
-		public static List<CustomGameDataObject> NotInitialized = new List<CustomGameDataObject>();
 
 		public static void Initialise()
 		{
@@ -49,14 +45,21 @@ namespace KitchenLib.JSON
 
 											switch (GDOType)
 											{
+												case GDOType.Item:
+													CustomGDO.RegisterGameDataObject((JsonItem)gdo);
+													break;
 												case GDOType.ItemGroup:
 													CustomGDO.RegisterGameDataObject((JsonItemGroup)gdo);
+													break;
+												case GDOType.Dish:
+													CustomGDO.RegisterGameDataObject((JsonDish)gdo);
+													break;
+												case GDOType.Appliance:
+													CustomGDO.RegisterGameDataObject((JsonAppliance)gdo);
 													break;
 											}
 											break;
 									}
-
-									
 								}
 				}
 			}
@@ -64,15 +67,54 @@ namespace KitchenLib.JSON
 
 		public static void ApplyPatches()
 		{
-			var harmony = Main.harmonyInstance;
+			//JsonItem
+			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_Prefab");
+			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_SidePrefab");
+			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_Processes");
+			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_DirtiesTo");
+			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_MayRequestExtraItems");
+			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_SplitSubItem");
+			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_SplitDepletedItems");
+			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_SplitByComponentsHolder");
+			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_RefuseSplitWith");
+			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_DisposesTo");
+			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_DedicatedProvider");
+			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_ExtendedDirtItem");
 
-			//Item
-			harmony.Patch(typeof(JsonItem).GetMethod("get_Prefab"), null, new HarmonyMethod(typeof(JsonItem).GetMethod("get_Prefab_Postfix")));
+			//JsonItemGroup
+			ContentPackPatches.PostfixPatch(typeof(JsonItemGroup), "get_Prefab");
+			ContentPackPatches.PostfixPatch(typeof(JsonItemGroup), "get_SidePrefab");
+			ContentPackPatches.PostfixPatch(typeof(JsonItemGroup), "get_Processes");
+			ContentPackPatches.PostfixPatch(typeof(JsonItemGroup), "get_DirtiesTo");
+			ContentPackPatches.PostfixPatch(typeof(JsonItemGroup), "get_MayRequestExtraItems");
+			ContentPackPatches.PostfixPatch(typeof(JsonItemGroup), "get_SplitSubItem");
+			ContentPackPatches.PostfixPatch(typeof(JsonItemGroup), "get_SplitDepletedItems");
+			ContentPackPatches.PostfixPatch(typeof(JsonItemGroup), "get_SplitByComponentsHolder");
+			ContentPackPatches.PostfixPatch(typeof(JsonItemGroup), "get_RefuseSplitWith");
+			ContentPackPatches.PostfixPatch(typeof(JsonItemGroup), "get_DisposesTo");
+			ContentPackPatches.PostfixPatch(typeof(JsonItemGroup), "get_DedicatedProvider");
+			ContentPackPatches.PostfixPatch(typeof(JsonItemGroup), "get_ExtendedDirtItem");
+			ContentPackPatches.PostfixPatch(typeof(JsonItemGroup), "get_Sets");
 
-			//ItemGroup
-			harmony.Patch(typeof(JsonItemGroup).GetMethod("get_Prefab"), null, new HarmonyMethod(typeof(JsonItemGroup).GetMethod("get_Prefab_Postfix")));
-			harmony.Patch(typeof(JsonItemGroup).GetMethod("get_Sets"), null, new HarmonyMethod(typeof(JsonItemGroup).GetMethod("get_Sets_Postfix")));
-			
+			//JsonDish
+			ContentPackPatches.PostfixPatch(typeof(JsonDish), "get_ExtraOrderUnlocks");
+			ContentPackPatches.PostfixPatch(typeof(JsonDish), "get_MinimumIngredients");
+			ContentPackPatches.PostfixPatch(typeof(JsonDish), "get_RequiredProcesses");
+			ContentPackPatches.PostfixPatch(typeof(JsonDish), "get_BlockProviders");
+			ContentPackPatches.PostfixPatch(typeof(JsonDish), "get_IconPrefab");
+			ContentPackPatches.PostfixPatch(typeof(JsonDish), "get_DisplayPrefab");
+			ContentPackPatches.PostfixPatch(typeof(JsonDish), "get_ResultingMenuItems");
+			ContentPackPatches.PostfixPatch(typeof(JsonDish), "get_IngredientsUnlocks");
+			ContentPackPatches.PostfixPatch(typeof(JsonDish), "get_RequiredDishItem");
+
+			//JsonAppliance
+			ContentPackPatches.PostfixPatch(typeof(JsonAppliance), "get_Prefab");
+			ContentPackPatches.PostfixPatch(typeof(JsonAppliance), "get_HeldAppliancePrefab");
+			ContentPackPatches.PostfixPatch(typeof(JsonAppliance), "get_Processes");
+			ContentPackPatches.PostfixPatch(typeof(JsonAppliance), "get_RequiresForShop");
+			ContentPackPatches.PostfixPatch(typeof(JsonAppliance), "get_RequiresProcessForShop");
+			ContentPackPatches.PostfixPatch(typeof(JsonAppliance), "get_Upgrades");
+			ContentPackPatches.PostfixPatch(typeof(JsonAppliance), "get_CrateItem");
 		}
 
 		public static void InitialiseSerializer(string modname)

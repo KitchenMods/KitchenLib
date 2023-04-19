@@ -8,7 +8,7 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
-namespace KitchenLib.src.Systems
+namespace KitchenLib.Systems
 {
 	[UpdateAfter(typeof(GrantNecessaryAppliances))]
 	public class GrantNecessarySystem : NightSystem, IModSystem

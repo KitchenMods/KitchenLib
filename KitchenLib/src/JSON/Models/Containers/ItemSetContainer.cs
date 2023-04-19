@@ -1,4 +1,5 @@
 ﻿using KitchenData;
+using KitchenLib.JSON;
 using System.Collections.Generic;
 
 namespace KitchenLib.JSON.Models.Containers
@@ -18,7 +19,7 @@ namespace KitchenLib.JSON.Models.Containers
 			List<Item> Items = new List<Item>();
 
 			for (int i=0; i<this.Items.Count; i++)
-				Items.Add(ContentPackUtils.Find<Item>(this.Items[i]));
+				Items.Add(ContentPackPatches.GDOConverter<Item>(this.Items[i]));
 
 			Set.Items = Items;
 			Set.Min = Min;

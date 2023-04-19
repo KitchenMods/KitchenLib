@@ -63,9 +63,6 @@ namespace KitchenLib.Customs
 
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
-			Main.LogInfo($"{UniqueNameID}");
-			Main.LogInfo($"{Prefab == null}");
-
             ItemGroup result = (ItemGroup)gameDataObject;
 
             if (result.Properties != Properties) result.Properties = Properties;

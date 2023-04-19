@@ -1,15 +1,10 @@
 ﻿using KitchenData;
 using KitchenLib.Customs;
 using KitchenLib.ShhhDontTellAnyone;
-using KitchenLib.src.Systems;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using KitchenLib.Systems;
 using UnityEngine;
 
-namespace KitchenLib.src.Customs
+namespace KitchenLib.Customs
 {
 	public class ClientEquipCapeViewHolder : CustomAppliance
 	{

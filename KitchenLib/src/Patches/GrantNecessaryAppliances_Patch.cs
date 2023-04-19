@@ -1,9 +1,9 @@
 ﻿using HarmonyLib;
 using Kitchen;
 using KitchenLib.References;
-using KitchenLib.src.Systems;
+using KitchenLib.Systems;
 
-namespace KitchenLib.src.Patches
+namespace KitchenLib.Patches
 {
 	[HarmonyPatch(typeof(GrantNecessaryAppliances), "TotalPlates")]
 	public class GrantNecessaryAppliances_Patch

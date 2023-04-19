@@ -1,7 +1,6 @@
 ﻿using KitchenData;
-using KitchenLib.JSON;
 
-namespace KitchenLib.src.JSON.Models.Containers
+namespace KitchenLib.JSON.Models.Containers
 {
 	public class ItemProcessContainer
 	{
@@ -15,8 +14,8 @@ namespace KitchenLib.src.JSON.Models.Containers
 		{
 			Item.ItemProcess itemProcess = new Item.ItemProcess();
 
-			itemProcess.Process = ContentPackUtils.Find<Process>(Process);
-			itemProcess.Result = ContentPackUtils.Find<Item>(Result);
+			itemProcess.Process = ContentPackPatches.GDOConverter<Process>(Process);
+			itemProcess.Result = ContentPackPatches.GDOConverter<Item>(Result);
 			itemProcess.Duration = Duration;
 			itemProcess.IsBad = IsBad;
 			itemProcess.RequiresWrapper = RequiresWrapper;

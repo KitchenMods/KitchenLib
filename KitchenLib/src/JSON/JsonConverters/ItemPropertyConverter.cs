@@ -1,11 +1,11 @@
 ﻿using Kitchen;
 using KitchenData;
-using KitchenLib.src.JSON.Models.Containers;
+using KitchenLib.JSON.Models.Containers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 
-namespace KitchenLib.src.JSON.JsonConverters
+namespace KitchenLib.JSON.JsonConverters
 {
     public class ItemPropertyConverter : JsonConverter
     {
@@ -32,7 +32,7 @@ namespace KitchenLib.src.JSON.JsonConverters
                     ItemPropertyContext.CTriggerLeaveHappy => new CTriggerLeaveHappy(),
                     ItemPropertyContext.CRefreshesFlowerProviders => new CRefreshesFlowerProviders(),
                     ItemPropertyContext.CRefreshesProviderQuantity => new CRefreshesProviderQuantity(),
-                    //ItemPropertyContext.CApplyDecor => new CApplyDecor(),
+                    ItemPropertyContext.CApplyDecor => new CApplyDecor(),
                     ItemPropertyContext.CEquippableTool => new CEquippableTool(),
                     ItemPropertyContext.CToolClean => new CToolClean(),
                     ItemPropertyContext.CToolStorage => new CToolStorage(),
@@ -40,7 +40,7 @@ namespace KitchenLib.src.JSON.JsonConverters
                     ItemPropertyContext.CProcessTool => new CProcessTool(),
                     ItemPropertyContext.CReturnItem => new CReturnItem(),
                     ItemPropertyContext.CPreventItemTransfer => new CPreventItemTransfer(),
-                    //ItemPropertyContext.CPreventItemMerge => new CPreventItemMerge(),
+                    ItemPropertyContext.CPreventItemMerge => new CPreventItemMerge(),
                     ItemPropertyContext.CSlowPlayer => new CSlowPlayer(),
                     _ => null
                 };

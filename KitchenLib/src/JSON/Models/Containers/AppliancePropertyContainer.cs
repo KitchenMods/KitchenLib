@@ -1,6 +1,6 @@
 ﻿using KitchenData;
 
-namespace KitchenLib.src.JSON.Models.Containers
+namespace KitchenLib.JSON.Models.Containers
 {
     public class AppliancePropertyContainer
     {

@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using KitchenLib.src.JSON.Models.Containers;
+using KitchenLib.JSON.Models.Containers;
 using UnityEngine;
 
 namespace KitchenLib.JSON.Models.Jsons
@@ -19,39 +19,42 @@ namespace KitchenLib.JSON.Models.Jsons
 		public string Author { get; set; }
 		[JsonProperty("GDOName")]
         public string GDOName { get; set; }
-        [JsonProperty("Prefab")]
-        public string PrefabStr { get; set; }
-		[JsonProperty("SidePrefab")]
-		public string SidePrefabStr { get; set; }
+        
         [JsonProperty("Properties")]
         public List<ItemPropertyContainer> ItemPropertyContainers { get; set; } = new List<ItemPropertyContainer>();
         [JsonProperty("Materials")]
         public List<MaterialsContainer> MaterialsContainers { get; set; } = new List<MaterialsContainer>();
 
-		[JsonIgnore]
-		public override GameObject Prefab { get; protected set; }
-		[JsonIgnore]
-		public override GameObject SidePrefab { get; protected set; }
+		[JsonProperty("Prefab")]
+		public string TempPrefab { get; set; }
+		[JsonProperty("SidePrefab")]
+		public string TempSidePrefab { get; set; }
 		[JsonProperty("Processes")]
 		public List<ItemProcessContainer> TempProcesses { get; set; }
-		[JsonIgnore]
-		public override List<Item.ItemProcess> Processes { get; protected set; }
 		[JsonProperty("DirtiesTo")]
-		public int TempDirtiesTo { get; set; }
-		public int TempSplitSubItem { get; set; }
-		public List<int> TempSplitDepletedItems { get; set; }
-		public int TempSplitByComponentsHolder { get; set; }
-		public int TempRefuseSplitWith { get; set; }
-		public int TempDisposesTo { get; set; }
-		public int TempDedicatedProvider { get; set; }
-		public int TempExtendedDirtItem { get; set; }
+		public string TempDirtiesTo { get; set; }
+		[JsonProperty("MayRequestExtraItems")]
+		public List<string> TempMayRequestExtraItems { get; set; }
+		[JsonProperty("SplitSubItem")]
+		public string TempSplitSubItem { get; set; }
+		[JsonProperty("SplitDepletedItems")]
+		public List<string> TempSplitDepletedItems { get; set; }
+		[JsonProperty("SplitByComponentsHolder")]
+		public string TempSplitByComponentsHolder { get; set; }
+		[JsonProperty("RefuseSplitWith")]
+		public string TempRefuseSplitWith { get; set; }
+		[JsonProperty("DisposesTo")]
+		public string TempDisposesTo { get; set; }
+		[JsonProperty("DedicatedProvider")]
+		public string TempDedicatedProvider { get; set; }
+		[JsonProperty("ExtendedDirtItem")]
+		public string TempExtendedDirtItem { get; set; }
 
 		[OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
         {
 			ModName = context.Context.ToString();
 			ModID = $"{Author}.{ModName}";
-            Prefab = PrefabConverter(ModName, PrefabStr);
             Properties = ItemPropertyContainers.Select(p => p.Property).ToList();
         }
 
@@ -63,36 +66,100 @@ namespace KitchenLib.JSON.Models.Jsons
                 MaterialUtils.ApplyMaterial(gameDataObject.Prefab, materialsContainer.Path, materialsContainer.Materials);
 		}
 
-		public static GameObject PrefabConverter(string key, string str)
-		{
-			if (int.TryParse(str, out int id))
-				return ((Item)GDOUtils.GetExistingGDO(id) ?? (Item)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject).Prefab;
-			else
-				return ContentPackManager.AssetBundleTable[key].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
-		}
-
 		public static void get_Prefab_Postfix(JsonItem __instance, ref GameObject __result)
 		{
-			__result = PrefabConverter(__instance.ModName, __instance.PrefabStr);
+			if (__instance.GetType() == typeof(JsonItem))
+			{
+				__result = ContentPackPatches.PrefabConverter(__instance.ModName, __instance.TempPrefab);
+			}
 		}
 
 		public static void get_SidePrefab_Postfix(JsonItem __instance, ref GameObject __result)
 		{
-			__result = PrefabConverter(__instance.ModName, __instance.SidePrefabStr);
+			if (__instance.GetType() == typeof(JsonItem))
+			{
+				__result = ContentPackPatches.PrefabConverter(__instance.ModName, __instance.TempSidePrefab);
+			}
 		}
 
 		public static void get_Processes_Postfix(JsonItem __instance, ref List<Item.ItemProcess> __result)
 		{
-			List<Item.ItemProcess> Processes = new List<Item.ItemProcess>();
-			List<ItemProcessContainer> container = __instance.TempProcesses;
-
-			for(int i=0; i<container.Count; i++)
+			if (__instance.GetType() == typeof(JsonItem))
 			{
-				Item.ItemProcess process = container[i].Convert();
-				Processes.Add(process);
+				__result = ContentPackPatches.ItemProcessesConverter(__instance.TempProcesses);
 			}
+		}
 
-			__result = Processes;
+		public static void get_DirtiesTo_Postfix(JsonItem __instance, ref Item __result)
+		{
+			if (__instance.GetType() == typeof(JsonItem))
+			{
+				__result = ContentPackPatches.GDOConverter<Item>(__instance.TempDirtiesTo);
+			}
+		}
+
+		public static void get_MayRequestExtraItems_Postfix(JsonItem __instance, ref List<Item> __result)
+		{
+			if (__instance.GetType() == typeof(JsonItem))
+			{
+				__result = ContentPackPatches.GDOsConverter<Item>(__instance.TempMayRequestExtraItems);
+			}
+		}
+
+		public static void get_SplitSubItem_Postfix(JsonItem __instance, ref Item __result)
+		{
+			if (__instance.GetType() == typeof(JsonItem))
+			{
+				__result = ContentPackPatches.GDOConverter<Item>(__instance.TempSplitSubItem);
+			}
+		}
+
+		public static void get_SplitDepletedItems_Postfix(JsonItem __instance, ref List<Item> __result)
+		{
+			if (__instance.GetType() == typeof(JsonItem))
+			{
+				__result = ContentPackPatches.GDOsConverter<Item>(__instance.TempSplitDepletedItems);
+			}
+		}
+
+		public static void get_SplitByComponentsHolder_Postfix(JsonItem __instance, ref Item __result)
+		{
+			if (__instance.GetType() == typeof(JsonItem))
+			{
+				__result = ContentPackPatches.GDOConverter<Item>(__instance.TempSplitByComponentsHolder);
+			}
+		}
+
+		public static void get_RefuseSplitWith_Postfix(JsonItem __instance, ref Item __result)
+		{
+			if (__instance.GetType() == typeof(JsonItem))
+			{
+				__result = ContentPackPatches.GDOConverter<Item>(__instance.TempRefuseSplitWith);
+			}
+		}
+
+		public static void get_DisposesTo_Postfix(JsonItem __instance, ref Item __result)
+		{
+			if (__instance.GetType() == typeof(JsonItem))
+			{
+				__result = ContentPackPatches.GDOConverter<Item>(__instance.TempDisposesTo);
+			}
+		}
+
+		public static void get_DedicatedProvider_Postfix(JsonItem __instance, ref Appliance __result)
+		{
+			if (__instance.GetType() == typeof(JsonItem))
+			{
+				__result = ContentPackPatches.GDOConverter<Appliance>(__instance.TempDedicatedProvider);
+			}
+		}
+
+		public static void get_ExtendedDirtItem_Postfix(JsonItem __instance, ref Item __result)
+		{
+			if (__instance.GetType() == typeof(JsonItem))
+			{
+				__result = ContentPackPatches.GDOConverter<Item>(__instance.TempExtendedDirtItem);
+			}
 		}
 	}
 }
