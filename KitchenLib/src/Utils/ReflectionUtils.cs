@@ -11,6 +11,8 @@ namespace KitchenLib.Utils
 
 		public static Dictionary<(Type, string), FieldInfo> cachedFields = new Dictionary<(Type, string), FieldInfo>();
 
+		public static Dictionary<(Type, string), PropertyInfo> cachedProperties = new Dictionary<(Type, string), PropertyInfo>();
+
 		public static MethodInfo GetMethod<T>(string methodName, BindingFlags flags)
 		{
 			var tuple = (typeof(T), methodName);
@@ -28,6 +30,15 @@ namespace KitchenLib.Utils
 			return cachedFields[tuple];
 		}
 
+		public static PropertyInfo GetProperty<T>(string propertyName, BindingFlags flags)
+		{
+			var tuple = (typeof(T), propertyName);
+			if (cachedProperties.TryGetValue(tuple, out var cachedVal))
+				return cachedVal;
+			cachedProperties[tuple] = typeof(T).GetProperty(propertyName, flags);
+			return cachedProperties[tuple];
+		}
+
 		public static MethodInfo GetMethod<T>(string methodName)
 		{
 			var tuple = (typeof(T), methodName);
@@ -36,6 +47,7 @@ namespace KitchenLib.Utils
 			cachedMethods[tuple] = AccessTools.Method(typeof(T), methodName);
 			return cachedMethods[tuple];
 		}
+
 		public static FieldInfo GetField<T>(string fieldName)
 		{
 			var tuple = (typeof(T), fieldName);
@@ -43,6 +55,15 @@ namespace KitchenLib.Utils
 				return cachedVal;
 			cachedFields[tuple] = AccessTools.Field(typeof(T), fieldName);
 			return cachedFields[tuple];
+		}
+
+		public static PropertyInfo GetProperty<T>(string propertyName)
+		{
+			var tuple = (typeof(T), propertyName);
+			if (cachedProperties.TryGetValue(tuple, out var cachedVal))
+				return cachedVal;
+			cachedProperties[tuple] = typeof(T).GetProperty(propertyName);
+			return cachedProperties[tuple];
 		}
 	}
 }

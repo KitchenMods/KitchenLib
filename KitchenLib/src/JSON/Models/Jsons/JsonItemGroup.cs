@@ -1,17 +1,18 @@
 ﻿using KitchenData;
 using KitchenLib.Customs;
+using KitchenLib.JSON.Interfaces;
 using KitchenLib.JSON.Models.Containers;
 using KitchenLib.Utils;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using UnityEngine;
 
 namespace KitchenLib.JSON.Models.Jsons
 {
-	public class JsonItemGroup : CustomItemGroup
+	public class JsonItemGroup : CustomItemGroup, IHasSidePrefab
 	{
 		[field: JsonProperty("UniqueNameID", Required = Required.Always)]
 		[JsonIgnore]
@@ -74,9 +75,14 @@ namespace KitchenLib.JSON.Models.Jsons
 
 		public static void get_Prefab_Postfix(JsonItemGroup __instance, ref GameObject __result)
 		{
-			if (__instance.GetType() == typeof(JsonItemGroup))
+			if(__instance.GetType() == typeof(JsonItem))
 			{
-				__result = PrefabConverter(__instance.ModName, __instance.TempPrefab);
+				PropertyInfo TempPrefabProperty = ReflectionUtils.GetProperty<JsonItem>("TempPrefab");
+				__result = ContentPackPatches.PrefabConverter<Item>(__instance.ModName, (string)TempPrefabProperty.GetValue(__instance));
+			}
+			else if (__instance.GetType() == typeof(JsonItemGroup))
+			{
+				__result = ContentPackPatches.PrefabConverter<Item>(__instance.ModName, __instance.TempPrefab);
 			}
 		}
 
@@ -84,7 +90,7 @@ namespace KitchenLib.JSON.Models.Jsons
 		{
 			if (__instance.GetType() == typeof(JsonItemGroup))
 			{
-				__result = SidePrefabConverter(__instance.ModName, __instance.TempSidePrefab);
+				__result = ContentPackPatches.SidePrefabConverter<Item>(__instance.ModName, __instance.TempSidePrefab);
 			}
 		}
 
@@ -170,23 +176,10 @@ namespace KitchenLib.JSON.Models.Jsons
 
 		public static void get_Sets_Postfix(JsonItemGroup __instance, ref List<ItemGroup.ItemSet> __result)
 		{
-			if(__instance.GetType() == typeof(JsonItemGroup))
+			if (__instance.GetType() == typeof(JsonItemGroup))
 			{
 				__result = ContentPackPatches.ItemSetsConverter(__instance.TempSets);
 			}
-		}
-
-		public static GameObject PrefabConverter(string key, string str)
-		{
-			if (int.TryParse(str, out int id))
-				return ((Item)GDOUtils.GetExistingGDO(id) ?? (Item)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject).Prefab;
-			else
-				return ContentPackManager.AssetBundleTable[key].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
-		}
-
-		public static GameObject SidePrefabConverter(string key, string str)
-		{
-			return ContentPackManager.AssetBundleTable[key].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
 		}
 	}
 }

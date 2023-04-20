@@ -1,5 +1,6 @@
 using KitchenData;
 using KitchenLib.Colorblind;
+using KitchenLib.JSON;
 using KitchenLib.Patches;
 using KitchenLib.References;
 using KitchenLib.Utils;

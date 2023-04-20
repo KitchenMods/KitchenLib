@@ -48,24 +48,22 @@ namespace KitchenLib.JSON
 									{
 										case ModificationType.NewGDO:
 											CustomGameDataObject gdo = ContentPackUtils.DeserializeJson(jObject, ContentPackUtils.keyValuePairs[GDOType]);
-											Main.LogInfo(ContentPackUtils.SerializeJson(gdo));
-
 											switch (GDOType)
 											{
 												case GDOType.Item:
-													CustomGDO.RegisterGameDataObject((JsonItem)gdo);
+													CustomGDO.RegisterJsonGameDataObject((JsonItem)gdo);
 													break;
 												case GDOType.ItemGroup:
-													CustomGDO.RegisterGameDataObject((JsonItemGroup)gdo);
+													CustomGDO.RegisterJsonGameDataObject((JsonItemGroup)gdo);
 													break;
 												case GDOType.Dish:
-													CustomGDO.RegisterGameDataObject((JsonDish)gdo);
+													CustomGDO.RegisterJsonGameDataObject((JsonDish)gdo);
 													break;
 												case GDOType.Appliance:	
-													CustomGDO.RegisterGameDataObject((JsonAppliance)gdo);
+													CustomGDO.RegisterJsonGameDataObject((JsonAppliance)gdo);
 													break;
 											}
-											Main.LogInfo($"JSON GDO registered {modname}: {gdo.UniqueNameID}");
+											Main.LogInfo($"GDO registered {modname}:{gdo.UniqueNameID} with ID {gdo.ID}");
 											break;
 									}
 								}
@@ -154,13 +152,13 @@ namespace KitchenLib.JSON
 			else
 				JSONTable.Add(key, new List<JObject>() { jObject });
 
-			Main.LogInfo($"JSON registered {key}: {jObject["UniqueNameID"]}");
+			Main.LogInfo($"JSON cached {key}: {jObject["UniqueNameID"]}");
 		}
 
 		public static void RegisterAssetBundles(string key, List<AssetBundle> bundle)
 		{
 			AssetBundleTable[key] = bundle;
-			Main.LogInfo($"Assetbundle Registered for {key}");
+			Main.LogInfo($"Assetbundle cached for {key}");
 		}
 
 		public static void FindMods(string dir)

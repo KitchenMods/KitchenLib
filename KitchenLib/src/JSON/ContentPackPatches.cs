@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using KitchenData;
+using KitchenLib.JSON.Interfaces;
 using KitchenLib.JSON.Models.Containers;
 using KitchenLib.Utils;
 using System;
@@ -79,11 +80,58 @@ namespace KitchenLib.JSON
 			return items;
 		}
 
+		public static GameObject PrefabConverter<T>(string modname, string str) where T : GameDataObject
+		{
+			if (str == null)
+				return null;
+			if (int.TryParse(str, out int id))
+			{
+				IHasPrefab gdo = ((T)GDOUtils.GetExistingGDO(id) ?? (T)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject) as IHasPrefab;
+				return gdo.Prefab;
+			}
+			return ContentPackManager.AssetBundleTable[modname].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
+		}
+
+		public static GameObject SidePrefabConverter<T>(string modname, string str) where T : GameDataObject
+		{
+			if (str == null)
+				return null;
+			if (int.TryParse(str, out int id))
+			{
+				IHasSidePrefab gdo = ((T)GDOUtils.GetExistingGDO(id) ?? (T)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject) as IHasSidePrefab;
+				return gdo.SidePrefab;
+			}
+			return ContentPackManager.AssetBundleTable[modname].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
+		}
+
+		public static GameObject IconPrefabConverter<T>(string modname, string str) where T : GameDataObject
+		{
+			if (str == null)
+				return null;
+			if (int.TryParse(str, out int id))
+			{
+				IHasIconPrefab gdo = ((T)GDOUtils.GetExistingGDO(id) ?? (T)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject) as IHasIconPrefab;
+				return gdo.IconPrefab;
+			}
+			return ContentPackManager.AssetBundleTable[modname].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
+		}
+
+		public static GameObject DisplayPrefabConverter<T>(string modname, string str) where T : GameDataObject
+		{
+			if (str == null)
+				return null;
+			if (int.TryParse(str, out int id))
+			{
+				IHasDisplayPrefab gdo = ((T)GDOUtils.GetExistingGDO(id) ?? (T)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject) as IHasDisplayPrefab;
+				return gdo.DisplayPrefab;
+			}
+			return ContentPackManager.AssetBundleTable[modname].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
+		}
+
 		public static T GDOConverter<T>(string str) where T : GameDataObject
 		{
 			if (str == null)
 				return null;
-			Main.LogInfo($"ItemID: {str}");
 			if (int.TryParse(str, out int id))
 				return (T)GDOUtils.GetExistingGDO(id) ?? (T)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject;
 			else

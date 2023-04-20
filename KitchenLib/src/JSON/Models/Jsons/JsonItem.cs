@@ -7,10 +7,11 @@ using System.Linq;
 using System.Runtime.Serialization;
 using KitchenLib.JSON.Models.Containers;
 using UnityEngine;
+using KitchenLib.JSON.Interfaces;
 
 namespace KitchenLib.JSON.Models.Jsons
 {
-    public class JsonItem : CustomItem
+    public class JsonItem : CustomItem, IHasSidePrefab
     {
 		[field:JsonProperty("UniqueNameID", Required = Required.Always)]
 		[JsonIgnore]
@@ -60,7 +61,7 @@ namespace KitchenLib.JSON.Models.Jsons
 
         public override void OnRegister(Item gameDataObject)
         {
-            gameDataObject.name = GDOName;
+			gameDataObject.name = GDOName;
 
 			foreach (MaterialsContainer materialsContainer in MaterialsContainers)
 			{
@@ -73,7 +74,7 @@ namespace KitchenLib.JSON.Models.Jsons
 		{
 			if (__instance.GetType() == typeof(JsonItem))
 			{
-				__result = PrefabConverter(__instance.ModName, __instance.TempPrefab);
+				__result = ContentPackPatches.PrefabConverter<Item>(__instance.ModName, __instance.TempPrefab);
 			}
 		}
 
@@ -81,7 +82,7 @@ namespace KitchenLib.JSON.Models.Jsons
 		{
 			if (__instance.GetType() == typeof(JsonItem))
 			{
-				__result = SidePrefabConverter(__instance.ModName, __instance.TempSidePrefab);
+				__result = ContentPackPatches.SidePrefabConverter<Item>(__instance.ModName, __instance.TempSidePrefab);
 			}
 		}
 
@@ -163,19 +164,6 @@ namespace KitchenLib.JSON.Models.Jsons
 			{
 				__result = ContentPackPatches.GDOConverter<Item>(__instance.TempExtendedDirtItem);
 			}
-		}
-
-		public static GameObject PrefabConverter(string key, string str)
-		{
-			if (int.TryParse(str, out int id))
-				return ((Item)GDOUtils.GetExistingGDO(id) ?? (Item)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject).Prefab;
-			else
-				return ContentPackManager.AssetBundleTable[key].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
-		}
-
-		public static GameObject SidePrefabConverter(string key, string str)
-		{
-			return ContentPackManager.AssetBundleTable[key].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
 		}
 	}
 }

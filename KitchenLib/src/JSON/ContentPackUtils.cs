@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using KitchenLib.Customs;
 using KitchenLib.JSON.ContractResolver;
 using KitchenLib.JSON.JsonConverters;
+using System.IO;
 
 namespace KitchenLib.JSON
 {
@@ -46,6 +47,11 @@ namespace KitchenLib.JSON
 				Main.LogError(e.StackTrace);
 				return null;
 			}
+		}
+
+		public static CustomGameDataObject DeserializeJson(string json, Type type)
+		{
+			return (CustomGameDataObject)serializer.Deserialize(new JsonTextReader(new StringReader(json)), type);
 		}
 
 		public static string SerializeJson(CustomGameDataObject Object)

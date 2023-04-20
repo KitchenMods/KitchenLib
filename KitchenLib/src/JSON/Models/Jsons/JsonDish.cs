@@ -1,5 +1,6 @@
 ﻿using KitchenData;
 using KitchenLib.Customs;
+using KitchenLib.JSON.Interfaces;
 using KitchenLib.JSON.Models.Containers;
 using KitchenLib.Utils;
 using Newtonsoft.Json;
@@ -10,15 +11,18 @@ using UnityEngine;
 
 namespace KitchenLib.JSON.Models.Jsons
 {
-    public class JsonDish : CustomDish
-    {
-		[field:JsonProperty("UniqueNameID", Required = Required.Always)]
+	public class JsonDish : CustomDish, IHasDisplayPrefab, IHasIconPrefab
+	{
+		[field: JsonProperty("UniqueNameID", Required = Required.Always)]
 		[JsonIgnore]
 		public override string UniqueNameID { get; }
 		[JsonProperty("Author", Required = Required.Always)]
 		public string Author { get; set; }
 		[JsonProperty("GDOName")]
-        public string GDOName { get; set; } = "";
+		public string GDOName { get; set; } = "";
+
+		[JsonProperty("DishType")]
+		public override DishType Type { get; protected set; }
 
 		[JsonProperty("ExtraOrderUnlocks")]
 		public List<IngredientUnlockContainer> TempExtraOrderUnlocks { get; set; }
@@ -29,9 +33,9 @@ namespace KitchenLib.JSON.Models.Jsons
 		[JsonProperty("BlockProviders")]
 		public List<string> TempBlockProviders { get; set; }
 		[JsonProperty("IconPrefab")]
-        public string TempIconPrefab { get; set; }
-        [JsonProperty("DisplayPrefab")]
-        public string TempDisplayPrefab { get; set; }
+		public string TempIconPrefab { get; set; }
+		[JsonProperty("DisplayPrefab")]
+		public string TempDisplayPrefab { get; set; }
 		[JsonProperty("ResultingMenuItems")]
 		public List<MenuItemContainer> TempResultingMenuItems { get; set; }
 		[JsonProperty("IngredientsUnlocks")]
@@ -40,16 +44,16 @@ namespace KitchenLib.JSON.Models.Jsons
 		public string TempRequiredDishItem { get; set; }
 
 		[OnDeserialized]
-        internal void OnDeserializedMethod(StreamingContext context)
-        {
-            ModName = context.Context.ToString();
+		internal void OnDeserializedMethod(StreamingContext context)
+		{
+			ModName = context.Context.ToString();
 			ModID = $"{Author}.{ModName}";
-        }
+		}
 
-        public override void OnRegister(Dish gameDataObject)
-        {
-            gameDataObject.name = GDOName;
-        }
+		public override void OnRegister(Dish gameDataObject)
+		{
+			gameDataObject.name = GDOName;
+		}
 
 		public static void get_ExtraOrderUnlocks_Postfix(JsonDish __instance, ref HashSet<Dish.IngredientUnlock> __result)
 		{
@@ -87,7 +91,7 @@ namespace KitchenLib.JSON.Models.Jsons
 		{
 			if (__instance.GetType() == typeof(JsonDish))
 			{
-				__result = IconPrefabConverter(__instance.ModName, __instance.TempIconPrefab);
+				__result = ContentPackPatches.IconPrefabConverter<Dish>(__instance.ModName, __instance.TempIconPrefab);
 			}
 		}
 
@@ -95,7 +99,7 @@ namespace KitchenLib.JSON.Models.Jsons
 		{
 			if (__instance.GetType() == typeof(JsonDish))
 			{
-				__result = IconPrefabConverter(__instance.ModName, __instance.TempDisplayPrefab);
+				__result = ContentPackPatches.DisplayPrefabConverter<Dish>(__instance.ModName, __instance.TempDisplayPrefab);
 			}
 		}
 
@@ -121,22 +125,6 @@ namespace KitchenLib.JSON.Models.Jsons
 			{
 				__result = ContentPackPatches.GDOConverter<Item>(__instance.TempRequiredDishItem);
 			}
-		}
-
-		public static GameObject IconPrefabConverter(string key, string str)
-		{
-			if (int.TryParse(str, out int id))
-				return ((Dish)GDOUtils.GetExistingGDO(id) ?? (Dish)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject).IconPrefab;
-			else
-				return ContentPackManager.AssetBundleTable[key].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
-		}
-
-		public static GameObject DisplayPrefabConverter(string key, string str)
-		{
-			if (int.TryParse(str, out int id))
-				return ((Dish)GDOUtils.GetExistingGDO(id) ?? (Dish)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject).DisplayPrefab;
-			else
-				return ContentPackManager.AssetBundleTable[key].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
 		}
 	}
 }
