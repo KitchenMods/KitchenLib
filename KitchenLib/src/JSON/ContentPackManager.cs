@@ -1,5 +1,7 @@
 ﻿using KitchenLib.Customs;
+using KitchenLib.JSON.Models.Containers;
 using KitchenLib.JSON.Models.Jsons;
+using KitchenLib.Utils;
 using KitchenMods;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -22,6 +24,11 @@ namespace KitchenLib.JSON
 			Main.LogInfo("Loading packs...");
 			FindMods(FolderModSource.ModsFolder);
 			FindMods(Path.GetFullPath(Path.Combine(Application.dataPath, "..", "..", "..", "..", "workshop", "content", "1599600")));
+
+			Main.LogInfo("Registering AssetBundles...");
+			foreach (Mod mod in ModPreload.Mods)
+				foreach (AssetBundleModPack pack in mod.GetPacks<AssetBundleModPack>())
+					RegisterAssetBundles(mod.Name, pack.AssetBundles);
 		}
 
 		public static void InjectGDOs()
@@ -54,10 +61,11 @@ namespace KitchenLib.JSON
 												case GDOType.Dish:
 													CustomGDO.RegisterGameDataObject((JsonDish)gdo);
 													break;
-												case GDOType.Appliance:
+												case GDOType.Appliance:	
 													CustomGDO.RegisterGameDataObject((JsonAppliance)gdo);
 													break;
 											}
+											Main.LogInfo($"JSON GDO registered {modname}: {gdo.UniqueNameID}");
 											break;
 									}
 								}
@@ -123,20 +131,34 @@ namespace KitchenLib.JSON
 			ContentPackUtils.serializer = JsonSerializer.Create(ContentPackUtils.settings);
 		}
 
-		public static void RegisterJSONGDO(JObject jObject)
+		public static IEnumerable<Material> ConvertMaterialContainer(IEnumerable<MaterialContainer> container)
 		{
-			string key = Main.instance.ModName;
+			foreach (MaterialContainer material in container)
+			{
+				switch (material.Type)
+				{
+					case MaterialType.Existing:
+						yield return MaterialUtils.GetExistingMaterial(material.name);
+						break;
+					case MaterialType.Custom:
+						yield return MaterialUtils.GetCustomMaterial(material.name);
+						break;
+				}
+			}
+		}
+
+		public static void RegisterJSONGDO(string key, JObject jObject)
+		{
 			if(JSONTable.ContainsKey(key))
 				JSONTable[key].Add(jObject);
 			else
 				JSONTable.Add(key, new List<JObject>() { jObject });
 
-			Main.LogInfo($"JSON registered {key}: {jObject}");
+			Main.LogInfo($"JSON registered {key}: {jObject["UniqueNameID"]}");
 		}
 
-		public static void RegisterAssetBundles(List<AssetBundle> bundle)
+		public static void RegisterAssetBundles(string key, List<AssetBundle> bundle)
 		{
-			string key = Main.instance.ModName;
 			AssetBundleTable[key] = bundle;
 			Main.LogInfo($"Assetbundle Registered for {key}");
 		}
@@ -155,11 +177,12 @@ namespace KitchenLib.JSON
 
 		public static void LoadModFromFolder(string dir)
 		{
+			string modname = Path.GetFileName(dir);
 			List<string> files = Directory.GetFiles(dir, "*.json", SearchOption.AllDirectories).ToList();
 			foreach (string file in files)
 			{
 				JObject jObject = JObject.Parse(File.ReadAllText(file));
-				RegisterJSONGDO(jObject);
+				RegisterJSONGDO(modname, jObject);
 			}
 		}
 	}

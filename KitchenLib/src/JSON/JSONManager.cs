@@ -88,7 +88,7 @@ namespace KitchenLib
 								LoadedJsons.Add(json as BaseJson);
 							}
 							else
-								ContentPackManager.RegisterJSONGDO(jObject);
+								ContentPackManager.RegisterJSONGDO(Main.instance.ModName, jObject);
 						}
 					}
 					catch (Exception e)

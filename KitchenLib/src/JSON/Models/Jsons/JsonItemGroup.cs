@@ -3,6 +3,7 @@ using KitchenLib.Customs;
 using KitchenLib.JSON.Models.Containers;
 using KitchenLib.Utils;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -65,14 +66,17 @@ namespace KitchenLib.JSON.Models.Jsons
 			gameDataObject.name = GDOName;
 
 			foreach (MaterialsContainer materialsContainer in MaterialsContainers)
-				MaterialUtils.ApplyMaterial(gameDataObject.Prefab, materialsContainer.Path, materialsContainer.Materials);
+			{
+				Material[] Materials = ContentPackManager.ConvertMaterialContainer(materialsContainer.Materials).ToArray();
+				MaterialUtils.ApplyMaterial(gameDataObject.Prefab, materialsContainer.Path, Materials);
+			}
 		}
 
 		public static void get_Prefab_Postfix(JsonItemGroup __instance, ref GameObject __result)
 		{
 			if (__instance.GetType() == typeof(JsonItemGroup))
 			{
-				__result = ContentPackPatches.PrefabConverter(__instance.ModName, __instance.TempPrefab);
+				__result = PrefabConverter(__instance.ModName, __instance.TempPrefab);
 			}
 		}
 
@@ -80,7 +84,7 @@ namespace KitchenLib.JSON.Models.Jsons
 		{
 			if (__instance.GetType() == typeof(JsonItemGroup))
 			{
-				__result = ContentPackPatches.PrefabConverter(__instance.ModName, __instance.TempSidePrefab);
+				__result = SidePrefabConverter(__instance.ModName, __instance.TempSidePrefab);
 			}
 		}
 
@@ -170,6 +174,19 @@ namespace KitchenLib.JSON.Models.Jsons
 			{
 				__result = ContentPackPatches.ItemSetsConverter(__instance.TempSets);
 			}
+		}
+
+		public static GameObject PrefabConverter(string key, string str)
+		{
+			if (int.TryParse(str, out int id))
+				return ((Item)GDOUtils.GetExistingGDO(id) ?? (Item)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject).Prefab;
+			else
+				return ContentPackManager.AssetBundleTable[key].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
+		}
+
+		public static GameObject SidePrefabConverter(string key, string str)
+		{
+			return ContentPackManager.AssetBundleTable[key].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
 		}
 	}
 }

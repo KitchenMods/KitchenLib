@@ -141,7 +141,6 @@ namespace KitchenLib
 		{
 			foreach (AssetBundleModPack pack in mod.GetPacks<AssetBundleModPack>())
 			{
-				ContentPackManager.RegisterAssetBundles(pack.AssetBundles);
 				foreach (AssetBundle bundle in pack.AssetBundles)
 				{
 					JSONManager.LoadAllJsons(bundle);

@@ -15,13 +15,16 @@ namespace KitchenLib.JSON.Models.Jsons
 		[field: JsonProperty("UniqueNameID", Required = Required.Always)]
 		[JsonIgnore]
 		public override string UniqueNameID { get; }
+		[JsonProperty("BaseGameDataObjectID")]
+		public override int BaseGameDataObjectID { get; protected set; } = -1;
+
 		[JsonProperty("Author", Required = Required.Always)]
 		public string Author { get; set; }
 		[JsonProperty("GDOName")]
 		public string GDOName { get; set; }
 
 		[JsonProperty("Properties")]
-		public List<AppliancePropertyContainer> AppliancePropertyContainers { get; set; } = new List<AppliancePropertyContainer>();
+		public List<AppliancePropertyContainer> AppliancePropertyContainers { get; set; }
 		[JsonProperty("Materials")]
 		public List<MaterialsContainer> MaterialsContainers { get; set; } = new List<MaterialsContainer>();
 
@@ -53,58 +56,77 @@ namespace KitchenLib.JSON.Models.Jsons
 			gameDataObject.name = GDOName;
 
 			foreach (MaterialsContainer materialsContainer in MaterialsContainers)
-				MaterialUtils.ApplyMaterial(gameDataObject.Prefab, materialsContainer.Path, materialsContainer.Materials);
+			{
+				Material[] Materials = ContentPackManager.ConvertMaterialContainer(materialsContainer.Materials).ToArray();
+				MaterialUtils.ApplyMaterial(gameDataObject.Prefab, materialsContainer.Path, Materials);
+			}
 		}
 
 		public static void get_Prefab_Postfix(JsonAppliance __instance, ref GameObject __result)
 		{
-			if (__instance.GetType() == typeof(JsonAppliance))
+			if (__instance.GetType() == typeof(JsonAppliance) && __instance.BaseGameDataObjectID == -1)
 			{
-				__result = ContentPackPatches.PrefabConverter(__instance.ModName, __instance.TempPrefab);
+				Main.LogInfo($"BaseGameDataObjectID: {__instance.BaseGameDataObjectID}");
+				__result = PrefabConverter(__instance.ModName, __instance.TempPrefab);
 			}
 		}
-		public static void get_HeldAppliancePrefab(JsonAppliance __instance, ref GameObject __result)
+		public static void get_HeldAppliancePrefab_Postfix(JsonAppliance __instance, ref GameObject __result)
 		{
-			if (__instance.GetType() == typeof(JsonAppliance))
+			if (__instance.GetType() == typeof(JsonAppliance) && __instance.BaseGameDataObjectID == -1 && __instance.TempHeldAppliancePrefab != null)
 			{
-				__result = ContentPackPatches.PrefabConverter(__instance.ModName, __instance.TempHeldAppliancePrefab);
+				__result = HeldAppliancePrefabConverter(__instance.ModName, __instance.TempHeldAppliancePrefab);
 			}
 		}
-		public static void get_Processes(JsonAppliance __instance, ref List<Appliance.ApplianceProcesses> __result)
+		public static void get_Processes_Postfix(JsonAppliance __instance, ref List<Appliance.ApplianceProcesses> __result)
 		{
-			if (__instance.GetType() == typeof(JsonAppliance))
+			if (__instance.GetType() == typeof(JsonAppliance) && __instance.BaseGameDataObjectID == -1)
 			{
 				__result = ContentPackPatches.ApplianceProcessesConverter(__instance.TempProcesses);
 			}
 		}
-		public static void get_RequiresForShop(JsonAppliance __instance, ref List<Appliance> __result)
+		public static void get_RequiresForShop_Postfix(JsonAppliance __instance, ref List<Appliance> __result)
 		{
-			if (__instance.GetType() == typeof(JsonAppliance))
+			if (__instance.GetType() == typeof(JsonAppliance) && __instance.BaseGameDataObjectID == -1)
 			{
 				__result = ContentPackPatches.GDOsConverter<Appliance>(__instance.TempRequiresForShop);
 			}
 		}
-		public static void get_RequiresProcessForShop(JsonAppliance __instance, ref List<Process> __result)
+		public static void get_RequiresProcessForShop_Postfix(JsonAppliance __instance, ref List<Process> __result)
 		{
-			if (__instance.GetType() == typeof(JsonAppliance))
+			if (__instance.GetType() == typeof(JsonAppliance) && __instance.BaseGameDataObjectID == -1)
 			{
 				__result = ContentPackPatches.GDOsConverter<Process>(__instance.TempRequiresProcessForShop);
 			}
 		}
-		public static void get_Upgrades(JsonAppliance __instance, ref List<Appliance> __result)
+		public static void get_Upgrades_Postfix(JsonAppliance __instance, ref List<Appliance> __result)
 		{
-			if (__instance.GetType() == typeof(JsonAppliance))
+			if (__instance.GetType() == typeof(JsonAppliance) && __instance.BaseGameDataObjectID == -1)
 			{
 				__result = ContentPackPatches.GDOsConverter<Appliance>(__instance.TempUpgrades);
 			}
 		}
-		public static void get_CrateItem(JsonAppliance __instance, ref Item __result)
+		public static void get_CrateItem_Postfix(JsonAppliance __instance, ref Item __result)
 		{
-			if (__instance.GetType() == typeof(JsonAppliance))
+			if (__instance.GetType() == typeof(JsonAppliance) && __instance.BaseGameDataObjectID == -1)
 			{
 				__result = ContentPackPatches.GDOConverter<Item>(__instance.TempCrateItem);
 			}
 		}
 
+		public static GameObject PrefabConverter(string key, string str)
+		{
+			Main.LogInfo("PrefabConverterAppliance");
+			if (int.TryParse(str, out int id))
+				return ((Appliance)GDOUtils.GetExistingGDO(id) ?? (Appliance)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject).Prefab;
+			else
+				return ContentPackManager.AssetBundleTable[key].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
+		}
+		public static GameObject HeldAppliancePrefabConverter(string key, string str)
+		{
+			if (int.TryParse(str, out int id))
+				return ((Appliance)GDOUtils.GetExistingGDO(id) ?? (Appliance)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject).HeldAppliancePrefab;
+			else
+				return ContentPackManager.AssetBundleTable[key].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
+		}
 	}
 }

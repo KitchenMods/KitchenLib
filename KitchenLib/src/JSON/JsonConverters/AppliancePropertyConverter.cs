@@ -31,7 +31,7 @@ namespace KitchenLib.JSON.JsonConverters
                     AppliancePropertyContext.CDoesNotOccupy => new CDoesNotOccupy(),
                     AppliancePropertyContext.CDisableAutomation => new CDisableAutomation(),
                     AppliancePropertyContext.CGivesDecoration => new CGivesDecoration(),
-                    AppliancePropertyContext.CItemProvider => NewCItemProvider(jObject["Property"]["Item"].Value<int>()),
+                    AppliancePropertyContext.CItemProvider => new CItemProvider(),//NewCItemProvider(jObject["Property"]["Item"].Value<int>()),
                     AppliancePropertyContext.CDynamicItemProvider => new CDynamicItemProvider(),
                     AppliancePropertyContext.CDestroyApplianceAtNight => new CDestroyApplianceAtNight(),
                     AppliancePropertyContext.CDestroyApplianceAtDay => new CDestroyApplianceAtDay(),
@@ -141,7 +141,8 @@ namespace KitchenLib.JSON.JsonConverters
                     AppliancePropertyContext.CDynamicMenuProvider => new CDynamicMenuProvider(),
                     _ => null,
                 };
-                serializer.Populate(jObject["Property"].CreateReader(), property);
+
+                serializer.Populate(jObject.CreateReader(), property);
                 appliancePropertyContainer.Property = property;
 
                 return appliancePropertyContainer;

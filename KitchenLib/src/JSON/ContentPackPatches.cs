@@ -16,14 +16,6 @@ namespace KitchenLib.JSON
 			Main.harmonyInstance.Patch(type.GetMethod(methodname), null, new HarmonyMethod(type.GetMethod($"{methodname}_Postfix")));
 		}
 
-		public static GameObject PrefabConverter(string key, string str)
-		{
-			if (int.TryParse(str, out int id))
-				return ((Item)GDOUtils.GetExistingGDO(id) ?? (Item)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject).Prefab;
-			else
-				return ContentPackManager.AssetBundleTable[key].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
-		}
-
 		public static List<Item.ItemProcess> ItemProcessesConverter(List<ItemProcessContainer> container)
 		{
 			if (container == null)

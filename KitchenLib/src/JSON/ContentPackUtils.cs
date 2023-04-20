@@ -15,7 +15,9 @@ namespace KitchenLib.JSON
 		public static Dictionary<GDOType, Type> keyValuePairs = new Dictionary<GDOType, Type>()
 		{
 			{GDOType.Item, typeof(JsonItem) },
-			{GDOType.ItemGroup, typeof(JsonItemGroup) }
+			{GDOType.ItemGroup, typeof(JsonItemGroup) },
+			{GDOType.Dish, typeof(JsonDish) },
+			{GDOType.Appliance, typeof(JsonAppliance) }
 		};
 
 		public static JsonSerializerSettings settings = new JsonSerializerSettings()
@@ -26,8 +28,7 @@ namespace KitchenLib.JSON
 				new StringEnumConverter(),
 				new GameDataObjectConverter(),
 				new ItemPropertyConverter(),
-				new AppliancePropertyConverter(),
-				new MaterialConverter()
+				new AppliancePropertyConverter()
 			}
 		};
 

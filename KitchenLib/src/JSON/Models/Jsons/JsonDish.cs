@@ -1,8 +1,10 @@
 ﻿using KitchenData;
 using KitchenLib.Customs;
 using KitchenLib.JSON.Models.Containers;
+using KitchenLib.Utils;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using UnityEngine;
 
@@ -85,7 +87,7 @@ namespace KitchenLib.JSON.Models.Jsons
 		{
 			if (__instance.GetType() == typeof(JsonDish))
 			{
-				__result = ContentPackPatches.PrefabConverter(__instance.ModName, __instance.TempIconPrefab);
+				__result = IconPrefabConverter(__instance.ModName, __instance.TempIconPrefab);
 			}
 		}
 
@@ -93,7 +95,7 @@ namespace KitchenLib.JSON.Models.Jsons
 		{
 			if (__instance.GetType() == typeof(JsonDish))
 			{
-				__result = ContentPackPatches.PrefabConverter(__instance.ModName, __instance.TempDisplayPrefab);
+				__result = IconPrefabConverter(__instance.ModName, __instance.TempDisplayPrefab);
 			}
 		}
 
@@ -119,6 +121,22 @@ namespace KitchenLib.JSON.Models.Jsons
 			{
 				__result = ContentPackPatches.GDOConverter<Item>(__instance.TempRequiredDishItem);
 			}
+		}
+
+		public static GameObject IconPrefabConverter(string key, string str)
+		{
+			if (int.TryParse(str, out int id))
+				return ((Dish)GDOUtils.GetExistingGDO(id) ?? (Dish)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject).IconPrefab;
+			else
+				return ContentPackManager.AssetBundleTable[key].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
+		}
+
+		public static GameObject DisplayPrefabConverter(string key, string str)
+		{
+			if (int.TryParse(str, out int id))
+				return ((Dish)GDOUtils.GetExistingGDO(id) ?? (Dish)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject).DisplayPrefab;
+			else
+				return ContentPackManager.AssetBundleTable[key].FirstOrDefault(x => x.LoadAsset<GameObject>(str) != null)?.LoadAsset<GameObject>(str);
 		}
 	}
 }
