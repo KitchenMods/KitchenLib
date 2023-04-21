@@ -59,6 +59,7 @@ namespace KitchenLib.Systems
 				Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpSupport").Set(cosmetic[3] == '1');
 				Main.cosmeticManager.GetPreference<PreferenceBool>("isTwitchStreamer").Set(cosmetic[4] == '1');
 				Main.cosmeticManager.GetPreference<PreferenceBool>("isEasterChampion").Set(cosmetic[5] == '1');
+				Main.cosmeticManager.GetPreference<PreferenceBool>("isGearsChampion").Set(cosmetic[6] == '1');
 				if (int.Parse(NetworkUtils.Get($"{url}?mode=invite&steamID={steamID}")) == 1)
 				{
 					RefVars.ShouldAutoInvite = true;

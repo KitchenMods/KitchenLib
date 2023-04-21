@@ -22,8 +22,8 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.6.5";
-		public const string MOD_BETA_VERSION = "";
+		public const string MOD_VERSION = "0.6.6";
+		public const string MOD_BETA_VERSION = "3";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
 		public static CustomAppliance CommandViewHolder;
@@ -31,6 +31,7 @@ namespace KitchenLib
 		public static CustomAppliance SendToClientViewHolder;
 		public static CustomAppliance TileHighlighterViewHolder;
 		public static CustomAppliance ClientEquipCapeViewHolder;
+		public static CustomAppliance SyncModsViewHolder;
 		public static AssetBundle bundle;
 
 		public static PreferenceManager manager;
@@ -52,6 +53,7 @@ namespace KitchenLib
 			cosmeticManager.RegisterPreference(new PreferenceBool("isKitchenLibDeveloper", false));
 			cosmeticManager.RegisterPreference(new PreferenceBool("isTwitchStreamer", false));
 			cosmeticManager.RegisterPreference(new PreferenceBool("isEasterChampion", false));
+			cosmeticManager.RegisterPreference(new PreferenceBool("isGearsChampion", false));
 
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).ToList()[0];
 			
@@ -60,12 +62,14 @@ namespace KitchenLib
 			SendToClientViewHolder = AddGameDataObject<SendToClientViewHolder>();
 			TileHighlighterViewHolder = AddGameDataObject<TileHighlighterViewHolder>();
 			ClientEquipCapeViewHolder = AddGameDataObject<ClientEquipCapeViewHolder>();
-			AddGameDataObject<PlateUpCape>();
+			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
+			AddGameDataObject<ItsHappeningCape>();
 			AddGameDataObject<PlateUpStaffCape>();
 			AddGameDataObject<PlateUpSupportCape>();
 			AddGameDataObject<KitchenLibCape>();
 			AddGameDataObject<TwitchCape>();
-			AddGameDataObject<Easter_Champion_Cape>();
+			AddGameDataObject<EasterCape>();
+			AddGameDataObject<GearsCape>();
 			AddGameDataObject<_21Balloon>();
 			
 			SetupMenus();
@@ -128,6 +132,7 @@ namespace KitchenLib
 			{
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<PauseMenuAction>), new ModsMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<PauseMenuAction>), new ModsPreferencesMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ConfirmModSync), new ConfirmModSync(args.instance.ButtonContainer, args.module_list) });
 			};
 
 			Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent += (s, args) =>

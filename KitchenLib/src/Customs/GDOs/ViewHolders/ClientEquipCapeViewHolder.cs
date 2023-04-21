@@ -1,4 +1,4 @@
-﻿using KitchenLib.Systems;
+﻿using KitchenLib.Views;
 using UnityEngine;
 
 namespace KitchenLib.Customs.GDOs

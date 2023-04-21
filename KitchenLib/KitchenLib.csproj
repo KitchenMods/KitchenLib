@@ -26,13 +26,8 @@
 	  <PackageReference Include="Krafs.Publicizer" Version="2.2.1" />
 	</ItemGroup>
 	<ItemGroup>
-		<Publicize Include="Kitchen.Common:Kitchen.PlayerCosmeticSubview.AttachmentPoint" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Reference Include="ShapesRuntime">
-		  <HintPath>$(GamePath)\PlateUp_Data\Managed\ShapesRuntime.dll</HintPath>
-		</Reference>
+		<Publicize Include="Kitchen.Common:Kitchen.PlayerCosmeticSubview+AttachmentPoint" />
+		<Publicize Include="Kitchen.Common:Kitchen.PlayerCosmeticSubview+AttachedCosmetic" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -37,20 +37,6 @@ namespace KitchenLib.Patches
 	*/
 	#endregion
 
-	#region TOREMOVE: Player cosmetic attachment point modifications
-	/*
-	[HarmonyPatch(typeof(PlayerCosmeticSubview), "Start")]
-	internal class PlayerCosmeticSubview_Patch
-	{
-		public static void Prefix(PlayerCosmeticSubview __instance)
-		{
-			FieldInfo AttachmentPoints = ReflectionUtils.GetField<PlayerCosmeticSubview>("AttachmentPoints");
-			//List<PlayerCosmeticSubview.AttachmentPoint> attachmentPoints = (List<PlayerCosmeticSubview.AttachmentPoint>)AttachmentPoints.GetValue(__instance);
-		}
-	}
-	*/
-	#endregion
-
 	#region Multiplayer player profiles bug fix
 	[HarmonyPatch(typeof(PlayerInfoManager.UpdateView), "HandleResponse")]
 	internal class PlayerInfoManager_Patch
@@ -65,6 +51,7 @@ namespace KitchenLib.Patches
 		}
 	}
 
+	[UpdateAfter(typeof(PlayerInfoManager.UpdateView))]
 	internal class EnsurePlayerProfile : GameSystemBase, IModSystem
 	{
 		private EntityQuery cPlayers;
@@ -85,11 +72,12 @@ namespace KitchenLib.Patches
 						if (Require(players[i], out CPlayerColour cPlayerColour) && Require(players[i], out CPlayerCosmetics cPlayerCosmetics))
 						{
 							cPlayerColour.Color = PlayerInfoManager_Patch.Updates[cPlayer.ID].Profile.Colour;
-
 							foreach (int cosmeticID in PlayerInfoManager_Patch.Updates[cPlayer.ID].Profile.Cosmetics)
 							{
 								if (GameData.Main.TryGet<PlayerCosmetic>(cosmeticID, out PlayerCosmetic cosmetic))
+								{
 									cPlayerCosmetics.Set(cosmetic.CosmeticType, cosmeticID);
+								}
 							}
 							EntityManager.SetComponentData(players[i], cPlayerColour);
 							EntityManager.SetComponentData(players[i], cPlayerCosmetics);

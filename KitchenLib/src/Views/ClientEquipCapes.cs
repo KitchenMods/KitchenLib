@@ -1,5 +1,7 @@
 ﻿using Kitchen;
 using KitchenData;
+using KitchenLib.Systems;
+using KitchenLib.Utils;
 using KitchenMods;
 using MessagePack;
 using System;
@@ -7,9 +9,9 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine.InputSystem;
 
-namespace KitchenLib.Systems
+namespace KitchenLib.Views
 {
-	public class ClientEquipCapes : UpdatableObjectView<ClientEquipCapes.ViewData>, ISpecificViewResponse
+	internal class ClientEquipCapes : UpdatableObjectView<ClientEquipCapes.ViewData>, ISpecificViewResponse
 	{
 		public class UpdateView : ResponsiveViewSystemBase<ViewData, ResponseData>, IModSystem
 		{
@@ -45,7 +47,7 @@ namespace KitchenLib.Systems
 					{
 						if (Require(player.Entity, out CPlayerCosmetics cosmetics))
 						{
-							cosmetics.Set(CosmeticType.Hat, data.CapeID);
+							cosmetics.Set((CosmeticType)VariousUtils.GetID("Cape"), data.CapeID);
 							EntityManager.SetComponentData(player.Entity, cosmetics);
 						}
 					}
@@ -75,7 +77,7 @@ namespace KitchenLib.Systems
 		}
 
 		private Action<IResponseData, Type> Callback;
-		
+
 		public void Update()
 		{
 		}
