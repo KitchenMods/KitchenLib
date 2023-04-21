@@ -1,6 +1,5 @@
 ﻿using Kitchen;
 using KitchenData;
-using KitchenLib.Customs;
 using UnityEngine;
 
 namespace KitchenLib.Customs.GDOs

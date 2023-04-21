@@ -1,9 +1,9 @@
 ﻿using Kitchen;
 using Kitchen.Modules;
-using KitchenData;
 using KitchenLib.Customs;
 using KitchenLib.Customs.GDOs;
 using KitchenLib.Preferences;
+using KitchenLib.src.Systems;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +12,40 @@ namespace KitchenLib.UI
 {
 	public class PreferenceMenu<T> : KLMenu<T>
 	{
-		public PreferenceMenu(Transform container, ModuleList module_list) : base(container, module_list)
+		public PreferenceMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
+
+		public Dictionary<(bool, int), string> Capes = new Dictionary<(bool, int), string>
 		{
+			{ (Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpDeveloper").Value, GDOUtils.GetCustomGameDataObject<PlateUpCape>().ID), "Equip PlateUp! Cape" },
+			{ (Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpSupport").Value, GDOUtils.GetCustomGameDataObject<PlateUpSupportCape>().ID), "Equip Support Cape" },
+			{ (Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpStaff").Value, GDOUtils.GetCustomGameDataObject<PlateUpStaffCape>().ID), "Equip Staff Cape" },
+			{ (Main.cosmeticManager.GetPreference<PreferenceBool>("isKitchenLibDeveloper").Value, GDOUtils.GetCustomGameDataObject<KitchenLibCape>().ID), "Equip KitchenLib Cape" },
+			{ (Main.cosmeticManager.GetPreference<PreferenceBool>("isTwitchStreamer").Value, GDOUtils.GetCustomGameDataObject<TwitchCape>().ID), "Equip Twitch Cape" },
+			{ (Main.cosmeticManager.GetPreference<PreferenceBool>("isEasterChampion").Value, GDOUtils.GetCustomGameDataObject<Easter_Champion_Cape>().ID), "Equip Easter Champion Cape" },
+		};
+
+		private readonly List<int> capeIDs = new List<int>();
+		private readonly List<string> capeNames = new List<string>();
+
+		private void SetCosmetic(int playerID, int capeID)
+		{
+			ClientEquipCapes.CapeID = capeID;
+			ClientEquipCapes.PlayerID = playerID;
 		}
 
 		public override void Setup(int player_id)
 		{
+			capeIDs.Clear();
+			capeNames.Clear();
+			foreach ((bool, int) key in Capes.Keys)
+			{
+				if (key.Item1)
+				{
+					capeIDs.Add(key.Item2);
+					capeNames.Add(Capes[key]);
+				}
+			}
+
 			Player player = null;
 			CPlayerCosmetics cosmetics = new CPlayerCosmetics();
 			PlayerManager pm = null;
@@ -31,7 +59,7 @@ namespace KitchenLib.UI
 				}
 			}
 			AddLabel("Are you over 13 years old?");
-			AddSelect<bool>(_over_13);
+			AddSelect(_over_13);
 			_over_13.OnChanged += delegate (object _, bool result)
 			{
 				Main.manager.GetPreference<PreferenceBool>("over13").Set(result);
@@ -40,7 +68,7 @@ namespace KitchenLib.UI
 			New<SpacerElement>(true);
 
 			AddLabel("Do you permit the collection data?");
-			AddSelect<bool>(_data_consent);
+			AddSelect(_data_consent);
 			_data_consent.OnChanged += delegate (object _, bool result)
 			{
 				Main.manager.GetPreference<PreferenceBool>("datacollection").Set(result);
@@ -50,64 +78,23 @@ namespace KitchenLib.UI
 
 			if (pm != null && player != null)
 			{
-				if (Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpDeveloper").Value)
+				foreach ((bool, int) key in Capes.Keys)
 				{
-
-					AddButton("Equip PlateUp! Cape", delegate (int i)
+					if (key.Item1)
 					{
-						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<PlateUpCape>().ID);
-						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
-					}, 0, 1f, 0.2f);
-					New<SpacerElement>(true);
-				}
-
-				if (Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpSupport").Value)
-				{
-
-					AddButton("Equip Support Cape", delegate (int i)
-					{
-						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<PlateUpSupportCape>().ID);
-						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
-					}, 0, 1f, 0.2f);
-					New<SpacerElement>(true);
-				}
-
-				if (Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpStaff").Value)
-				{
-
-					AddButton("Equip Staff Cape", delegate (int i)
-					{
-						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<PlateUpStaffCape>().ID);
-						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
-					}, 0, 1f, 0.2f);
-					New<SpacerElement>(true);
-				}
-
-				if (Main.cosmeticManager.GetPreference<PreferenceBool>("isKitchenLibDeveloper").Value)
-				{
-					AddButton("Equip KitchenLib Cape", delegate (int i)
-					{
-						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<KitchenLibCape>().ID);
-						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
-					}, 0, 1f, 0.2f);
-					New<SpacerElement>(true);
-				}
-
-				if (Main.cosmeticManager.GetPreference<PreferenceBool>("isTwitchStreamer").Value)
-				{
-					AddButton("Equip Twitch Cape", delegate (int i)
-					{
-						cosmetics.Set(CosmeticType.Hat, GDOUtils.GetCustomGameDataObject<TwitchCape>().ID);
-						pm.EntityManager.SetComponentData(player.Entity, cosmetics);
-					}, 0, 1f, 0.2f);
-					New<SpacerElement>(true);
+						AddButton(Capes[key], delegate (int i)
+						{
+							SetCosmetic(player_id, key.Item2);
+						}, 0, 1f, 0.2f);
+						New<SpacerElement>(true);
+					}
 				}
 			}
 
-			AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate (int i)
+			AddButton(Localisation["MENU_BACK_SETTINGS"], delegate (int i)
 			{
 				Main.manager.Save();
-				this.RequestPreviousMenu();
+				RequestPreviousMenu();
 			}, 0, 1f, 0.2f);
 		}
 

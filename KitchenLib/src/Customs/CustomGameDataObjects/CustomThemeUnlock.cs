@@ -1,5 +1,4 @@
 using KitchenData;
-using KitchenLib.Patches;
 using KitchenLib.Utils;
 using System.Linq;
 using System.Reflection;
@@ -7,7 +6,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomThemeUnlock : CustomUnlock<ThemeUnlock>
+	public abstract class CustomThemeUnlock : CustomUnlock<ThemeUnlock>
     {
         public virtual bool IsPrimary { get; protected set; } = true;
         public virtual DecorationType Type { get; protected set; }

@@ -4,7 +4,6 @@ using KitchenLib.References;
 using KitchenLib.Systems;
 using KitchenLib.Utils;
 using System.Collections.Generic;
-using System.Threading;
 using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;

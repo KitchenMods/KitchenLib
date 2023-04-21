@@ -7,7 +7,6 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 using System.Collections.Generic;
-using Kitchen.Layouts.Modules;
 
 namespace KitchenLib.Fun
 {

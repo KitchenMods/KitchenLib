@@ -1,5 +1,4 @@
 using KitchenData;
-using KitchenLib.Patches;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomUnlockCard : CustomUnlock<UnlockCard>
+	public abstract class CustomUnlockCard : CustomUnlock<UnlockCard>
     {
         public virtual List<UnlockEffect> Effects { get; protected set; } = new List<UnlockEffect>();
 

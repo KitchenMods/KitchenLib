@@ -1,16 +1,16 @@
 using KitchenData;
-using KitchenLib.Colorblind;
-using KitchenLib.Patches;
+using KitchenLib.References;
 using KitchenLib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using TMPro;
 using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomItem : CustomItem<Item> { }
+	public abstract class CustomItem : CustomItem<Item> { }
     public abstract class CustomItem<T> : CustomGameDataObject<T>, ICustomHasPrefab where T : Item
     {
         public virtual GameObject Prefab { get; protected set; }
@@ -71,8 +71,18 @@ namespace KitchenLib.Customs
             if (result.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (result.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
 
-            if (!string.IsNullOrEmpty(ColourBlindTag))
-                ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
+			//if (!string.IsNullOrEmpty(ColourBlindTag))
+			//ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
+			if (!string.IsNullOrEmpty(ColourBlindTag))
+			{
+				Item steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
+				if (steak != null)
+				{
+					GameObject ColorBlind = GameObject.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject);
+					ColorBlind.transform.SetParent(result.Prefab.transform);
+					ColorBlind.transform.Find("Title").GetComponent<TMP_Text>().text = ColourBlindTag;
+				}
+			}
 
             if (RewardOverride != -1)
                 ItemOverrides.AddRewardOverride(result.ID, RewardOverride);

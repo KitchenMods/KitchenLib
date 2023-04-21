@@ -1,6 +1,5 @@
 using Kitchen;
 using KitchenData;
-using KitchenLib.Patches;
 using KitchenLib.Utils;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomAppliance : CustomLocalisedGameDataObject<Appliance, ApplianceInfo>, ICustomHasPrefab
+	public abstract class CustomAppliance : CustomLocalisedGameDataObject<Appliance, ApplianceInfo>, ICustomHasPrefab
     {
         public virtual GameObject Prefab { get; protected set; }
         public virtual GameObject HeldAppliancePrefab { get; protected set; }
@@ -93,8 +92,8 @@ namespace KitchenLib.Customs
 
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-            else
-                result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == AssetReference.Counter));
+            //else
+                //result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == AssetReference.Counter));
 
             if (result.ID != ID) result.ID = ID;
             if (result.Prefab != Prefab) result.Prefab = Prefab;

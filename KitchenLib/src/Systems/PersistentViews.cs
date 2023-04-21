@@ -16,6 +16,7 @@ namespace KitchenLib.Systems
 			infoViews = GetEntityQuery(typeof(CInfoView));
 			sendToClientViews = GetEntityQuery(typeof(CSendToClientView));
 			tileHightlighterView = GetEntityQuery(typeof(CTileHightlighterView));
+			clientEquipCapeView = GetEntityQuery(typeof(CClientEquipCapeView));
 		}
 		protected override void OnUpdate()
 		{
@@ -23,6 +24,7 @@ namespace KitchenLib.Systems
 			EnsureView(infoViews.ToEntityArray(Allocator.Temp), Main.InfoViewHolder.ID, typeof(CInfoView));
 			EnsureView(sendToClientViews.ToEntityArray(Allocator.Temp), Main.SendToClientViewHolder.ID, typeof(CSendToClientView));
 			EnsureView(tileHightlighterView.ToEntityArray(Allocator.Temp), Main.TileHighlighterViewHolder.ID, typeof(CTileHightlighterView));
+			EnsureView(clientEquipCapeView.ToEntityArray(Allocator.Temp), Main.ClientEquipCapeViewHolder.ID, typeof(CClientEquipCapeView));
 		}
 
 		private void EnsureView(NativeArray<Entity> entities, int ApplianceID, Type marker)
@@ -48,6 +50,7 @@ namespace KitchenLib.Systems
 		private EntityQuery infoViews;
 		private EntityQuery sendToClientViews;
 		private EntityQuery tileHightlighterView;
+		private EntityQuery clientEquipCapeView;
 	}
 	[Obsolete("No longer used")]
 	public struct CViewHolder : IApplianceProperty, IAttachableProperty, IComponentData { }
@@ -55,4 +58,5 @@ namespace KitchenLib.Systems
 	public struct CInfoView : IApplianceProperty, IAttachableProperty, IComponentData { }
 	public struct CSendToClientView : IApplianceProperty, IAttachableProperty, IComponentData { }
 	public struct CTileHightlighterView : IApplianceProperty, IAttachableProperty, IComponentData { }
+	public struct CClientEquipCapeView : IApplianceProperty, IAttachableProperty, IComponentData { }
 }
