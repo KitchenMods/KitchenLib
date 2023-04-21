@@ -26,12 +26,13 @@ namespace KitchenLib.UI
 
 		public Dictionary<(bool, int), string> Capes = new Dictionary<(bool, int), string>
 		{
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpDeveloper").Value, GDOUtils.GetCustomGameDataObject<PlateUp_Cape>().ID),"Its Happening! Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpSupport").Value, GDOUtils.GetCustomGameDataObject<PlateUp_Support_Cape>().ID),"Support Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpStaff").Value, GDOUtils.GetCustomGameDataObject<PlateUp_Staff_Cape>().ID),"Staff Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpDeveloper").Value, GDOUtils.GetCustomGameDataObject<ItsHappening_Cape>().ID),"Its Happening! Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpSupport").Value, GDOUtils.GetCustomGameDataObject<Support_Cape>().ID),"Support Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpStaff").Value, GDOUtils.GetCustomGameDataObject<Staff_Cape>().ID),"Staff Cape"},
 			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isKitchenLibDeveloper").Value, GDOUtils.GetCustomGameDataObject<KitchenLib_Cape>().ID),"KitchenLib Cape"},
 			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isTwitchStreamer").Value, GDOUtils.GetCustomGameDataObject<Twitch_Cape>().ID),"Twitch Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isEasterChampion").Value, GDOUtils.GetCustomGameDataObject<Easter_Champion_Cape>().ID),"Easter Champion Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isEasterChampion").Value, GDOUtils.GetCustomGameDataObject<Easter_Cape>().ID),"Easter Champion Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("isGearsChampion").Value, GDOUtils.GetCustomGameDataObject<Gears_Cape>().ID),"Gears Champion Cape"},
 		};
 
 		private List<int> capeIDs = new List<int>();

@@ -25,7 +25,7 @@ namespace KitchenLib
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
 		public const string MOD_VERSION = "0.6.6";
-		public const string MOD_BETA_VERSION = "2";
+		public const string MOD_BETA_VERSION = "3";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
 		public static CustomAppliance CommandViewHolder;
@@ -54,6 +54,7 @@ namespace KitchenLib
 			cosmeticManager.RegisterPreference(new PreferenceBool("isKitchenLibDeveloper", false));
 			cosmeticManager.RegisterPreference(new PreferenceBool("isTwitchStreamer", false));
 			cosmeticManager.RegisterPreference(new PreferenceBool("isEasterChampion", false));
+			cosmeticManager.RegisterPreference(new PreferenceBool("isGearsChampion", false));
 
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).ToList()[0];
 			
@@ -63,12 +64,13 @@ namespace KitchenLib
 			TileHighlighterViewHolder = AddGameDataObject<TileHighlighterViewHolder>();
 			ClientEquipCapeViewHolder = AddGameDataObject<ClientEquipCapeViewHolder>();
 			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
-			AddGameDataObject<PlateUp_Cape>();
-			AddGameDataObject<PlateUp_Staff_Cape>();
-			AddGameDataObject<PlateUp_Support_Cape>();
+			AddGameDataObject<ItsHappening_Cape>();
+			AddGameDataObject<Staff_Cape>();
+			AddGameDataObject<Support_Cape>();
 			AddGameDataObject<KitchenLib_Cape>();
 			AddGameDataObject<Twitch_Cape>();
-			AddGameDataObject<Easter_Champion_Cape>();
+			AddGameDataObject<Easter_Cape>();
+			AddGameDataObject<Gears_Cape>();
 			AddGameDataObject<_21_Balloon>();
 			
 			SetupMenus();
