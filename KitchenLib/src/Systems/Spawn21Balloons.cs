@@ -6,7 +6,7 @@ using KitchenMods;
 using System;
 using UnityEngine;
 
-namespace KitchenLib.src.Systems
+namespace KitchenLib.Systems
 {
 	public class Spawn21Balloons : FranchiseFirstFrameSystem, IModSystem
 	{

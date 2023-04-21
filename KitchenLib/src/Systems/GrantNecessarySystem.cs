@@ -8,10 +8,10 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
-namespace KitchenLib.src.Systems
+namespace KitchenLib.Systems
 {
 	[UpdateAfter(typeof(GrantNecessaryAppliances))]
-	public class GrantNecessarySystem : NightSystem, IModSystem
+	internal class GrantNecessarySystem : NightSystem, IModSystem
 	{
 		private static EntityQuery Unlocks;
 		private EntityQuery CreateAppliances;
@@ -94,7 +94,7 @@ namespace KitchenLib.src.Systems
 			return flag ? vector : GetFallbackTile();
 		}
 
-		public static bool GameRequiresItem(int itemID)
+		internal static bool GameRequiresItem(int itemID)
 		{
 			using var unlocks = Unlocks.ToComponentDataArray<CProgressionUnlock>(Allocator.Temp);
 
