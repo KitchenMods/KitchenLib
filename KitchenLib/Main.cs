@@ -46,14 +46,10 @@ namespace KitchenLib
 			manager.RegisterPreference(new PreferenceBool("over13", true));
 			manager.RegisterPreference(new PreferenceBool("datacollection", true));
 			manager.Load();
-
-			cosmeticManager.RegisterPreference(new PreferenceBool("isPlateUpDeveloper", false));
-			cosmeticManager.RegisterPreference(new PreferenceBool("isPlateUpStaff", false));
-			cosmeticManager.RegisterPreference(new PreferenceBool("isPlateUpSupport", false));
-			cosmeticManager.RegisterPreference(new PreferenceBool("isKitchenLibDeveloper", false));
-			cosmeticManager.RegisterPreference(new PreferenceBool("isTwitchStreamer", false));
-			cosmeticManager.RegisterPreference(new PreferenceBool("isEasterChampion", false));
-			cosmeticManager.RegisterPreference(new PreferenceBool("isGearsChampion", false));
+			foreach (string cape in Systems.UpdateData.capes)
+			{
+				cosmeticManager.RegisterPreference(new PreferenceBool(cape, false));
+			}
 
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).ToList()[0];
 			
