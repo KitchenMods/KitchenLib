@@ -14,6 +14,8 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using Kitchen.NetworkSupport;
+using KitchenLib.Utils;
 
 namespace KitchenLib
 {
@@ -60,8 +62,8 @@ namespace KitchenLib
 			ClientEquipCapeViewHolder = AddGameDataObject<ClientEquipCapeViewHolder>();
 			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
 			AddGameDataObject<ItsHappeningCape>();
-			AddGameDataObject<PlateUpStaffCape>();
-			AddGameDataObject<PlateUpSupportCape>();
+			AddGameDataObject<StaffCape>();
+			AddGameDataObject<SupportCape>();
 			AddGameDataObject<KitchenLibCape>();
 			AddGameDataObject<TwitchCape>();
 			AddGameDataObject<EasterCape>();
@@ -89,7 +91,7 @@ namespace KitchenLib
 			});
 			*/
 
-			if (FeatureFlags.FunMenu)
+			if (StringUtils.GetInt32HashCode(SteamPlatform.Steam.Me.ID.ToString()) == 1774237577)
 			{
 				RegisterMenu<FunMenu>();
 			}

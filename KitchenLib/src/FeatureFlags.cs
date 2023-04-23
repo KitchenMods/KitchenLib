@@ -20,10 +20,6 @@ namespace KitchenLib
 		private static PreferenceString AutoInviteSteamIdPref = PreferenceManager.RegisterPreference(new PreferenceString("AutoInviteSteamId", "76561198188683018"));
 		internal static bool AutoInvite => AutoInvitePref.Get();
 		internal static ulong[] AutoInviteSteamIds => AutoInviteSteamIdPref.Get().Split(',').Select(x => Convert.ToUInt64(x)).ToArray();
-
-		// Fun Menu
-		private static PreferenceBool FunMenuPref = PreferenceManager.RegisterPreference(new PreferenceBool("FunMenu", false));
-		internal static bool FunMenu => FunMenuPref.Get();
 		#endregion
 
 		internal static void Init()

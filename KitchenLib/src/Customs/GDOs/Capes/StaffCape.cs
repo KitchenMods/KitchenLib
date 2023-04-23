@@ -2,7 +2,7 @@
 
 namespace KitchenLib.Customs
 {
-	internal class PlateUpStaffCape : BaseCape
+	internal class StaffCape : BaseCape
 	{
 		public override string CapeName => "Staff";
 	}

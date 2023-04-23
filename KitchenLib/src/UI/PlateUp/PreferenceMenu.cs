@@ -20,13 +20,13 @@ namespace KitchenLib.UI
 
 		public Dictionary<(bool, int), string> Capes = new Dictionary<(bool, int), string>
 		{
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("itsHappening").Value, GDOUtils.GetCustomGameDataObject<ItsHappening_Cape>().ID),"Its Happening! Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("support").Value, GDOUtils.GetCustomGameDataObject<Support_Cape>().ID),"Support Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("staff").Value, GDOUtils.GetCustomGameDataObject<Staff_Cape>().ID),"Staff Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("kitchenlib").Value, GDOUtils.GetCustomGameDataObject<KitchenLib_Cape>().ID),"KitchenLib Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("twitch").Value, GDOUtils.GetCustomGameDataObject<Twitch_Cape>().ID),"Twitch Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("easter2023").Value, GDOUtils.GetCustomGameDataObject<Easter_Cape>().ID),"Easter Champion Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("gears2023").Value, GDOUtils.GetCustomGameDataObject<Gears_Cape>().ID),"Gears Champion Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("itsHappening").Value, GDOUtils.GetCustomGameDataObject<ItsHappeningCape>().ID),"Its Happening! Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("support").Value, GDOUtils.GetCustomGameDataObject<SupportCape>().ID),"Support Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("staff").Value, GDOUtils.GetCustomGameDataObject<StaffCape>().ID),"Staff Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("kitchenlib").Value, GDOUtils.GetCustomGameDataObject<KitchenLibCape>().ID),"KitchenLib Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("twitch").Value, GDOUtils.GetCustomGameDataObject<TwitchCape>().ID),"Twitch Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("easter2023").Value, GDOUtils.GetCustomGameDataObject<EasterCape>().ID),"Easter Champion Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("gears2023").Value, GDOUtils.GetCustomGameDataObject<GearsCape>().ID),"Gears Champion Cape"},
 		};
 
 		private List<int> capeIDs = new List<int>();

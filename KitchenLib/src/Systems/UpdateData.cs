@@ -86,7 +86,7 @@ namespace KitchenLib.Systems
 			{
 				if (int.Parse(NetworkUtils.Get($"http://api.plateupmodding.com?mode=invite&steamID={steamID}")) == 1)
 				{
-					CheckForRequiredInviteNight.ShouldInvite = true;
+					RefVars.ShouldAutoInvite = true;
 				}
 			}
 			catch

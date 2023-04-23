@@ -11,7 +11,6 @@
 		<WorkshopDir>$(ProjectDir)content</WorkshopDir>
 		
 		<EnableAssetBundleDeploy>true</EnableAssetBundleDeploy>
-		<AssetBundlePath>$(ProjectDir)content\kitchenlib.assets</AssetBundlePath>
 		
 		<EnableDocumentation>true</EnableDocumentation>
 	</PropertyGroup>
