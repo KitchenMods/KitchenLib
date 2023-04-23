@@ -1,23 +1,12 @@
 ﻿using Kitchen.Modules;
 using Kitchen;
-using KitchenLib.Customs;
-using KitchenLib.Preferences;
-using KitchenLib.Utils;
-using KitchenLib.Views;
-using Steamworks.Data;
-using System;
 using System.Collections.Generic;
-using System.IO.Compression;
-using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using KitchenMods;
 
 namespace KitchenLib.UI
 {
-	public class ConfirmModSync : KLMenu<PauseMenuAction>
+	internal class ConfirmModSync : KLMenu<PauseMenuAction>
 	{
 		public static Dictionary<ulong, Steamworks.Ugc.Item> Mods = new Dictionary<ulong, Steamworks.Ugc.Item>();
 		private static List<string> ModNames = new List<string>();

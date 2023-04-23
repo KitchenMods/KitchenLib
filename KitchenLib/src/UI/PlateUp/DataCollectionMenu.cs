@@ -1,16 +1,12 @@
 ﻿using Kitchen.Modules;
 using Kitchen;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using KitchenLib.Preferences;
 
 namespace KitchenLib.UI
 {
-	public class DataCollectionMenu : KLMenu<MainMenuAction>
+	internal class DataCollectionMenu : KLMenu<MainMenuAction>
 	{
 		public DataCollectionMenu(Transform container, ModuleList module_list) : base(container, module_list)
 		{

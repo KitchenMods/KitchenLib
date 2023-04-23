@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace KitchenLib.Views
 {
-	public class SyncMods : UpdatableObjectView<SyncMods.ViewData>
+	internal class SyncMods : UpdatableObjectView<SyncMods.ViewData>
 	{
 		#region ECS View System (Runs on host and updates views to be broadcasted to clients)
 		public class UpdateView : IncrementalViewSystemBase<ViewData>, IModSystem

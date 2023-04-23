@@ -1,28 +1,22 @@
 ﻿using Kitchen;
 using Kitchen.Modules;
-using KitchenData;
 using KitchenLib.Customs;
 using KitchenLib.Preferences;
-using KitchenLib.Views;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Steamworks.Data;
-using Steamworks.Ugc;
-using System.Drawing.Text;
 using KitchenMods;
+using KitchenLib.Views;
 
 namespace KitchenLib.UI
 {
-	public class PreferenceMenu<T> : KLMenu<T>
+	internal class PreferenceMenu<T> : KLMenu<T>
 	{
-		public PreferenceMenu(Transform container, ModuleList module_list) : base(container, module_list)
-		{
-		}
+		public PreferenceMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
 
 		public Dictionary<(bool, int), string> Capes = new Dictionary<(bool, int), string>
 		{
@@ -47,8 +41,11 @@ namespace KitchenLib.UI
 			ClientEquipCapes.CapeID = capeID;
 			ClientEquipCapes.PlayerID = playerID;
 		}
+
 		public override void Setup(int player_id)
 		{
+			capeIDs.Clear();
+			capeNames.Clear();
 			foreach ((bool, int) key in Capes.Keys)
 			{
 				if (key.Item1)
@@ -57,8 +54,6 @@ namespace KitchenLib.UI
 					capeNames.Add(Capes[key]);
 				}
 			}
-
-			capeSelector = new Option<int>(capeIDs, 0, capeNames);
 
 			Player player = null;
 			CPlayerCosmetics cosmetics = new CPlayerCosmetics();
@@ -73,7 +68,7 @@ namespace KitchenLib.UI
 				}
 			}
 			AddLabel("Are you over 13 years old?");
-			AddSelect<bool>(_over_13);
+			AddSelect(_over_13);
 			_over_13.OnChanged += delegate (object _, bool result)
 			{
 				Main.manager.GetPreference<PreferenceBool>("over13").Set(result);
@@ -82,7 +77,7 @@ namespace KitchenLib.UI
 			New<SpacerElement>(true);
 
 			AddLabel("Do you permit the collection data?");
-			AddSelect<bool>(_data_consent);
+			AddSelect(_data_consent);
 			_data_consent.OnChanged += delegate (object _, bool result)
 			{
 				Main.manager.GetPreference<PreferenceBool>("datacollection").Set(result);
@@ -167,7 +162,7 @@ namespace KitchenLib.UI
 			AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate (int i)
 			{
 				Main.manager.Save();
-				this.RequestPreviousMenu();
+				RequestPreviousMenu();
 			}, 0, 1f, 0.2f);
 		}
 

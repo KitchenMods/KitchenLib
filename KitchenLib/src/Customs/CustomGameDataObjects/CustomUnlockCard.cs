@@ -1,5 +1,4 @@
 using KitchenData;
-using KitchenLib.Patches;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomUnlockCard : CustomUnlock<UnlockCard>
+	public abstract class CustomUnlockCard : CustomUnlock<UnlockCard>
     {
         public virtual List<UnlockEffect> Effects { get; protected set; } = new List<UnlockEffect>();
 
@@ -42,9 +41,9 @@ namespace KitchenLib.Customs
             }
 
             if (!string.IsNullOrEmpty(IconOverride))
-                Unlock_Patch.AddIconOverride(result.ID, IconOverride);
+				UnlockOverrides.AddIconOverride(result.ID, IconOverride);
             if (ColourOverride != new Color())
-                Unlock_Patch.AddColourOverride(result.ID, ColourOverride);
+				UnlockOverrides.AddColourOverride(result.ID, ColourOverride);
 
             gameDataObject = result;
         }

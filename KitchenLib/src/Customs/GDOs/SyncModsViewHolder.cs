@@ -1,21 +1,13 @@
-﻿using KitchenData;
-using KitchenLib.Customs;
+﻿using KitchenLib.Customs.GDOs;
 using KitchenLib.Views;
 using UnityEngine;
 
-namespace KitchenLib.src.Customs
+namespace KitchenLib.Customs
 {
-	public class SyncModsViewHolder : CustomAppliance
+	internal class SyncModsViewHolder : BaseViewHolder<SyncMods>
 	{
 		public override string UniqueNameID => "SyncModsViewHolder";
 		public override GameObject Prefab => new GameObject("SyncModsViewHolder");
-		public override bool IsPurchasable => false;
-		public override bool IsNonInteractive => true;
 		public override string Name => "SyncModsViewHolder";
-
-		public override void OnRegister(Appliance gameDataObject)
-		{
-			gameDataObject.Prefab.AddComponent<SyncMods>();
-		}
 	}
 }

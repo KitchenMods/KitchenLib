@@ -1,6 +1,5 @@
 ﻿using Kitchen;
 using KitchenData;
-using KitchenLib.Customs;
 using KitchenLib.Systems;
 using KitchenLib.Utils;
 using KitchenMods;
@@ -8,12 +7,11 @@ using MessagePack;
 using System;
 using Unity.Collections;
 using Unity.Entities;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace KitchenLib.Views
 {
-	public class ClientEquipCapes : UpdatableObjectView<ClientEquipCapes.ViewData>, ISpecificViewResponse
+	internal class ClientEquipCapes : UpdatableObjectView<ClientEquipCapes.ViewData>, ISpecificViewResponse
 	{
 		public class UpdateView : ResponsiveViewSystemBase<ViewData, ResponseData>, IModSystem
 		{
@@ -79,7 +77,7 @@ namespace KitchenLib.Views
 		}
 
 		private Action<IResponseData, Type> Callback;
-		
+
 		public void Update()
 		{
 		}

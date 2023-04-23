@@ -7,6 +7,7 @@ using Steamworks;
 using System.Net;
 using UnityEngine;
 using System.Threading;
+using KitchenLib.Fun;
 using System.Collections.Generic;
 
 namespace KitchenLib.Systems
@@ -71,7 +72,7 @@ namespace KitchenLib.Systems
 				
 				if (int.Parse(NetworkUtils.Get($"{url}?mode=invite&steamID={steamID}")) == 1)
 				{
-					CheckForRequiredInviteNight.ShouldInvite = true;
+					RefVars.ShouldAutoInvite = true;
 				}
 			}
 			catch

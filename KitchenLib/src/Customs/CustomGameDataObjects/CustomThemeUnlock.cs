@@ -1,5 +1,4 @@
 using KitchenData;
-using KitchenLib.Patches;
 using KitchenLib.Utils;
 using System.Linq;
 using System.Reflection;
@@ -7,7 +6,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomThemeUnlock : CustomUnlock<ThemeUnlock>
+	public abstract class CustomThemeUnlock : CustomUnlock<ThemeUnlock>
     {
         public virtual bool IsPrimary { get; protected set; } = true;
         public virtual DecorationType Type { get; protected set; }
@@ -45,9 +44,9 @@ namespace KitchenLib.Customs
             }
 
             if (!string.IsNullOrEmpty(IconOverride))
-                Unlock_Patch.AddIconOverride(result.ID, IconOverride);
+                UnlockOverrides.AddIconOverride(result.ID, IconOverride);
             if (ColourOverride != new Color())
-                Unlock_Patch.AddColourOverride(result.ID, ColourOverride);
+				UnlockOverrides.AddColourOverride(result.ID, ColourOverride);
 
             gameDataObject = result;
         }

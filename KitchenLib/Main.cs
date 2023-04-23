@@ -1,15 +1,13 @@
 using Kitchen;
-using Kitchen.NetworkSupport;
 using KitchenData;
 using KitchenLib.Colorblind;
 using KitchenLib.Customs;
+using KitchenLib.Customs.GDOs;
 using KitchenLib.DevUI;
 using KitchenLib.Event;
 using KitchenLib.Preferences;
-using KitchenLib.ShhhDontTellAnyone;
-using KitchenLib.src.Customs;
+using KitchenLib.Fun;
 using KitchenLib.UI;
-using KitchenLib.Utils;
 using KitchenMods;
 using System.IO;
 using System.Linq;
@@ -35,6 +33,7 @@ namespace KitchenLib
 		public static CustomAppliance ClientEquipCapeViewHolder;
 		public static CustomAppliance SyncModsViewHolder;
 		public static AssetBundle bundle;
+
 		public static PreferenceManager manager;
 		public static PreferenceManager cosmeticManager;
 
@@ -60,18 +59,20 @@ namespace KitchenLib
 			TileHighlighterViewHolder = AddGameDataObject<TileHighlighterViewHolder>();
 			ClientEquipCapeViewHolder = AddGameDataObject<ClientEquipCapeViewHolder>();
 			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
-			AddGameDataObject<ItsHappening_Cape>();
-			AddGameDataObject<Staff_Cape>();
-			AddGameDataObject<Support_Cape>();
-			AddGameDataObject<KitchenLib_Cape>();
-			AddGameDataObject<Twitch_Cape>();
-			AddGameDataObject<Easter_Cape>();
-			AddGameDataObject<Gears_Cape>();
-			AddGameDataObject<_21_Balloon>();
+			AddGameDataObject<ItsHappeningCape>();
+			AddGameDataObject<PlateUpStaffCape>();
+			AddGameDataObject<PlateUpSupportCape>();
+			AddGameDataObject<KitchenLibCape>();
+			AddGameDataObject<TwitchCape>();
+			AddGameDataObject<EasterCape>();
+			AddGameDataObject<GearsCape>();
+			AddGameDataObject<_21Balloon>();
 			
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
+
+			FeatureFlags.Init();
 		}
 		protected override void OnInitialise()
 		{
@@ -88,7 +89,7 @@ namespace KitchenLib
 			});
 			*/
 
-			if (StringUtils.GetInt32HashCode(SteamPlatform.Steam.Me.ID.ToString()) == 1774237577)
+			if (FeatureFlags.FunMenu)
 			{
 				RegisterMenu<FunMenu>();
 			}

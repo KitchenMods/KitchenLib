@@ -1,9 +1,6 @@
 using Kitchen;
 using KitchenData;
-using KitchenLib.Colorblind;
-using KitchenLib.Patches;
 using KitchenLib.References;
-using KitchenLib.ShhhDontTellAnyone;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +10,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomItemGroup : CustomItemGroup<ItemGroupView> { }
+	public abstract class CustomItemGroup : CustomItemGroup<ItemGroupView> { }
     public abstract class CustomItemGroup<T> : CustomItem<ItemGroup> where T : ItemGroupView
     {
         public virtual List<ItemGroup.ItemSet> Sets { get; protected set; } = new List<ItemGroup.ItemSet>();
@@ -51,8 +48,8 @@ namespace KitchenLib.Customs
 			//if (!string.IsNullOrEmpty(ColourBlindTag))
 			//ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
 
-			if (RewardOverride != -1)
-                Item_Patch.AddRewardOverride(result.ID, RewardOverride);
+            if (RewardOverride != -1)
+                ItemOverrides.AddRewardOverride(result.ID, RewardOverride);
 
             if (result.CanContainSide != CanContainSide) result.CanContainSide = CanContainSide;
             if (result.ApplyProcessesToComponents != ApplyProcessesToComponents) result.ApplyProcessesToComponents = ApplyProcessesToComponents;
