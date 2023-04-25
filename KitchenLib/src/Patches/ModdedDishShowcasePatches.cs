@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace KitchenLib.src.Patches {
+namespace KitchenLib.Patches {
 
     [HarmonyPatch(typeof(MenuBackgroundItemScroller), "Update")]
-    public class MenuBackgroundItemScroller_Update_Patch {
+    internal class MenuBackgroundItemScrollerUpdatePatch {
 
         private static readonly int REFRESH_COOLDOWN = 500;
         private static readonly int INITIAL_REFRESH_COOLDOWN = 0;
@@ -60,7 +60,7 @@ namespace KitchenLib.src.Patches {
     }
 
     [HarmonyPatch(typeof(MenuBackgroundItemScroller), "CreateItem")]
-    public class MenuBackgroundItemScroller_CreateItem_Patch {
+    internal class MenuBackgroundItemScrollerCreateItemPatch {
 
         public static void Postfix(ref GameObject __result) {
             //changeRotationSoItemsAreNotTopDown(__result);

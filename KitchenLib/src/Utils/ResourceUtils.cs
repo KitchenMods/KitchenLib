@@ -31,11 +31,21 @@ namespace KitchenLib.Utils
 			return null;
 		}
 
+		private static Dictionary<int, Texture2D> loadTextureFromFileCache = new Dictionary<int, Texture2D>(); 
+
 		public static Texture2D LoadTextureFromFile(string FilePath)
 		{
-			if (File.Exists(FilePath))
+			if (loadTextureFromFileCache.ContainsKey(VariousUtils.GetID("FilePath")))
 			{
-				return LoadTextureRaw(File.ReadAllBytes(FilePath));
+				return loadTextureFromFileCache[VariousUtils.GetID("FilePath")];
+			}
+			else
+			{
+				if (File.Exists(FilePath))
+				{
+					loadTextureFromFileCache.Add(VariousUtils.GetID("FilePath"), LoadTextureRaw(File.ReadAllBytes(FilePath)));
+					return loadTextureFromFileCache[VariousUtils.GetID("FilePath")];
+				}
 			}
 			return null;
 		}

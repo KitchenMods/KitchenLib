@@ -1,5 +1,5 @@
 using KitchenData;
-using KitchenLib.Patches;
+using KitchenLib.References;
 using KitchenLib.Utils;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomDish : CustomUnlock<Dish>
+	public abstract class CustomDish : CustomUnlock<Dish>
     {
         public virtual DishType Type { get; protected set; }
         public virtual string AchievementName { get; protected set; }
@@ -22,6 +22,8 @@ namespace KitchenLib.Customs
         public virtual GameObject DisplayPrefab { get; protected set; }
         public virtual List<Dish.MenuItem> ResultingMenuItems { get; protected set; } = new List<Dish.MenuItem>();
         public virtual HashSet<Dish.IngredientUnlock> IngredientsUnlocks { get; protected set; } = new HashSet<Dish.IngredientUnlock>();
+		public virtual Item RequiredDishItem { get; protected set; }
+		public virtual bool RequiredNoDishItem { get; protected set; } = false;
 
         [Obsolete("Please use HardcodedRequirements")]
         public virtual HashSet<Dish> PrerequisiteDishesEditor { get; protected set; } = new HashSet<Dish>();
@@ -64,9 +66,9 @@ namespace KitchenLib.Customs
             }
 
             if (!string.IsNullOrEmpty(IconOverride))
-                Unlock_Patch.AddIconOverride(result.ID, IconOverride);
+                UnlockOverrides.AddIconOverride(result.ID, IconOverride);
             if (ColourOverride != new Color())
-                Unlock_Patch.AddColourOverride(result.ID, ColourOverride);
+				UnlockOverrides.AddColourOverride(result.ID, ColourOverride);
 
             gameDataObject = result;
         }
@@ -93,7 +95,18 @@ namespace KitchenLib.Customs
 
             if (hardcodedRequirements.GetValue(result) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
             if (hardcodedBlockers.GetValue(result) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
-        }
+			
+			if (!RequiredNoDishItem)
+			{
+				if (RequiredDishItem != null)
+					result.MinimumIngredients.Add(RequiredDishItem);
+				else
+					result.MinimumIngredients.Add((Item)GDOUtils.GetExistingGDO(ItemReferences.Plate));
+			}
+
+
+
+		}
 
         public override void OnRegister(GameDataObject gameDataObject)
         {

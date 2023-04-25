@@ -1,16 +1,16 @@
 using Kitchen;
 using KitchenData;
-using KitchenLib.Colorblind;
-using KitchenLib.Patches;
+using KitchenLib.References;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using TMPro;
 using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomItemGroup : CustomItemGroup<ItemGroupView> { }
+	public abstract class CustomItemGroup : CustomItemGroup<ItemGroupView> { }
     public abstract class CustomItemGroup<T> : CustomItem<ItemGroup> where T : ItemGroupView
     {
         public virtual List<ItemGroup.ItemSet> Sets { get; protected set; } = new List<ItemGroup.ItemSet>();
@@ -18,9 +18,10 @@ namespace KitchenLib.Customs
         public virtual bool ApplyProcessesToComponents { get; protected set; }
         public virtual bool AutoCollapsing { get; protected set; }
         public virtual bool AutoSetupItemGroupView { get; protected set; } = true;
+		public virtual List<ItemGroupView.ColourBlindLabel> Labels { get; protected set; } = new List<ItemGroupView.ColourBlindLabel>();
 
-        //private static readonly ItemGroup empty = ScriptableObject.CreateInstance<ItemGroup>();
-        public override void Convert(GameData gameData, out GameDataObject gameDataObject)
+		//private static readonly ItemGroup empty = ScriptableObject.CreateInstance<ItemGroup>();
+		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             ItemGroup result = ScriptableObject.CreateInstance<ItemGroup>();
 
@@ -44,11 +45,11 @@ namespace KitchenLib.Customs
             if (result.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (result.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
 
-            if (!string.IsNullOrEmpty(ColourBlindTag))
-                ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
+			//if (!string.IsNullOrEmpty(ColourBlindTag))
+			//ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
 
             if (RewardOverride != -1)
-                Item_Patch.AddRewardOverride(result.ID, RewardOverride);
+                ItemOverrides.AddRewardOverride(result.ID, RewardOverride);
 
             if (result.CanContainSide != CanContainSide) result.CanContainSide = CanContainSide;
             if (result.ApplyProcessesToComponents != ApplyProcessesToComponents) result.ApplyProcessesToComponents = ApplyProcessesToComponents;
@@ -104,7 +105,24 @@ namespace KitchenLib.Customs
                 {
                     ItemGroupViewUtils.AddSideContainer(gameData, result, localView);
                 }
-            }
-        }
+			}
+			Item steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
+			if (steak != null)
+			{
+				GameObject ColorBlind = GameObject.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject);
+				ColorBlind.transform.SetParent(result.Prefab.transform);
+				ColorBlind.transform.localPosition = new Vector3(0, 0, 0);
+
+				FieldInfo info = ReflectionUtils.GetField<T>("ColourblindLabel");
+				T x = result.Prefab.GetComponent<T>();
+				info.SetValue(x, ColorBlind.transform.Find("Title").GetComponent<TextMeshPro>());
+
+				if (Labels != null)
+				{
+					FieldInfo info2 = ReflectionUtils.GetField<T>("ComponentLabels");
+					info2.SetValue(x, Labels);
+				}
+			}
+		}
     }
 }

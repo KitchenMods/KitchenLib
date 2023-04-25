@@ -7,7 +7,7 @@ using UnityEngine;
 namespace KitchenLib.Patches
 {
 	[HarmonyPatch(typeof(PlayerView), "GetSound")]
-	public class PlayerViewPatch
+	internal class PlayerViewAudioClipPatch
 	{
 		static void Postfix(ref AudioClip __result, int process)
 		{

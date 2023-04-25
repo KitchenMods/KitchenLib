@@ -1,16 +1,12 @@
 ﻿using Kitchen.Modules;
 using Kitchen;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using KitchenLib.Preferences;
 
 namespace KitchenLib.UI
 {
-	public class DataCollectionMenu : KLMenu<MainMenuAction>
+	internal class DataCollectionMenu : KLMenu<MainMenuAction>
 	{
 		public DataCollectionMenu(Transform container, ModuleList module_list) : base(container, module_list)
 		{
@@ -52,7 +48,7 @@ namespace KitchenLib.UI
 			}, 0, 1f, 0.2f);
 		}
 
-		private Option<bool> _over_13 = new Option<bool>(new List<bool> { true, false }, true, new List<string> { "Yes", "No" });
-		private Option<bool> _data_consent = new Option<bool>(new List<bool> { true, false }, true, new List<string> { "Yes", "No" });
+		private Option<bool> _over_13 = new Option<bool>(new List<bool> { true, false }, Main.manager.GetPreference<PreferenceBool>("over13").Value, new List<string> { "Yes", "No" });
+		private Option<bool> _data_consent = new Option<bool>(new List<bool> { true, false }, Main.manager.GetPreference<PreferenceBool>("datacollection").Value, new List<string> { "Yes", "No" });
 	}
 }

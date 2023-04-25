@@ -1,26 +1,25 @@
 using Kitchen;
-using Kitchen.NetworkSupport;
 using KitchenData;
 using KitchenLib.Colorblind;
 using KitchenLib.Customs;
+using KitchenLib.Customs.GDOs;
 using KitchenLib.DevUI;
 using KitchenLib.Event;
 using KitchenLib.Preferences;
-using KitchenLib.ShhhDontTellAnyone;
-using KitchenLib.src.Customs;
+using KitchenLib.Fun;
 using KitchenLib.UI;
-using KitchenLib.Utils;
 using KitchenMods;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using MessagePack;
 using KitchenLib.IMMS;
-using System.Linq;
-using System;
 using KitchenLib.Stats;
+using MessagePack;
+using System;
+using Kitchen.NetworkSupport;
+using KitchenLib.Utils;
 
 namespace KitchenLib
 {
@@ -29,15 +28,18 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.6.3";
-		public const string MOD_BETA_VERSION = "";
+		public const string MOD_VERSION = "0.6.6";
+		public const string MOD_BETA_VERSION = "3";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
 		public static CustomAppliance CommandViewHolder;
 		public static CustomAppliance InfoViewHolder;
 		public static CustomAppliance SendToClientViewHolder;
 		public static CustomAppliance TileHighlighterViewHolder;
+		public static CustomAppliance ClientEquipCapeViewHolder;
+		public static CustomAppliance SyncModsViewHolder;
 		public static AssetBundle bundle;
+
 		public static PreferenceManager manager;
 		public static PreferenceManager cosmeticManager;
 
@@ -50,24 +52,28 @@ namespace KitchenLib
 			manager.RegisterPreference(new PreferenceBool("over13", true));
 			manager.RegisterPreference(new PreferenceBool("datacollection", true));
 			manager.Load();
-
-			cosmeticManager.RegisterPreference(new PreferenceBool("isPlateUpDeveloper", false));
-			cosmeticManager.RegisterPreference(new PreferenceBool("isPlateUpStaff", false));
-			cosmeticManager.RegisterPreference(new PreferenceBool("isPlateUpSupport", false));
-			cosmeticManager.RegisterPreference(new PreferenceBool("isKitchenLibDeveloper", false));
-			cosmeticManager.RegisterPreference(new PreferenceBool("isTwitchStreamer", false));
+			foreach (string cape in Systems.UpdateData.capes)
+			{
+				cosmeticManager.RegisterPreference(new PreferenceBool(cape, false));
+			}
 
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).ToList()[0];
+			
 			CommandViewHolder = AddGameDataObject<CommandViewHolder>();
 			InfoViewHolder = AddGameDataObject<InfoViewHolder>();
 			SendToClientViewHolder = AddGameDataObject<SendToClientViewHolder>();
 			TileHighlighterViewHolder = AddGameDataObject<TileHighlighterViewHolder>();
-			AddGameDataObject<PlateUp_Cape>();
-			AddGameDataObject<PlateUp_Staff_Cape>();
-			AddGameDataObject<PlateUp_Support_Cape>();
-			AddGameDataObject<KitchenLib_Cape>();
-			AddGameDataObject<Twitch_Cape>();
-			AddGameDataObject<_21_Balloon>();
+			ClientEquipCapeViewHolder = AddGameDataObject<ClientEquipCapeViewHolder>();
+			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
+			AddGameDataObject<ItsHappeningCape>();
+			AddGameDataObject<StaffCape>();
+			AddGameDataObject<SupportCape>();
+			AddGameDataObject<KitchenLibCape>();
+			AddGameDataObject<TwitchCape>();
+			AddGameDataObject<EasterCape>();
+			AddGameDataObject<GearsCape>();
+			AddGameDataObject<_21Balloon>();
+			
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
@@ -106,6 +112,8 @@ namespace KitchenLib
 			byte[] bytes = MessagePackSerializer.Serialize(start);
 			IMMSNetworkMessage end = MessagePackSerializer.Deserialize<IMMSNetworkMessage>(bytes);
 			LogInfo($"channel={end.Channel} key={end.Key} source={end.Source} target={end.Target} args={string.Join(",", ((object[])end.Arguments[3]).Select(Convert.ToString))}");
+
+			FeatureFlags.Init();
 		}
 		protected override void OnInitialise()
 		{
@@ -167,6 +175,7 @@ namespace KitchenLib
 			{
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<PauseMenuAction>), new ModsMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<PauseMenuAction>), new ModsPreferencesMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ConfirmModSync), new ConfirmModSync(args.instance.ButtonContainer, args.module_list) });
 			};
 
 			Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent += (s, args) =>
