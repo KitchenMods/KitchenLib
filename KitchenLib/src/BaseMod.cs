@@ -1,5 +1,6 @@
 using KitchenLib.Customs;
 using KitchenLib.DevUI;
+using KitchenLib.Patches;
 using KitchenLib.Registry;
 using KitchenLib.Utils;
 using KitchenMods;
@@ -27,6 +28,8 @@ namespace KitchenLib
 		private static List<Assembly> PatchedAssemblies = new List<Assembly>();
 		private bool isRegistered = false;
 		private bool canRegisterGDO = false;
+
+		[Obsolete("This will point to different mods at different times, use your own singleton variable instead.")]
 		public static BaseMod instance;
 
 		public static HarmonyLib.Harmony harmonyInstance;
@@ -60,6 +63,8 @@ namespace KitchenLib
 
 		private void SetupMod(string modID, string modName, string author, string modVersion, string betaVersion, string compatibleVersions, Assembly assembly)
 		{
+			DebugLogPatch.SetupCustomLogHandler();
+
 			instance = this;
 			ModID = modID;
 			ModName = modName;
@@ -74,8 +79,6 @@ namespace KitchenLib
 			else
 				version = new KitchenVersion("", this);
 
-
-#if BEPINEX || WORKSHOP
 			if (harmonyInstance == null)
 				harmonyInstance = new HarmonyLib.Harmony(modID);
 			if (!PatchedAssemblies.Contains(assembly))
@@ -86,11 +89,10 @@ namespace KitchenLib
 					PatchedAssemblies.Add(assembly);
 				}
 			}
-#endif
+
 			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
 			isRegistered = ModRegistery.Register(this);
 			canRegisterGDO = true;
-
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

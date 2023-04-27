@@ -1,50 +1,43 @@
 ﻿using Kitchen;
 using Kitchen.NetworkSupport;
+using KitchenLib.Fun;
+using KitchenLib.Utils;
 using KitchenMods;
 
 namespace KitchenLib.Systems
 {
-	public class CheckForRequiredInviteNight : StartOfNightSystem, IModSystem
+	internal class CheckForRequiredInviteNight : StartOfNightSystem, IModSystem
 	{
-		internal static bool ShouldInvite = false;
-
-		protected override void Initialise()
-		{
-			base.Initialise();
-		}
 		protected override void OnUpdate()
 		{
 			UpdateData.RunInNewThread(true);
 
-			if (!ShouldInvite)
+			if (!FeatureFlags.AutoInvite || !RefVars.ShouldAutoInvite)
 				return;
 
 			if (Session.GetNetworkPermissions() == NetworkPermissions.Private)
 				Session.SetNetworkPermissions(NetworkPermissions.InviteOnly);
 			if (Session.GetNetworkPermissions() == NetworkPermissions.InviteOnly || Session.GetNetworkPermissions() == NetworkPermissions.Open)
 			{
-				SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(76561198188683018);
+				FeatureFlags.AutoInviteSteamIds.ForEach(steamId => SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(steamId));
 			}
 		}
 	}
-	public class CheckForRequiredInviteDay : StartOfDaySystem, IModSystem
+
+	internal class CheckForRequiredInviteDay : StartOfDaySystem, IModSystem
 	{
-		protected override void Initialise()
-		{
-			base.Initialise();
-		}
 		protected override void OnUpdate()
 		{
 			UpdateData.RunInNewThread(true);
 
-			if (!CheckForRequiredInviteNight.ShouldInvite)
+			if (!FeatureFlags.AutoInvite || !RefVars.ShouldAutoInvite)
 				return;
 
 			if (Session.GetNetworkPermissions() == NetworkPermissions.Private)
 				Session.SetNetworkPermissions(NetworkPermissions.InviteOnly);
 			if (Session.GetNetworkPermissions() == NetworkPermissions.InviteOnly || Session.GetNetworkPermissions() == NetworkPermissions.Open)
 			{
-				SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(76561198188683018);
+				FeatureFlags.AutoInviteSteamIds.ForEach(steamId => SteamPlatform.Steam.CurrentInviteLobby.InviteFriend(steamId));
 			}
 		}
 	}

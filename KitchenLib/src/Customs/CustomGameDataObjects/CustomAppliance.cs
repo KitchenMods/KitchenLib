@@ -1,6 +1,6 @@
 using Kitchen;
 using KitchenData;
-using KitchenLib.Patches;
+using KitchenLib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomAppliance : CustomLocalisedGameDataObject<Appliance, ApplianceInfo>, ICustomHasPrefab
+	public abstract class CustomAppliance : CustomLocalisedGameDataObject<Appliance, ApplianceInfo>, ICustomHasPrefab
     {
         public virtual GameObject Prefab { get; protected set; }
         public virtual GameObject HeldAppliancePrefab { get; protected set; }
@@ -123,7 +123,7 @@ namespace KitchenLib.Customs
 
             if (PurchaseCostOverride != -1)
             {
-                Appliance_Patch.AddPurchaseCostOverride(result.ID, PurchaseCostOverride);
+                ApplianceOverrides.AddPurchaseCostOverride(result.ID, PurchaseCostOverride);
             }
 
             if (InfoList.Count > 0)

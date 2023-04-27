@@ -3,11 +3,15 @@
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
 		<Configurations>Workshop</Configurations>
-		<AssemblyName>$(MSBuildProjectName)-$(Configuration)</AssemblyName>
+		<AssemblyName>$(MSBuildProjectName)-Workshop</AssemblyName>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<WorkshopDir>$(ProjectDir)content</WorkshopDir>
+		
+		<EnableAssetBundleDeploy>true</EnableAssetBundleDeploy>
+		
 		<EnableDocumentation>true</EnableDocumentation>
 	</PropertyGroup>
 
@@ -16,31 +20,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="MessagePack" Version="2.4.59" />
 	  <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-	  <PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.6.16" />
+	  <PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.8.3" />
 	  <PackageReference Include="Krafs.Publicizer" Version="2.2.1" />
 	</ItemGroup>
 	<ItemGroup>
-		<Publicize Include="Kitchen.Common:Kitchen.PlayerCosmeticSubview.AttachmentPoint" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Reference Include="0Harmony">
-			<HintPath>..\..\..\..\Libraries\MelonLoader\0Harmony.dll</HintPath>
-		</Reference>
-		<Reference Include="Facepunch.Steamworks.Win64">
-			<HintPath>$(GamePath)\PlateUp_Data\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
-		</Reference>
-		<Reference Include="ShapesRuntime">
-		  <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp\PlateUp_Data\Managed\ShapesRuntime.dll</HintPath>
-		</Reference>
-		<Reference Include="System.Net.Http">
-			<HintPath>$(GamePath)\PlateUp_Data\Managed\System.Net.Http.dll</HintPath>
-		</Reference>
-		<Reference Include="System.Web">
-			<HintPath>$(GamePath)\PlateUp_Data\Managed\System.Web.dll</HintPath>
-		</Reference>
+		<Publicize Include="Kitchen.Common:Kitchen.PlayerCosmeticSubview+AttachmentPoint" />
+		<Publicize Include="Kitchen.Common:Kitchen.PlayerCosmeticSubview+AttachedCosmetic" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -57,5 +43,27 @@
 			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
 		</None>
 	</ItemGroup>
+
+	<!-- Exclude build artifacts and Unity project -->
+	<ItemGroup>
+		<Compile Remove="content\**" />
+		<Compile Remove="UnityProject\**" />
+		<EmbeddedResource Remove="content\**" />
+		<EmbeddedResource Remove="UnityProject\**" />
+		<None Remove="content\**" />
+		<None Remove="UnityProject\**" />
+	</ItemGroup>
+
+	<!-- Exclude workshop metadata -->
+	<ItemGroup>
+		<None Remove="plateup_mod_metadata.json" />
+		<None Remove="*.png" />
+	</ItemGroup>
+
+	<!-- Deploy builds to content/ folder -->
+	<Target Name="BundleWorkshop" AfterTargets="Build" Condition="$(EnableModDeployLocal) == 'true'">
+		<Copy SourceFiles="$(TargetDir)$(MSBuildProjectName)-Workshop.dll" DestinationFolder="$(WorkshopDir)" />
+		<Copy SourceFiles="$(TargetDir)$(MSBuildProjectName)-Workshop.xml" DestinationFolder="$(WorkshopDir)" />
+	</Target>
 
 </Project>

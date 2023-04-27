@@ -6,20 +6,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.6.16" />
+		<PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.8.3" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\KitchenLib\KitchenLib.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Include="BepInEx">
-	    <HintPath>..\..\..\..\Libraries\BepInEx\core\BepInEx.dll</HintPath>
-	  </Reference>
-	  <Reference Include="MelonLoader">
-	    <HintPath>..\..\..\..\Libraries\MelonLoader\MelonLoader.dll</HintPath>
-	  </Reference>
 	</ItemGroup>
 
 </Project>

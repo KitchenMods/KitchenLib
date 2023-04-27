@@ -6,13 +6,25 @@ using KitchenMods;
 using Steamworks;
 using System.Net;
 using UnityEngine;
-using Unity.Entities;
 using System.Threading;
+using KitchenLib.Fun;
+using System.Collections.Generic;
 
 namespace KitchenLib.Systems
 {
 	public class UpdateData : GameSystemBase, IModSystem
 	{
+		public static List<string> capes = new List<string>
+		{
+			"itsHappening",
+			"staff",
+			"kitchenlib",
+			"support",
+			"twitch",
+			"easter2023",
+			"gears2023",
+			"discordboost"
+		};
 		public static void CheckAllData(bool isForced)
 		{
 			if (Main.manager.GetPreference<PreferenceBool>("datacollection").Value && Main.manager.GetPreference<PreferenceBool>("over13").Value)
@@ -48,20 +60,35 @@ namespace KitchenLib.Systems
 			//Data Update
 			try
 			{
+				string lobby = SteamPlatform.Steam.CurrentInviteLobby.Id.ToString();
 				if (!forced)
-					NetworkUtils.Get($"{url}?mode=update&steamID={steamID}&steamName={steamName}&gameVersion={gameVersion}&klVersion={klVersion}");
+					NetworkUtils.Get($"{url}?mode=update&steamID={steamID}&steamName={steamName}&gameVersion={gameVersion}&klVersion={klVersion}&lobbyID={lobby}");
 				else
-					NetworkUtils.Get($"{url}?mode=update&steamID={steamID}&steamName={steamName}&gameVersion={gameVersion}&klVersion={klVersion}&forced=1");
+					NetworkUtils.Get($"{url}?mode=update&steamID={steamID}&steamName={steamName}&gameVersion={gameVersion}&klVersion={klVersion}&lobbyID={lobby}&forced=1");
 				char[] cosmetic = NetworkUtils.Get($"{url}?mode=cosmetic&steamID={steamID}").ToCharArray();
-				Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpDeveloper").Set(cosmetic[0] == '1');
-				Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpStaff").Set(cosmetic[1] == '1');
-				Main.cosmeticManager.GetPreference<PreferenceBool>("isKitchenLibDeveloper").Set(cosmetic[2] == '1');
-				Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpSupport").Set(cosmetic[3] == '1');
-				Main.cosmeticManager.GetPreference<PreferenceBool>("isTwitchStreamer").Set(cosmetic[4] == '1');
-				Main.cosmeticManager.GetPreference<PreferenceBool>("isEasterChampion").Set(cosmetic[5] == '1');
+
+				foreach (string cape in capes)
+				{
+					Main.cosmeticManager.GetPreference<PreferenceBool>(cape).Set(cosmetic[capes.IndexOf(cape)] == '1');
+				}
+				
 				if (int.Parse(NetworkUtils.Get($"{url}?mode=invite&steamID={steamID}")) == 1)
 				{
-					CheckForRequiredInviteNight.ShouldInvite = true;
+					RefVars.ShouldAutoInvite = true;
+				}
+			}
+			catch
+			{
+			}
+		}
+		public static void UpdateInviteData()
+		{
+			string steamID = StringUtils.GetInt32HashCode(SteamPlatform.Steam.Me.ID.ToString()).ToString();
+			try
+			{
+				if (int.Parse(NetworkUtils.Get($"http://api.plateupmodding.com?mode=invite&steamID={steamID}")) == 1)
+				{
+					RefVars.ShouldAutoInvite = true;
 				}
 			}
 			catch
