@@ -99,6 +99,8 @@ namespace KitchenLib.Fun
 						CommandViewHelpers.Main.ResetOrder(data.Location);
 						break;
 				}
+
+				data.Mode = FunMode.None;
 			}
 		}
 

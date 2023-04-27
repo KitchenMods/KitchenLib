@@ -1,6 +1,10 @@
-﻿using KitchenLib.DevUI;
+﻿using Kitchen.Transports;
+using Kitchen;
+using KitchenLib.DevUI;
+using Steamworks;
 using System.Collections.Generic;
 using UnityEngine;
+using WebSocketSharp;
 
 namespace KitchenLib.Fun
 {
@@ -36,6 +40,7 @@ namespace KitchenLib.Fun
 		private Vector2 unlockSelectorScrollPosition;
 		private string ApplianceSearch = "";
 		private string UnlockSearch = "";
+		private string LobbyID = "";
 		public override void Setup()
 		{
 			BuildHeader();
@@ -578,6 +583,7 @@ namespace KitchenLib.Fun
 			BuildCustomerSpawner();
 			BuildBlueprintSpawner();
 			BuildDishSelector();
+			BuildLobbyJoiner();
 		}
 
 		#region BuildMiscPage
@@ -697,7 +703,7 @@ namespace KitchenLib.Fun
 			GUI.skin.label.fontSize = defaultFontSize;
 			GUI.skin.label.alignment = defaultTextAnchor;
 			GUILayout.EndArea();
-			
+
 			GUILayout.BeginArea(new Rect(398, 40, 139, 20));
 			UnlockSearch = GUILayout.TextField(UnlockSearch);
 			GUILayout.EndArea();
@@ -721,6 +727,26 @@ namespace KitchenLib.Fun
 				}
 			}
 			GUILayout.EndScrollView();
+			GUILayout.EndArea();
+		}
+		
+		private void BuildLobbyJoiner()
+		{
+			GUILayout.BeginArea(new Rect(646, 10, 139, 20));
+			LobbyID = GUILayout.TextArea(LobbyID);
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(646, 40, 139, 20));
+			if (GUILayout.Button("Join Lobby"))
+			{
+				if (!LobbyID.IsNullOrEmpty())
+				{
+					Session.JoinGame(new SteamNetworkTarget(new SteamId
+					{
+						Value = ulong.Parse(LobbyID)
+					}), true);
+				}
+			}
 			GUILayout.EndArea();
 		}
 		#endregion

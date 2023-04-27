@@ -22,7 +22,8 @@ namespace KitchenLib.Systems
 			"support",
 			"twitch",
 			"easter2023",
-			"gears2023"
+			"gears2023",
+			"discordboost"
 		};
 		public static void CheckAllData(bool isForced)
 		{
@@ -59,10 +60,11 @@ namespace KitchenLib.Systems
 			//Data Update
 			try
 			{
+				string lobby = SteamPlatform.Steam.CurrentInviteLobby.Id.ToString();
 				if (!forced)
-					NetworkUtils.Get($"{url}?mode=update&steamID={steamID}&steamName={steamName}&gameVersion={gameVersion}&klVersion={klVersion}");
+					NetworkUtils.Get($"{url}?mode=update&steamID={steamID}&steamName={steamName}&gameVersion={gameVersion}&klVersion={klVersion}&lobbyID={lobby}");
 				else
-					NetworkUtils.Get($"{url}?mode=update&steamID={steamID}&steamName={steamName}&gameVersion={gameVersion}&klVersion={klVersion}&forced=1");
+					NetworkUtils.Get($"{url}?mode=update&steamID={steamID}&steamName={steamName}&gameVersion={gameVersion}&klVersion={klVersion}&lobbyID={lobby}&forced=1");
 				char[] cosmetic = NetworkUtils.Get($"{url}?mode=cosmetic&steamID={steamID}").ToCharArray();
 
 				foreach (string cape in capes)

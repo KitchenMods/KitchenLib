@@ -25,7 +25,7 @@ namespace KitchenLib
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
 		public const string MOD_VERSION = "0.6.6";
-		public const string MOD_BETA_VERSION = "3";
+		public const string MOD_BETA_VERSION = "";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
 		public static CustomAppliance CommandViewHolder;
@@ -47,6 +47,7 @@ namespace KitchenLib
 			manager.RegisterPreference(new PreferenceBool("hasrequested", false));
 			manager.RegisterPreference(new PreferenceBool("over13", true));
 			manager.RegisterPreference(new PreferenceBool("datacollection", true));
+			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));
 			manager.Load();
 			foreach (string cape in Systems.UpdateData.capes)
 			{
@@ -68,6 +69,7 @@ namespace KitchenLib
 			AddGameDataObject<TwitchCape>();
 			AddGameDataObject<EasterCape>();
 			AddGameDataObject<GearsCape>();
+			AddGameDataObject<Discord_BoostCape>();
 			AddGameDataObject<_21Balloon>();
 			
 			SetupMenus();
