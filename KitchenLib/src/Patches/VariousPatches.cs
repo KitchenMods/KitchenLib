@@ -1,4 +1,4 @@
-using HarmonyLib;
+﻿using HarmonyLib;
 using Kitchen;
 using Unity.Collections;
 using Unity.Entities;
@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using KitchenMods;
 using KitchenData;
 using KitchenLib.Preferences;
+using Kitchen.NetworkSupport;
 
 namespace KitchenLib.Patches
 {
@@ -23,19 +24,6 @@ namespace KitchenLib.Patches
 	}
 	#endregion
 
-	#region TOREMOVE: Rich presence modifications
-	/*
-	[HarmonyPatch(typeof(SteamRichPresenceView), "UpdateDiscordRichPresence")]
-	internal class SteamRichPresenceView_Patch
-	{
-		public static void Postfix(SteamRichPresenceView __instance, SteamRichPresenceView.ViewData view_data)
-		{
-			// Temporarily disabled to re-enable vanilla rich presense
-			// DiscordPlatform.Discord.SetActivity("Plating Up Some Pizza", "", view_data.Data.Players);
-		}
-	}
-	*/
-	#endregion
 
 	#region Multiplayer player profiles bug fix
 	[HarmonyPatch(typeof(PlayerInfoManager.UpdateView), "HandleResponse")]

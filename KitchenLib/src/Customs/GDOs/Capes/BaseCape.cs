@@ -16,17 +16,10 @@ namespace KitchenLib.Customs.GDOs
 
 		public override void OnRegister(PlayerCosmetic gameDataObject)
 		{
-			Main.LogInfo($"Registering {CapeName} cape...");
 			GameObject Prefab = gameDataObject.Visual;
-			if (Prefab == null)
-				Main.LogInfo("------------------ NULL");
-			Main.LogInfo($"1");
 			PlayerOutfitComponent playerOutfitComponent = Prefab.AddComponent<PlayerOutfitComponent>();
-			Main.LogInfo($"2");
 			playerOutfitComponent.Renderers.Add(GameObjectUtils.GetChildObject(Prefab, "Cape").GetComponent<SkinnedMeshRenderer>());
-			Main.LogInfo($"3");
 			playerOutfitComponent.Renderers.Add(GameObjectUtils.GetChildObject(Prefab, CapeName).GetComponent<SkinnedMeshRenderer>());
-			Main.LogInfo($"4");
 		}
 	}
 }

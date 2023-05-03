@@ -11,11 +11,10 @@ using UnityEngine.InputSystem;
 
 namespace KitchenLib.Views
 {
-	internal class ClientEquipCapes : UpdatableObjectView<ClientEquipCapes.ViewData>, ISpecificViewResponse
+	public class ClientEquipCapes : UpdatableObjectView<ClientEquipCapes.ViewData>, ISpecificViewResponse
 	{
 		public class UpdateView : ResponsiveViewSystemBase<ViewData, ResponseData>, IModSystem
 		{
-			private CommandViewHelpers helpers = null;
 
 			EntityQuery Query;
 			PlayerManager pm = null;
@@ -47,7 +46,10 @@ namespace KitchenLib.Views
 					{
 						if (Require(player.Entity, out CPlayerCosmetics cosmetics))
 						{
-							cosmetics.Set((CosmeticType)VariousUtils.GetID("Cape"), data.CapeID);
+							if (data.CapeID == -1)
+								cosmetics.Set((CosmeticType)VariousUtils.GetID("Cape"), 0);
+							else
+								cosmetics.Set((CosmeticType)VariousUtils.GetID("Cape"), data.CapeID);
 							EntityManager.SetComponentData(player.Entity, cosmetics);
 						}
 					}

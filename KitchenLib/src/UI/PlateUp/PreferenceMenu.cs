@@ -27,6 +27,7 @@ namespace KitchenLib.UI
 			{(Main.cosmeticManager.GetPreference<PreferenceBool>("twitch").Value, GDOUtils.GetCustomGameDataObject<TwitchCape>().ID),"Twitch Cape"},
 			{(Main.cosmeticManager.GetPreference<PreferenceBool>("easter2023").Value, GDOUtils.GetCustomGameDataObject<EasterCape>().ID),"Easter Champion Cape"},
 			{(Main.cosmeticManager.GetPreference<PreferenceBool>("gears2023").Value, GDOUtils.GetCustomGameDataObject<GearsCape>().ID),"Gears Champion Cape"},
+			{(Main.cosmeticManager.GetPreference<PreferenceBool>("discordboost").Value, GDOUtils.GetCustomGameDataObject<Discord_BoostCape>().ID),"Booster Cape"},
 		};
 
 		private List<int> capeIDs = new List<int>();
@@ -82,7 +83,16 @@ namespace KitchenLib.UI
 			{
 				Main.manager.GetPreference<PreferenceBool>("datacollection").Set(result);
 			};
-			
+
+			New<SpacerElement>(true);
+
+			AddLabel("Changing Main Menu");
+			AddSelect(scrollingMenu);
+			scrollingMenu.OnChanged += delegate (object _, bool result)
+			{
+				Main.manager.GetPreference<PreferenceBool>("enableChangingMenu").Set(result);
+			};
+
 			New<SpacerElement>(true);
 
 			AddButton("Dump Details", delegate (int i)
@@ -141,6 +151,8 @@ namespace KitchenLib.UI
 
 			if (capeIDs.Count > 0)
 			{
+				capeIDs.Add(-1);
+				capeNames.Add("Disable Cape");
 				AddLabel("Equip Cape");
 				if (capeIDs.Count > 0)
 				{
@@ -168,6 +180,7 @@ namespace KitchenLib.UI
 
 		private Option<bool> _over_13 = new Option<bool>(new List<bool> { true, false }, Main.manager.GetPreference<PreferenceBool>("over13").Value, new List<string> { "Yes", "No" });
 		private Option<bool> _data_consent = new Option<bool>(new List<bool> { true, false }, Main.manager.GetPreference<PreferenceBool>("datacollection").Value, new List<string> { "Yes", "No" });
+		private Option<bool> scrollingMenu = new Option<bool>(new List<bool> { true, false }, Main.manager.GetPreference<PreferenceBool>("enableChangingMenu").Value, new List<string> { "Enabled", "Disabled" });
 
 		private static void CopyFilesRecursively(string sourcePath, string targetPath)
 		{

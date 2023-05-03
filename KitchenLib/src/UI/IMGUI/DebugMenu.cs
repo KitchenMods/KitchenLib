@@ -1,12 +1,17 @@
-﻿using KitchenData;
+﻿using Kitchen;
+using Kitchen.NetworkSupport;
+using Kitchen.Transports;
+using KitchenData;
 using KitchenLib.DataDumper;
 using KitchenLib.DataDumper.Dumpers;
 using KitchenLib.DevUI;
 using KitchenLib.Patches;
 using KitchenLib.Systems;
+using Steamworks;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Unity.Entities;
 using UnityEngine;
 
 namespace KitchenLib.UI
@@ -22,7 +27,7 @@ namespace KitchenLib.UI
 		public override void OnInit()
 		{
 		}
-
+		private string id = "";
 		public override void Setup()
 		{
 			if (GUILayout.Button("References"))
@@ -72,6 +77,19 @@ namespace KitchenLib.UI
 			{
 				FeatureFlags.SaveFeatureFlagFile();
 			}
+
+			GUILayout.TextArea(SteamPlatform.Steam.CurrentInviteLobby.Id.ToString());
+
+			id = GUILayout.TextArea(id);
+			if (GUILayout.Button("join"))
+			{
+				Session.JoinGame(new SteamNetworkTarget(new SteamId
+				{
+					Value = ulong.Parse(id)
+				}), true);
+			}
+
+
 			GUILayout.Label("Log Levels");
 			GUILayout.BeginHorizontal();
 			foreach (LogType logType in Enum.GetValues(typeof(LogType)))
