@@ -58,7 +58,7 @@ namespace KitchenLib
 			}
 
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).ToList()[0];
-			
+
 			CommandViewHolder = AddGameDataObject<CommandViewHolder>();
 			InfoViewHolder = AddGameDataObject<InfoViewHolder>();
 			SendToClientViewHolder = AddGameDataObject<SendToClientViewHolder>();
@@ -73,7 +73,7 @@ namespace KitchenLib
 			AddGameDataObject<EasterCape>();
 			AddGameDataObject<GearsCape>();
 			AddGameDataObject<_21Balloon>();
-			
+
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
