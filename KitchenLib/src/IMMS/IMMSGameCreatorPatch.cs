@@ -5,7 +5,7 @@ using KitchenLib.IMMS;
 namespace KitchenLib.src.IMMS
 {
 	[HarmonyPatch(typeof(GameCreator), "PerformInitialSetup")]
-	class IMMSGameCreatorPatch
+	internal class IMMSGameCreatorPatch
 	{
 		static void Postfix()
 		{

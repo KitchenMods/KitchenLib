@@ -3,6 +3,7 @@ using KitchenLib.DevUI;
 using KitchenLib.Patches;
 using KitchenLib.Registry;
 using KitchenLib.Utils;
+using KitchenLib.Views;
 using KitchenMods;
 using Semver;
 using System;
@@ -235,6 +236,21 @@ namespace KitchenLib
 			{
 				return CustomMaterials.AddMaterial(material.name, material);
 			}
+		}
+
+		public CustomViewType AddViewType(string id)
+		{
+			return AddViewType(id, (GameObject)null);
+		}
+
+		public CustomViewType AddViewType(string id, GameObject prefab)
+		{
+			return CustomViewType.Register(ModID, id, () => prefab);
+		}
+
+		public CustomViewType AddViewType(string id, Func<GameObject> prefab)
+		{
+			return CustomViewType.Register(ModID, id, prefab);
 		}
 
 		public void RegisterMenu<T>() where T : BaseUI, new()

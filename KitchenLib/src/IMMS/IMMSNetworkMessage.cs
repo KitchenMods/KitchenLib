@@ -8,16 +8,18 @@ namespace KitchenLib.IMMS
 		[Key(0)]
 		public int Id;
 		[Key(1)]
-		public string Channel;
+		public long Timestamp;
 		[Key(2)]
-		public string Key;
+		public string Channel;
 		[Key(3)]
-		public int Source;
+		public string Key;
 		[Key(4)]
-		public int Target;
+		public int Source;
 		[Key(5)]
-		public IMMSMessageType Type;
+		public int Target;
 		[Key(6)]
+		public IMMSMessageType Type;
+		[Key(7)]
 		public object[] Arguments;
 	}
 }

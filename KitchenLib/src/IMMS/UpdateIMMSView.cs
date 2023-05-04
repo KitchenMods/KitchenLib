@@ -1,10 +1,12 @@
 ﻿using Kitchen;
+using System;
+using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Entities;
 
 namespace KitchenLib.IMMS
 {
-	public class UpdateIMMSView : ResponsiveViewSystemBase<IMMSView.ViewData, IMMSView.ResponseData>
+	internal class UpdateIMMSView : ResponsiveViewSystemBase<IMMSView.ViewData, IMMSView.ResponseData>
 	{
 		private EntityQuery Views;
 
@@ -26,15 +28,23 @@ namespace KitchenLib.IMMS
 				var entity = entities[i];
 				var linkedView = linkedViews[i];
 
-				Router.BroadcastUpdate(linkedView, new IMMSView.ViewData { 
-					Messages = IMMSManager.ClientboundMessages
+				// Send current messages
+				SendUpdate(linkedView.Identifier, new IMMSView.ViewData
+				{
+					Messages = new List<IMMSNetworkMessage>(IMMSManager.ClientboundMessages)
 				});
-				IMMSManager.ClientboundMessages.Clear();
+
+				// Clear out old messages
+				var fiveSecondsAgo = DateTime.UtcNow.AddSeconds(-5).Ticks;
+				while (IMMSManager.ClientboundMessages.Count > 0 && IMMSManager.ClientboundMessages.Peek().Timestamp < fiveSecondsAgo)
+				{
+					IMMSManager.ClientboundMessages.Dequeue();
+				}
 
 				ApplyUpdates(linkedView, (data) =>
 				{
 					IMMSManager.HandleIncomingHostboundNetworkMessage(data.Message);
-				});
+				}, only_final_update: false);
 			}
 		}
 	}

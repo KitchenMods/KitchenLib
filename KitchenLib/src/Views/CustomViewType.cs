@@ -1,4 +1,5 @@
 ﻿using Kitchen;
+using KitchenLib.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,14 +8,14 @@ namespace KitchenLib.Views
 {
 	public sealed class CustomViewType
 	{
-		public static readonly SortedList<int, CustomViewType> Values = new();
-		public static readonly Dictionary<CustomViewType, GameObject> Prefabs = new();
+		internal static readonly SortedList<int, CustomViewType> Values = new();
+		internal static readonly Dictionary<CustomViewType, Func<GameObject>> Prefabs = new();
 
-		public static readonly CustomViewType None = new CustomViewType(627000, (GameObject) null);
+		public static readonly CustomViewType None = new CustomViewType(627000, null);
 
 		private readonly int Value;
 
-		public CustomViewType(int value, GameObject prefab)
+		private CustomViewType(int value, Func<GameObject> prefab)
 		{
 			Value = value;
 			Values.Add(value, this);
@@ -23,8 +24,6 @@ namespace KitchenLib.Views
 				Prefabs.Add(this, prefab);
 			}
 		}
-
-		public CustomViewType(int value, Func<GameObject> prefab) : this(value, prefab.Invoke()) { }
 
 		public static implicit operator CustomViewType(int value)
 		{
@@ -51,6 +50,19 @@ namespace KitchenLib.Views
 		public static implicit operator ViewType(CustomViewType value)
 		{
 			return (ViewType)value.Value;
+		}
+
+		internal static CustomViewType Register(string modId, string id, Func<GameObject> prefab)
+		{
+			int hash = StringUtils.GetInt32HashCode(modId + ":" + id);
+
+			if (Values.ContainsKey(hash))
+			{
+				Main.LogInfo($"Error while registering custom view type of ID={modId}:{id}. Double-check to ensure that the ID is actually unique.");
+				return null;
+			}
+
+			return new CustomViewType(hash, prefab);
 		}
 	}
 }

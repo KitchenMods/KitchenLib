@@ -2,23 +2,14 @@
 using KitchenLib.Views;
 using MessagePack;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace KitchenLib.IMMS
 {
-	public class IMMSView : ResponsiveObjectView<IMMSView.ViewData, IMMSView.ResponseData>
+	internal class IMMSView : ResponsiveObjectView<IMMSView.ViewData, IMMSView.ResponseData>
 	{
-		public static readonly CustomViewType ViewType = new CustomViewType(627001, () =>
-		{
-			var res = new GameObject();
-
-			res.AddComponent<IMMSView>();
-
-			return res;
-		});
+		internal static CustomViewType ViewType;
 
 		private int LastSeenMessageId = -1;
-		private ViewData Data;
 
 		[MessagePackObject]
 		public struct ViewData : IViewData, IViewData.ICheckForChanges<ViewData>, IRollUp
@@ -28,12 +19,25 @@ namespace KitchenLib.IMMS
 
 			public bool IsChangedFrom(ViewData check)
 			{
-				return Messages.Count != check.Messages.Count || (Messages.Count > 0 && Messages[0].Id != check.Messages[0].Id);
+				if (Messages.Count != check.Messages.Count)
+				{
+					return true;
+				}
+
+				for (int i = 0; i < Messages.Count; i++)
+				{
+					if (Messages[i].Id != check.Messages[i].Id)
+					{
+						return true;
+					}
+				}
+
+				return false;
 			}
 		}
 
 		[MessagePackObject]
-		public struct ResponseData : IResponseData, IRollUp
+		public struct ResponseData : IResponseData
 		{
 			[Key(0)]
 			public IMMSNetworkMessage Message;
@@ -41,15 +45,19 @@ namespace KitchenLib.IMMS
 
 		protected override void UpdateData(ViewData data)
 		{
-			Data = data;
-			foreach (var message in Data.Messages)
+			var maxId = 0;
+			foreach (var message in data.Messages)
 			{
 				if (message.Id > LastSeenMessageId)
 				{
+					if (message.Id > maxId)
+					{
+						maxId = message.Id;
+					}
 					IMMSManager.HandleIncomingClientboundNetworkMessage(message);
-					LastSeenMessageId = message.Id;
 				}
 			}
+			LastSeenMessageId = maxId;
 		}
 
 		public override bool HasStateUpdate(out IResponseData state)

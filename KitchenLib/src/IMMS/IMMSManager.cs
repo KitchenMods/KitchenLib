@@ -25,10 +25,10 @@ namespace KitchenLib.IMMS
 		private static MessageHandler GeneralHandlers;
 
 		internal static Queue<IMMSNetworkMessage> HostboundMessages = new();
-		internal static List<IMMSNetworkMessage> ClientboundMessages = new();
+		internal static Queue<IMMSNetworkMessage> ClientboundMessages = new();
 
 		private static int _nextId = 0;
-		private static int NextId => _nextId++;
+		private static int NextId => ++_nextId;
 
 		/// <summary>
 		/// Send a message on the specified channel.
@@ -41,6 +41,8 @@ namespace KitchenLib.IMMS
 		{
 			var ctx = new IMMSContext
 			{
+				Id = -1,
+				Timestamp = DateTime.UtcNow.Ticks,
 				Channel = channel,
 				Type = IMMSMessageType.Internal,
 				Source = -1,
@@ -65,6 +67,8 @@ namespace KitchenLib.IMMS
 			{
 				var ctx = new IMMSContext
 				{
+					Id = -1,
+					Timestamp = DateTime.UtcNow.Ticks,
 					Channel = channel,
 					Type = IMMSMessageType.Internal,
 					Source = IMMSTarget.Me,
@@ -75,9 +79,10 @@ namespace KitchenLib.IMMS
 			}
 			else if (Session.CurrentGameNetworkMode == GameNetworkMode.Host)
 			{
-				ClientboundMessages.Add(new IMMSNetworkMessage
+				ClientboundMessages.Enqueue(new IMMSNetworkMessage
 				{
 					Id = NextId,
+					Timestamp = DateTime.UtcNow.Ticks,
 					Channel = channel,
 					Key = key,
 					Source = IMMSTarget.Me,
@@ -91,6 +96,7 @@ namespace KitchenLib.IMMS
 				HostboundMessages.Enqueue(new IMMSNetworkMessage
 				{
 					Id = -1,
+					Timestamp = DateTime.UtcNow.Ticks,
 					Channel = channel,
 					Key = key,
 					Source = IMMSTarget.Me,
@@ -159,6 +165,8 @@ namespace KitchenLib.IMMS
 			{
 				HandleMessage(message.Channel, message.Key, new IMMSContext
 				{
+					Id = message.Id,
+					Timestamp = message.Timestamp,
 					Channel = message.Channel,
 					Source = message.Source,
 					Target = message.Target,
@@ -174,6 +182,8 @@ namespace KitchenLib.IMMS
 				// If message intended for the host, just handle it directly
 				HandleMessage(message.Channel, message.Key, new IMMSContext
 				{
+					Id = message.Id,
+					Timestamp = message.Timestamp,
 					Channel = message.Channel,
 					Source = message.Source,
 					Target = message.Target,
@@ -185,24 +195,15 @@ namespace KitchenLib.IMMS
 				// Otherwise, pass it on to the clients
 				message.Id = NextId;
 				message.Type = IMMSMessageType.ClientToClient;
-				ClientboundMessages.Add(message);
+				ClientboundMessages.Enqueue(message);
 			}
 		}
 
 		protected override void OnUpdate()
 		{
-			var isFirstFrame = HasSingleton<CSceneFirstFrame>();
-			var isLastFrame = HasSingleton<SClearScene>();
-			var isManagerPresent = HasSingleton<SIMMSManager>();
-
-			if ((isFirstFrame || isLastFrame) && isManagerPresent)
+			if (!HasSingleton<SIMMSManager>())
 			{
-				EntityManager.DestroyEntity(GetSingletonEntity<SIMMSManager>());
-			}
-
-			if (isFirstFrame)
-			{
-				var entity = EntityManager.CreateEntity(typeof(CRequiresView), typeof(SIMMSManager));
+				var entity = EntityManager.CreateEntity(typeof(CRequiresView), typeof(SIMMSManager), typeof(CPersistThroughSceneChanges));
 				EntityManager.SetComponentData(entity, new CRequiresView
 				{
 					Type = IMMSView.ViewType,
