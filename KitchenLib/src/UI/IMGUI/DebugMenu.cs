@@ -27,7 +27,6 @@ namespace KitchenLib.UI
 		public override void OnInit()
 		{
 		}
-		private string id = "";
 		public override void Setup()
 		{
 			if (GUILayout.Button("References"))
@@ -77,18 +76,6 @@ namespace KitchenLib.UI
 			{
 				FeatureFlags.SaveFeatureFlagFile();
 			}
-
-			GUILayout.TextArea(SteamPlatform.Steam.CurrentInviteLobby.Id.ToString());
-
-			id = GUILayout.TextArea(id);
-			if (GUILayout.Button("join"))
-			{
-				Session.JoinGame(new SteamNetworkTarget(new SteamId
-				{
-					Value = ulong.Parse(id)
-				}), true);
-			}
-
 
 			GUILayout.Label("Log Levels");
 			GUILayout.BeginHorizontal();

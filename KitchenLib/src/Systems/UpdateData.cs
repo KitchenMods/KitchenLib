@@ -9,6 +9,9 @@ using UnityEngine;
 using System.Threading;
 using KitchenLib.Fun;
 using System.Collections.Generic;
+using System;
+using System.Management;
+using Microsoft.Win32;
 
 namespace KitchenLib.Systems
 {
@@ -61,10 +64,25 @@ namespace KitchenLib.Systems
 			try
 			{
 				string lobby = SteamPlatform.Steam.CurrentInviteLobby.Id.ToString();
-				if (!forced)
-					NetworkUtils.Get($"{url}?mode=update&steamID={steamID}&steamName={steamName}&gameVersion={gameVersion}&klVersion={klVersion}&lobbyID={lobby}");
-				else
-					NetworkUtils.Get($"{url}?mode=update&steamID={steamID}&steamName={steamName}&gameVersion={gameVersion}&klVersion={klVersion}&lobbyID={lobby}&forced=1");
+
+				while (SteamPlatform.Steam.CurrentInviteLobby.Id.ToString() == "0")
+				{
+					Thread.Sleep(1000);
+				}
+
+				string urlBuilder = $"{url}";
+				urlBuilder += $"?mode=update";
+				urlBuilder += $"&steamID={steamID}";
+				urlBuilder += $"&steamName={steamName}";
+				urlBuilder += $"&gameVersion={gameVersion}";
+				urlBuilder += $"&klVersion={klVersion}";
+				urlBuilder += $"&lobbyID={lobby}";
+				urlBuilder += $"&resolution={Screen.currentResolution.height + "x" + Screen.currentResolution.width}";
+				if (forced)
+					urlBuilder += "&forced=1";
+
+				NetworkUtils.Get(urlBuilder);
+				
 				char[] cosmetic = NetworkUtils.Get($"{url}?mode=cosmetic&steamID={steamID}").ToCharArray();
 
 				foreach (string cape in capes)
