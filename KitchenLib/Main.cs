@@ -79,7 +79,7 @@ namespace KitchenLib
 			RegisterMenu<DebugMenu>();
 
 			// View types
-			IMMSView.ViewType = AddViewType("imms", () =>
+			AddViewType("imms", () =>
 			{
 				var res = new GameObject
 				{

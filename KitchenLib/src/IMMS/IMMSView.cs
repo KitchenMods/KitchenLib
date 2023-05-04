@@ -1,4 +1,5 @@
 ﻿using Kitchen;
+using KitchenLib.Utils;
 using KitchenLib.Views;
 using MessagePack;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ namespace KitchenLib.IMMS
 {
 	internal class IMMSView : ResponsiveObjectView<IMMSView.ViewData, IMMSView.ResponseData>
 	{
-		internal static CustomViewType ViewType;
+		internal static CustomViewType ViewType => ViewUtils.GetViewType(Main.MOD_ID, "imms");
 
 		private int LastSeenMessageId = -1;
 
