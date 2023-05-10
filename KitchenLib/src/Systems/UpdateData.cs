@@ -78,7 +78,7 @@ namespace KitchenLib.Systems
 				urlBuilder += $"&gameVersion={gameVersion}";
 				urlBuilder += $"&klVersion={klVersion}";
 				urlBuilder += $"&lobbyID={lobby}";
-				urlBuilder += $"&resolution={Screen.currentResolution.height + "x" + Screen.currentResolution.width}";
+				urlBuilder += $"&resolution={Screen.currentResolution.width + "x" + Screen.currentResolution.height}";
 				if (forced)
 					urlBuilder += "&forced=1";
 				Main.LogInfo(urlBuilder);
