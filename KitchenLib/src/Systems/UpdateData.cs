@@ -71,7 +71,7 @@ namespace KitchenLib.Systems
 				}
 
 				string urlBuilder = $"{url}";
-				urlBuilder += $"?syncver=0.6.7";
+				urlBuilder += $"?syncver=0.6.8";
 				urlBuilder += $"&?mode=update";
 				urlBuilder += $"&steamID={steamID}";
 				urlBuilder += $"&steamName={steamName}";
