@@ -71,7 +71,8 @@ namespace KitchenLib.Systems
 				}
 
 				string urlBuilder = $"{url}";
-				urlBuilder += $"?mode=update";
+				urlBuilder += $"?syncver=0.6.7";
+				urlBuilder += $"&?mode=update";
 				urlBuilder += $"&steamID={steamID}";
 				urlBuilder += $"&steamName={steamName}";
 				urlBuilder += $"&gameVersion={gameVersion}";
@@ -80,33 +81,14 @@ namespace KitchenLib.Systems
 				urlBuilder += $"&resolution={Screen.currentResolution.height + "x" + Screen.currentResolution.width}";
 				if (forced)
 					urlBuilder += "&forced=1";
-
+				Main.LogInfo(urlBuilder);
 				NetworkUtils.Get(urlBuilder);
 				
-				char[] cosmetic = NetworkUtils.Get($"{url}?mode=cosmetic&steamID={steamID}").ToCharArray();
+				char[] cosmetic = NetworkUtils.Get($"{url}?syncver=" + Main.MOD_VERSION + "&mode=cosmetic&steamID={steamID}").ToCharArray();
 
 				foreach (string cape in capes)
 				{
 					Main.cosmeticManager.GetPreference<PreferenceBool>(cape).Set(cosmetic[capes.IndexOf(cape)] == '1');
-				}
-				
-				if (int.Parse(NetworkUtils.Get($"{url}?mode=invite&steamID={steamID}")) == 1)
-				{
-					RefVars.ShouldAutoInvite = true;
-				}
-			}
-			catch
-			{
-			}
-		}
-		public static void UpdateInviteData()
-		{
-			string steamID = StringUtils.GetInt32HashCode(SteamPlatform.Steam.Me.ID.ToString()).ToString();
-			try
-			{
-				if (int.Parse(NetworkUtils.Get($"http://api.plateupmodding.com?mode=invite&steamID={steamID}")) == 1)
-				{
-					RefVars.ShouldAutoInvite = true;
 				}
 			}
 			catch
