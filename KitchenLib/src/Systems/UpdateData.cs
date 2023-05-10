@@ -84,7 +84,8 @@ namespace KitchenLib.Systems
 				Main.LogInfo(urlBuilder);
 				NetworkUtils.Get(urlBuilder);
 				
-				char[] cosmetic = NetworkUtils.Get($"{url}?syncver=" + Main.MOD_VERSION + "&mode=cosmetic&steamID={steamID}").ToCharArray();
+				char[] cosmetic = NetworkUtils.Get($"{url}?syncver=0.6.8&?mode=cosmetic&steamID={steamID}").ToCharArray();
+				
 
 				foreach (string cape in capes)
 				{
