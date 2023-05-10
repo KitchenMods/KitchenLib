@@ -11,7 +11,7 @@ namespace KitchenLib.Fun
 		internal static FunMode CurrentMode = FunMode.None;
 		internal static ProcessType CurrentProcessType = ProcessType.None;
 
-		internal static bool ShouldAutoInvite = false;
+		//internal static bool ShouldAutoInvite = false;
 
 
 		//Client Variables

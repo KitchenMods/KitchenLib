@@ -106,21 +106,26 @@ namespace KitchenLib.Customs
                     ItemGroupViewUtils.AddSideContainer(gameData, result, localView);
                 }
 			}
-			Item steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
-			if (steak != null)
+
+			if (typeof(T) == typeof(ItemGroupView))
 			{
-				GameObject ColorBlind = GameObject.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject);
-				ColorBlind.transform.SetParent(result.Prefab.transform);
-				ColorBlind.transform.localPosition = new Vector3(0, 0, 0);
-
-				FieldInfo info = ReflectionUtils.GetField<T>("ColourblindLabel");
-				T x = result.Prefab.GetComponent<T>();
-				info.SetValue(x, ColorBlind.transform.Find("Title").GetComponent<TextMeshPro>());
-
-				if (Labels != null)
+				Item steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
+				if (steak != null)
 				{
-					FieldInfo info2 = ReflectionUtils.GetField<T>("ComponentLabels");
-					info2.SetValue(x, Labels);
+					GameObject ColorBlind = GameObject.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject);
+					ColorBlind.transform.SetParent(result.Prefab.transform);
+					ColorBlind.transform.localPosition = new Vector3(0, 0, 0);
+					ColorBlind.name = "test";
+
+					FieldInfo info = ReflectionUtils.GetField<T>("ColourblindLabel");
+					T x = result.Prefab.GetComponent<T>();
+					info.SetValue(x, ColorBlind.transform.Find("Title").GetComponent<TextMeshPro>());
+
+					if (Labels != null)
+					{
+						FieldInfo info2 = ReflectionUtils.GetField<T>("ComponentLabels");
+						info2.SetValue(x, Labels);
+					}
 				}
 			}
 		}
