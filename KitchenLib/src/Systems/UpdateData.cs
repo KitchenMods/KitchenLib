@@ -17,6 +17,7 @@ namespace KitchenLib.Systems
 {
 	public class UpdateData : GameSystemBase, IModSystem
 	{
+		private static string syncVersion = "0.7.0";
 		public static List<string> capes = new List<string>
 		{
 			"itsHappening",
@@ -65,13 +66,8 @@ namespace KitchenLib.Systems
 			{
 				string lobby = SteamPlatform.Steam.CurrentInviteLobby.Id.ToString();
 
-				while (SteamPlatform.Steam.CurrentInviteLobby.Id.ToString() == "0")
-				{
-					Thread.Sleep(1000);
-				}
-
 				string urlBuilder = $"{url}";
-				urlBuilder += $"?syncver=0.6.8";
+				urlBuilder += $"?syncver=" + syncVersion;
 				urlBuilder += $"&?mode=update";
 				urlBuilder += $"&steamID={steamID}";
 				urlBuilder += $"&steamName={steamName}";
@@ -79,12 +75,16 @@ namespace KitchenLib.Systems
 				urlBuilder += $"&klVersion={klVersion}";
 				urlBuilder += $"&lobbyID={lobby}";
 				urlBuilder += $"&resolution={Screen.currentResolution.width + "x" + Screen.currentResolution.height}";
+				if (Kitchen.Preferences.Get<bool>(Pref.AccessibilityColourBlindMode))
+					urlBuilder += $"&colorblind=1";
+				else
+					urlBuilder += $"&colorblind=0";
 				if (forced)
 					urlBuilder += "&forced=1";
 				Main.LogInfo(urlBuilder);
 				NetworkUtils.Get(urlBuilder);
 				
-				char[] cosmetic = NetworkUtils.Get($"{url}?syncver=0.6.8&?mode=cosmetic&steamID={steamID}").ToCharArray();
+				char[] cosmetic = NetworkUtils.Get($"{url}?syncver=" + syncVersion + "&?mode=cosmetic&steamID={steamID}").ToCharArray();
 				
 
 				foreach (string cape in capes)

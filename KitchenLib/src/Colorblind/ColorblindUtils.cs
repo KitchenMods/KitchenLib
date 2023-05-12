@@ -76,6 +76,7 @@ namespace KitchenLib.Colorblind
 		public static GameObject cloneColourBlindObjectAndAddToItem(Item item)
 		{
 			GameObject clonedColourBlind = Object.Instantiate(existingColourBlindChild);
+			clonedColourBlind.transform.Find("Title").GetComponent<TextMeshPro>().text = "" ;
 			clonedColourBlind.name = "Colour Blind";
 			clonedColourBlind.transform.SetParent(item.Prefab.transform);
 			clonedColourBlind.transform.localPosition = new Vector3(0, 0, 0);

@@ -18,7 +18,7 @@ namespace KitchenLib.UI
 			AddInfo("This data will be used to improve the mod and to help us understand how players use the mod.");
 			AddInfo("This data will not be shared with any third parties.");
 			AddInfo("You can opt out of this data collection at any time by disabling the mod in the mod menu.");
-			AddInfo("We will be collecting the following data: Hashed Steam ID, Steam Name, Game Version, KitchenLib Version, Last Play, Last Lobby, Resolution");
+			AddInfo("We will be collecting the following data: Hashed Steam ID, Steam Name, Game Version, KitchenLib Version, Last Play, Last Lobby, Resolution, Game Settings");
 			AddInfo("This data list is subject to change, and can be found on our GitHub page.");
 			New<SpacerElement>(true);
 
