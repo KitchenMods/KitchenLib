@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-	public abstract class CustomItemGroup : CustomItemGroup<ItemGroupView> { }
+	public abstract class CustomItemGroup : CustomItemGroup<ItemGroupViewUtils.DummyItemGroupView> { }
     public abstract class CustomItemGroup<T> : CustomItem<ItemGroup> where T : ItemGroupView
     {
         public virtual List<ItemGroup.ItemSet> Sets { get; protected set; } = new List<ItemGroup.ItemSet>();
