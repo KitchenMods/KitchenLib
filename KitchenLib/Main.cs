@@ -14,6 +14,8 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using KitchenLib.IMMS;
+using System;
 using Kitchen.NetworkSupport;
 using KitchenLib.Utils;
 
@@ -55,7 +57,7 @@ namespace KitchenLib
 			}
 
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).ToList()[0];
-			
+
 			CommandViewHolder = AddGameDataObject<CommandViewHolder>();
 			InfoViewHolder = AddGameDataObject<InfoViewHolder>();
 			SendToClientViewHolder = AddGameDataObject<SendToClientViewHolder>();
@@ -71,11 +73,31 @@ namespace KitchenLib
 			AddGameDataObject<GearsCape>();
 			AddGameDataObject<Discord_BoostCape>();
 			AddGameDataObject<_21Balloon>();
-			
+
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
 
+			// View types
+			AddViewType("imms", () =>
+			{
+				var res = new GameObject
+				{
+					name = "IMMS"
+				};
+				res.AddComponent<IMMSView>();
+
+				return res;
+			});
+
+			// IMMS logger
+			IMMSManager.RegisterAll((string key, IMMSContext ctx, object[] args) =>
+			{
+				LogInfo($"[IMMS] id={ctx.Id} channel={ctx.Channel} key={key} source={ctx.Source} target={ctx.Target} type={ctx.Type} args={string.Join(",", args.Select(Convert.ToString))}");
+				return null;
+			});
+
+			// Init feature flags
 			FeatureFlags.Init();
 		}
 		protected override void OnInitialise()
