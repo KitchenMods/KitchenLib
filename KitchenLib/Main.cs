@@ -26,8 +26,8 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.7.1";
-		public const string MOD_BETA_VERSION = "";
+		public const string MOD_VERSION = "0.7.2";
+		public const string MOD_BETA_VERSION = "1";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
 		public static CustomAppliance CommandViewHolder;
