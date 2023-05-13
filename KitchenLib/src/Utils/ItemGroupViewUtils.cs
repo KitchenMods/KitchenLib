@@ -72,5 +72,13 @@ namespace KitchenLib.Utils
                 Main.LogWarning($"Could not find Side Container in prefab for ItemGroup {itemGroup.ID} ({itemGroup.name}).");
             }
         }
+
+		public class DummyItemGroupView : ItemGroupView
+		{
+			private void Awake()
+			{
+				ComponentGroups = new();
+			}
+		}
     }
 }
