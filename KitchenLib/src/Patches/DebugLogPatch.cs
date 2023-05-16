@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using HarmonyLib;
 
 namespace KitchenLib.Patches
 {
@@ -69,11 +70,22 @@ namespace KitchenLib.Patches
 				{
 					modIdPrefix = "[PlateUp!] ";
 				}
+				
 
-				var newFormat = $"[{typePrefix}] " + modIdPrefix + format.Replace(Environment.UserName, "[USERNAME]");
+				var newFormat = $"[{typePrefix}] " + modIdPrefix + format;
 
 				logHandler.LogFormat(logType, context, newFormat, args);
 			}
+		}
+	}
+
+	[HarmonyPatch(typeof(DebugLogHandler), "Internal_Log")]
+	internal class DebugLogHandler_Patch
+	{
+		public static bool Prefix(ref string msg)
+		{
+			msg = msg.Replace(Environment.UserName, "[USERNAME]");
+			return true;
 		}
 	}
 }
