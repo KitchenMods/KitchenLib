@@ -463,8 +463,8 @@ namespace KitchenLib.Fun
 			GUILayout.BeginArea(new Rect(169, 10, 139, 20));
 			if (GUILayout.Button("Destroy"))
 			{
-				//RefVars.ToggleFunMode(FunMode.Destroy);
-				CommandViewHelpers.Main.test();
+				RefVars.ToggleFunMode(FunMode.Destroy);
+				//CommandViewHelpers.Main.test();
 			}
 			GUILayout.EndArea();
 		}
