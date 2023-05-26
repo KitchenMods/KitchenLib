@@ -3,6 +3,7 @@ using KitchenLib.DevUI;
 using KitchenLib.Patches;
 using KitchenLib.Registry;
 using KitchenLib.Utils;
+using KitchenLib.Views;
 using KitchenMods;
 using Semver;
 using System;
@@ -235,6 +236,38 @@ namespace KitchenLib
 			{
 				return CustomMaterials.AddMaterial(material.name, material);
 			}
+		}
+
+		/// <summary>
+		/// Register a custom view type.
+		/// </summary>
+		/// <param name="id">The view ID.</param>
+		/// <returns>The corresponding CustomViewType, for assigning to a field.</returns>
+		public CustomViewType AddViewType(string id)
+		{
+			return AddViewType(id, (GameObject)null);
+		}
+
+		/// <summary>
+		/// Register a custom view type with the specified prefab.
+		/// </summary>
+		/// <param name="id">The view ID.</param>
+		/// <param name="prefab">The prefab.</param>
+		/// <returns>The corresponding CustomViewType, for assigning to a field.</returns>
+		public CustomViewType AddViewType(string id, GameObject prefab)
+		{
+			return CustomViewType.Register(ModID, id, () => prefab);
+		}
+
+		/// <summary>
+		/// Register a custom view type with the specified prefab builder. The prefab builder is lazily-evaluated only once.
+		/// </summary>
+		/// <param name="id">The view ID.</param>
+		/// <param name="prefab">The prefab builder.</param>
+		/// <returns>The corresponding CustomViewType, for assigning to a field.</returns>
+		public CustomViewType AddViewType(string id, Func<GameObject> prefab)
+		{
+			return CustomViewType.Register(ModID, id, prefab);
 		}
 
 		public void RegisterMenu<T>() where T : BaseUI, new()

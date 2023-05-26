@@ -27,6 +27,8 @@
 	<ItemGroup>
 		<Publicize Include="Kitchen.Common:Kitchen.PlayerCosmeticSubview+AttachmentPoint" />
 		<Publicize Include="Kitchen.Common:Kitchen.PlayerCosmeticSubview+AttachedCosmetic" />
+		<Publicize Include="UnityEngine.CoreModule:UnityEngine.DebugLogHandler" />
+		<Publicize Include="UnityEngine.CoreModule:UnityEngine.DebugLogHandler.Internal_Log" />
 	</ItemGroup>
 
 	<ItemGroup>

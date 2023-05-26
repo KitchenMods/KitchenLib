@@ -61,9 +61,34 @@ namespace KitchenLib.Systems
 			string gameVersion = Application.version;
 			string klVersion = Main.MOD_VERSION;
 
+			int attempts = 0;
+			int maxAttempts = 5;
+
 			//Data Update
 			try
 			{
+				while (!SteamPlatform.Steam.IsReady)
+				{
+					attempts++;
+					if (attempts >= maxAttempts)
+					{
+						Main.LogError($"{attempts} made to collect data but failed.");
+						return;
+					}
+					Thread.Sleep(1000);
+				}
+
+				while (SteamPlatform.Steam.CurrentInviteLobby.Id.ToString() == "0")
+				{
+					attempts++;
+					if (attempts >= maxAttempts)
+					{
+						Main.LogError($"{attempts} made to collect data but failed.");
+						return;
+					}
+					Thread.Sleep(1000);
+				}
+				
 				string lobby = SteamPlatform.Steam.CurrentInviteLobby.Id.ToString();
 
 				string urlBuilder = $"{url}";

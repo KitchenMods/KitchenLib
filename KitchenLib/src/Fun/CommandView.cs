@@ -1,5 +1,6 @@
 ﻿using Kitchen;
 using KitchenData;
+using KitchenLib.References;
 using KitchenLib.Systems;
 using KitchenLib.Utils;
 using KitchenMods;
@@ -97,6 +98,18 @@ namespace KitchenLib.Fun
 						break;
 					case FunMode.ResetOrder:
 						CommandViewHelpers.Main.ResetOrder(data.Location);
+						break;
+					case FunMode.Money:
+						CommandViewHelpers.Main.SetMoney(data.int1);
+						break;
+					case FunMode.NewProcess:
+						CommandViewHelpers.Main.New_TryRunProcessOnItem(data.Location, GameData.Main.Get<Process>(data.int1), data.bool1);
+						break;
+					case FunMode.Destroy:
+						CommandViewHelpers.Main.DestroyAppliance(data.Location);
+						break;
+					case FunMode.ChangeOrder:
+						CommandViewHelpers.Main.ChangeOrder(data.Location, data.int1);
 						break;
 				}
 
@@ -236,6 +249,16 @@ namespace KitchenLib.Fun
 					break;
 				case FunMode.Unlock:
 					response.int1 = RefVars.SelectedUnlock;
+					break;
+				case FunMode.Money:
+					response.int1 = RefVars.SelectedMoney;
+					break;
+				case FunMode.NewProcess:
+					response.int1 = RefVars.SelectedProcess;
+					response.bool1 = RefVars.ReversedProcess;
+					break;
+				case FunMode.ChangeOrder:
+					response.int1 = RefVars.SelectedOrder;
 					break;
 			}
 			Callback.Invoke(response, typeof(ResponseData));

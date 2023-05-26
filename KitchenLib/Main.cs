@@ -14,6 +14,8 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using KitchenLib.IMMS;
+using System;
 using Kitchen.NetworkSupport;
 using KitchenLib.Utils;
 
@@ -24,8 +26,8 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.7.1";
-		public const string MOD_BETA_VERSION = "0";
+		public const string MOD_VERSION = "0.7.2";
+		public const string MOD_BETA_VERSION = "";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
 		public static CustomAppliance CommandViewHolder;
@@ -55,7 +57,7 @@ namespace KitchenLib
 			}
 
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).ToList()[0];
-			
+
 			CommandViewHolder = AddGameDataObject<CommandViewHolder>();
 			InfoViewHolder = AddGameDataObject<InfoViewHolder>();
 			SendToClientViewHolder = AddGameDataObject<SendToClientViewHolder>();
@@ -71,11 +73,35 @@ namespace KitchenLib
 			AddGameDataObject<GearsCape>();
 			AddGameDataObject<Discord_BoostCape>();
 			AddGameDataObject<_21Balloon>();
-			
+
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
+			
+			/*
+			
+			// View types
+			AddViewType("imms", () =>
+			{
+				var res = new GameObject
+				{
+					name = "IMMS"
+				};
+				res.AddComponent<IMMSView>();
 
+				return res;
+			});
+
+			// IMMS logger
+			IMMSManager.RegisterAll((string key, IMMSContext ctx, object[] args) =>
+			{
+				LogInfo($"[IMMS] id={ctx.Id} channel={ctx.Channel} key={key} source={ctx.Source} target={ctx.Target} type={ctx.Type} args={string.Join(",", args.Select(Convert.ToString))}");
+				return null;
+			});
+
+			*/
+
+			// Init feature flags
 			FeatureFlags.Init();
 		}
 		protected override void OnInitialise()
@@ -92,6 +118,7 @@ namespace KitchenLib
 				FullScreenMode = FullScreenMode.Windowed
 			});
 			*/
+			
 
 			if (StringUtils.GetInt32HashCode(SteamPlatform.Steam.Me.ID.ToString()) == 1774237577)
 			{
@@ -100,6 +127,7 @@ namespace KitchenLib
 			GameObject go = new GameObject();
 			go.AddComponent<DevUIController>();
 			ColorblindUtils.AddSingleItemLabels(ColorblindUtils.itemLabels.ToArray());
+			RefVars.SetupProcessResults();
 		}
 
 		private void SetupMenus()

@@ -11,13 +11,10 @@ namespace KitchenLib.Fun
 		internal static FunMode CurrentMode = FunMode.None;
 		internal static ProcessType CurrentProcessType = ProcessType.None;
 
-		//internal static bool ShouldAutoInvite = false;
-
-
 		//Client Variables
 		private static Dictionary<int, string> keyPairValues = new Dictionary<int, string>();
-		private static List<FunMode> RequiresPointer = new List<FunMode> { FunMode.Fire, FunMode.Process, FunMode.Theme, FunMode.Garbage, FunMode.ItemProvider, FunMode.ResetOrder};
-		private static List<FunMode> Persists = new List<FunMode> { FunMode.Fire, FunMode.Process, FunMode.Theme, FunMode.BlueprintSpawn, FunMode.ManualBlueprintSpawn, FunMode.Mess, FunMode.Garbage, FunMode.ItemProvider, FunMode.ResetOrder };
+		private static List<FunMode> RequiresPointer = new List<FunMode> { FunMode.Fire, FunMode.Process, FunMode.Theme, FunMode.Garbage, FunMode.ItemProvider, FunMode.ResetOrder, FunMode.NewProcess, FunMode.Destroy, FunMode.ChangeOrder };
+		private static List<FunMode> Persists = new List<FunMode> { FunMode.Fire, FunMode.Process, FunMode.Theme, FunMode.BlueprintSpawn, FunMode.ManualBlueprintSpawn, FunMode.Mess, FunMode.Garbage, FunMode.ItemProvider, FunMode.ResetOrder, FunMode.NewProcess, FunMode.Destroy, FunMode.ChangeOrder };
 		private static Dictionary<ProcessType, int> processKeyPairs = new Dictionary<ProcessType, int>
 		{
 			{ProcessType.Chop, ProcessReferences.Chop},
@@ -28,12 +25,40 @@ namespace KitchenLib.Fun
 			{ProcessType.Knead, ProcessReferences.Knead}
 		};
 
+		internal static Dictionary<(int, Process), int> ItemProcessResults = new Dictionary<(int, Process), int>();
+		internal static Dictionary<(int, Process), int> ReversedItemProcessResults = new Dictionary<(int, Process), int>();
+
+		internal static void SetupProcessResults()
+		{
+			ItemProcessResults.Clear();
+			ReversedItemProcessResults.Clear();
+
+			foreach (Process process in GameData.Main.Get<Process>())
+			{
+				foreach (Item item in GameData.Main.Get<Item>())
+				{
+					foreach (Item.ItemProcess itemProcess in item.DerivedProcesses)
+					{
+						if (itemProcess.Process == process && itemProcess.Result != null)
+						{
+							if (!ItemProcessResults.ContainsKey((item.ID, process)))
+								ItemProcessResults.Add((item.ID, process), itemProcess.Result.ID);
+							if (!ReversedItemProcessResults.ContainsKey((itemProcess.Result.ID, process)))
+								ReversedItemProcessResults.Add((itemProcess.Result.ID, process), item.ID);
+						}
+					}
+				}
+			}
+		}
+
 		internal static Dictionary<int, string> AvailableOutfits = new Dictionary<int, string>();
 		internal static Dictionary<int, string> AvailableHats = new Dictionary<int, string>();
 		internal static Dictionary<int, string> AvailableAppliances = new Dictionary<int, string>();
 		internal static Dictionary<Color, string> AvailableColors = new Dictionary<Color, string>();
 		internal static Dictionary<int, string> CurrentPlayers = new Dictionary<int, string>();
 		internal static Dictionary<int, string> AvailableUnlocks = new Dictionary<int, string>();
+		internal static Dictionary<int, string> AvailableProcesses = new Dictionary<int, string>();
+		internal static Dictionary<int, string> AvailableItems = new Dictionary<int, string>();
 		internal static List<int> ActiveUnlocks = new List<int>();
 		
 		internal static float SelectedPlayerSpeed = 1f;
@@ -56,6 +81,11 @@ namespace KitchenLib.Fun
 		internal static int SelectedMessLevel = 1;
 		internal static bool IsMessKitchen = false;
 		internal static int SelectedUnlock = 0;
+		internal static int CurrentMoney = 0;
+		internal static int SelectedMoney = 0;
+		internal static int SelectedProcess = 0;
+		internal static bool ReversedProcess = false;
+		internal static int SelectedOrder = 0;
 
 		//Host Variables
 
@@ -63,8 +93,12 @@ namespace KitchenLib.Fun
 
 		internal static string GetKeyPair(int id)
 		{
-			return keyPairValues[id];
+			if (keyPairValues.ContainsKey(id))
+				return keyPairValues[id];
+			else
+				return "Invalid Keypair";
 		}
+
 
 		internal static void SetKeyPair(int id, string value)
 		{
@@ -146,7 +180,11 @@ namespace KitchenLib.Fun
 		Unlock,
 		Arsonist,
 		FireFighter,
-		ResetOrder
+		ResetOrder,
+		Money,
+		NewProcess,
+		Destroy,
+		ChangeOrder
 	}
 
 	public enum ProcessType

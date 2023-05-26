@@ -22,6 +22,8 @@ namespace KitchenLib.Fun
 			private static Dictionary<int, string> LocalHats = new Dictionary<int, string>();
 			private static Dictionary<int, string> LocalOutfits = new Dictionary<int, string>();
 			private static Dictionary<int, string> LocalUnlocks = new Dictionary<int, string>();
+			private static Dictionary<int, string> LocalProcesses = new Dictionary<int, string>();
+			private static Dictionary<int, string> LocalItems = new Dictionary<int, string>();
 			private static List<int> LocalActiveUnlocks = new List<int>();
 
 			protected override void Initialise()
@@ -35,6 +37,8 @@ namespace KitchenLib.Fun
 				LocalHats.Clear();
 				LocalOutfits.Clear();
 				LocalUnlocks.Clear();
+				LocalProcesses.Clear();
+				LocalItems.Clear();
 
 
 				foreach (Appliance appliance in GameData.Main.Get<Appliance>())
@@ -63,6 +67,21 @@ namespace KitchenLib.Fun
 				{
 					LocalUnlocks.Add(unlock.ID, unlock.Name);
 				}
+
+				foreach (Process process in GameData.Main.Get<Process>())
+				{
+					string[] name = process.name.Split('.');
+					LocalProcesses.Add(process.ID, name[name.Length - 1]);
+				}
+
+				foreach (Item item in GameData.Main.Get<Item>())
+				{
+					string[] name = item.name.Split('.');
+					if (!GameData.Main.TryGet<ItemGroup>(item.ID, out ItemGroup temp, true))
+					{
+						LocalItems.Add(item.ID, name[name.Length - 1]);
+					}
+				}
 			}
 
 			protected override void OnUpdate()
@@ -70,12 +89,18 @@ namespace KitchenLib.Fun
 				using var entities = Views.ToEntityArray(Allocator.Temp);
 				using var views = Views.ToComponentDataArray<CLinkedView>(Allocator.Temp);
 				using var activeUnlocks = Unlocks.ToComponentDataArray<CProgressionUnlock>(Allocator.Temp);
+				int money = 0;
 
 				LocalActiveUnlocks.Clear();
 
 				for (int i = 0; i < activeUnlocks.Length; i++)
 				{
 					LocalActiveUnlocks.Add(activeUnlocks[i].ID);
+				}
+
+				if (HasSingleton<SMoney>())
+				{
+					money = GetSingleton<SMoney>().Amount;
 				}
 
 				//////////////////////////////////////////////////
@@ -91,7 +116,10 @@ namespace KitchenLib.Fun
 						LocalOutfits = LocalOutfits,
 						LocalHats = LocalHats,
 						LocalUnlocks = LocalUnlocks,
-						LocalActiveUnlocks = LocalActiveUnlocks
+						LocalActiveUnlocks = LocalActiveUnlocks,
+						Money = money,
+						LocalProcesses = LocalProcesses,
+						LocalItems = LocalItems,
 					};
 
 					SendUpdate(view, data);
@@ -113,6 +141,9 @@ namespace KitchenLib.Fun
 			[Key(3)] public Dictionary<int, string> LocalHats;
 			[Key(4)] public Dictionary<int, string> LocalUnlocks;
 			[Key(5)] public List<int> LocalActiveUnlocks;
+			[Key(6)] public int Money;
+			[Key(7)] public Dictionary<int, string> LocalProcesses;
+			[Key(8)] public Dictionary<int, string> LocalItems;
 
 			public IUpdatableObject GetRelevantSubview(IObjectView view) => view.GetSubView<SendToClientView>();
 
@@ -123,7 +154,10 @@ namespace KitchenLib.Fun
 					LocalOutfits != cached.LocalOutfits ||
 					LocalHats != cached.LocalHats ||
 					LocalUnlocks != cached.LocalUnlocks ||
-					LocalActiveUnlocks != cached.LocalActiveUnlocks;
+					LocalActiveUnlocks != cached.LocalActiveUnlocks ||
+					Money != cached.Money ||
+					LocalProcesses != cached.LocalProcesses ||
+					LocalItems != cached.LocalItems;
 			}
 		}
 		#endregion
@@ -157,8 +191,22 @@ namespace KitchenLib.Fun
 			{
 				RefVars.SetKeyPair(unlockID, view_data.LocalUnlocks[unlockID]);
 			}
+
+			foreach (int processID in view_data.LocalProcesses.Keys)
+			{
+				RefVars.SetKeyPair(processID, view_data.LocalProcesses[processID]);
+			}
+
+			foreach (int itemID in view_data.LocalItems.Keys)
+			{
+				RefVars.SetKeyPair(itemID, view_data.LocalItems[itemID]);
+			}
+
 			RefVars.AvailableUnlocks = view_data.LocalUnlocks;
 			RefVars.ActiveUnlocks = view_data.LocalActiveUnlocks;
+			RefVars.CurrentMoney = view_data.Money;
+			RefVars.AvailableProcesses = view_data.LocalProcesses;
+			RefVars.AvailableItems = view_data.LocalItems;
 		}
 
 		void Update()

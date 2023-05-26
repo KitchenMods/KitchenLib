@@ -2,6 +2,7 @@
 using KitchenData;
 using KitchenLib.References;
 using KitchenLib.Systems;
+using KitchenLib.UI;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -13,16 +14,31 @@ namespace KitchenLib.Fun
 	internal class CommandViewHelpers : GameSystemBase
 	{
 
+		public void test()
+		{
+			GenericPopupManager.CreatePopup(
+						"Some mods are out of date!",
+						$"Hello You're Gey",
+						GenericChoiceType.OnlyAccept,
+						null,
+						null,
+						TMPro.TextAlignmentOptions.Center,
+						TMPro.TextAlignmentOptions.Center
+					);
+		}
+
 		private Dictionary<int, Entity> currentPlayers = new Dictionary<int, Entity>();
 		private EntityQuery playerQuery;
 		private EntityQuery unlockQuery;
 		private EntityQuery applianceQuery;
+		private EntityQuery waiting;
 		protected override void Initialise()
 		{
 			Main = this;
 			playerQuery = EntityManager.CreateEntityQuery(typeof(CPlayer));
 			unlockQuery = EntityManager.CreateEntityQuery(typeof(CProgressionUnlock));
 			applianceQuery = EntityManager.CreateEntityQuery(typeof(CAppliance));
+			waiting = EntityManager.CreateEntityQuery(typeof(CWaitingForItem));
 		}
 		protected override void OnUpdate()
 		{
@@ -55,6 +71,8 @@ namespace KitchenLib.Fun
 
 		public bool TryRunProcessOnItem(Vector3 location, Process process)
 		{
+			if (process == null)
+				return false;
 			if (GetItemFromHolder(location, out Entity item, out CItem cItem))
 			{
 				Item newItem = GameData.Main.Get<Item>(cItem.ID);
@@ -71,7 +89,7 @@ namespace KitchenLib.Fun
 
 		public void ToggleFireOnLocation(Vector3 location)
 		{
-			Entity e = GetOccupant(location);
+			Entity e = GetOccupant(location, TileHighlighter.UpdateView.SelectedLayer);
 			if (e == null)
 				return;
 			if (!Has<CIsOnFire>(e))
@@ -265,7 +283,7 @@ namespace KitchenLib.Fun
 
 			if (e != Entity.Null)
 			{
-				RemoveUnlock(id, e);
+				RemoveUnlock(id);
 			}
 
 			if (e == Entity.Null)
@@ -279,9 +297,14 @@ namespace KitchenLib.Fun
 			}
 		}
 
-		private void RemoveUnlock(int id, Entity e)
+		private void RemoveUnlock(int UnlockID)
 		{
-			UnlockManager.Main.TryRemoveActiveUnlock(id);
+			Entity e = EntityManager.CreateEntity(typeof(CUnlockModifications));
+			EntityManager.SetComponentData(e, new CUnlockModifications
+			{
+				Remove = true,
+				UnlockID = UnlockID
+			});
 		}
 
 		public void BurnEverything()
@@ -323,6 +346,76 @@ namespace KitchenLib.Fun
 				return player;
 			}
 			return new CPlayer();
+		}
+
+
+		public void SetMoney(int money)
+		{
+			if (HasSingleton<SMoney>())
+			{
+				SMoney moneySingleton = GetSingleton<SMoney>();
+				moneySingleton.Amount = money;
+				SetSingleton(moneySingleton);
+			}
+		}
+
+		public bool New_TryRunProcessOnItem(Vector3 location, Process process, bool reversed = false)
+		{
+			if (process == null)
+				return false;
+			if (GetItemFromHolder(location, out Entity item, out CItem cItem))
+			{
+				Item newItem = GameData.Main.Get<Item>(cItem.ID);
+
+				int id = 0;
+				if (!reversed)
+				{
+					if (RefVars.ItemProcessResults.ContainsKey((cItem.ID, process)))
+					{
+						id = RefVars.ItemProcessResults[(cItem.ID, process)];
+					}
+				}
+				else
+				{
+					if (RefVars.ReversedItemProcessResults.ContainsKey((cItem.ID, process)))
+					{
+						id = RefVars.ReversedItemProcessResults[(cItem.ID, process)];
+					}
+				}
+
+				if (id == 0)
+					return false;
+
+				if (GameData.Main.Get<Item>(id) != null)
+				{
+					cItem.ID = id;
+					EntityManager.SetComponentData(item, cItem);
+					return true;
+				}
+			}
+			return false;
+		}
+
+		public void DestroyAppliance(Vector3 location)
+		{
+			Entity e = GetOccupant(location, TileHighlighter.UpdateView.SelectedLayer);
+			if (e == null)
+				return;
+			if (Has<CAppliance>(e))
+				EntityManager.DestroyEntity(e);
+		}
+
+		public void ChangeOrder(Vector3 location, int itemID)
+		{
+			Entity chair = GetOccupant(location);
+			if (Require(chair, out CApplianceChair cApplianceChair))
+			{
+				Entity customer = cApplianceChair.Occupant;
+				if (EntityUtils.Main.GetGroupFromCustomer(customer, out Entity group, out int index))
+				{
+					EntityUtils.Main.AddItemToOrder(group, index, itemID);
+				}
+			}
 		}
 	}
 }
