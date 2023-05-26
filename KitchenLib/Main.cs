@@ -27,7 +27,7 @@ namespace KitchenLib
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
 		public const string MOD_VERSION = "0.7.2";
-		public const string MOD_BETA_VERSION = "1";
+		public const string MOD_BETA_VERSION = "";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
 		public static CustomAppliance CommandViewHolder;
@@ -77,7 +77,9 @@ namespace KitchenLib
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
-
+			
+			/*
+			
 			// View types
 			AddViewType("imms", () =>
 			{
@@ -97,6 +99,8 @@ namespace KitchenLib
 				return null;
 			});
 
+			*/
+
 			// Init feature flags
 			FeatureFlags.Init();
 		}
@@ -114,6 +118,7 @@ namespace KitchenLib
 				FullScreenMode = FullScreenMode.Windowed
 			});
 			*/
+			
 
 			if (StringUtils.GetInt32HashCode(SteamPlatform.Steam.Me.ID.ToString()) == 1774237577)
 			{
@@ -122,6 +127,7 @@ namespace KitchenLib
 			GameObject go = new GameObject();
 			go.AddComponent<DevUIController>();
 			ColorblindUtils.AddSingleItemLabels(ColorblindUtils.itemLabels.ToArray());
+			RefVars.SetupProcessResults();
 		}
 
 		private void SetupMenus()

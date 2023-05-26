@@ -5,6 +5,9 @@ using Steamworks;
 using System.Collections.Generic;
 using UnityEngine;
 using WebSocketSharp;
+using System.Reflection;
+using KitchenLib.Utils;
+using KitchenData;
 
 namespace KitchenLib.Fun
 {
@@ -38,14 +41,20 @@ namespace KitchenLib.Fun
 		private Vector2 colorSelectorScrollPosition;
 		private Vector2 blueprintSelectorScrollPosition;
 		private Vector2 unlockSelectorScrollPosition;
+		private Vector2 processScrollPosition;
+		private Vector2 orderchangerScrollPosition;
 		private string ApplianceSearch = "";
 		private string UnlockSearch = "";
+		private string ItemSearch = "";
 		private string LobbyID = "";
+		private int Money = 0;
+		public static bool isOpen = false;
 		public override void Setup()
 		{
 			BuildHeader();
 			BuildNavigation();
 			BuildContent();
+			isOpen = true;
 		}
 
 		private Dictionary<(int, int), Texture2D> cachedTextures = new Dictionary<(int, int), Texture2D>();
@@ -69,6 +78,7 @@ namespace KitchenLib.Fun
 
 		public override void Disable()
 		{
+			isOpen = false;
 		}
 
 		private void ResetDefaults()
@@ -350,6 +360,8 @@ namespace KitchenLib.Fun
 			BuildArsonist();
 			BuildFireFighter();
 			BuildResetOrder();
+			BuildApplianceDestroyer();
+			BuildOrderAdder();
 		}
 
 		#region BuildAppliancePage
@@ -446,16 +458,70 @@ namespace KitchenLib.Fun
 			}
 			GUILayout.EndArea();
 		}
+		private void BuildApplianceDestroyer()
+		{
+			GUILayout.BeginArea(new Rect(169, 10, 139, 20));
+			if (GUILayout.Button("Destroy"))
+			{
+				//RefVars.ToggleFunMode(FunMode.Destroy);
+				CommandViewHelpers.Main.test();
+			}
+			GUILayout.EndArea();
+		}
+		private void BuildOrderAdder()
+		{
+			GUILayout.BeginArea(new Rect(417, 10, 139, 20));
+			GUI.skin.label.fontSize = 15;
+			GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+			GUILayout.Label("Order Adder");
+			GUI.skin.label.fontSize = defaultFontSize;
+			GUI.skin.label.alignment = defaultTextAnchor;
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(347, 40, 279, 20));
+			if (RefVars.SelectedOrder != 0)
+				GUILayout.Label(RefVars.GetKeyPair(RefVars.SelectedOrder));
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(347, 70, 279, 200));
+			orderchangerScrollPosition = GUILayout.BeginScrollView(orderchangerScrollPosition, false, false, GUIStyle.none, GUIStyle.none);
+			GUIStyle tmp = new GUIStyle("button");
+			tmp.alignment = TextAnchor.MiddleLeft;
+			foreach (int itemID in RefVars.AvailableItems.Keys)
+			{
+				if (RefVars.GetKeyPair(itemID).ToLower().Contains(ItemSearch.ToLower()))
+				{
+					if (GUILayout.Button(RefVars.GetKeyPair(itemID), tmp))
+					{
+						RefVars.SelectedOrder = itemID;
+					}
+				}
+			}
+			GUILayout.EndScrollView();
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(348, 280, 129, 20));
+			ItemSearch = GUILayout.TextField(ItemSearch);
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(497, 280, 129, 20));
+			if (GUILayout.Button("Add Order"))
+			{
+				RefVars.ToggleFunMode(FunMode.ChangeOrder);
+			}
+			GUILayout.EndArea();
+		}
 		#endregion
 
 		private void BuildItemPage()
 		{
-			BuildChop();
-			BuildClean();
-			BuildCook();
-			BuildExtinguishFire();
-			BuildFillCoffee();
-			BuildKnead();
+			//BuildChop();
+			//BuildClean();
+			//BuildCook();
+			//BuildExtinguishFire();
+			//BuildFillCoffee();
+			//BuildKnead();
+			BuildProcessList();
 		}
 
 		#region BuildItemPage
@@ -510,6 +576,38 @@ namespace KitchenLib.Fun
 			if (GUILayout.Button("Knead"))
 			{
 				RefVars.ToggleProcessMode(ProcessType.Knead);
+			}
+			GUILayout.EndArea();
+		}
+		private void BuildProcessList()
+		{
+			GUILayout.BeginArea(new Rect(10, 10, 278, 200));
+			processScrollPosition = GUILayout.BeginScrollView(processScrollPosition, false, false, GUIStyle.none, GUIStyle.none);
+			
+			foreach (int processID in RefVars.AvailableProcesses.Keys)
+			{
+				if (GUILayout.Button(RefVars.AvailableProcesses[processID]))
+				{
+					RefVars.SelectedProcess = processID;
+				}
+			}
+			
+			GUILayout.EndScrollView();
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(10, 220, 278, 20));
+			if (RefVars.SelectedProcess != 0)
+				GUILayout.Label($"Selected Process: {RefVars.GetKeyPair(RefVars.SelectedProcess)}");
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(10, 250, 129, 20));
+			RefVars.ReversedProcess = GUILayout.Toggle(RefVars.ReversedProcess, "Reversed");
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(159, 250, 129, 20));
+			if (GUILayout.Button("Toggle"))
+			{
+				RefVars.ToggleFunMode(FunMode.NewProcess);
 			}
 			GUILayout.EndArea();
 		}
@@ -584,6 +682,7 @@ namespace KitchenLib.Fun
 			BuildBlueprintSpawner();
 			BuildDishSelector();
 			BuildLobbyJoiner();
+			BuildMoneyEditor();
 		}
 
 		#region BuildMiscPage
@@ -746,6 +845,64 @@ namespace KitchenLib.Fun
 						Value = ulong.Parse(LobbyID)
 					}), true);
 				}
+			}
+			GUILayout.EndArea();
+		}
+
+		private void BuildMoneyEditor()
+		{
+			GUILayout.BeginArea(new Rect(10, 490, 139, 20));
+			GUILayout.Label("Money: " + Money);
+			GUILayout.EndArea();
+			
+			GUILayout.BeginArea(new Rect(10, 520, 298, 20));
+			Money = (int)Mathf.Round(GUILayout.HorizontalSlider(Money, 0, 10000));
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(10, 550, 139, 20));
+			if (GUILayout.Button("Update"))
+			{
+				Money = RefVars.CurrentMoney;
+			}
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(169, 550, 139, 20));
+			if (GUILayout.Button("Apply"))
+			{
+				RefVars.SelectedMoney = (int)Mathf.Round(Money);
+				RefVars.ForceUpdate(FunMode.Money);
+			}
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(10, 580, 59, 20));
+			if (GUILayout.Button("-100"))
+			{
+				RefVars.SelectedMoney = RefVars.CurrentMoney - 100;
+				RefVars.ForceUpdate(FunMode.Money);
+			}
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(89, 580, 60, 20));
+			if (GUILayout.Button("-10"))
+			{
+				RefVars.SelectedMoney = RefVars.CurrentMoney - 10;
+				RefVars.ForceUpdate(FunMode.Money);
+			}
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(169, 580, 59, 20));
+			if (GUILayout.Button("+10"))
+			{
+				RefVars.SelectedMoney = RefVars.CurrentMoney + 10;
+				RefVars.ForceUpdate(FunMode.Money);
+			}
+			GUILayout.EndArea();
+
+			GUILayout.BeginArea(new Rect(248, 580, 60, 20));
+			if (GUILayout.Button("+100"))
+			{
+				RefVars.SelectedMoney = RefVars.CurrentMoney + 100;
+				RefVars.ForceUpdate(FunMode.Money);
 			}
 			GUILayout.EndArea();
 		}

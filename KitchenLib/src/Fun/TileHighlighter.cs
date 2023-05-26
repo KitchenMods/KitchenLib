@@ -1,4 +1,5 @@
 ﻿using Kitchen;
+using KitchenData;
 using KitchenLib.Systems;
 using KitchenLib.Utils;
 using KitchenMods;
@@ -16,6 +17,7 @@ namespace KitchenLib.Fun
 		public class UpdateView : ResponsiveViewSystemBase<ViewData, ResponseData>, IModSystem
 		{
 			private Vector3 lastLocation = new Vector3(0, 0, 0);
+			public static OccupancyLayer SelectedLayer = OccupancyLayer.Default;
 
 			EntityQuery Query;
 			protected override void Initialise()
@@ -40,11 +42,35 @@ namespace KitchenLib.Fun
 
 			private void PerformUpdateWithResponse(ResponseData data)
 			{
-				Entity e = GetOccupant(data.Location);
+				Entity e = GetOccupant(data.Location, SelectedLayer);
 				if (Require(e, out CPosition pos))
 				{
 					lastLocation = pos.Position;
 				}
+
+				if (data.Scroll == 1)
+				{
+					if (SelectedLayer == OccupancyLayer.Default)
+						SelectedLayer = OccupancyLayer.Wall;
+					else if (SelectedLayer == OccupancyLayer.Wall)
+						SelectedLayer = OccupancyLayer.Floor;
+					else if (SelectedLayer == OccupancyLayer.Floor)
+						SelectedLayer = OccupancyLayer.Ceiling;
+					else if (SelectedLayer == OccupancyLayer.Ceiling)
+						SelectedLayer = OccupancyLayer.Default;
+				}
+				else if (data.Scroll == -1)
+				{
+					if (SelectedLayer == OccupancyLayer.Default)
+						SelectedLayer = OccupancyLayer.Ceiling;
+					else if (SelectedLayer == OccupancyLayer.Wall)
+						SelectedLayer = OccupancyLayer.Default;
+					else if (SelectedLayer == OccupancyLayer.Floor)
+						SelectedLayer = OccupancyLayer.Wall;
+					else if (SelectedLayer == OccupancyLayer.Ceiling)
+						SelectedLayer = OccupancyLayer.Floor;
+				}
+				data.Scroll = 0;
 			}
 		}
 
@@ -53,6 +79,7 @@ namespace KitchenLib.Fun
 		{
 			[Key(0)]
 			public Vector3 Location;
+			
 			public IUpdatableObject GetRelevantSubview(IObjectView view)
 			{
 				return view.GetSubView<TileHighlighter>();
@@ -69,6 +96,8 @@ namespace KitchenLib.Fun
 		{
 			[Key(0)]
 			public Vector3 Location;
+			[Key(1)]
+			public int Scroll;
 		}
 
 		private Action<IResponseData, Type> Callback;
@@ -128,18 +157,28 @@ namespace KitchenLib.Fun
 
 		protected override void UpdateData(ViewData data)
 		{
-			if (Callback == null)
-				return;
-			if (data.Location != null)
+			if (FunMenu.isOpen)
 			{
-				gridLocation = data.Location;
-			}
-			ResponseData response = new ResponseData
-			{
-				Location = location
-			};
+				if (Callback == null)
+					return;
+				if (data.Location != null)
+				{
+					gridLocation = data.Location;
+				}
+				int scroll = 0;
+				if (Input.mouseScrollDelta.y > 0)
+					scroll = 1;
+				else if (Input.mouseScrollDelta.y < 0)
+					scroll = -1;
+				
+				ResponseData response = new ResponseData
+				{
+					Location = location,
+					Scroll = scroll
+				};
 
-			Callback.Invoke(response, typeof(ResponseData));
+				Callback.Invoke(response, typeof(ResponseData));
+			}
 		}
 
 		public void SetCallback(Action<IResponseData, Type> callback)
