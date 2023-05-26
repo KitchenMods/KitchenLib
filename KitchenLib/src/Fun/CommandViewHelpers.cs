@@ -17,8 +17,8 @@ namespace KitchenLib.Fun
 		public void test()
 		{
 			GenericPopupManager.CreatePopup(
-						"Some mods are out of date!",
-						$"Hello You're Gey",
+						"Title",
+						"Content",
 						GenericChoiceType.OnlyAccept,
 						null,
 						null,
