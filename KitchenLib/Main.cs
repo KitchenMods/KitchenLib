@@ -18,16 +18,22 @@ using KitchenLib.IMMS;
 using System;
 using Kitchen.NetworkSupport;
 using KitchenLib.Utils;
+using KitchenLib.src.UI.PlateUp;
+using KitchenLib.Systems;
 
 namespace KitchenLib
 {
+	//TODO
+	// - Implement flowers into Fun Menu (Kitchen.GroupRecieveBonus)
+	// - Log all GDO Types and IDs to server
+	
 	public class Main : BaseMod
 	{
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.7.3";
-		public const string MOD_BETA_VERSION = "";
+		public const string MOD_VERSION = "0.7.4";
+		public const string MOD_BETA_VERSION = "1";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
 		public static CustomAppliance CommandViewHolder;
@@ -64,6 +70,7 @@ namespace KitchenLib
 			TileHighlighterViewHolder = AddGameDataObject<TileHighlighterViewHolder>();
 			ClientEquipCapeViewHolder = AddGameDataObject<ClientEquipCapeViewHolder>();
 			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
+			/*
 			AddGameDataObject<ItsHappeningCape>();
 			AddGameDataObject<StaffCape>();
 			AddGameDataObject<SupportCape>();
@@ -71,7 +78,19 @@ namespace KitchenLib
 			AddGameDataObject<TwitchCape>();
 			AddGameDataObject<EasterCape>();
 			AddGameDataObject<GearsCape>();
+			AddGameDataObject<TrollCape>();
 			AddGameDataObject<Discord_BoostCape>();
+			*/
+
+			RegisterNewCape<ItsHappeningCape>("itsHappening", "Its Happening! Cape");
+			RegisterNewCape<StaffCape>("staff", "Staff Cape");
+			RegisterNewCape<KitchenLibCape>("support", "KitchenLib Cape");
+			RegisterNewCape<SupportCape>("kitchenlib", "Support Cape");
+			RegisterNewCape<TwitchCape>("twitch", "Twitch Cape");
+			RegisterNewCape<EasterCape>("easter2023", "Easter Champion Cape");
+			RegisterNewCape<GearsCape>("gears2023", "Gears Champion Cape");
+			RegisterNewCape<Discord_BoostCape>("discordboost", "Booster Cape");
+			RegisterNewCape<TrollCape>("troll", "Trolled Cape");
 			AddGameDataObject<_21Balloon>();
 
 			SetupMenus();
@@ -160,7 +179,7 @@ namespace KitchenLib
 			{
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<PauseMenuAction>), new ModsMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<PauseMenuAction>), new ModsPreferencesMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
-				args.addMenu.Invoke(args.instance, new object[] { typeof(ConfirmModSync), new ConfirmModSync(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ModSyncMenu), new ModSyncMenu(args.instance.ButtonContainer, args.module_list) });
 			};
 
 			Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent += (s, args) =>
@@ -201,6 +220,14 @@ namespace KitchenLib
 				if (bytes != null)
 					File.WriteAllBytes(dirPath + gameDataObject.ID + "-" + gameDataObject.name + ".png", bytes);
 			}
+		}
+
+		public void RegisterNewCape<T>(string id, string display) where T : CustomPlayerCosmetic, new()
+		{
+			AddGameDataObject<T>();
+			UpdateData.capes.Add(id);
+			cosmeticManager.RegisterPreference(new PreferenceBool(id, false));
+			UpdateData.Capes.Add((id, GDOUtils.GetCustomGameDataObject<T>().ID), display);
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

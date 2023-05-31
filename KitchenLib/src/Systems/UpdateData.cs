@@ -17,18 +17,10 @@ namespace KitchenLib.Systems
 {
 	public class UpdateData : GameSystemBase, IModSystem
 	{
-		private static string syncVersion = "0.7.0";
-		public static List<string> capes = new List<string>
-		{
-			"itsHappening",
-			"staff",
-			"kitchenlib",
-			"support",
-			"twitch",
-			"easter2023",
-			"gears2023",
-			"discordboost"
-		};
+		private static string syncVersion = "0.7.4";
+		public static List<string> capes = new List<string>();
+		public static Dictionary<(string, int), string> Capes = new Dictionary<(string, int), string>();
+		
 		public static void CheckAllData(bool isForced)
 		{
 			if (Main.manager.GetPreference<PreferenceBool>("datacollection").Value && Main.manager.GetPreference<PreferenceBool>("over13").Value)
@@ -42,7 +34,7 @@ namespace KitchenLib.Systems
 				}
 			}
 		}
-		public static void RunInNewThread(bool isForced = false)
+		public static void RunDataCollection(bool isForced = false)
 		{
 			new Thread(delegate () {
 				CheckAllData(isForced);
@@ -50,16 +42,23 @@ namespace KitchenLib.Systems
 		}
 		protected override void Initialise()
 		{
-			RunInNewThread();
+			RunDataCollection();
 		}
 		protected override void OnUpdate() { }
 
 		public static void CollectData(string url, bool forced = false)
 		{
+			if (!CheckForInternetConnection())
+			{
+				Main.LogError($"Attempted to collect data but failed. - No Connection To Server.");
+				return;
+			}
 			string steamID = StringUtils.GetInt32HashCode(SteamPlatform.Steam.Me.ID.ToString()).ToString();
 			string steamName = SteamClient.Name;
 			string gameVersion = Application.version;
 			string klVersion = Main.MOD_VERSION;
+			if (Main.MOD_BETA_VERSION != "")
+				klVersion += $"b{Main.MOD_BETA_VERSION}";
 
 			int attempts = 0;
 			int maxAttempts = 5;
@@ -72,7 +71,7 @@ namespace KitchenLib.Systems
 					attempts++;
 					if (attempts >= maxAttempts)
 					{
-						Main.LogError($"{attempts} made to collect data but failed.");
+						Main.LogError($"{attempts} made to collect data but failed. - Steam is not ready.");
 						return;
 					}
 					Thread.Sleep(1000);
@@ -83,7 +82,7 @@ namespace KitchenLib.Systems
 					attempts++;
 					if (attempts >= maxAttempts)
 					{
-						Main.LogError($"{attempts} made to collect data but failed.");
+						Main.LogError($"{attempts} made to collect data but failed. - Steam ID is 0");
 						return;
 					}
 					Thread.Sleep(1000);
@@ -106,9 +105,10 @@ namespace KitchenLib.Systems
 					urlBuilder += $"&colorblind=0";
 				if (forced)
 					urlBuilder += "&forced=1";
-				Main.LogInfo(urlBuilder);
 				NetworkUtils.Get(urlBuilder);
-				
+
+				UpdateDataConstant.UpdatedSteamID = lobby;
+
 				char[] cosmetic = NetworkUtils.Get($"{url}?syncver=" + syncVersion + $"&?mode=cosmetic&steamID={steamID}").ToCharArray();
 				
 
@@ -126,7 +126,7 @@ namespace KitchenLib.Systems
 		{
 			try
 			{
-				url = "http://raw.githubusercontent.com";
+				url = "http://api.plateupmodding.com";
 
 				var request = (HttpWebRequest)WebRequest.Create(url);
 				request.KeepAlive = false;
@@ -137,6 +137,18 @@ namespace KitchenLib.Systems
 			catch
 			{
 				return false;
+			}
+		}
+	}
+
+	public class UpdateDataConstant : GameSystemBase, IModSystem
+	{
+		public static string UpdatedSteamID = "";
+		protected override void OnUpdate()
+		{
+			if (UpdatedSteamID != SteamPlatform.Steam.CurrentInviteLobby.Id.ToString())
+			{
+				UpdateData.RunDataCollection(true);
 			}
 		}
 	}

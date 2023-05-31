@@ -70,7 +70,7 @@ namespace KitchenLib.UI
 			}
 			if (GUILayout.Button("Force Network Refresh"))
 			{
-				UpdateData.RunInNewThread(true);
+				UpdateData.RunDataCollection(true);
 			}
 			if (GUILayout.Button("Create Feature Flag Preferences File"))
 			{

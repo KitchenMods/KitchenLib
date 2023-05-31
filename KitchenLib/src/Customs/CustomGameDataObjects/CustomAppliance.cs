@@ -138,13 +138,11 @@ namespace KitchenLib.Customs
                 result.Info = new LocalisationObject<ApplianceInfo>();
                 if (!result.Info.Has(Locale.English))
                 {
-                    result.Info.Add(Locale.English, new ApplianceInfo
-                    {
-                        Name = Name,
-                        Description = Description,
-                        Sections = Sections,
-                        Tags = Tags
-                    });
+					ApplianceInfo applianceInfo = ScriptableObject.CreateInstance<ApplianceInfo>();
+					applianceInfo.Name = Name;
+					applianceInfo.Description = Description;
+					applianceInfo.Sections = Sections;
+					applianceInfo.Tags = Tags;
                 }
             }
 

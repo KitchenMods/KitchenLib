@@ -41,11 +41,9 @@ namespace KitchenLib.Customs
                 result.Info = new LocalisationObject<ProcessInfo>();
                 if (!result.Info.Has(Locale.English))
                 {
-                    result.Info.Add(Locale.English, new ProcessInfo
-                    {
-                        Name = Icon,
-                        Icon = Icon
-                    });
+					ProcessInfo processInfo = ScriptableObject.CreateInstance<ProcessInfo>();
+					processInfo.Name = Icon;
+					processInfo.Icon = Icon;
                 }
             }
 
