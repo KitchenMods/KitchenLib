@@ -24,6 +24,7 @@ namespace KitchenLib.JSON
 		public static JsonSerializerSettings settings = new JsonSerializerSettings()
 		{
 			ContractResolver = new CustomContractResolver(),
+			ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
 			Converters = new JsonConverter[]
 			{
 				new StringEnumConverter(),

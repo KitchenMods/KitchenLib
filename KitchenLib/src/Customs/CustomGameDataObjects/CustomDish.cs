@@ -68,7 +68,7 @@ namespace KitchenLib.Customs
 
             if (!string.IsNullOrEmpty(IconOverride))
                 Unlock_Patch.AddIconOverride(result.ID, IconOverride);
-            if (ColourOverride != new Color())
+            if (ColourOverride.Equals(new Color()))
                 Unlock_Patch.AddColourOverride(result.ID, ColourOverride);
 
             gameDataObject = result;
