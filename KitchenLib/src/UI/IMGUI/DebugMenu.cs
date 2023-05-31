@@ -1,10 +1,17 @@
-﻿using KitchenData;
+﻿using Kitchen;
+using Kitchen.NetworkSupport;
+using Kitchen.Transports;
+using KitchenData;
 using KitchenLib.DataDumper;
 using KitchenLib.DataDumper.Dumpers;
 using KitchenLib.DevUI;
+using KitchenLib.Patches;
 using KitchenLib.Systems;
+using Steamworks;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using Unity.Entities;
 using UnityEngine;
 
 namespace KitchenLib.UI
@@ -20,7 +27,6 @@ namespace KitchenLib.UI
 		public override void OnInit()
 		{
 		}
-
 		public override void Setup()
 		{
 			if (GUILayout.Button("References"))
@@ -66,6 +72,18 @@ namespace KitchenLib.UI
 			{
 				UpdateData.RunInNewThread(true);
 			}
+			if (GUILayout.Button("Create Feature Flag Preferences File"))
+			{
+				FeatureFlags.SaveFeatureFlagFile();
+			}
+
+			GUILayout.Label("Log Levels");
+			GUILayout.BeginHorizontal();
+			foreach (LogType logType in Enum.GetValues(typeof(LogType)))
+			{
+				DebugLogPatch.EnabledLevels[logType] = GUILayout.Toggle(DebugLogPatch.EnabledLevels[logType], logType.ToString());
+			}
+			GUILayout.EndHorizontal();
 		}
 
 		public override void Disable()

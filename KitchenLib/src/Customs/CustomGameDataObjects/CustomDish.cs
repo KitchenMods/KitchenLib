@@ -1,5 +1,4 @@
 using KitchenData;
-using KitchenLib.Patches;
 using KitchenLib.References;
 using KitchenLib.Utils;
 using System;
@@ -10,7 +9,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomDish : CustomUnlock<Dish>
+	public abstract class CustomDish : CustomUnlock<Dish>
     {
         public virtual DishType Type { get; protected set; }
         public virtual string AchievementName { get; protected set; }
@@ -67,9 +66,9 @@ namespace KitchenLib.Customs
             }
 
             if (!string.IsNullOrEmpty(IconOverride))
-                Unlock_Patch.AddIconOverride(result.ID, IconOverride);
-            if (ColourOverride.Equals(new Color()))
-                Unlock_Patch.AddColourOverride(result.ID, ColourOverride);
+                UnlockOverrides.AddIconOverride(result.ID, IconOverride);
+            if (ColourOverride != new Color())
+				UnlockOverrides.AddColourOverride(result.ID, ColourOverride);
 
             gameDataObject = result;
         }

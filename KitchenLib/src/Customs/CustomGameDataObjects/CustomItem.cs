@@ -1,7 +1,4 @@
 using KitchenData;
-using KitchenLib.Colorblind;
-using KitchenLib.JSON;
-using KitchenLib.Patches;
 using KitchenLib.References;
 using KitchenLib.Utils;
 using System;
@@ -13,7 +10,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomItem : CustomItem<Item> { }
+	public abstract class CustomItem : CustomItem<Item> { }
     public abstract class CustomItem<T> : CustomGameDataObject<T>, ICustomHasPrefab where T : Item
     {
         public virtual GameObject Prefab { get; protected set; }
@@ -87,8 +84,8 @@ namespace KitchenLib.Customs
 				}
 			}
 
-			if (RewardOverride != -1)
-                Item_Patch.AddRewardOverride(result.ID, RewardOverride);
+            if (RewardOverride != -1)
+                ItemOverrides.AddRewardOverride(result.ID, RewardOverride);
 
             gameDataObject = result;
         }

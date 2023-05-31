@@ -1,9 +1,6 @@
 using Kitchen;
 using KitchenData;
-using KitchenLib.Colorblind;
-using KitchenLib.Patches;
 using KitchenLib.References;
-using KitchenLib.ShhhDontTellAnyone;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +10,7 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-    public abstract class CustomItemGroup : CustomItemGroup<ItemGroupView> { }
+	public abstract class CustomItemGroup : CustomItemGroup<ItemGroupViewUtils.DummyItemGroupView> { }
     public abstract class CustomItemGroup<T> : CustomItem<ItemGroup> where T : ItemGroupView
     {
         public virtual List<ItemGroup.ItemSet> Sets { get; protected set; } = new List<ItemGroup.ItemSet>();
@@ -51,8 +48,8 @@ namespace KitchenLib.Customs
 			//if (!string.IsNullOrEmpty(ColourBlindTag))
 			//ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
 
-			if (RewardOverride != -1)
-                Item_Patch.AddRewardOverride(result.ID, RewardOverride);
+            if (RewardOverride != -1)
+                ItemOverrides.AddRewardOverride(result.ID, RewardOverride);
 
             if (result.CanContainSide != CanContainSide) result.CanContainSide = CanContainSide;
             if (result.ApplyProcessesToComponents != ApplyProcessesToComponents) result.ApplyProcessesToComponents = ApplyProcessesToComponents;
@@ -108,29 +105,25 @@ namespace KitchenLib.Customs
                     ItemGroupViewUtils.AddSideContainer(gameData, result, localView);
                 }
 			}
-
-			if (!string.IsNullOrEmpty(ColourBlindTag))
+			Item steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
+			if (steak != null)
 			{
+				GameObject ColorBlind = GameObject.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject);
+				ColorBlind.transform.SetParent(result.Prefab.transform);
+				ColorBlind.transform.localPosition = new Vector3(0, 0, 0);
 
-				Item steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
-				if (steak != null)
+				FieldInfo info = ReflectionUtils.GetField<T>("ColourblindLabel");
+				T x = result.Prefab.GetComponent<T>();
+				ColorBlind.transform.Find("Title").GetComponent<TextMeshPro>().text = "";
+				info.SetValue(x, ColorBlind.transform.Find("Title").GetComponent<TextMeshPro>());
+
+				if (Labels != null)
 				{
-					GameObject ColorBlind = GameObject.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject);
-					ColorBlind.transform.SetParent(result.Prefab.transform);
-					ColorBlind.transform.localPosition = new Vector3(0, 0, 0);
-					ColorBlind.transform.Find("Title").GetComponent<TextMeshPro>().text = ColourBlindTag;
-
-					FieldInfo info = ReflectionUtils.GetField<T>("ColourblindLabel");
-					T x = result.Prefab.GetComponent<T>();
-					info.SetValue(x, ColorBlind.transform.Find("Title").GetComponent<TextMeshPro>());
-
-					if (Labels != null)
-					{
-						FieldInfo info2 = ReflectionUtils.GetField<T>("ComponentLabels");
-						info2.SetValue(x, Labels);
-					}
+					FieldInfo info2 = ReflectionUtils.GetField<T>("ComponentLabels");
+					info2.SetValue(x, Labels);
 				}
 			}
+
 		}
     }
 }

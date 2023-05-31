@@ -1,8 +1,9 @@
 using KitchenLib.Customs;
 using KitchenLib.DevUI;
-using KitchenLib.JSON;
+using KitchenLib.Patches;
 using KitchenLib.Registry;
 using KitchenLib.Utils;
+using KitchenLib.Views;
 using KitchenMods;
 using Semver;
 using System;
@@ -28,6 +29,8 @@ namespace KitchenLib
 		private static List<Assembly> PatchedAssemblies = new List<Assembly>();
 		private bool isRegistered = false;
 		private bool canRegisterGDO = false;
+
+		[Obsolete("This will point to different mods at different times, use your own singleton variable instead.")]
 		public static BaseMod instance;
 
 		public static HarmonyLib.Harmony harmonyInstance;
@@ -61,6 +64,8 @@ namespace KitchenLib
 
 		private void SetupMod(string modID, string modName, string author, string modVersion, string betaVersion, string compatibleVersions, Assembly assembly)
 		{
+			DebugLogPatch.SetupCustomLogHandler();
+
 			instance = this;
 			ModID = modID;
 			ModName = modName;
@@ -75,8 +80,6 @@ namespace KitchenLib
 			else
 				version = new KitchenVersion("", this);
 
-
-#if BEPINEX || WORKSHOP
 			if (harmonyInstance == null)
 				harmonyInstance = new HarmonyLib.Harmony(modID);
 			if (!PatchedAssemblies.Contains(assembly))
@@ -87,11 +90,10 @@ namespace KitchenLib
 					PatchedAssemblies.Add(assembly);
 				}
 			}
-#endif
+
 			semVersion = new SemVersion(version.Major, version.Minor, version.Patch);
 			isRegistered = ModRegistery.Register(this);
 			canRegisterGDO = true;
-
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -252,6 +254,38 @@ namespace KitchenLib
 			{
 				return CustomMaterials.AddMaterial(material.name, material);
 			}
+		}
+
+		/// <summary>
+		/// Register a custom view type.
+		/// </summary>
+		/// <param name="id">The view ID.</param>
+		/// <returns>The corresponding CustomViewType, for assigning to a field.</returns>
+		public CustomViewType AddViewType(string id)
+		{
+			return AddViewType(id, (GameObject)null);
+		}
+
+		/// <summary>
+		/// Register a custom view type with the specified prefab.
+		/// </summary>
+		/// <param name="id">The view ID.</param>
+		/// <param name="prefab">The prefab.</param>
+		/// <returns>The corresponding CustomViewType, for assigning to a field.</returns>
+		public CustomViewType AddViewType(string id, GameObject prefab)
+		{
+			return CustomViewType.Register(ModID, id, () => prefab);
+		}
+
+		/// <summary>
+		/// Register a custom view type with the specified prefab builder. The prefab builder is lazily-evaluated only once.
+		/// </summary>
+		/// <param name="id">The view ID.</param>
+		/// <param name="prefab">The prefab builder.</param>
+		/// <returns>The corresponding CustomViewType, for assigning to a field.</returns>
+		public CustomViewType AddViewType(string id, Func<GameObject> prefab)
+		{
+			return CustomViewType.Register(ModID, id, prefab);
 		}
 
 		public void RegisterMenu<T>() where T : BaseUI, new()

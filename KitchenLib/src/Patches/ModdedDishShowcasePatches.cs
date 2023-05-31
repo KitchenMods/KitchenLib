@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using Kitchen;
 using KitchenData;
+using KitchenLib.Preferences;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,7 +9,7 @@ using UnityEngine;
 namespace KitchenLib.Patches {
 
     [HarmonyPatch(typeof(MenuBackgroundItemScroller), "Update")]
-    public class MenuBackgroundItemScroller_Update_Patch {
+    internal class MenuBackgroundItemScrollerUpdatePatch {
 
         private static readonly int REFRESH_COOLDOWN = 500;
         private static readonly int INITIAL_REFRESH_COOLDOWN = 0;
@@ -18,6 +19,10 @@ namespace KitchenLib.Patches {
         private static bool hasRebuiltItems = false;
 
         public static void Prefix(ref bool ___IsCreated, ref List<Item> ___Items, MenuBackgroundItemScroller __instance) {
+			if (!Main.manager.GetPreference<PreferenceBool>("enableChangingMenu").Value)
+			{
+				return;
+			}
             if (isMenuHidden(__instance)) {
                 return;
             }
@@ -60,7 +65,7 @@ namespace KitchenLib.Patches {
     }
 
     [HarmonyPatch(typeof(MenuBackgroundItemScroller), "CreateItem")]
-    public class MenuBackgroundItemScroller_CreateItem_Patch {
+    internal class MenuBackgroundItemScrollerCreateItemPatch {
 
         public static void Postfix(ref GameObject __result) {
             //changeRotationSoItemsAreNotTopDown(__result);

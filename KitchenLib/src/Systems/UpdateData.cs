@@ -6,13 +6,29 @@ using KitchenMods;
 using Steamworks;
 using System.Net;
 using UnityEngine;
-using Unity.Entities;
 using System.Threading;
+using KitchenLib.Fun;
+using System.Collections.Generic;
+using System;
+using System.Management;
+using Microsoft.Win32;
 
 namespace KitchenLib.Systems
 {
 	public class UpdateData : GameSystemBase, IModSystem
 	{
+		private static string syncVersion = "0.7.0";
+		public static List<string> capes = new List<string>
+		{
+			"itsHappening",
+			"staff",
+			"kitchenlib",
+			"support",
+			"twitch",
+			"easter2023",
+			"gears2023",
+			"discordboost"
+		};
 		public static void CheckAllData(bool isForced)
 		{
 			if (Main.manager.GetPreference<PreferenceBool>("datacollection").Value && Main.manager.GetPreference<PreferenceBool>("over13").Value)
@@ -45,23 +61,60 @@ namespace KitchenLib.Systems
 			string gameVersion = Application.version;
 			string klVersion = Main.MOD_VERSION;
 
+			int attempts = 0;
+			int maxAttempts = 5;
+
 			//Data Update
 			try
 			{
-				if (!forced)
-					NetworkUtils.Get($"{url}?mode=update&steamID={steamID}&steamName={steamName}&gameVersion={gameVersion}&klVersion={klVersion}");
-				else
-					NetworkUtils.Get($"{url}?mode=update&steamID={steamID}&steamName={steamName}&gameVersion={gameVersion}&klVersion={klVersion}&forced=1");
-				char[] cosmetic = NetworkUtils.Get($"{url}?mode=cosmetic&steamID={steamID}").ToCharArray();
-				Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpDeveloper").Set(cosmetic[0] == '1');
-				Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpStaff").Set(cosmetic[1] == '1');
-				Main.cosmeticManager.GetPreference<PreferenceBool>("isKitchenLibDeveloper").Set(cosmetic[2] == '1');
-				Main.cosmeticManager.GetPreference<PreferenceBool>("isPlateUpSupport").Set(cosmetic[3] == '1');
-				Main.cosmeticManager.GetPreference<PreferenceBool>("isTwitchStreamer").Set(cosmetic[4] == '1');
-				Main.cosmeticManager.GetPreference<PreferenceBool>("isEasterChampion").Set(cosmetic[5] == '1');
-				if (int.Parse(NetworkUtils.Get($"{url}?mode=invite&steamID={steamID}")) == 1)
+				while (!SteamPlatform.Steam.IsReady)
 				{
-					CheckForRequiredInviteNight.ShouldInvite = true;
+					attempts++;
+					if (attempts >= maxAttempts)
+					{
+						Main.LogError($"{attempts} made to collect data but failed.");
+						return;
+					}
+					Thread.Sleep(1000);
+				}
+
+				while (SteamPlatform.Steam.CurrentInviteLobby.Id.ToString() == "0")
+				{
+					attempts++;
+					if (attempts >= maxAttempts)
+					{
+						Main.LogError($"{attempts} made to collect data but failed.");
+						return;
+					}
+					Thread.Sleep(1000);
+				}
+				
+				string lobby = SteamPlatform.Steam.CurrentInviteLobby.Id.ToString();
+
+				string urlBuilder = $"{url}";
+				urlBuilder += $"?syncver=" + syncVersion;
+				urlBuilder += $"&?mode=update";
+				urlBuilder += $"&steamID={steamID}";
+				urlBuilder += $"&steamName={steamName}";
+				urlBuilder += $"&gameVersion={gameVersion}";
+				urlBuilder += $"&klVersion={klVersion}";
+				urlBuilder += $"&lobbyID={lobby}";
+				urlBuilder += $"&resolution={Screen.currentResolution.width + "x" + Screen.currentResolution.height}";
+				if (Kitchen.Preferences.Get<bool>(Pref.AccessibilityColourBlindMode))
+					urlBuilder += $"&colorblind=1";
+				else
+					urlBuilder += $"&colorblind=0";
+				if (forced)
+					urlBuilder += "&forced=1";
+				Main.LogInfo(urlBuilder);
+				NetworkUtils.Get(urlBuilder);
+				
+				char[] cosmetic = NetworkUtils.Get($"{url}?syncver=" + syncVersion + $"&?mode=cosmetic&steamID={steamID}").ToCharArray();
+				
+
+				foreach (string cape in capes)
+				{
+					Main.cosmeticManager.GetPreference<PreferenceBool>(cape).Set(cosmetic[capes.IndexOf(cape)] == '1');
 				}
 			}
 			catch

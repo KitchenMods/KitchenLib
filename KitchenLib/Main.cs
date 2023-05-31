@@ -1,22 +1,25 @@
 using HarmonyLib;
 using Kitchen;
-using Kitchen.NetworkSupport;
 using KitchenData;
 using KitchenLib.Colorblind;
 using KitchenLib.Customs;
+using KitchenLib.Customs.GDOs;
 using KitchenLib.DevUI;
 using KitchenLib.Event;
 using KitchenLib.JSON;
 using KitchenLib.Preferences;
-using KitchenLib.ShhhDontTellAnyone;
+using KitchenLib.Fun;
 using KitchenLib.UI;
-using KitchenLib.Utils;
 using KitchenMods;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using KitchenLib.IMMS;
+using System;
+using Kitchen.NetworkSupport;
+using KitchenLib.Utils;
 
 namespace KitchenLib
 {
@@ -25,7 +28,7 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.6.5";
+		public const string MOD_VERSION = "0.7.3";
 		public const string MOD_BETA_VERSION = "";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
@@ -34,7 +37,9 @@ namespace KitchenLib
 		public static CustomAppliance SendToClientViewHolder;
 		public static CustomAppliance TileHighlighterViewHolder;
 		public static CustomAppliance ClientEquipCapeViewHolder;
+		public static CustomAppliance SyncModsViewHolder;
 		public static AssetBundle bundle;
+
 		public static PreferenceManager manager;
 		public static PreferenceManager cosmeticManager;
 
@@ -50,33 +55,60 @@ namespace KitchenLib
 			manager.RegisterPreference(new PreferenceBool("hasrequested", false));
 			manager.RegisterPreference(new PreferenceBool("over13", true));
 			manager.RegisterPreference(new PreferenceBool("datacollection", true));
+			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));
 			manager.Load();
-
-			cosmeticManager.RegisterPreference(new PreferenceBool("isPlateUpDeveloper", false));
-			cosmeticManager.RegisterPreference(new PreferenceBool("isPlateUpStaff", false));
-			cosmeticManager.RegisterPreference(new PreferenceBool("isPlateUpSupport", false));
-			cosmeticManager.RegisterPreference(new PreferenceBool("isKitchenLibDeveloper", false));
-			cosmeticManager.RegisterPreference(new PreferenceBool("isTwitchStreamer", false));
-			cosmeticManager.RegisterPreference(new PreferenceBool("isEasterChampion", false));
+			foreach (string cape in Systems.UpdateData.capes)
+			{
+				cosmeticManager.RegisterPreference(new PreferenceBool(cape, false));
+			}
 
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).ToList()[0];
-			
+
 			CommandViewHolder = AddGameDataObject<CommandViewHolder>();
 			InfoViewHolder = AddGameDataObject<InfoViewHolder>();
 			SendToClientViewHolder = AddGameDataObject<SendToClientViewHolder>();
 			TileHighlighterViewHolder = AddGameDataObject<TileHighlighterViewHolder>();
 			ClientEquipCapeViewHolder = AddGameDataObject<ClientEquipCapeViewHolder>();
-			AddGameDataObject<PlateUp_Cape>();
-			AddGameDataObject<PlateUp_Staff_Cape>();
-			AddGameDataObject<PlateUp_Support_Cape>();
-			AddGameDataObject<KitchenLib_Cape>();
-			AddGameDataObject<Twitch_Cape>();
-			AddGameDataObject<Easter_Champion_Cape>();
-			AddGameDataObject<_21_Balloon>();
-			
+			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
+			AddGameDataObject<ItsHappeningCape>();
+			AddGameDataObject<StaffCape>();
+			AddGameDataObject<SupportCape>();
+			AddGameDataObject<KitchenLibCape>();
+			AddGameDataObject<TwitchCape>();
+			AddGameDataObject<EasterCape>();
+			AddGameDataObject<GearsCape>();
+			AddGameDataObject<Discord_BoostCape>();
+			AddGameDataObject<_21Balloon>();
+
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
+			
+			/*
+			
+			// View types
+			AddViewType("imms", () =>
+			{
+				var res = new GameObject
+				{
+					name = "IMMS"
+				};
+				res.AddComponent<IMMSView>();
+
+				return res;
+			});
+
+			// IMMS logger
+			IMMSManager.RegisterAll((string key, IMMSContext ctx, object[] args) =>
+			{
+				LogInfo($"[IMMS] id={ctx.Id} channel={ctx.Channel} key={key} source={ctx.Source} target={ctx.Target} type={ctx.Type} args={string.Join(",", args.Select(Convert.ToString))}");
+				return null;
+			});
+
+			*/
+
+			// Init feature flags
+			FeatureFlags.Init();
 		}
 		protected override void OnInitialise()
 		{
@@ -92,6 +124,7 @@ namespace KitchenLib
 				FullScreenMode = FullScreenMode.Windowed
 			});
 			*/
+			
 
 			if (StringUtils.GetInt32HashCode(SteamPlatform.Steam.Me.ID.ToString()) == 1774237577)
 			{
@@ -100,6 +133,7 @@ namespace KitchenLib
 			GameObject go = new GameObject();
 			go.AddComponent<DevUIController>();
 			ColorblindUtils.AddSingleItemLabels(ColorblindUtils.itemLabels.ToArray());
+			RefVars.SetupProcessResults();
 		}
 
 		private void SetupMenus()
@@ -132,6 +166,7 @@ namespace KitchenLib
 			{
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<PauseMenuAction>), new ModsMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<PauseMenuAction>), new ModsPreferencesMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ConfirmModSync), new ConfirmModSync(args.instance.ButtonContainer, args.module_list) });
 			};
 
 			Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent += (s, args) =>

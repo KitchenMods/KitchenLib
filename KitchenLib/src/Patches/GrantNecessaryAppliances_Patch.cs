@@ -6,7 +6,7 @@ using KitchenLib.Systems;
 namespace KitchenLib.Patches
 {
 	[HarmonyPatch(typeof(GrantNecessaryAppliances), "TotalPlates")]
-	public class GrantNecessaryAppliances_Patch
+	internal class GrantNecessaryAppliances_Patch
 	{
 		static void Postfix(ref int __result)
 		{

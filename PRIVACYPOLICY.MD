@@ -1,6 +1,6 @@
 # KitchenLib Privacy Policy
 
-At KitchenLib, we are committed to protecting the privacy of our users. When you use our software, we may collect certain information from you, including your Hashed Steam ID, Steam Name, Game Version, and KitchenLib Version.
+At KitchenLib, we are committed to protecting the privacy of our users. When you use our software, we may collect certain information from you, including your Hashed Steam ID, Steam Name, Game Version, KitchenLib Version, Last Playtime, Last Lobby, Resolution, and Game Settings.
 
 We collect this information in order to provide you with the best possible experience while using our software. We may use this information to improve our software, to personalize your experience, and to communicate with you about updates and other relevant information.
 
