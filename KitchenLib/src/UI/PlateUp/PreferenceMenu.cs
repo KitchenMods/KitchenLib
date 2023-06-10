@@ -103,12 +103,12 @@ namespace KitchenLib.UI
 			
 			capeIDs.Clear();
 			capeNames.Clear();
-			foreach ((string, int) key in UpdateData.Capes.Keys)
+			foreach ((string, int) key in DataCollector.Capes.Keys)
 			{
 				if (Main.cosmeticManager.GetPreference<PreferenceBool>(key.Item1).Value)
 				{
 					capeIDs.Add(key.Item2);
-					capeNames.Add(UpdateData.Capes[key]);
+					capeNames.Add(DataCollector.Capes[key]);
 				}
 			}
 

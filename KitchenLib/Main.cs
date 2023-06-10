@@ -20,6 +20,7 @@ using Kitchen.NetworkSupport;
 using KitchenLib.Utils;
 using KitchenLib.src.UI.PlateUp;
 using KitchenLib.Systems;
+using System.Collections.Generic;
 
 namespace KitchenLib
 {
@@ -33,7 +34,7 @@ namespace KitchenLib
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
 		public const string MOD_VERSION = "0.7.4";
-		public const string MOD_BETA_VERSION = "1";
+		public const string MOD_BETA_VERSION = "";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
 		public static CustomAppliance CommandViewHolder;
@@ -57,7 +58,8 @@ namespace KitchenLib
 			manager.RegisterPreference(new PreferenceBool("datacollection", true));
 			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));
 			manager.Load();
-			foreach (string cape in Systems.UpdateData.capes)
+			
+			foreach (string cape in DataCollector.capes)
 			{
 				cosmeticManager.RegisterPreference(new PreferenceBool(cape, false));
 			}
@@ -70,17 +72,6 @@ namespace KitchenLib
 			TileHighlighterViewHolder = AddGameDataObject<TileHighlighterViewHolder>();
 			ClientEquipCapeViewHolder = AddGameDataObject<ClientEquipCapeViewHolder>();
 			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
-			/*
-			AddGameDataObject<ItsHappeningCape>();
-			AddGameDataObject<StaffCape>();
-			AddGameDataObject<SupportCape>();
-			AddGameDataObject<KitchenLibCape>();
-			AddGameDataObject<TwitchCape>();
-			AddGameDataObject<EasterCape>();
-			AddGameDataObject<GearsCape>();
-			AddGameDataObject<TrollCape>();
-			AddGameDataObject<Discord_BoostCape>();
-			*/
 
 			RegisterNewCape<ItsHappeningCape>("itsHappening", "Its Happening! Cape");
 			RegisterNewCape<StaffCape>("staff", "Staff Cape");
@@ -125,7 +116,7 @@ namespace KitchenLib
 		}
 		protected override void OnInitialise()
 		{
-			/*
+			
 			Kitchen.Preferences.Set<ScreenPreference.ScreenData>(Pref.ScreenResolution, new ScreenPreference.ScreenData
 			{
 				Resolution = new Resolution
@@ -136,8 +127,10 @@ namespace KitchenLib
 				},
 				FullScreenMode = FullScreenMode.Windowed
 			});
-			*/
 			
+			
+			GameObject clientDataCollection = new GameObject("Client Data Collection");
+			clientDataCollection.AddComponent<DataCollector>();
 
 			if (StringUtils.GetInt32HashCode(SteamPlatform.Steam.Me.ID.ToString()) == 1774237577)
 			{
@@ -225,9 +218,9 @@ namespace KitchenLib
 		public void RegisterNewCape<T>(string id, string display) where T : CustomPlayerCosmetic, new()
 		{
 			AddGameDataObject<T>();
-			UpdateData.capes.Add(id);
+			DataCollector.capes.Add(id);
 			cosmeticManager.RegisterPreference(new PreferenceBool(id, false));
-			UpdateData.Capes.Add((id, GDOUtils.GetCustomGameDataObject<T>().ID), display);
+			DataCollector.Capes.Add((id, GDOUtils.GetCustomGameDataObject<T>().ID), display);
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

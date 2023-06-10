@@ -6,6 +6,7 @@ using KitchenLib.DataDumper;
 using KitchenLib.DataDumper.Dumpers;
 using KitchenLib.DevUI;
 using KitchenLib.Patches;
+using KitchenLib.Utils;
 using KitchenLib.Systems;
 using Steamworks;
 using System;
@@ -70,7 +71,7 @@ namespace KitchenLib.UI
 			}
 			if (GUILayout.Button("Force Network Refresh"))
 			{
-				UpdateData.RunDataCollection(true);
+				DataCollector.hasRequestedForcedCollection = true;
 			}
 			if (GUILayout.Button("Create Feature Flag Preferences File"))
 			{

@@ -7,6 +7,8 @@ using KitchenMods;
 using KitchenData;
 using KitchenLib.Preferences;
 using Kitchen.NetworkSupport;
+using System.Reflection;
+using KitchenLib.Utils;
 
 namespace KitchenLib.Patches
 {
@@ -24,8 +26,8 @@ namespace KitchenLib.Patches
 	}
 	#endregion
 
-
 	#region Multiplayer player profiles bug fix
+	/*
 	[HarmonyPatch(typeof(PlayerInfoManager.UpdateView), "HandleResponse")]
 	internal class PlayerInfoManager_Patch
 	{
@@ -76,5 +78,6 @@ namespace KitchenLib.Patches
 			}
 		}
 	}
+	*/
 	#endregion
 }
