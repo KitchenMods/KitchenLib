@@ -33,7 +33,7 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.7.4";
+		public const string MOD_VERSION = "0.7.5";
 		public const string MOD_BETA_VERSION = "";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
@@ -116,7 +116,7 @@ namespace KitchenLib
 		}
 		protected override void OnInitialise()
 		{
-			
+			/*
 			Kitchen.Preferences.Set<ScreenPreference.ScreenData>(Pref.ScreenResolution, new ScreenPreference.ScreenData
 			{
 				Resolution = new Resolution
@@ -127,6 +127,7 @@ namespace KitchenLib
 				},
 				FullScreenMode = FullScreenMode.Windowed
 			});
+			*/
 			
 			
 			GameObject clientDataCollection = new GameObject("Client Data Collection");
