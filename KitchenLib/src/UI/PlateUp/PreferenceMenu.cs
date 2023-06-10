@@ -11,24 +11,14 @@ using UnityEngine;
 using Steamworks.Data;
 using KitchenMods;
 using KitchenLib.Views;
+using KitchenLib.src.UI.PlateUp;
+using KitchenLib.Systems;
 
 namespace KitchenLib.UI
 {
 	internal class PreferenceMenu<T> : KLMenu<T>
 	{
 		public PreferenceMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
-
-		public Dictionary<(bool, int), string> Capes = new Dictionary<(bool, int), string>
-		{
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("itsHappening").Value, GDOUtils.GetCustomGameDataObject<ItsHappeningCape>().ID),"Its Happening! Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("support").Value, GDOUtils.GetCustomGameDataObject<SupportCape>().ID),"Support Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("staff").Value, GDOUtils.GetCustomGameDataObject<StaffCape>().ID),"Staff Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("kitchenlib").Value, GDOUtils.GetCustomGameDataObject<KitchenLibCape>().ID),"KitchenLib Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("twitch").Value, GDOUtils.GetCustomGameDataObject<TwitchCape>().ID),"Twitch Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("easter2023").Value, GDOUtils.GetCustomGameDataObject<EasterCape>().ID),"Easter Champion Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("gears2023").Value, GDOUtils.GetCustomGameDataObject<GearsCape>().ID),"Gears Champion Cape"},
-			{(Main.cosmeticManager.GetPreference<PreferenceBool>("discordboost").Value, GDOUtils.GetCustomGameDataObject<Discord_BoostCape>().ID),"Booster Cape"},
-		};
 
 		private List<int> capeIDs = new List<int>();
 		private List<string> capeNames = new List<string>();
@@ -45,17 +35,6 @@ namespace KitchenLib.UI
 
 		public override void Setup(int player_id)
 		{
-			capeIDs.Clear();
-			capeNames.Clear();
-			foreach ((bool, int) key in Capes.Keys)
-			{
-				if (key.Item1)
-				{
-					capeIDs.Add(key.Item2);
-					capeNames.Add(Capes[key]);
-				}
-			}
-
 			Player player = null;
 			CPlayerCosmetics cosmetics = new CPlayerCosmetics();
 			PlayerManager pm = null;
@@ -116,23 +95,7 @@ namespace KitchenLib.UI
 			{
 				AddButton("Sync Mods", async delegate (int i)
 				{
-					Mods.Clear();
-					List<ulong> _mods = new List<ulong>();
-					foreach (Mod _mod in ModPreload.Mods)
-					{
-						_mods.Add(_mod.ID);
-					}
-					foreach (ulong mod in SyncMods._mods)
-					{
-						if (!_mods.Contains(mod))
-						{
-							Steamworks.Ugc.Item item = new Steamworks.Ugc.Item(new PublishedFileId { Value = mod});
-							var _mod = await Steamworks.Ugc.Item.GetAsync(item.Id);
-							Mods.Add(mod, _mod.Value);
-						}
-					}
-					ConfirmModSync.Mods = Mods;
-					RequestSubMenu(typeof(ConfirmModSync));
+					RequestSubMenu(typeof(ModSyncMenu));
 				}, 0, 1f, 0.2f);
 
 				New<SpacerElement>(true);
@@ -140,12 +103,12 @@ namespace KitchenLib.UI
 			
 			capeIDs.Clear();
 			capeNames.Clear();
-			foreach ((bool, int) key in Capes.Keys)
+			foreach ((string, int) key in DataCollector.Capes.Keys)
 			{
-				if (key.Item1)
+				if (Main.cosmeticManager.GetPreference<PreferenceBool>(key.Item1).Value)
 				{
 					capeIDs.Add(key.Item2);
-					capeNames.Add(Capes[key]);
+					capeNames.Add(DataCollector.Capes[key]);
 				}
 			}
 
