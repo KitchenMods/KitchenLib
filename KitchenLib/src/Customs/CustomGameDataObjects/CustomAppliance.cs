@@ -143,7 +143,8 @@ namespace KitchenLib.Customs
 					applianceInfo.Description = Description;
 					applianceInfo.Sections = Sections;
 					applianceInfo.Tags = Tags;
-                }
+					result.Info.Add(Locale.English, applianceInfo);
+				}
             }
 
 
