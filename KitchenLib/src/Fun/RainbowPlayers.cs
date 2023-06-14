@@ -6,7 +6,7 @@ using System.Linq;
 using Unity.Collections;
 using Unity.Entities;
 
-namespace KitchenLib.src.Fun
+namespace KitchenLib.Fun
 {
 	public class RainbowPlayers : GameSystemBase, IModSystem
 	{

@@ -9,7 +9,7 @@ using Steamworks.Data;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
-namespace KitchenLib.src.UI.PlateUp
+namespace KitchenLib.UI.PlateUp
 {
 	internal class ModSyncMenu : KLMenu<PauseMenuAction>
 	{

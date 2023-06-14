@@ -107,7 +107,7 @@ namespace KitchenLib.JSON
 			//JsonItem
 			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_Prefab");
 			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_SidePrefab");
-			ContentPackPatches.PostfixPatch(typeof(JsonItemGroup), "get_Processes");
+			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_Processes");
 			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_DirtiesTo");
 			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_MayRequestExtraItems");
 			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_SplitSubItem");
