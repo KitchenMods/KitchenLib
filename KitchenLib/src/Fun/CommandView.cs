@@ -111,6 +111,9 @@ namespace KitchenLib.Fun
 					case FunMode.ChangeOrder:
 						CommandViewHelpers.Main.ChangeOrder(data.Location, data.int1);
 						break;
+					case FunMode.Rainbow:
+						CommandViewHelpers.Main.ToggleRainbowPlayer(data.int1);
+						break;
 				}
 
 				data.Mode = FunMode.None;
@@ -259,6 +262,9 @@ namespace KitchenLib.Fun
 					break;
 				case FunMode.ChangeOrder:
 					response.int1 = RefVars.SelectedOrder;
+					break;
+				case FunMode.Rainbow:
+					response.int1 = RefVars.SelectedPlayer;
 					break;
 			}
 			Callback.Invoke(response, typeof(ResponseData));

@@ -114,25 +114,7 @@ namespace KitchenLib
 			Debug.LogError($"*[{ModName}] " + message);
 		}
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Log(object message)
-        {
-			Log(message.ToString());
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Warning(object message)
-        {
-			Warning(message.ToString());
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Error(object message)
-        {
-			Error(message.ToString());
-        }
-
-        protected virtual void OnInitialise() { }
+		protected virtual void OnInitialise() { }
 		protected virtual void OnFrameUpdate() { }
 
 		protected virtual void OnPostActivate(Mod mod) { }

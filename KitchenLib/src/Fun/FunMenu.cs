@@ -162,6 +162,7 @@ namespace KitchenLib.Fun
 			ColorSelector();
 			HexColorSelector();
 			SpeedSelector();
+			BuildRainbowToggle();
 		}
 
 		#region BuildPlayerPage
@@ -351,6 +352,15 @@ namespace KitchenLib.Fun
 			}
 			GUILayout.EndArea();
 		}
+		private void BuildRainbowToggle()
+		{
+			GUILayout.BeginArea(new Rect(646, 280, 139, 20));
+			if (GUILayout.Button("Rainbow"))
+			{
+				RefVars.ForceUpdate(FunMode.Rainbow);
+			}
+			GUILayout.EndArea();
+		}
 		#endregion
 
 		private void BuildAppliancePage()
@@ -361,7 +371,7 @@ namespace KitchenLib.Fun
 			BuildFireFighter();
 			BuildResetOrder();
 			BuildApplianceDestroyer();
-			BuildOrderAdder();
+			//BuildOrderAdder();
 		}
 
 		#region BuildAppliancePage

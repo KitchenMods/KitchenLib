@@ -77,7 +77,7 @@ namespace KitchenLib.Fun
 				foreach (Item item in GameData.Main.Get<Item>())
 				{
 					string[] name = item.name.Split('.');
-					if (!GameData.Main.TryGet<ItemGroup>(item.ID, out ItemGroup temp, true))
+					if (!GameData.Main.TryGet<ItemGroup>(item.ID, out ItemGroup temp, false))
 					{
 						LocalItems.Add(item.ID, name[name.Length - 1]);
 					}

@@ -5,8 +5,6 @@
 		<Configurations>Workshop</Configurations>
 		<AssemblyName>$(MSBuildProjectName)-Workshop</AssemblyName>
 		<LangVersion>latest</LangVersion>
-		<EnableDocumentation>false</EnableDocumentation>
-		<EnablePublicizeAssemblies>false</EnablePublicizeAssemblies>
 	</PropertyGroup>
 
 	<PropertyGroup>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using KitchenLib.JSON.Models.Containers;
 using UnityEngine;
+using System;
 
 namespace KitchenLib.JSON.Models.Jsons
 {
@@ -18,8 +19,6 @@ namespace KitchenLib.JSON.Models.Jsons
 		[JsonProperty("BaseGameDataObjectID")]
 		public override int BaseGameDataObjectID { get; protected set; } = -1;
 
-		[JsonProperty("Author", Required = Required.Always)]
-		public string Author { get; set; }
 		[JsonProperty("GDOName")]
 		public string GDOName { get; set; }
 
@@ -46,8 +45,9 @@ namespace KitchenLib.JSON.Models.Jsons
 		[OnDeserialized]
 		internal void OnDeserializedMethod(StreamingContext context)
 		{
-			ModName = context.Context.ToString();
-			ModID = $"{Author}.{ModName}";
+			Tuple<string, string> Context = (Tuple<string, string>)context.Context;
+			ModName = Context.Item2;
+			ModID = $"{Context.Item1}.{Context.Item2}";
 			Properties = AppliancePropertyContainers.Select(p => p.Property).ToList();
 		}
 

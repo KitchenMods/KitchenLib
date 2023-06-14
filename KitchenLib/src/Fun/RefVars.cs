@@ -184,7 +184,8 @@ namespace KitchenLib.Fun
 		Money,
 		NewProcess,
 		Destroy,
-		ChangeOrder
+		ChangeOrder,
+		Rainbow
 	}
 
 	public enum ProcessType

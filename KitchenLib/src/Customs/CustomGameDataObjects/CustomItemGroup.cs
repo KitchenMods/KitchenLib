@@ -94,13 +94,14 @@ namespace KitchenLib.Customs
                 sets.SetValue(gameDataObject, Sets);
             }
 
-			//Setup ItemGroupView for this ItemGroup
-			if (AutoSetupItemGroupView)
-            {;
-				T localView = result.Prefab.GetComponent<T>();
-				if (localView == null)
+            //Setup ItemGroupView for this ItemGroup
+            if (AutoSetupItemGroupView)
+            {
+                T localView = result.Prefab.GetComponent<T>();
+                if (localView == null)
                     localView = result.Prefab.AddComponent<T>();
-				if (CanContainSide)
+
+                if (CanContainSide)
                 {
                     ItemGroupViewUtils.AddSideContainer(gameData, result, localView);
                 }

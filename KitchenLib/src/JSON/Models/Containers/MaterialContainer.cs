@@ -3,7 +3,7 @@
 	public class MaterialContainer
 	{
 		public MaterialType Type { get; set; }
-		public string name { get; set; }
+		public string Name { get; set; }
 	}
 
 	public enum MaterialType

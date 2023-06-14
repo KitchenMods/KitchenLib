@@ -1,4 +1,5 @@
 ﻿using KitchenLib.Customs;
+using KitchenLib.JSON.Models;
 using KitchenLib.JSON.Models.Containers;
 using KitchenLib.JSON.Models.Jsons;
 using KitchenLib.Utils;
@@ -18,6 +19,7 @@ namespace KitchenLib.JSON
 	{
 		public static Dictionary<string, List<JObject>> JSONTable = new Dictionary<string, List<JObject>>();
 		public static Dictionary<string, List<AssetBundle>> AssetBundleTable = new Dictionary<string, List<AssetBundle>>();
+		public static Dictionary<string, JObject> ManifestTable = new Dictionary<string, JObject>();
 
 		public static void Initialise()
 		{
@@ -28,13 +30,47 @@ namespace KitchenLib.JSON
 			Main.LogInfo("Registering AssetBundles...");
 			foreach (Mod mod in ModPreload.Mods)
 				foreach (AssetBundleModPack pack in mod.GetPacks<AssetBundleModPack>())
+				{
 					RegisterAssetBundles(mod.Name, pack.AssetBundles);
+					foreach (AssetBundle bundle in pack.AssetBundles)
+					{
+						foreach (TextAsset asset in bundle.LoadAllAssets<TextAsset>())
+						{
+							try
+							{
+								JObject jObject = JObject.Parse(asset.text);
+								if (jObject.TryGetValue("Type", out JToken jToken))
+								{
+									if(!JSONManager.keyValuePairs.ContainsKey(jToken.ToObject<JsonType>()))
+									{
+										RegisterJSONGDO(mod.Name, jObject);
+									}
+								}
+								else
+								{
+									if(asset.name == "Manifest.json")
+									{
+										RegisterManifest(mod.Name, jObject);
+									}
+								}
+							}
+							catch (Exception e)
+							{
+								Main.LogWarning(asset.name + " Could Not Be Loaded");
+								Main.LogWarning(e.Message);
+							}
+						}
+					}
+				}
 		}
 
 		public static void InjectGDOs()
 		{
 			foreach (string modname in JSONTable.Keys)
 			{
+				Manifest manifest = ManifestTable[modname].ToObject<Manifest>();
+				InitialiseSerializer(manifest.Author, manifest.ModName);
+
 				foreach (JObject jObject in JSONTable[modname])
 				{
 					if(jObject.TryGetValue("Type", out JToken jToken1))
@@ -42,8 +78,6 @@ namespace KitchenLib.JSON
 							if(jObject.TryGetValue("ModificationType", out JToken jToken2))
 								if(Enum.TryParse(jToken2.ToString(), true, out ModificationType ModType))
 								{
-									InitialiseSerializer(modname);
-
 									switch (ModType)
 									{
 										case ModificationType.NewGDO:
@@ -59,9 +93,6 @@ namespace KitchenLib.JSON
 												case GDOType.Dish:
 													CustomGDO.RegisterJsonGameDataObject((JsonDish)gdo);
 													break;
-												case GDOType.Appliance:	
-													CustomGDO.RegisterJsonGameDataObject((JsonAppliance)gdo);
-													break;
 											}
 											Main.LogInfo($"GDO registered {modname}:{gdo.UniqueNameID} with ID {gdo.ID}");
 											break;
@@ -76,7 +107,7 @@ namespace KitchenLib.JSON
 			//JsonItem
 			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_Prefab");
 			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_SidePrefab");
-			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_Processes");
+			ContentPackPatches.PostfixPatch(typeof(JsonItemGroup), "get_Processes");
 			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_DirtiesTo");
 			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_MayRequestExtraItems");
 			ContentPackPatches.PostfixPatch(typeof(JsonItem), "get_SplitSubItem");
@@ -123,9 +154,9 @@ namespace KitchenLib.JSON
 			ContentPackPatches.PostfixPatch(typeof(JsonAppliance), "get_CrateItem");
 		}
 
-		public static void InitialiseSerializer(string modname)
+		public static void InitialiseSerializer(string author, string modname)
 		{
-			ContentPackUtils.settings.Context = new StreamingContext(StreamingContextStates.Other, modname);
+			ContentPackUtils.settings.Context = new StreamingContext(StreamingContextStates.Other, new Tuple<string, string>(author, modname));
 			ContentPackUtils.serializer = JsonSerializer.Create(ContentPackUtils.settings);
 		}
 
@@ -136,10 +167,10 @@ namespace KitchenLib.JSON
 				switch (material.Type)
 				{
 					case MaterialType.Existing:
-						yield return MaterialUtils.GetExistingMaterial(material.name);
+						yield return MaterialUtils.GetExistingMaterial(material.Name);
 						break;
 					case MaterialType.Custom:
-						yield return MaterialUtils.GetCustomMaterial(material.name);
+						yield return MaterialUtils.GetCustomMaterial(material.Name);
 						break;
 				}
 			}
@@ -161,6 +192,17 @@ namespace KitchenLib.JSON
 			Main.LogInfo($"Assetbundle cached for {key}");
 		}
 
+		public static void RegisterManifest(string key, JObject jObject)
+		{
+			if (ManifestTable.ContainsKey(key))
+			{
+				// Log Error duplicate manifest
+				return;
+			}
+			ManifestTable.Add(key, jObject);
+			Main.LogInfo($"Manifest cached for {key}");
+		}
+
 		public static void FindMods(string dir)
 		{
 			BaseMod.instance.Log("Searching for mods in " + dir);
@@ -180,8 +222,17 @@ namespace KitchenLib.JSON
 			foreach (string file in files)
 			{
 				JObject jObject = JObject.Parse(File.ReadAllText(file));
-				RegisterJSONGDO(modname, jObject);
+				string filename = getFileName(file);
+				if (filename == "Manifest.json")
+					RegisterManifest(modname, jObject);
+				else
+					RegisterJSONGDO(modname, jObject);
 			}
+		}
+
+		public static string getFileName(string path)
+		{
+			return Path.GetFileName(path);
 		}
 	}
 }

@@ -2,10 +2,9 @@
 using KitchenLib.Customs;
 using KitchenLib.JSON.Interfaces;
 using KitchenLib.JSON.Models.Containers;
-using KitchenLib.Utils;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
 using UnityEngine;
 
@@ -16,8 +15,7 @@ namespace KitchenLib.JSON.Models.Jsons
 		[field: JsonProperty("UniqueNameID", Required = Required.Always)]
 		[JsonIgnore]
 		public override string UniqueNameID { get; }
-		[JsonProperty("Author", Required = Required.Always)]
-		public string Author { get; set; }
+
 		[JsonProperty("GDOName")]
 		public string GDOName { get; set; } = "";
 
@@ -42,12 +40,20 @@ namespace KitchenLib.JSON.Models.Jsons
 		public List<IngredientUnlockContainer> TempIngredientsUnlocks { get; set; }
 		[JsonProperty("RequiredDishItem")]
 		public string TempRequiredDishItem { get; set; }
+		[JsonProperty("InfoList")]
+		public List<UnlockInfoContainer> TempInfoList { get; set; }
 
 		[OnDeserialized]
 		internal void OnDeserializedMethod(StreamingContext context)
 		{
-			ModName = context.Context.ToString();
-			ModID = $"{Author}.{ModName}";
+			Tuple<string, string> Context = (Tuple<string, string>)context.Context;
+			ModName = Context.Item2;
+			ModID = $"{Context.Item1}.{Context.Item2}";
+
+			foreach (UnlockInfoContainer unlockInfo in TempInfoList)
+			{
+				InfoList.Add((unlockInfo.locale, unlockInfo.Convert()));
+			}
 		}
 
 		public override void OnRegister(Dish gameDataObject)

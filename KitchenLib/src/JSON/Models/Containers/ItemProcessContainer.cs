@@ -1,4 +1,5 @@
 ﻿using KitchenData;
+using Newtonsoft.Json.Linq;
 
 namespace KitchenLib.JSON.Models.Containers
 {
@@ -21,6 +22,17 @@ namespace KitchenLib.JSON.Models.Containers
 			itemProcess.RequiresWrapper = RequiresWrapper;
 
 			return itemProcess;
+		}
+
+		public override string ToString()
+		{
+			string str = "";
+			str += $"Process: {Process}\n";
+			str += $"Process: {Result}\n";
+			str += $"Process: {Duration}\n";
+			str += $"Process: {IsBad}\n";
+			str += $"Process: {RequiresWrapper}";
+			return str;
 		}
 	}
 }

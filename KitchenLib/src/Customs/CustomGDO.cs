@@ -35,7 +35,7 @@ namespace KitchenLib.Customs
 			return gdo;
 		}
 
-		public static void RegisterJsonGameDataObject<T>(T gdo) where T : CustomGameDataObject
+		public static T RegisterJsonGameDataObject<T>(T gdo) where T : CustomGameDataObject
 		{
 			if (gdo.ID == 0)
 				gdo.ID = gdo.GetHash();
@@ -44,7 +44,8 @@ namespace KitchenLib.Customs
 
 			if (GDOs.ContainsKey(gdo.ID))
 			{
-				Main.LogInfo($"Error while registering json GDO of type {gdo.GetType().FullName} with ID={gdo.ID} and Name=\"{gdo.ModName}:{gdo.UniqueNameID}\". Double-check to ensure that the UniqueNameID is actually unique. (Clashing with : {GDOs[gdo.ID]})");
+				Main.LogInfo($"Error while registering custom GDO of type {gdo.GetType().FullName} with ID={gdo.ID} and Name=\"{gdo.ModName}:{gdo.UniqueNameID}\". Double-check to ensure that the UniqueNameID is actually unique. (Clashing with : {GDOs[gdo.ID]})");
+				return null;
 			}
 
 			GDOs.Add(gdo.ID, gdo);
@@ -52,6 +53,8 @@ namespace KitchenLib.Customs
 			LegacyGDOIDs.Add(gdo.LegacyID, gdo.ID);
 			GDOsByGUID.Add(new KeyValuePair<string, string>(gdo.ModID, gdo.UniqueNameID), gdo);
 			GDOsByModName.Add(new KeyValuePair<string, string>(gdo.ModName, gdo.UniqueNameID), gdo);
+
+			return gdo;
 		}
 	}
 }

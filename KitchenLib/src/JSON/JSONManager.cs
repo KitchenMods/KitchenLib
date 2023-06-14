@@ -82,13 +82,11 @@ namespace KitchenLib
 						JObject jObject = JObject.Parse(asset.text);
 						if (jObject.TryGetValue("Type", out JToken jToken))
 						{
-							if(keyValuePairs.TryGetValue(jToken.ToObject<JsonType>(), out Type type))
+							if (keyValuePairs.TryGetValue(jToken.ToObject<JsonType>(), out Type type))
 							{
 								var json = jObject.ToObject(type);
 								LoadedJsons.Add(json as BaseJson);
 							}
-							else
-								ContentPackManager.RegisterJSONGDO(Main.instance.ModName, jObject);
 						}
 					}
 					catch (Exception e)

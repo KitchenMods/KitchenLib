@@ -17,8 +17,7 @@ namespace KitchenLib.JSON
 		{
 			{GDOType.Item, typeof(JsonItem) },
 			{GDOType.ItemGroup, typeof(JsonItemGroup) },
-			{GDOType.Dish, typeof(JsonDish) },
-			{GDOType.Appliance, typeof(JsonAppliance) }
+			{GDOType.Dish, typeof(JsonDish) }
 		};
 
 		public static JsonSerializerSettings settings = new JsonSerializerSettings()
@@ -70,7 +69,6 @@ namespace KitchenLib.JSON
 		Item,
 		ItemGroup,
 		Dish,
-		Appliance
 	}
 
 	public enum ModificationType

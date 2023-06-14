@@ -4,6 +4,7 @@ using KitchenLib.JSON.Interfaces;
 using KitchenLib.JSON.Models.Containers;
 using KitchenLib.Utils;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -17,8 +18,6 @@ namespace KitchenLib.JSON.Models.Jsons
 		[field: JsonProperty("UniqueNameID", Required = Required.Always)]
 		[JsonIgnore]
 		public override string UniqueNameID { get; }
-		[JsonProperty("Author", Required = Required.Always)]
-		public string Author { get; set; }
 		[JsonProperty("GDOName")]
 		public string GDOName { get; set; }
 
@@ -54,11 +53,15 @@ namespace KitchenLib.JSON.Models.Jsons
 		[JsonProperty("Sets")]
 		public List<ItemSetContainer> TempSets { get; set; }
 
+		[JsonIgnore]
+		public override List<Item.ItemProcess> Processes { get; protected set; } = new List<Item.ItemProcess>();
+
 		[OnDeserialized]
 		internal void OnDeserializedMethod(StreamingContext context)
 		{
-			ModName = context.Context.ToString();
-			ModID = $"{Author}.{ModName}";
+			Tuple<string, string> Context = (Tuple<string, string>)context.Context;
+			ModName = Context.Item2;
+			ModID = $"{Context.Item1}.{Context.Item2}";
 			Properties = ItemPropertyContainers.Select(p => p.Property).ToList();
 		}
 
@@ -98,6 +101,7 @@ namespace KitchenLib.JSON.Models.Jsons
 		{
 			if (__instance.GetType() == typeof(JsonItemGroup))
 			{
+				Main.LogInfo($"ItemGroup: {__instance.UniqueNameID}");
 				__result = ContentPackPatches.ItemProcessesConverter(__instance.TempProcesses);
 			}
 		}
