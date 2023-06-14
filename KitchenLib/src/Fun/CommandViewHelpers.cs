@@ -1,7 +1,7 @@
 ﻿using Kitchen;
 using KitchenData;
 using KitchenLib.References;
-using KitchenLib.Fun;
+using KitchenLib.src.Fun;
 using KitchenLib.Systems;
 using KitchenLib.UI;
 using KitchenLib.Utils;
