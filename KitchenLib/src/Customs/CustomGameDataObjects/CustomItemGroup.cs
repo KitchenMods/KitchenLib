@@ -110,6 +110,7 @@ namespace KitchenLib.Customs
 			if (steak != null)
 			{
 				GameObject ColorBlind = GameObject.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject);
+				ColorBlind.name = "Colour Blind";
 				ColorBlind.transform.SetParent(result.Prefab.transform);
 				ColorBlind.transform.localPosition = new Vector3(0, 0, 0);
 

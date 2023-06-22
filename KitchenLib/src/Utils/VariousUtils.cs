@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;	
-
+using System.Collections.Generic;
+using UnityEngine;
 using System.Text;
 
 namespace KitchenLib.Utils
@@ -23,6 +23,12 @@ namespace KitchenLib.Utils
 				}
 			}
 			return ID;
+		}
+
+		public static Color HexToColor(string hex)
+		{
+			ColorUtility.TryParseHtmlString(hex, out Color color);
+			return color;
 		}
 		
 		private static System.Security.Cryptography.SHA1 hash = new System.Security.Cryptography.SHA1CryptoServiceProvider();

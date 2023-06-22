@@ -38,18 +38,20 @@ namespace KitchenLib.Patches {
 
         private static bool isMenuHidden(MenuBackgroundItemScroller menu) => !menu.Backdrop.activeInHierarchy;
 
-        private static void rebuildItemListWithModdedDishesIfNeeded(ref List<Item> items) {
-            if (hasRebuiltItems) {
+        private static void rebuildItemListWithModdedDishesIfNeeded(ref List<Item> items)
+		{
+			if (hasRebuiltItems)
                 return;
-            }
-
-            items = GameData.Main.Get<Dish>()
+			if (GameData.Main == null)
+				return;
+			
+			items = GameData.Main.Get<Dish>()
                 .SelectMany(dish => dish.UnlocksMenuItems)
                 .Select(menuItem => menuItem.Item)
                 .ToList();
 
-            hasRebuiltItems = true;
-        }
+			hasRebuiltItems = true;
+		}
 
         private static void removeAllCurrentDishes(ref MenuBackgroundItemScroller menu) {
             List<GameObject> children = new List<GameObject>();

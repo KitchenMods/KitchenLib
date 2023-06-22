@@ -6,7 +6,7 @@ using KitchenLib.Customs.GDOs;
 using KitchenLib.DevUI;
 using KitchenLib.Event;
 using KitchenLib.Preferences;
-using KitchenLib.Fun;
+using KitchenLib.References;
 using KitchenLib.UI;
 using KitchenMods;
 using System.IO;
@@ -21,6 +21,8 @@ using KitchenLib.Utils;
 using KitchenLib.src.UI.PlateUp;
 using KitchenLib.Systems;
 using System.Collections.Generic;
+using Kitchen.Layouts;
+using XNode;
 
 namespace KitchenLib
 {
@@ -33,7 +35,7 @@ namespace KitchenLib
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.7.5";
+		public const string MOD_VERSION = "0.7.6";
 		public const string MOD_BETA_VERSION = "";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
@@ -54,6 +56,7 @@ namespace KitchenLib
 			manager = new PreferenceManager(MOD_ID);
 			cosmeticManager = new PreferenceManager(MOD_ID + ".cosmetics");
 			manager.RegisterPreference(new PreferenceBool("hasrequested", false));
+			manager.RegisterPreference(new PreferenceBool("newpolicy", false));
 			manager.RegisterPreference(new PreferenceBool("over13", true));
 			manager.RegisterPreference(new PreferenceBool("datacollection", true));
 			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));
@@ -65,11 +68,7 @@ namespace KitchenLib
 			}
 
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).ToList()[0];
-
-			CommandViewHolder = AddGameDataObject<CommandViewHolder>();
-			InfoViewHolder = AddGameDataObject<InfoViewHolder>();
-			SendToClientViewHolder = AddGameDataObject<SendToClientViewHolder>();
-			TileHighlighterViewHolder = AddGameDataObject<TileHighlighterViewHolder>();
+			
 			ClientEquipCapeViewHolder = AddGameDataObject<ClientEquipCapeViewHolder>();
 			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
 
@@ -83,6 +82,7 @@ namespace KitchenLib
 			RegisterNewCape<Discord_BoostCape>("discordboost", "Booster Cape");
 			RegisterNewCape<TrollCape>("troll", "Trolled Cape");
 			AddGameDataObject<_21Balloon>();
+			AddGameDataObject<Pride_Flag>();
 
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
@@ -116,31 +116,11 @@ namespace KitchenLib
 		}
 		protected override void OnInitialise()
 		{
-			/*
-			Kitchen.Preferences.Set<ScreenPreference.ScreenData>(Pref.ScreenResolution, new ScreenPreference.ScreenData
-			{
-				Resolution = new Resolution
-				{
-					width = 1920,
-					height = 1080,
-					refreshRate = 0
-				},
-				FullScreenMode = FullScreenMode.Windowed
-			});
-			*/
-			
-			
 			GameObject clientDataCollection = new GameObject("Client Data Collection");
 			clientDataCollection.AddComponent<DataCollector>();
-
-			if (StringUtils.GetInt32HashCode(SteamPlatform.Steam.Me.ID.ToString()) == 1774237577)
-			{
-				RegisterMenu<FunMenu>();
-			}
 			GameObject go = new GameObject();
 			go.AddComponent<DevUIController>();
 			ColorblindUtils.AddSingleItemLabels(ColorblindUtils.itemLabels.ToArray());
-			RefVars.SetupProcessResults();
 		}
 
 		private void SetupMenus()
@@ -159,6 +139,7 @@ namespace KitchenLib
 			{
 				args.addMenu.Invoke(args.instance, new object[] { typeof(RevisedMainMenu), new RevisedMainMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(DataCollectionMenu), new DataCollectionMenu(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(PrivacyPolicyUpdate), new PrivacyPolicyUpdate(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<MainMenuAction>), new ModsMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<MainMenuAction>), new ModsPreferencesMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
 			};

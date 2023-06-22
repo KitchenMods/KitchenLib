@@ -54,6 +54,11 @@ namespace KitchenLib.Utils
 			{
 				newPrefab = item.Prefab;
 			}
+			if (newPrefab == null)
+			{
+				Main.LogWarning($"Could not find side prefab for item {item.ID} ({item.name}).");
+				return;
+			}
 
 			Transform transform = newPrefab.transform;
 			transform.parent = sidePrefab.transform;

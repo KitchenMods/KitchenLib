@@ -78,6 +78,6 @@ namespace KitchenLib.Patches
 			}
 		}
 	}
-	
+
 	#endregion
 }

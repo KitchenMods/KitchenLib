@@ -126,6 +126,7 @@ namespace KitchenLib.UI
 			GenerateClass<UnlockPack>(ref classGenerator, gameData);
 			GenerateClass<WorkshopRecipe>(ref classGenerator, gameData);
 			GenerateClass<CustomerType>(ref classGenerator, gameData);
+			GenerateClass<RestaurantSetting>(ref classGenerator, gameData);
 
 			classGenerator.Add("}");
 

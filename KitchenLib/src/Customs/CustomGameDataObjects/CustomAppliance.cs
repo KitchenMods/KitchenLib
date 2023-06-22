@@ -162,6 +162,11 @@ namespace KitchenLib.Customs
             if (result.RequiresProcessForShop != RequiresProcessForShop) result.RequiresProcessForShop = RequiresProcessForShop;
             if (result.Upgrades != Upgrades) result.Upgrades = Upgrades;
             if (result.CrateItem != CrateItem) result.CrateItem = CrateItem;
+
+			if (result.Prefab == null)
+			{
+				result.Prefab = Main.bundle.LoadAsset<GameObject>("Error_Appliance");
+			}
         }
 
         public override void OnRegister(GameDataObject gameDataObject)
