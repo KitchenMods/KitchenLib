@@ -38,7 +38,28 @@ namespace KitchenLib.Utils
 			ItemGroupView sideItemGroupView = sidePrefab.GetComponent<ItemGroupView>();
 
 			var newComponentGroup = Activator.CreateInstance(tComponentGroup);
-			GameObject newPrefab = UnityEngine.Object.Instantiate((CustomGDO.GDOs[item.ID] as CustomItem)?.SidePrefab ?? item.Prefab);
+			GameObject newPrefab = null;
+
+			if (CustomGDO.GDOs.ContainsKey(item.ID))
+			{
+				CustomItem customItem = CustomGDO.GDOs[item.ID] as CustomItem;
+				if (customItem != null)
+				{
+					newPrefab = customItem.SidePrefab;
+					if (newPrefab == null)
+						newPrefab = item.Prefab;
+				}
+			}
+			else
+			{
+				newPrefab = item.Prefab;
+			}
+			if (newPrefab == null)
+			{
+				Main.LogWarning($"Could not find side prefab for item {item.ID} ({item.name}).");
+				return;
+			}
+
 			Transform transform = newPrefab.transform;
 			transform.parent = sidePrefab.transform;
 			transform.transform.localPosition = new Vector3(transform.transform.localPosition.x, transform.transform.localPosition.y + 0.185f, transform.transform.localPosition.z); // Moving the prefab up ever so slightly
@@ -49,8 +70,8 @@ namespace KitchenLib.Utils
 			mAdd.Invoke(componentGroups, new object[] { newComponentGroup });
 
 			SideItems.Add(item.ID);
-            Main.LogInfo($"Added item prefab to side registry for item {item.ID} ({item.name}).");
-        }
+			Main.LogInfo($"Added item prefab to side registry for item {item.ID} ({item.name}).");
+		}
 
 		public static void AddSideContainer<T>(GameData gameData, ItemGroup itemGroup, T localView) where T : ItemGroupView
 		{
@@ -66,12 +87,12 @@ namespace KitchenLib.Utils
 				ItemGroup plated_burger = gameData.Get<ItemGroup>(ItemGroupReferences.BurgerPlated);
 				ItemGroupView burgerView = plated_burger.Prefab.GetComponent<ItemGroupView>();
 				fSubviewPrefab.SetValue(localView, fSubviewPrefab.GetValue(burgerView));
-            }
-            else
-            {
-                Main.LogWarning($"Could not find Side Container in prefab for ItemGroup {itemGroup.ID} ({itemGroup.name}).");
-            }
-        }
+			}
+			else
+			{
+				Main.LogWarning($"Could not find Side Container in prefab for ItemGroup {itemGroup.ID} ({itemGroup.name}).");
+			}
+		}
 
 		public class DummyItemGroupView : ItemGroupView
 		{
@@ -80,5 +101,5 @@ namespace KitchenLib.Utils
 				ComponentGroups = new();
 			}
 		}
-    }
+	}
 }

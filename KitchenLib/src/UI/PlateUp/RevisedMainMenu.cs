@@ -2,6 +2,7 @@
 using Kitchen;
 using KitchenData;
 using UnityEngine;
+using KitchenLib.Preferences;
 
 namespace KitchenLib.UI
 {

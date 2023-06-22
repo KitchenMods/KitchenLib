@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using KitchenLib.Preferences;
 using static UnityEngine.Rendering.HableCurve;
+using System;
+using KitchenData;
 
 namespace KitchenLib.UI
 {
-	internal class DataCollectionMenu : KLMenu<MainMenuAction>
+	internal class PrivacyPolicyUpdate : KLMenu<MainMenuAction>
 	{
-		public DataCollectionMenu(Transform container, ModuleList module_list) : base(container, module_list)
+		public PrivacyPolicyUpdate(Transform container, ModuleList module_list) : base(container, module_list)
 		{
 		}
 		public override void Setup(int player_id)
@@ -46,7 +48,6 @@ namespace KitchenLib.UI
 
 			AddButton("Continue", delegate (int i)
 			{
-				Main.manager.GetPreference<PreferenceBool>("hasrequested").Set(true);
 				Main.manager.GetPreference<PreferenceBool>("newpolicy").Set(true);
 				Main.manager.Save();
 				RequestSubMenu(typeof(RevisedMainMenu));

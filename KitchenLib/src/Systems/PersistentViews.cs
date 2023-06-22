@@ -10,6 +10,11 @@ namespace KitchenLib.Systems
 {
 	public class PersistentViews : RestaurantSystem, IModSystem
 	{
+		/*
+		 * As of 23/JUNE/2023
+		 * KitchenLib has removed it's secret "Fun Menu" although these views are still here in an attempt to keep player's save files safe.
+		 * The "Fun Menu" is nolonger in KitchenLib, and the functionality is no longer present.
+		 */
 		protected override void Initialise()
 		{
 			commandViews = GetEntityQuery(typeof(CCommandView));

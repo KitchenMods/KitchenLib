@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading;
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace KitchenLib.Utils
 {
@@ -52,15 +53,19 @@ namespace KitchenLib.Utils
 
 		private void CheckAllData(bool isForced)
 		{
+			if (!CheckForInternetConnection())
+				return;
+
+			if (!NetworkUtils.Get("https://raw.githubusercontent.com/StarFluxMods/starfluxmods.github.io/master/AccessRemoteServer").Contains("1"))
+				return;
+
 			if (Main.manager.GetPreference<PreferenceBool>("datacollection").Value && Main.manager.GetPreference<PreferenceBool>("over13").Value)
 			{
-				if (CheckForInternetConnection())
-				{
-					if (NetworkUtils.Get("https://raw.githubusercontent.com/StarFluxMods/starfluxmods.github.io/master/AccessRemoteServer").Contains("1"))
-					{
-						CollectData("http://api.plateupmodding.com", isForced);
-					}
-				}
+				CollectData("http://api.plateupmodding.com", isForced);
+			}
+			else
+			{
+				RevokeData("http://api.plateupmodding.com/revoke.php");
 			}
 		}
 		private bool CheckForInternetConnection(int timeoutMs = 10000, string url = null)
@@ -79,6 +84,19 @@ namespace KitchenLib.Utils
 			{
 				return false;
 			}
+		}
+
+		private void RevokeData(string url) //Remove all stored data related to a specific user
+		{
+			if (!CheckForInternetConnection())
+			{
+				Main.LogError($"Attempted to collect data but failed. - No Connection To Server.");
+			}
+			string steamID = StringUtils.GetInt32HashCode(SteamPlatform.Steam.Me.ID.ToString()).ToString();
+
+			string urlBuilder = $"{url}";
+			urlBuilder += $"?SteamID=" + steamID;
+			NetworkUtils.Get(urlBuilder);
 		}
 
 		private void CollectData(string url, bool forced = false)
@@ -135,12 +153,7 @@ namespace KitchenLib.Utils
 				urlBuilder += $"&klVersion={klVersion}";
 				if (SteamReadyError || LobbyReadyError)
 				{
-					urlBuilder += "&lobbyID=error";
-				}
-				else
-				{
-					string lobby = SteamPlatform.Steam.CurrentInviteLobby.Id.ToString();
-					urlBuilder += $"&lobbyID={lobby}";
+					urlBuilder += $"&lobbyID=[REDACTED]";
 				}
 				urlBuilder += $"&resolution={Screen.currentResolution.width + "x" + Screen.currentResolution.height}";
 				if (Kitchen.Preferences.Get<bool>(Pref.AccessibilityColourBlindMode))

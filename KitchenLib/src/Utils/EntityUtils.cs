@@ -52,9 +52,9 @@ namespace KitchenLib.Utils
 						Item = CreateItem(itemID),
 						Reward = 0,
 						MemberIndex = memberIndex,
-						IsSide = false,
+						IsSide = GameData.Main.Get<Item>(itemID).IsMergeableSide,
 						DirtItem = 0,
-						Extra = item.Reward,
+						Extra = 0,
 						SourceMenuItem = 0
 					});
 				}
