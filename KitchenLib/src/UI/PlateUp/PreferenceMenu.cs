@@ -81,9 +81,6 @@ namespace KitchenLib.UI
 				RequestPreviousMenu();
 			}, 0, 1f, 0.2f);
 		}
-
-		private Option<bool> _over_13 = new Option<bool>(new List<bool> { true, false }, Main.manager.GetPreference<PreferenceBool>("over13").Value, new List<string> { "Yes", "No" });
-		private Option<bool> _data_consent = new Option<bool>(new List<bool> { true, false }, Main.manager.GetPreference<PreferenceBool>("datacollection").Value, new List<string> { "Yes", "No" });
 		private Option<bool> scrollingMenu = new Option<bool>(new List<bool> { true, false }, Main.manager.GetPreference<PreferenceBool>("enableChangingMenu").Value, new List<string> { "Enabled", "Disabled" });
 
 		private static void CopyFilesRecursively(string sourcePath, string targetPath)
