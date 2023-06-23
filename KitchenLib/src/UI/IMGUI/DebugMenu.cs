@@ -69,10 +69,6 @@ namespace KitchenLib.UI
 			{
 				RefreshDishUpgrades.Refresh = true;
 			}
-			if (GUILayout.Button("Force Network Refresh"))
-			{
-				DataCollector.hasRequestedForcedCollection = true;
-			}
 			if (GUILayout.Button("Create Feature Flag Preferences File"))
 			{
 				FeatureFlags.SaveFeatureFlagFile();

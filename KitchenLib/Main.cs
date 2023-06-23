@@ -2,11 +2,9 @@ using Kitchen;
 using KitchenData;
 using KitchenLib.Colorblind;
 using KitchenLib.Customs;
-using KitchenLib.Customs.GDOs;
 using KitchenLib.DevUI;
 using KitchenLib.Event;
 using KitchenLib.Preferences;
-using KitchenLib.References;
 using KitchenLib.UI;
 using KitchenMods;
 using System.IO;
@@ -14,29 +12,17 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using KitchenLib.IMMS;
-using System;
-using Kitchen.NetworkSupport;
-using KitchenLib.Utils;
 using KitchenLib.src.UI.PlateUp;
-using KitchenLib.Systems;
-using System.Collections.Generic;
-using Kitchen.Layouts;
-using XNode;
 
 namespace KitchenLib
 {
-	//TODO
-	// - Implement flowers into Fun Menu (Kitchen.GroupRecieveBonus)
-	// - Log all GDO Types and IDs to server
-	
 	public class Main : BaseMod
 	{
 		public const string MOD_ID = "kitchenlib";
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
-		public const string MOD_VERSION = "0.7.6";
-		public const string MOD_BETA_VERSION = "";
+		public const string MOD_VERSION = "0.7.7";
+		public const string MOD_BETA_VERSION = "0";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
 		public static CustomAppliance CommandViewHolder;
@@ -55,21 +41,11 @@ namespace KitchenLib
 		{
 			manager = new PreferenceManager(MOD_ID);
 			cosmeticManager = new PreferenceManager(MOD_ID + ".cosmetics");
-			manager.RegisterPreference(new PreferenceBool("hasrequested", false));
-			manager.RegisterPreference(new PreferenceBool("newpolicy", false));
-			manager.RegisterPreference(new PreferenceBool("over13", true));
-			manager.RegisterPreference(new PreferenceBool("datacollection", true));
 			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));
 			manager.Load();
 			
-			foreach (string cape in DataCollector.capes)
-			{
-				cosmeticManager.RegisterPreference(new PreferenceBool(cape, false));
-			}
-
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).ToList()[0];
 			
-			ClientEquipCapeViewHolder = AddGameDataObject<ClientEquipCapeViewHolder>();
 			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
 
 			RegisterNewCape<ItsHappeningCape>("itsHappening", "Its Happening! Cape");
@@ -80,9 +56,6 @@ namespace KitchenLib
 			RegisterNewCape<EasterCape>("easter2023", "Easter Champion Cape");
 			RegisterNewCape<GearsCape>("gears2023", "Gears Champion Cape");
 			RegisterNewCape<Discord_BoostCape>("discordboost", "Booster Cape");
-			RegisterNewCape<TrollCape>("troll", "Trolled Cape");
-			AddGameDataObject<_21Balloon>();
-			AddGameDataObject<Pride_Flag>();
 
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
@@ -116,8 +89,6 @@ namespace KitchenLib
 		}
 		protected override void OnInitialise()
 		{
-			GameObject clientDataCollection = new GameObject("Client Data Collection");
-			clientDataCollection.AddComponent<DataCollector>();
 			GameObject go = new GameObject();
 			go.AddComponent<DevUIController>();
 			ColorblindUtils.AddSingleItemLabels(ColorblindUtils.itemLabels.ToArray());
@@ -138,8 +109,6 @@ namespace KitchenLib
 			Events.MainMenuView_SetupMenusEvent += (s, args) =>
 			{
 				args.addMenu.Invoke(args.instance, new object[] { typeof(RevisedMainMenu), new RevisedMainMenu(args.instance.ButtonContainer, args.module_list) });
-				args.addMenu.Invoke(args.instance, new object[] { typeof(DataCollectionMenu), new DataCollectionMenu(args.instance.ButtonContainer, args.module_list) });
-				args.addMenu.Invoke(args.instance, new object[] { typeof(PrivacyPolicyUpdate), new PrivacyPolicyUpdate(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<MainMenuAction>), new ModsMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<MainMenuAction>), new ModsPreferencesMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
 			};
@@ -200,9 +169,6 @@ namespace KitchenLib
 		public void RegisterNewCape<T>(string id, string display) where T : CustomPlayerCosmetic, new()
 		{
 			AddGameDataObject<T>();
-			DataCollector.capes.Add(id);
-			cosmeticManager.RegisterPreference(new PreferenceBool(id, false));
-			DataCollector.Capes.Add((id, GDOUtils.GetCustomGameDataObject<T>().ID), display);
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
