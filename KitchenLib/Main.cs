@@ -2,11 +2,9 @@ using Kitchen;
 using KitchenData;
 using KitchenLib.Colorblind;
 using KitchenLib.Customs;
-using KitchenLib.Customs.GDOs;
 using KitchenLib.DevUI;
 using KitchenLib.Event;
 using KitchenLib.Preferences;
-using KitchenLib.References;
 using KitchenLib.UI;
 using KitchenMods;
 using System.IO;
@@ -14,15 +12,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using KitchenLib.IMMS;
-using System;
-using Kitchen.NetworkSupport;
-using KitchenLib.Utils;
 using KitchenLib.src.UI.PlateUp;
-using KitchenLib.Systems;
-using System.Collections.Generic;
-using Kitchen.Layouts;
-using XNode;
 
 namespace KitchenLib
 {
@@ -32,7 +22,7 @@ namespace KitchenLib
 		public const string MOD_NAME = "KitchenLib";
 		public const string MOD_AUTHOR = "KitchenMods";
 		public const string MOD_VERSION = "0.7.7";
-		public const string MOD_BETA_VERSION = "1";
+		public const string MOD_BETA_VERSION = "2";
 		public const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
 
 		public static CustomAppliance CommandViewHolder;
@@ -57,9 +47,15 @@ namespace KitchenLib
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).ToList()[0];
 			
 			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
-			
-			AddGameDataObject<_21Balloon>();
-			AddGameDataObject<Pride_Flag>();
+
+			RegisterNewCape<ItsHappeningCape>("itsHappening", "Its Happening! Cape");
+			RegisterNewCape<StaffCape>("staff", "Staff Cape");
+			RegisterNewCape<KitchenLibCape>("support", "KitchenLib Cape");
+			RegisterNewCape<SupportCape>("kitchenlib", "Support Cape");
+			RegisterNewCape<TwitchCape>("twitch", "Twitch Cape");
+			RegisterNewCape<EasterCape>("easter2023", "Easter Champion Cape");
+			RegisterNewCape<GearsCape>("gears2023", "Gears Champion Cape");
+			RegisterNewCape<Discord_BoostCape>("discordboost", "Booster Cape");
 
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
