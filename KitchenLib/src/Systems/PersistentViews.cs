@@ -26,10 +26,10 @@ namespace KitchenLib.Systems
 		}
 		protected override void OnUpdate()
 		{
-			EnsureView(commandViews.ToEntityArray(Allocator.Temp), Main.CommandViewHolder.ID, typeof(CCommandView));
-			EnsureView(infoViews.ToEntityArray(Allocator.Temp), Main.InfoViewHolder.ID, typeof(CInfoView));
-			EnsureView(sendToClientViews.ToEntityArray(Allocator.Temp), Main.SendToClientViewHolder.ID, typeof(CSendToClientView));
-			EnsureView(tileHightlighterView.ToEntityArray(Allocator.Temp), Main.TileHighlighterViewHolder.ID, typeof(CTileHightlighterView));
+			//EnsureView(commandViews.ToEntityArray(Allocator.Temp), Main.CommandViewHolder.ID, typeof(CCommandView));
+			//EnsureView(infoViews.ToEntityArray(Allocator.Temp), Main.InfoViewHolder.ID, typeof(CInfoView));
+			//EnsureView(sendToClientViews.ToEntityArray(Allocator.Temp), Main.SendToClientViewHolder.ID, typeof(CSendToClientView));
+			//EnsureView(tileHightlighterView.ToEntityArray(Allocator.Temp), Main.TileHighlighterViewHolder.ID, typeof(CTileHightlighterView));
 			EnsureView(clientEquipCapeView.ToEntityArray(Allocator.Temp), Main.ClientEquipCapeViewHolder.ID, typeof(CClientEquipCapeView));
 			EnsureView(syncModsView.ToEntityArray(Allocator.Temp), Main.SyncModsViewHolder.ID, typeof(CSyncModsView));
 		}

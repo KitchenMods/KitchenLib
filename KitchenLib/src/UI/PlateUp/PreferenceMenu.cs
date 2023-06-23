@@ -19,19 +19,8 @@ namespace KitchenLib.UI
 	internal class PreferenceMenu<T> : KLMenu<T>
 	{
 		public PreferenceMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
-
-		private List<int> capeIDs = new List<int>();
-		private List<string> capeNames = new List<string>();
-		private int selectedID;
+		
 		private Dictionary<ulong, Steamworks.Ugc.Item> Mods = new Dictionary<ulong, Steamworks.Ugc.Item>();
-
-		private Option<int> capeSelector;
-
-		private void SetCosmetic(int playerID, int capeID)
-		{
-			ClientEquipCapes.CapeID = capeID;
-			ClientEquipCapes.PlayerID = playerID;
-		}
 
 		public override void Setup(int player_id)
 		{
@@ -47,21 +36,6 @@ namespace KitchenLib.UI
 					cosmetics = pm.EntityManager.GetComponentData<CPlayerCosmetics>(player.Entity);
 				}
 			}
-			AddLabel("Are you over 13 years old?");
-			AddSelect(_over_13);
-			_over_13.OnChanged += delegate (object _, bool result)
-			{
-				Main.manager.GetPreference<PreferenceBool>("over13").Set(result);
-			};
-
-			New<SpacerElement>(true);
-
-			AddLabel("Do you permit the collection data?");
-			AddSelect(_data_consent);
-			_data_consent.OnChanged += delegate (object _, bool result)
-			{
-				Main.manager.GetPreference<PreferenceBool>("datacollection").Set(result);
-			};
 
 			New<SpacerElement>(true);
 
@@ -98,39 +72,6 @@ namespace KitchenLib.UI
 					RequestSubMenu(typeof(ModSyncMenu));
 				}, 0, 1f, 0.2f);
 
-				New<SpacerElement>(true);
-			}
-			
-			capeIDs.Clear();
-			capeNames.Clear();
-			foreach ((string, int) key in DataCollector.Capes.Keys)
-			{
-				if (Main.cosmeticManager.GetPreference<PreferenceBool>(key.Item1).Value)
-				{
-					capeIDs.Add(key.Item2);
-					capeNames.Add(DataCollector.Capes[key]);
-				}
-			}
-
-			if (capeIDs.Count > 0)
-			{
-				capeIDs.Add(-1);
-				capeNames.Add("Disable Cape");
-				AddLabel("Equip Cape");
-				if (capeIDs.Count > 0)
-				{
-					capeSelector = new Option<int>(capeIDs, capeIDs.First(), capeNames);
-					selectedID = capeIDs.First();
-					capeSelector.OnChanged += (s, args) =>
-					{
-						selectedID = args;
-					};
-				}
-				AddSelect<int>(capeSelector);
-				AddButton("Equip Cape", delegate (int i)
-				{
-					SetCosmetic(player_id, selectedID);
-				}, 0, 1f, 0.2f);
 				New<SpacerElement>(true);
 			}
 
