@@ -16,7 +16,6 @@ namespace KitchenLib.Systems
 		}
 		protected override void OnUpdate()
 		{
-			EnsureView(clientEquipCapeView.ToEntityArray(Allocator.Temp), Main.ClientEquipCapeViewHolder.ID, typeof(CClientEquipCapeView));
 			EnsureView(syncModsView.ToEntityArray(Allocator.Temp), Main.SyncModsViewHolder.ID, typeof(CSyncModsView));
 		}
 
@@ -39,7 +38,6 @@ namespace KitchenLib.Systems
 				}
 			}
 		}
-		private EntityQuery clientEquipCapeView;
 		private EntityQuery syncModsView;
 	}
 	/*
