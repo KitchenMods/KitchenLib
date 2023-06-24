@@ -69,10 +69,6 @@ namespace KitchenLib.UI
 			{
 				RefreshDishUpgrades.Refresh = true;
 			}
-			if (GUILayout.Button("Force Network Refresh"))
-			{
-				DataCollector.hasRequestedForcedCollection = true;
-			}
 			if (GUILayout.Button("Create Feature Flag Preferences File"))
 			{
 				FeatureFlags.SaveFeatureFlagFile();
@@ -126,6 +122,7 @@ namespace KitchenLib.UI
 			GenerateClass<UnlockPack>(ref classGenerator, gameData);
 			GenerateClass<WorkshopRecipe>(ref classGenerator, gameData);
 			GenerateClass<CustomerType>(ref classGenerator, gameData);
+			GenerateClass<RestaurantSetting>(ref classGenerator, gameData);
 
 			classGenerator.Add("}");
 

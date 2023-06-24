@@ -44,7 +44,8 @@ namespace KitchenLib.Customs
 					ProcessInfo processInfo = ScriptableObject.CreateInstance<ProcessInfo>();
 					processInfo.Name = Icon;
 					processInfo.Icon = Icon;
-                }
+					result.Info.Add(Locale.English, processInfo);
+				}
             }
 
             gameDataObject = result;

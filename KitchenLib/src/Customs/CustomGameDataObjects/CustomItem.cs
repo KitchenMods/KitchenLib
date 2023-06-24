@@ -79,6 +79,7 @@ namespace KitchenLib.Customs
 				if (steak != null)
 				{
 					GameObject ColorBlind = GameObject.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject);
+					ColorBlind.name = "Colour Blind";
 					ColorBlind.transform.SetParent(result.Prefab.transform);
 					ColorBlind.transform.Find("Title").GetComponent<TMP_Text>().text = ColourBlindTag;
 				}
@@ -87,7 +88,16 @@ namespace KitchenLib.Customs
             if (RewardOverride != -1)
                 ItemOverrides.AddRewardOverride(result.ID, RewardOverride);
 
-            gameDataObject = result;
+			if (result.Prefab == null)
+			{
+				result.Prefab = Main.bundle.LoadAsset<GameObject>("Error_Item");
+			}
+			if (SidePrefab == null)
+			{
+				SidePrefab = Main.bundle.LoadAsset<GameObject>("Error_Side");
+			}
+
+			gameDataObject = result;
         }
 
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
@@ -108,7 +118,7 @@ namespace KitchenLib.Customs
             FieldInfo processes = ReflectionUtils.GetField<Item>("Processes");
 
             if (processes.GetValue(result) != Processes) processes.SetValue(result, Processes);
-        }
+		}
 
         public override void OnRegister(GameDataObject gameDataObject)
         {

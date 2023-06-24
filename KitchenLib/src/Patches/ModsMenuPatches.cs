@@ -30,10 +30,7 @@ namespace KitchenLib.Patches
 		static void Postfix(MainMenuView __instance)
 		{
 			MethodInfo setMenu = ReflectionUtils.GetMethod<MainMenuView>("SetMenu");
-			if (Main.manager.GetPreference<PreferenceBool>("hasrequested").Value)
-				setMenu.Invoke(__instance, new object[] { typeof(RevisedMainMenu), false });
-			else
-				setMenu.Invoke(__instance, new object[] { typeof(DataCollectionMenu), false });
+			setMenu.Invoke(__instance, new object[] { typeof(RevisedMainMenu), false });
 		}
 	}
 
