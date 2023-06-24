@@ -21,6 +21,13 @@ namespace KitchenLib.JSON
 		public static Dictionary<string, List<AssetBundle>> AssetBundleTable = new Dictionary<string, List<AssetBundle>>();
 		public static Dictionary<string, JObject> ManifestTable = new Dictionary<string, JObject>();
 
+		public static void Start()
+		{
+			Initialise();
+			ApplyPatches();
+			InjectGDOs();
+		}
+
 		public static void Initialise()
 		{
 			Main.LogInfo("Loading packs...");

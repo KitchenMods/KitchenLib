@@ -40,9 +40,7 @@ namespace KitchenLib
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
 		protected override void OnPostActivate(Mod mod)
 		{
-			ContentPackManager.Initialise();
-			ContentPackManager.ApplyPatches();
-			ContentPackManager.InjectGDOs();
+			ContentPackManager.Start();
 
 			manager = new PreferenceManager(MOD_ID);
 			cosmeticManager = new PreferenceManager(MOD_ID + ".cosmetics");

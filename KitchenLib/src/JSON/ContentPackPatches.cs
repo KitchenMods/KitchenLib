@@ -2,10 +2,12 @@
 using KitchenData;
 using KitchenLib.JSON.Interfaces;
 using KitchenLib.JSON.Models.Containers;
+using KitchenLib.References;
 using KitchenLib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 
 namespace KitchenLib.JSON
@@ -61,7 +63,7 @@ namespace KitchenLib.JSON
 			if (container == null)
 				return null;
 			List<Appliance.ApplianceProcesses> processes = new List<Appliance.ApplianceProcesses>();
-			for (int i=0; i<container.Count; i++)
+			for (int i = 0; i < container.Count; i++)
 			{
 				processes.Add(container[i].Convert());
 			}
@@ -73,7 +75,7 @@ namespace KitchenLib.JSON
 			if (container == null)
 				return null;
 			List<Dish.MenuItem> items = new List<Dish.MenuItem>();
-			for (int i=0; i<container.Count; i++)
+			for (int i = 0; i < container.Count; i++)
 			{
 				items.Add(container[i].Convert());
 			}
@@ -136,6 +138,32 @@ namespace KitchenLib.JSON
 				return (T)GDOUtils.GetExistingGDO(id) ?? (T)GDOUtils.GetCustomGameDataObject(id)?.GameDataObject;
 			else
 			{
+				int refID = 0;
+				if (typeof(T) == typeof(Item))
+				{
+					PropertyInfo prop = ReflectionUtils.GetProperty<ItemReferences>(str);
+					refID = (int)prop.GetValue(null, null);
+					if (refID != 0) return (T)GDOUtils.GetExistingGDO(refID);
+				}
+				else if (typeof(T) == typeof(ItemGroup))
+				{
+					PropertyInfo prop = ReflectionUtils.GetProperty<ItemGroupReferences>(str);
+					refID = (int)prop.GetValue(null, null);
+					if (refID != 0) return (T)GDOUtils.GetExistingGDO(refID);
+				}
+				else if (typeof(T) == typeof(Dish))
+				{
+					PropertyInfo prop = ReflectionUtils.GetProperty<DishReferences>(str);
+					refID = (int)prop.GetValue(null, null);
+					if (refID != 0) return (T)GDOUtils.GetExistingGDO(refID);
+				}
+				else if (typeof(T) == typeof(Appliance))
+				{
+					PropertyInfo prop = ReflectionUtils.GetProperty<ApplianceReferences>(str);
+					refID = (int)prop.GetValue(null, null);
+					if (refID != 0) return (T)GDOUtils.GetExistingGDO(refID);
+				}
+
 				string[] split = str.Split(':');
 				string mod_id = split[0];
 				string name = split[1];
