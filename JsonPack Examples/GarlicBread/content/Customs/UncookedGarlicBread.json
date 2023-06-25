@@ -1,0 +1,47 @@
+{
+    "Type": "ItemGroup",
+    "ModificationType": "NewGDO",
+    "UniqueNameID": "UncookedGarlicBread",
+    "Prefab": "UncookedGarlicBread",
+    "ItemCategory": "Generic",
+    "ItemStorageFlag": "StackableFood",
+    "Sets": [
+        {
+            "Max": 2,
+            "Min": 2,
+            "Items": [
+                -306959510,
+                263830100
+            ]
+        }
+    ],
+    "Materials": [
+        {
+            "Path": "GameObject",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Bread - Inside"
+                }
+            ]
+        },
+        {
+            "Path": "GameObject (1)",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Bread"
+                }
+            ]
+        },
+        {
+            "Path": "GameObject (2)",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Cheese - Default"
+                }
+            ]
+        }
+    ]
+}

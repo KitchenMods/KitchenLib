@@ -1,0 +1,40 @@
+{
+    "Type": "Dish",
+    "ModificationType": "NewGDO",
+    "UniqueNameId": "Garlic Bread",
+    "DishType": "Starter",
+    "CustomerMultiplier": "SmallDecrease",
+    "CardType": "Default",
+    "ExpReward": "Small",
+    "UnlockGroup": "Dish",
+    "SelectionBias": 1,
+    "ResultingMenuItems": [
+        {
+            "Item": "Yariazen.GarlicBread:PlatedGarlicBread",
+            "Phase": "Starter",
+            "Weight": 1
+        }
+    ],
+    "MinimumIngredients": [
+        1378842682,
+        -755280170,
+        -626784042,
+        "ingredientlib:garlic"
+    ],
+    "RequiredProcesses": [
+        1972879238,
+        2087693779,
+        -523839730
+    ],
+    "Recipe": {
+        "English": "Add grated cheese and minced garlic to a bread slice then cook. Place on a Serving Board. Serves 3 customers"
+    },
+    "InfoList": [
+        {
+            "Locale": "English",
+            "Name": "Garlic Bread",
+            "Description": "Adds Garlic Bread as a Starter",
+            "FlavourText": "Mmmmm Tasty"
+        }
+    ]
+}

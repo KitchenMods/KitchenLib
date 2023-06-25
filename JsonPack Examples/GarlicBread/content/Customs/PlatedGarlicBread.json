@@ -1,0 +1,68 @@
+{
+    "Type": "ItemGroup",
+    "ModificationType": "NewGDO",
+    "UniqueNameID": "PlatedGarlicBread",
+    "Prefab": "PlatedGarlicBread",
+    "ItemCategory": "Generic",
+    "ItemStorageFlag": "None",
+    "DirtiesTo": -626784042,
+    "DisposesTo": -626784042,
+    "MaxOrderSharers": 2,
+    "Sets": [
+        {
+            "Max": 2,
+            "Min": 2,
+            "Items": [
+                "Yariazen.GarlicBread:CookedGarlicBread",
+                -626784042
+            ]
+        }
+    ],
+    "Materials": [
+        {
+            "Path": "GameObject",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Bread - Inside Cooked"
+                }
+            ]
+        },
+        {
+            "Path": "GameObject (1)",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Bread - Cooked"
+                }
+            ]
+        },
+        {
+            "Path": "GameObject (2)",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Plastic - Yellow"
+                }
+            ]
+        },
+        {
+            "Path": "GameObject (3)",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Wood - Barrel"
+                }
+            ]
+        },
+        {
+            "Path": "GameObject (4)",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Plastic - Dark Green"
+                }
+            ]
+        }
+    ]
+}

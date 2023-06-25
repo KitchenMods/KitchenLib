@@ -1,0 +1,69 @@
+{
+    "Type": "ItemGroup",
+    "ModificationType": "NewGDO",
+    "UniqueNameID": "UncookedGarlicBread2",
+    "Prefab": "UncookedGarlicBread2",
+    "ItemCategory": "Generic",
+    "ItemStorageFlag": "StackableFood",
+    "Sets": [
+        {
+            "Max": 1,
+            "Min": 1,
+            "Items": [
+                "Yariazen.GarlicBread:UncookedGarlicBread"
+            ]
+        },
+        {
+            "Max": 1,
+            "Min": 1,
+            "Items": [
+                "ingredientlib:minced garlic"
+            ]
+        }
+    ],
+    "Processes": [
+        {
+            "Duration": 3,
+            "Process": 1972879238,
+            "Result": "Yariazen.GarlicBread:CookedGarlicBread"
+        }
+    ],
+    "Materials": [
+        {
+            "Path": "GameObject",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Bread - Inside"
+                }
+            ]
+        },
+        {
+            "Path": "GameObject (1)",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Bread"
+                }
+            ]
+        },
+        {
+            "Path": "GameObject (2)",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Cheese - Default"
+                }
+            ]
+        },
+        {
+            "Path": "GameObject (3)",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Plastic - Light Yellow"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "Type": "Item",
+    "ModificationType": "NewGDO",
+    "UniqueNameID": "CookedGarlicBread",
+    "Prefab": "cookedGarlicBread",
+    "ItemCategory": "Generic",
+    "ItemStorageFlag": "StackableFood",
+    "ItemValue": "Small",
+    "Processes": [
+        {
+            "Duration": 3,
+            "Process": 1972879238,
+            "Result": "Yariazen.GarlicBread:BurntGarlicBread"
+        }
+    ],
+    "Materials": [
+        {
+            "Path": "GameObject",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Bread - Inside Cooked"
+                }
+            ]
+        },
+        {
+            "Path": "GameObject (1)",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Bread - Cooked"
+                }
+            ]
+        },
+        {
+            "Path": "GameObject (2)",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Plastic - Yellow"
+                }
+            ]
+        },
+        {
+            "Path": "GameObject (3)",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Plastic - Dark Green"
+                }
+            ]
+        }
+    ]
+}

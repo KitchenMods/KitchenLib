@@ -1,0 +1,46 @@
+{
+    "Type": "Item",
+    "ModificationType": "NewGDO",
+    "UniqueNameID": "BurntGarlicBread",
+    "Prefab": "BurntGarlicBread",
+    "ItemCategory": "Generic",
+    "ItemStorageFlags": "OutsideRubbish",
+    "Materials": [
+        {
+            "Path": "GameObject",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Burned"
+                }
+            ]
+        },
+        {
+            "Path": "GameObject (1)",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Burned - Light"
+                }
+            ]
+        },
+        {
+            "Path": "GameObject (2)",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Burned"
+                }
+            ]
+        },
+        {
+            "Path": "GameObject (3)",
+            "Materials": [
+                {
+                    "Type": "Existing",
+                    "Name": "Burned - Light"
+                }
+            ]
+        }
+    ]
+}
