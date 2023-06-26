@@ -103,10 +103,23 @@ namespace KitchenLib.Patches
 							foreach (RecipeLocalisation loc in __result.Get<RecipeLocalisation>())
 							{
 								if (!loc.Text.ContainsKey(dish))
-									if (customDish.Recipe.ContainsKey((Locale)Enum.Parse(typeof(Locale), PlayerPrefs.GetString(Pref.Localisation))))
-										loc.Text.Add(dish, customDish.Recipe[(Locale)Enum.Parse(typeof(Locale), PlayerPrefs.GetString(Pref.Localisation))]);
+								{
+									if (Enum.TryParse<Locale>(PlayerPrefs.GetString(Pref.Localisation), out Locale locale))
+									{
+										if (customDish.Recipe.ContainsKey(locale))
+										{
+											loc.Text.Add(dish, customDish.Recipe[locale]);
+										}
+										else
+										{
+											loc.Text.Add(dish, customDish.Recipe[Locale.English]);
+										}
+									}
 									else
-										loc.Text.Add(dish, customDish.Recipe[Locale.English]);
+									{
+										Main.LogError($"Invalid Locale: {PlayerPrefs.GetString(Pref.Localisation)} encountered when registering {customDish.UniqueNameID}");
+									}
+								}
 							}
 						}
 						if (customDish.IsAvailableAsLobbyOption)
