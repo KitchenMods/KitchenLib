@@ -88,13 +88,13 @@ namespace KitchenLib.Customs
             if (RewardOverride != -1)
                 ItemOverrides.AddRewardOverride(result.ID, RewardOverride);
 
+			if (SidePrefab == null)
+			{
+				SidePrefab = result.Prefab ?? Main.bundle.LoadAsset<GameObject>("Error_Side");
+			}
 			if (result.Prefab == null)
 			{
 				result.Prefab = Main.bundle.LoadAsset<GameObject>("Error_Item");
-			}
-			if (SidePrefab == null)
-			{
-				SidePrefab = Main.bundle.LoadAsset<GameObject>("Error_Side");
 			}
 
 			gameDataObject = result;
