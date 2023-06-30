@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 namespace KitchenLib.Utils
 {
@@ -79,5 +80,23 @@ namespace KitchenLib.Utils
                 return gameObject.AddComponent<T>();
             return comp;
         }
-    }
+
+		/// <summary>
+		/// Clones a component from one GameObject to another
+		/// </summary>
+		/// <param name="original">The original component to copy.</param>
+		/// <param name="destination">The GameObject to assign the clone to.</param>
+		/// <returns>Cloned component</returns>
+		public static Component CopyComponent(Component original, GameObject destination)
+		{
+			System.Type type = original.GetType();
+			Component copy = destination.AddComponent(type);
+			System.Reflection.FieldInfo[] fields = type.GetFields();
+			foreach (System.Reflection.FieldInfo field in fields)
+			{
+				field.SetValue(copy, field.GetValue(original));
+			}
+			return copy;
+		}
+	}
 }

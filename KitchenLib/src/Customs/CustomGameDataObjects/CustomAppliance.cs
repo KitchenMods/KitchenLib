@@ -1,10 +1,12 @@
 using Kitchen;
 using KitchenData;
+using KitchenLib.References;
 using KitchenLib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace KitchenLib.Customs
 {
@@ -41,6 +43,7 @@ namespace KitchenLib.Customs
         public virtual bool SellOnlyAsUnique { get; protected set; }
         public virtual bool PreventSale { get; protected set; }
         public virtual List<Appliance> Upgrades { get; protected set; } = new List<Appliance>();
+		public virtual bool AutoGenerateNavMeshObject { get; protected set; } = true;
 
         [Obsolete("Should not be used by the user")]
         public virtual bool IsAnUpgrade { get; protected set; }
@@ -92,8 +95,6 @@ namespace KitchenLib.Customs
 
             if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-            //else
-                //result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == AssetReference.Counter));
 
             if (result.ID != ID) result.ID = ID;
             if (result.Prefab != Prefab) result.Prefab = Prefab;
@@ -147,8 +148,32 @@ namespace KitchenLib.Customs
 				}
             }
 
+			if (AutoGenerateNavMeshObject)
+			{
+				NavMeshObstacle navMeshObstacle = null;
+				foreach (Transform t in result.Prefab.GetComponentInChildren<Transform>())
+				{
+					if (t.gameObject.HasComponent<NavMeshObstacle>())
+					{
+						navMeshObstacle = t.gameObject.GetComponent<NavMeshObstacle>();
+						break;
+					}
+				}
+				if (navMeshObstacle == null)
+				{
+					Appliance counter = gameData.Get<Appliance>().FirstOrDefault(a => a.ID == ApplianceReferences.Countertop);
+					foreach (Transform t in counter.Prefab.GetComponentInChildren<Transform>())
+					{
+						if (t.gameObject.HasComponent<NavMeshObstacle>())
+						{
+							GameObjectUtils.CopyComponent(t.gameObject.GetComponent<NavMeshObstacle>(), result.Prefab);
+							break;
+						}
+					}
+				}
+			}
 
-            gameDataObject = result;
+			gameDataObject = result;
         }
 
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)

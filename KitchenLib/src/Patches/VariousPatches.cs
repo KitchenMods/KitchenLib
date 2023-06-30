@@ -18,10 +18,7 @@ namespace KitchenLib.Patches
 	{
 		public static void Postfix(DisplayVersion __instance)
 		{
-			if (Main.manager.GetPreference<PreferenceBool>("datacollection").Value && Main.manager.GetPreference<PreferenceBool>("over13").Value)
-				__instance.Text.text = __instance.Text.text + "!";
-			else
-				__instance.Text.text = __instance.Text.text + ".";
+			__instance.Text.text = __instance.Text.text + "!";
 		}
 	}
 	#endregion
