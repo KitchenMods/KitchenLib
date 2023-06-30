@@ -7,7 +7,7 @@ using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
-namespace KitchenLib.src.Systems
+namespace KitchenLib.Systems
 {
 	[UpdateAfter(typeof(EndSimulationEntityCommandBufferSystem))]
 	[UpdateBefore(typeof(PerformSaveRequests))]
