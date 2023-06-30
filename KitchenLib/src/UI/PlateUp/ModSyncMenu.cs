@@ -1,15 +1,13 @@
 ﻿using Kitchen.Modules;
 using Kitchen;
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 using KitchenLib.Views;
 using KitchenMods;
 using Steamworks.Data;
 using System.Threading.Tasks;
-using UnityEngine.SceneManagement;
 
-namespace KitchenLib.src.UI.PlateUp
+namespace KitchenLib.UI.PlateUp
 {
 	internal class ModSyncMenu : KLMenu<PauseMenuAction>
 	{
