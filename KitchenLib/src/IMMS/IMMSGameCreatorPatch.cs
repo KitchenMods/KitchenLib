@@ -2,7 +2,7 @@
 using Kitchen;
 using KitchenLib.IMMS;
 
-namespace KitchenLib.src.IMMS
+namespace KitchenLib.IMMS
 {
 	[HarmonyPatch(typeof(GameCreator), "PerformInitialSetup")]
 	internal class IMMSGameCreatorPatch

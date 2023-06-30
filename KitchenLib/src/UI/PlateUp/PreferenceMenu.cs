@@ -1,18 +1,12 @@
 ﻿using Kitchen;
 using Kitchen.Modules;
-using KitchenLib.Customs;
 using KitchenLib.Preferences;
-using KitchenLib.Utils;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
 using UnityEngine;
-using Steamworks.Data;
-using KitchenMods;
 using KitchenLib.Views;
-using KitchenLib.src.UI.PlateUp;
-using KitchenLib.Systems;
+using KitchenLib.UI.PlateUp;
 
 namespace KitchenLib.UI
 {
