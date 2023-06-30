@@ -63,5 +63,56 @@ namespace KitchenLib.Logging
 		{
 			Debug.LogAssertion($"[{MOD_NAME}] " + message);
 		}
+
+		public void LogError(string MOD_NAME, string message)
+		{
+			Debug.LogError($"[{MOD_NAME}] " + message);
+		}
+
+		public void LogError(string MOD_NAME, object message)
+		{
+			LogError(MOD_NAME, message.ToString());
+		}
+
+		public void LogWarning(string MOD_NAME, string message)
+		{
+			Debug.LogWarning($"[{MOD_NAME}] " + message);
+		}
+
+		public void LogWarning(string MOD_NAME, object message)
+		{
+			LogWarning(MOD_NAME, message.ToString());
+		}
+
+		public void LogInfo(string MOD_NAME, string message)
+		{
+			Debug.Log($"[{MOD_NAME}] " + message);
+		}
+
+		public void LogInfo(string MOD_NAME, object message)
+		{
+			LogInfo(MOD_NAME, message.ToString());
+		}
+
+		public void LogException(string MOD_NAME, Exception e)
+		{
+			e.Data["MOD_NAME"] = MOD_NAME;
+			Debug.LogException(e);
+		}
+
+		public void LogAssert(string MOD_NAME, bool condition)
+		{
+			Debug.Assert(condition, $"[{MOD_NAME}] Assertion failed");
+		}
+
+		public void LogAssert(string MOD_NAME, bool condition, string message)
+		{
+			Debug.Assert(condition, $"[{MOD_NAME}] " + message);
+		}
+
+		public void LogAssert(string MOD_NAME, string message)
+		{
+			Debug.LogAssertion($"[{MOD_NAME}] " + message);
+		}
 	}
 }
