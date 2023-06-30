@@ -90,7 +90,7 @@ namespace KitchenLib.Customs
 
 			if (SidePrefab == null)
 			{
-				SidePrefab = result.Prefab ?? Main.bundle.LoadAsset<GameObject>("Error_Side");
+				SidePrefab = result.Prefab ?? Main.bundle.LoadAsset<GameObject>("Error_Item");
 			}
 			if (result.Prefab == null)
 			{

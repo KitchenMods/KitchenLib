@@ -11,6 +11,7 @@
 		<WorkshopDir>$(ProjectDir)content</WorkshopDir>
 		
 		<EnableAssetBundleDeploy>true</EnableAssetBundleDeploy>
+		<AssetBundlePath>../Unity Project - KitchenLib/Assets/StreamingAssets/kitchenlib.assets</AssetBundlePath>
 		
 		<EnableDocumentation>true</EnableDocumentation>
 	</PropertyGroup>
