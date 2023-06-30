@@ -88,7 +88,7 @@ namespace KitchenLib
 		/// <param name="mod">The mod instance.</param>
 		protected override void OnPostActivate(Mod mod)
 		{
-			Logger = GetLogger();
+			Logger = InitLogger();
 			manager = new PreferenceManager(MOD_ID);
 			cosmeticManager = new PreferenceManager(MOD_ID + ".cosmetics");
 			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));
