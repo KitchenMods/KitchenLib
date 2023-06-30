@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 59699116
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: kitchenlib.assets
+      Dependencies: {}
