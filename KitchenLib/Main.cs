@@ -48,15 +48,6 @@ namespace KitchenLib
 			
 			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
 
-			RegisterNewCape<ItsHappeningCape>("itsHappening", "Its Happening! Cape");
-			RegisterNewCape<StaffCape>("staff", "Staff Cape");
-			RegisterNewCape<KitchenLibCape>("support", "KitchenLib Cape");
-			RegisterNewCape<SupportCape>("kitchenlib", "Support Cape");
-			RegisterNewCape<TwitchCape>("twitch", "Twitch Cape");
-			RegisterNewCape<EasterCape>("easter2023", "Easter Champion Cape");
-			RegisterNewCape<GearsCape>("gears2023", "Gears Champion Cape");
-			RegisterNewCape<Discord_BoostCape>("discordboost", "Booster Cape");
-
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
@@ -164,11 +155,6 @@ namespace KitchenLib
 				if (bytes != null)
 					File.WriteAllBytes(dirPath + gameDataObject.ID + "-" + gameDataObject.name + ".png", bytes);
 			}
-		}
-
-		public void RegisterNewCape<T>(string id, string display) where T : CustomPlayerCosmetic, new()
-		{
-			AddGameDataObject<T>();
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
