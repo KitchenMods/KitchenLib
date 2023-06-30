@@ -62,4 +62,7 @@
 		<None Remove="plateup_mod_metadata.json" />
 		<None Remove="*.png" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Changelogs\Betas\v0.7.9\" />
+	</ItemGroup>
 </Project>

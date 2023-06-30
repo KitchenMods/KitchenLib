@@ -524,6 +524,8 @@ namespace KitchenLib.References
 
 		public const int TutorialFloor = -1235624607;
 
+		public const int ClipboardStand = -2070005162;
+
 		public const int SourceChristmasCracker = 303858729;
 
 		public const int SourceCranberry = 735786885;
@@ -588,6 +590,20 @@ namespace KitchenLib.References
 
 		public const int TreeLake = 1134699240;
 
+		public const int SourceCakeStand = 143484231;
+
+		public const int IceDispenser = 801015432;
+
+		public const int MilkDispenser = -557736569;
+
+		public const int SourceMilk = 120342736;
+
+		public const int SourceTeaBags = -1598460622;
+
+		public const int SourceTeaCups = 1377093570;
+
+		public const int SourceTeaPots = -762638188;
+
 		public const int AchievementView = -916942203;
 
 		public const int ExperienceView = 345407921;
@@ -606,8 +622,6 @@ namespace KitchenLib.References
 
 		public const int SourceCherry = 148543530;
 
-		public const int SourceMilk = 120342736;
-
 		public const int CobblestoneAutumn = -1382019219;
 
 		public const int Fencing = -1403625488;
@@ -624,19 +638,7 @@ namespace KitchenLib.References
 
 		public const int UpgradeKit = -26827118;
 
-		public const int kitchenlibViewHolder = -642195551;
-
-		public const int kitchenlibInfoViewHolder = -927155181;
-
-		public const int kitchenlibSendToClientViewHolder = 148759508;
-
-		public const int kitchenlibTileHighlighterViewController = 618910379;
-
-		public const int kitchenlibClientEquipCapeViewHolder = -996307118;
-
 		public const int kitchenlibSyncModsViewHolder = -1995745069;
-
-		public const int kitchenlib_21_Balloon = 1753502646;
 
 	}
 	public class CompositeUnlockPackReferences
@@ -650,6 +652,8 @@ namespace KitchenLib.References
 		public const int HalloweenPack = -839658581;
 
 		public const int JanuaryPack = -1893039732;
+
+		public const int JunePack = 1774091848;
 
 		public const int MarchPack = -619515969;
 
@@ -879,6 +883,20 @@ namespace KitchenLib.References
 		public const int StirFryMushroom = 1642878331;
 
 		public const int StirFrySoySauce = 1064343768;
+
+		public const int CoffeeCakeStand = 1103885337;
+
+		public const int CoffeeBaseDessert = 16318784;
+
+		public const int ExtraMilk = -740215310;
+
+		public const int ExtraSugar = -696561631;
+
+		public const int CoffeeIced = 2133632711;
+
+		public const int CoffeeLatte = -141282934;
+
+		public const int Tea = 1398671754;
 
 		public const int NutRoastBase = 536093200;
 
@@ -1400,6 +1418,8 @@ namespace KitchenLib.References
 
 		public const int Tray = 869580494;
 
+		public const int Clipboard = 123647569;
+
 		public const int ChristmasCracker = 749675166;
 
 		public const int CranberriesChopped = 163163953;
@@ -1486,6 +1506,28 @@ namespace KitchenLib.References
 
 		public const int CondimentSoySauce = 1190974918;
 
+		public const int ExtraCakeStand = 41735497;
+
+		public const int Ice = -442824475;
+
+		public const int IcedCoffee = -1388933833;
+
+		public const int Latte = 184647209;
+
+		public const int MilkFrothedIngredient = -1313420767;
+
+		public const int Milk = 329108931;
+
+		public const int TeaBag = 574857689;
+
+		public const int TeaCup = -1721929071;
+
+		public const int TeaPotSteeped = -908710218;
+
+		public const int TeaPotUnsteeped = 707327422;
+
+		public const int TeaPot = 712770280;
+
 		public const int NutMixtureBaked = -1945246136;
 
 		public const int NutMixturePortion = -1294491269;
@@ -1530,8 +1572,6 @@ namespace KitchenLib.References
 
 		public const int ResearchFlask = 56610526;
 
-		public const int kitchenlibPride_Flag = 109014523;
-
 	}
 	public class ItemGroupReferences
 	{
@@ -1550,6 +1590,8 @@ namespace KitchenLib.References
 		public const int HotdogUnplated = 1134979829;
 
 		public const int CheeseBoardServing = 1639948793;
+
+		public const int CoffeeCupCoffee = -1293050650;
 
 		public const int IceCreamServing = -1307479546;
 
@@ -1677,6 +1719,14 @@ namespace KitchenLib.References
 
 		public const int MandarinSlices4Serving = 226055037;
 
+		public const int IcedCoffee = -1388933833;
+
+		public const int Latte = 184647209;
+
+		public const int TeaPotSteeped = -908710218;
+
+		public const int TeaPotUnsteeped = 707327422;
+
 		public const int NutMixture = -1515496760;
 
 		public const int NutRoastPlated = -1934880099;
@@ -1701,6 +1751,8 @@ namespace KitchenLib.References
 		public const int FebruaryLayout = -1017771555;
 
 		public const int JanuaryLayoutProfile = -1207945624;
+
+		public const int CoffeeshopLayout = -1203731809;
 
 		public const int TurboDinerLayout = -2142472895;
 
@@ -1735,6 +1787,8 @@ namespace KitchenLib.References
 		public const int FebruarySpecialCard = 2136512392;
 
 		public const int JanuaryCards = 1091353668;
+
+		public const int JuneCards = 138545119;
 
 		public const int MarchCards = 802797822;
 
@@ -1815,27 +1869,13 @@ namespace KitchenLib.References
 
 		public const int TurkeyHat = -1920946004;
 
-		public const int kitchenlibItsHappening_Cape = 702532359;
-
-		public const int kitchenlibStaff_Cape = 1043620626;
-
-		public const int kitchenlibKitchenLib_Cape = 1651245555;
-
-		public const int kitchenlibSupport_Cape = -352432517;
-
-		public const int kitchenlibTwitch_Cape = -1185733169;
-
-		public const int kitchenlibEaster_Cape = -1918716102;
-
-		public const int kitchenlibGears_Cape = -305886254;
-
-		public const int kitchenlibDiscord_Boost_Cape = -600798204;
-
-		public const int kitchenlibTroll_Cape = -502301556;
-
 	}
 	public class ProcessReferences
 	{
+		public const int FrothMilk = 510796221;
+
+		public const int SteepTea = 1393363605;
+
 		public const int Chop = 2087693779;
 
 		public const int CleanSoak = -2048664109;
@@ -2115,6 +2155,26 @@ namespace KitchenLib.References
 
 		public const int StirFrySoySauce = 1064343768;
 
+		public const int ExtraCoffee = 251686519;
+
+		public const int SlowBrewCoffee = 2079359756;
+
+		public const int CoffeeCakeStand = 1103885337;
+
+		public const int CoffeeBaseDessert = 16318784;
+
+		public const int ExtraMilk = -740215310;
+
+		public const int ExtraSugar = -696561631;
+
+		public const int CoffeeIced = 2133632711;
+
+		public const int CoffeeLatte = -141282934;
+
+		public const int Tea = 1398671754;
+
+		public const int CoffeeshopMode = 746549422;
+
 		public const int TurboMode = 1958825350;
 
 		public const int NovemberTableSizeIncrease = 319209671;
@@ -2352,6 +2412,12 @@ namespace KitchenLib.References
 
 		public const int JanuaryRedEnvelopes = -1273613313;
 
+		public const int ExtraCoffee = 251686519;
+
+		public const int SlowBrewCoffee = 2079359756;
+
+		public const int CoffeeshopMode = 746549422;
+
 		public const int TurboMode = 1958825350;
 
 		public const int NovemberTableSizeIncrease = 319209671;
@@ -2517,6 +2583,10 @@ namespace KitchenLib.References
 
 		public const int JanuaryPack = -1893039732;
 
+		public const int JuneCards = 138545119;
+
+		public const int JunePack = 1774091848;
+
 		public const int MarchCards = 802797822;
 
 		public const int MarchPack = -619515969;
@@ -2568,7 +2638,9 @@ namespace KitchenLib.References
 
 		public const int JanuarySetting = 507410699;
 
-		public const int MarchSetting = 1736695492;
+		public const int JuneSettingCoffeeshop = 1970109064;
+
+		public const int MarchSettingTurbo = 1736695492;
 
 		public const int Autumn = -405456638;
 

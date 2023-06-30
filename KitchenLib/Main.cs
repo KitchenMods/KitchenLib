@@ -14,6 +14,10 @@ using KitchenLib.Logging;
 using KitchenLib.Logging.Exceptions;
 using System.Runtime.CompilerServices;
 using System;
+using KitchenLib.Utils;
+using KitchenLib.References;
+using KitchenData;
+using UnityEngine.AI;
 
 namespace KitchenLib
 {
@@ -45,12 +49,12 @@ namespace KitchenLib
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string MOD_BETA_VERSION = "0";
+		internal const string MOD_BETA_VERSION = "1";
 
 		/// <summary>
 		/// The compatible versions of the mod.
 		/// </summary>
-		internal const string MOD_COMPATIBLE_VERSIONS = ">=1.1.4";
+		internal const string MOD_COMPATIBLE_VERSIONS = ">=1.1.6";
 
 		/// <summary>
 		/// The holder for synchronizing views.
@@ -66,11 +70,6 @@ namespace KitchenLib
 		/// The preference manager for the mod.
 		/// </summary>
 		internal static PreferenceManager manager;
-
-		/// <summary>
-		/// The cosmetic preference manager for the mod.
-		/// </summary>
-		internal static PreferenceManager cosmeticManager;
 
 		/// <summary>
 		/// The logger for the mod.
@@ -90,19 +89,13 @@ namespace KitchenLib
 		{
 			Logger = InitLogger();
 			manager = new PreferenceManager(MOD_ID);
-			cosmeticManager = new PreferenceManager(MOD_ID + ".cosmetics");
 			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));
 			manager.Load();
-
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).FirstOrDefault() ?? throw new MissingAssetBundleException(MOD_ID);
-
 			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
-
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
-
-			// Init feature flags
 			FeatureFlags.Init();
 
 			/*
@@ -136,6 +129,15 @@ namespace KitchenLib
 			go.AddComponent<DevUIController>();
 
 			ColorblindUtils.AddSingleItemLabels(ColorblindUtils.itemLabels.ToArray());
+
+			Appliance counter = GameData.Main.Get<Appliance>(ApplianceReferences.Countertop);
+			foreach (Transform t in counter.Prefab.GetComponentInChildren<Transform>())
+			{
+				if (t.gameObject.HasComponent<NavMeshObstacle>())
+				{
+					NavMeshObstacle navMeshObstacle = t.gameObject.GetComponent<NavMeshObstacle>();
+				}
+			}
 		}
 
 		/// <summary>
