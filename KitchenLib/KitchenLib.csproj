@@ -5,11 +5,10 @@
 		<Configurations>Workshop</Configurations>
 		<AssemblyName>$(MSBuildProjectName)-Workshop</AssemblyName>
 		<LangVersion>latest</LangVersion>
+		<NoWarn>0612;0618;0672</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<WorkshopDir>$(ProjectDir)content</WorkshopDir>
-		
 		<EnableAssetBundleDeploy>true</EnableAssetBundleDeploy>
 		<AssetBundlePath>../Unity Project - KitchenLib/Assets/StreamingAssets/kitchenlib.assets</AssetBundlePath>
 		
@@ -62,11 +61,4 @@
 		<None Remove="plateup_mod_metadata.json" />
 		<None Remove="*.png" />
 	</ItemGroup>
-
-	<!-- Deploy builds to content/ folder -->
-	<Target Name="BundleWorkshop" AfterTargets="Build" Condition="$(EnableModDeployLocal) == 'true'">
-		<Copy SourceFiles="$(TargetDir)$(MSBuildProjectName)-Workshop.dll" DestinationFolder="$(WorkshopDir)" />
-		<Copy SourceFiles="$(TargetDir)$(MSBuildProjectName)-Workshop.xml" DestinationFolder="$(WorkshopDir)" />
-	</Target>
-
 </Project>

@@ -1,5 +1,6 @@
 using KitchenLib.Customs;
 using KitchenLib.DevUI;
+using KitchenLib.Logging;
 using KitchenLib.Patches;
 using KitchenLib.Registry;
 using KitchenLib.Utils;
@@ -274,6 +275,11 @@ namespace KitchenLib
 		{
 			T menu = new T();
 			DevUIController._uiList.Add(menu);
+		}
+
+		public KitchenLogger InitLogger()
+		{
+			return new KitchenLogger(ModName);
 		}
 	}
 }
