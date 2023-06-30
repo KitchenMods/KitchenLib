@@ -277,7 +277,7 @@ namespace KitchenLib
 			DevUIController._uiList.Add(menu);
 		}
 
-		public KitchenLogger GetLogger()
+		public KitchenLogger InitLogger()
 		{
 			return new KitchenLogger(ModName);
 		}
