@@ -105,6 +105,11 @@ namespace KitchenLib.Patches
 	{
 		public static bool Prefix(ref string msg)
 		{
+			if (msg.Contains("must be instantiated using the ScriptableObject.CreateInstance method instead of"))
+			{
+				msg = "";
+				return true;
+			}
 			string[] split = Regex.Matches(msg, @"\W+|[\w]+")
 				.Cast<Match>()
 				.Select(_ => _.Value)
