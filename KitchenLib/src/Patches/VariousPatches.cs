@@ -25,6 +25,7 @@ namespace KitchenLib.Patches
 
 	#region Multiplayer player profiles bug fix
 	
+	/*
 	[HarmonyPatch(typeof(PlayerInfoManager.UpdateView), "HandleResponse")]
 	internal class PlayerInfoManager_Patch
 	{
@@ -75,6 +76,7 @@ namespace KitchenLib.Patches
 			}
 		}
 	}
+	*/
 
 	#endregion
 }

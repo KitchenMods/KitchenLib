@@ -2,646 +2,646 @@ namespace KitchenLib.References
 {
 	public class ApplianceReferences
 	{
-		public static int MixerHeated => (int)ReferenceAppliance.MixerHeated;
+		public static int MixerHeated => (int)_ApplianceReferences.MixerHeated;
 
-		public static int MixerPusher => (int)ReferenceAppliance.MixerPusher;
+		public static int MixerPusher => (int)_ApplianceReferences.MixerPusher;
 
-		public static int MixerRapid => (int)ReferenceAppliance.MixerRapid;
+		public static int MixerRapid => (int)_ApplianceReferences.MixerRapid;
 
-		public static int Mixer => (int)ReferenceAppliance.Mixer;
+		public static int Mixer => (int)_ApplianceReferences.Mixer;
 
-		public static int SupplyCabinet => (int)ReferenceAppliance.SupplyCabinet;
+		public static int SupplyCabinet => (int)_ApplianceReferences.SupplyCabinet;
 
-		public static int BinCompactor => (int)ReferenceAppliance.BinCompactor;
+		public static int BinCompactor => (int)_ApplianceReferences.BinCompactor;
 
-		public static int BinComposter => (int)ReferenceAppliance.BinComposter;
+		public static int BinComposter => (int)_ApplianceReferences.BinComposter;
 
-		public static int BinExpanded => (int)ReferenceAppliance.BinExpanded;
+		public static int BinExpanded => (int)_ApplianceReferences.BinExpanded;
 
-		public static int BinStarting => (int)ReferenceAppliance.BinStarting;
+		public static int BinStarting => (int)_ApplianceReferences.BinStarting;
 
-		public static int Bin => (int)ReferenceAppliance.Bin;
+		public static int Bin => (int)_ApplianceReferences.Bin;
 
-		public static int FireExtinguisherHolder => (int)ReferenceAppliance.FireExtinguisherHolder;
+		public static int FireExtinguisherHolder => (int)_ApplianceReferences.FireExtinguisherHolder;
 
-		public static int FloorBufferStation => (int)ReferenceAppliance.FloorBufferStation;
+		public static int FloorBufferStation => (int)_ApplianceReferences.FloorBufferStation;
 
-		public static int FloorProtector => (int)ReferenceAppliance.FloorProtector;
+		public static int FloorProtector => (int)_ApplianceReferences.FloorProtector;
 
-		public static int MopBucketFast => (int)ReferenceAppliance.MopBucketFast;
+		public static int MopBucketFast => (int)_ApplianceReferences.MopBucketFast;
 
-		public static int MopBucketLasting => (int)ReferenceAppliance.MopBucketLasting;
+		public static int MopBucketLasting => (int)_ApplianceReferences.MopBucketLasting;
 
-		public static int MopBucket => (int)ReferenceAppliance.MopBucket;
+		public static int MopBucket => (int)_ApplianceReferences.MopBucket;
 
-		public static int RobotBufferMobile => (int)ReferenceAppliance.RobotBufferMobile;
+		public static int RobotBufferMobile => (int)_ApplianceReferences.RobotBufferMobile;
 
-		public static int RobotBuffer => (int)ReferenceAppliance.RobotBuffer;
+		public static int RobotBuffer => (int)_ApplianceReferences.RobotBuffer;
 
-		public static int RobotMopMobile => (int)ReferenceAppliance.RobotMopMobile;
+		public static int RobotMopMobile => (int)_ApplianceReferences.RobotMopMobile;
 
-		public static int RobotMop => (int)ReferenceAppliance.RobotMop;
+		public static int RobotMop => (int)_ApplianceReferences.RobotMop;
 
-		public static int CoffeeMachine => (int)ReferenceAppliance.CoffeeMachine;
+		public static int CoffeeMachine => (int)_ApplianceReferences.CoffeeMachine;
 
-		public static int ColouringBookStand => (int)ReferenceAppliance.ColouringBookStand;
+		public static int ColouringBookStand => (int)_ApplianceReferences.ColouringBookStand;
 
-		public static int Belt => (int)ReferenceAppliance.Belt;
+		public static int Belt => (int)_ApplianceReferences.Belt;
 
-		public static int Combiner => (int)ReferenceAppliance.Combiner;
+		public static int Combiner => (int)_ApplianceReferences.Combiner;
 
-		public static int GrabberRotatable => (int)ReferenceAppliance.GrabberRotatable;
+		public static int GrabberRotatable => (int)_ApplianceReferences.GrabberRotatable;
 
-		public static int GrabberSmart => (int)ReferenceAppliance.GrabberSmart;
+		public static int GrabberSmart => (int)_ApplianceReferences.GrabberSmart;
 
-		public static int Grabber => (int)ReferenceAppliance.Grabber;
+		public static int Grabber => (int)_ApplianceReferences.Grabber;
 
-		public static int Portioner => (int)ReferenceAppliance.Portioner;
+		public static int Portioner => (int)_ApplianceReferences.Portioner;
 
-		public static int Teleporter => (int)ReferenceAppliance.Teleporter;
+		public static int Teleporter => (int)_ApplianceReferences.Teleporter;
 
-		public static int Countertop => (int)ReferenceAppliance.Countertop;
+		public static int Countertop => (int)_ApplianceReferences.Countertop;
 
-		public static int KneadingStationX => (int)ReferenceAppliance.KneadingStationX;
+		public static int KneadingStationX => (int)_ApplianceReferences.KneadingStationX;
 
-		public static int Workstation => (int)ReferenceAppliance.Workstation;
+		public static int Workstation => (int)_ApplianceReferences.Workstation;
 
-		public static int AffordableBin => (int)ReferenceAppliance.AffordableBin;
+		public static int AffordableBin => (int)_ApplianceReferences.AffordableBin;
 
-		public static int AffordableGumballMachine => (int)ReferenceAppliance.AffordableGumballMachine;
+		public static int AffordableGumballMachine => (int)_ApplianceReferences.AffordableGumballMachine;
 
-		public static int AffordableNeonSign1 => (int)ReferenceAppliance.AffordableNeonSign1;
+		public static int AffordableNeonSign1 => (int)_ApplianceReferences.AffordableNeonSign1;
 
-		public static int AffordableNeonSign2 => (int)ReferenceAppliance.AffordableNeonSign2;
+		public static int AffordableNeonSign2 => (int)_ApplianceReferences.AffordableNeonSign2;
 
-		public static int AffordableRoofLight => (int)ReferenceAppliance.AffordableRoofLight;
+		public static int AffordableRoofLight => (int)_ApplianceReferences.AffordableRoofLight;
 
-		public static int AffordableStockArt => (int)ReferenceAppliance.AffordableStockArt;
+		public static int AffordableStockArt => (int)_ApplianceReferences.AffordableStockArt;
 
-		public static int AffordableWetFloorSign => (int)ReferenceAppliance.AffordableWetFloorSign;
+		public static int AffordableWetFloorSign => (int)_ApplianceReferences.AffordableWetFloorSign;
 
-		public static int CosyBarrel => (int)ReferenceAppliance.CosyBarrel;
+		public static int CosyBarrel => (int)_ApplianceReferences.CosyBarrel;
 
-		public static int CosyBookcase => (int)ReferenceAppliance.CosyBookcase;
+		public static int CosyBookcase => (int)_ApplianceReferences.CosyBookcase;
 
-		public static int CosyDartboard => (int)ReferenceAppliance.CosyDartboard;
+		public static int CosyDartboard => (int)_ApplianceReferences.CosyDartboard;
 
-		public static int CosyFireplace => (int)ReferenceAppliance.CosyFireplace;
+		public static int CosyFireplace => (int)_ApplianceReferences.CosyFireplace;
 
-		public static int CosyRug => (int)ReferenceAppliance.CosyRug;
+		public static int CosyRug => (int)_ApplianceReferences.CosyRug;
 
-		public static int CosyWallLight => (int)ReferenceAppliance.CosyWallLight;
+		public static int CosyWallLight => (int)_ApplianceReferences.CosyWallLight;
 
-		public static int ChristmasBanner => (int)ReferenceAppliance.ChristmasBanner;
+		public static int ChristmasBanner => (int)_ApplianceReferences.ChristmasBanner;
 
-		public static int ChristmasTree => (int)ReferenceAppliance.ChristmasTree;
+		public static int ChristmasTree => (int)_ApplianceReferences.ChristmasTree;
 
-		public static int FairyLights => (int)ReferenceAppliance.FairyLights;
+		public static int FairyLights => (int)_ApplianceReferences.FairyLights;
 
-		public static int FancyCandelabra => (int)ReferenceAppliance.FancyCandelabra;
+		public static int FancyCandelabra => (int)_ApplianceReferences.FancyCandelabra;
 
-		public static int FancyChandelier => (int)ReferenceAppliance.FancyChandelier;
+		public static int FancyChandelier => (int)_ApplianceReferences.FancyChandelier;
 
-		public static int FancyFlowers => (int)ReferenceAppliance.FancyFlowers;
+		public static int FancyFlowers => (int)_ApplianceReferences.FancyFlowers;
 
-		public static int FancyGlobe => (int)ReferenceAppliance.FancyGlobe;
+		public static int FancyGlobe => (int)_ApplianceReferences.FancyGlobe;
 
-		public static int FancyPainting => (int)ReferenceAppliance.FancyPainting;
+		public static int FancyPainting => (int)_ApplianceReferences.FancyPainting;
 
-		public static int FancyRug => (int)ReferenceAppliance.FancyRug;
+		public static int FancyRug => (int)_ApplianceReferences.FancyRug;
 
-		public static int FancyStatue => (int)ReferenceAppliance.FancyStatue;
+		public static int FancyStatue => (int)_ApplianceReferences.FancyStatue;
 
-		public static int FormalDogStatue => (int)ReferenceAppliance.FormalDogStatue;
+		public static int FormalDogStatue => (int)_ApplianceReferences.FormalDogStatue;
 
-		public static int FormalPlant => (int)ReferenceAppliance.FormalPlant;
+		public static int FormalPlant => (int)_ApplianceReferences.FormalPlant;
 
-		public static int FormalRoofLight => (int)ReferenceAppliance.FormalRoofLight;
+		public static int FormalRoofLight => (int)_ApplianceReferences.FormalRoofLight;
 
-		public static int FormalStandingLamp => (int)ReferenceAppliance.FormalStandingLamp;
+		public static int FormalStandingLamp => (int)_ApplianceReferences.FormalStandingLamp;
 
-		public static int FormalVase => (int)ReferenceAppliance.FormalVase;
+		public static int FormalVase => (int)_ApplianceReferences.FormalVase;
 
-		public static int Fountain => (int)ReferenceAppliance.Fountain;
+		public static int Fountain => (int)_ApplianceReferences.Fountain;
 
-		public static int Painting => (int)ReferenceAppliance.Painting;
+		public static int Painting => (int)_ApplianceReferences.Painting;
 
-		public static int Plant => (int)ReferenceAppliance.Plant;
+		public static int Plant => (int)_ApplianceReferences.Plant;
 
-		public static int Rug => (int)ReferenceAppliance.Rug;
+		public static int Rug => (int)_ApplianceReferences.Rug;
 
-		public static int BeerTap => (int)ReferenceAppliance.BeerTap;
+		public static int BeerTap => (int)_ApplianceReferences.BeerTap;
 
-		public static int WineBarrel => (int)ReferenceAppliance.WineBarrel;
+		public static int WineBarrel => (int)_ApplianceReferences.WineBarrel;
 
-		public static int Dumbwaiter => (int)ReferenceAppliance.Dumbwaiter;
+		public static int Dumbwaiter => (int)_ApplianceReferences.Dumbwaiter;
 
-		public static int Fryer => (int)ReferenceAppliance.Fryer;
+		public static int Fryer => (int)_ApplianceReferences.Fryer;
 
-		public static int Beehive => (int)ReferenceAppliance.Beehive;
+		public static int Beehive => (int)_ApplianceReferences.Beehive;
 
-		public static int FlowerSpawn => (int)ReferenceAppliance.FlowerSpawn;
+		public static int FlowerSpawn => (int)_ApplianceReferences.FlowerSpawn;
 
-		public static int GasLimiter => (int)ReferenceAppliance.GasLimiter;
+		public static int GasLimiter => (int)_ApplianceReferences.GasLimiter;
 
-		public static int GasSafetyOverride => (int)ReferenceAppliance.GasSafetyOverride;
+		public static int GasSafetyOverride => (int)_ApplianceReferences.GasSafetyOverride;
 
-		public static int HobDanger => (int)ReferenceAppliance.HobDanger;
+		public static int HobDanger => (int)_ApplianceReferences.HobDanger;
 
-		public static int HobSafe => (int)ReferenceAppliance.HobSafe;
+		public static int HobSafe => (int)_ApplianceReferences.HobSafe;
 
-		public static int HobStarting => (int)ReferenceAppliance.HobStarting;
+		public static int HobStarting => (int)_ApplianceReferences.HobStarting;
 
-		public static int Hob => (int)ReferenceAppliance.Hob;
+		public static int Hob => (int)_ApplianceReferences.Hob;
 
-		public static int ManualHob => (int)ReferenceAppliance.ManualHob;
+		public static int ManualHob => (int)_ApplianceReferences.ManualHob;
 
-		public static int TutorialHob => (int)ReferenceAppliance.TutorialHob;
+		public static int TutorialHob => (int)_ApplianceReferences.TutorialHob;
 
-		public static int HostStandBookings => (int)ReferenceAppliance.HostStandBookings;
+		public static int HostStandBookings => (int)_ApplianceReferences.HostStandBookings;
 
-		public static int HostStand => (int)ReferenceAppliance.HostStand;
+		public static int HostStand => (int)_ApplianceReferences.HostStand;
 
-		public static int FoodDisplayStand => (int)ReferenceAppliance.FoodDisplayStand;
+		public static int FoodDisplayStand => (int)_ApplianceReferences.FoodDisplayStand;
 
-		public static int BuffedFloor => (int)ReferenceAppliance.BuffedFloor;
+		public static int BuffedFloor => (int)_ApplianceReferences.BuffedFloor;
 
-		public static int MessCustomer1 => (int)ReferenceAppliance.MessCustomer1;
+		public static int MessCustomer1 => (int)_ApplianceReferences.MessCustomer1;
 
-		public static int MessCustomer2 => (int)ReferenceAppliance.MessCustomer2;
+		public static int MessCustomer2 => (int)_ApplianceReferences.MessCustomer2;
 
-		public static int MessCustomer3 => (int)ReferenceAppliance.MessCustomer3;
+		public static int MessCustomer3 => (int)_ApplianceReferences.MessCustomer3;
 
-		public static int MessKitchen1 => (int)ReferenceAppliance.MessKitchen1;
+		public static int MessKitchen1 => (int)_ApplianceReferences.MessKitchen1;
 
-		public static int MessKitchen2 => (int)ReferenceAppliance.MessKitchen2;
+		public static int MessKitchen2 => (int)_ApplianceReferences.MessKitchen2;
 
-		public static int MessKitchen3 => (int)ReferenceAppliance.MessKitchen3;
+		public static int MessKitchen3 => (int)_ApplianceReferences.MessKitchen3;
 
-		public static int MopWaterLong => (int)ReferenceAppliance.MopWaterLong;
+		public static int MopWaterLong => (int)_ApplianceReferences.MopWaterLong;
 
-		public static int MopWater => (int)ReferenceAppliance.MopWater;
+		public static int MopWater => (int)_ApplianceReferences.MopWater;
 
-		public static int Nameplate => (int)ReferenceAppliance.Nameplate;
+		public static int Nameplate => (int)_ApplianceReferences.Nameplate;
 
-		public static int BlueprintLetter => (int)ReferenceAppliance.BlueprintLetter;
+		public static int BlueprintLetter => (int)_ApplianceReferences.BlueprintLetter;
 
-		public static int Blueprint => (int)ReferenceAppliance.Blueprint;
+		public static int Blueprint => (int)_ApplianceReferences.Blueprint;
 
-		public static int FlooringApplicator => (int)ReferenceAppliance.FlooringApplicator;
+		public static int FlooringApplicator => (int)_ApplianceReferences.FlooringApplicator;
 
-		public static int Parcel => (int)ReferenceAppliance.Parcel;
+		public static int Parcel => (int)_ApplianceReferences.Parcel;
 
-		public static int WallpaperApplicator => (int)ReferenceAppliance.WallpaperApplicator;
+		public static int WallpaperApplicator => (int)_ApplianceReferences.WallpaperApplicator;
 
-		public static int AccountingDesk => (int)ReferenceAppliance.AccountingDesk;
+		public static int AccountingDesk => (int)_ApplianceReferences.AccountingDesk;
 
-		public static int BlueprintCabinet => (int)ReferenceAppliance.BlueprintCabinet;
+		public static int BlueprintCabinet => (int)_ApplianceReferences.BlueprintCabinet;
 
-		public static int BlueprintCopyDesk => (int)ReferenceAppliance.BlueprintCopyDesk;
+		public static int BlueprintCopyDesk => (int)_ApplianceReferences.BlueprintCopyDesk;
 
-		public static int BlueprintDiscountDeskOld => (int)ReferenceAppliance.BlueprintDiscountDeskOld;
+		public static int BlueprintDiscountDeskOld => (int)_ApplianceReferences.BlueprintDiscountDeskOld;
 
-		public static int BlueprintDiscountDesk => (int)ReferenceAppliance.BlueprintDiscountDesk;
+		public static int BlueprintDiscountDesk => (int)_ApplianceReferences.BlueprintDiscountDesk;
 
-		public static int BlueprintOrderingDesk => (int)ReferenceAppliance.BlueprintOrderingDesk;
+		public static int BlueprintOrderingDesk => (int)_ApplianceReferences.BlueprintOrderingDesk;
 
-		public static int BlueprintUpgradeDesk => (int)ReferenceAppliance.BlueprintUpgradeDesk;
+		public static int BlueprintUpgradeDesk => (int)_ApplianceReferences.BlueprintUpgradeDesk;
 
-		public static int BookingDesk => (int)ReferenceAppliance.BookingDesk;
+		public static int BookingDesk => (int)_ApplianceReferences.BookingDesk;
 
-		public static int ExtraLife => (int)ReferenceAppliance.ExtraLife;
+		public static int ExtraLife => (int)_ApplianceReferences.ExtraLife;
 
-		public static int OrderingTerminalFastFood => (int)ReferenceAppliance.OrderingTerminalFastFood;
+		public static int OrderingTerminalFastFood => (int)_ApplianceReferences.OrderingTerminalFastFood;
 
-		public static int OrderingTerminalSpecialOffers => (int)ReferenceAppliance.OrderingTerminalSpecialOffers;
+		public static int OrderingTerminalSpecialOffers => (int)_ApplianceReferences.OrderingTerminalSpecialOffers;
 
-		public static int OrderingTerminal => (int)ReferenceAppliance.OrderingTerminal;
+		public static int OrderingTerminal => (int)_ApplianceReferences.OrderingTerminal;
 
-		public static int DoubleOven => (int)ReferenceAppliance.DoubleOven;
+		public static int DoubleOven => (int)_ApplianceReferences.DoubleOven;
 
-		public static int Microwave => (int)ReferenceAppliance.Microwave;
+		public static int Microwave => (int)_ApplianceReferences.Microwave;
 
-		public static int Oven => (int)ReferenceAppliance.Oven;
+		public static int Oven => (int)_ApplianceReferences.Oven;
 
-		public static int Balloons => (int)ReferenceAppliance.Balloons;
+		public static int Balloons => (int)_ApplianceReferences.Balloons;
 
-		public static int BirthdayBanner => (int)ReferenceAppliance.BirthdayBanner;
+		public static int BirthdayBanner => (int)_ApplianceReferences.BirthdayBanner;
 
-		public static int Piano => (int)ReferenceAppliance.Piano;
+		public static int Piano => (int)_ApplianceReferences.Piano;
 
-		public static int SourceApple => (int)ReferenceAppliance.SourceApple;
+		public static int SourceApple => (int)_ApplianceReferences.SourceApple;
 
-		public static int SourceBeans => (int)ReferenceAppliance.SourceBeans;
+		public static int SourceBeans => (int)_ApplianceReferences.SourceBeans;
 
-		public static int SourceBonedMeat => (int)ReferenceAppliance.SourceBonedMeat;
+		public static int SourceBonedMeat => (int)_ApplianceReferences.SourceBonedMeat;
 
-		public static int SourceBroccoli => (int)ReferenceAppliance.SourceBroccoli;
+		public static int SourceBroccoli => (int)_ApplianceReferences.SourceBroccoli;
 
-		public static int SourceBurgerBuns => (int)ReferenceAppliance.SourceBurgerBuns;
+		public static int SourceBurgerBuns => (int)_ApplianceReferences.SourceBurgerBuns;
 
-		public static int SourceBurgerPatty => (int)ReferenceAppliance.SourceBurgerPatty;
+		public static int SourceBurgerPatty => (int)_ApplianceReferences.SourceBurgerPatty;
 
-		public static int SourceCarrot => (int)ReferenceAppliance.SourceCarrot;
+		public static int SourceCarrot => (int)_ApplianceReferences.SourceCarrot;
 
-		public static int SourceCheese => (int)ReferenceAppliance.SourceCheese;
+		public static int SourceCheese => (int)_ApplianceReferences.SourceCheese;
 
-		public static int SourceEgg => (int)ReferenceAppliance.SourceEgg;
+		public static int SourceEgg => (int)_ApplianceReferences.SourceEgg;
 
-		public static int SourceFish2 => (int)ReferenceAppliance.SourceFish2;
+		public static int SourceFish2 => (int)_ApplianceReferences.SourceFish2;
 
-		public static int SourceFish => (int)ReferenceAppliance.SourceFish;
+		public static int SourceFish => (int)_ApplianceReferences.SourceFish;
 
-		public static int SourceFlour => (int)ReferenceAppliance.SourceFlour;
+		public static int SourceFlour => (int)_ApplianceReferences.SourceFlour;
 
-		public static int SourceHotdogBun => (int)ReferenceAppliance.SourceHotdogBun;
+		public static int SourceHotdogBun => (int)_ApplianceReferences.SourceHotdogBun;
 
-		public static int SourceHotdog => (int)ReferenceAppliance.SourceHotdog;
+		public static int SourceHotdog => (int)_ApplianceReferences.SourceHotdog;
 
-		public static int SourceIceCream => (int)ReferenceAppliance.SourceIceCream;
+		public static int SourceIceCream => (int)_ApplianceReferences.SourceIceCream;
 
-		public static int SourceKetchup => (int)ReferenceAppliance.SourceKetchup;
+		public static int SourceKetchup => (int)_ApplianceReferences.SourceKetchup;
 
-		public static int SourceLettuce => (int)ReferenceAppliance.SourceLettuce;
+		public static int SourceLettuce => (int)_ApplianceReferences.SourceLettuce;
 
-		public static int SourceMeat => (int)ReferenceAppliance.SourceMeat;
+		public static int SourceMeat => (int)_ApplianceReferences.SourceMeat;
 
-		public static int SourceMushroom => (int)ReferenceAppliance.SourceMushroom;
+		public static int SourceMushroom => (int)_ApplianceReferences.SourceMushroom;
 
-		public static int SourceMustard => (int)ReferenceAppliance.SourceMustard;
+		public static int SourceMustard => (int)_ApplianceReferences.SourceMustard;
 
-		public static int SourceNuts => (int)ReferenceAppliance.SourceNuts;
+		public static int SourceNuts => (int)_ApplianceReferences.SourceNuts;
 
-		public static int SourceOil => (int)ReferenceAppliance.SourceOil;
+		public static int SourceOil => (int)_ApplianceReferences.SourceOil;
 
-		public static int SourceOlive => (int)ReferenceAppliance.SourceOlive;
+		public static int SourceOlive => (int)_ApplianceReferences.SourceOlive;
 
-		public static int SourceOnion => (int)ReferenceAppliance.SourceOnion;
+		public static int SourceOnion => (int)_ApplianceReferences.SourceOnion;
 
-		public static int SourcePotato => (int)ReferenceAppliance.SourcePotato;
+		public static int SourcePotato => (int)_ApplianceReferences.SourcePotato;
 
-		public static int SourceRice => (int)ReferenceAppliance.SourceRice;
+		public static int SourceRice => (int)_ApplianceReferences.SourceRice;
 
-		public static int SourceThickMeat => (int)ReferenceAppliance.SourceThickMeat;
+		public static int SourceThickMeat => (int)_ApplianceReferences.SourceThickMeat;
 
-		public static int SourceThinMeat => (int)ReferenceAppliance.SourceThinMeat;
+		public static int SourceThinMeat => (int)_ApplianceReferences.SourceThinMeat;
 
-		public static int SourceTomato => (int)ReferenceAppliance.SourceTomato;
+		public static int SourceTomato => (int)_ApplianceReferences.SourceTomato;
 
-		public static int SourceTurkey => (int)ReferenceAppliance.SourceTurkey;
+		public static int SourceTurkey => (int)_ApplianceReferences.SourceTurkey;
 
-		public static int SourceWine => (int)ReferenceAppliance.SourceWine;
+		public static int SourceWine => (int)_ApplianceReferences.SourceWine;
 
-		public static int BrokenEntity => (int)ReferenceAppliance.BrokenEntity;
+		public static int BrokenEntity => (int)_ApplianceReferences.BrokenEntity;
 
-		public static int FireEntity => (int)ReferenceAppliance.FireEntity;
+		public static int FireEntity => (int)_ApplianceReferences.FireEntity;
 
-		public static int ItemReturnWhenLost => (int)ReferenceAppliance.ItemReturnWhenLost;
+		public static int ItemReturnWhenLost => (int)_ApplianceReferences.ItemReturnWhenLost;
 
-		public static int PracticeModeTrigger => (int)ReferenceAppliance.PracticeModeTrigger;
+		public static int PracticeModeTrigger => (int)_ApplianceReferences.PracticeModeTrigger;
 
-		public static int RerollShopTrigger => (int)ReferenceAppliance.RerollShopTrigger;
+		public static int RerollShopTrigger => (int)_ApplianceReferences.RerollShopTrigger;
 
-		public static int TutorialTrigger => (int)ReferenceAppliance.TutorialTrigger;
+		public static int TutorialTrigger => (int)_ApplianceReferences.TutorialTrigger;
 
-		public static int AutoPlater => (int)ReferenceAppliance.AutoPlater;
+		public static int AutoPlater => (int)_ApplianceReferences.AutoPlater;
 
-		public static int DirtyPlateStackDEBUG => (int)ReferenceAppliance.DirtyPlateStackDEBUG;
+		public static int DirtyPlateStackDEBUG => (int)_ApplianceReferences.DirtyPlateStackDEBUG;
 
-		public static int DirtyPlateStack => (int)ReferenceAppliance.DirtyPlateStack;
+		public static int DirtyPlateStack => (int)_ApplianceReferences.DirtyPlateStack;
 
-		public static int ItemSourceReservation => (int)ReferenceAppliance.ItemSourceReservation;
+		public static int ItemSourceReservation => (int)_ApplianceReferences.ItemSourceReservation;
 
-		public static int ItemSource => (int)ReferenceAppliance.ItemSource;
+		public static int ItemSource => (int)_ApplianceReferences.ItemSource;
 
-		public static int PlateStackStarting => (int)ReferenceAppliance.PlateStackStarting;
+		public static int PlateStackStarting => (int)_ApplianceReferences.PlateStackStarting;
 
-		public static int PlateStack => (int)ReferenceAppliance.PlateStack;
+		public static int PlateStack => (int)_ApplianceReferences.PlateStack;
 
-		public static int PotStack => (int)ReferenceAppliance.PotStack;
+		public static int PotStack => (int)_ApplianceReferences.PotStack;
 
-		public static int ServingBoardStack => (int)ReferenceAppliance.ServingBoardStack;
+		public static int ServingBoardStack => (int)_ApplianceReferences.ServingBoardStack;
 
-		public static int WokStack => (int)ReferenceAppliance.WokStack;
+		public static int WokStack => (int)_ApplianceReferences.WokStack;
 
-		public static int AlpineGround => (int)ReferenceAppliance.AlpineGround;
+		public static int AlpineGround => (int)_ApplianceReferences.AlpineGround;
 
-		public static int AlpineTree => (int)ReferenceAppliance.AlpineTree;
+		public static int AlpineTree => (int)_ApplianceReferences.AlpineTree;
 
-		public static int Bush => (int)ReferenceAppliance.Bush;
+		public static int Bush => (int)_ApplianceReferences.Bush;
 
-		public static int Cobblestone => (int)ReferenceAppliance.Cobblestone;
+		public static int Cobblestone => (int)_ApplianceReferences.Cobblestone;
 
-		public static int CountrysideGround => (int)ReferenceAppliance.CountrysideGround;
+		public static int CountrysideGround => (int)_ApplianceReferences.CountrysideGround;
 
-		public static int Flower => (int)ReferenceAppliance.Flower;
+		public static int Flower => (int)_ApplianceReferences.Flower;
 
-		public static int Flowerbed => (int)ReferenceAppliance.Flowerbed;
+		public static int Flowerbed => (int)_ApplianceReferences.Flowerbed;
 
-		public static int HalloweenBridge => (int)ReferenceAppliance.HalloweenBridge;
+		public static int HalloweenBridge => (int)_ApplianceReferences.HalloweenBridge;
 
-		public static int HalloweenFloor => (int)ReferenceAppliance.HalloweenFloor;
+		public static int HalloweenFloor => (int)_ApplianceReferences.HalloweenFloor;
 
-		public static int HalloweenFog => (int)ReferenceAppliance.HalloweenFog;
+		public static int HalloweenFog => (int)_ApplianceReferences.HalloweenFog;
 
-		public static int HalloweenPillar => (int)ReferenceAppliance.HalloweenPillar;
+		public static int HalloweenPillar => (int)_ApplianceReferences.HalloweenPillar;
 
-		public static int HalloweenTrees => (int)ReferenceAppliance.HalloweenTrees;
+		public static int HalloweenTrees => (int)_ApplianceReferences.HalloweenTrees;
 
-		public static int HalloweenWall => (int)ReferenceAppliance.HalloweenWall;
+		public static int HalloweenWall => (int)_ApplianceReferences.HalloweenWall;
 
-		public static int LogWall => (int)ReferenceAppliance.LogWall;
+		public static int LogWall => (int)_ApplianceReferences.LogWall;
 
-		public static int OutdoorMovementBlocker => (int)ReferenceAppliance.OutdoorMovementBlocker;
+		public static int OutdoorMovementBlocker => (int)_ApplianceReferences.OutdoorMovementBlocker;
 
-		public static int Rock => (int)ReferenceAppliance.Rock;
+		public static int Rock => (int)_ApplianceReferences.Rock;
 
-		public static int InternalWallPiece => (int)ReferenceAppliance.InternalWallPiece;
+		public static int InternalWallPiece => (int)_ApplianceReferences.InternalWallPiece;
 
-		public static int StreetPiece => (int)ReferenceAppliance.StreetPiece;
+		public static int StreetPiece => (int)_ApplianceReferences.StreetPiece;
 
-		public static int WallPiece => (int)ReferenceAppliance.WallPiece;
+		public static int WallPiece => (int)_ApplianceReferences.WallPiece;
 
-		public static int Tree => (int)ReferenceAppliance.Tree;
+		public static int Tree => (int)_ApplianceReferences.Tree;
 
-		public static int Freezer => (int)ReferenceAppliance.Freezer;
+		public static int Freezer => (int)_ApplianceReferences.Freezer;
 
-		public static int FrozenPrepStation => (int)ReferenceAppliance.FrozenPrepStation;
+		public static int FrozenPrepStation => (int)_ApplianceReferences.FrozenPrepStation;
 
-		public static int PrepStation => (int)ReferenceAppliance.PrepStation;
+		public static int PrepStation => (int)_ApplianceReferences.PrepStation;
 
-		public static int Rack => (int)ReferenceAppliance.Rack;
+		public static int Rack => (int)_ApplianceReferences.Rack;
 
-		public static int StorageCupboard => (int)ReferenceAppliance.StorageCupboard;
+		public static int StorageCupboard => (int)_ApplianceReferences.StorageCupboard;
 
-		public static int BreadstickBox => (int)ReferenceAppliance.BreadstickBox;
+		public static int BreadstickBox => (int)_ApplianceReferences.BreadstickBox;
 
-		public static int CandleBox => (int)ReferenceAppliance.CandleBox;
+		public static int CandleBox => (int)_ApplianceReferences.CandleBox;
 
-		public static int FlowerPot => (int)ReferenceAppliance.FlowerPot;
+		public static int FlowerPot => (int)_ApplianceReferences.FlowerPot;
 
-		public static int NapkinBox => (int)ReferenceAppliance.NapkinBox;
+		public static int NapkinBox => (int)_ApplianceReferences.NapkinBox;
 
-		public static int SharpCutlery => (int)ReferenceAppliance.SharpCutlery;
+		public static int SharpCutlery => (int)_ApplianceReferences.SharpCutlery;
 
-		public static int SpecialsMenuBox => (int)ReferenceAppliance.SpecialsMenuBox;
+		public static int SpecialsMenuBox => (int)_ApplianceReferences.SpecialsMenuBox;
 
-		public static int Chair => (int)ReferenceAppliance.Chair;
+		public static int Chair => (int)_ApplianceReferences.Chair;
 
-		public static int CoffeeTable => (int)ReferenceAppliance.CoffeeTable;
+		public static int CoffeeTable => (int)_ApplianceReferences.CoffeeTable;
 
-		public static int GhostChair => (int)ReferenceAppliance.GhostChair;
+		public static int GhostChair => (int)_ApplianceReferences.GhostChair;
 
-		public static int TableBar => (int)ReferenceAppliance.TableBar;
+		public static int TableBar => (int)_ApplianceReferences.TableBar;
 
-		public static int TableBasicCloth => (int)ReferenceAppliance.TableBasicCloth;
+		public static int TableBasicCloth => (int)_ApplianceReferences.TableBasicCloth;
 
-		public static int TableCheapMetal => (int)ReferenceAppliance.TableCheapMetal;
+		public static int TableCheapMetal => (int)_ApplianceReferences.TableCheapMetal;
 
-		public static int TableFancyCloth => (int)ReferenceAppliance.TableFancyCloth;
+		public static int TableFancyCloth => (int)_ApplianceReferences.TableFancyCloth;
 
-		public static int TableLarge => (int)ReferenceAppliance.TableLarge;
+		public static int TableLarge => (int)_ApplianceReferences.TableLarge;
 
-		public static int RollingPinProvider => (int)ReferenceAppliance.RollingPinProvider;
+		public static int RollingPinProvider => (int)_ApplianceReferences.RollingPinProvider;
 
-		public static int ScrubbingBrushProvider => (int)ReferenceAppliance.ScrubbingBrushProvider;
+		public static int ScrubbingBrushProvider => (int)_ApplianceReferences.ScrubbingBrushProvider;
 
-		public static int SharpKnifeProvider => (int)ReferenceAppliance.SharpKnifeProvider;
+		public static int SharpKnifeProvider => (int)_ApplianceReferences.SharpKnifeProvider;
 
-		public static int ShoeRackTrainers => (int)ReferenceAppliance.ShoeRackTrainers;
+		public static int ShoeRackTrainers => (int)_ApplianceReferences.ShoeRackTrainers;
 
-		public static int ShoeRackWellies => (int)ReferenceAppliance.ShoeRackWellies;
+		public static int ShoeRackWellies => (int)_ApplianceReferences.ShoeRackWellies;
 
-		public static int ShoeRackWorkBoots => (int)ReferenceAppliance.ShoeRackWorkBoots;
+		public static int ShoeRackWorkBoots => (int)_ApplianceReferences.ShoeRackWorkBoots;
 
-		public static int TrayStand => (int)ReferenceAppliance.TrayStand;
+		public static int TrayStand => (int)_ApplianceReferences.TrayStand;
 
-		public static int DishWasher => (int)ReferenceAppliance.DishWasher;
+		public static int DishWasher => (int)_ApplianceReferences.DishWasher;
 
-		public static int SinkLarge => (int)ReferenceAppliance.SinkLarge;
+		public static int SinkLarge => (int)_ApplianceReferences.SinkLarge;
 
-		public static int SinkNormal => (int)ReferenceAppliance.SinkNormal;
+		public static int SinkNormal => (int)_ApplianceReferences.SinkNormal;
 
-		public static int SinkPower => (int)ReferenceAppliance.SinkPower;
+		public static int SinkPower => (int)_ApplianceReferences.SinkPower;
 
-		public static int SinkSoak => (int)ReferenceAppliance.SinkSoak;
+		public static int SinkSoak => (int)_ApplianceReferences.SinkSoak;
 
-		public static int SinkStarting => (int)ReferenceAppliance.SinkStarting;
+		public static int SinkStarting => (int)_ApplianceReferences.SinkStarting;
 
-		public static int WheelieBin => (int)ReferenceAppliance.WheelieBin;
+		public static int WheelieBin => (int)_ApplianceReferences.WheelieBin;
 
-		public static int Bed => (int)ReferenceAppliance.Bed;
+		public static int Bed => (int)_ApplianceReferences.Bed;
 
-		public static int InteractionProxy => (int)ReferenceAppliance.InteractionProxy;
+		public static int InteractionProxy => (int)_ApplianceReferences.InteractionProxy;
 
-		public static int UnoccupiedRoomIndicator => (int)ReferenceAppliance.UnoccupiedRoomIndicator;
+		public static int UnoccupiedRoomIndicator => (int)_ApplianceReferences.UnoccupiedRoomIndicator;
 
-		public static int CardViewer => (int)ReferenceAppliance.CardViewer;
+		public static int CardViewer => (int)_ApplianceReferences.CardViewer;
 
-		public static int ContractPedestal => (int)ReferenceAppliance.ContractPedestal;
+		public static int ContractPedestal => (int)_ApplianceReferences.ContractPedestal;
 
-		public static int ContractSource => (int)ReferenceAppliance.ContractSource;
+		public static int ContractSource => (int)_ApplianceReferences.ContractSource;
 
-		public static int Projector => (int)ReferenceAppliance.Projector;
+		public static int Projector => (int)_ApplianceReferences.Projector;
 
-		public static int ScrapFranchise => (int)ReferenceAppliance.ScrapFranchise;
+		public static int ScrapFranchise => (int)_ApplianceReferences.ScrapFranchise;
 
-		public static int ContractsRoomLocked => (int)ReferenceAppliance.ContractsRoomLocked;
+		public static int ContractsRoomLocked => (int)_ApplianceReferences.ContractsRoomLocked;
 
-		public static int ExpGrant => (int)ReferenceAppliance.ExpGrant;
+		public static int ExpGrant => (int)_ApplianceReferences.ExpGrant;
 
-		public static int GarageDecorations => (int)ReferenceAppliance.GarageDecorations;
+		public static int GarageDecorations => (int)_ApplianceReferences.GarageDecorations;
 
-		public static int GarageDivider => (int)ReferenceAppliance.GarageDivider;
+		public static int GarageDivider => (int)_ApplianceReferences.GarageDivider;
 
-		public static int GarageShelf => (int)ReferenceAppliance.GarageShelf;
+		public static int GarageShelf => (int)_ApplianceReferences.GarageShelf;
 
-		public static int LoadoutPedestal => (int)ReferenceAppliance.LoadoutPedestal;
+		public static int LoadoutPedestal => (int)_ApplianceReferences.LoadoutPedestal;
 
-		public static int WorkshopActivator => (int)ReferenceAppliance.WorkshopActivator;
+		public static int WorkshopActivator => (int)_ApplianceReferences.WorkshopActivator;
 
-		public static int WorkshopCraftingOutput => (int)ReferenceAppliance.WorkshopCraftingOutput;
+		public static int WorkshopCraftingOutput => (int)_ApplianceReferences.WorkshopCraftingOutput;
 
-		public static int WorkshopCraftingSlot => (int)ReferenceAppliance.WorkshopCraftingSlot;
+		public static int WorkshopCraftingSlot => (int)_ApplianceReferences.WorkshopCraftingSlot;
 
-		public static int WorkshopFence => (int)ReferenceAppliance.WorkshopFence;
+		public static int WorkshopFence => (int)_ApplianceReferences.WorkshopFence;
 
-		public static int WorkshopGate => (int)ReferenceAppliance.WorkshopGate;
+		public static int WorkshopGate => (int)_ApplianceReferences.WorkshopGate;
 
-		public static int WorkshopMachine => (int)ReferenceAppliance.WorkshopMachine;
+		public static int WorkshopMachine => (int)_ApplianceReferences.WorkshopMachine;
 
-		public static int AnimalBowl => (int)ReferenceAppliance.AnimalBowl;
+		public static int AnimalBowl => (int)_ApplianceReferences.AnimalBowl;
 
-		public static int AnimalFakeSeat => (int)ReferenceAppliance.AnimalFakeSeat;
+		public static int AnimalFakeSeat => (int)_ApplianceReferences.AnimalFakeSeat;
 
-		public static int InfiniteBin => (int)ReferenceAppliance.InfiniteBin;
+		public static int InfiniteBin => (int)_ApplianceReferences.InfiniteBin;
 
-		public static int KitchenTutorial => (int)ReferenceAppliance.KitchenTutorial;
+		public static int KitchenTutorial => (int)_ApplianceReferences.KitchenTutorial;
 
-		public static int DrawingBoardVisual => (int)ReferenceAppliance.DrawingBoardVisual;
+		public static int DrawingBoardVisual => (int)_ApplianceReferences.DrawingBoardVisual;
 
-		public static int FoodPedestalFixed => (int)ReferenceAppliance.FoodPedestalFixed;
+		public static int FoodPedestalFixed => (int)_ApplianceReferences.FoodPedestalFixed;
 
-		public static int FoodPedestal => (int)ReferenceAppliance.FoodPedestal;
+		public static int FoodPedestal => (int)_ApplianceReferences.FoodPedestal;
 
-		public static int FoodSource => (int)ReferenceAppliance.FoodSource;
+		public static int FoodSource => (int)_ApplianceReferences.FoodSource;
 
-		public static int MapPedestalSeeded => (int)ReferenceAppliance.MapPedestalSeeded;
+		public static int MapPedestalSeeded => (int)_ApplianceReferences.MapPedestalSeeded;
 
-		public static int MapPedestal => (int)ReferenceAppliance.MapPedestal;
+		public static int MapPedestal => (int)_ApplianceReferences.MapPedestal;
 
-		public static int MapSource => (int)ReferenceAppliance.MapSource;
+		public static int MapSource => (int)_ApplianceReferences.MapSource;
 
-		public static int OfficeDesk => (int)ReferenceAppliance.OfficeDesk;
+		public static int OfficeDesk => (int)_ApplianceReferences.OfficeDesk;
 
-		public static int SeedRunIndicator => (int)ReferenceAppliance.SeedRunIndicator;
+		public static int SeedRunIndicator => (int)_ApplianceReferences.SeedRunIndicator;
 
-		public static int SeededRunSource => (int)ReferenceAppliance.SeededRunSource;
+		public static int SeededRunSource => (int)_ApplianceReferences.SeededRunSource;
 
-		public static int SeededRunVisual => (int)ReferenceAppliance.SeededRunVisual;
+		public static int SeededRunVisual => (int)_ApplianceReferences.SeededRunVisual;
 
-		public static int BedroomColourSelector => (int)ReferenceAppliance.BedroomColourSelector;
+		public static int BedroomColourSelector => (int)_ApplianceReferences.BedroomColourSelector;
 
-		public static int BedroomCostumeSelector => (int)ReferenceAppliance.BedroomCostumeSelector;
+		public static int BedroomCostumeSelector => (int)_ApplianceReferences.BedroomCostumeSelector;
 
-		public static int BedroomOutfitSelector => (int)ReferenceAppliance.BedroomOutfitSelector;
+		public static int BedroomOutfitSelector => (int)_ApplianceReferences.BedroomOutfitSelector;
 
-		public static int ProfileEditorTrigger => (int)ReferenceAppliance.ProfileEditorTrigger;
+		public static int ProfileEditorTrigger => (int)_ApplianceReferences.ProfileEditorTrigger;
 
-		public static int ReloadCrash => (int)ReferenceAppliance.ReloadCrash;
+		public static int ReloadCrash => (int)_ApplianceReferences.ReloadCrash;
 
-		public static int SpeedrunBoardVisual => (int)ReferenceAppliance.SpeedrunBoardVisual;
+		public static int SpeedrunBoardVisual => (int)_ApplianceReferences.SpeedrunBoardVisual;
 
-		public static int StatsRoomLocked => (int)ReferenceAppliance.StatsRoomLocked;
+		public static int StatsRoomLocked => (int)_ApplianceReferences.StatsRoomLocked;
 
-		public static int WorkshopRoomLocked => (int)ReferenceAppliance.WorkshopRoomLocked;
+		public static int WorkshopRoomLocked => (int)_ApplianceReferences.WorkshopRoomLocked;
 
-		public static int BuilderFloor => (int)ReferenceAppliance.BuilderFloor;
+		public static int BuilderFloor => (int)_ApplianceReferences.BuilderFloor;
 
-		public static int CardSelector => (int)ReferenceAppliance.CardSelector;
+		public static int CardSelector => (int)_ApplianceReferences.CardSelector;
 
-		public static int ConfirmCreateText => (int)ReferenceAppliance.ConfirmCreateText;
+		public static int ConfirmCreateText => (int)_ApplianceReferences.ConfirmCreateText;
 
-		public static int TutorialFloor => (int)ReferenceAppliance.TutorialFloor;
+		public static int TutorialFloor => (int)_ApplianceReferences.TutorialFloor;
 
-		public static int ClipboardStand => (int)ReferenceAppliance.ClipboardStand;
+		public static int ClipboardStand => (int)_ApplianceReferences.ClipboardStand;
 
-		public static int SourceChristmasCracker => (int)ReferenceAppliance.SourceChristmasCracker;
+		public static int SourceChristmasCracker => (int)_ApplianceReferences.SourceChristmasCracker;
 
-		public static int SourceCranberry => (int)ReferenceAppliance.SourceCranberry;
+		public static int SourceCranberry => (int)_ApplianceReferences.SourceCranberry;
 
-		public static int SourceSugar => (int)ReferenceAppliance.SourceSugar;
+		public static int SourceSugar => (int)_ApplianceReferences.SourceSugar;
 
-		public static int BeltChristmasMap => (int)ReferenceAppliance.BeltChristmasMap;
+		public static int BeltChristmasMap => (int)_ApplianceReferences.BeltChristmasMap;
 
-		public static int GrabberChristmapMap => (int)ReferenceAppliance.GrabberChristmapMap;
+		public static int GrabberChristmapMap => (int)_ApplianceReferences.GrabberChristmapMap;
 
-		public static int ShedMagicEverything => (int)ReferenceAppliance.ShedMagicEverything;
+		public static int ShedMagicEverything => (int)_ApplianceReferences.ShedMagicEverything;
 
-		public static int ShedTeleportTarget => (int)ReferenceAppliance.ShedTeleportTarget;
+		public static int ShedTeleportTarget => (int)_ApplianceReferences.ShedTeleportTarget;
 
-		public static int ShedInputPlaceholder => (int)ReferenceAppliance.ShedInputPlaceholder;
+		public static int ShedInputPlaceholder => (int)_ApplianceReferences.ShedInputPlaceholder;
 
-		public static int ShedOutputPlaceholder => (int)ReferenceAppliance.ShedOutputPlaceholder;
+		public static int ShedOutputPlaceholder => (int)_ApplianceReferences.ShedOutputPlaceholder;
 
-		public static int FlowerArch => (int)ReferenceAppliance.FlowerArch;
+		public static int FlowerArch => (int)_ApplianceReferences.FlowerArch;
 
-		public static int FriendsPoster => (int)ReferenceAppliance.FriendsPoster;
+		public static int FriendsPoster => (int)_ApplianceReferences.FriendsPoster;
 
-		public static int HeartBalloons => (int)ReferenceAppliance.HeartBalloons;
+		public static int HeartBalloons => (int)_ApplianceReferences.HeartBalloons;
 
-		public static int HeartBunting => (int)ReferenceAppliance.HeartBunting;
+		public static int HeartBunting => (int)_ApplianceReferences.HeartBunting;
 
-		public static int LoveSign => (int)ReferenceAppliance.LoveSign;
+		public static int LoveSign => (int)_ApplianceReferences.LoveSign;
 
-		public static int SettingSelector => (int)ReferenceAppliance.SettingSelector;
+		public static int SettingSelector => (int)_ApplianceReferences.SettingSelector;
 
-		public static int Cobwebs => (int)ReferenceAppliance.Cobwebs;
+		public static int Cobwebs => (int)_ApplianceReferences.Cobwebs;
 
-		public static int GhostStatue => (int)ReferenceAppliance.GhostStatue;
+		public static int GhostStatue => (int)_ApplianceReferences.GhostStatue;
 
-		public static int Pumpkin => (int)ReferenceAppliance.Pumpkin;
+		public static int Pumpkin => (int)_ApplianceReferences.Pumpkin;
 
-		public static int Skeleton => (int)ReferenceAppliance.Skeleton;
+		public static int Skeleton => (int)_ApplianceReferences.Skeleton;
 
-		public static int SourceCorn => (int)ReferenceAppliance.SourceCorn;
+		public static int SourceCorn => (int)_ApplianceReferences.SourceCorn;
 
-		public static int SourceBananas => (int)ReferenceAppliance.SourceBananas;
+		public static int SourceBananas => (int)_ApplianceReferences.SourceBananas;
 
-		public static int SourceStrawberries => (int)ReferenceAppliance.SourceStrawberries;
+		public static int SourceStrawberries => (int)_ApplianceReferences.SourceStrawberries;
 
-		public static int SourcePumpkin => (int)ReferenceAppliance.SourcePumpkin;
+		public static int SourcePumpkin => (int)_ApplianceReferences.SourcePumpkin;
 
-		public static int BunnyPoster => (int)ReferenceAppliance.BunnyPoster;
+		public static int BunnyPoster => (int)_ApplianceReferences.BunnyPoster;
 
-		public static int Lantern => (int)ReferenceAppliance.Lantern;
+		public static int Lantern => (int)_ApplianceReferences.Lantern;
 
-		public static int SourceBamboo => (int)ReferenceAppliance.SourceBamboo;
+		public static int SourceBamboo => (int)_ApplianceReferences.SourceBamboo;
 
-		public static int SourceSeaweed => (int)ReferenceAppliance.SourceSeaweed;
+		public static int SourceSeaweed => (int)_ApplianceReferences.SourceSeaweed;
 
-		public static int SourceMandarin => (int)ReferenceAppliance.SourceMandarin;
+		public static int SourceMandarin => (int)_ApplianceReferences.SourceMandarin;
 
-		public static int SourceSoySauce => (int)ReferenceAppliance.SourceSoySauce;
+		public static int SourceSoySauce => (int)_ApplianceReferences.SourceSoySauce;
 
-		public static int LakeGround => (int)ReferenceAppliance.LakeGround;
+		public static int LakeGround => (int)_ApplianceReferences.LakeGround;
 
-		public static int RedEnvelopeLetter => (int)ReferenceAppliance.RedEnvelopeLetter;
+		public static int RedEnvelopeLetter => (int)_ApplianceReferences.RedEnvelopeLetter;
 
-		public static int TreeLake => (int)ReferenceAppliance.TreeLake;
+		public static int TreeLake => (int)_ApplianceReferences.TreeLake;
 
-		public static int SourceCakeStand => (int)ReferenceAppliance.SourceCakeStand;
+		public static int SourceCakeStand => (int)_ApplianceReferences.SourceCakeStand;
 
-		public static int IceDispenser => (int)ReferenceAppliance.IceDispenser;
+		public static int IceDispenser => (int)_ApplianceReferences.IceDispenser;
 
-		public static int MilkDispenser => (int)ReferenceAppliance.MilkDispenser;
+		public static int MilkDispenser => (int)_ApplianceReferences.MilkDispenser;
 
-		public static int SourceMilk => (int)ReferenceAppliance.SourceMilk;
+		public static int SourceMilk => (int)_ApplianceReferences.SourceMilk;
 
-		public static int SourceTeaBags => (int)ReferenceAppliance.SourceTeaBags;
+		public static int SourceTeaBags => (int)_ApplianceReferences.SourceTeaBags;
 
-		public static int SourceTeaCups => (int)ReferenceAppliance.SourceTeaCups;
+		public static int SourceTeaCups => (int)_ApplianceReferences.SourceTeaCups;
 
-		public static int SourceTeaPots => (int)ReferenceAppliance.SourceTeaPots;
+		public static int SourceTeaPots => (int)_ApplianceReferences.SourceTeaPots;
 
-		public static int AchievementView => (int)ReferenceAppliance.AchievementView;
+		public static int AchievementView => (int)_ApplianceReferences.AchievementView;
 
-		public static int ExperienceView => (int)ReferenceAppliance.ExperienceView;
+		public static int ExperienceView => (int)_ApplianceReferences.ExperienceView;
 
-		public static int LocationLoader => (int)ReferenceAppliance.LocationLoader;
+		public static int LocationLoader => (int)_ApplianceReferences.LocationLoader;
 
-		public static int Map => (int)ReferenceAppliance.Map;
+		public static int Map => (int)_ApplianceReferences.Map;
 
-		public static int TurboStreetPiece => (int)ReferenceAppliance.TurboStreetPiece;
+		public static int TurboStreetPiece => (int)_ApplianceReferences.TurboStreetPiece;
 
-		public static int TurboWallPieceHalf => (int)ReferenceAppliance.TurboWallPieceHalf;
+		public static int TurboWallPieceHalf => (int)_ApplianceReferences.TurboWallPieceHalf;
 
-		public static int TurboWallPiece => (int)ReferenceAppliance.TurboWallPiece;
+		public static int TurboWallPiece => (int)_ApplianceReferences.TurboWallPiece;
 
-		public static int UpgradeProgressView => (int)ReferenceAppliance.UpgradeProgressView;
+		public static int UpgradeProgressView => (int)_ApplianceReferences.UpgradeProgressView;
 
-		public static int SourceCherry => (int)ReferenceAppliance.SourceCherry;
+		public static int SourceCherry => (int)_ApplianceReferences.SourceCherry;
 
-		public static int CobblestoneAutumn => (int)ReferenceAppliance.CobblestoneAutumn;
+		public static int CobblestoneAutumn => (int)_ApplianceReferences.CobblestoneAutumn;
 
-		public static int Fencing => (int)ReferenceAppliance.Fencing;
+		public static int Fencing => (int)_ApplianceReferences.Fencing;
 
-		public static int GrassAutumn => (int)ReferenceAppliance.GrassAutumn;
+		public static int GrassAutumn => (int)_ApplianceReferences.GrassAutumn;
 
-		public static int Rock1 => (int)ReferenceAppliance.Rock1;
+		public static int Rock2 => (int)_ApplianceReferences.Rock2;
 
-		public static int TreeAutumn => (int)ReferenceAppliance.TreeAutumn;
+		public static int TreeAutumn => (int)_ApplianceReferences.TreeAutumn;
 
-		public static int ResearchExitText => (int)ReferenceAppliance.ResearchExitText;
+		public static int ResearchExitText => (int)_ApplianceReferences.ResearchExitText;
 
-		public static int ResearchableUpgrade => (int)ReferenceAppliance.ResearchableUpgrade;
+		public static int ResearchableUpgrade => (int)_ApplianceReferences.ResearchableUpgrade;
 
-		public static int UpgradeKit => (int)ReferenceAppliance.UpgradeKit;
+		public static int UpgradeKit => (int)_ApplianceReferences.UpgradeKit;
 
-		public static int kitchenlibSyncModsViewHolder => (int)ReferenceAppliance.kitchenlibSyncModsViewHolder;
+		public static int kitchenlibSyncModsViewHolder => (int)_ApplianceReferences.kitchenlibSyncModsViewHolder;
 
 	}
-	public enum ReferenceAppliance
+	internal enum _ApplianceReferences
 	{
 		MixerHeated = 505496455,
 
@@ -1269,7 +1269,7 @@ namespace KitchenLib.References
 
 		GrassAutumn = -1673904972,
 
-		Rock1 = 1752654754,
+		Rock2 = 1752654754,
 
 		TreeAutumn = -1748395084,
 
@@ -1284,24 +1284,24 @@ namespace KitchenLib.References
 	}
 	public class CompositeUnlockPackReferences
 	{
-		public static int ChristmasPack => (int)ReferenceCompositeUnlockPack.ChristmasPack;
+		public static int ChristmasPack => (int)_CompositeUnlockPackReferences.ChristmasPack;
 
-		public static int DefaultCompositePack => (int)ReferenceCompositeUnlockPack.DefaultCompositePack;
+		public static int DefaultCompositePack => (int)_CompositeUnlockPackReferences.DefaultCompositePack;
 
-		public static int FebruaryPack => (int)ReferenceCompositeUnlockPack.FebruaryPack;
+		public static int FebruaryPack => (int)_CompositeUnlockPackReferences.FebruaryPack;
 
-		public static int HalloweenPack => (int)ReferenceCompositeUnlockPack.HalloweenPack;
+		public static int HalloweenPack => (int)_CompositeUnlockPackReferences.HalloweenPack;
 
-		public static int JanuaryPack => (int)ReferenceCompositeUnlockPack.JanuaryPack;
+		public static int JanuaryPack => (int)_CompositeUnlockPackReferences.JanuaryPack;
 
-		public static int JunePack => (int)ReferenceCompositeUnlockPack.JunePack;
+		public static int JunePack => (int)_CompositeUnlockPackReferences.JunePack;
 
-		public static int MarchPack => (int)ReferenceCompositeUnlockPack.MarchPack;
+		public static int MarchPack => (int)_CompositeUnlockPackReferences.MarchPack;
 
-		public static int AutumnPack => (int)ReferenceCompositeUnlockPack.AutumnPack;
+		public static int AutumnPack => (int)_CompositeUnlockPackReferences.AutumnPack;
 
 	}
-	public enum ReferenceCompositeUnlockPack
+	internal enum _CompositeUnlockPackReferences
 	{
 		ChristmasPack = 1370599169,
 
@@ -1323,91 +1323,91 @@ namespace KitchenLib.References
 	public class CrateSetReferences
 	{
 	}
-	public enum ReferenceCrateSet
+	internal enum _CrateSetReferences
 	{
 	}
 	public class DecorReferences
 	{
-		public static int FloorCarpetBlue => (int)ReferenceDecor.FloorCarpetBlue;
+		public static int FloorCarpetBlue => (int)_DecorReferences.FloorCarpetBlue;
 
-		public static int FloorCarpetOddBeige => (int)ReferenceDecor.FloorCarpetOddBeige;
+		public static int FloorCarpetOddBeige => (int)_DecorReferences.FloorCarpetOddBeige;
 
-		public static int FloorCarpetRed => (int)ReferenceDecor.FloorCarpetRed;
+		public static int FloorCarpetRed => (int)_DecorReferences.FloorCarpetRed;
 
-		public static int FloorLinoBlue => (int)ReferenceDecor.FloorLinoBlue;
+		public static int FloorLinoBlue => (int)_DecorReferences.FloorLinoBlue;
 
-		public static int FloorTilesBlackandWhite => (int)ReferenceDecor.FloorTilesBlackandWhite;
+		public static int FloorTilesBlackandWhite => (int)_DecorReferences.FloorTilesBlackandWhite;
 
-		public static int FloorTilesSlate => (int)ReferenceDecor.FloorTilesSlate;
+		public static int FloorTilesSlate => (int)_DecorReferences.FloorTilesSlate;
 
-		public static int FloorTilesTerracotta => (int)ReferenceDecor.FloorTilesTerracotta;
+		public static int FloorTilesTerracotta => (int)_DecorReferences.FloorTilesTerracotta;
 
-		public static int FloorWoodChevrons => (int)ReferenceDecor.FloorWoodChevrons;
+		public static int FloorWoodChevrons => (int)_DecorReferences.FloorWoodChevrons;
 
-		public static int FloorWoodNeatPlanks => (int)ReferenceDecor.FloorWoodNeatPlanks;
+		public static int FloorWoodNeatPlanks => (int)_DecorReferences.FloorWoodNeatPlanks;
 
-		public static int WallpaperBasicBeige => (int)ReferenceDecor.WallpaperBasicBeige;
+		public static int WallpaperBasicBeige => (int)_DecorReferences.WallpaperBasicBeige;
 
-		public static int WallpaperBasicBlue => (int)ReferenceDecor.WallpaperBasicBlue;
+		public static int WallpaperBasicBlue => (int)_DecorReferences.WallpaperBasicBlue;
 
-		public static int WallpaperBasicDeepRed => (int)ReferenceDecor.WallpaperBasicDeepRed;
+		public static int WallpaperBasicDeepRed => (int)_DecorReferences.WallpaperBasicDeepRed;
 
-		public static int WallpaperBasicGreen => (int)ReferenceDecor.WallpaperBasicGreen;
+		public static int WallpaperBasicGreen => (int)_DecorReferences.WallpaperBasicGreen;
 
-		public static int WallpaperBasicRed => (int)ReferenceDecor.WallpaperBasicRed;
+		public static int WallpaperBasicRed => (int)_DecorReferences.WallpaperBasicRed;
 
-		public static int WallpaperBasicYellow => (int)ReferenceDecor.WallpaperBasicYellow;
+		public static int WallpaperBasicYellow => (int)_DecorReferences.WallpaperBasicYellow;
 
-		public static int WallpaperPatternSnow => (int)ReferenceDecor.WallpaperPatternSnow;
+		public static int WallpaperPatternSnow => (int)_DecorReferences.WallpaperPatternSnow;
 
-		public static int WallpaperStripesRed => (int)ReferenceDecor.WallpaperStripesRed;
+		public static int WallpaperStripesRed => (int)_DecorReferences.WallpaperStripesRed;
 
-		public static int FloorMarbleDark => (int)ReferenceDecor.FloorMarbleDark;
+		public static int FloorMarbleDark => (int)_DecorReferences.FloorMarbleDark;
 
-		public static int FloorMarble => (int)ReferenceDecor.FloorMarble;
+		public static int FloorMarble => (int)_DecorReferences.FloorMarble;
 
-		public static int WallpaperHeartsIcons => (int)ReferenceDecor.WallpaperHeartsIcons;
+		public static int WallpaperHeartsIcons => (int)_DecorReferences.WallpaperHeartsIcons;
 
-		public static int WallpaperHearts => (int)ReferenceDecor.WallpaperHearts;
+		public static int WallpaperHearts => (int)_DecorReferences.WallpaperHearts;
 
-		public static int FloorPlanksSmart => (int)ReferenceDecor.FloorPlanksSmart;
+		public static int FloorPlanksSmart => (int)_DecorReferences.FloorPlanksSmart;
 
-		public static int FloorPlanksTattered => (int)ReferenceDecor.FloorPlanksTattered;
+		public static int FloorPlanksTattered => (int)_DecorReferences.FloorPlanksTattered;
 
-		public static int FloorTilesCobblestone => (int)ReferenceDecor.FloorTilesCobblestone;
+		public static int FloorTilesCobblestone => (int)_DecorReferences.FloorTilesCobblestone;
 
-		public static int FloorTilesHex => (int)ReferenceDecor.FloorTilesHex;
+		public static int FloorTilesHex => (int)_DecorReferences.FloorTilesHex;
 
-		public static int FloorTilesSimple => (int)ReferenceDecor.FloorTilesSimple;
+		public static int FloorTilesSimple => (int)_DecorReferences.FloorTilesSimple;
 
-		public static int WallpaperPatternBones => (int)ReferenceDecor.WallpaperPatternBones;
+		public static int WallpaperPatternBones => (int)_DecorReferences.WallpaperPatternBones;
 
-		public static int WallpaperPatternFloral => (int)ReferenceDecor.WallpaperPatternFloral;
+		public static int WallpaperPatternFloral => (int)_DecorReferences.WallpaperPatternFloral;
 
-		public static int WallpaperStripesBlue => (int)ReferenceDecor.WallpaperStripesBlue;
+		public static int WallpaperStripesBlue => (int)_DecorReferences.WallpaperStripesBlue;
 
-		public static int WallpaperStripesGreen => (int)ReferenceDecor.WallpaperStripesGreen;
+		public static int WallpaperStripesGreen => (int)_DecorReferences.WallpaperStripesGreen;
 
-		public static int WallpaperTilesBlue => (int)ReferenceDecor.WallpaperTilesBlue;
+		public static int WallpaperTilesBlue => (int)_DecorReferences.WallpaperTilesBlue;
 
-		public static int WallpaperTilesRed => (int)ReferenceDecor.WallpaperTilesRed;
+		public static int WallpaperTilesRed => (int)_DecorReferences.WallpaperTilesRed;
 
-		public static int WallpaperCNY1 => (int)ReferenceDecor.WallpaperCNY1;
+		public static int WallpaperCNY1 => (int)_DecorReferences.WallpaperCNY1;
 
-		public static int WallpaperCNY2 => (int)ReferenceDecor.WallpaperCNY2;
+		public static int WallpaperCNY2 => (int)_DecorReferences.WallpaperCNY2;
 
-		public static int WallpaperCNY3 => (int)ReferenceDecor.WallpaperCNY3;
+		public static int WallpaperCNY3 => (int)_DecorReferences.WallpaperCNY3;
 
-		public static int WallpaperLeaves => (int)ReferenceDecor.WallpaperLeaves;
+		public static int WallpaperLeaves => (int)_DecorReferences.WallpaperLeaves;
 
-		public static int WallpaperStripesOrange => (int)ReferenceDecor.WallpaperStripesOrange;
+		public static int WallpaperStripesOrange => (int)_DecorReferences.WallpaperStripesOrange;
 
-		public static int WallpaperTress => (int)ReferenceDecor.WallpaperTress;
+		public static int WallpaperTress => (int)_DecorReferences.WallpaperTress;
 
-		public static int WallpaperTurkey => (int)ReferenceDecor.WallpaperTurkey;
+		public static int WallpaperTurkey => (int)_DecorReferences.WallpaperTurkey;
 
 	}
-	public enum ReferenceDecor
+	internal enum _DecorReferences
 	{
 		FloorCarpetBlue = 264635314,
 
@@ -1490,178 +1490,178 @@ namespace KitchenLib.References
 	}
 	public class DishReferences
 	{
-		public static int CoffeeDessert => (int)ReferenceDish.CoffeeDessert;
+		public static int CoffeeDessert => (int)_DishReferences.CoffeeDessert;
 
-		public static int IceCream => (int)ReferenceDish.IceCream;
+		public static int IceCream => (int)_DishReferences.IceCream;
 
-		public static int BreakfastBase => (int)ReferenceDish.BreakfastBase;
+		public static int BreakfastBase => (int)_DishReferences.BreakfastBase;
 
-		public static int BreakfastBeans => (int)ReferenceDish.BreakfastBeans;
+		public static int BreakfastBeans => (int)_DishReferences.BreakfastBeans;
 
-		public static int BreakfastExtras => (int)ReferenceDish.BreakfastExtras;
+		public static int BreakfastExtras => (int)_DishReferences.BreakfastExtras;
 
-		public static int BreakfastVeganExtras => (int)ReferenceDish.BreakfastVeganExtras;
+		public static int BreakfastVeganExtras => (int)_DishReferences.BreakfastVeganExtras;
 
-		public static int BurgerBase => (int)ReferenceDish.BurgerBase;
+		public static int BurgerBase => (int)_DishReferences.BurgerBase;
 
-		public static int BurgerCheese => (int)ReferenceDish.BurgerCheese;
+		public static int BurgerCheese => (int)_DishReferences.BurgerCheese;
 
-		public static int BurgerFreshPatties => (int)ReferenceDish.BurgerFreshPatties;
+		public static int BurgerFreshPatties => (int)_DishReferences.BurgerFreshPatties;
 
-		public static int BurgerTomatoandOnion => (int)ReferenceDish.BurgerTomatoandOnion;
+		public static int BurgerTomatoandOnion => (int)_DishReferences.BurgerTomatoandOnion;
 
-		public static int HotdogBase => (int)ReferenceDish.HotdogBase;
+		public static int HotdogBase => (int)_DishReferences.HotdogBase;
 
-		public static int HotdogCondimentMustard => (int)ReferenceDish.HotdogCondimentMustard;
+		public static int HotdogCondimentMustard => (int)_DishReferences.HotdogCondimentMustard;
 
-		public static int FishBase => (int)ReferenceDish.FishBase;
+		public static int FishBase => (int)_DishReferences.FishBase;
 
-		public static int FishCrabCake => (int)ReferenceDish.FishCrabCake;
+		public static int FishCrabCake => (int)_DishReferences.FishCrabCake;
 
-		public static int FishExtraChoice2 => (int)ReferenceDish.FishExtraChoice2;
+		public static int FishExtraChoice2 => (int)_DishReferences.FishExtraChoice2;
 
-		public static int FishExtraChoice => (int)ReferenceDish.FishExtraChoice;
+		public static int FishExtraChoice => (int)_DishReferences.FishExtraChoice;
 
-		public static int FishFillet => (int)ReferenceDish.FishFillet;
+		public static int FishFillet => (int)_DishReferences.FishFillet;
 
-		public static int FishOyster => (int)ReferenceDish.FishOyster;
+		public static int FishOyster => (int)_DishReferences.FishOyster;
 
-		public static int FishSpiny => (int)ReferenceDish.FishSpiny;
+		public static int FishSpiny => (int)_DishReferences.FishSpiny;
 
-		public static int BirthdayCake => (int)ReferenceDish.BirthdayCake;
+		public static int BirthdayCake => (int)_DishReferences.BirthdayCake;
 
-		public static int RoastMeat => (int)ReferenceDish.RoastMeat;
+		public static int RoastMeat => (int)_DishReferences.RoastMeat;
 
-		public static int PieApple => (int)ReferenceDish.PieApple;
+		public static int PieApple => (int)_DishReferences.PieApple;
 
-		public static int PieBase => (int)ReferenceDish.PieBase;
+		public static int PieBase => (int)_DishReferences.PieBase;
 
-		public static int PieMushroom => (int)ReferenceDish.PieMushroom;
+		public static int PieMushroom => (int)_DishReferences.PieMushroom;
 
-		public static int PieVegetable => (int)ReferenceDish.PieVegetable;
+		public static int PieVegetable => (int)_DishReferences.PieVegetable;
 
-		public static int SaladApple => (int)ReferenceDish.SaladApple;
+		public static int SaladApple => (int)_DishReferences.SaladApple;
 
-		public static int SaladBase => (int)ReferenceDish.SaladBase;
+		public static int SaladBase => (int)_DishReferences.SaladBase;
 
-		public static int SaladPotato => (int)ReferenceDish.SaladPotato;
+		public static int SaladPotato => (int)_DishReferences.SaladPotato;
 
-		public static int SaladToppings => (int)ReferenceDish.SaladToppings;
+		public static int SaladToppings => (int)_DishReferences.SaladToppings;
 
-		public static int BonedSteaks => (int)ReferenceDish.BonedSteaks;
+		public static int BonedSteaks => (int)_DishReferences.BonedSteaks;
 
-		public static int SteakSauceMushroomSauce => (int)ReferenceDish.SteakSauceMushroomSauce;
+		public static int SteakSauceMushroomSauce => (int)_DishReferences.SteakSauceMushroomSauce;
 
-		public static int SteakSauceRedWineJus => (int)ReferenceDish.SteakSauceRedWineJus;
+		public static int SteakSauceRedWineJus => (int)_DishReferences.SteakSauceRedWineJus;
 
-		public static int SteakToppingMushroom => (int)ReferenceDish.SteakToppingMushroom;
+		public static int SteakToppingMushroom => (int)_DishReferences.SteakToppingMushroom;
 
-		public static int SteakToppingTomato => (int)ReferenceDish.SteakToppingTomato;
+		public static int SteakToppingTomato => (int)_DishReferences.SteakToppingTomato;
 
-		public static int Steak => (int)ReferenceDish.Steak;
+		public static int Steak => (int)_DishReferences.Steak;
 
-		public static int ThickSteaks => (int)ReferenceDish.ThickSteaks;
+		public static int ThickSteaks => (int)_DishReferences.ThickSteaks;
 
-		public static int ThinSteaks => (int)ReferenceDish.ThinSteaks;
+		public static int ThinSteaks => (int)_DishReferences.ThinSteaks;
 
-		public static int StirFryBase => (int)ReferenceDish.StirFryBase;
+		public static int StirFryBase => (int)_DishReferences.StirFryBase;
 
-		public static int StirFryMeat => (int)ReferenceDish.StirFryMeat;
+		public static int StirFryMeat => (int)_DishReferences.StirFryMeat;
 
-		public static int Broccoli => (int)ReferenceDish.Broccoli;
+		public static int Broccoli => (int)_DishReferences.Broccoli;
 
-		public static int Chips => (int)ReferenceDish.Chips;
+		public static int Chips => (int)_DishReferences.Chips;
 
-		public static int MashedPotato => (int)ReferenceDish.MashedPotato;
+		public static int MashedPotato => (int)_DishReferences.MashedPotato;
 
-		public static int CarrotSoup => (int)ReferenceDish.CarrotSoup;
+		public static int CarrotSoup => (int)_DishReferences.CarrotSoup;
 
-		public static int MeatSoup => (int)ReferenceDish.MeatSoup;
+		public static int MeatSoup => (int)_DishReferences.MeatSoup;
 
-		public static int TomatoSoup => (int)ReferenceDish.TomatoSoup;
+		public static int TomatoSoup => (int)_DishReferences.TomatoSoup;
 
-		public static int CheeseBoard => (int)ReferenceDish.CheeseBoard;
+		public static int CheeseBoard => (int)_DishReferences.CheeseBoard;
 
-		public static int PizzaBase => (int)ReferenceDish.PizzaBase;
+		public static int PizzaBase => (int)_DishReferences.PizzaBase;
 
-		public static int PizzaMushroom => (int)ReferenceDish.PizzaMushroom;
+		public static int PizzaMushroom => (int)_DishReferences.PizzaMushroom;
 
-		public static int PizzaOnion => (int)ReferenceDish.PizzaOnion;
+		public static int PizzaOnion => (int)_DishReferences.PizzaOnion;
 
-		public static int OnionRings => (int)ReferenceDish.OnionRings;
+		public static int OnionRings => (int)_DishReferences.OnionRings;
 
-		public static int Cracker => (int)ReferenceDish.Cracker;
+		public static int Cracker => (int)_DishReferences.Cracker;
 
-		public static int TurkeyCranberrySauce => (int)ReferenceDish.TurkeyCranberrySauce;
+		public static int TurkeyCranberrySauce => (int)_DishReferences.TurkeyCranberrySauce;
 
-		public static int TurkeyGravy => (int)ReferenceDish.TurkeyGravy;
+		public static int TurkeyGravy => (int)_DishReferences.TurkeyGravy;
 
-		public static int TurkeyStuffing => (int)ReferenceDish.TurkeyStuffing;
+		public static int TurkeyStuffing => (int)_DishReferences.TurkeyStuffing;
 
-		public static int CornOnCob => (int)ReferenceDish.CornOnCob;
+		public static int CornOnCob => (int)_DishReferences.CornOnCob;
 
-		public static int IceCreamBanana => (int)ReferenceDish.IceCreamBanana;
+		public static int IceCreamBanana => (int)_DishReferences.IceCreamBanana;
 
-		public static int IceCreamNuts => (int)ReferenceDish.IceCreamNuts;
+		public static int IceCreamNuts => (int)_DishReferences.IceCreamNuts;
 
-		public static int IceCreamStrawberry => (int)ReferenceDish.IceCreamStrawberry;
+		public static int IceCreamStrawberry => (int)_DishReferences.IceCreamStrawberry;
 
-		public static int PiePumpkin => (int)ReferenceDish.PiePumpkin;
+		public static int PiePumpkin => (int)_DishReferences.PiePumpkin;
 
-		public static int PumpkinSeed => (int)ReferenceDish.PumpkinSeed;
+		public static int PumpkinSeed => (int)_DishReferences.PumpkinSeed;
 
-		public static int PumpkinSoup => (int)ReferenceDish.PumpkinSoup;
+		public static int PumpkinSoup => (int)_DishReferences.PumpkinSoup;
 
-		public static int Bamboo => (int)ReferenceDish.Bamboo;
+		public static int Bamboo => (int)_DishReferences.Bamboo;
 
-		public static int StirFryBamboo => (int)ReferenceDish.StirFryBamboo;
+		public static int StirFryBamboo => (int)_DishReferences.StirFryBamboo;
 
-		public static int DumplingSoySauce => (int)ReferenceDish.DumplingSoySauce;
+		public static int DumplingSoySauce => (int)_DishReferences.DumplingSoySauce;
 
-		public static int Dumplings => (int)ReferenceDish.Dumplings;
+		public static int Dumplings => (int)_DishReferences.Dumplings;
 
-		public static int DumplingsSeaweed => (int)ReferenceDish.DumplingsSeaweed;
+		public static int DumplingsSeaweed => (int)_DishReferences.DumplingsSeaweed;
 
-		public static int Mandarin => (int)ReferenceDish.Mandarin;
+		public static int Mandarin => (int)_DishReferences.Mandarin;
 
-		public static int StirFryMushroom => (int)ReferenceDish.StirFryMushroom;
+		public static int StirFryMushroom => (int)_DishReferences.StirFryMushroom;
 
-		public static int StirFrySoySauce => (int)ReferenceDish.StirFrySoySauce;
+		public static int StirFrySoySauce => (int)_DishReferences.StirFrySoySauce;
 
-		public static int CoffeeCakeStand => (int)ReferenceDish.CoffeeCakeStand;
+		public static int CoffeeCakeStand => (int)_DishReferences.CoffeeCakeStand;
 
-		public static int CoffeeBaseDessert => (int)ReferenceDish.CoffeeBaseDessert;
+		public static int CoffeeBaseDessert => (int)_DishReferences.CoffeeBaseDessert;
 
-		public static int ExtraMilk => (int)ReferenceDish.ExtraMilk;
+		public static int ExtraMilk => (int)_DishReferences.ExtraMilk;
 
-		public static int ExtraSugar => (int)ReferenceDish.ExtraSugar;
+		public static int ExtraSugar => (int)_DishReferences.ExtraSugar;
 
-		public static int CoffeeIced => (int)ReferenceDish.CoffeeIced;
+		public static int CoffeeIced => (int)_DishReferences.CoffeeIced;
 
-		public static int CoffeeLatte => (int)ReferenceDish.CoffeeLatte;
+		public static int CoffeeLatte => (int)_DishReferences.CoffeeLatte;
 
-		public static int Tea => (int)ReferenceDish.Tea;
+		public static int Tea => (int)_DishReferences.Tea;
 
-		public static int NutRoastBase => (int)ReferenceDish.NutRoastBase;
+		public static int NutRoastBase => (int)_DishReferences.NutRoastBase;
 
-		public static int Affogato => (int)ReferenceDish.Affogato;
+		public static int Affogato => (int)_DishReferences.Affogato;
 
-		public static int BreadStarter => (int)ReferenceDish.BreadStarter;
+		public static int BreadStarter => (int)_DishReferences.BreadStarter;
 
-		public static int BroccoliCheeseSoup => (int)ReferenceDish.BroccoliCheeseSoup;
+		public static int BroccoliCheeseSoup => (int)_DishReferences.BroccoliCheeseSoup;
 
-		public static int CherryPie => (int)ReferenceDish.CherryPie;
+		public static int CherryPie => (int)_DishReferences.CherryPie;
 
-		public static int RoastPotato => (int)ReferenceDish.RoastPotato;
+		public static int RoastPotato => (int)_DishReferences.RoastPotato;
 
-		public static int Sweetcorn => (int)ReferenceDish.Sweetcorn;
+		public static int Sweetcorn => (int)_DishReferences.Sweetcorn;
 
-		public static int Waffles => (int)ReferenceDish.Waffles;
+		public static int Waffles => (int)_DishReferences.Waffles;
 
-		public static int TurkeyBase => (int)ReferenceDish.TurkeyBase;
+		public static int TurkeyBase => (int)_DishReferences.TurkeyBase;
 
 	}
-	public enum ReferenceDish
+	internal enum _DishReferences
 	{
 		CoffeeDessert = -85470894,
 
@@ -1836,16 +1836,16 @@ namespace KitchenLib.References
 	}
 	public class EffectReferences
 	{
-		public static int Breadsticks => (int)ReferenceEffect.Breadsticks;
+		public static int Breadsticks => (int)_EffectReferences.Breadsticks;
 
-		public static int Candles => (int)ReferenceEffect.Candles;
+		public static int Candles => (int)_EffectReferences.Candles;
 
-		public static int Napkins => (int)ReferenceEffect.Napkins;
+		public static int Napkins => (int)_EffectReferences.Napkins;
 
-		public static int SharpCutlery => (int)ReferenceEffect.SharpCutlery;
+		public static int SharpCutlery => (int)_EffectReferences.SharpCutlery;
 
 	}
-	public enum ReferenceEffect
+	internal enum _EffectReferences
 	{
 		Breadsticks = 1302953360,
 
@@ -1858,18 +1858,18 @@ namespace KitchenLib.References
 	}
 	public class EffectRepresentationReferences
 	{
-		public static int CalmingPainting => (int)ReferenceEffectRepresentation.CalmingPainting;
+		public static int CalmingPainting => (int)_EffectRepresentationReferences.CalmingPainting;
 
-		public static int Plant => (int)ReferenceEffectRepresentation.Plant;
+		public static int Plant => (int)_EffectRepresentationReferences.Plant;
 
-		public static int BinPenalty => (int)ReferenceEffectRepresentation.BinPenalty;
+		public static int BinPenalty => (int)_EffectRepresentationReferences.BinPenalty;
 
-		public static int HobPenalty => (int)ReferenceEffectRepresentation.HobPenalty;
+		public static int HobPenalty => (int)_EffectRepresentationReferences.HobPenalty;
 
-		public static int SinkPenalty => (int)ReferenceEffectRepresentation.SinkPenalty;
+		public static int SinkPenalty => (int)_EffectRepresentationReferences.SinkPenalty;
 
 	}
-	public enum ReferenceEffectRepresentation
+	internal enum _EffectRepresentationReferences
 	{
 		CalmingPainting = -2022756845,
 
@@ -1884,12 +1884,12 @@ namespace KitchenLib.References
 	}
 	public class GardenProfileReferences
 	{
-		public static int Flowers => (int)ReferenceGardenProfile.Flowers;
+		public static int Flowers => (int)_GardenProfileReferences.Flowers;
 
-		public static int OvernightSpawns => (int)ReferenceGardenProfile.OvernightSpawns;
+		public static int OvernightSpawns => (int)_GardenProfileReferences.OvernightSpawns;
 
 	}
-	public enum ReferenceGardenProfile
+	internal enum _GardenProfileReferences
 	{
 		Flowers = -1099437648,
 
@@ -1898,630 +1898,630 @@ namespace KitchenLib.References
 	}
 	public class ItemReferences
 	{
-		public static int BeansCooked => (int)ReferenceItem.BeansCooked;
+		public static int BeansCooked => (int)_ItemReferences.BeansCooked;
 
-		public static int BeansIngredient => (int)ReferenceItem.BeansIngredient;
+		public static int BeansIngredient => (int)_ItemReferences.BeansIngredient;
 
-		public static int BeansRawPot => (int)ReferenceItem.BeansRawPot;
+		public static int BeansRawPot => (int)_ItemReferences.BeansRawPot;
 
-		public static int BeansServing => (int)ReferenceItem.BeansServing;
+		public static int BeansServing => (int)_ItemReferences.BeansServing;
 
-		public static int BreadBaked => (int)ReferenceItem.BreadBaked;
+		public static int BreadBaked => (int)_ItemReferences.BreadBaked;
 
-		public static int BreadSlice => (int)ReferenceItem.BreadSlice;
+		public static int BreadSlice => (int)_ItemReferences.BreadSlice;
 
-		public static int BreadToast => (int)ReferenceItem.BreadToast;
+		public static int BreadToast => (int)_ItemReferences.BreadToast;
 
-		public static int BreakfastPlated => (int)ReferenceItem.BreakfastPlated;
+		public static int BreakfastPlated => (int)_ItemReferences.BreakfastPlated;
 
-		public static int EggCooked => (int)ReferenceItem.EggCooked;
+		public static int EggCooked => (int)_ItemReferences.EggCooked;
 
-		public static int BurgerPlated => (int)ReferenceItem.BurgerPlated;
+		public static int BurgerPlated => (int)_ItemReferences.BurgerPlated;
 
-		public static int BurgerUnplated => (int)ReferenceItem.BurgerUnplated;
+		public static int BurgerUnplated => (int)_ItemReferences.BurgerUnplated;
 
-		public static int BurgerBun => (int)ReferenceItem.BurgerBun;
+		public static int BurgerBun => (int)_ItemReferences.BurgerBun;
 
-		public static int BurgerPattyCooked => (int)ReferenceItem.BurgerPattyCooked;
+		public static int BurgerPattyCooked => (int)_ItemReferences.BurgerPattyCooked;
 
-		public static int BurgerPattyRaw => (int)ReferenceItem.BurgerPattyRaw;
+		public static int BurgerPattyRaw => (int)_ItemReferences.BurgerPattyRaw;
 
-		public static int CondimentKetchup => (int)ReferenceItem.CondimentKetchup;
+		public static int CondimentKetchup => (int)_ItemReferences.CondimentKetchup;
 
-		public static int CondimentMustard => (int)ReferenceItem.CondimentMustard;
+		public static int CondimentMustard => (int)_ItemReferences.CondimentMustard;
 
-		public static int HotdogCooked => (int)ReferenceItem.HotdogCooked;
+		public static int HotdogCooked => (int)_ItemReferences.HotdogCooked;
 
-		public static int HotdogPlated => (int)ReferenceItem.HotdogPlated;
+		public static int HotdogPlated => (int)_ItemReferences.HotdogPlated;
 
-		public static int HotdogRaw => (int)ReferenceItem.HotdogRaw;
+		public static int HotdogRaw => (int)_ItemReferences.HotdogRaw;
 
-		public static int HotdogUnplated => (int)ReferenceItem.HotdogUnplated;
+		public static int HotdogUnplated => (int)_ItemReferences.HotdogUnplated;
 
-		public static int HotdogBun => (int)ReferenceItem.HotdogBun;
+		public static int HotdogBun => (int)_ItemReferences.HotdogBun;
 
-		public static int Contract => (int)ReferenceItem.Contract;
+		public static int Contract => (int)_ItemReferences.Contract;
 
-		public static int Crate => (int)ReferenceItem.Crate;
+		public static int Crate => (int)_ItemReferences.Crate;
 
-		public static int DishChoice => (int)ReferenceItem.DishChoice;
+		public static int DishChoice => (int)_ItemReferences.DishChoice;
 
-		public static int FranchiseCardSet => (int)ReferenceItem.FranchiseCardSet;
+		public static int FranchiseCardSet => (int)_ItemReferences.FranchiseCardSet;
 
-		public static int LayoutMap => (int)ReferenceItem.LayoutMap;
+		public static int LayoutMap => (int)_ItemReferences.LayoutMap;
 
-		public static int NonLoadoutCrate => (int)ReferenceItem.NonLoadoutCrate;
+		public static int NonLoadoutCrate => (int)_ItemReferences.NonLoadoutCrate;
 
-		public static int BirthdayCake => (int)ReferenceItem.BirthdayCake;
+		public static int BirthdayCake => (int)_ItemReferences.BirthdayCake;
 
-		public static int CakeSlice => (int)ReferenceItem.CakeSlice;
+		public static int CakeSlice => (int)_ItemReferences.CakeSlice;
 
-		public static int ColouringBook => (int)ReferenceItem.ColouringBook;
+		public static int ColouringBook => (int)_ItemReferences.ColouringBook;
 
-		public static int CheeseBoardServing => (int)ReferenceItem.CheeseBoardServing;
+		public static int CheeseBoardServing => (int)_ItemReferences.CheeseBoardServing;
 
-		public static int ServingBoard => (int)ReferenceItem.ServingBoard;
+		public static int ServingBoard => (int)_ItemReferences.ServingBoard;
 
-		public static int CoffeeCupCoffee => (int)ReferenceItem.CoffeeCupCoffee;
+		public static int CoffeeCupCoffee => (int)_ItemReferences.CoffeeCupCoffee;
 
-		public static int CoffeeCup => (int)ReferenceItem.CoffeeCup;
+		public static int CoffeeCup => (int)_ItemReferences.CoffeeCup;
 
-		public static int IceCreamChocolate => (int)ReferenceItem.IceCreamChocolate;
+		public static int IceCreamChocolate => (int)_ItemReferences.IceCreamChocolate;
 
-		public static int IceCreamServing => (int)ReferenceItem.IceCreamServing;
+		public static int IceCreamServing => (int)_ItemReferences.IceCreamServing;
 
-		public static int IceCreamStrawberry => (int)ReferenceItem.IceCreamStrawberry;
+		public static int IceCreamStrawberry => (int)_ItemReferences.IceCreamStrawberry;
 
-		public static int IceCreamVanilla => (int)ReferenceItem.IceCreamVanilla;
+		public static int IceCreamVanilla => (int)_ItemReferences.IceCreamVanilla;
 
-		public static int BeerMug => (int)ReferenceItem.BeerMug;
+		public static int BeerMug => (int)_ItemReferences.BeerMug;
 
-		public static int WineBottle => (int)ReferenceItem.WineBottle;
+		public static int WineBottle => (int)_ItemReferences.WineBottle;
 
-		public static int CrabCakeEgged => (int)ReferenceItem.CrabCakeEgged;
+		public static int CrabCakeEgged => (int)_ItemReferences.CrabCakeEgged;
 
-		public static int CrabCakeFloured => (int)ReferenceItem.CrabCakeFloured;
+		public static int CrabCakeFloured => (int)_ItemReferences.CrabCakeFloured;
 
-		public static int CrabCakePlated => (int)ReferenceItem.CrabCakePlated;
+		public static int CrabCakePlated => (int)_ItemReferences.CrabCakePlated;
 
-		public static int CrabChopped => (int)ReferenceItem.CrabChopped;
+		public static int CrabChopped => (int)_ItemReferences.CrabChopped;
 
-		public static int CrabCookedCake => (int)ReferenceItem.CrabCookedCake;
+		public static int CrabCookedCake => (int)_ItemReferences.CrabCookedCake;
 
-		public static int CrabRaw => (int)ReferenceItem.CrabRaw;
+		public static int CrabRaw => (int)_ItemReferences.CrabRaw;
 
-		public static int FishBlueFried => (int)ReferenceItem.FishBlueFried;
+		public static int FishBlueFried => (int)_ItemReferences.FishBlueFried;
 
-		public static int FishBluePlated => (int)ReferenceItem.FishBluePlated;
+		public static int FishBluePlated => (int)_ItemReferences.FishBluePlated;
 
-		public static int FishBlueRaw => (int)ReferenceItem.FishBlueRaw;
+		public static int FishBlueRaw => (int)_ItemReferences.FishBlueRaw;
 
-		public static int FishBurned => (int)ReferenceItem.FishBurned;
+		public static int FishBurned => (int)_ItemReferences.FishBurned;
 
-		public static int FishFilletCooked => (int)ReferenceItem.FishFilletCooked;
+		public static int FishFilletCooked => (int)_ItemReferences.FishFilletCooked;
 
-		public static int FishFilletPlated => (int)ReferenceItem.FishFilletPlated;
+		public static int FishFilletPlated => (int)_ItemReferences.FishFilletPlated;
 
-		public static int FishFilletRaw => (int)ReferenceItem.FishFilletRaw;
+		public static int FishFilletRaw => (int)_ItemReferences.FishFilletRaw;
 
-		public static int FishFillet => (int)ReferenceItem.FishFillet;
+		public static int FishFillet => (int)_ItemReferences.FishFillet;
 
-		public static int FishOysterPlated => (int)ReferenceItem.FishOysterPlated;
+		public static int FishOysterPlated => (int)_ItemReferences.FishOysterPlated;
 
-		public static int FishOysterRaw => (int)ReferenceItem.FishOysterRaw;
+		public static int FishOysterRaw => (int)_ItemReferences.FishOysterRaw;
 
-		public static int FishOysterShucked => (int)ReferenceItem.FishOysterShucked;
+		public static int FishOysterShucked => (int)_ItemReferences.FishOysterShucked;
 
-		public static int FishPinkFried => (int)ReferenceItem.FishPinkFried;
+		public static int FishPinkFried => (int)_ItemReferences.FishPinkFried;
 
-		public static int FishPinkPlated => (int)ReferenceItem.FishPinkPlated;
+		public static int FishPinkPlated => (int)_ItemReferences.FishPinkPlated;
 
-		public static int FishPinkRaw => (int)ReferenceItem.FishPinkRaw;
+		public static int FishPinkRaw => (int)_ItemReferences.FishPinkRaw;
 
-		public static int FishSpecialExtraChoice1 => (int)ReferenceItem.FishSpecialExtraChoice1;
+		public static int FishSpecialExtraChoice1 => (int)_ItemReferences.FishSpecialExtraChoice1;
 
-		public static int FishSpecialExtraChoice2 => (int)ReferenceItem.FishSpecialExtraChoice2;
+		public static int FishSpecialExtraChoice2 => (int)_ItemReferences.FishSpecialExtraChoice2;
 
-		public static int FishSpinyBones => (int)ReferenceItem.FishSpinyBones;
+		public static int FishSpinyBones => (int)_ItemReferences.FishSpinyBones;
 
-		public static int FishSpinyCooked => (int)ReferenceItem.FishSpinyCooked;
+		public static int FishSpinyCooked => (int)_ItemReferences.FishSpinyCooked;
 
-		public static int FishSpinyDeboned => (int)ReferenceItem.FishSpinyDeboned;
+		public static int FishSpinyDeboned => (int)_ItemReferences.FishSpinyDeboned;
 
-		public static int FishSpinyPlated => (int)ReferenceItem.FishSpinyPlated;
+		public static int FishSpinyPlated => (int)_ItemReferences.FishSpinyPlated;
 
-		public static int FishSpinyRaw => (int)ReferenceItem.FishSpinyRaw;
+		public static int FishSpinyRaw => (int)_ItemReferences.FishSpinyRaw;
 
-		public static int AppleSlices => (int)ReferenceItem.AppleSlices;
+		public static int AppleSlices => (int)_ItemReferences.AppleSlices;
 
-		public static int Apple => (int)ReferenceItem.Apple;
+		public static int Apple => (int)_ItemReferences.Apple;
 
-		public static int BurnedBread => (int)ReferenceItem.BurnedBread;
+		public static int BurnedBread => (int)_ItemReferences.BurnedBread;
 
-		public static int BurnedFood => (int)ReferenceItem.BurnedFood;
+		public static int BurnedFood => (int)_ItemReferences.BurnedFood;
 
-		public static int Carrot => (int)ReferenceItem.Carrot;
+		public static int Carrot => (int)_ItemReferences.Carrot;
 
-		public static int CookedApple => (int)ReferenceItem.CookedApple;
+		public static int CookedApple => (int)_ItemReferences.CookedApple;
 
-		public static int Dough => (int)ReferenceItem.Dough;
+		public static int Dough => (int)_ItemReferences.Dough;
 
-		public static int EggCracked => (int)ReferenceItem.EggCracked;
+		public static int EggCracked => (int)_ItemReferences.EggCracked;
 
-		public static int Egg => (int)ReferenceItem.Egg;
+		public static int Egg => (int)_ItemReferences.Egg;
 
-		public static int Flour => (int)ReferenceItem.Flour;
+		public static int Flour => (int)_ItemReferences.Flour;
 
-		public static int Mayonnaise => (int)ReferenceItem.Mayonnaise;
+		public static int Mayonnaise => (int)_ItemReferences.Mayonnaise;
 
-		public static int MeatBoned => (int)ReferenceItem.MeatBoned;
+		public static int MeatBoned => (int)_ItemReferences.MeatBoned;
 
-		public static int MeatThick => (int)ReferenceItem.MeatThick;
+		public static int MeatThick => (int)_ItemReferences.MeatThick;
 
-		public static int MeatThin => (int)ReferenceItem.MeatThin;
+		public static int MeatThin => (int)_ItemReferences.MeatThin;
 
-		public static int Meat => (int)ReferenceItem.Meat;
+		public static int Meat => (int)_ItemReferences.Meat;
 
-		public static int MushroomChopped => (int)ReferenceItem.MushroomChopped;
+		public static int MushroomChopped => (int)_ItemReferences.MushroomChopped;
 
-		public static int MushroomCookedWrapped => (int)ReferenceItem.MushroomCookedWrapped;
+		public static int MushroomCookedWrapped => (int)_ItemReferences.MushroomCookedWrapped;
 
-		public static int Mushroom => (int)ReferenceItem.Mushroom;
+		public static int Mushroom => (int)_ItemReferences.Mushroom;
 
-		public static int OilIngredient => (int)ReferenceItem.OilIngredient;
+		public static int OilIngredient => (int)_ItemReferences.OilIngredient;
 
-		public static int Oil => (int)ReferenceItem.Oil;
+		public static int Oil => (int)_ItemReferences.Oil;
 
-		public static int Onion => (int)ReferenceItem.Onion;
+		public static int Onion => (int)_ItemReferences.Onion;
 
-		public static int PotatoChoppedCooked => (int)ReferenceItem.PotatoChoppedCooked;
+		public static int PotatoChoppedCooked => (int)_ItemReferences.PotatoChoppedCooked;
 
-		public static int PotatoChoppedPotCooked => (int)ReferenceItem.PotatoChoppedPotCooked;
+		public static int PotatoChoppedPotCooked => (int)_ItemReferences.PotatoChoppedPotCooked;
 
-		public static int PotatoChoppedPotRaw => (int)ReferenceItem.PotatoChoppedPotRaw;
+		public static int PotatoChoppedPotRaw => (int)_ItemReferences.PotatoChoppedPotRaw;
 
-		public static int PotatoChopped => (int)ReferenceItem.PotatoChopped;
+		public static int PotatoChopped => (int)_ItemReferences.PotatoChopped;
 
-		public static int Potato => (int)ReferenceItem.Potato;
+		public static int Potato => (int)_ItemReferences.Potato;
 
-		public static int Water => (int)ReferenceItem.Water;
+		public static int Water => (int)_ItemReferences.Water;
 
-		public static int BinBag => (int)ReferenceItem.BinBag;
+		public static int BinBag => (int)_ItemReferences.BinBag;
 
-		public static int DisposableRubbish => (int)ReferenceItem.DisposableRubbish;
+		public static int DisposableRubbish => (int)_ItemReferences.DisposableRubbish;
 
-		public static int FlammableBinBag => (int)ReferenceItem.FlammableBinBag;
+		public static int FlammableBinBag => (int)_ItemReferences.FlammableBinBag;
 
-		public static int Menu => (int)ReferenceItem.Menu;
+		public static int Menu => (int)_ItemReferences.Menu;
 
-		public static int TableBlockRubbish => (int)ReferenceItem.TableBlockRubbish;
+		public static int TableBlockRubbish => (int)_ItemReferences.TableBlockRubbish;
 
-		public static int PieAppleCooked => (int)ReferenceItem.PieAppleCooked;
+		public static int PieAppleCooked => (int)_ItemReferences.PieAppleCooked;
 
-		public static int PieAppleRaw => (int)ReferenceItem.PieAppleRaw;
+		public static int PieAppleRaw => (int)_ItemReferences.PieAppleRaw;
 
-		public static int PieDessertPlated => (int)ReferenceItem.PieDessertPlated;
+		public static int PieDessertPlated => (int)_ItemReferences.PieDessertPlated;
 
-		public static int PieMeatCooked => (int)ReferenceItem.PieMeatCooked;
+		public static int PieMeatCooked => (int)_ItemReferences.PieMeatCooked;
 
-		public static int PieMeatRawBlindBaked => (int)ReferenceItem.PieMeatRawBlindBaked;
+		public static int PieMeatRawBlindBaked => (int)_ItemReferences.PieMeatRawBlindBaked;
 
-		public static int PieMeatRaw => (int)ReferenceItem.PieMeatRaw;
+		public static int PieMeatRaw => (int)_ItemReferences.PieMeatRaw;
 
-		public static int PieMushroomCooked => (int)ReferenceItem.PieMushroomCooked;
+		public static int PieMushroomCooked => (int)_ItemReferences.PieMushroomCooked;
 
-		public static int PieMushroomRawBlindBaked => (int)ReferenceItem.PieMushroomRawBlindBaked;
+		public static int PieMushroomRawBlindBaked => (int)_ItemReferences.PieMushroomRawBlindBaked;
 
-		public static int PieMushroomRaw => (int)ReferenceItem.PieMushroomRaw;
+		public static int PieMushroomRaw => (int)_ItemReferences.PieMushroomRaw;
 
-		public static int PiePlated => (int)ReferenceItem.PiePlated;
+		public static int PiePlated => (int)_ItemReferences.PiePlated;
 
-		public static int PieVegetableCooked => (int)ReferenceItem.PieVegetableCooked;
+		public static int PieVegetableCooked => (int)_ItemReferences.PieVegetableCooked;
 
-		public static int PieVegetableRawBlindBaked => (int)ReferenceItem.PieVegetableRawBlindBaked;
+		public static int PieVegetableRawBlindBaked => (int)_ItemReferences.PieVegetableRawBlindBaked;
 
-		public static int PieVegetableRaw => (int)ReferenceItem.PieVegetableRaw;
+		public static int PieVegetableRaw => (int)_ItemReferences.PieVegetableRaw;
 
-		public static int PieCrustCooked => (int)ReferenceItem.PieCrustCooked;
+		public static int PieCrustCooked => (int)_ItemReferences.PieCrustCooked;
 
-		public static int PieCrustRaw => (int)ReferenceItem.PieCrustRaw;
+		public static int PieCrustRaw => (int)_ItemReferences.PieCrustRaw;
 
-		public static int CheeseGrated => (int)ReferenceItem.CheeseGrated;
+		public static int CheeseGrated => (int)_ItemReferences.CheeseGrated;
 
-		public static int CheeseWrappedCooked => (int)ReferenceItem.CheeseWrappedCooked;
+		public static int CheeseWrappedCooked => (int)_ItemReferences.CheeseWrappedCooked;
 
-		public static int Cheese => (int)ReferenceItem.Cheese;
+		public static int Cheese => (int)_ItemReferences.Cheese;
 
-		public static int PizzaBurned => (int)ReferenceItem.PizzaBurned;
+		public static int PizzaBurned => (int)_ItemReferences.PizzaBurned;
 
-		public static int PizzaCooked => (int)ReferenceItem.PizzaCooked;
+		public static int PizzaCooked => (int)_ItemReferences.PizzaCooked;
 
-		public static int PizzaCrust => (int)ReferenceItem.PizzaCrust;
+		public static int PizzaCrust => (int)_ItemReferences.PizzaCrust;
 
-		public static int PizzaPlated => (int)ReferenceItem.PizzaPlated;
+		public static int PizzaPlated => (int)_ItemReferences.PizzaPlated;
 
-		public static int PizzaRaw => (int)ReferenceItem.PizzaRaw;
+		public static int PizzaRaw => (int)_ItemReferences.PizzaRaw;
 
-		public static int PizzaSlice => (int)ReferenceItem.PizzaSlice;
+		public static int PizzaSlice => (int)_ItemReferences.PizzaSlice;
 
-		public static int TomatoSauce => (int)ReferenceItem.TomatoSauce;
+		public static int TomatoSauce => (int)_ItemReferences.TomatoSauce;
 
-		public static int ForgetMeNot => (int)ReferenceItem.ForgetMeNot;
+		public static int ForgetMeNot => (int)_ItemReferences.ForgetMeNot;
 
-		public static int Leave => (int)ReferenceItem.Leave;
+		public static int Leave => (int)_ItemReferences.Leave;
 
-		public static int Patience => (int)ReferenceItem.Patience;
+		public static int Patience => (int)_ItemReferences.Patience;
 
-		public static int RoastLegCooked => (int)ReferenceItem.RoastLegCooked;
+		public static int RoastLegCooked => (int)_ItemReferences.RoastLegCooked;
 
-		public static int RoastLegDepleted => (int)ReferenceItem.RoastLegDepleted;
+		public static int RoastLegDepleted => (int)_ItemReferences.RoastLegDepleted;
 
-		public static int RoastLegRaw => (int)ReferenceItem.RoastLegRaw;
+		public static int RoastLegRaw => (int)_ItemReferences.RoastLegRaw;
 
-		public static int RoastLegServed => (int)ReferenceItem.RoastLegServed;
+		public static int RoastLegServed => (int)_ItemReferences.RoastLegServed;
 
-		public static int LettuceChopped => (int)ReferenceItem.LettuceChopped;
+		public static int LettuceChopped => (int)_ItemReferences.LettuceChopped;
 
-		public static int Lettuce => (int)ReferenceItem.Lettuce;
+		public static int Lettuce => (int)_ItemReferences.Lettuce;
 
-		public static int Olive => (int)ReferenceItem.Olive;
+		public static int Olive => (int)_ItemReferences.Olive;
 
-		public static int OnionChopped => (int)ReferenceItem.OnionChopped;
+		public static int OnionChopped => (int)_ItemReferences.OnionChopped;
 
-		public static int OnionCookedWrapped => (int)ReferenceItem.OnionCookedWrapped;
+		public static int OnionCookedWrapped => (int)_ItemReferences.OnionCookedWrapped;
 
-		public static int SaladApplePlated => (int)ReferenceItem.SaladApplePlated;
+		public static int SaladApplePlated => (int)_ItemReferences.SaladApplePlated;
 
-		public static int SaladPlated => (int)ReferenceItem.SaladPlated;
+		public static int SaladPlated => (int)_ItemReferences.SaladPlated;
 
-		public static int SaladPotatoPlated => (int)ReferenceItem.SaladPotatoPlated;
+		public static int SaladPotatoPlated => (int)_ItemReferences.SaladPotatoPlated;
 
-		public static int TomatoChopped => (int)ReferenceItem.TomatoChopped;
+		public static int TomatoChopped => (int)_ItemReferences.TomatoChopped;
 
-		public static int Tomato => (int)ReferenceItem.Tomato;
+		public static int Tomato => (int)_ItemReferences.Tomato;
 
-		public static int BrothCookedOnion => (int)ReferenceItem.BrothCookedOnion;
+		public static int BrothCookedOnion => (int)_ItemReferences.BrothCookedOnion;
 
-		public static int BrothRawOnion => (int)ReferenceItem.BrothRawOnion;
+		public static int BrothRawOnion => (int)_ItemReferences.BrothRawOnion;
 
-		public static int SauceMushroomCooked => (int)ReferenceItem.SauceMushroomCooked;
+		public static int SauceMushroomCooked => (int)_ItemReferences.SauceMushroomCooked;
 
-		public static int SauceMushroomPortion => (int)ReferenceItem.SauceMushroomPortion;
+		public static int SauceMushroomPortion => (int)_ItemReferences.SauceMushroomPortion;
 
-		public static int SauceMushroomRaw => (int)ReferenceItem.SauceMushroomRaw;
+		public static int SauceMushroomRaw => (int)_ItemReferences.SauceMushroomRaw;
 
-		public static int SauceRedCooked => (int)ReferenceItem.SauceRedCooked;
+		public static int SauceRedCooked => (int)_ItemReferences.SauceRedCooked;
 
-		public static int SauceRedPortion => (int)ReferenceItem.SauceRedPortion;
+		public static int SauceRedPortion => (int)_ItemReferences.SauceRedPortion;
 
-		public static int SauceRedRaw => (int)ReferenceItem.SauceRedRaw;
+		public static int SauceRedRaw => (int)_ItemReferences.SauceRedRaw;
 
-		public static int BroccoliChopped => (int)ReferenceItem.BroccoliChopped;
+		public static int BroccoliChopped => (int)_ItemReferences.BroccoliChopped;
 
-		public static int BroccoliCookedPot => (int)ReferenceItem.BroccoliCookedPot;
+		public static int BroccoliCookedPot => (int)_ItemReferences.BroccoliCookedPot;
 
-		public static int BroccoliPot => (int)ReferenceItem.BroccoliPot;
+		public static int BroccoliPot => (int)_ItemReferences.BroccoliPot;
 
-		public static int BroccoliRaw => (int)ReferenceItem.BroccoliRaw;
+		public static int BroccoliRaw => (int)_ItemReferences.BroccoliRaw;
 
-		public static int BroccoliServing => (int)ReferenceItem.BroccoliServing;
+		public static int BroccoliServing => (int)_ItemReferences.BroccoliServing;
 
-		public static int ChipsCooked => (int)ReferenceItem.ChipsCooked;
+		public static int ChipsCooked => (int)_ItemReferences.ChipsCooked;
 
-		public static int BoiledPotatoCooked => (int)ReferenceItem.BoiledPotatoCooked;
+		public static int BoiledPotatoCooked => (int)_ItemReferences.BoiledPotatoCooked;
 
-		public static int BoiledPotatoMashed => (int)ReferenceItem.BoiledPotatoMashed;
+		public static int BoiledPotatoMashed => (int)_ItemReferences.BoiledPotatoMashed;
 
-		public static int BoiledPotatoRaw => (int)ReferenceItem.BoiledPotatoRaw;
+		public static int BoiledPotatoRaw => (int)_ItemReferences.BoiledPotatoRaw;
 
-		public static int BoiledPotatoServing => (int)ReferenceItem.BoiledPotatoServing;
+		public static int BoiledPotatoServing => (int)_ItemReferences.BoiledPotatoServing;
 
-		public static int OnionRingsCooked => (int)ReferenceItem.OnionRingsCooked;
+		public static int OnionRingsCooked => (int)_ItemReferences.OnionRingsCooked;
 
-		public static int OnionRingsRaw => (int)ReferenceItem.OnionRingsRaw;
+		public static int OnionRingsRaw => (int)_ItemReferences.OnionRingsRaw;
 
-		public static int ServedSoupCarrot => (int)ReferenceItem.ServedSoupCarrot;
+		public static int ServedSoupCarrot => (int)_ItemReferences.ServedSoupCarrot;
 
-		public static int ServedSoupMeat => (int)ReferenceItem.ServedSoupMeat;
+		public static int ServedSoupMeat => (int)_ItemReferences.ServedSoupMeat;
 
-		public static int ServedSoupTomato => (int)ReferenceItem.ServedSoupTomato;
+		public static int ServedSoupTomato => (int)_ItemReferences.ServedSoupTomato;
 
-		public static int SoupCarrotCooked => (int)ReferenceItem.SoupCarrotCooked;
+		public static int SoupCarrotCooked => (int)_ItemReferences.SoupCarrotCooked;
 
-		public static int SoupCarrotRaw => (int)ReferenceItem.SoupCarrotRaw;
+		public static int SoupCarrotRaw => (int)_ItemReferences.SoupCarrotRaw;
 
-		public static int SoupChoppedCarrotRaw => (int)ReferenceItem.SoupChoppedCarrotRaw;
+		public static int SoupChoppedCarrotRaw => (int)_ItemReferences.SoupChoppedCarrotRaw;
 
-		public static int SoupChoppedMeatRaw => (int)ReferenceItem.SoupChoppedMeatRaw;
+		public static int SoupChoppedMeatRaw => (int)_ItemReferences.SoupChoppedMeatRaw;
 
-		public static int SoupChoppedTomatoRaw => (int)ReferenceItem.SoupChoppedTomatoRaw;
+		public static int SoupChoppedTomatoRaw => (int)_ItemReferences.SoupChoppedTomatoRaw;
 
-		public static int SoupDepleted => (int)ReferenceItem.SoupDepleted;
+		public static int SoupDepleted => (int)_ItemReferences.SoupDepleted;
 
-		public static int SoupMeatCooked => (int)ReferenceItem.SoupMeatCooked;
+		public static int SoupMeatCooked => (int)_ItemReferences.SoupMeatCooked;
 
-		public static int SoupMeatRaw => (int)ReferenceItem.SoupMeatRaw;
+		public static int SoupMeatRaw => (int)_ItemReferences.SoupMeatRaw;
 
-		public static int SoupRefilled => (int)ReferenceItem.SoupRefilled;
+		public static int SoupRefilled => (int)_ItemReferences.SoupRefilled;
 
-		public static int SoupTomatoCooked => (int)ReferenceItem.SoupTomatoCooked;
+		public static int SoupTomatoCooked => (int)_ItemReferences.SoupTomatoCooked;
 
-		public static int SoupTomatoRaw => (int)ReferenceItem.SoupTomatoRaw;
+		public static int SoupTomatoRaw => (int)_ItemReferences.SoupTomatoRaw;
 
-		public static int BonedSteakBone => (int)ReferenceItem.BonedSteakBone;
+		public static int BonedSteakBone => (int)_ItemReferences.BonedSteakBone;
 
-		public static int BonedSteakBurned => (int)ReferenceItem.BonedSteakBurned;
+		public static int BonedSteakBurned => (int)_ItemReferences.BonedSteakBurned;
 
-		public static int BonedSteakMedium => (int)ReferenceItem.BonedSteakMedium;
+		public static int BonedSteakMedium => (int)_ItemReferences.BonedSteakMedium;
 
-		public static int BonedSteakPlated => (int)ReferenceItem.BonedSteakPlated;
+		public static int BonedSteakPlated => (int)_ItemReferences.BonedSteakPlated;
 
-		public static int BonedSteakRare => (int)ReferenceItem.BonedSteakRare;
+		public static int BonedSteakRare => (int)_ItemReferences.BonedSteakRare;
 
-		public static int BonedSteakWelldone => (int)ReferenceItem.BonedSteakWelldone;
+		public static int BonedSteakWelldone => (int)_ItemReferences.BonedSteakWelldone;
 
-		public static int PlateDirtywithBone => (int)ReferenceItem.PlateDirtywithBone;
+		public static int PlateDirtywithBone => (int)_ItemReferences.PlateDirtywithBone;
 
-		public static int SteakBurned => (int)ReferenceItem.SteakBurned;
+		public static int SteakBurned => (int)_ItemReferences.SteakBurned;
 
-		public static int SteakMedium => (int)ReferenceItem.SteakMedium;
+		public static int SteakMedium => (int)_ItemReferences.SteakMedium;
 
-		public static int SteakPlated => (int)ReferenceItem.SteakPlated;
+		public static int SteakPlated => (int)_ItemReferences.SteakPlated;
 
-		public static int SteakRare => (int)ReferenceItem.SteakRare;
+		public static int SteakRare => (int)_ItemReferences.SteakRare;
 
-		public static int SteakWelldone => (int)ReferenceItem.SteakWelldone;
+		public static int SteakWelldone => (int)_ItemReferences.SteakWelldone;
 
-		public static int ThickSteakBurned => (int)ReferenceItem.ThickSteakBurned;
+		public static int ThickSteakBurned => (int)_ItemReferences.ThickSteakBurned;
 
-		public static int ThickSteakMedium => (int)ReferenceItem.ThickSteakMedium;
+		public static int ThickSteakMedium => (int)_ItemReferences.ThickSteakMedium;
 
-		public static int ThickSteakPlated => (int)ReferenceItem.ThickSteakPlated;
+		public static int ThickSteakPlated => (int)_ItemReferences.ThickSteakPlated;
 
-		public static int ThickSteakRare => (int)ReferenceItem.ThickSteakRare;
+		public static int ThickSteakRare => (int)_ItemReferences.ThickSteakRare;
 
-		public static int ThickSteakWelldone => (int)ReferenceItem.ThickSteakWelldone;
+		public static int ThickSteakWelldone => (int)_ItemReferences.ThickSteakWelldone;
 
-		public static int ThinSteakBurned => (int)ReferenceItem.ThinSteakBurned;
+		public static int ThinSteakBurned => (int)_ItemReferences.ThinSteakBurned;
 
-		public static int ThinSteakMedium => (int)ReferenceItem.ThinSteakMedium;
+		public static int ThinSteakMedium => (int)_ItemReferences.ThinSteakMedium;
 
-		public static int ThinSteakPlated => (int)ReferenceItem.ThinSteakPlated;
+		public static int ThinSteakPlated => (int)_ItemReferences.ThinSteakPlated;
 
-		public static int ThinSteakRare => (int)ReferenceItem.ThinSteakRare;
+		public static int ThinSteakRare => (int)_ItemReferences.ThinSteakRare;
 
-		public static int ThinSteakWelldone => (int)ReferenceItem.ThinSteakWelldone;
+		public static int ThinSteakWelldone => (int)_ItemReferences.ThinSteakWelldone;
 
-		public static int BroccoliChoppedContainerCooked => (int)ReferenceItem.BroccoliChoppedContainerCooked;
+		public static int BroccoliChoppedContainerCooked => (int)_ItemReferences.BroccoliChoppedContainerCooked;
 
-		public static int CarrotChoppedContainerCooked => (int)ReferenceItem.CarrotChoppedContainerCooked;
+		public static int CarrotChoppedContainerCooked => (int)_ItemReferences.CarrotChoppedContainerCooked;
 
-		public static int CarrotChopped => (int)ReferenceItem.CarrotChopped;
+		public static int CarrotChopped => (int)_ItemReferences.CarrotChopped;
 
-		public static int MeatChoppedContainerCooked => (int)ReferenceItem.MeatChoppedContainerCooked;
+		public static int MeatChoppedContainerCooked => (int)_ItemReferences.MeatChoppedContainerCooked;
 
-		public static int MeatChopped => (int)ReferenceItem.MeatChopped;
+		public static int MeatChopped => (int)_ItemReferences.MeatChopped;
 
-		public static int RiceContainerCooked => (int)ReferenceItem.RiceContainerCooked;
+		public static int RiceContainerCooked => (int)_ItemReferences.RiceContainerCooked;
 
-		public static int Rice => (int)ReferenceItem.Rice;
+		public static int Rice => (int)_ItemReferences.Rice;
 
-		public static int StirFryCooked => (int)ReferenceItem.StirFryCooked;
+		public static int StirFryCooked => (int)_ItemReferences.StirFryCooked;
 
-		public static int StirFryPlated => (int)ReferenceItem.StirFryPlated;
+		public static int StirFryPlated => (int)_ItemReferences.StirFryPlated;
 
-		public static int StirFryRaw => (int)ReferenceItem.StirFryRaw;
+		public static int StirFryRaw => (int)_ItemReferences.StirFryRaw;
 
-		public static int WokBurned => (int)ReferenceItem.WokBurned;
+		public static int WokBurned => (int)_ItemReferences.WokBurned;
 
-		public static int Wok => (int)ReferenceItem.Wok;
+		public static int Wok => (int)_ItemReferences.Wok;
 
-		public static int Breadsticks => (int)ReferenceItem.Breadsticks;
+		public static int Breadsticks => (int)_ItemReferences.Breadsticks;
 
-		public static int Candle => (int)ReferenceItem.Candle;
+		public static int Candle => (int)_ItemReferences.Candle;
 
-		public static int Napkin => (int)ReferenceItem.Napkin;
+		public static int Napkin => (int)_ItemReferences.Napkin;
 
-		public static int SharpCutlery => (int)ReferenceItem.SharpCutlery;
+		public static int SharpCutlery => (int)_ItemReferences.SharpCutlery;
 
-		public static int SpecialsMenu => (int)ReferenceItem.SpecialsMenu;
+		public static int SpecialsMenu => (int)_ItemReferences.SpecialsMenu;
 
-		public static int TestCombineItem1 => (int)ReferenceItem.TestCombineItem1;
+		public static int TestCombineItem1 => (int)_ItemReferences.TestCombineItem1;
 
-		public static int TestCombineItem2 => (int)ReferenceItem.TestCombineItem2;
+		public static int TestCombineItem2 => (int)_ItemReferences.TestCombineItem2;
 
-		public static int TestItemGroup => (int)ReferenceItem.TestItemGroup;
+		public static int TestItemGroup => (int)_ItemReferences.TestItemGroup;
 
-		public static int TestNonCombineItem => (int)ReferenceItem.TestNonCombineItem;
+		public static int TestNonCombineItem => (int)_ItemReferences.TestNonCombineItem;
 
-		public static int FireExtinguisher => (int)ReferenceItem.FireExtinguisher;
+		public static int FireExtinguisher => (int)_ItemReferences.FireExtinguisher;
 
-		public static int FloorBuffer => (int)ReferenceItem.FloorBuffer;
+		public static int FloorBuffer => (int)_ItemReferences.FloorBuffer;
 
-		public static int RollingPin => (int)ReferenceItem.RollingPin;
+		public static int RollingPin => (int)_ItemReferences.RollingPin;
 
-		public static int ScrubbingBrush => (int)ReferenceItem.ScrubbingBrush;
+		public static int ScrubbingBrush => (int)_ItemReferences.ScrubbingBrush;
 
-		public static int SharpKnife => (int)ReferenceItem.SharpKnife;
+		public static int SharpKnife => (int)_ItemReferences.SharpKnife;
 
-		public static int MopFast => (int)ReferenceItem.MopFast;
+		public static int MopFast => (int)_ItemReferences.MopFast;
 
-		public static int MopLasting => (int)ReferenceItem.MopLasting;
+		public static int MopLasting => (int)_ItemReferences.MopLasting;
 
-		public static int Mop => (int)ReferenceItem.Mop;
+		public static int Mop => (int)_ItemReferences.Mop;
 
-		public static int PlateDirtySoaked => (int)ReferenceItem.PlateDirtySoaked;
+		public static int PlateDirtySoaked => (int)_ItemReferences.PlateDirtySoaked;
 
-		public static int PlateDirtywithfood => (int)ReferenceItem.PlateDirtywithfood;
+		public static int PlateDirtywithfood => (int)_ItemReferences.PlateDirtywithfood;
 
-		public static int PlateDirty => (int)ReferenceItem.PlateDirty;
+		public static int PlateDirty => (int)_ItemReferences.PlateDirty;
 
-		public static int Plate => (int)ReferenceItem.Plate;
+		public static int Plate => (int)_ItemReferences.Plate;
 
-		public static int PotDirty => (int)ReferenceItem.PotDirty;
+		public static int PotDirty => (int)_ItemReferences.PotDirty;
 
-		public static int Pot => (int)ReferenceItem.Pot;
+		public static int Pot => (int)_ItemReferences.Pot;
 
-		public static int SupplyBox => (int)ReferenceItem.SupplyBox;
+		public static int SupplyBox => (int)_ItemReferences.SupplyBox;
 
-		public static int Tray => (int)ReferenceItem.Tray;
+		public static int Tray => (int)_ItemReferences.Tray;
 
-		public static int Clipboard => (int)ReferenceItem.Clipboard;
+		public static int Clipboard => (int)_ItemReferences.Clipboard;
 
-		public static int ChristmasCracker => (int)ReferenceItem.ChristmasCracker;
+		public static int ChristmasCracker => (int)_ItemReferences.ChristmasCracker;
 
-		public static int CranberriesChopped => (int)ReferenceItem.CranberriesChopped;
+		public static int CranberriesChopped => (int)_ItemReferences.CranberriesChopped;
 
-		public static int Cranberries => (int)ReferenceItem.Cranberries;
+		public static int Cranberries => (int)_ItemReferences.Cranberries;
 
-		public static int CranberrySauce => (int)ReferenceItem.CranberrySauce;
+		public static int CranberrySauce => (int)_ItemReferences.CranberrySauce;
 
-		public static int Sugar => (int)ReferenceItem.Sugar;
+		public static int Sugar => (int)_ItemReferences.Sugar;
 
-		public static int GravyTurkeyCooked => (int)ReferenceItem.GravyTurkeyCooked;
+		public static int GravyTurkeyCooked => (int)_ItemReferences.GravyTurkeyCooked;
 
-		public static int GravyTurkeyRaw => (int)ReferenceItem.GravyTurkeyRaw;
+		public static int GravyTurkeyRaw => (int)_ItemReferences.GravyTurkeyRaw;
 
-		public static int TurkeyBones => (int)ReferenceItem.TurkeyBones;
+		public static int TurkeyBones => (int)_ItemReferences.TurkeyBones;
 
-		public static int TurkeyGravy => (int)ReferenceItem.TurkeyGravy;
+		public static int TurkeyGravy => (int)_ItemReferences.TurkeyGravy;
 
-		public static int Breadcrumbs => (int)ReferenceItem.Breadcrumbs;
+		public static int Breadcrumbs => (int)_ItemReferences.Breadcrumbs;
 
-		public static int StuffingRaw => (int)ReferenceItem.StuffingRaw;
+		public static int StuffingRaw => (int)_ItemReferences.StuffingRaw;
 
-		public static int Stuffing => (int)ReferenceItem.Stuffing;
+		public static int Stuffing => (int)_ItemReferences.Stuffing;
 
-		public static int CornCooked => (int)ReferenceItem.CornCooked;
+		public static int CornCooked => (int)_ItemReferences.CornCooked;
 
-		public static int CornHusk => (int)ReferenceItem.CornHusk;
+		public static int CornHusk => (int)_ItemReferences.CornHusk;
 
-		public static int CornHusked => (int)ReferenceItem.CornHusked;
+		public static int CornHusked => (int)_ItemReferences.CornHusked;
 
-		public static int CornRaw => (int)ReferenceItem.CornRaw;
+		public static int CornRaw => (int)_ItemReferences.CornRaw;
 
-		public static int PiePumpkinCooked => (int)ReferenceItem.PiePumpkinCooked;
+		public static int PiePumpkinCooked => (int)_ItemReferences.PiePumpkinCooked;
 
-		public static int PiePumpkinRawBlindBaked => (int)ReferenceItem.PiePumpkinRawBlindBaked;
+		public static int PiePumpkinRawBlindBaked => (int)_ItemReferences.PiePumpkinRawBlindBaked;
 
-		public static int PiePumpkinRaw => (int)ReferenceItem.PiePumpkinRaw;
+		public static int PiePumpkinRaw => (int)_ItemReferences.PiePumpkinRaw;
 
-		public static int PumpkinHollow => (int)ReferenceItem.PumpkinHollow;
+		public static int PumpkinHollow => (int)_ItemReferences.PumpkinHollow;
 
-		public static int PumpkinPieces => (int)ReferenceItem.PumpkinPieces;
+		public static int PumpkinPieces => (int)_ItemReferences.PumpkinPieces;
 
-		public static int PumpkinSeedsRoasted => (int)ReferenceItem.PumpkinSeedsRoasted;
+		public static int PumpkinSeedsRoasted => (int)_ItemReferences.PumpkinSeedsRoasted;
 
-		public static int PumpkinSeeds => (int)ReferenceItem.PumpkinSeeds;
+		public static int PumpkinSeeds => (int)_ItemReferences.PumpkinSeeds;
 
-		public static int Pumpkin => (int)ReferenceItem.Pumpkin;
+		public static int Pumpkin => (int)_ItemReferences.Pumpkin;
 
-		public static int ServedSoupPumpkin => (int)ReferenceItem.ServedSoupPumpkin;
+		public static int ServedSoupPumpkin => (int)_ItemReferences.ServedSoupPumpkin;
 
-		public static int SoupPumpkinCooked => (int)ReferenceItem.SoupPumpkinCooked;
+		public static int SoupPumpkinCooked => (int)_ItemReferences.SoupPumpkinCooked;
 
-		public static int SoupPumpkinRaw => (int)ReferenceItem.SoupPumpkinRaw;
+		public static int SoupPumpkinRaw => (int)_ItemReferences.SoupPumpkinRaw;
 
-		public static int BambooCookedContainerCooked => (int)ReferenceItem.BambooCookedContainerCooked;
+		public static int BambooCookedContainerCooked => (int)_ItemReferences.BambooCookedContainerCooked;
 
-		public static int BambooCooked => (int)ReferenceItem.BambooCooked;
+		public static int BambooCooked => (int)_ItemReferences.BambooCooked;
 
-		public static int BambooPotCooked => (int)ReferenceItem.BambooPotCooked;
+		public static int BambooPotCooked => (int)_ItemReferences.BambooPotCooked;
 
-		public static int BambooPot => (int)ReferenceItem.BambooPot;
+		public static int BambooPot => (int)_ItemReferences.BambooPot;
 
-		public static int BambooRaw => (int)ReferenceItem.BambooRaw;
+		public static int BambooRaw => (int)_ItemReferences.BambooRaw;
 
-		public static int CookedDumplings => (int)ReferenceItem.CookedDumplings;
+		public static int CookedDumplings => (int)_ItemReferences.CookedDumplings;
 
-		public static int DumplingsPlated => (int)ReferenceItem.DumplingsPlated;
+		public static int DumplingsPlated => (int)_ItemReferences.DumplingsPlated;
 
-		public static int DumplingsRaw => (int)ReferenceItem.DumplingsRaw;
+		public static int DumplingsRaw => (int)_ItemReferences.DumplingsRaw;
 
-		public static int PreparedDumplings => (int)ReferenceItem.PreparedDumplings;
+		public static int PreparedDumplings => (int)_ItemReferences.PreparedDumplings;
 
-		public static int SeaweedCooked => (int)ReferenceItem.SeaweedCooked;
+		public static int SeaweedCooked => (int)_ItemReferences.SeaweedCooked;
 
-		public static int Seaweed => (int)ReferenceItem.Seaweed;
+		public static int Seaweed => (int)_ItemReferences.Seaweed;
 
-		public static int MandarinRaw => (int)ReferenceItem.MandarinRaw;
+		public static int MandarinRaw => (int)_ItemReferences.MandarinRaw;
 
-		public static int MandarinSlice => (int)ReferenceItem.MandarinSlice;
+		public static int MandarinSlice => (int)_ItemReferences.MandarinSlice;
 
-		public static int MandarinSlices2Serving => (int)ReferenceItem.MandarinSlices2Serving;
+		public static int MandarinSlices2Serving => (int)_ItemReferences.MandarinSlices2Serving;
 
-		public static int MandarinSlices4Serving => (int)ReferenceItem.MandarinSlices4Serving;
+		public static int MandarinSlices4Serving => (int)_ItemReferences.MandarinSlices4Serving;
 
-		public static int CondimentSoySauce => (int)ReferenceItem.CondimentSoySauce;
+		public static int CondimentSoySauce => (int)_ItemReferences.CondimentSoySauce;
 
-		public static int ExtraCakeStand => (int)ReferenceItem.ExtraCakeStand;
+		public static int ExtraCakeStand => (int)_ItemReferences.ExtraCakeStand;
 
-		public static int Ice => (int)ReferenceItem.Ice;
+		public static int Ice => (int)_ItemReferences.Ice;
 
-		public static int IcedCoffee => (int)ReferenceItem.IcedCoffee;
+		public static int IcedCoffee => (int)_ItemReferences.IcedCoffee;
 
-		public static int Latte => (int)ReferenceItem.Latte;
+		public static int Latte => (int)_ItemReferences.Latte;
 
-		public static int MilkFrothedIngredient => (int)ReferenceItem.MilkFrothedIngredient;
+		public static int MilkFrothedIngredient => (int)_ItemReferences.MilkFrothedIngredient;
 
-		public static int Milk => (int)ReferenceItem.Milk;
+		public static int Milk => (int)_ItemReferences.Milk;
 
-		public static int TeaBag => (int)ReferenceItem.TeaBag;
+		public static int TeaBag => (int)_ItemReferences.TeaBag;
 
-		public static int TeaCup => (int)ReferenceItem.TeaCup;
+		public static int TeaCup => (int)_ItemReferences.TeaCup;
 
-		public static int TeaPotSteeped => (int)ReferenceItem.TeaPotSteeped;
+		public static int TeaPotSteeped => (int)_ItemReferences.TeaPotSteeped;
 
-		public static int TeaPotUnsteeped => (int)ReferenceItem.TeaPotUnsteeped;
+		public static int TeaPotUnsteeped => (int)_ItemReferences.TeaPotUnsteeped;
 
-		public static int TeaPot => (int)ReferenceItem.TeaPot;
+		public static int TeaPot => (int)_ItemReferences.TeaPot;
 
-		public static int NutMixtureBaked => (int)ReferenceItem.NutMixtureBaked;
+		public static int NutMixtureBaked => (int)_ItemReferences.NutMixtureBaked;
 
-		public static int NutMixturePortion => (int)ReferenceItem.NutMixturePortion;
+		public static int NutMixturePortion => (int)_ItemReferences.NutMixturePortion;
 
-		public static int NutMixture => (int)ReferenceItem.NutMixture;
+		public static int NutMixture => (int)_ItemReferences.NutMixture;
 
-		public static int NutRoastPlated => (int)ReferenceItem.NutRoastPlated;
+		public static int NutRoastPlated => (int)_ItemReferences.NutRoastPlated;
 
-		public static int NutsChopped => (int)ReferenceItem.NutsChopped;
+		public static int NutsChopped => (int)_ItemReferences.NutsChopped;
 
-		public static int NutsIngredient => (int)ReferenceItem.NutsIngredient;
+		public static int NutsIngredient => (int)_ItemReferences.NutsIngredient;
 
-		public static int AffogatoItem => (int)ReferenceItem.AffogatoItem;
+		public static int AffogatoItem => (int)_ItemReferences.AffogatoItem;
 
-		public static int BreadStarterItem => (int)ReferenceItem.BreadStarterItem;
+		public static int BreadStarterItem => (int)_ItemReferences.BreadStarterItem;
 
-		public static int ServedSoupBroccoliCheese => (int)ReferenceItem.ServedSoupBroccoliCheese;
+		public static int ServedSoupBroccoliCheese => (int)_ItemReferences.ServedSoupBroccoliCheese;
 
-		public static int SoupBroccoliCheeseCooked => (int)ReferenceItem.SoupBroccoliCheeseCooked;
+		public static int SoupBroccoliCheeseCooked => (int)_ItemReferences.SoupBroccoliCheeseCooked;
 
-		public static int SoupBroccoliCheeseRaw => (int)ReferenceItem.SoupBroccoliCheeseRaw;
+		public static int SoupBroccoliCheeseRaw => (int)_ItemReferences.SoupBroccoliCheeseRaw;
 
-		public static int Cherry => (int)ReferenceItem.Cherry;
+		public static int Cherry => (int)_ItemReferences.Cherry;
 
-		public static int PieCherryCooked => (int)ReferenceItem.PieCherryCooked;
+		public static int PieCherryCooked => (int)_ItemReferences.PieCherryCooked;
 
-		public static int PieCherryRawBlindBaked => (int)ReferenceItem.PieCherryRawBlindBaked;
+		public static int PieCherryRawBlindBaked => (int)_ItemReferences.PieCherryRawBlindBaked;
 
-		public static int PieCherryRaw => (int)ReferenceItem.PieCherryRaw;
+		public static int PieCherryRaw => (int)_ItemReferences.PieCherryRaw;
 
-		public static int RoastPotatoItem => (int)ReferenceItem.RoastPotatoItem;
+		public static int RoastPotatoItem => (int)_ItemReferences.RoastPotatoItem;
 
-		public static int TurkeyBurned => (int)ReferenceItem.TurkeyBurned;
+		public static int TurkeyBurned => (int)_ItemReferences.TurkeyBurned;
 
-		public static int TurkeyCooked => (int)ReferenceItem.TurkeyCooked;
+		public static int TurkeyCooked => (int)_ItemReferences.TurkeyCooked;
 
-		public static int TurkeyIngredient => (int)ReferenceItem.TurkeyIngredient;
+		public static int TurkeyIngredient => (int)_ItemReferences.TurkeyIngredient;
 
-		public static int TurkeyPlated => (int)ReferenceItem.TurkeyPlated;
+		public static int TurkeyPlated => (int)_ItemReferences.TurkeyPlated;
 
-		public static int TurkeySlice => (int)ReferenceItem.TurkeySlice;
+		public static int TurkeySlice => (int)_ItemReferences.TurkeySlice;
 
-		public static int ResearchFlask => (int)ReferenceItem.ResearchFlask;
+		public static int ResearchFlask => (int)_ItemReferences.ResearchFlask;
 
 	}
-	public enum ReferenceItem
+	internal enum _ItemReferences
 	{
 		BeansCooked = 1286433124,
 
@@ -3148,176 +3148,176 @@ namespace KitchenLib.References
 	}
 	public class ItemGroupReferences
 	{
-		public static int BeansRawPot => (int)ReferenceItemGroup.BeansRawPot;
+		public static int BeansRawPot => (int)_ItemGroupReferences.BeansRawPot;
 
-		public static int BreakfastPlated => (int)ReferenceItemGroup.BreakfastPlated;
+		public static int BreakfastPlated => (int)_ItemGroupReferences.BreakfastPlated;
 
-		public static int BurgerPlated => (int)ReferenceItemGroup.BurgerPlated;
+		public static int BurgerPlated => (int)_ItemGroupReferences.BurgerPlated;
 
-		public static int BurgerUnplated => (int)ReferenceItemGroup.BurgerUnplated;
+		public static int BurgerUnplated => (int)_ItemGroupReferences.BurgerUnplated;
 
-		public static int BurgerPattyRaw => (int)ReferenceItemGroup.BurgerPattyRaw;
+		public static int BurgerPattyRaw => (int)_ItemGroupReferences.BurgerPattyRaw;
 
-		public static int HotdogPlated => (int)ReferenceItemGroup.HotdogPlated;
+		public static int HotdogPlated => (int)_ItemGroupReferences.HotdogPlated;
 
-		public static int HotdogUnplated => (int)ReferenceItemGroup.HotdogUnplated;
+		public static int HotdogUnplated => (int)_ItemGroupReferences.HotdogUnplated;
 
-		public static int CheeseBoardServing => (int)ReferenceItemGroup.CheeseBoardServing;
+		public static int CheeseBoardServing => (int)_ItemGroupReferences.CheeseBoardServing;
 
-		public static int CoffeeCupCoffee => (int)ReferenceItemGroup.CoffeeCupCoffee;
+		public static int CoffeeCupCoffee => (int)_ItemGroupReferences.CoffeeCupCoffee;
 
-		public static int IceCreamServing => (int)ReferenceItemGroup.IceCreamServing;
+		public static int IceCreamServing => (int)_ItemGroupReferences.IceCreamServing;
 
-		public static int CrabCakeEgged => (int)ReferenceItemGroup.CrabCakeEgged;
+		public static int CrabCakeEgged => (int)_ItemGroupReferences.CrabCakeEgged;
 
-		public static int CrabCakeFloured => (int)ReferenceItemGroup.CrabCakeFloured;
+		public static int CrabCakeFloured => (int)_ItemGroupReferences.CrabCakeFloured;
 
-		public static int CrabCakePlated => (int)ReferenceItemGroup.CrabCakePlated;
+		public static int CrabCakePlated => (int)_ItemGroupReferences.CrabCakePlated;
 
-		public static int FishBluePlated => (int)ReferenceItemGroup.FishBluePlated;
+		public static int FishBluePlated => (int)_ItemGroupReferences.FishBluePlated;
 
-		public static int FishFilletPlated => (int)ReferenceItemGroup.FishFilletPlated;
+		public static int FishFilletPlated => (int)_ItemGroupReferences.FishFilletPlated;
 
-		public static int FishOysterPlated => (int)ReferenceItemGroup.FishOysterPlated;
+		public static int FishOysterPlated => (int)_ItemGroupReferences.FishOysterPlated;
 
-		public static int FishPinkPlated => (int)ReferenceItemGroup.FishPinkPlated;
+		public static int FishPinkPlated => (int)_ItemGroupReferences.FishPinkPlated;
 
-		public static int FishSpinyPlated => (int)ReferenceItemGroup.FishSpinyPlated;
+		public static int FishSpinyPlated => (int)_ItemGroupReferences.FishSpinyPlated;
 
-		public static int Dough => (int)ReferenceItemGroup.Dough;
+		public static int Dough => (int)_ItemGroupReferences.Dough;
 
-		public static int Mayonnaise => (int)ReferenceItemGroup.Mayonnaise;
+		public static int Mayonnaise => (int)_ItemGroupReferences.Mayonnaise;
 
-		public static int PotatoChoppedPotRaw => (int)ReferenceItemGroup.PotatoChoppedPotRaw;
+		public static int PotatoChoppedPotRaw => (int)_ItemGroupReferences.PotatoChoppedPotRaw;
 
-		public static int PieAppleRaw => (int)ReferenceItemGroup.PieAppleRaw;
+		public static int PieAppleRaw => (int)_ItemGroupReferences.PieAppleRaw;
 
-		public static int PieDessertPlated => (int)ReferenceItemGroup.PieDessertPlated;
+		public static int PieDessertPlated => (int)_ItemGroupReferences.PieDessertPlated;
 
-		public static int PieMeatRawBlindBaked => (int)ReferenceItemGroup.PieMeatRawBlindBaked;
+		public static int PieMeatRawBlindBaked => (int)_ItemGroupReferences.PieMeatRawBlindBaked;
 
-		public static int PieMeatRaw => (int)ReferenceItemGroup.PieMeatRaw;
+		public static int PieMeatRaw => (int)_ItemGroupReferences.PieMeatRaw;
 
-		public static int PieMushroomRawBlindBaked => (int)ReferenceItemGroup.PieMushroomRawBlindBaked;
+		public static int PieMushroomRawBlindBaked => (int)_ItemGroupReferences.PieMushroomRawBlindBaked;
 
-		public static int PieMushroomRaw => (int)ReferenceItemGroup.PieMushroomRaw;
+		public static int PieMushroomRaw => (int)_ItemGroupReferences.PieMushroomRaw;
 
-		public static int PiePlated => (int)ReferenceItemGroup.PiePlated;
+		public static int PiePlated => (int)_ItemGroupReferences.PiePlated;
 
-		public static int PieVegetableRawBlindBaked => (int)ReferenceItemGroup.PieVegetableRawBlindBaked;
+		public static int PieVegetableRawBlindBaked => (int)_ItemGroupReferences.PieVegetableRawBlindBaked;
 
-		public static int PieVegetableRaw => (int)ReferenceItemGroup.PieVegetableRaw;
+		public static int PieVegetableRaw => (int)_ItemGroupReferences.PieVegetableRaw;
 
-		public static int PizzaCooked => (int)ReferenceItemGroup.PizzaCooked;
+		public static int PizzaCooked => (int)_ItemGroupReferences.PizzaCooked;
 
-		public static int PizzaCrust => (int)ReferenceItemGroup.PizzaCrust;
+		public static int PizzaCrust => (int)_ItemGroupReferences.PizzaCrust;
 
-		public static int PizzaPlated => (int)ReferenceItemGroup.PizzaPlated;
+		public static int PizzaPlated => (int)_ItemGroupReferences.PizzaPlated;
 
-		public static int PizzaRaw => (int)ReferenceItemGroup.PizzaRaw;
+		public static int PizzaRaw => (int)_ItemGroupReferences.PizzaRaw;
 
-		public static int PizzaSlice => (int)ReferenceItemGroup.PizzaSlice;
+		public static int PizzaSlice => (int)_ItemGroupReferences.PizzaSlice;
 
-		public static int SaladApplePlated => (int)ReferenceItemGroup.SaladApplePlated;
+		public static int SaladApplePlated => (int)_ItemGroupReferences.SaladApplePlated;
 
-		public static int SaladPlated => (int)ReferenceItemGroup.SaladPlated;
+		public static int SaladPlated => (int)_ItemGroupReferences.SaladPlated;
 
-		public static int SaladPotatoPlated => (int)ReferenceItemGroup.SaladPotatoPlated;
+		public static int SaladPotatoPlated => (int)_ItemGroupReferences.SaladPotatoPlated;
 
-		public static int BrothRawOnion => (int)ReferenceItemGroup.BrothRawOnion;
+		public static int BrothRawOnion => (int)_ItemGroupReferences.BrothRawOnion;
 
-		public static int SauceMushroomCooked => (int)ReferenceItemGroup.SauceMushroomCooked;
+		public static int SauceMushroomCooked => (int)_ItemGroupReferences.SauceMushroomCooked;
 
-		public static int SauceMushroomRaw => (int)ReferenceItemGroup.SauceMushroomRaw;
+		public static int SauceMushroomRaw => (int)_ItemGroupReferences.SauceMushroomRaw;
 
-		public static int SauceRedCooked => (int)ReferenceItemGroup.SauceRedCooked;
+		public static int SauceRedCooked => (int)_ItemGroupReferences.SauceRedCooked;
 
-		public static int SauceRedRaw => (int)ReferenceItemGroup.SauceRedRaw;
+		public static int SauceRedRaw => (int)_ItemGroupReferences.SauceRedRaw;
 
-		public static int BroccoliPot => (int)ReferenceItemGroup.BroccoliPot;
+		public static int BroccoliPot => (int)_ItemGroupReferences.BroccoliPot;
 
-		public static int BoiledPotatoRaw => (int)ReferenceItemGroup.BoiledPotatoRaw;
+		public static int BoiledPotatoRaw => (int)_ItemGroupReferences.BoiledPotatoRaw;
 
-		public static int OnionRingsRaw => (int)ReferenceItemGroup.OnionRingsRaw;
+		public static int OnionRingsRaw => (int)_ItemGroupReferences.OnionRingsRaw;
 
-		public static int SoupCarrotRaw => (int)ReferenceItemGroup.SoupCarrotRaw;
+		public static int SoupCarrotRaw => (int)_ItemGroupReferences.SoupCarrotRaw;
 
-		public static int SoupChoppedCarrotRaw => (int)ReferenceItemGroup.SoupChoppedCarrotRaw;
+		public static int SoupChoppedCarrotRaw => (int)_ItemGroupReferences.SoupChoppedCarrotRaw;
 
-		public static int SoupChoppedMeatRaw => (int)ReferenceItemGroup.SoupChoppedMeatRaw;
+		public static int SoupChoppedMeatRaw => (int)_ItemGroupReferences.SoupChoppedMeatRaw;
 
-		public static int SoupChoppedTomatoRaw => (int)ReferenceItemGroup.SoupChoppedTomatoRaw;
+		public static int SoupChoppedTomatoRaw => (int)_ItemGroupReferences.SoupChoppedTomatoRaw;
 
-		public static int SoupMeatRaw => (int)ReferenceItemGroup.SoupMeatRaw;
+		public static int SoupMeatRaw => (int)_ItemGroupReferences.SoupMeatRaw;
 
-		public static int SoupRefilled => (int)ReferenceItemGroup.SoupRefilled;
+		public static int SoupRefilled => (int)_ItemGroupReferences.SoupRefilled;
 
-		public static int SoupTomatoRaw => (int)ReferenceItemGroup.SoupTomatoRaw;
+		public static int SoupTomatoRaw => (int)_ItemGroupReferences.SoupTomatoRaw;
 
-		public static int BonedSteakPlated => (int)ReferenceItemGroup.BonedSteakPlated;
+		public static int BonedSteakPlated => (int)_ItemGroupReferences.BonedSteakPlated;
 
-		public static int SteakPlated => (int)ReferenceItemGroup.SteakPlated;
+		public static int SteakPlated => (int)_ItemGroupReferences.SteakPlated;
 
-		public static int ThickSteakPlated => (int)ReferenceItemGroup.ThickSteakPlated;
+		public static int ThickSteakPlated => (int)_ItemGroupReferences.ThickSteakPlated;
 
-		public static int ThinSteakPlated => (int)ReferenceItemGroup.ThinSteakPlated;
+		public static int ThinSteakPlated => (int)_ItemGroupReferences.ThinSteakPlated;
 
-		public static int StirFryCooked => (int)ReferenceItemGroup.StirFryCooked;
+		public static int StirFryCooked => (int)_ItemGroupReferences.StirFryCooked;
 
-		public static int StirFryPlated => (int)ReferenceItemGroup.StirFryPlated;
+		public static int StirFryPlated => (int)_ItemGroupReferences.StirFryPlated;
 
-		public static int StirFryRaw => (int)ReferenceItemGroup.StirFryRaw;
+		public static int StirFryRaw => (int)_ItemGroupReferences.StirFryRaw;
 
-		public static int TestItemGroup => (int)ReferenceItemGroup.TestItemGroup;
+		public static int TestItemGroup => (int)_ItemGroupReferences.TestItemGroup;
 
-		public static int CranberrySauce => (int)ReferenceItemGroup.CranberrySauce;
+		public static int CranberrySauce => (int)_ItemGroupReferences.CranberrySauce;
 
-		public static int GravyTurkeyRaw => (int)ReferenceItemGroup.GravyTurkeyRaw;
+		public static int GravyTurkeyRaw => (int)_ItemGroupReferences.GravyTurkeyRaw;
 
-		public static int StuffingRaw => (int)ReferenceItemGroup.StuffingRaw;
+		public static int StuffingRaw => (int)_ItemGroupReferences.StuffingRaw;
 
-		public static int PiePumpkinRawBlindBaked => (int)ReferenceItemGroup.PiePumpkinRawBlindBaked;
+		public static int PiePumpkinRawBlindBaked => (int)_ItemGroupReferences.PiePumpkinRawBlindBaked;
 
-		public static int PiePumpkinRaw => (int)ReferenceItemGroup.PiePumpkinRaw;
+		public static int PiePumpkinRaw => (int)_ItemGroupReferences.PiePumpkinRaw;
 
-		public static int SoupPumpkinRaw => (int)ReferenceItemGroup.SoupPumpkinRaw;
+		public static int SoupPumpkinRaw => (int)_ItemGroupReferences.SoupPumpkinRaw;
 
-		public static int BambooPot => (int)ReferenceItemGroup.BambooPot;
+		public static int BambooPot => (int)_ItemGroupReferences.BambooPot;
 
-		public static int DumplingsPlated => (int)ReferenceItemGroup.DumplingsPlated;
+		public static int DumplingsPlated => (int)_ItemGroupReferences.DumplingsPlated;
 
-		public static int DumplingsRaw => (int)ReferenceItemGroup.DumplingsRaw;
+		public static int DumplingsRaw => (int)_ItemGroupReferences.DumplingsRaw;
 
-		public static int MandarinSlices2Serving => (int)ReferenceItemGroup.MandarinSlices2Serving;
+		public static int MandarinSlices2Serving => (int)_ItemGroupReferences.MandarinSlices2Serving;
 
-		public static int MandarinSlices4Serving => (int)ReferenceItemGroup.MandarinSlices4Serving;
+		public static int MandarinSlices4Serving => (int)_ItemGroupReferences.MandarinSlices4Serving;
 
-		public static int IcedCoffee => (int)ReferenceItemGroup.IcedCoffee;
+		public static int IcedCoffee => (int)_ItemGroupReferences.IcedCoffee;
 
-		public static int Latte => (int)ReferenceItemGroup.Latte;
+		public static int Latte => (int)_ItemGroupReferences.Latte;
 
-		public static int TeaPotSteeped => (int)ReferenceItemGroup.TeaPotSteeped;
+		public static int TeaPotSteeped => (int)_ItemGroupReferences.TeaPotSteeped;
 
-		public static int TeaPotUnsteeped => (int)ReferenceItemGroup.TeaPotUnsteeped;
+		public static int TeaPotUnsteeped => (int)_ItemGroupReferences.TeaPotUnsteeped;
 
-		public static int NutMixture => (int)ReferenceItemGroup.NutMixture;
+		public static int NutMixture => (int)_ItemGroupReferences.NutMixture;
 
-		public static int NutRoastPlated => (int)ReferenceItemGroup.NutRoastPlated;
+		public static int NutRoastPlated => (int)_ItemGroupReferences.NutRoastPlated;
 
-		public static int AffogatoItem => (int)ReferenceItemGroup.AffogatoItem;
+		public static int AffogatoItem => (int)_ItemGroupReferences.AffogatoItem;
 
-		public static int BreadStarterItem => (int)ReferenceItemGroup.BreadStarterItem;
+		public static int BreadStarterItem => (int)_ItemGroupReferences.BreadStarterItem;
 
-		public static int SoupBroccoliCheeseRaw => (int)ReferenceItemGroup.SoupBroccoliCheeseRaw;
+		public static int SoupBroccoliCheeseRaw => (int)_ItemGroupReferences.SoupBroccoliCheeseRaw;
 
-		public static int PieCherryRawBlindBaked => (int)ReferenceItemGroup.PieCherryRawBlindBaked;
+		public static int PieCherryRawBlindBaked => (int)_ItemGroupReferences.PieCherryRawBlindBaked;
 
-		public static int PieCherryRaw => (int)ReferenceItemGroup.PieCherryRaw;
+		public static int PieCherryRaw => (int)_ItemGroupReferences.PieCherryRaw;
 
-		public static int TurkeyPlated => (int)ReferenceItemGroup.TurkeyPlated;
+		public static int TurkeyPlated => (int)_ItemGroupReferences.TurkeyPlated;
 
 	}
-	public enum ReferenceItemGroup
+	internal enum _ItemGroupReferences
 	{
 		BeansRawPot = -1921097327,
 
@@ -3490,28 +3490,28 @@ namespace KitchenLib.References
 	}
 	public class LayoutProfileReferences
 	{
-		public static int LayoutProfile => (int)ReferenceLayoutProfile.LayoutProfile;
+		public static int LayoutProfile => (int)_LayoutProfileReferences.LayoutProfile;
 
-		public static int FebruaryLayout => (int)ReferenceLayoutProfile.FebruaryLayout;
+		public static int FebruaryLayout => (int)_LayoutProfileReferences.FebruaryLayout;
 
-		public static int JanuaryLayoutProfile => (int)ReferenceLayoutProfile.JanuaryLayoutProfile;
+		public static int JanuaryLayoutProfile => (int)_LayoutProfileReferences.JanuaryLayoutProfile;
 
-		public static int CoffeeshopLayout => (int)ReferenceLayoutProfile.CoffeeshopLayout;
+		public static int CoffeeshopLayout => (int)_LayoutProfileReferences.CoffeeshopLayout;
 
-		public static int TurboDinerLayout => (int)ReferenceLayoutProfile.TurboDinerLayout;
+		public static int TurboDinerLayout => (int)_LayoutProfileReferences.TurboDinerLayout;
 
-		public static int BasicLayout => (int)ReferenceLayoutProfile.BasicLayout;
+		public static int BasicLayout => (int)_LayoutProfileReferences.BasicLayout;
 
-		public static int DinerLayout => (int)ReferenceLayoutProfile.DinerLayout;
+		public static int DinerLayout => (int)_LayoutProfileReferences.DinerLayout;
 
-		public static int ExtendedLayout => (int)ReferenceLayoutProfile.ExtendedLayout;
+		public static int ExtendedLayout => (int)_LayoutProfileReferences.ExtendedLayout;
 
-		public static int HugeLayout => (int)ReferenceLayoutProfile.HugeLayout;
+		public static int HugeLayout => (int)_LayoutProfileReferences.HugeLayout;
 
-		public static int MediumLayout => (int)ReferenceLayoutProfile.MediumLayout;
+		public static int MediumLayout => (int)_LayoutProfileReferences.MediumLayout;
 
 	}
-	public enum ReferenceLayoutProfile
+	internal enum _LayoutProfileReferences
 	{
 		LayoutProfile = -791067106,
 
@@ -3536,18 +3536,18 @@ namespace KitchenLib.References
 	}
 	public class LevelUpgradeSetReferences
 	{
-		public static int Contracts => (int)ReferenceLevelUpgradeSet.Contracts;
+		public static int Contracts => (int)_LevelUpgradeSetReferences.Contracts;
 
-		public static int Dishes => (int)ReferenceLevelUpgradeSet.Dishes;
+		public static int Dishes => (int)_LevelUpgradeSetReferences.Dishes;
 
-		public static int FranchiseUpgrades => (int)ReferenceLevelUpgradeSet.FranchiseUpgrades;
+		public static int FranchiseUpgrades => (int)_LevelUpgradeSetReferences.FranchiseUpgrades;
 
-		public static int Settings => (int)ReferenceLevelUpgradeSet.Settings;
+		public static int Settings => (int)_LevelUpgradeSetReferences.Settings;
 
-		public static int Special => (int)ReferenceLevelUpgradeSet.Special;
+		public static int Special => (int)_LevelUpgradeSetReferences.Special;
 
 	}
-	public enum ReferenceLevelUpgradeSet
+	internal enum _LevelUpgradeSetReferences
 	{
 		Contracts = 1232525840,
 
@@ -3562,30 +3562,30 @@ namespace KitchenLib.References
 	}
 	public class ModularUnlockPackReferences
 	{
-		public static int ChristmasSpecialCard => (int)ReferenceModularUnlockPack.ChristmasSpecialCard;
+		public static int ChristmasSpecialCard => (int)_ModularUnlockPackReferences.ChristmasSpecialCard;
 
-		public static int FebruarySpecialCard => (int)ReferenceModularUnlockPack.FebruarySpecialCard;
+		public static int FebruarySpecialCard => (int)_ModularUnlockPackReferences.FebruarySpecialCard;
 
-		public static int JanuaryCards => (int)ReferenceModularUnlockPack.JanuaryCards;
+		public static int JanuaryCards => (int)_ModularUnlockPackReferences.JanuaryCards;
 
-		public static int JuneCards => (int)ReferenceModularUnlockPack.JuneCards;
+		public static int JuneCards => (int)_ModularUnlockPackReferences.JuneCards;
 
-		public static int MarchCards => (int)ReferenceModularUnlockPack.MarchCards;
+		public static int MarchCards => (int)_ModularUnlockPackReferences.MarchCards;
 
-		public static int AutumnDishCards => (int)ReferenceModularUnlockPack.AutumnDishCards;
+		public static int AutumnDishCards => (int)_ModularUnlockPackReferences.AutumnDishCards;
 
-		public static int AutumnSpecialCard => (int)ReferenceModularUnlockPack.AutumnSpecialCard;
+		public static int AutumnSpecialCard => (int)_ModularUnlockPackReferences.AutumnSpecialCard;
 
-		public static int FranchiseCardsPack => (int)ReferenceModularUnlockPack.FranchiseCardsPack;
+		public static int FranchiseCardsPack => (int)_ModularUnlockPackReferences.FranchiseCardsPack;
 
-		public static int HalloweenCards => (int)ReferenceModularUnlockPack.HalloweenCards;
+		public static int HalloweenCards => (int)_ModularUnlockPackReferences.HalloweenCards;
 
-		public static int NormalCardsPack => (int)ReferenceModularUnlockPack.NormalCardsPack;
+		public static int NormalCardsPack => (int)_ModularUnlockPackReferences.NormalCardsPack;
 
-		public static int ThemeCardsPack => (int)ReferenceModularUnlockPack.ThemeCardsPack;
+		public static int ThemeCardsPack => (int)_ModularUnlockPackReferences.ThemeCardsPack;
 
 	}
-	public enum ReferenceModularUnlockPack
+	internal enum _ModularUnlockPackReferences
 	{
 		ChristmasSpecialCard = 83496670,
 
@@ -3612,70 +3612,70 @@ namespace KitchenLib.References
 	}
 	public class PlayerCosmeticReferences
 	{
-		public static int ApronOutfit => (int)ReferencePlayerCosmetic.ApronOutfit;
+		public static int ApronOutfit => (int)_PlayerCosmeticReferences.ApronOutfit;
 
-		public static int ChefOutfit => (int)ReferencePlayerCosmetic.ChefOutfit;
+		public static int ChefOutfit => (int)_PlayerCosmeticReferences.ChefOutfit;
 
-		public static int WaiterOutfit => (int)ReferencePlayerCosmetic.WaiterOutfit;
+		public static int WaiterOutfit => (int)_PlayerCosmeticReferences.WaiterOutfit;
 
-		public static int ArrowHat => (int)ReferencePlayerCosmetic.ArrowHat;
+		public static int ArrowHat => (int)_PlayerCosmeticReferences.ArrowHat;
 
-		public static int BunnyEarHat => (int)ReferencePlayerCosmetic.BunnyEarHat;
+		public static int BunnyEarHat => (int)_PlayerCosmeticReferences.BunnyEarHat;
 
-		public static int BunnyHat => (int)ReferencePlayerCosmetic.BunnyHat;
+		public static int BunnyHat => (int)_PlayerCosmeticReferences.BunnyHat;
 
-		public static int CapeHat => (int)ReferencePlayerCosmetic.CapeHat;
+		public static int CapeHat => (int)_PlayerCosmeticReferences.CapeHat;
 
-		public static int CatEarHat => (int)ReferencePlayerCosmetic.CatEarHat;
+		public static int CatEarHat => (int)_PlayerCosmeticReferences.CatEarHat;
 
-		public static int CrownHat => (int)ReferencePlayerCosmetic.CrownHat;
+		public static int CrownHat => (int)_PlayerCosmeticReferences.CrownHat;
 
-		public static int GhostHat => (int)ReferencePlayerCosmetic.GhostHat;
+		public static int GhostHat => (int)_PlayerCosmeticReferences.GhostHat;
 
-		public static int GlassesHat => (int)ReferencePlayerCosmetic.GlassesHat;
+		public static int GlassesHat => (int)_PlayerCosmeticReferences.GlassesHat;
 
-		public static int HotDogHat => (int)ReferencePlayerCosmetic.HotDogHat;
+		public static int HotDogHat => (int)_PlayerCosmeticReferences.HotDogHat;
 
-		public static int PirateHat => (int)ReferencePlayerCosmetic.PirateHat;
+		public static int PirateHat => (int)_PlayerCosmeticReferences.PirateHat;
 
-		public static int PizzaHat => (int)ReferencePlayerCosmetic.PizzaHat;
+		public static int PizzaHat => (int)_PlayerCosmeticReferences.PizzaHat;
 
-		public static int PumpkinHat => (int)ReferencePlayerCosmetic.PumpkinHat;
+		public static int PumpkinHat => (int)_PlayerCosmeticReferences.PumpkinHat;
 
-		public static int WitchHat => (int)ReferencePlayerCosmetic.WitchHat;
+		public static int WitchHat => (int)_PlayerCosmeticReferences.WitchHat;
 
-		public static int HotDogBody => (int)ReferencePlayerCosmetic.HotDogBody;
+		public static int HotDogBody => (int)_PlayerCosmeticReferences.HotDogBody;
 
-		public static int ElfHat => (int)ReferencePlayerCosmetic.ElfHat;
+		public static int ElfHat => (int)_PlayerCosmeticReferences.ElfHat;
 
-		public static int FairyLightsHat => (int)ReferencePlayerCosmetic.FairyLightsHat;
+		public static int FairyLightsHat => (int)_PlayerCosmeticReferences.FairyLightsHat;
 
-		public static int SantaHat => (int)ReferencePlayerCosmetic.SantaHat;
+		public static int SantaHat => (int)_PlayerCosmeticReferences.SantaHat;
 
-		public static int CoupleEffect => (int)ReferencePlayerCosmetic.CoupleEffect;
+		public static int CoupleEffect => (int)_PlayerCosmeticReferences.CoupleEffect;
 
-		public static int FirstDateEffect => (int)ReferencePlayerCosmetic.FirstDateEffect;
+		public static int FirstDateEffect => (int)_PlayerCosmeticReferences.FirstDateEffect;
 
-		public static int PlayerCoupleEffect => (int)ReferencePlayerCosmetic.PlayerCoupleEffect;
+		public static int PlayerCoupleEffect => (int)_PlayerCosmeticReferences.PlayerCoupleEffect;
 
-		public static int PlayerFirstDateEffect => (int)ReferencePlayerCosmetic.PlayerFirstDateEffect;
+		public static int PlayerFirstDateEffect => (int)_PlayerCosmeticReferences.PlayerFirstDateEffect;
 
-		public static int BeanieBlue => (int)ReferencePlayerCosmetic.BeanieBlue;
+		public static int BeanieBlue => (int)_PlayerCosmeticReferences.BeanieBlue;
 
-		public static int BeanieGreen => (int)ReferencePlayerCosmetic.BeanieGreen;
+		public static int BeanieGreen => (int)_PlayerCosmeticReferences.BeanieGreen;
 
-		public static int BeanieOrange => (int)ReferencePlayerCosmetic.BeanieOrange;
+		public static int BeanieOrange => (int)_PlayerCosmeticReferences.BeanieOrange;
 
-		public static int BeaniePink => (int)ReferencePlayerCosmetic.BeaniePink;
+		public static int BeaniePink => (int)_PlayerCosmeticReferences.BeaniePink;
 
-		public static int BeanieRed => (int)ReferencePlayerCosmetic.BeanieRed;
+		public static int BeanieRed => (int)_PlayerCosmeticReferences.BeanieRed;
 
-		public static int EggHat => (int)ReferencePlayerCosmetic.EggHat;
+		public static int EggHat => (int)_PlayerCosmeticReferences.EggHat;
 
-		public static int TurkeyHat => (int)ReferencePlayerCosmetic.TurkeyHat;
+		public static int TurkeyHat => (int)_PlayerCosmeticReferences.TurkeyHat;
 
 	}
-	public enum ReferencePlayerCosmetic
+	internal enum _PlayerCosmeticReferences
 	{
 		ApronOutfit = 1057760440,
 
@@ -3742,38 +3742,38 @@ namespace KitchenLib.References
 	}
 	public class ProcessReferences
 	{
-		public static int FrothMilk => (int)ReferenceProcess.FrothMilk;
+		public static int FrothMilk => (int)_ProcessReferences.FrothMilk;
 
-		public static int SteepTea => (int)ReferenceProcess.SteepTea;
+		public static int SteepTea => (int)_ProcessReferences.SteepTea;
 
-		public static int Chop => (int)ReferenceProcess.Chop;
+		public static int Chop => (int)_ProcessReferences.Chop;
 
-		public static int CleanSoak => (int)ReferenceProcess.CleanSoak;
+		public static int CleanSoak => (int)_ProcessReferences.CleanSoak;
 
-		public static int Clean => (int)ReferenceProcess.Clean;
+		public static int Clean => (int)_ProcessReferences.Clean;
 
-		public static int Cook => (int)ReferenceProcess.Cook;
+		public static int Cook => (int)_ProcessReferences.Cook;
 
-		public static int ExtinguishFire => (int)ReferenceProcess.ExtinguishFire;
+		public static int ExtinguishFire => (int)_ProcessReferences.ExtinguishFire;
 
-		public static int FillCoffee => (int)ReferenceProcess.FillCoffee;
+		public static int FillCoffee => (int)_ProcessReferences.FillCoffee;
 
-		public static int Knead => (int)ReferenceProcess.Knead;
+		public static int Knead => (int)_ProcessReferences.Knead;
 
-		public static int BringNewCustomer => (int)ReferenceProcess.BringNewCustomer;
+		public static int BringNewCustomer => (int)_ProcessReferences.BringNewCustomer;
 
-		public static int Copy => (int)ReferenceProcess.Copy;
+		public static int Copy => (int)_ProcessReferences.Copy;
 
-		public static int Upgrade => (int)ReferenceProcess.Upgrade;
+		public static int Upgrade => (int)_ProcessReferences.Upgrade;
 
-		public static int ChairInteraction => (int)ReferenceProcess.ChairInteraction;
+		public static int ChairInteraction => (int)_ProcessReferences.ChairInteraction;
 
-		public static int RequireOven => (int)ReferenceProcess.RequireOven;
+		public static int RequireOven => (int)_ProcessReferences.RequireOven;
 
-		public static int Purchase => (int)ReferenceProcess.Purchase;
+		public static int Purchase => (int)_ProcessReferences.Purchase;
 
 	}
-	public enum ReferenceProcess
+	internal enum _ProcessReferences
 	{
 		FrothMilk = 510796221,
 
@@ -3808,16 +3808,16 @@ namespace KitchenLib.References
 	}
 	public class RandomUpgradeSetReferences
 	{
-		public static int FailureRewards => (int)ReferenceRandomUpgradeSet.FailureRewards;
+		public static int FailureRewards => (int)_RandomUpgradeSetReferences.FailureRewards;
 
-		public static int HighRewards => (int)ReferenceRandomUpgradeSet.HighRewards;
+		public static int HighRewards => (int)_RandomUpgradeSetReferences.HighRewards;
 
-		public static int LowRewards => (int)ReferenceRandomUpgradeSet.LowRewards;
+		public static int LowRewards => (int)_RandomUpgradeSetReferences.LowRewards;
 
-		public static int MediumRewards => (int)ReferenceRandomUpgradeSet.MediumRewards;
+		public static int MediumRewards => (int)_RandomUpgradeSetReferences.MediumRewards;
 
 	}
-	public enum ReferenceRandomUpgradeSet
+	internal enum _RandomUpgradeSetReferences
 	{
 		FailureRewards = 1965532508,
 
@@ -3830,12 +3830,12 @@ namespace KitchenLib.References
 	}
 	public class ResearchReferences
 	{
-		public static int Fish => (int)ReferenceResearch.Fish;
+		public static int Fish => (int)_ResearchReferences.Fish;
 
-		public static int Steak => (int)ReferenceResearch.Steak;
+		public static int Steak => (int)_ResearchReferences.Steak;
 
 	}
-	public enum ReferenceResearch
+	internal enum _ResearchReferences
 	{
 		Fish = -558005112,
 
@@ -3844,26 +3844,26 @@ namespace KitchenLib.References
 	}
 	public class ShopReferences
 	{
-		public static int Christmas => (int)ReferenceShop.Christmas;
+		public static int Christmas => (int)_ShopReferences.Christmas;
 
-		public static int Convey => (int)ReferenceShop.Convey;
+		public static int Convey => (int)_ShopReferences.Convey;
 
-		public static int Cooking => (int)ReferenceShop.Cooking;
+		public static int Cooking => (int)_ShopReferences.Cooking;
 
-		public static int Decor => (int)ReferenceShop.Decor;
+		public static int Decor => (int)_ShopReferences.Decor;
 
-		public static int Decorations => (int)ReferenceShop.Decorations;
+		public static int Decorations => (int)_ShopReferences.Decorations;
 
-		public static int FrontOfHouse => (int)ReferenceShop.FrontOfHouse;
+		public static int FrontOfHouse => (int)_ShopReferences.FrontOfHouse;
 
-		public static int Supplies => (int)ReferenceShop.Supplies;
+		public static int Supplies => (int)_ShopReferences.Supplies;
 
-		public static int Tech => (int)ReferenceShop.Tech;
+		public static int Tech => (int)_ShopReferences.Tech;
 
-		public static int Washing => (int)ReferenceShop.Washing;
+		public static int Washing => (int)_ShopReferences.Washing;
 
 	}
-	public enum ReferenceShop
+	internal enum _ShopReferences
 	{
 		Christmas = -206225979,
 
@@ -3887,405 +3887,405 @@ namespace KitchenLib.References
 	public class ThemeUnlockReferences
 	{
 	}
-	public enum ReferenceThemeUnlock
+	internal enum _ThemeUnlockReferences
 	{
 	}
 	public class UnlockReferences
 	{
-		public static int CoffeeDessert => (int)ReferenceUnlock.CoffeeDessert;
+		public static int CoffeeDessert => (int)_UnlockReferences.CoffeeDessert;
 
-		public static int IceCream => (int)ReferenceUnlock.IceCream;
+		public static int IceCream => (int)_UnlockReferences.IceCream;
 
-		public static int BreakfastBase => (int)ReferenceUnlock.BreakfastBase;
+		public static int BreakfastBase => (int)_UnlockReferences.BreakfastBase;
 
-		public static int BreakfastBeans => (int)ReferenceUnlock.BreakfastBeans;
+		public static int BreakfastBeans => (int)_UnlockReferences.BreakfastBeans;
 
-		public static int BreakfastExtras => (int)ReferenceUnlock.BreakfastExtras;
+		public static int BreakfastExtras => (int)_UnlockReferences.BreakfastExtras;
 
-		public static int BreakfastVeganExtras => (int)ReferenceUnlock.BreakfastVeganExtras;
+		public static int BreakfastVeganExtras => (int)_UnlockReferences.BreakfastVeganExtras;
 
-		public static int BurgerBase => (int)ReferenceUnlock.BurgerBase;
+		public static int BurgerBase => (int)_UnlockReferences.BurgerBase;
 
-		public static int BurgerCheese => (int)ReferenceUnlock.BurgerCheese;
+		public static int BurgerCheese => (int)_UnlockReferences.BurgerCheese;
 
-		public static int BurgerFreshPatties => (int)ReferenceUnlock.BurgerFreshPatties;
+		public static int BurgerFreshPatties => (int)_UnlockReferences.BurgerFreshPatties;
 
-		public static int BurgerTomatoandOnion => (int)ReferenceUnlock.BurgerTomatoandOnion;
+		public static int BurgerTomatoandOnion => (int)_UnlockReferences.BurgerTomatoandOnion;
 
-		public static int HotdogBase => (int)ReferenceUnlock.HotdogBase;
+		public static int HotdogBase => (int)_UnlockReferences.HotdogBase;
 
-		public static int HotdogCondimentMustard => (int)ReferenceUnlock.HotdogCondimentMustard;
+		public static int HotdogCondimentMustard => (int)_UnlockReferences.HotdogCondimentMustard;
 
-		public static int FishBase => (int)ReferenceUnlock.FishBase;
+		public static int FishBase => (int)_UnlockReferences.FishBase;
 
-		public static int FishCrabCake => (int)ReferenceUnlock.FishCrabCake;
+		public static int FishCrabCake => (int)_UnlockReferences.FishCrabCake;
 
-		public static int FishExtraChoice2 => (int)ReferenceUnlock.FishExtraChoice2;
+		public static int FishExtraChoice2 => (int)_UnlockReferences.FishExtraChoice2;
 
-		public static int FishExtraChoice => (int)ReferenceUnlock.FishExtraChoice;
+		public static int FishExtraChoice => (int)_UnlockReferences.FishExtraChoice;
 
-		public static int FishFillet => (int)ReferenceUnlock.FishFillet;
+		public static int FishFillet => (int)_UnlockReferences.FishFillet;
 
-		public static int FishOyster => (int)ReferenceUnlock.FishOyster;
+		public static int FishOyster => (int)_UnlockReferences.FishOyster;
 
-		public static int FishSpiny => (int)ReferenceUnlock.FishSpiny;
+		public static int FishSpiny => (int)_UnlockReferences.FishSpiny;
 
-		public static int BirthdayCake => (int)ReferenceUnlock.BirthdayCake;
+		public static int BirthdayCake => (int)_UnlockReferences.BirthdayCake;
 
-		public static int RoastMeat => (int)ReferenceUnlock.RoastMeat;
+		public static int RoastMeat => (int)_UnlockReferences.RoastMeat;
 
-		public static int PieApple => (int)ReferenceUnlock.PieApple;
+		public static int PieApple => (int)_UnlockReferences.PieApple;
 
-		public static int PieBase => (int)ReferenceUnlock.PieBase;
+		public static int PieBase => (int)_UnlockReferences.PieBase;
 
-		public static int PieMushroom => (int)ReferenceUnlock.PieMushroom;
+		public static int PieMushroom => (int)_UnlockReferences.PieMushroom;
 
-		public static int PieVegetable => (int)ReferenceUnlock.PieVegetable;
+		public static int PieVegetable => (int)_UnlockReferences.PieVegetable;
 
-		public static int SaladApple => (int)ReferenceUnlock.SaladApple;
+		public static int SaladApple => (int)_UnlockReferences.SaladApple;
 
-		public static int SaladBase => (int)ReferenceUnlock.SaladBase;
+		public static int SaladBase => (int)_UnlockReferences.SaladBase;
 
-		public static int SaladPotato => (int)ReferenceUnlock.SaladPotato;
+		public static int SaladPotato => (int)_UnlockReferences.SaladPotato;
 
-		public static int SaladToppings => (int)ReferenceUnlock.SaladToppings;
+		public static int SaladToppings => (int)_UnlockReferences.SaladToppings;
 
-		public static int BonedSteaks => (int)ReferenceUnlock.BonedSteaks;
+		public static int BonedSteaks => (int)_UnlockReferences.BonedSteaks;
 
-		public static int SteakSauceMushroomSauce => (int)ReferenceUnlock.SteakSauceMushroomSauce;
+		public static int SteakSauceMushroomSauce => (int)_UnlockReferences.SteakSauceMushroomSauce;
 
-		public static int SteakSauceRedWineJus => (int)ReferenceUnlock.SteakSauceRedWineJus;
+		public static int SteakSauceRedWineJus => (int)_UnlockReferences.SteakSauceRedWineJus;
 
-		public static int SteakToppingMushroom => (int)ReferenceUnlock.SteakToppingMushroom;
+		public static int SteakToppingMushroom => (int)_UnlockReferences.SteakToppingMushroom;
 
-		public static int SteakToppingTomato => (int)ReferenceUnlock.SteakToppingTomato;
+		public static int SteakToppingTomato => (int)_UnlockReferences.SteakToppingTomato;
 
-		public static int Steak => (int)ReferenceUnlock.Steak;
+		public static int Steak => (int)_UnlockReferences.Steak;
 
-		public static int ThickSteaks => (int)ReferenceUnlock.ThickSteaks;
+		public static int ThickSteaks => (int)_UnlockReferences.ThickSteaks;
 
-		public static int ThinSteaks => (int)ReferenceUnlock.ThinSteaks;
+		public static int ThinSteaks => (int)_UnlockReferences.ThinSteaks;
 
-		public static int StirFryBase => (int)ReferenceUnlock.StirFryBase;
+		public static int StirFryBase => (int)_UnlockReferences.StirFryBase;
 
-		public static int StirFryMeat => (int)ReferenceUnlock.StirFryMeat;
+		public static int StirFryMeat => (int)_UnlockReferences.StirFryMeat;
 
-		public static int Broccoli => (int)ReferenceUnlock.Broccoli;
+		public static int Broccoli => (int)_UnlockReferences.Broccoli;
 
-		public static int Chips => (int)ReferenceUnlock.Chips;
+		public static int Chips => (int)_UnlockReferences.Chips;
 
-		public static int MashedPotato => (int)ReferenceUnlock.MashedPotato;
+		public static int MashedPotato => (int)_UnlockReferences.MashedPotato;
 
-		public static int CarrotSoup => (int)ReferenceUnlock.CarrotSoup;
+		public static int CarrotSoup => (int)_UnlockReferences.CarrotSoup;
 
-		public static int MeatSoup => (int)ReferenceUnlock.MeatSoup;
+		public static int MeatSoup => (int)_UnlockReferences.MeatSoup;
 
-		public static int TomatoSoup => (int)ReferenceUnlock.TomatoSoup;
+		public static int TomatoSoup => (int)_UnlockReferences.TomatoSoup;
 
-		public static int CheeseBoard => (int)ReferenceUnlock.CheeseBoard;
+		public static int CheeseBoard => (int)_UnlockReferences.CheeseBoard;
 
-		public static int PizzaBase => (int)ReferenceUnlock.PizzaBase;
+		public static int PizzaBase => (int)_UnlockReferences.PizzaBase;
 
-		public static int PizzaMushroom => (int)ReferenceUnlock.PizzaMushroom;
+		public static int PizzaMushroom => (int)_UnlockReferences.PizzaMushroom;
 
-		public static int PizzaOnion => (int)ReferenceUnlock.PizzaOnion;
+		public static int PizzaOnion => (int)_UnlockReferences.PizzaOnion;
 
-		public static int OnionRings => (int)ReferenceUnlock.OnionRings;
+		public static int OnionRings => (int)_UnlockReferences.OnionRings;
 
-		public static int ChristmasConveyors => (int)ReferenceUnlock.ChristmasConveyors;
+		public static int ChristmasConveyors => (int)_UnlockReferences.ChristmasConveyors;
 
-		public static int Cracker => (int)ReferenceUnlock.Cracker;
+		public static int Cracker => (int)_UnlockReferences.Cracker;
 
-		public static int TurkeyCranberrySauce => (int)ReferenceUnlock.TurkeyCranberrySauce;
+		public static int TurkeyCranberrySauce => (int)_UnlockReferences.TurkeyCranberrySauce;
 
-		public static int TurkeyGravy => (int)ReferenceUnlock.TurkeyGravy;
+		public static int TurkeyGravy => (int)_UnlockReferences.TurkeyGravy;
 
-		public static int TurkeyStuffing => (int)ReferenceUnlock.TurkeyStuffing;
+		public static int TurkeyStuffing => (int)_UnlockReferences.TurkeyStuffing;
 
-		public static int Couples => (int)ReferenceUnlock.Couples;
+		public static int Couples => (int)_UnlockReferences.Couples;
 
-		public static int DoubleDates => (int)ReferenceUnlock.DoubleDates;
+		public static int DoubleDates => (int)_UnlockReferences.DoubleDates;
 
-		public static int FirstDates => (int)ReferenceUnlock.FirstDates;
+		public static int FirstDates => (int)_UnlockReferences.FirstDates;
 
-		public static int StapleFlowerPots => (int)ReferenceUnlock.StapleFlowerPots;
+		public static int StapleFlowerPots => (int)_UnlockReferences.StapleFlowerPots;
 
-		public static int CustomerBursts => (int)ReferenceUnlock.CustomerBursts;
+		public static int CustomerBursts => (int)_UnlockReferences.CustomerBursts;
 
-		public static int MessesSlowCustomers => (int)ReferenceUnlock.MessesSlowCustomers;
+		public static int MessesSlowCustomers => (int)_UnlockReferences.MessesSlowCustomers;
 
-		public static int PickyEaters => (int)ReferenceUnlock.PickyEaters;
+		public static int PickyEaters => (int)_UnlockReferences.PickyEaters;
 
-		public static int TippingCulture => (int)ReferenceUnlock.TippingCulture;
+		public static int TippingCulture => (int)_UnlockReferences.TippingCulture;
 
-		public static int CornOnCob => (int)ReferenceUnlock.CornOnCob;
+		public static int CornOnCob => (int)_UnlockReferences.CornOnCob;
 
-		public static int IceCreamBanana => (int)ReferenceUnlock.IceCreamBanana;
+		public static int IceCreamBanana => (int)_UnlockReferences.IceCreamBanana;
 
-		public static int IceCreamNuts => (int)ReferenceUnlock.IceCreamNuts;
+		public static int IceCreamNuts => (int)_UnlockReferences.IceCreamNuts;
 
-		public static int IceCreamStrawberry => (int)ReferenceUnlock.IceCreamStrawberry;
+		public static int IceCreamStrawberry => (int)_UnlockReferences.IceCreamStrawberry;
 
-		public static int PiePumpkin => (int)ReferenceUnlock.PiePumpkin;
+		public static int PiePumpkin => (int)_UnlockReferences.PiePumpkin;
 
-		public static int PumpkinSeed => (int)ReferenceUnlock.PumpkinSeed;
+		public static int PumpkinSeed => (int)_UnlockReferences.PumpkinSeed;
 
-		public static int PumpkinSoup => (int)ReferenceUnlock.PumpkinSoup;
+		public static int PumpkinSoup => (int)_UnlockReferences.PumpkinSoup;
 
-		public static int TreatCustomersareCats => (int)ReferenceUnlock.TreatCustomersareCats;
+		public static int TreatCustomersareCats => (int)_UnlockReferences.TreatCustomersareCats;
 
-		public static int TreatExtraBlueprints => (int)ReferenceUnlock.TreatExtraBlueprints;
+		public static int TreatExtraBlueprints => (int)_UnlockReferences.TreatExtraBlueprints;
 
-		public static int TreatExtraDecorationAffordable => (int)ReferenceUnlock.TreatExtraDecorationAffordable;
+		public static int TreatExtraDecorationAffordable => (int)_UnlockReferences.TreatExtraDecorationAffordable;
 
-		public static int TreatExtraDecorationCharming => (int)ReferenceUnlock.TreatExtraDecorationCharming;
+		public static int TreatExtraDecorationCharming => (int)_UnlockReferences.TreatExtraDecorationCharming;
 
-		public static int TreatExtraDecorationExclusive => (int)ReferenceUnlock.TreatExtraDecorationExclusive;
+		public static int TreatExtraDecorationExclusive => (int)_UnlockReferences.TreatExtraDecorationExclusive;
 
-		public static int TreatExtraDecorationFormal => (int)ReferenceUnlock.TreatExtraDecorationFormal;
+		public static int TreatExtraDecorationFormal => (int)_UnlockReferences.TreatExtraDecorationFormal;
 
-		public static int TreatFreeMoney => (int)ReferenceUnlock.TreatFreeMoney;
+		public static int TreatFreeMoney => (int)_UnlockReferences.TreatFreeMoney;
 
-		public static int TrickAppliancesBadProcessesFasterAtNight => (int)ReferenceUnlock.TrickAppliancesBadProcessesFasterAtNight;
+		public static int TrickAppliancesBadProcessesFasterAtNight => (int)_UnlockReferences.TrickAppliancesBadProcessesFasterAtNight;
 
-		public static int TrickBookingDesksareAutomatic => (int)ReferenceUnlock.TrickBookingDesksareAutomatic;
+		public static int TrickBookingDesksareAutomatic => (int)_UnlockReferences.TrickBookingDesksareAutomatic;
 
-		public static int TrickConstantFires => (int)ReferenceUnlock.TrickConstantFires;
+		public static int TrickConstantFires => (int)_UnlockReferences.TrickConstantFires;
 
-		public static int TrickConstantMess => (int)ReferenceUnlock.TrickConstantMess;
+		public static int TrickConstantMess => (int)_UnlockReferences.TrickConstantMess;
 
-		public static int TrickCustomersChangeMindAtNight => (int)ReferenceUnlock.TrickCustomersChangeMindAtNight;
+		public static int TrickCustomersChangeMindAtNight => (int)_UnlockReferences.TrickCustomersChangeMindAtNight;
 
-		public static int TrickCustomersComeAlone => (int)ReferenceUnlock.TrickCustomersComeAlone;
+		public static int TrickCustomersComeAlone => (int)_UnlockReferences.TrickCustomersComeAlone;
 
-		public static int TrickCustomersLeavingStartFires => (int)ReferenceUnlock.TrickCustomersLeavingStartFires;
+		public static int TrickCustomersLeavingStartFires => (int)_UnlockReferences.TrickCustomersLeavingStartFires;
 
-		public static int TrickCustomersLessPatienceAtNight => (int)ReferenceUnlock.TrickCustomersLessPatienceAtNight;
+		public static int TrickCustomersLessPatienceAtNight => (int)_UnlockReferences.TrickCustomersLessPatienceAtNight;
 
-		public static int TrickCustomersMaxSize => (int)ReferenceUnlock.TrickCustomersMaxSize;
+		public static int TrickCustomersMaxSize => (int)_UnlockReferences.TrickCustomersMaxSize;
 
-		public static int TrickOneTableMax => (int)ReferenceUnlock.TrickOneTableMax;
+		public static int TrickOneTableMax => (int)_UnlockReferences.TrickOneTableMax;
 
-		public static int TrickPlayersSwapPlacesRandomly => (int)ReferenceUnlock.TrickPlayersSwapPlacesRandomly;
+		public static int TrickPlayersSwapPlacesRandomly => (int)_UnlockReferences.TrickPlayersSwapPlacesRandomly;
 
-		public static int TrickPlayersWearSlippers => (int)ReferenceUnlock.TrickPlayersWearSlippers;
+		public static int TrickPlayersWearSlippers => (int)_UnlockReferences.TrickPlayersWearSlippers;
 
-		public static int TrickQueuePatienceStays => (int)ReferenceUnlock.TrickQueuePatienceStays;
+		public static int TrickQueuePatienceStays => (int)_UnlockReferences.TrickQueuePatienceStays;
 
-		public static int TrickRandomOrderSatisfaction => (int)ReferenceUnlock.TrickRandomOrderSatisfaction;
+		public static int TrickRandomOrderSatisfaction => (int)_UnlockReferences.TrickRandomOrderSatisfaction;
 
-		public static int TrickResearchCausesFire => (int)ReferenceUnlock.TrickResearchCausesFire;
+		public static int TrickResearchCausesFire => (int)_UnlockReferences.TrickResearchCausesFire;
 
-		public static int TrickResetMoneyEachDay => (int)ReferenceUnlock.TrickResetMoneyEachDay;
+		public static int TrickResetMoneyEachDay => (int)_UnlockReferences.TrickResetMoneyEachDay;
 
-		public static int TrickSlowConveyors => (int)ReferenceUnlock.TrickSlowConveyors;
+		public static int TrickSlowConveyors => (int)_UnlockReferences.TrickSlowConveyors;
 
-		public static int TrickSlowPlayersThroughDay => (int)ReferenceUnlock.TrickSlowPlayersThroughDay;
+		public static int TrickSlowPlayersThroughDay => (int)_UnlockReferences.TrickSlowPlayersThroughDay;
 
-		public static int JanuaryRedEnvelopes => (int)ReferenceUnlock.JanuaryRedEnvelopes;
+		public static int JanuaryRedEnvelopes => (int)_UnlockReferences.JanuaryRedEnvelopes;
 
-		public static int Bamboo => (int)ReferenceUnlock.Bamboo;
+		public static int Bamboo => (int)_UnlockReferences.Bamboo;
 
-		public static int StirFryBamboo => (int)ReferenceUnlock.StirFryBamboo;
+		public static int StirFryBamboo => (int)_UnlockReferences.StirFryBamboo;
 
-		public static int DumplingSoySauce => (int)ReferenceUnlock.DumplingSoySauce;
+		public static int DumplingSoySauce => (int)_UnlockReferences.DumplingSoySauce;
 
-		public static int Dumplings => (int)ReferenceUnlock.Dumplings;
+		public static int Dumplings => (int)_UnlockReferences.Dumplings;
 
-		public static int DumplingsSeaweed => (int)ReferenceUnlock.DumplingsSeaweed;
+		public static int DumplingsSeaweed => (int)_UnlockReferences.DumplingsSeaweed;
 
-		public static int Mandarin => (int)ReferenceUnlock.Mandarin;
+		public static int Mandarin => (int)_UnlockReferences.Mandarin;
 
-		public static int StirFryMushroom => (int)ReferenceUnlock.StirFryMushroom;
+		public static int StirFryMushroom => (int)_UnlockReferences.StirFryMushroom;
 
-		public static int StirFrySoySauce => (int)ReferenceUnlock.StirFrySoySauce;
+		public static int StirFrySoySauce => (int)_UnlockReferences.StirFrySoySauce;
 
-		public static int ExtraCoffee => (int)ReferenceUnlock.ExtraCoffee;
+		public static int ExtraCoffee => (int)_UnlockReferences.ExtraCoffee;
 
-		public static int SlowBrewCoffee => (int)ReferenceUnlock.SlowBrewCoffee;
+		public static int SlowBrewCoffee => (int)_UnlockReferences.SlowBrewCoffee;
 
-		public static int CoffeeCakeStand => (int)ReferenceUnlock.CoffeeCakeStand;
+		public static int CoffeeCakeStand => (int)_UnlockReferences.CoffeeCakeStand;
 
-		public static int CoffeeBaseDessert => (int)ReferenceUnlock.CoffeeBaseDessert;
+		public static int CoffeeBaseDessert => (int)_UnlockReferences.CoffeeBaseDessert;
 
-		public static int ExtraMilk => (int)ReferenceUnlock.ExtraMilk;
+		public static int ExtraMilk => (int)_UnlockReferences.ExtraMilk;
 
-		public static int ExtraSugar => (int)ReferenceUnlock.ExtraSugar;
+		public static int ExtraSugar => (int)_UnlockReferences.ExtraSugar;
 
-		public static int CoffeeIced => (int)ReferenceUnlock.CoffeeIced;
+		public static int CoffeeIced => (int)_UnlockReferences.CoffeeIced;
 
-		public static int CoffeeLatte => (int)ReferenceUnlock.CoffeeLatte;
+		public static int CoffeeLatte => (int)_UnlockReferences.CoffeeLatte;
 
-		public static int Tea => (int)ReferenceUnlock.Tea;
+		public static int Tea => (int)_UnlockReferences.Tea;
 
-		public static int CoffeeshopMode => (int)ReferenceUnlock.CoffeeshopMode;
+		public static int CoffeeshopMode => (int)_UnlockReferences.CoffeeshopMode;
 
-		public static int TurboMode => (int)ReferenceUnlock.TurboMode;
+		public static int TurboMode => (int)_UnlockReferences.TurboMode;
 
-		public static int NovemberTableSizeIncrease => (int)ReferenceUnlock.NovemberTableSizeIncrease;
+		public static int NovemberTableSizeIncrease => (int)_UnlockReferences.NovemberTableSizeIncrease;
 
-		public static int NutRoastBase => (int)ReferenceUnlock.NutRoastBase;
+		public static int NutRoastBase => (int)_UnlockReferences.NutRoastBase;
 
-		public static int Affogato => (int)ReferenceUnlock.Affogato;
+		public static int Affogato => (int)_UnlockReferences.Affogato;
 
-		public static int BreadStarter => (int)ReferenceUnlock.BreadStarter;
+		public static int BreadStarter => (int)_UnlockReferences.BreadStarter;
 
-		public static int BroccoliCheeseSoup => (int)ReferenceUnlock.BroccoliCheeseSoup;
+		public static int BroccoliCheeseSoup => (int)_UnlockReferences.BroccoliCheeseSoup;
 
-		public static int CherryPie => (int)ReferenceUnlock.CherryPie;
+		public static int CherryPie => (int)_UnlockReferences.CherryPie;
 
-		public static int RoastPotato => (int)ReferenceUnlock.RoastPotato;
+		public static int RoastPotato => (int)_UnlockReferences.RoastPotato;
 
-		public static int Sweetcorn => (int)ReferenceUnlock.Sweetcorn;
+		public static int Sweetcorn => (int)_UnlockReferences.Sweetcorn;
 
-		public static int Waffles => (int)ReferenceUnlock.Waffles;
+		public static int Waffles => (int)_UnlockReferences.Waffles;
 
-		public static int TurkeyBase => (int)ReferenceUnlock.TurkeyBase;
+		public static int TurkeyBase => (int)_UnlockReferences.TurkeyBase;
 
-		public static int AllYouCanEatIncrease => (int)ReferenceUnlock.AllYouCanEatIncrease;
+		public static int AllYouCanEatIncrease => (int)_UnlockReferences.AllYouCanEatIncrease;
 
-		public static int AllYouCanEat => (int)ReferenceUnlock.AllYouCanEat;
+		public static int AllYouCanEat => (int)_UnlockReferences.AllYouCanEat;
 
-		public static int ChangeOrdersAfterOrdering => (int)ReferenceUnlock.ChangeOrdersAfterOrdering;
+		public static int ChangeOrdersAfterOrdering => (int)_UnlockReferences.ChangeOrdersAfterOrdering;
 
-		public static int ClosingTime => (int)ReferenceUnlock.ClosingTime;
+		public static int ClosingTime => (int)_UnlockReferences.ClosingTime;
 
-		public static int CustomersEatSlowly => (int)ReferenceUnlock.CustomersEatSlowly;
+		public static int CustomersEatSlowly => (int)_UnlockReferences.CustomersEatSlowly;
 
-		public static int CustomersRequireWalking => (int)ReferenceUnlock.CustomersRequireWalking;
+		public static int CustomersRequireWalking => (int)_UnlockReferences.CustomersRequireWalking;
 
-		public static int DinnerRush => (int)ReferenceUnlock.DinnerRush;
+		public static int DinnerRush => (int)_UnlockReferences.DinnerRush;
 
-		public static int FlexibleDining => (int)ReferenceUnlock.FlexibleDining;
+		public static int FlexibleDining => (int)_UnlockReferences.FlexibleDining;
 
-		public static int IndividualDining => (int)ReferenceUnlock.IndividualDining;
+		public static int IndividualDining => (int)_UnlockReferences.IndividualDining;
 
-		public static int LargeGroups => (int)ReferenceUnlock.LargeGroups;
+		public static int LargeGroups => (int)_UnlockReferences.LargeGroups;
 
-		public static int MediumGroups => (int)ReferenceUnlock.MediumGroups;
+		public static int MediumGroups => (int)_UnlockReferences.MediumGroups;
 
-		public static int HiddenOrders => (int)ReferenceUnlock.HiddenOrders;
+		public static int HiddenOrders => (int)_UnlockReferences.HiddenOrders;
 
-		public static int HiddenPatience => (int)ReferenceUnlock.HiddenPatience;
+		public static int HiddenPatience => (int)_UnlockReferences.HiddenPatience;
 
-		public static int HiddenProcesses => (int)ReferenceUnlock.HiddenProcesses;
+		public static int HiddenProcesses => (int)_UnlockReferences.HiddenProcesses;
 
-		public static int InstantOrders => (int)ReferenceUnlock.InstantOrders;
+		public static int InstantOrders => (int)_UnlockReferences.InstantOrders;
 
-		public static int LessMoney => (int)ReferenceUnlock.LessMoney;
+		public static int LessMoney => (int)_UnlockReferences.LessMoney;
 
-		public static int LosePatienceInView => (int)ReferenceUnlock.LosePatienceInView;
+		public static int LosePatienceInView => (int)_UnlockReferences.LosePatienceInView;
 
-		public static int LunchRush => (int)ReferenceUnlock.LunchRush;
+		public static int LunchRush => (int)_UnlockReferences.LunchRush;
 
-		public static int MessRangeIncrease => (int)ReferenceUnlock.MessRangeIncrease;
+		public static int MessRangeIncrease => (int)_UnlockReferences.MessRangeIncrease;
 
-		public static int MessyCustomers => (int)ReferenceUnlock.MessyCustomers;
+		public static int MessyCustomers => (int)_UnlockReferences.MessyCustomers;
 
-		public static int MoreCustomers2 => (int)ReferenceUnlock.MoreCustomers2;
+		public static int MoreCustomers2 => (int)_UnlockReferences.MoreCustomers2;
 
-		public static int MoreCustomers => (int)ReferenceUnlock.MoreCustomers;
+		public static int MoreCustomers => (int)_UnlockReferences.MoreCustomers;
 
-		public static int MorningRush => (int)ReferenceUnlock.MorningRush;
+		public static int MorningRush => (int)_UnlockReferences.MorningRush;
 
-		public static int OneUpgradePerDay => (int)ReferenceUnlock.OneUpgradePerDay;
+		public static int OneUpgradePerDay => (int)_UnlockReferences.OneUpgradePerDay;
 
-		public static int PatienceDecrease => (int)ReferenceUnlock.PatienceDecrease;
+		public static int PatienceDecrease => (int)_UnlockReferences.PatienceDecrease;
 
-		public static int QuickerBurning => (int)ReferenceUnlock.QuickerBurning;
+		public static int QuickerBurning => (int)_UnlockReferences.QuickerBurning;
 
-		public static int SlowProcesses => (int)ReferenceUnlock.SlowProcesses;
+		public static int SlowProcesses => (int)_UnlockReferences.SlowProcesses;
 
-		public static int Affordable => (int)ReferenceUnlock.Affordable;
+		public static int Affordable => (int)_UnlockReferences.Affordable;
 
-		public static int Charming => (int)ReferenceUnlock.Charming;
+		public static int Charming => (int)_UnlockReferences.Charming;
 
-		public static int Exclusive => (int)ReferenceUnlock.Exclusive;
+		public static int Exclusive => (int)_UnlockReferences.Exclusive;
 
-		public static int Formal => (int)ReferenceUnlock.Formal;
+		public static int Formal => (int)_UnlockReferences.Formal;
 
-		public static int FranchiseNewDish0 => (int)ReferenceUnlock.FranchiseNewDish0;
+		public static int FranchiseNewDish0 => (int)_UnlockReferences.FranchiseNewDish0;
 
-		public static int FranchiseNewDish1 => (int)ReferenceUnlock.FranchiseNewDish1;
+		public static int FranchiseNewDish1 => (int)_UnlockReferences.FranchiseNewDish1;
 
-		public static int FranchiseNewDish2 => (int)ReferenceUnlock.FranchiseNewDish2;
+		public static int FranchiseNewDish2 => (int)_UnlockReferences.FranchiseNewDish2;
 
-		public static int FranchiseNewDish3 => (int)ReferenceUnlock.FranchiseNewDish3;
+		public static int FranchiseNewDish3 => (int)_UnlockReferences.FranchiseNewDish3;
 
-		public static int FranchiseNewDish4 => (int)ReferenceUnlock.FranchiseNewDish4;
+		public static int FranchiseNewDish4 => (int)_UnlockReferences.FranchiseNewDish4;
 
-		public static int FranchiseNewDish5 => (int)ReferenceUnlock.FranchiseNewDish5;
+		public static int FranchiseNewDish5 => (int)_UnlockReferences.FranchiseNewDish5;
 
-		public static int FranchiseBonusMoney => (int)ReferenceUnlock.FranchiseBonusMoney;
+		public static int FranchiseBonusMoney => (int)_UnlockReferences.FranchiseBonusMoney;
 
-		public static int FranchiseFlatBonusMoney => (int)ReferenceUnlock.FranchiseFlatBonusMoney;
+		public static int FranchiseFlatBonusMoney => (int)_UnlockReferences.FranchiseFlatBonusMoney;
 
-		public static int FranchiseStartingBonusGrabber => (int)ReferenceUnlock.FranchiseStartingBonusGrabber;
+		public static int FranchiseStartingBonusGrabber => (int)_UnlockReferences.FranchiseStartingBonusGrabber;
 
-		public static int FranchiseStartingBonusLargeSink => (int)ReferenceUnlock.FranchiseStartingBonusLargeSink;
+		public static int FranchiseStartingBonusLargeSink => (int)_UnlockReferences.FranchiseStartingBonusLargeSink;
 
-		public static int FranchiseStartingBonusMoney => (int)ReferenceUnlock.FranchiseStartingBonusMoney;
+		public static int FranchiseStartingBonusMoney => (int)_UnlockReferences.FranchiseStartingBonusMoney;
 
-		public static int FranchiseLivesRefresh => (int)ReferenceUnlock.FranchiseLivesRefresh;
+		public static int FranchiseLivesRefresh => (int)_UnlockReferences.FranchiseLivesRefresh;
 
-		public static int FranchisePrepTime => (int)ReferenceUnlock.FranchisePrepTime;
+		public static int FranchisePrepTime => (int)_UnlockReferences.FranchisePrepTime;
 
-		public static int FranchiseDoubleBlueprintDesks => (int)ReferenceUnlock.FranchiseDoubleBlueprintDesks;
+		public static int FranchiseDoubleBlueprintDesks => (int)_UnlockReferences.FranchiseDoubleBlueprintDesks;
 
-		public static int FranchiseExtraShopBlueprint => (int)ReferenceUnlock.FranchiseExtraShopBlueprint;
+		public static int FranchiseExtraShopBlueprint => (int)_UnlockReferences.FranchiseExtraShopBlueprint;
 
-		public static int FranchiseGlobalDiscount => (int)ReferenceUnlock.FranchiseGlobalDiscount;
+		public static int FranchiseGlobalDiscount => (int)_UnlockReferences.FranchiseGlobalDiscount;
 
-		public static int FranchiseRandomShopPrices => (int)ReferenceUnlock.FranchiseRandomShopPrices;
+		public static int FranchiseRandomShopPrices => (int)_UnlockReferences.FranchiseRandomShopPrices;
 
-		public static int FranchiseRandomStartingBlueprint => (int)ReferenceUnlock.FranchiseRandomStartingBlueprint;
+		public static int FranchiseRandomStartingBlueprint => (int)_UnlockReferences.FranchiseRandomStartingBlueprint;
 
-		public static int FranchiseRebuyBlueprintChance => (int)ReferenceUnlock.FranchiseRebuyBlueprintChance;
+		public static int FranchiseRebuyBlueprintChance => (int)_UnlockReferences.FranchiseRebuyBlueprintChance;
 
-		public static int FranchiseShopItemsRefresh => (int)ReferenceUnlock.FranchiseShopItemsRefresh;
+		public static int FranchiseShopItemsRefresh => (int)_UnlockReferences.FranchiseShopItemsRefresh;
 
-		public static int FranchiseUpgradedShopChance => (int)ReferenceUnlock.FranchiseUpgradedShopChance;
+		public static int FranchiseUpgradedShopChance => (int)_UnlockReferences.FranchiseUpgradedShopChance;
 
-		public static int FranchiseStapleBelt => (int)ReferenceUnlock.FranchiseStapleBelt;
+		public static int FranchiseStapleBelt => (int)_UnlockReferences.FranchiseStapleBelt;
 
-		public static int FranchiseStapleCoffeeTable => (int)ReferenceUnlock.FranchiseStapleCoffeeTable;
+		public static int FranchiseStapleCoffeeTable => (int)_UnlockReferences.FranchiseStapleCoffeeTable;
 
-		public static int FranchiseStapleFloorProtector => (int)ReferenceUnlock.FranchiseStapleFloorProtector;
+		public static int FranchiseStapleFloorProtector => (int)_UnlockReferences.FranchiseStapleFloorProtector;
 
-		public static int FranchiseStapleFlowers => (int)ReferenceUnlock.FranchiseStapleFlowers;
+		public static int FranchiseStapleFlowers => (int)_UnlockReferences.FranchiseStapleFlowers;
 
-		public static int FranchiseStapleMetalTable => (int)ReferenceUnlock.FranchiseStapleMetalTable;
+		public static int FranchiseStapleMetalTable => (int)_UnlockReferences.FranchiseStapleMetalTable;
 
-		public static int FranchiseStapleSimpleClothTable => (int)ReferenceUnlock.FranchiseStapleSimpleClothTable;
+		public static int FranchiseStapleSimpleClothTable => (int)_UnlockReferences.FranchiseStapleSimpleClothTable;
 
-		public static int OldFranchiseAddDish => (int)ReferenceUnlock.OldFranchiseAddDish;
+		public static int OldFranchiseAddDish => (int)_UnlockReferences.OldFranchiseAddDish;
 
-		public static int OldFranchiseCustomerBoost => (int)ReferenceUnlock.OldFranchiseCustomerBoost;
+		public static int OldFranchiseCustomerBoost => (int)_UnlockReferences.OldFranchiseCustomerBoost;
 
-		public static int OldFranchiseLargerGroups => (int)ReferenceUnlock.OldFranchiseLargerGroups;
+		public static int OldFranchiseLargerGroups => (int)_UnlockReferences.OldFranchiseLargerGroups;
 
-		public static int OldFranchiseLessMoney => (int)ReferenceUnlock.OldFranchiseLessMoney;
+		public static int OldFranchiseLessMoney => (int)_UnlockReferences.OldFranchiseLessMoney;
 
-		public static int OldFranchiseOneUpgradePerDay => (int)ReferenceUnlock.OldFranchiseOneUpgradePerDay;
+		public static int OldFranchiseOneUpgradePerDay => (int)_UnlockReferences.OldFranchiseOneUpgradePerDay;
 
-		public static int OldFranchiseQuickerBurning => (int)ReferenceUnlock.OldFranchiseQuickerBurning;
+		public static int OldFranchiseQuickerBurning => (int)_UnlockReferences.OldFranchiseQuickerBurning;
 
-		public static int OldFranchiseSlowProcesses => (int)ReferenceUnlock.OldFranchiseSlowProcesses;
+		public static int OldFranchiseSlowProcesses => (int)_UnlockReferences.OldFranchiseSlowProcesses;
 
-		public static int OldFranchise1AddDish => (int)ReferenceUnlock.OldFranchise1AddDish;
+		public static int OldFranchise1AddDish => (int)_UnlockReferences.OldFranchise1AddDish;
 
-		public static int OldFranchise1CustomerBoost => (int)ReferenceUnlock.OldFranchise1CustomerBoost;
+		public static int OldFranchise1CustomerBoost => (int)_UnlockReferences.OldFranchise1CustomerBoost;
 
-		public static int OldFranchise1PatienceDecrease => (int)ReferenceUnlock.OldFranchise1PatienceDecrease;
+		public static int OldFranchise1PatienceDecrease => (int)_UnlockReferences.OldFranchise1PatienceDecrease;
 
-		public static int OldFranchise2AddDish => (int)ReferenceUnlock.OldFranchise2AddDish;
+		public static int OldFranchise2AddDish => (int)_UnlockReferences.OldFranchise2AddDish;
 
-		public static int OldFranchise2CustomerBoost => (int)ReferenceUnlock.OldFranchise2CustomerBoost;
+		public static int OldFranchise2CustomerBoost => (int)_UnlockReferences.OldFranchise2CustomerBoost;
 
-		public static int OldFranchise2PatienceDecrease => (int)ReferenceUnlock.OldFranchise2PatienceDecrease;
+		public static int OldFranchise2PatienceDecrease => (int)_UnlockReferences.OldFranchise2PatienceDecrease;
 
 	}
-	public enum ReferenceUnlock
+	internal enum _UnlockReferences
 	{
 		CoffeeDessert = -85470894,
 
@@ -4682,230 +4682,230 @@ namespace KitchenLib.References
 	}
 	public class UnlockCardReferences
 	{
-		public static int ChristmasConveyors => (int)ReferenceUnlockCard.ChristmasConveyors;
+		public static int ChristmasConveyors => (int)_UnlockCardReferences.ChristmasConveyors;
 
-		public static int Couples => (int)ReferenceUnlockCard.Couples;
+		public static int Couples => (int)_UnlockCardReferences.Couples;
 
-		public static int DoubleDates => (int)ReferenceUnlockCard.DoubleDates;
+		public static int DoubleDates => (int)_UnlockCardReferences.DoubleDates;
 
-		public static int FirstDates => (int)ReferenceUnlockCard.FirstDates;
+		public static int FirstDates => (int)_UnlockCardReferences.FirstDates;
 
-		public static int StapleFlowerPots => (int)ReferenceUnlockCard.StapleFlowerPots;
+		public static int StapleFlowerPots => (int)_UnlockCardReferences.StapleFlowerPots;
 
-		public static int CustomerBursts => (int)ReferenceUnlockCard.CustomerBursts;
+		public static int CustomerBursts => (int)_UnlockCardReferences.CustomerBursts;
 
-		public static int MessesSlowCustomers => (int)ReferenceUnlockCard.MessesSlowCustomers;
+		public static int MessesSlowCustomers => (int)_UnlockCardReferences.MessesSlowCustomers;
 
-		public static int PickyEaters => (int)ReferenceUnlockCard.PickyEaters;
+		public static int PickyEaters => (int)_UnlockCardReferences.PickyEaters;
 
-		public static int TippingCulture => (int)ReferenceUnlockCard.TippingCulture;
+		public static int TippingCulture => (int)_UnlockCardReferences.TippingCulture;
 
-		public static int TreatCustomersareCats => (int)ReferenceUnlockCard.TreatCustomersareCats;
+		public static int TreatCustomersareCats => (int)_UnlockCardReferences.TreatCustomersareCats;
 
-		public static int TreatExtraBlueprints => (int)ReferenceUnlockCard.TreatExtraBlueprints;
+		public static int TreatExtraBlueprints => (int)_UnlockCardReferences.TreatExtraBlueprints;
 
-		public static int TreatExtraDecorationAffordable => (int)ReferenceUnlockCard.TreatExtraDecorationAffordable;
+		public static int TreatExtraDecorationAffordable => (int)_UnlockCardReferences.TreatExtraDecorationAffordable;
 
-		public static int TreatExtraDecorationCharming => (int)ReferenceUnlockCard.TreatExtraDecorationCharming;
+		public static int TreatExtraDecorationCharming => (int)_UnlockCardReferences.TreatExtraDecorationCharming;
 
-		public static int TreatExtraDecorationExclusive => (int)ReferenceUnlockCard.TreatExtraDecorationExclusive;
+		public static int TreatExtraDecorationExclusive => (int)_UnlockCardReferences.TreatExtraDecorationExclusive;
 
-		public static int TreatExtraDecorationFormal => (int)ReferenceUnlockCard.TreatExtraDecorationFormal;
+		public static int TreatExtraDecorationFormal => (int)_UnlockCardReferences.TreatExtraDecorationFormal;
 
-		public static int TreatFreeMoney => (int)ReferenceUnlockCard.TreatFreeMoney;
+		public static int TreatFreeMoney => (int)_UnlockCardReferences.TreatFreeMoney;
 
-		public static int TrickAppliancesBadProcessesFasterAtNight => (int)ReferenceUnlockCard.TrickAppliancesBadProcessesFasterAtNight;
+		public static int TrickAppliancesBadProcessesFasterAtNight => (int)_UnlockCardReferences.TrickAppliancesBadProcessesFasterAtNight;
 
-		public static int TrickBookingDesksareAutomatic => (int)ReferenceUnlockCard.TrickBookingDesksareAutomatic;
+		public static int TrickBookingDesksareAutomatic => (int)_UnlockCardReferences.TrickBookingDesksareAutomatic;
 
-		public static int TrickConstantFires => (int)ReferenceUnlockCard.TrickConstantFires;
+		public static int TrickConstantFires => (int)_UnlockCardReferences.TrickConstantFires;
 
-		public static int TrickConstantMess => (int)ReferenceUnlockCard.TrickConstantMess;
+		public static int TrickConstantMess => (int)_UnlockCardReferences.TrickConstantMess;
 
-		public static int TrickCustomersChangeMindAtNight => (int)ReferenceUnlockCard.TrickCustomersChangeMindAtNight;
+		public static int TrickCustomersChangeMindAtNight => (int)_UnlockCardReferences.TrickCustomersChangeMindAtNight;
 
-		public static int TrickCustomersComeAlone => (int)ReferenceUnlockCard.TrickCustomersComeAlone;
+		public static int TrickCustomersComeAlone => (int)_UnlockCardReferences.TrickCustomersComeAlone;
 
-		public static int TrickCustomersLeavingStartFires => (int)ReferenceUnlockCard.TrickCustomersLeavingStartFires;
+		public static int TrickCustomersLeavingStartFires => (int)_UnlockCardReferences.TrickCustomersLeavingStartFires;
 
-		public static int TrickCustomersLessPatienceAtNight => (int)ReferenceUnlockCard.TrickCustomersLessPatienceAtNight;
+		public static int TrickCustomersLessPatienceAtNight => (int)_UnlockCardReferences.TrickCustomersLessPatienceAtNight;
 
-		public static int TrickCustomersMaxSize => (int)ReferenceUnlockCard.TrickCustomersMaxSize;
+		public static int TrickCustomersMaxSize => (int)_UnlockCardReferences.TrickCustomersMaxSize;
 
-		public static int TrickOneTableMax => (int)ReferenceUnlockCard.TrickOneTableMax;
+		public static int TrickOneTableMax => (int)_UnlockCardReferences.TrickOneTableMax;
 
-		public static int TrickPlayersSwapPlacesRandomly => (int)ReferenceUnlockCard.TrickPlayersSwapPlacesRandomly;
+		public static int TrickPlayersSwapPlacesRandomly => (int)_UnlockCardReferences.TrickPlayersSwapPlacesRandomly;
 
-		public static int TrickPlayersWearSlippers => (int)ReferenceUnlockCard.TrickPlayersWearSlippers;
+		public static int TrickPlayersWearSlippers => (int)_UnlockCardReferences.TrickPlayersWearSlippers;
 
-		public static int TrickQueuePatienceStays => (int)ReferenceUnlockCard.TrickQueuePatienceStays;
+		public static int TrickQueuePatienceStays => (int)_UnlockCardReferences.TrickQueuePatienceStays;
 
-		public static int TrickRandomOrderSatisfaction => (int)ReferenceUnlockCard.TrickRandomOrderSatisfaction;
+		public static int TrickRandomOrderSatisfaction => (int)_UnlockCardReferences.TrickRandomOrderSatisfaction;
 
-		public static int TrickResearchCausesFire => (int)ReferenceUnlockCard.TrickResearchCausesFire;
+		public static int TrickResearchCausesFire => (int)_UnlockCardReferences.TrickResearchCausesFire;
 
-		public static int TrickResetMoneyEachDay => (int)ReferenceUnlockCard.TrickResetMoneyEachDay;
+		public static int TrickResetMoneyEachDay => (int)_UnlockCardReferences.TrickResetMoneyEachDay;
 
-		public static int TrickSlowConveyors => (int)ReferenceUnlockCard.TrickSlowConveyors;
+		public static int TrickSlowConveyors => (int)_UnlockCardReferences.TrickSlowConveyors;
 
-		public static int TrickSlowPlayersThroughDay => (int)ReferenceUnlockCard.TrickSlowPlayersThroughDay;
+		public static int TrickSlowPlayersThroughDay => (int)_UnlockCardReferences.TrickSlowPlayersThroughDay;
 
-		public static int JanuaryRedEnvelopes => (int)ReferenceUnlockCard.JanuaryRedEnvelopes;
+		public static int JanuaryRedEnvelopes => (int)_UnlockCardReferences.JanuaryRedEnvelopes;
 
-		public static int ExtraCoffee => (int)ReferenceUnlockCard.ExtraCoffee;
+		public static int ExtraCoffee => (int)_UnlockCardReferences.ExtraCoffee;
 
-		public static int SlowBrewCoffee => (int)ReferenceUnlockCard.SlowBrewCoffee;
+		public static int SlowBrewCoffee => (int)_UnlockCardReferences.SlowBrewCoffee;
 
-		public static int CoffeeshopMode => (int)ReferenceUnlockCard.CoffeeshopMode;
+		public static int CoffeeshopMode => (int)_UnlockCardReferences.CoffeeshopMode;
 
-		public static int TurboMode => (int)ReferenceUnlockCard.TurboMode;
+		public static int TurboMode => (int)_UnlockCardReferences.TurboMode;
 
-		public static int NovemberTableSizeIncrease => (int)ReferenceUnlockCard.NovemberTableSizeIncrease;
+		public static int NovemberTableSizeIncrease => (int)_UnlockCardReferences.NovemberTableSizeIncrease;
 
-		public static int AllYouCanEatIncrease => (int)ReferenceUnlockCard.AllYouCanEatIncrease;
+		public static int AllYouCanEatIncrease => (int)_UnlockCardReferences.AllYouCanEatIncrease;
 
-		public static int AllYouCanEat => (int)ReferenceUnlockCard.AllYouCanEat;
+		public static int AllYouCanEat => (int)_UnlockCardReferences.AllYouCanEat;
 
-		public static int ChangeOrdersAfterOrdering => (int)ReferenceUnlockCard.ChangeOrdersAfterOrdering;
+		public static int ChangeOrdersAfterOrdering => (int)_UnlockCardReferences.ChangeOrdersAfterOrdering;
 
-		public static int ClosingTime => (int)ReferenceUnlockCard.ClosingTime;
+		public static int ClosingTime => (int)_UnlockCardReferences.ClosingTime;
 
-		public static int CustomersEatSlowly => (int)ReferenceUnlockCard.CustomersEatSlowly;
+		public static int CustomersEatSlowly => (int)_UnlockCardReferences.CustomersEatSlowly;
 
-		public static int CustomersRequireWalking => (int)ReferenceUnlockCard.CustomersRequireWalking;
+		public static int CustomersRequireWalking => (int)_UnlockCardReferences.CustomersRequireWalking;
 
-		public static int DinnerRush => (int)ReferenceUnlockCard.DinnerRush;
+		public static int DinnerRush => (int)_UnlockCardReferences.DinnerRush;
 
-		public static int FlexibleDining => (int)ReferenceUnlockCard.FlexibleDining;
+		public static int FlexibleDining => (int)_UnlockCardReferences.FlexibleDining;
 
-		public static int IndividualDining => (int)ReferenceUnlockCard.IndividualDining;
+		public static int IndividualDining => (int)_UnlockCardReferences.IndividualDining;
 
-		public static int LargeGroups => (int)ReferenceUnlockCard.LargeGroups;
+		public static int LargeGroups => (int)_UnlockCardReferences.LargeGroups;
 
-		public static int MediumGroups => (int)ReferenceUnlockCard.MediumGroups;
+		public static int MediumGroups => (int)_UnlockCardReferences.MediumGroups;
 
-		public static int HiddenOrders => (int)ReferenceUnlockCard.HiddenOrders;
+		public static int HiddenOrders => (int)_UnlockCardReferences.HiddenOrders;
 
-		public static int HiddenPatience => (int)ReferenceUnlockCard.HiddenPatience;
+		public static int HiddenPatience => (int)_UnlockCardReferences.HiddenPatience;
 
-		public static int HiddenProcesses => (int)ReferenceUnlockCard.HiddenProcesses;
+		public static int HiddenProcesses => (int)_UnlockCardReferences.HiddenProcesses;
 
-		public static int InstantOrders => (int)ReferenceUnlockCard.InstantOrders;
+		public static int InstantOrders => (int)_UnlockCardReferences.InstantOrders;
 
-		public static int LessMoney => (int)ReferenceUnlockCard.LessMoney;
+		public static int LessMoney => (int)_UnlockCardReferences.LessMoney;
 
-		public static int LosePatienceInView => (int)ReferenceUnlockCard.LosePatienceInView;
+		public static int LosePatienceInView => (int)_UnlockCardReferences.LosePatienceInView;
 
-		public static int LunchRush => (int)ReferenceUnlockCard.LunchRush;
+		public static int LunchRush => (int)_UnlockCardReferences.LunchRush;
 
-		public static int MessRangeIncrease => (int)ReferenceUnlockCard.MessRangeIncrease;
+		public static int MessRangeIncrease => (int)_UnlockCardReferences.MessRangeIncrease;
 
-		public static int MessyCustomers => (int)ReferenceUnlockCard.MessyCustomers;
+		public static int MessyCustomers => (int)_UnlockCardReferences.MessyCustomers;
 
-		public static int MoreCustomers2 => (int)ReferenceUnlockCard.MoreCustomers2;
+		public static int MoreCustomers2 => (int)_UnlockCardReferences.MoreCustomers2;
 
-		public static int MoreCustomers => (int)ReferenceUnlockCard.MoreCustomers;
+		public static int MoreCustomers => (int)_UnlockCardReferences.MoreCustomers;
 
-		public static int MorningRush => (int)ReferenceUnlockCard.MorningRush;
+		public static int MorningRush => (int)_UnlockCardReferences.MorningRush;
 
-		public static int OneUpgradePerDay => (int)ReferenceUnlockCard.OneUpgradePerDay;
+		public static int OneUpgradePerDay => (int)_UnlockCardReferences.OneUpgradePerDay;
 
-		public static int PatienceDecrease => (int)ReferenceUnlockCard.PatienceDecrease;
+		public static int PatienceDecrease => (int)_UnlockCardReferences.PatienceDecrease;
 
-		public static int QuickerBurning => (int)ReferenceUnlockCard.QuickerBurning;
+		public static int QuickerBurning => (int)_UnlockCardReferences.QuickerBurning;
 
-		public static int SlowProcesses => (int)ReferenceUnlockCard.SlowProcesses;
+		public static int SlowProcesses => (int)_UnlockCardReferences.SlowProcesses;
 
-		public static int Affordable => (int)ReferenceUnlockCard.Affordable;
+		public static int Affordable => (int)_UnlockCardReferences.Affordable;
 
-		public static int Charming => (int)ReferenceUnlockCard.Charming;
+		public static int Charming => (int)_UnlockCardReferences.Charming;
 
-		public static int Exclusive => (int)ReferenceUnlockCard.Exclusive;
+		public static int Exclusive => (int)_UnlockCardReferences.Exclusive;
 
-		public static int Formal => (int)ReferenceUnlockCard.Formal;
+		public static int Formal => (int)_UnlockCardReferences.Formal;
 
-		public static int FranchiseNewDish0 => (int)ReferenceUnlockCard.FranchiseNewDish0;
+		public static int FranchiseNewDish0 => (int)_UnlockCardReferences.FranchiseNewDish0;
 
-		public static int FranchiseNewDish1 => (int)ReferenceUnlockCard.FranchiseNewDish1;
+		public static int FranchiseNewDish1 => (int)_UnlockCardReferences.FranchiseNewDish1;
 
-		public static int FranchiseNewDish2 => (int)ReferenceUnlockCard.FranchiseNewDish2;
+		public static int FranchiseNewDish2 => (int)_UnlockCardReferences.FranchiseNewDish2;
 
-		public static int FranchiseNewDish3 => (int)ReferenceUnlockCard.FranchiseNewDish3;
+		public static int FranchiseNewDish3 => (int)_UnlockCardReferences.FranchiseNewDish3;
 
-		public static int FranchiseNewDish4 => (int)ReferenceUnlockCard.FranchiseNewDish4;
+		public static int FranchiseNewDish4 => (int)_UnlockCardReferences.FranchiseNewDish4;
 
-		public static int FranchiseNewDish5 => (int)ReferenceUnlockCard.FranchiseNewDish5;
+		public static int FranchiseNewDish5 => (int)_UnlockCardReferences.FranchiseNewDish5;
 
-		public static int FranchiseBonusMoney => (int)ReferenceUnlockCard.FranchiseBonusMoney;
+		public static int FranchiseBonusMoney => (int)_UnlockCardReferences.FranchiseBonusMoney;
 
-		public static int FranchiseFlatBonusMoney => (int)ReferenceUnlockCard.FranchiseFlatBonusMoney;
+		public static int FranchiseFlatBonusMoney => (int)_UnlockCardReferences.FranchiseFlatBonusMoney;
 
-		public static int FranchiseStartingBonusGrabber => (int)ReferenceUnlockCard.FranchiseStartingBonusGrabber;
+		public static int FranchiseStartingBonusGrabber => (int)_UnlockCardReferences.FranchiseStartingBonusGrabber;
 
-		public static int FranchiseStartingBonusLargeSink => (int)ReferenceUnlockCard.FranchiseStartingBonusLargeSink;
+		public static int FranchiseStartingBonusLargeSink => (int)_UnlockCardReferences.FranchiseStartingBonusLargeSink;
 
-		public static int FranchiseStartingBonusMoney => (int)ReferenceUnlockCard.FranchiseStartingBonusMoney;
+		public static int FranchiseStartingBonusMoney => (int)_UnlockCardReferences.FranchiseStartingBonusMoney;
 
-		public static int FranchiseLivesRefresh => (int)ReferenceUnlockCard.FranchiseLivesRefresh;
+		public static int FranchiseLivesRefresh => (int)_UnlockCardReferences.FranchiseLivesRefresh;
 
-		public static int FranchisePrepTime => (int)ReferenceUnlockCard.FranchisePrepTime;
+		public static int FranchisePrepTime => (int)_UnlockCardReferences.FranchisePrepTime;
 
-		public static int FranchiseDoubleBlueprintDesks => (int)ReferenceUnlockCard.FranchiseDoubleBlueprintDesks;
+		public static int FranchiseDoubleBlueprintDesks => (int)_UnlockCardReferences.FranchiseDoubleBlueprintDesks;
 
-		public static int FranchiseExtraShopBlueprint => (int)ReferenceUnlockCard.FranchiseExtraShopBlueprint;
+		public static int FranchiseExtraShopBlueprint => (int)_UnlockCardReferences.FranchiseExtraShopBlueprint;
 
-		public static int FranchiseGlobalDiscount => (int)ReferenceUnlockCard.FranchiseGlobalDiscount;
+		public static int FranchiseGlobalDiscount => (int)_UnlockCardReferences.FranchiseGlobalDiscount;
 
-		public static int FranchiseRandomShopPrices => (int)ReferenceUnlockCard.FranchiseRandomShopPrices;
+		public static int FranchiseRandomShopPrices => (int)_UnlockCardReferences.FranchiseRandomShopPrices;
 
-		public static int FranchiseRandomStartingBlueprint => (int)ReferenceUnlockCard.FranchiseRandomStartingBlueprint;
+		public static int FranchiseRandomStartingBlueprint => (int)_UnlockCardReferences.FranchiseRandomStartingBlueprint;
 
-		public static int FranchiseRebuyBlueprintChance => (int)ReferenceUnlockCard.FranchiseRebuyBlueprintChance;
+		public static int FranchiseRebuyBlueprintChance => (int)_UnlockCardReferences.FranchiseRebuyBlueprintChance;
 
-		public static int FranchiseShopItemsRefresh => (int)ReferenceUnlockCard.FranchiseShopItemsRefresh;
+		public static int FranchiseShopItemsRefresh => (int)_UnlockCardReferences.FranchiseShopItemsRefresh;
 
-		public static int FranchiseUpgradedShopChance => (int)ReferenceUnlockCard.FranchiseUpgradedShopChance;
+		public static int FranchiseUpgradedShopChance => (int)_UnlockCardReferences.FranchiseUpgradedShopChance;
 
-		public static int FranchiseStapleBelt => (int)ReferenceUnlockCard.FranchiseStapleBelt;
+		public static int FranchiseStapleBelt => (int)_UnlockCardReferences.FranchiseStapleBelt;
 
-		public static int FranchiseStapleCoffeeTable => (int)ReferenceUnlockCard.FranchiseStapleCoffeeTable;
+		public static int FranchiseStapleCoffeeTable => (int)_UnlockCardReferences.FranchiseStapleCoffeeTable;
 
-		public static int FranchiseStapleFloorProtector => (int)ReferenceUnlockCard.FranchiseStapleFloorProtector;
+		public static int FranchiseStapleFloorProtector => (int)_UnlockCardReferences.FranchiseStapleFloorProtector;
 
-		public static int FranchiseStapleFlowers => (int)ReferenceUnlockCard.FranchiseStapleFlowers;
+		public static int FranchiseStapleFlowers => (int)_UnlockCardReferences.FranchiseStapleFlowers;
 
-		public static int FranchiseStapleMetalTable => (int)ReferenceUnlockCard.FranchiseStapleMetalTable;
+		public static int FranchiseStapleMetalTable => (int)_UnlockCardReferences.FranchiseStapleMetalTable;
 
-		public static int FranchiseStapleSimpleClothTable => (int)ReferenceUnlockCard.FranchiseStapleSimpleClothTable;
+		public static int FranchiseStapleSimpleClothTable => (int)_UnlockCardReferences.FranchiseStapleSimpleClothTable;
 
-		public static int OldFranchiseAddDish => (int)ReferenceUnlockCard.OldFranchiseAddDish;
+		public static int OldFranchiseAddDish => (int)_UnlockCardReferences.OldFranchiseAddDish;
 
-		public static int OldFranchiseCustomerBoost => (int)ReferenceUnlockCard.OldFranchiseCustomerBoost;
+		public static int OldFranchiseCustomerBoost => (int)_UnlockCardReferences.OldFranchiseCustomerBoost;
 
-		public static int OldFranchiseLargerGroups => (int)ReferenceUnlockCard.OldFranchiseLargerGroups;
+		public static int OldFranchiseLargerGroups => (int)_UnlockCardReferences.OldFranchiseLargerGroups;
 
-		public static int OldFranchiseLessMoney => (int)ReferenceUnlockCard.OldFranchiseLessMoney;
+		public static int OldFranchiseLessMoney => (int)_UnlockCardReferences.OldFranchiseLessMoney;
 
-		public static int OldFranchiseOneUpgradePerDay => (int)ReferenceUnlockCard.OldFranchiseOneUpgradePerDay;
+		public static int OldFranchiseOneUpgradePerDay => (int)_UnlockCardReferences.OldFranchiseOneUpgradePerDay;
 
-		public static int OldFranchiseQuickerBurning => (int)ReferenceUnlockCard.OldFranchiseQuickerBurning;
+		public static int OldFranchiseQuickerBurning => (int)_UnlockCardReferences.OldFranchiseQuickerBurning;
 
-		public static int OldFranchiseSlowProcesses => (int)ReferenceUnlockCard.OldFranchiseSlowProcesses;
+		public static int OldFranchiseSlowProcesses => (int)_UnlockCardReferences.OldFranchiseSlowProcesses;
 
-		public static int OldFranchise1AddDish => (int)ReferenceUnlockCard.OldFranchise1AddDish;
+		public static int OldFranchise1AddDish => (int)_UnlockCardReferences.OldFranchise1AddDish;
 
-		public static int OldFranchise1CustomerBoost => (int)ReferenceUnlockCard.OldFranchise1CustomerBoost;
+		public static int OldFranchise1CustomerBoost => (int)_UnlockCardReferences.OldFranchise1CustomerBoost;
 
-		public static int OldFranchise1PatienceDecrease => (int)ReferenceUnlockCard.OldFranchise1PatienceDecrease;
+		public static int OldFranchise1PatienceDecrease => (int)_UnlockCardReferences.OldFranchise1PatienceDecrease;
 
-		public static int OldFranchise2AddDish => (int)ReferenceUnlockCard.OldFranchise2AddDish;
+		public static int OldFranchise2AddDish => (int)_UnlockCardReferences.OldFranchise2AddDish;
 
-		public static int OldFranchise2CustomerBoost => (int)ReferenceUnlockCard.OldFranchise2CustomerBoost;
+		public static int OldFranchise2CustomerBoost => (int)_UnlockCardReferences.OldFranchise2CustomerBoost;
 
-		public static int OldFranchise2PatienceDecrease => (int)ReferenceUnlockCard.OldFranchise2PatienceDecrease;
+		public static int OldFranchise2PatienceDecrease => (int)_UnlockCardReferences.OldFranchise2PatienceDecrease;
 
 	}
-	public enum ReferenceUnlockCard
+	internal enum _UnlockCardReferences
 	{
 		ChristmasConveyors = -361249036,
 
@@ -5132,46 +5132,46 @@ namespace KitchenLib.References
 	}
 	public class UnlockPackReferences
 	{
-		public static int ChristmasPack => (int)ReferenceUnlockPack.ChristmasPack;
+		public static int ChristmasPack => (int)_UnlockPackReferences.ChristmasPack;
 
-		public static int ChristmasSpecialCard => (int)ReferenceUnlockPack.ChristmasSpecialCard;
+		public static int ChristmasSpecialCard => (int)_UnlockPackReferences.ChristmasSpecialCard;
 
-		public static int DefaultCompositePack => (int)ReferenceUnlockPack.DefaultCompositePack;
+		public static int DefaultCompositePack => (int)_UnlockPackReferences.DefaultCompositePack;
 
-		public static int FebruaryPack => (int)ReferenceUnlockPack.FebruaryPack;
+		public static int FebruaryPack => (int)_UnlockPackReferences.FebruaryPack;
 
-		public static int FebruarySpecialCard => (int)ReferenceUnlockPack.FebruarySpecialCard;
+		public static int FebruarySpecialCard => (int)_UnlockPackReferences.FebruarySpecialCard;
 
-		public static int HalloweenPack => (int)ReferenceUnlockPack.HalloweenPack;
+		public static int HalloweenPack => (int)_UnlockPackReferences.HalloweenPack;
 
-		public static int JanuaryCards => (int)ReferenceUnlockPack.JanuaryCards;
+		public static int JanuaryCards => (int)_UnlockPackReferences.JanuaryCards;
 
-		public static int JanuaryPack => (int)ReferenceUnlockPack.JanuaryPack;
+		public static int JanuaryPack => (int)_UnlockPackReferences.JanuaryPack;
 
-		public static int JuneCards => (int)ReferenceUnlockPack.JuneCards;
+		public static int JuneCards => (int)_UnlockPackReferences.JuneCards;
 
-		public static int JunePack => (int)ReferenceUnlockPack.JunePack;
+		public static int JunePack => (int)_UnlockPackReferences.JunePack;
 
-		public static int MarchCards => (int)ReferenceUnlockPack.MarchCards;
+		public static int MarchCards => (int)_UnlockPackReferences.MarchCards;
 
-		public static int MarchPack => (int)ReferenceUnlockPack.MarchPack;
+		public static int MarchPack => (int)_UnlockPackReferences.MarchPack;
 
-		public static int AutumnDishCards => (int)ReferenceUnlockPack.AutumnDishCards;
+		public static int AutumnDishCards => (int)_UnlockPackReferences.AutumnDishCards;
 
-		public static int AutumnPack => (int)ReferenceUnlockPack.AutumnPack;
+		public static int AutumnPack => (int)_UnlockPackReferences.AutumnPack;
 
-		public static int AutumnSpecialCard => (int)ReferenceUnlockPack.AutumnSpecialCard;
+		public static int AutumnSpecialCard => (int)_UnlockPackReferences.AutumnSpecialCard;
 
-		public static int FranchiseCardsPack => (int)ReferenceUnlockPack.FranchiseCardsPack;
+		public static int FranchiseCardsPack => (int)_UnlockPackReferences.FranchiseCardsPack;
 
-		public static int HalloweenCards => (int)ReferenceUnlockPack.HalloweenCards;
+		public static int HalloweenCards => (int)_UnlockPackReferences.HalloweenCards;
 
-		public static int NormalCardsPack => (int)ReferenceUnlockPack.NormalCardsPack;
+		public static int NormalCardsPack => (int)_UnlockPackReferences.NormalCardsPack;
 
-		public static int ThemeCardsPack => (int)ReferenceUnlockPack.ThemeCardsPack;
+		public static int ThemeCardsPack => (int)_UnlockPackReferences.ThemeCardsPack;
 
 	}
-	public enum ReferenceUnlockPack
+	internal enum _UnlockPackReferences
 	{
 		ChristmasPack = 1370599169,
 
@@ -5214,18 +5214,18 @@ namespace KitchenLib.References
 	}
 	public class WorkshopRecipeReferences
 	{
-		public static int SameReshuffle2 => (int) ReferenceWorkshopRecipe.SameReshuffle2;
+		public static int SameReshuffle2 => (int) _WorkshopRecipeReferences.SameReshuffle2;
 
-        public static int UpgradedintoKit2 => (int) ReferenceWorkshopRecipe.UpgradedintoKit2;
+        public static int UpgradedintoKit2 => (int) _WorkshopRecipeReferences.UpgradedintoKit2;
 
-        public static int AnyRandom3 => (int) ReferenceWorkshopRecipe.AnyRandom3;
+        public static int AnyRandom3 => (int) _WorkshopRecipeReferences.AnyRandom3;
 
-        public static int SameReshuffle3 => (int) ReferenceWorkshopRecipe.SameReshuffle3;
+        public static int SameReshuffle3 => (int) _WorkshopRecipeReferences.SameReshuffle3;
 
-        public static int UseUpgradeKit => (int)ReferenceWorkshopRecipe.UseUpgradeKit;
+        public static int UseUpgradeKit => (int)_WorkshopRecipeReferences.UseUpgradeKit;
 
 	}
-	public enum ReferenceWorkshopRecipe
+	internal enum _WorkshopRecipeReferences
 	{
         SameReshuffle2 = 1792697580,
 
@@ -5240,16 +5240,16 @@ namespace KitchenLib.References
 	}
 	public class CustomerTypeReferences
 	{
-		public static int Couple => (int)ReferenceCustomerType.Couple;
+		public static int Couple => (int)_CustomerTypeReferences.Couple;
 
-		public static int DoubleDates => (int)ReferenceCustomerType.DoubleDates;
+		public static int DoubleDates => (int)_CustomerTypeReferences.DoubleDates;
 
-		public static int FirstDate => (int)ReferenceCustomerType.FirstDate;
+		public static int FirstDate => (int)_CustomerTypeReferences.FirstDate;
 
-		public static int GenericCustomer => (int)ReferenceCustomerType.GenericCustomer;
+		public static int GenericCustomer => (int)_CustomerTypeReferences.GenericCustomer;
 
 	}
-	public enum ReferenceCustomerType
+	internal enum _CustomerTypeReferences
 	{
 		Couple = -1011723507,
 
@@ -5262,28 +5262,28 @@ namespace KitchenLib.References
 	}
 	public class RestaurantSettingReferences
 	{
-		public static int SantaWorkshopSetting => (int)ReferenceRestaurantSetting.SantaWorkshopSetting;
+		public static int SantaWorkshopSetting => (int)_RestaurantSettingReferences.SantaWorkshopSetting;
 
-		public static int FebruarySetting => (int)ReferenceRestaurantSetting.FebruarySetting;
+		public static int FebruarySetting => (int)_RestaurantSettingReferences.FebruarySetting;
 
-		public static int JanuarySetting => (int)ReferenceRestaurantSetting.JanuarySetting;
+		public static int JanuarySetting => (int)_RestaurantSettingReferences.JanuarySetting;
 
-		public static int JuneSettingCoffeeshop => (int)ReferenceRestaurantSetting.JuneSettingCoffeeshop;
+		public static int JuneSettingCoffeeshop => (int)_RestaurantSettingReferences.JuneSettingCoffeeshop;
 
-		public static int MarchSettingTurbo => (int)ReferenceRestaurantSetting.MarchSettingTurbo;
+		public static int MarchSettingTurbo => (int)_RestaurantSettingReferences.MarchSettingTurbo;
 
-		public static int Autumn => (int)ReferenceRestaurantSetting.Autumn;
+		public static int Autumn => (int)_RestaurantSettingReferences.Autumn;
 
-		public static int Alpine => (int)ReferenceRestaurantSetting.Alpine;
+		public static int Alpine => (int)_RestaurantSettingReferences.Alpine;
 
-		public static int City => (int)ReferenceRestaurantSetting.City;
+		public static int City => (int)_RestaurantSettingReferences.City;
 
-		public static int Country => (int)ReferenceRestaurantSetting.Country;
+		public static int Country => (int)_RestaurantSettingReferences.Country;
 
-		public static int Halloween => (int)ReferenceRestaurantSetting.Halloween;
+		public static int Halloween => (int)_RestaurantSettingReferences.Halloween;
 
 	}
-	public enum ReferenceRestaurantSetting
+	internal enum _RestaurantSettingReferences
 	{
 		SantaWorkshopSetting = -851159532,
 

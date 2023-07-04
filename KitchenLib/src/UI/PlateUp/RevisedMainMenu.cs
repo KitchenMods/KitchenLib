@@ -15,6 +15,14 @@ namespace KitchenLib.UI
 		public override void Setup(int player_id)
 		{
 			ProfileManager.Main.Load();
+			if (Main.MOD_BETA_VERSION != "")
+			{
+				AddLabel("!!BETA WARNING!!");
+				AddInfo("You are running a beta version of KitchebLib");
+				AddInfo("There will be bugs, this is for TESTING PURPOSES");
+				New<SpacerElement>(true);
+				New<SpacerElement>(true);
+			}
 
 			AddSubmenuButton(GameData.Main.GlobalLocalisation["MAIN_MENU_SINGLEPLAYER"], typeof(SingleplayerMainMenu), false);
 			AddSubmenuButton(GameData.Main.GlobalLocalisation["MAIN_MENU_MULTIPLAYER"], typeof(MultiplayerMainMenu), false);
