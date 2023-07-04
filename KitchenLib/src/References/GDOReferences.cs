@@ -638,16 +638,6 @@ namespace KitchenLib.References
 
 		public static int UpgradeKit => (int)ReferenceAppliance.UpgradeKit;
 
-		public static int swimingsushiAvocadoProvider => (int)ReferenceAppliance.swimingsushiAvocadoProvider;
-
-		public static int swimingsushiSalmonProvider => (int)ReferenceAppliance.swimingsushiSalmonProvider;
-
-		public static int swimingsushiCrabProvider => (int)ReferenceAppliance.swimingsushiCrabProvider;
-
-		public static int swimingsushiWasabi_Plant => (int)ReferenceAppliance.swimingsushiWasabi_Plant;
-
-		public static int swimingsushiRoe_Provider => (int)ReferenceAppliance.swimingsushiRoe_Provider;
-
 		public static int kitchenlibSyncModsViewHolder => (int)ReferenceAppliance.kitchenlibSyncModsViewHolder;
 
 	}
@@ -1289,16 +1279,6 @@ namespace KitchenLib.References
 
 		UpgradeKit = -26827118,
 
-		swimingsushiAvocadoProvider = 1870817125,
-
-		swimingsushiSalmonProvider = -319252908,
-
-		swimingsushiCrabProvider = -2116785228,
-
-		swimingsushiWasabi_Plant = -153121929,
-
-		swimingsushiRoe_Provider = 1823916328,
-
 		kitchenlibSyncModsViewHolder = -1995745069,
 
 	}
@@ -1680,24 +1660,6 @@ namespace KitchenLib.References
 
 		public static int TurkeyBase => (int)ReferenceDish.TurkeyBase;
 
-		public static int swimingsushiSushi_Avocado_Fish_Plated_Dish => (int)ReferenceDish.swimingsushiSushi_Avocado_Fish_Plated_Dish;
-
-		public static int swimingsushiSushi_Crab_Mayo_Plated_Dish => (int)ReferenceDish.swimingsushiSushi_Crab_Mayo_Plated_Dish;
-
-		public static int swimingsushiSushi_Soy_Sauce => (int)ReferenceDish.swimingsushiSushi_Soy_Sauce;
-
-		public static int swimingsushiWasabi_Side => (int)ReferenceDish.swimingsushiWasabi_Side;
-
-		public static int swimingsushiNigiri_Dish => (int)ReferenceDish.swimingsushiNigiri_Dish;
-
-		public static int swimingsushiDouble_Nigiri_Dish => (int)ReferenceDish.swimingsushiDouble_Nigiri_Dish;
-
-		public static int swimingsushiMega_Nigiri_Dish => (int)ReferenceDish.swimingsushiMega_Nigiri_Dish;
-
-		public static int swimingsushiOnigiri_Dish => (int)ReferenceDish.swimingsushiOnigiri_Dish;
-
-		public static int swimingsushiGunkan_Maki_Dish => (int)ReferenceDish.swimingsushiGunkan_Maki_Dish;
-
 	}
 	public enum ReferenceDish
 	{
@@ -1870,24 +1832,6 @@ namespace KitchenLib.References
 		Waffles = -1409566802,
 
 		TurkeyBase = 1551533879,
-
-		swimingsushiSushi_Avocado_Fish_Plated_Dish = 1567541530,
-
-		swimingsushiSushi_Crab_Mayo_Plated_Dish = 1778741489,
-
-		swimingsushiSushi_Soy_Sauce = -1259120644,
-
-		swimingsushiWasabi_Side = 432652410,
-
-		swimingsushiNigiri_Dish = 1571932313,
-
-		swimingsushiDouble_Nigiri_Dish = 2035802465,
-
-		swimingsushiMega_Nigiri_Dish = 1820196604,
-
-		swimingsushiOnigiri_Dish = 1764127365,
-
-		swimingsushiGunkan_Maki_Dish = 1873321387,
 
 	}
 	public class EffectReferences
@@ -2576,76 +2520,6 @@ namespace KitchenLib.References
 
 		public static int ResearchFlask => (int)ReferenceItem.ResearchFlask;
 
-		public static int swimingsushiAvocado => (int)ReferenceItem.swimingsushiAvocado;
-
-		public static int swimingsushiChoppedAvocado => (int)ReferenceItem.swimingsushiChoppedAvocado;
-
-		public static int swimingsushinorisheet => (int)ReferenceItem.swimingsushinorisheet;
-
-		public static int swimingsushiPlainSushi_Unrolled => (int)ReferenceItem.swimingsushiPlainSushi_Unrolled;
-
-		public static int swimingsushiSushi_Avocado_Fish_Unrolled => (int)ReferenceItem.swimingsushiSushi_Avocado_Fish_Unrolled;
-
-		public static int swimingsushiSushi_Avocado_Fish_Rolled => (int)ReferenceItem.swimingsushiSushi_Avocado_Fish_Rolled;
-
-		public static int swimingsushiSushi_Avocado_Fish_Cut => (int)ReferenceItem.swimingsushiSushi_Avocado_Fish_Cut;
-
-		public static int swimingsushiSushi_Avocado_Fish_Split => (int)ReferenceItem.swimingsushiSushi_Avocado_Fish_Split;
-
-		public static int swimingsushiSushi_Avocado_Fish_Plated => (int)ReferenceItem.swimingsushiSushi_Avocado_Fish_Plated;
-
-		public static int swimingsushiSushi_Crab_Mayo_Unrolled => (int)ReferenceItem.swimingsushiSushi_Crab_Mayo_Unrolled;
-
-		public static int swimingsushiSushi_Crab_Mayo_Rolled => (int)ReferenceItem.swimingsushiSushi_Crab_Mayo_Rolled;
-
-		public static int swimingsushiSushi_Crab_Mayo_Cut => (int)ReferenceItem.swimingsushiSushi_Crab_Mayo_Cut;
-
-		public static int swimingsushiSushi_Crab_Mayo_Split => (int)ReferenceItem.swimingsushiSushi_Crab_Mayo_Split;
-
-		public static int swimingsushiSushi_Crab_Mayo_Plated => (int)ReferenceItem.swimingsushiSushi_Crab_Mayo_Plated;
-
-		public static int swimingsushiWasabi => (int)ReferenceItem.swimingsushiWasabi;
-
-		public static int swimingsushiNigiri => (int)ReferenceItem.swimingsushiNigiri;
-
-		public static int swimingsushiNigiri_Plated => (int)ReferenceItem.swimingsushiNigiri_Plated;
-
-		public static int swimingsushiDouble_Nigiri => (int)ReferenceItem.swimingsushiDouble_Nigiri;
-
-		public static int swimingsushiDouble_Nigiri_Plated => (int)ReferenceItem.swimingsushiDouble_Nigiri_Plated;
-
-		public static int swimingsushiMega_Rice_Tier1 => (int)ReferenceItem.swimingsushiMega_Rice_Tier1;
-
-		public static int swimingsushiMega_Rice_Tier2 => (int)ReferenceItem.swimingsushiMega_Rice_Tier2;
-
-		public static int swimingsushiCooked_Mega_Rice => (int)ReferenceItem.swimingsushiCooked_Mega_Rice;
-
-		public static int swimingsushiMega_Nigiri => (int)ReferenceItem.swimingsushiMega_Nigiri;
-
-		public static int swimingsushiMega_Nigiri_Plated => (int)ReferenceItem.swimingsushiMega_Nigiri_Plated;
-
-		public static int swimingsushiRice_Pot => (int)ReferenceItem.swimingsushiRice_Pot;
-
-		public static int swimingsushiCooked_Rice_Pot => (int)ReferenceItem.swimingsushiCooked_Rice_Pot;
-
-		public static int swimingsushiRice_Cooked => (int)ReferenceItem.swimingsushiRice_Cooked;
-
-		public static int swimingsushiRice_Ball => (int)ReferenceItem.swimingsushiRice_Ball;
-
-		public static int swimingsushiOnigiri => (int)ReferenceItem.swimingsushiOnigiri;
-
-		public static int swimingsushiOnigiri_Plated => (int)ReferenceItem.swimingsushiOnigiri_Plated;
-
-		public static int swimingsushiRoe => (int)ReferenceItem.swimingsushiRoe;
-
-		public static int swimingsushiGunkan_Maki => (int)ReferenceItem.swimingsushiGunkan_Maki;
-
-		public static int swimingsushiGunkan_Maki_Plated => (int)ReferenceItem.swimingsushiGunkan_Maki_Plated;
-
-		public static int swimingsushiSalmon => (int)ReferenceItem.swimingsushiSalmon;
-
-		public static int swimingsushiSalmon_Sliced => (int)ReferenceItem.swimingsushiSalmon_Sliced;
-
 	}
 	public enum ReferenceItem
 	{
@@ -3271,76 +3145,6 @@ namespace KitchenLib.References
 
 		ResearchFlask = 56610526,
 
-		swimingsushiAvocado = -625126475,
-
-		swimingsushiChoppedAvocado = -1123404911,
-
-		swimingsushinorisheet = 2044553603,
-
-		swimingsushiPlainSushi_Unrolled = 2109331404,
-
-		swimingsushiSushi_Avocado_Fish_Unrolled = -1254612844,
-
-		swimingsushiSushi_Avocado_Fish_Rolled = -923795405,
-
-		swimingsushiSushi_Avocado_Fish_Cut = -408053329,
-
-		swimingsushiSushi_Avocado_Fish_Split = 347846967,
-
-		swimingsushiSushi_Avocado_Fish_Plated = -907021747,
-
-		swimingsushiSushi_Crab_Mayo_Unrolled = 451074268,
-
-		swimingsushiSushi_Crab_Mayo_Rolled = -2100749547,
-
-		swimingsushiSushi_Crab_Mayo_Cut = 1343777199,
-
-		swimingsushiSushi_Crab_Mayo_Split = 547460382,
-
-		swimingsushiSushi_Crab_Mayo_Plated = -1794353172,
-
-		swimingsushiWasabi = -1105739952,
-
-		swimingsushiNigiri = -1782245397,
-
-		swimingsushiNigiri_Plated = -970040073,
-
-		swimingsushiDouble_Nigiri = 653391837,
-
-		swimingsushiDouble_Nigiri_Plated = 511674622,
-
-		swimingsushiMega_Rice_Tier1 = -264540132,
-
-		swimingsushiMega_Rice_Tier2 = -1479257225,
-
-		swimingsushiCooked_Mega_Rice = 1245747523,
-
-		swimingsushiMega_Nigiri = 384340883,
-
-		swimingsushiMega_Nigiri_Plated = 488917025,
-
-		swimingsushiRice_Pot = 1238557031,
-
-		swimingsushiCooked_Rice_Pot = 507067340,
-
-		swimingsushiRice_Cooked = 352885335,
-
-		swimingsushiRice_Ball = -644830191,
-
-		swimingsushiOnigiri = 1370521627,
-
-		swimingsushiOnigiri_Plated = 496490183,
-
-		swimingsushiRoe = 594765774,
-
-		swimingsushiGunkan_Maki = 1367908719,
-
-		swimingsushiGunkan_Maki_Plated = -1935694439,
-
-		swimingsushiSalmon = 592425508,
-
-		swimingsushiSalmon_Sliced = 909821921,
-
 	}
 	public class ItemGroupReferences
 	{
@@ -3512,44 +3316,6 @@ namespace KitchenLib.References
 
 		public static int TurkeyPlated => (int)ReferenceItemGroup.TurkeyPlated;
 
-		public static int swimingsushinorisheet => (int)ReferenceItemGroup.swimingsushinorisheet;
-
-		public static int swimingsushiPlainSushi_Unrolled => (int)ReferenceItemGroup.swimingsushiPlainSushi_Unrolled;
-
-		public static int swimingsushiSushi_Avocado_Fish_Unrolled => (int)ReferenceItemGroup.swimingsushiSushi_Avocado_Fish_Unrolled;
-
-		public static int swimingsushiSushi_Avocado_Fish_Plated => (int)ReferenceItemGroup.swimingsushiSushi_Avocado_Fish_Plated;
-
-		public static int swimingsushiSushi_Crab_Mayo_Unrolled => (int)ReferenceItemGroup.swimingsushiSushi_Crab_Mayo_Unrolled;
-
-		public static int swimingsushiSushi_Crab_Mayo_Plated => (int)ReferenceItemGroup.swimingsushiSushi_Crab_Mayo_Plated;
-
-		public static int swimingsushiNigiri => (int)ReferenceItemGroup.swimingsushiNigiri;
-
-		public static int swimingsushiNigiri_Plated => (int)ReferenceItemGroup.swimingsushiNigiri_Plated;
-
-		public static int swimingsushiDouble_Nigiri => (int)ReferenceItemGroup.swimingsushiDouble_Nigiri;
-
-		public static int swimingsushiDouble_Nigiri_Plated => (int)ReferenceItemGroup.swimingsushiDouble_Nigiri_Plated;
-
-		public static int swimingsushiMega_Rice_Tier1 => (int)ReferenceItemGroup.swimingsushiMega_Rice_Tier1;
-
-		public static int swimingsushiMega_Rice_Tier2 => (int)ReferenceItemGroup.swimingsushiMega_Rice_Tier2;
-
-		public static int swimingsushiMega_Nigiri => (int)ReferenceItemGroup.swimingsushiMega_Nigiri;
-
-		public static int swimingsushiMega_Nigiri_Plated => (int)ReferenceItemGroup.swimingsushiMega_Nigiri_Plated;
-
-		public static int swimingsushiRice_Pot => (int)ReferenceItemGroup.swimingsushiRice_Pot;
-
-		public static int swimingsushiOnigiri => (int)ReferenceItemGroup.swimingsushiOnigiri;
-
-		public static int swimingsushiOnigiri_Plated => (int)ReferenceItemGroup.swimingsushiOnigiri_Plated;
-
-		public static int swimingsushiGunkan_Maki => (int)ReferenceItemGroup.swimingsushiGunkan_Maki;
-
-		public static int swimingsushiGunkan_Maki_Plated => (int)ReferenceItemGroup.swimingsushiGunkan_Maki_Plated;
-
 	}
 	public enum ReferenceItemGroup
 	{
@@ -3720,44 +3486,6 @@ namespace KitchenLib.References
 		PieCherryRaw = 1196761342,
 
 		TurkeyPlated = 1792757441,
-
-		swimingsushinorisheet = 2044553603,
-
-		swimingsushiPlainSushi_Unrolled = 2109331404,
-
-		swimingsushiSushi_Avocado_Fish_Unrolled = -1254612844,
-
-		swimingsushiSushi_Avocado_Fish_Plated = -907021747,
-
-		swimingsushiSushi_Crab_Mayo_Unrolled = 451074268,
-
-		swimingsushiSushi_Crab_Mayo_Plated = -1794353172,
-
-		swimingsushiNigiri = -1782245397,
-
-		swimingsushiNigiri_Plated = -970040073,
-
-		swimingsushiDouble_Nigiri = 653391837,
-
-		swimingsushiDouble_Nigiri_Plated = 511674622,
-
-		swimingsushiMega_Rice_Tier1 = -264540132,
-
-		swimingsushiMega_Rice_Tier2 = -1479257225,
-
-		swimingsushiMega_Nigiri = 384340883,
-
-		swimingsushiMega_Nigiri_Plated = 488917025,
-
-		swimingsushiRice_Pot = 1238557031,
-
-		swimingsushiOnigiri = 1370521627,
-
-		swimingsushiOnigiri_Plated = 496490183,
-
-		swimingsushiGunkan_Maki = 1367908719,
-
-		swimingsushiGunkan_Maki_Plated = -1935694439,
 
 	}
 	public class LayoutProfileReferences
@@ -4556,24 +4284,6 @@ namespace KitchenLib.References
 
 		public static int OldFranchise2PatienceDecrease => (int)ReferenceUnlock.OldFranchise2PatienceDecrease;
 
-		public static int swimingsushiSushi_Avocado_Fish_Plated_Dish => (int)ReferenceUnlock.swimingsushiSushi_Avocado_Fish_Plated_Dish;
-
-		public static int swimingsushiSushi_Crab_Mayo_Plated_Dish => (int)ReferenceUnlock.swimingsushiSushi_Crab_Mayo_Plated_Dish;
-
-		public static int swimingsushiSushi_Soy_Sauce => (int)ReferenceUnlock.swimingsushiSushi_Soy_Sauce;
-
-		public static int swimingsushiWasabi_Side => (int)ReferenceUnlock.swimingsushiWasabi_Side;
-
-		public static int swimingsushiNigiri_Dish => (int)ReferenceUnlock.swimingsushiNigiri_Dish;
-
-		public static int swimingsushiDouble_Nigiri_Dish => (int)ReferenceUnlock.swimingsushiDouble_Nigiri_Dish;
-
-		public static int swimingsushiMega_Nigiri_Dish => (int)ReferenceUnlock.swimingsushiMega_Nigiri_Dish;
-
-		public static int swimingsushiOnigiri_Dish => (int)ReferenceUnlock.swimingsushiOnigiri_Dish;
-
-		public static int swimingsushiGunkan_Maki_Dish => (int)ReferenceUnlock.swimingsushiGunkan_Maki_Dish;
-
 	}
 	public enum ReferenceUnlock
 	{
@@ -4968,24 +4678,6 @@ namespace KitchenLib.References
 		OldFranchise2CustomerBoost = -1893812821,
 
 		OldFranchise2PatienceDecrease = 1689349004,
-
-		swimingsushiSushi_Avocado_Fish_Plated_Dish = 1567541530,
-
-		swimingsushiSushi_Crab_Mayo_Plated_Dish = 1778741489,
-
-		swimingsushiSushi_Soy_Sauce = -1259120644,
-
-		swimingsushiWasabi_Side = 432652410,
-
-		swimingsushiNigiri_Dish = 1571932313,
-
-		swimingsushiDouble_Nigiri_Dish = 2035802465,
-
-		swimingsushiMega_Nigiri_Dish = 1820196604,
-
-		swimingsushiOnigiri_Dish = 1764127365,
-
-		swimingsushiGunkan_Maki_Dish = 1873321387,
 
 	}
 	public class UnlockCardReferences
