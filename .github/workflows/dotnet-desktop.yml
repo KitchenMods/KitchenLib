@@ -65,7 +65,7 @@ jobs:
       run: |
         dotnet --list-sdks
         ls -d $PWD/depots/1599601/**
-        dotnet build -c $env:Configuration -p:GamePath=`ls -d $PWD/depots/1599601/**`/PlateUp -p:EnableModDeployLocal='true'
+        dotnet build -c $Configuration -p:GamePath=`ls -d $PWD/depots/1599601/**`/PlateUp -p:EnableModDeployLocal='true'
       env:
         Configuration: ${{ matrix.configuration }}
 
