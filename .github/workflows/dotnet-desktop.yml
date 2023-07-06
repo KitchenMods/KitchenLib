@@ -25,6 +25,7 @@ jobs:
       run: |
          wget https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.5.0/DepotDownloader-linux-x64.zip
          unzip DepotDownloader-linux-x64.zip
+         chmod +x DepotDownloader
         
     - name: Generate auth code
       id: generate
