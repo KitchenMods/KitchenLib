@@ -9,7 +9,9 @@ on:
         default: ''
         type: choice
         options:
-          - '2999830291'
+          - '2898069883' # KitchenLib mod id
+          - '2932799348' # KitchenLib Beta mod id
+          - '2999830291' # Testing KitchenLib mod id
   push:
     branches: [ "development", "master" ]
 
