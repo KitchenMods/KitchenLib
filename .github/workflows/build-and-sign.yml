@@ -109,19 +109,25 @@ jobs:
         path: KitchenLib/content/
         if-no-files-found: error
 
-    - name: Steam workshop info
+    - name: Setup steamcmd
       if: ${{ inputs.itemid != ''}}
-      run: |
-        echo "Uploading to steam workshop: ${{ inputs.itemid }}"
+      uses: CyberAndrii/setup-steamcmd@b786e0da44db3d817e66fa3910a9560cb28c9323
+
+    - name: Generate auth code
+      if: ${{ inputs.itemid != ''}}
+      id: generate-code
+      uses: CyberAndrii/steam-totp@c7f636bc64e77f1b901e0420b7890813141508ee
+      with:
+        shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
 
     - name: Upload to steam workshop
       if: ${{ inputs.itemid != ''}}
-      uses: weilbyte/steam-workshop-upload@952afac2862024c6adc8e242ecbcf77576c7665c
-      with: 
-        appid: 1599600 # Game's Steam App ID (PlateUp)
-        itemid: ${{ inputs.itemid }} # Your mod's Steam Workshop ID
-        path: 'KitchenLib/content' # Path to your mod's folder from repository root
+      run: |
+        ./upload.sh
       env:
-        STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }} # Your Steam username
-        STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }} # Your Steam password
-        STEAM_TFASEED: ${{ secrets.STEAM_SHARED_SECRET }} # Your Steam Guard 2FA shared secret (Optional)
+        INPUT_APPID: 1599600 # Game's Steam App ID (PlateUp)
+        INPUT_ITEMID: ${{ inputs.itemid }} # Your mod's Steam Workshop ID
+        INPUT_PATH: 'KitchenLib/content' # Path to your mod's folder from repository root
+        STEAM_USERNAME: '${{ secrets.STEAM_USERNAME }}' # Your Steam username
+        STEAM_PASSWORD: '${{ secrets.STEAM_PASSWORD }}' # Your Steam password
+        STEAM_CODE: ${{ steps.generate-code.outputs.code }}
