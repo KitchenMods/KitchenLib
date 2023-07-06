@@ -115,6 +115,7 @@ jobs:
         echo "Uploading to steam workshop: ${{ inputs.itemid }}"
 
     - name: Upload to steam workshop
+      if: ${{ inputs.itemid != ''}}
       uses: weilbyte/steam-workshop-upload@952afac2862024c6adc8e242ecbcf77576c7665c
       with: 
         appid: 1599600 # Game's Steam App ID (PlateUp)
