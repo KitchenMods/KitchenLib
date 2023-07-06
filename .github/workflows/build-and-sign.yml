@@ -3,13 +3,8 @@ name: Build KitchenLib
 on:
   workflow_dispatch:
     inputs:
-      workshop_upload:
-        default: false
-        type: boolean
-        description: "Set to true if you wish to upload the built artifacts to the steam workshop"
-        required: false
-      appid:
-        description: 'The steam workshop app id to publish artifacts for'
+      itemid:
+        description: 'The steam workshop item id to publish artifacts for'
         required: false
         default: ''
         type: choice
@@ -21,8 +16,6 @@ on:
 jobs:
 
   build-and-sign:
-    env:
-      APP_ID: ${{ inputs.appid }} 
 
     strategy:
       matrix:
@@ -116,7 +109,18 @@ jobs:
         path: KitchenLib/content/
         if-no-files-found: error
 
-    - name: Upload to steam workshop
-      if: ${{ inputs.workshop_upload}}
+    - name: Steam workshop info
+      if: ${{ inputs.itemid != ''}}
       run: |
-        echo "Uploading to steam workshop: ${{ inputs.appid }}"
+        echo "Uploading to steam workshop: ${{ inputs.itemid }}"
+
+    - name: Upload to steam workshop
+      uses: weilbyte/steam-workshop-upload@952afac2862024c6adc8e242ecbcf77576c7665c
+      with: 
+        appid: 1599600 # Game's Steam App ID (PlateUp)
+        itemid: ${{ inputs.itemid }} # Your mod's Steam Workshop ID
+        path: 'KitchenLib/content' # Path to your mod's folder from repository root
+      env:
+        STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }} # Your Steam username
+        STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }} # Your Steam password
+        STEAM_TFASEED: ${{ secrets.STEAM_SHARED_SECRET }} # Your Steam Guard 2FA shared secret (Optional)
