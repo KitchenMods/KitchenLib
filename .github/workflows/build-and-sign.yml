@@ -1,12 +1,28 @@
-name: Build KitchenLib for Workshop
+name: Build KitchenLib
 
 on:
+  workflow_dispatch:
+    inputs:
+      workshop_upload:
+        default: false
+        type: boolean
+        description: "Set to true if you wish to upload the built artifacts to the steam workshop"
+        required: false
+      appid:
+        description: 'The steam workshop app id to publish artifacts for'
+        required: false
+        default: ''
+        type: choice
+        options:
+          - '2999830291'
   push:
-    branches: [ "development" ]
+    branches: [ "development", "master" ]
 
 jobs:
 
   build-and-sign:
+    env:
+      APP_ID: ${{ inputs.appid }} 
 
     strategy:
       matrix:
@@ -36,11 +52,27 @@ jobs:
       uses: CyberAndrii/steam-totp@c7f636bc64e77f1b901e0420b7890813141508ee
       with:
         shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
+
+    - name: Restore Cache
+      id: cache-things-restore
+      uses: actions/cache/restore@v3
+      with:
+        path: depots
+        key: plateup-cache
+        restore-keys: |
+          plateup-cache
         
     - name: Download PlateUp Files
       run: |
           ./DepotDownloader -app 1599600 -depot 1599601 -username ${{ secrets.STEAM_USERNAME }} -password ${{ secrets.STEAM_PASSWORD }} <<< "${{ steps.generate.outputs.code }}"
-         
+    
+    - name: Save Cache
+      id: cache-things-save
+      uses: actions/cache/save@v3
+      with:
+        path: depots
+        key: plateup-cache-${{ hashFiles('depots/**/*.dll') }}
+
      # Install the .NET Core workload
     - name: Install .NET Core
       uses: actions/setup-dotnet@v3
@@ -48,28 +80,18 @@ jobs:
         dotnet-version: |
          6.x
          
-    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
-    #- name: Setup MSBuild.exe
-    #  uses: microsoft/setup-msbuild@v1.0.2
-      
-    # Execute all unit tests in the solution
+    # Execute all unit tests in the solution TODO: Implement tests?
     #- name: Execute unit tests
     #  run: dotnet test
 
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
-    # - name: Build the application
-    #   run: |
-    #     $id = ls -Directory -Name $PWD/depots/1599601/
-    #     ls $PWD/depots/1599601/$id/PlateUp
-    #     msbuild $env:Solution_Name -r /p:Configuration=$env:Configuration /p:EnableModDeployLocal='true' /p:GamePath=$PWD/depots/1599601/$id/PlateUp
-    #   env:
-    #     Configuration: ${{ matrix.configuration }}
-
     - name: Build the application
       run: |
+        set -x
         dotnet --list-sdks
         ls -d $PWD/depots/1599601/**
-        dotnet build -c $Configuration -p:GamePath=`ls -d $PWD/depots/1599601/**`/PlateUp -p:EnableModDeployLocal='true'
+        dotnet build -c $Configuration -p:GamePath=`ls -d $PWD/depots/1599601/**`/PlateUp -p:EnableModDeployLocal='false' -p:EnableGameDebugging='false' --os windows --no-self-contained ./KitchenLib/KitchenLib.csproj
+        cp ./KitchenLib/bin/$Configuration/net472/windows-x64/KitchenLib-$Configuration.dll ./KitchenLib/content/
+        cp ./KitchenLib/bin/$Configuration/net472/KitchenLib-$Configuration.xml ./KitchenLib/content/
       env:
         Configuration: ${{ matrix.configuration }}
 
@@ -81,9 +103,10 @@ jobs:
       run: |
         cosign sign-blob --yes ./KitchenLib/content/KitchenLib-Workshop.dll --bundle ./KitchenLib/content/cosign.bundle
 
-
-    - name: Print Directory Contents
-      run: ls ./KitchenLib/content/
+    - name: Perform Hashes
+      run: |
+        sha256sum ./KitchenLib/content/* > ./KitchenLib/content/checksums.txt
+        ls ./KitchenLib/content/
 
     # Upload the build artifacts for later use
     - name: Upload build artifacts
@@ -92,3 +115,8 @@ jobs:
         name: Workshop Build
         path: KitchenLib/content/
         if-no-files-found: error
+
+    - name: Upload to steam workshop
+      if: ${{ inputs.workshop_upload}}
+      run: |
+        echo "Uploading to steam workshop: ${{ inputs.appid }}"
