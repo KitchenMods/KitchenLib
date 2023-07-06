@@ -253,7 +253,9 @@ namespace KitchenLib.Utils
         /// <returns>The requested material or null if not found.</returns>
         public static Material GetCustomMaterial(string materialName)
 		{
-			return CustomMaterials.CustomMaterialsIndex.GetValueOrDefault(materialName);
+            Material mat;
+			bool KeyNotFoundException = CustomMaterials.CustomMaterialsIndex.TryGetValue(materialName, out mat);
+            return mat;
         }
 
         /// <summary>

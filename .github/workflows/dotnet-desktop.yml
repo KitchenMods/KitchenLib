@@ -2,9 +2,7 @@ name: Build KitchenLib for Workshop
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    branches: [ "development" ]
 
 jobs:
 
@@ -14,12 +12,8 @@ jobs:
       matrix:
         configuration: [Workshop]
 
-    runs-on: windows-latest  # For a list of available runner types, refer to
+    runs-on: ubuntu-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
-
-    env:
-      Solution_Name: KitchenLib.sln                        # Replace with your solution name, i.e. MyWpfApp.sln.
-      Test_Project_Path: KitchenLib.TestMod/KitchenLib.TestMod.csproj                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
 
     steps:
     - name: Checkout
@@ -29,8 +23,8 @@ jobs:
          
     - name: Setup DepotDownloader
       run: |
-         Invoke-WebRequest https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.5.0/DepotDownloader-windows-x64.zip -OutFile out.zip
-         7z x out.zip
+         wget https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.5.0/DepotDownloader-linux-x64.zip
+         unzip DepotDownloader-linux-x64.zip
         
     - name: Generate auth code
       id: generate
@@ -40,32 +34,41 @@ jobs:
         
     - name: Download PlateUp Files
       run: |
-         "${{ steps.generate.outputs.code }}" | .\DepotDownloader.exe -app 1599600 -depot 1599601 -username ${{ secrets.STEAM_USERNAME }} -password ${{ secrets.STEAM_PASSWORD }}
+          DepotDownloader -app 1599600 -depot 1599601 -username ${{ secrets.STEAM_USERNAME }} -password ${{ secrets.STEAM_PASSWORD }} <<< "${{ steps.generate.outputs.code }}"
          
      # Install the .NET Core workload
     - name: Install .NET Core
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: |
-         5.0.x
+         6.x
          
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.0.2
+    #- name: Setup MSBuild.exe
+    #  uses: microsoft/setup-msbuild@v1.0.2
       
     # Execute all unit tests in the solution
     #- name: Execute unit tests
     #  run: dotnet test
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
+    # - name: Build the application
+    #   run: |
+    #     $id = ls -Directory -Name $PWD/depots/1599601/
+    #     ls $PWD/depots/1599601/$id/PlateUp
+    #     msbuild $env:Solution_Name -r /p:Configuration=$env:Configuration /p:EnableModDeployLocal='true' /p:GamePath=$PWD/depots/1599601/$id/PlateUp
+    #   env:
+    #     Configuration: ${{ matrix.configuration }}
+
     - name: Build the application
       run: |
-        $id = ls -Directory -Name $PWD/depots/1599601/
-        ls $PWD/depots/1599601/$id/PlateUp
-        msbuild $env:Solution_Name -r /p:Configuration=$env:Configuration /p:EnableModDeployLocal='true' /p:GamePath=$PWD/depots/1599601/$id/PlateUp
+        dotnet --list-sdks
+        ls -d $PWD/depots/1599601/**
+        dotnet build -c $env:Configuration -p:GamePath=`ls -d $PWD/depots/1599601/**`/PlateUp -p:EnableModDeployLocal='true'
       env:
         Configuration: ${{ matrix.configuration }}
-    - name: test
+
+    - name: Print Directory Contents
       run: ls ./KitchenLib/content/
 
     # Upload the build artifacts for later use
