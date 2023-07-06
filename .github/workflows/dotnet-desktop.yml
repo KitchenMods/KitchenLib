@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  build:
+  build-and-sign:
 
     strategy:
       matrix:
@@ -14,6 +14,10 @@ jobs:
 
     runs-on: ubuntu-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+
+    permissions:
+      contents: read
+      id-token: write # needed for signing the images with GitHub OIDC Token
 
     steps:
     - name: Checkout
@@ -68,6 +72,15 @@ jobs:
         dotnet build -c $Configuration -p:GamePath=`ls -d $PWD/depots/1599601/**`/PlateUp -p:EnableModDeployLocal='true'
       env:
         Configuration: ${{ matrix.configuration }}
+
+    - name: cosign-installer
+      uses: sigstore/cosign-installer@v3.1.1
+
+    # This performs signing with the Gitub OIDC token. See https://docs.sigstore.dev/cosign/overview/ for specifics
+    - name: Sign with Github Key
+      run: |
+        cosign sign-blob --yes ./KitchenLib/content/KitchenLib-Workshop.dll --bundle ./KitchenLib/content/cosign.bundle
+
 
     - name: Print Directory Contents
       run: ls ./KitchenLib/content/
