@@ -93,6 +93,6 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: KitchenLib-Build-${{ github.sha }}
+        name: KitchenLib-Build
         path: KitchenLib/content/
         if-no-files-found: error
