@@ -32,9 +32,8 @@ jobs:
       id: download-artifact
       uses: dawidd6/action-download-artifact@v2
       with:
-          name: KitchenLib-Build-${{ github.sha }}
-          commit: ${{ github.sha }}
           workflow: build-and-sign.yml
+          branch: $GITHUB_REF_NAME
 
     - name: test
       run: |
