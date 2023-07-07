@@ -37,11 +37,11 @@ jobs:
           path: build
           name: KitchenLib-Build
 
-    - name: test
+    - name: List Directory Contents
       run: |
         set -e
         ls -al
-        ls -al build/KitchenLib-Build
+        ls -al build
 
     - name: Setup steamcmd
       uses: CyberAndrii/setup-steamcmd@b786e0da44db3d817e66fa3910a9560cb28c9323
@@ -58,7 +58,7 @@ jobs:
       env:
         INPUT_APPID: 1599600 # Game's Steam App ID (PlateUp)
         INPUT_ITEMID: ${{ inputs.itemid }} # Your mod's Steam Workshop ID
-        INPUT_PATH: 'build/KitchenLib-Build' # Path to your mod's folder from repository root
+        INPUT_PATH: 'build' # Path to your mod's folder from repository root
         STEAM_USERNAME: '${{ secrets.STEAM_USERNAME }}' # Your Steam username
         STEAM_PASSWORD: '${{ secrets.STEAM_PASSWORD }}' # Your Steam password
         STEAM_CODE: ${{ steps.generate-code.outputs.code }}
