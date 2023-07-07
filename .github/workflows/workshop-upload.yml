@@ -1,0 +1,59 @@
+name: Upload to Workshop
+
+on:
+  workflow_dispatch:
+    inputs:
+      itemid:
+        description: 'The steam workshop item id to publish artifacts for'
+        required: false
+        default: ''
+        type: choice
+        options:
+          - '2898069883' # KitchenLib mod id
+          - '2932799348' # KitchenLib Beta mod id
+          - '2999830291' # Testing KitchenLib mod id
+
+jobs:
+
+  upload:
+    runs-on: ubuntu-latest 
+
+    permissions:
+      contents: read
+
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - uses: actions/download-artifact@v3
+      name: Download previous build
+      with:
+          name: KitchenLib-Build-${{ github.sha }}
+
+    - name: test
+      run: |
+        set -e
+        ls -al
+        exit 1
+
+    - name: Setup steamcmd
+      uses: CyberAndrii/setup-steamcmd@b786e0da44db3d817e66fa3910a9560cb28c9323
+
+    - name: Generate auth code
+      id: generate-code
+      uses: CyberAndrii/steam-totp@c7f636bc64e77f1b901e0420b7890813141508ee
+      with:
+        shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
+
+    - name: Upload to steam workshop      run: |
+        ./upload.sh
+      env:
+        INPUT_APPID: 1599600 # Game's Steam App ID (PlateUp)
+        INPUT_ITEMID: ${{ inputs.itemid }} # Your mod's Steam Workshop ID
+        INPUT_PATH: 'KitchenLib/content' # Path to your mod's folder from repository root
+        STEAM_USERNAME: '${{ secrets.STEAM_USERNAME }}' # Your Steam username
+        STEAM_PASSWORD: '${{ secrets.STEAM_PASSWORD }}' # Your Steam password
+        STEAM_CODE: ${{ steps.generate-code.outputs.code }}

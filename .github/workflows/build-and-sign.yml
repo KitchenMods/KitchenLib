@@ -1,0 +1,98 @@
+name: Upload to Workshop
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-sign:
+    strategy:
+      matrix:
+        configuration: [Workshop]
+
+    runs-on: ubuntu-latest  # For a list of available runner types, refer to
+                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+
+    permissions:
+      contents: read
+      id-token: write # needed for signing the images with GitHub OIDC Token
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+         
+    - name: Setup DepotDownloader
+      run: |
+         wget https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.5.0/DepotDownloader-linux-x64.zip
+         unzip DepotDownloader-linux-x64.zip
+         chmod +x DepotDownloader
+        
+    - name: Generate auth code
+      id: generate
+      uses: CyberAndrii/steam-totp@c7f636bc64e77f1b901e0420b7890813141508ee
+      with:
+        shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
+
+    - name: Restore Cache
+      id: cache-things-restore
+      uses: actions/cache/restore@v3
+      with:
+        path: depots
+        key: plateup-cache
+        restore-keys: |
+          plateup-cache
+        
+    - name: Download PlateUp Files
+      run: |
+          ./DepotDownloader -app 1599600 -depot 1599601 -username ${{ secrets.STEAM_USERNAME }} -password ${{ secrets.STEAM_PASSWORD }} <<< "${{ steps.generate.outputs.code }}"
+    
+    - name: Save Cache
+      id: cache-things-save
+      uses: actions/cache/save@v3
+      with:
+        path: depots
+        key: plateup-cache-${{ hashFiles('depots/**/*.dll') }}
+
+     # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: |
+         6.x
+         
+    # Execute all unit tests in the solution TODO: Implement tests?
+    #- name: Execute unit tests
+    #  run: dotnet test
+
+    - name: Build the application
+      run: |
+        set -x
+        dotnet --list-sdks
+        ls -d $PWD/depots/1599601/**
+        dotnet build -c $Configuration -p:GamePath=`ls -d $PWD/depots/1599601/**`/PlateUp -p:EnableModDeployLocal='false' -p:EnableGameDebugging='false' --os windows --no-self-contained ./KitchenLib/KitchenLib.csproj
+        cp ./KitchenLib/bin/$Configuration/net472/windows-x64/KitchenLib-$Configuration.dll ./KitchenLib/content/
+        cp ./KitchenLib/bin/$Configuration/net472/KitchenLib-$Configuration.xml ./KitchenLib/content/
+      env:
+        Configuration: ${{ matrix.configuration }}
+
+    - name: cosign-installer
+      uses: sigstore/cosign-installer@v3.1.1
+
+    # This performs signing with the Gitub OIDC token. See https://docs.sigstore.dev/cosign/overview/ for specifics
+    - name: Sign with Github Key
+      run: |
+        cosign sign-blob --yes ./KitchenLib/content/KitchenLib-Workshop.dll --bundle ./KitchenLib/content/cosign.bundle
+
+    - name: Perform Hashes
+      run: |
+        sha256sum ./KitchenLib/content/* > ./KitchenLib/content/checksums.txt
+        ls ./KitchenLib/content/
+
+    # Upload the build artifacts for later use
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: KitchenLib-Build-${{ github.sha }}
+        path: KitchenLib/content/
+        if-no-files-found: error
