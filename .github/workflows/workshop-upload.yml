@@ -33,7 +33,7 @@ jobs:
       uses: dawidd6/action-download-artifact@v2
       with:
           workflow: build-and-sign.yml
-          branch: $GITHUB_REF_NAME
+          branch: ${{ github.ref_name }}
 
     - name: test
       run: |
