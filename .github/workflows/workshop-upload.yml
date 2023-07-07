@@ -48,7 +48,8 @@ jobs:
       with:
         shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
 
-    - name: Upload to steam workshop      run: |
+    - name: Upload to steam workshop      
+      run: |
         ./upload.sh
       env:
         INPUT_APPID: 1599600 # Game's Steam App ID (PlateUp)
