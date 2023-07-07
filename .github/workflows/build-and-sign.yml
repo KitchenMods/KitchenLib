@@ -1,4 +1,4 @@
-name: Upload to Workshop
+name: Build and Sign
 
 on:
   workflow_dispatch:
