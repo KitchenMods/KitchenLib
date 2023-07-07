@@ -28,10 +28,13 @@ jobs:
       with:
         fetch-depth: 0
 
-    - uses: actions/download-artifact@v3
-      name: Download previous build
+    - name: Download artifact
+      id: download-artifact
+      uses: dawidd6/action-download-artifact@v2
       with:
           name: KitchenLib-Build-${{ github.sha }}
+          commit: ${{ github.sha }}
+          workflow: build-and-sign.yml
 
     - name: test
       run: |
