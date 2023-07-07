@@ -20,8 +20,11 @@ namespace KitchenLib.Customs
 
 		public static Material GetCustomMaterial(string materialName)
 		{
-			CustomMaterialsIndex.TryGetValue(materialName, out Material material);
-			return material;
+			bool found = CustomMaterials.CustomMaterialsIndex.ContainsKey(materialName);
+			if (found)
+				return CustomMaterials.CustomMaterialsIndex[materialName];
+			else
+				return null;
 		}
 
 		public static List<Material> GetCustomMaterials()
