@@ -3,12 +3,15 @@ set -e
 
 echo "Uploading to steam workshop"
 
+steammessage=`cat KitchenLib/Changelogs/${CHANGELOGVER}/Workshop/v${CHANGELOGVER}${CHANGELOGBETA}.MD`
+export Cleaned_steammessage=$(echo "$steammessage" | tr '"' ' ')
+
 cat << EOF > $PWD/workshop.vdf
 "workshopitem"
 {
   "appid" "${INPUT_APPID}"
   "contentfolder" "${GITHUB_WORKSPACE}/${INPUT_PATH}"
-  "changenote" "Automatic upload from Github Actions"
+  "changenote" "${Cleaned_steammessage}"
   "publishedfileid" "${INPUT_ITEMID}"
 }
 EOF

@@ -2,6 +2,17 @@ name: Build and Sign
 
 on:
   workflow_dispatch:
+    inputs:
+      releaseversion:
+        description: 'The release version'
+        required: true
+        default: ''
+        type: string
+      betaversion:
+        description: 'The beta version'
+        required: false
+        default: ''
+        type: string
 
 jobs:
   build-and-sign:
@@ -96,3 +107,28 @@ jobs:
         name: KitchenLib-Build
         path: KitchenLib/content/
         if-no-files-found: error
+
+    # Publish Release
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: ${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}
+        release_name: ${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}
+        body_path: ./KitchenLib/Changelogs/${{ github.event.inputs.releaseversion }}/Github/v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}.MD
+        draft: false
+        prerelease: ${{ !(github.event.inputs.betaversion == '') }}
+          
+    # Upload Release Files
+    - name: Upload Release Files
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: build/KitchenLib-Build.zip
+        asset_name: KitchenLib-v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}}.zip
+        asset_content_type: application/zip

@@ -11,7 +11,17 @@ on:
         options:
           - '2898069883' # KitchenLib mod id
           - '2932799348' # KitchenLib Beta mod id
-          - '2999830291' # Testing KitchenLib mod id
+          - '3000699306' # Testing KitchenLib mod id
+      releaseversion:
+        description: 'The release version'
+        required: true
+        default: ''
+        type: string
+      betaversion:
+        description: 'The beta version'
+        required: false
+        default: ''
+        type: string
 
 jobs:
 
@@ -62,3 +72,17 @@ jobs:
         STEAM_USERNAME: '${{ secrets.STEAM_USERNAME }}' # Your Steam username
         STEAM_PASSWORD: '${{ secrets.STEAM_PASSWORD }}' # Your Steam password
         STEAM_CODE: ${{ steps.generate-code.outputs.code }}
+        CHANGELOGVER: ${{ github.event.inputs.releaseversion }}
+        CHANGELOGBETA: ${{ github.event.inputs.betaversion }}
+    
+    - name: Post to Discord
+      run: |
+        pip install discordwebhook
+        python discord.py
+      env:
+        INPUT_PATH: 'build' # Path to your mod's folder from repository root
+        CHANGELOGVER: ${{ github.event.inputs.releaseversion }}
+        CHANGELOGBETA: ${{ github.event.inputs.betaversion }}
+        DISCORDURL: '${{ secrets.DISCORD_WEBHOOK }}'
+
+   
