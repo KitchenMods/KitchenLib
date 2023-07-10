@@ -1,0 +1,88 @@
+name: Upload to Workshop
+
+on:
+  workflow_dispatch:
+    inputs:
+      itemid:
+        description: 'The steam workshop item id to publish artifacts for'
+        required: false
+        default: ''
+        type: choice
+        options:
+          - '2898069883' # KitchenLib mod id
+          - '2932799348' # KitchenLib Beta mod id
+          - '3000699306' # Testing KitchenLib mod id
+      releaseversion:
+        description: 'The release version'
+        required: true
+        default: ''
+        type: string
+      betaversion:
+        description: 'The beta version'
+        required: false
+        default: ''
+        type: string
+
+jobs:
+
+  upload:
+    runs-on: ubuntu-latest 
+
+    permissions:
+      contents: read
+
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Download artifact
+      id: download-artifact
+      uses: dawidd6/action-download-artifact@v2
+      with:
+          workflow: build-and-sign.yml
+          branch: ${{ github.ref_name }}
+          path: build
+          name: KitchenLib-Build
+
+    - name: List Directory Contents
+      run: |
+        set -e
+        ls -al
+        ls -al build
+
+    - name: Setup steamcmd
+      uses: CyberAndrii/setup-steamcmd@b786e0da44db3d817e66fa3910a9560cb28c9323
+
+    - name: Generate auth code
+      id: generate-code
+      uses: CyberAndrii/steam-totp@c7f636bc64e77f1b901e0420b7890813141508ee
+      with:
+        shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
+
+    - name: Upload to steam workshop      
+      run: |
+        ./upload.sh
+      env:
+        INPUT_APPID: 1599600 # Game's Steam App ID (PlateUp)
+        INPUT_ITEMID: ${{ inputs.itemid }} # Your mod's Steam Workshop ID
+        INPUT_PATH: 'build' # Path to your mod's folder from repository root
+        STEAM_USERNAME: '${{ secrets.STEAM_USERNAME }}' # Your Steam username
+        STEAM_PASSWORD: '${{ secrets.STEAM_PASSWORD }}' # Your Steam password
+        STEAM_CODE: ${{ steps.generate-code.outputs.code }}
+        CHANGELOGVER: ${{ github.event.inputs.releaseversion }}
+        CHANGELOGBETA: ${{ github.event.inputs.betaversion }}
+    
+    - name: Post to Discord
+      run: |
+        pip install discordwebhook
+        python discord.py
+      env:
+        INPUT_PATH: 'build' # Path to your mod's folder from repository root
+        CHANGELOGVER: ${{ github.event.inputs.releaseversion }}
+        CHANGELOGBETA: ${{ github.event.inputs.betaversion }}
+        DISCORDURL: '${{ secrets.DISCORD_WEBHOOK }}'
+
+   
