@@ -14,10 +14,9 @@ using KitchenLib.Logging;
 using KitchenLib.Logging.Exceptions;
 using System.Runtime.CompilerServices;
 using System;
-using KitchenLib.Utils;
-using KitchenLib.References;
 using KitchenData;
-using UnityEngine.AI;
+using System.IO;
+using KitchenLib.References;
 
 namespace KitchenLib
 {
@@ -44,12 +43,13 @@ namespace KitchenLib
 		/// <summary>
 		/// The version of the mod.
 		/// </summary>
-		internal const string MOD_VERSION = "0.7.8";
+		//nternal const string MOD_VERSION = "0.7.8";
+		internal const string MOD_VERSION = "9.9.7";
 
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string MOD_BETA_VERSION = "2";
+		internal const string MOD_BETA_VERSION = "3";
 
 		/// <summary>
 		/// The compatible versions of the mod.
@@ -129,15 +129,6 @@ namespace KitchenLib
 			go.AddComponent<DevUIController>();
 
 			ColorblindUtils.AddSingleItemLabels(ColorblindUtils.itemLabels.ToArray());
-
-			Appliance counter = GameData.Main.Get<Appliance>(ApplianceReferences.Countertop);
-			foreach (Transform t in counter.Prefab.GetComponentInChildren<Transform>())
-			{
-				if (t.gameObject.HasComponent<NavMeshObstacle>())
-				{
-					NavMeshObstacle navMeshObstacle = t.gameObject.GetComponent<NavMeshObstacle>();
-				}
-			}
 		}
 
 		/// <summary>
@@ -185,37 +176,41 @@ namespace KitchenLib
 				args.Menus.Add(typeof(PreferenceMenu<MainMenuAction>), new PreferenceMenu<MainMenuAction>(args.Container, args.Module_list));
 			};
 		}
+		private void ExtractAssets(GameDataObject gameDataObject)
+		{
+			FieldInfo[] fields = gameDataObject.GetType().GetFields();
+			foreach (FieldInfo field in fields)
+			{
+				if (field.FieldType == typeof(GameObject))
+				{
+					Texture2D texture = null;
+					GameObject prefab = (GameObject)field.GetValue(gameDataObject);
+					if (prefab != null)
+					{
+						texture = PrefabSnapshot.GetApplianceSnapshot(prefab);
+						byte[] bytes = null;
+						if (texture != null)
+							bytes = texture.EncodeToPNG();
 
-		/*
-		private void ExtractAssets()
+						var dirPath = Application.dataPath + "/../SaveImages/";
+						if (!Directory.Exists(dirPath))
+						{
+							Directory.CreateDirectory(dirPath);
+						}
+						if (bytes != null)
+							File.WriteAllBytes(dirPath + gameDataObject.ID + "-" + gameDataObject.GetType().ToString() + "-" + field.Name + ".png", bytes);
+					}
+				}
+			}
+		}
+
+		private void ExtractAllAssets()
 		{
 			foreach (GameDataObject gameDataObject in GameData.Main.Get<GameDataObject>())
 			{
-				Texture2D texture = null;
-				if (gameDataObject.GetType() == typeof(Appliance))
-					if (((Appliance)gameDataObject).Prefab != null)
-						texture = PrefabSnapshot.GetApplianceSnapshot(((Appliance)gameDataObject).Prefab);
-				if (gameDataObject.GetType() == typeof(Item))
-					if (((Item)gameDataObject).Prefab != null)
-						texture = PrefabSnapshot.GetApplianceSnapshot(((Item)gameDataObject).Prefab);
-				if (gameDataObject.GetType() == typeof(PlayerCosmetic))
-					if (((PlayerCosmetic)gameDataObject).Visual != null)
-						texture = PrefabSnapshot.GetApplianceSnapshot(((PlayerCosmetic)gameDataObject).Visual);
-
-				byte[] bytes = null;
-				if (texture != null)
-					bytes = texture.EncodeToPNG();
-
-				var dirPath = Application.dataPath + "/../SaveImages/";
-				if (!Directory.Exists(dirPath))
-				{
-					Directory.CreateDirectory(dirPath);
-				}
-				if (bytes != null)
-					File.WriteAllBytes(dirPath + gameDataObject.ID + "-" + gameDataObject.name + ".png", bytes);
+				ExtractAssets(gameDataObject);
 			}
 		}
-		*/
 
 		/// <summary>
 		/// Registers a new cape.

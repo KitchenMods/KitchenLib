@@ -145,29 +145,6 @@ namespace KitchenLib.Patches
 				}
 			}
 
-			/*
-			 * Used to extract assets
-			foreach (GameDataObject gameDataObject in gameDataObjects)
-			{
-				Texture2D texture = new Texture2D(1, 1);
-				if (gameDataObject.GetType() == typeof(Appliance))
-					texture = PrefabSnapshot.GetApplianceSnapshot(((Appliance)gameDataObject).Prefab);
-				if (gameDataObject.GetType() == typeof(Dish))
-					texture = PrefabSnapshot.GetApplianceSnapshot(((Dish)gameDataObject).DisplayPrefab);
-				if (gameDataObject.GetType() == typeof(Item))
-					texture = PrefabSnapshot.GetApplianceSnapshot(((Item)gameDataObject).Prefab);
-
-
-				byte[] bytes = texture.EncodeToPNG();
-				var dirPath = Application.dataPath + "/../SaveImages/";
-				if (!Directory.Exists(dirPath))
-				{
-					Directory.CreateDirectory(dirPath);
-				}
-				File.WriteAllBytes(dirPath + gameDataObject.ID + ".png", bytes);
-			}
-			 */
-
 			EventUtils.InvokeEvent(nameof(Events.BuildGameDataEvent), Events.BuildGameDataEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result, FirstRun));
 
 			__result.Dispose();
