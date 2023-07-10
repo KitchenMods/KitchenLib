@@ -121,6 +121,20 @@ jobs:
         draft: false
         prerelease: ${{ !(github.event.inputs.betaversion == '') }}
           
+    - name: Download artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: KitchenLib-Build
+        path: build
+        
+    - name: Display structure of downloaded files
+      run: |
+        ls -l
+        cd build
+        ls -l
+        zip -r KitchenLib-Build.zip *
+        ls -l
+  
     # Upload Release Files
     - name: Upload Release Files
       id: upload-release-asset 
