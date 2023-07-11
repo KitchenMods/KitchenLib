@@ -37,7 +37,9 @@ namespace KitchenLib.Customs
         {
             Dish result = ScriptableObject.CreateInstance<Dish>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomDish.Convert] [1.1] Convering Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Dish>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
@@ -58,7 +60,9 @@ namespace KitchenLib.Customs
 
             if (result.Info != Info) result.Info = Info;
 
-            if (InfoList.Count > 0)
+			Main.LogDebug($"[CustomDish.Convert] [1.2] Convering Overrides");
+
+			if (InfoList.Count > 0)
             {
                 result.Info = new LocalisationObject<UnlockInfo>();
                 foreach ((Locale, UnlockInfo) info in InfoList)
@@ -77,7 +81,9 @@ namespace KitchenLib.Customs
         {
             Dish result = (Dish)gameDataObject;
 
-            if (result.ExtraOrderUnlocks != ExtraOrderUnlocks) result.ExtraOrderUnlocks = ExtraOrderUnlocks;
+			Main.LogDebug($"[CustomDish.AttachDependentProperties] [1.1] Converting Base");
+
+			if (result.ExtraOrderUnlocks != ExtraOrderUnlocks) result.ExtraOrderUnlocks = ExtraOrderUnlocks;
             if (result.MinimumIngredients != MinimumIngredients) result.MinimumIngredients = MinimumIngredients;
             if (result.RequiredProcesses != RequiredProcesses) result.RequiredProcesses = RequiredProcesses;
             if (result.BlockProviders != BlockProviders) result.BlockProviders = BlockProviders;
@@ -98,14 +104,12 @@ namespace KitchenLib.Customs
 			
 			if (!RequiredNoDishItem)
 			{
+				Main.LogDebug($"[CustomDish.AttachDependentProperties] [1.2] Assigning Default Requirement");
 				if (RequiredDishItem != null)
 					result.MinimumIngredients.Add(RequiredDishItem);
 				else
 					result.MinimumIngredients.Add((Item)GDOUtils.GetExistingGDO(ItemReferences.Plate));
 			}
-
-
-
 		}
 
         public override void OnRegister(GameDataObject gameDataObject)

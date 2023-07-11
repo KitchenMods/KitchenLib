@@ -18,7 +18,9 @@ namespace KitchenLib.Customs
         {
             ModularUnlockPack result = ScriptableObject.CreateInstance<ModularUnlockPack>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomModularUnlockPack.Convert] [1.1] Convering Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<ModularUnlockPack>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
@@ -33,7 +35,9 @@ namespace KitchenLib.Customs
         {
             ModularUnlockPack result = (ModularUnlockPack)gameDataObject;
 
-            if (result.Sets != Sets) result.Sets = Sets;
+			Main.LogDebug($"[CustomModularUnlockPack.AttachDependentProperties] [1.1] Convering Base");
+
+			if (result.Sets != Sets) result.Sets = Sets;
         }
     }
 }

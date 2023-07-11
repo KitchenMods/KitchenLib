@@ -18,7 +18,9 @@ namespace KitchenLib.Customs
         {
             Shop result = ScriptableObject.CreateInstance<Shop>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomShop.Convert] [1.1] Convering Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Shop>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
@@ -33,7 +35,9 @@ namespace KitchenLib.Customs
         {
             Shop result = (Shop)gameDataObject;
 
-            if (result.Stock != Stock) result.Stock = Stock;
+			Main.LogDebug($"[CustomShop.AttachDependentProperties] [1.1] Convering Base");
+
+			if (result.Stock != Stock) result.Stock = Stock;
             if (result.Decors != Decors) result.Decors = Decors;
         }
     }

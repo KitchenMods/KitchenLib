@@ -100,19 +100,19 @@ namespace KitchenLib
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Log(string message)
 		{
-			Debug.Log($"*[{ModName}] " + message);
+			Debug.Log($"[{ModName}] " + message);
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Warning(string message)
 		{
-			Debug.LogWarning($"*[{ModName}] " + message);
+			Debug.LogWarning($"[{ModName}] " + message);
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Error(string message)
 		{
-			Debug.LogError($"*[{ModName}] " + message);
+			Debug.LogError($"[{ModName}] " + message);
 		}
 
 		protected virtual void OnInitialise() { }

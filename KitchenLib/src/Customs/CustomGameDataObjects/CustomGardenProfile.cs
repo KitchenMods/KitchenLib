@@ -15,7 +15,9 @@ namespace KitchenLib.Customs
         {
             GardenProfile result = ScriptableObject.CreateInstance<GardenProfile>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomGardenProfile.Convert] [1.1] Convering Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<GardenProfile>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
@@ -27,7 +29,9 @@ namespace KitchenLib.Customs
         {
             GardenProfile result = (GardenProfile)gameDataObject;
 
-            if (result.SpawnHolder != SpawnHolder) result.SpawnHolder = SpawnHolder;
+			Main.LogDebug($"[CustomGardenProfile.AttachDependentProperties] [1.1] Convering Base");
+
+			if (result.SpawnHolder != SpawnHolder) result.SpawnHolder = SpawnHolder;
             if (result.Spawns != Spawns) result.Spawns = Spawns;
         }
     }

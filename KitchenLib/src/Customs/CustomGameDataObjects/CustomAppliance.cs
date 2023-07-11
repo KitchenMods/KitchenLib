@@ -91,9 +91,11 @@ namespace KitchenLib.Customs
         //private static readonly Appliance empty = ScriptableObject.CreateInstance<Appliance>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-            Appliance result = ScriptableObject.CreateInstance<Appliance>();
+			Appliance result = ScriptableObject.CreateInstance<Appliance>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomAppliance.Convert] [1.1] Converting Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
@@ -101,7 +103,7 @@ namespace KitchenLib.Customs
             if (result.HeldAppliancePrefab != HeldAppliancePrefab) result.HeldAppliancePrefab = HeldAppliancePrefab;
             if (result.EffectRange != EffectRange) result.EffectRange = EffectRange;
             if (result.EffectCondition != EffectCondition) result.EffectCondition = EffectCondition;
-            if (result.EffectType != EffectType) result.EffectType = EffectType;
+			if (result.EffectType != EffectType) result.EffectType = EffectType;
             if (result.IsNonInteractive != IsNonInteractive) result.IsNonInteractive = IsNonInteractive;
             if (result.Layer != Layer) result.Layer = Layer;
             if (result.ForceHighInteractionPriority != ForceHighInteractionPriority) result.ForceHighInteractionPriority = ForceHighInteractionPriority;
@@ -110,7 +112,7 @@ namespace KitchenLib.Customs
             if (result.SkipRotationAnimation != SkipRotationAnimation) result.SkipRotationAnimation = SkipRotationAnimation;
             if (result.IsPurchasable != IsPurchasable) result.IsPurchasable = IsPurchasable;
             if (result.IsPurchasableAsUpgrade != IsPurchasableAsUpgrade) result.IsPurchasableAsUpgrade = IsPurchasableAsUpgrade;
-            if (result.ThemeRequired != ThemeRequired) result.ThemeRequired = ThemeRequired;
+			if (result.ThemeRequired != ThemeRequired) result.ThemeRequired = ThemeRequired;
             if (result.ShoppingTags != ShoppingTags) result.ShoppingTags = ShoppingTags;
             if (result.RarityTier != RarityTier) result.RarityTier = RarityTier;
             if (result.PriceTier != PriceTier) result.PriceTier = PriceTier;
@@ -118,11 +120,13 @@ namespace KitchenLib.Customs
             if (result.StapleWhenMissing != StapleWhenMissing) result.StapleWhenMissing = StapleWhenMissing;
             if (result.SellOnlyAsDuplicate != SellOnlyAsDuplicate) result.SellOnlyAsDuplicate = SellOnlyAsDuplicate;
             if (result.SellOnlyAsUnique != SellOnlyAsUnique) result.SellOnlyAsUnique = SellOnlyAsUnique;
-            if (result.PreventSale != PreventSale) result.PreventSale = PreventSale;
+			if (result.PreventSale != PreventSale) result.PreventSale = PreventSale;
             if (result.IsNonCrated != IsNonCrated) result.IsNonCrated = IsNonCrated;
             if (result.Info != Info) result.Info = Info;
 
-            if (PurchaseCostOverride != -1)
+			Main.LogDebug($"[CustomAppliance.Convert] [1.2] Converting Overrides");
+
+			if (PurchaseCostOverride != -1)
             {
                 ApplianceOverrides.AddPurchaseCostOverride(result.ID, PurchaseCostOverride);
             }
@@ -134,7 +138,7 @@ namespace KitchenLib.Customs
                     result.Info.Add(info.Item1, info.Item2);
             }
 
-            if (result.Info == null)
+			if (result.Info == null)
             {
                 result.Info = new LocalisationObject<ApplianceInfo>();
                 if (!result.Info.Has(Locale.English))
@@ -148,8 +152,10 @@ namespace KitchenLib.Customs
 				}
             }
 
-			if (AutoGenerateNavMeshObject)
+			if (AutoGenerateNavMeshObject && result.Prefab != null)
 			{
+
+				Main.LogDebug($"[CustomAppliance.Convert] [1.2] Generating NavMesh");
 				NavMeshObstacle navMeshObstacle = null;
 				foreach (Transform t in result.Prefab.GetComponentInChildren<Transform>())
 				{
@@ -180,7 +186,9 @@ namespace KitchenLib.Customs
         {
             Appliance result = (Appliance)gameDataObject;
 
-            if (result.Processes != Processes) result.Processes = Processes;
+			Main.LogDebug($"[CustomAppliance.AttachDependentProperties] [1.1] Converting Base");
+
+			if (result.Processes != Processes) result.Processes = Processes;
             if (result.Properties != Properties) result.Properties = Properties;
             if (result.EffectRepresentation != EffectRepresentation) result.EffectRepresentation = EffectRepresentation;
             if (result.RequiresForShop != RequiresForShop) result.RequiresForShop = RequiresForShop;
@@ -190,6 +198,7 @@ namespace KitchenLib.Customs
 
 			if (result.Prefab == null)
 			{
+				Main.LogDebug($"[CustomAppliance.AttachDependentProperties] [1.2] Assigning Error Prefab");
 				result.Prefab = Main.bundle.LoadAsset<GameObject>("Error_Appliance");
 			}
         }

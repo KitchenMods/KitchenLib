@@ -16,7 +16,9 @@ namespace KitchenLib.Customs
         {
             UnlockCard result = ScriptableObject.CreateInstance<UnlockCard>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomUnlockCard.Convert] [1.1] Convering Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<UnlockCard>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
@@ -38,9 +40,11 @@ namespace KitchenLib.Customs
                 result.Info = new LocalisationObject<UnlockInfo>();
                 foreach ((Locale, UnlockInfo) info in InfoList)
                     result.Info.Add(info.Item1, info.Item2);
-            }
+			}
 
-            if (!string.IsNullOrEmpty(IconOverride))
+			Main.LogDebug($"[CustomUnlockCard.Convert] [1.2] Convering Overrides");
+
+			if (!string.IsNullOrEmpty(IconOverride))
 				UnlockOverrides.AddIconOverride(result.ID, IconOverride);
             if (ColourOverride != new Color())
 				UnlockOverrides.AddColourOverride(result.ID, ColourOverride);
@@ -52,7 +56,9 @@ namespace KitchenLib.Customs
         {
             UnlockCard result = (UnlockCard)gameDataObject;
 
-            FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
+			Main.LogDebug($"[CustomUnlockCard.AttachDependentProperties] [1.1] Convering Base");
+
+			FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
             FieldInfo hardcodedBlockers = ReflectionUtils.GetField<Unlock>("HardcodedBlockers");
 
             if (hardcodedRequirements.GetValue(result) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);

@@ -36,7 +36,9 @@ namespace KitchenLib.Customs
         {
             LayoutProfile result = ScriptableObject.CreateInstance<LayoutProfile>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomLayoutProfile.Convert] [1.1] Convering Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<LayoutProfile>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
@@ -83,7 +85,9 @@ namespace KitchenLib.Customs
         {
             LayoutProfile result = (LayoutProfile)gameDataObject;
 
-            if (result.RequiredAppliances != RequiredAppliances) result.RequiredAppliances = RequiredAppliances;
+			Main.LogDebug($"[CustomLayoutProfile.AttachDependentProperties] [1.1] Convering Base");
+
+			if (result.RequiredAppliances != RequiredAppliances) result.RequiredAppliances = RequiredAppliances;
             if (result.Table != Table) result.Table = Table;
             if (result.Counter != Counter) result.Counter = Counter;
             if (result.ExternalBin != ExternalBin) result.ExternalBin = ExternalBin;

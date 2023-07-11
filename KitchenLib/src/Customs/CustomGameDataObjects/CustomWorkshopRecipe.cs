@@ -17,7 +17,9 @@ namespace KitchenLib.Customs
         {
             WorkshopRecipe result = ScriptableObject.CreateInstance<WorkshopRecipe>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomWorkshopRecipe.Convert] [1.1] Convering Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<WorkshopRecipe>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;

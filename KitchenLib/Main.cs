@@ -17,6 +17,7 @@ using System;
 using KitchenData;
 using System.IO;
 using KitchenLib.References;
+using Mono.WebBrowser;
 
 namespace KitchenLib
 {
@@ -48,7 +49,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string MOD_BETA_VERSION = "3";
+		internal const string MOD_BETA_VERSION = "RC-1";
 
 		/// <summary>
 		/// The compatible versions of the mod.
@@ -89,7 +90,9 @@ namespace KitchenLib
 			Logger = InitLogger();
 			manager = new PreferenceManager(MOD_ID);
 			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));
+			manager.RegisterPreference(new PreferenceBool("isDebug", false));
 			manager.Load();
+			manager.Save();
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).FirstOrDefault() ?? throw new MissingAssetBundleException(MOD_ID);
 			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
 			SetupMenus();
@@ -97,6 +100,12 @@ namespace KitchenLib
 			RegisterMenu<DebugMenu>();
 			FeatureFlags.Init();
 
+			LogInfo(" __  ___  __  .___________.  ______  __    __   _______ .__   __.  __       __  .______  ");
+			LogInfo("|  |/  / |  | |           | /      ||  |  |  | |   ____||  \\ |  | |  |     |  | |   _  \\ ");
+			LogInfo("|  '  /  |  | `---|  |----`|  ,----'|  |__|  | |  |__   |   \\|  | |  |     |  | |  |_)  |");
+			LogInfo("|    <   |  |     |  |     |  |     |   __   | |   __|  |  . `  | |  |     |  | |   _  <  ");
+			LogInfo("|  .  \\  |  |     |  |     |  `----.|  |  |  | |  |____ |  |\\   | |  `----.|  | |  |_)  |");
+			LogInfo("|__|\\__\\ |__|     |__|      \\______||__|  |__| |_______||__| \\__| |_______||__| |______/ " + $"   v{MOD_VERSION}b{MOD_BETA_VERSION}");
 			/*
 			// View types
 			AddViewType("imms", () =>
@@ -241,6 +250,14 @@ namespace KitchenLib
 		internal static void LogError(string message)
 		{
 			Debug.LogError($"[{MOD_NAME}] " + message);
+		}
+
+		[Obsolete]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void LogDebug(string message)
+		{
+			if (manager.GetPreference<PreferenceBool>("isDebug").Value)
+				Debug.Log($"[{MOD_NAME}] [DEBUG] " + message);
 		}
 	}
 }

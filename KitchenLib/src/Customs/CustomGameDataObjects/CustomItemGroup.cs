@@ -25,7 +25,9 @@ namespace KitchenLib.Customs
         {
             ItemGroup result = ScriptableObject.CreateInstance<ItemGroup>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomItemGroup.Convert] [1.1] Convering Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<ItemGroup>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
@@ -45,9 +47,6 @@ namespace KitchenLib.Customs
             if (result.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (result.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
 
-			//if (!string.IsNullOrEmpty(ColourBlindTag))
-			//ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
-
             if (RewardOverride != -1)
                 ItemOverrides.AddRewardOverride(result.ID, RewardOverride);
 
@@ -62,7 +61,9 @@ namespace KitchenLib.Customs
         {
             ItemGroup result = (ItemGroup)gameDataObject;
 
-            if (result.Properties != Properties) result.Properties = Properties;
+			Main.LogDebug($"[CustomItemGroup.AttachDependentProperties] [1.1] Convering Base");
+
+			if (result.Properties != Properties) result.Properties = Properties;
             if (result.DirtiesTo != DirtiesTo) result.DirtiesTo = DirtiesTo;
             if (result.MayRequestExtraItems != MayRequestExtraItems) result.MayRequestExtraItems = MayRequestExtraItems;
             if (result.SplitSubItem != SplitSubItem) result.SplitSubItem = SplitSubItem;
@@ -96,8 +97,9 @@ namespace KitchenLib.Customs
 
             //Setup ItemGroupView for this ItemGroup
             if (AutoSetupItemGroupView)
-            {
-                T localView = result.Prefab.GetComponent<T>();
+			{
+				Main.LogDebug($"[CustomItemGroup.AttachDependentProperties] [1.2] Setting Up ItemGroupView");
+				T localView = result.Prefab.GetComponent<T>();
                 if (localView == null)
                     localView = result.Prefab.AddComponent<T>();
 
@@ -109,6 +111,7 @@ namespace KitchenLib.Customs
 			Item steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
 			if (steak != null)
 			{
+				Main.LogDebug($"[CustomItemGroup.AttachDependentProperties] [1.3] Setting Up Colorblind");
 				GameObject ColorBlind = GameObject.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject);
 				ColorBlind.name = "Colour Blind";
 				ColorBlind.transform.SetParent(result.Prefab.transform);

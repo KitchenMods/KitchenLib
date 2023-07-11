@@ -15,7 +15,9 @@ namespace KitchenLib.Customs
         {
             RandomUpgradeSet result = ScriptableObject.CreateInstance<RandomUpgradeSet>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomRandomUpgradeSet.Convert] [1.1] Convering Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<RandomUpgradeSet>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
@@ -28,7 +30,9 @@ namespace KitchenLib.Customs
         {
             RandomUpgradeSet result = (RandomUpgradeSet)gameDataObject;
 
-            if (result.Rewards != Rewards) result.Rewards = Rewards;
+			Main.LogDebug($"[CustomRandomUpgradeSet.AttachDependentProperties] [1.1] Convering Base");
+
+			if (result.Rewards != Rewards) result.Rewards = Rewards;
         }
     }
 }

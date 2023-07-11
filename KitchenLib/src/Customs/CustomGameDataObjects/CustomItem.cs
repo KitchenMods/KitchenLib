@@ -51,7 +51,9 @@ namespace KitchenLib.Customs
         {
             Item result = ScriptableObject.CreateInstance<Item>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomItem.Convert] [1.1] Convering Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Item>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
@@ -71,8 +73,8 @@ namespace KitchenLib.Customs
             if (result.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (result.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
 
-			//if (!string.IsNullOrEmpty(ColourBlindTag))
-			//ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
+			Main.LogDebug($"[CustomItem.Convert] [1.2] Convering Overrides");
+
 			if (!string.IsNullOrEmpty(ColourBlindTag))
 			{
 				Item steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
@@ -90,10 +92,12 @@ namespace KitchenLib.Customs
 
 			if (SidePrefab == null)
 			{
+				Main.LogDebug($"[CustomItem.Convert] [1.3] Assigning Error Prefab");
 				SidePrefab = result.Prefab ?? Main.bundle.LoadAsset<GameObject>("Error_Item");
 			}
 			if (result.Prefab == null)
 			{
+				Main.LogDebug($"[CustomItem.Convert] [1.4] Assigning Error Side Prefab");
 				result.Prefab = Main.bundle.LoadAsset<GameObject>("Error_Item");
 			}
 
@@ -104,7 +108,9 @@ namespace KitchenLib.Customs
         {
             Item result = (Item)gameDataObject;
 
-            if (result.Properties != Properties) result.Properties = Properties;
+			Main.LogDebug($"[CustomItem.AttachDependentProperties] [1.1] Convering Base");
+
+			if (result.Properties != Properties) result.Properties = Properties;
             if (result.DirtiesTo != DirtiesTo) result.DirtiesTo = DirtiesTo;
             if (result.MayRequestExtraItems != MayRequestExtraItems) result.MayRequestExtraItems = MayRequestExtraItems;
             if (result.SplitSubItem != SplitSubItem) result.SplitSubItem = SplitSubItem;
