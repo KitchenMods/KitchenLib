@@ -35,8 +35,9 @@ namespace KitchenLib.Customs
             if (result.IsSpecificFranchiseTier != IsSpecificFranchiseTier) result.IsSpecificFranchiseTier = IsSpecificFranchiseTier;
             if (result.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
             if (result.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
+			if (result.BlocksAllOtherFood != BlocksAllOtherFood) result.BlocksAllOtherFood = BlocksAllOtherFood;
 
-            if (result.Info != Info) result.Info = Info;
+			if (result.Info != Info) result.Info = Info;
 
             if (InfoList.Count > 0)
             {
@@ -63,8 +64,10 @@ namespace KitchenLib.Customs
 
 			if (result.ParentTheme1 != ParentTheme1) result.ParentTheme1 = ParentTheme1;
             if (result.ParentTheme2 != ParentTheme2) result.ParentTheme2 = ParentTheme2;
+			if (result.AllowedFoods != AllowedFoods) result.AllowedFoods = AllowedFoods;
+			if (result.ForceFranchiseSetting != ForceFranchiseSetting) result.ForceFranchiseSetting = ForceFranchiseSetting;
 
-            FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
+			FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
             FieldInfo hardcodedBlockers = ReflectionUtils.GetField<Unlock>("HardcodedBlockers");
 
             if (hardcodedRequirements.GetValue(result) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);

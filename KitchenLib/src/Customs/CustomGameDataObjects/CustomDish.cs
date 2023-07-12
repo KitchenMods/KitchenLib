@@ -20,6 +20,7 @@ namespace KitchenLib.Customs
         public virtual HashSet<Item> BlockProviders { get; protected set; } = new HashSet<Item>();
         public virtual GameObject IconPrefab { get; protected set; }
         public virtual GameObject DisplayPrefab { get; protected set; }
+		public virtual bool IsSpeedrunDish { get; protected set; } = false;
         public virtual List<Dish.MenuItem> ResultingMenuItems { get; protected set; } = new List<Dish.MenuItem>();
         public virtual HashSet<Dish.IngredientUnlock> IngredientsUnlocks { get; protected set; } = new HashSet<Dish.IngredientUnlock>();
 		public virtual Item RequiredDishItem { get; protected set; }
@@ -57,6 +58,8 @@ namespace KitchenLib.Customs
             if (result.IsSpecificFranchiseTier != IsSpecificFranchiseTier) result.IsSpecificFranchiseTier = IsSpecificFranchiseTier;
             if (result.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
             if (result.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
+            if (result.BlocksAllOtherFood != BlocksAllOtherFood) result.BlocksAllOtherFood = BlocksAllOtherFood;
+            if (result.IsSpeedrunDish != IsSpeedrunDish) result.IsSpeedrunDish = IsSpeedrunDish;
 
             if (result.Info != Info) result.Info = Info;
 
@@ -87,6 +90,8 @@ namespace KitchenLib.Customs
             if (result.MinimumIngredients != MinimumIngredients) result.MinimumIngredients = MinimumIngredients;
             if (result.RequiredProcesses != RequiredProcesses) result.RequiredProcesses = RequiredProcesses;
             if (result.BlockProviders != BlockProviders) result.BlockProviders = BlockProviders;
+            if (result.AllowedFoods != AllowedFoods) result.AllowedFoods = AllowedFoods;
+            if (result.ForceFranchiseSetting != ForceFranchiseSetting) result.ForceFranchiseSetting = ForceFranchiseSetting;
 
             FieldInfo resultingMenuItems = ReflectionUtils.GetField<Dish>("ResultingMenuItems");
             FieldInfo ingredientsUnlocks = ReflectionUtils.GetField<Dish>("IngredientsUnlocks");

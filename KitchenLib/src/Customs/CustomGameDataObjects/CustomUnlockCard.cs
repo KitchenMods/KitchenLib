@@ -32,8 +32,9 @@ namespace KitchenLib.Customs
             if (result.IsSpecificFranchiseTier != IsSpecificFranchiseTier) result.IsSpecificFranchiseTier = IsSpecificFranchiseTier;
             if (result.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
             if (result.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
+			if (result.BlocksAllOtherFood != BlocksAllOtherFood) result.BlocksAllOtherFood = BlocksAllOtherFood;
 
-            if (result.Info != Info) result.Info = Info;
+			if (result.Info != Info) result.Info = Info;
 
             if (InfoList.Count > 0)
             {
@@ -63,6 +64,8 @@ namespace KitchenLib.Customs
 
             if (hardcodedRequirements.GetValue(result) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
             if (hardcodedBlockers.GetValue(result) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
-        }
+			if (result.AllowedFoods != AllowedFoods) result.AllowedFoods = AllowedFoods;
+			if (result.ForceFranchiseSetting != ForceFranchiseSetting) result.ForceFranchiseSetting = ForceFranchiseSetting;
+		}
     }
 }

@@ -32,10 +32,14 @@ namespace KitchenLib.Customs
 
             if (result.ID != ID) result.ID = ID;
             if (result.Prefab != Prefab) result.Prefab = Prefab;
-            if (result.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
+			if (!AutomaticItemProcess.Equals(result.AutomaticItemProcess)) result.AutomaticItemProcess = AutomaticItemProcess;
+			if (result.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
             if (result.ItemValue != ItemValue) result.ItemValue = ItemValue;
-            if (result.MaxOrderSharers != MaxOrderSharers) result.MaxOrderSharers = MaxOrderSharers;
-            if (result.SplitCount != SplitCount) result.SplitCount = SplitCount;
+			if (result.IsConsumedByCustomer != IsConsumedByCustomer) result.IsConsumedByCustomer = IsConsumedByCustomer;
+			if (result.MaxOrderSharers != MaxOrderSharers) result.MaxOrderSharers = MaxOrderSharers;
+			if (result.AlwaysOrderAdditionalItem != AlwaysOrderAdditionalItem) result.AlwaysOrderAdditionalItem = AlwaysOrderAdditionalItem;
+			if (result.AutoSatisfied != AutoSatisfied) result.AutoSatisfied = AutoSatisfied;
+			if (result.SplitCount != SplitCount) result.SplitCount = SplitCount;
             if (result.SplitSpeed != SplitSpeed) result.SplitSpeed = SplitSpeed;
             if (result.AllowSplitMerging != AllowSplitMerging) result.AllowSplitMerging = AllowSplitMerging;
             if (result.PreventExplicitSplit != PreventExplicitSplit) result.PreventExplicitSplit = PreventExplicitSplit;

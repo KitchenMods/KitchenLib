@@ -38,6 +38,7 @@ namespace KitchenLib.Customs
         public virtual ShopRequirementFilter ShopRequirementFilter { get; protected set; }
         public virtual List<Appliance> RequiresForShop { get; protected set; } = new List<Appliance>();
         public virtual List<Process> RequiresProcessForShop { get; protected set; } = new List<Process>();
+        public virtual List<MenuPhase> RequiresPhaseForShop { get; protected set; } = new List<MenuPhase>();
         public virtual bool StapleWhenMissing { get; protected set; }
         public virtual bool SellOnlyAsDuplicate { get; protected set; }
         public virtual bool SellOnlyAsUnique { get; protected set; }
@@ -117,6 +118,7 @@ namespace KitchenLib.Customs
             if (result.RarityTier != RarityTier) result.RarityTier = RarityTier;
             if (result.PriceTier != PriceTier) result.PriceTier = PriceTier;
             if (result.ShopRequirementFilter != ShopRequirementFilter) result.ShopRequirementFilter = ShopRequirementFilter;
+            if (result.RequiresPhaseForShop != RequiresPhaseForShop) result.RequiresPhaseForShop = RequiresPhaseForShop;
             if (result.StapleWhenMissing != StapleWhenMissing) result.StapleWhenMissing = StapleWhenMissing;
             if (result.SellOnlyAsDuplicate != SellOnlyAsDuplicate) result.SellOnlyAsDuplicate = SellOnlyAsDuplicate;
             if (result.SellOnlyAsUnique != SellOnlyAsUnique) result.SellOnlyAsUnique = SellOnlyAsUnique;
