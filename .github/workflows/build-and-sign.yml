@@ -115,8 +115,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }} # This token is provided by Actions, you do not need to create your own token
       with:
-        tag_name: ${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}
-        release_name: ${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}
+        tag_name: v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}
+        release_name: v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}
         body_path: ./KitchenLib/Changelogs/${{ github.event.inputs.releaseversion }}/Github/v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}.MD
         draft: false
         prerelease: ${{ !(github.event.inputs.betaversion == '') }}
