@@ -48,6 +48,10 @@ If you just want to validate the artifact hasn't been tampered with, you can sto
 - Locate the `cosign.bundle` file and locate the `cert` field within the json payload. Save the contents of the field to a separate file. This is a base64 encoded public certificate with important relevant information.
 - If you are on a Unix like platform (OSX or Linux), you can save it to a file and perform the following: `cat <encoded_file> | base64 -d > openssl -in -text -noout`. This will print a bunch of information. The important info is highlighted in the below image:
   ![Cert Information](https://github.com/KitchenMods/KitchenLib/assets/11451714/e180d6de-912c-43b1-a431-5dd273a6f0b2)
+
+
+  If you are a Windows platform and have `git` installed via [gitforwindows](https://gitforwindows.org/) you likely already have `openssl.exe` available at `C:\Program Files\Git\usr\bin\openssl.exe` and can use that. You'll have to base64 decode the certificate using an additional tool
+
 - You will want to take note of the relevant information so you can find the source code for the artifact. In the example above, you can take the commit SHA to find the exact code that it was generated from: https://github.com/KitchenMods/KitchenLib/tree/fefd811c4da632c2d599a8f5a81253742b606e96
 - Once you make it this far, you'll want to verify the code that built the library and signed it. Go inspect the specific workflow file referenced above and assure that nothing malicious is present that could attempt to subvert the building or signing process and the code it references. You will want to verify that the workflow does in fact build from the code referenced in the repository and doesn't pull it from an outside source.
 - If the previous step checks out, you can now proceed to verify the actual code content and be relatively certain what you see is what you get in the library artifact.
