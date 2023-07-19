@@ -23,7 +23,7 @@ namespace KitchenLib.Customs
 		//private static readonly ItemGroup empty = ScriptableObject.CreateInstance<ItemGroup>();
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-            ItemGroup result = ScriptableObject.CreateInstance<ItemGroup>();
+			ItemGroup result = ScriptableObject.CreateInstance<ItemGroup>();
 
 			Main.LogDebug($"[CustomItemGroup.Convert] [1.1] Convering Base");
 

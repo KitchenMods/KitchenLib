@@ -128,7 +128,7 @@ namespace KitchenLib
 			{
 				foreach (AssetBundle bundle in pack.AssetBundles)
 				{
-					JSONManager.LoadAllJsons(bundle);
+					JSONManager.LoadAllJsons(mod.Name, bundle);
 				}
 			}
 

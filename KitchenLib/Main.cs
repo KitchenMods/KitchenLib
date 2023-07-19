@@ -16,8 +16,7 @@ using System.Runtime.CompilerServices;
 using System;
 using KitchenData;
 using System.IO;
-using KitchenLib.References;
-using Mono.WebBrowser;
+using KitchenLib.JSON;
 
 namespace KitchenLib
 {
@@ -88,11 +87,15 @@ namespace KitchenLib
 		protected override void OnPostActivate(Mod mod)
 		{
 			Logger = InitLogger();
+
 			manager = new PreferenceManager(MOD_ID);
 			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));
 			manager.RegisterPreference(new PreferenceBool("isDebug", false));
 			manager.Load();
 			manager.Save();
+
+			JSONPackManager.Start();
+
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).FirstOrDefault() ?? throw new MissingAssetBundleException(MOD_ID);
 			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
 			SetupMenus();

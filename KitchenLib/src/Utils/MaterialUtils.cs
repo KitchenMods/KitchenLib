@@ -6,7 +6,7 @@ namespace KitchenLib.Utils
 {
     public static class MaterialUtils
 	{
-        private static readonly Dictionary<string, Material> MaterialIndex = new Dictionary<string, Material>();
+        internal static readonly Dictionary<string, Material> MaterialIndex = new Dictionary<string, Material>();
 
         /// <summary>
         /// Apply a material array to a child renderer.
@@ -240,10 +240,9 @@ namespace KitchenLib.Utils
         /// <returns>The requested material or null if not found.</returns>
         public static Material GetExistingMaterial(string materialName)
         {
-            if (MaterialIndex.ContainsKey(materialName))
-                return MaterialIndex[materialName];
-            else
-                return null;
+			if (MaterialIndex.TryGetValue(materialName, out Material material))
+				return material;
+			return null;
         }
 
         /// <summary>
@@ -253,11 +252,9 @@ namespace KitchenLib.Utils
         /// <returns>The requested material or null if not found.</returns>
         public static Material GetCustomMaterial(string materialName)
 		{
-			bool found = CustomMaterials.CustomMaterialsIndex.ContainsKey(materialName);
-			if (found)
-				return CustomMaterials.CustomMaterialsIndex[materialName];
-			else
-				return null;
+			if (CustomMaterials.CustomMaterialsIndex.TryGetValue(materialName, out Material material))
+				return material;
+			return null;
         }
 
         /// <summary>

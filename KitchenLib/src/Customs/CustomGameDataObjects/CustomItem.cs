@@ -54,7 +54,7 @@ namespace KitchenLib.Customs
         //private static readonly Item empty = ScriptableObject.CreateInstance<Item>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
-            Item result = ScriptableObject.CreateInstance<Item>();
+			Item result = ScriptableObject.CreateInstance<Item>();
 
 			Main.LogDebug($"[CustomItem.Convert] [1.1] Convering Base");
 

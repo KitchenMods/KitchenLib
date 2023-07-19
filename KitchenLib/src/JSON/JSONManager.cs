@@ -1,4 +1,5 @@
 ﻿using KitchenLib.Customs;
+using KitchenLib.JSON;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -7,9 +8,9 @@ using UnityEngine;
 
 namespace KitchenLib
 {
-    public static class JSONManager
+    internal static class JSONManager
 	{
-		public static Dictionary<JsonType, Type> keyValuePairs = new Dictionary<JsonType, Type>
+		internal static Dictionary<JsonType, Type> keyValuePairs = new Dictionary<JsonType, Type>
 		{
 			{ JsonType.Base, typeof(BaseJson) },
 			{ JsonType.FlatColorMaterial, typeof(CustomSimpleFlat) },
@@ -28,20 +29,94 @@ namespace KitchenLib
 			{ JsonType.CBlueprintLight, typeof(CBlueprintLight) },
 		};
 
-		public static List<BaseJson> LoadedJsons = new List<BaseJson>();
+		internal static List<BaseJson> LoadedJsons = new List<BaseJson>();
 
-		public static T LoadJsonFromString<T>(string json) where T : BaseJson
+		internal static T LoadJsonFromString<T>(string json) where T : BaseJson
 		{
 			var newJson = JsonConvert.DeserializeObject<T>(json);
 			return newJson;
 		}
 
-		public static Material LoadJsonMaterial<T>(string json) where T : CustomMaterial
+		internal static Material LoadJsonMaterial<T>(string json) where T : CustomMaterial
 		{
 			var newJson = JsonConvert.DeserializeObject<T>(json);
 			newJson.Deserialise();
 			newJson.ConvertMaterial(out Material material);
 			return material;
+		}
+
+		internal static void LoadAllJsons(string MOD_NAME, AssetBundle bundle)
+		{
+			if(Main.Logger != null)
+			{
+				Main.Logger.LogInfo($"Loading JSONs from {MOD_NAME}");
+				foreach (TextAsset asset in bundle.LoadAllAssets<TextAsset>())
+				{
+					Main.Logger.LogInfo($"Loading JSON-based material asset '{asset.name}'");
+					try
+					{
+						JObject jObject = JObject.Parse(asset.text);
+						if (jObject.TryGetValue("Type", out JToken jToken1))
+						{
+							JsonType type = jToken1.ToObject<JsonType>();
+							var json = jObject.ToObject(keyValuePairs[type]);
+							LoadedJsons.Add(json as BaseJson);
+						}
+					}
+					catch (Exception e)
+					{
+						Main.Logger.LogException(e);
+					}
+				}
+			} else
+			{
+				Main.LogInfo($"Please recompile {bundle.name} with latest KitchenLib for more verbose logging.");
+				foreach (TextAsset asset in bundle.LoadAllAssets<TextAsset>())
+				{
+					Main.LogInfo($"Loading JSON-based material asset '{asset.name}'");
+					BaseJson baseJson = null;
+					try
+					{
+						try
+						{
+							JObject jObject = JObject.Parse(asset.text);
+							if (jObject.TryGetValue("Type", out JToken jToken))
+							{
+								JsonType type = jToken.ToObject<JsonType>();
+								var json = jObject.ToObject(keyValuePairs[type]);
+								LoadedJsons.Add(json as BaseJson);
+							}
+						}
+						catch (Exception e)
+						{
+							Main.LogWarning(asset.name + " Could Not Be Loaded");
+							Main.LogWarning(e.Message);
+						}
+					}
+					catch (Exception e)
+					{
+						Main.LogWarning($"Material asset '{asset.name}' could not be loaded");
+					}
+				}
+
+				foreach (BaseJson json in LoadedJsons)
+				{
+					if (json is CustomMaterial)
+					{
+						var material = json as CustomMaterial;
+						material.Deserialise();
+						material.ConvertMaterial(out Material newMaterial);
+						CustomMaterials.AddMaterial(material.Name, newMaterial);
+					}
+					if (json is CustomBaseMaterial)
+					{
+						var material = json as CustomBaseMaterial;
+						Material mat;
+						material.ConvertMaterial(out mat);
+						CustomMaterials.AddMaterial(mat.name, mat);
+					}
+				}
+			}
 		}
 
 		[Obsolete]
@@ -65,56 +140,6 @@ namespace KitchenLib
 			}
 			Main.LogWarning("Unable to load JSON");
 			return new Material(Shader.Find("Simple Flat"));
-
-		}
-
-		public static void LoadAllJsons(AssetBundle bundle)
-		{
-			foreach (TextAsset asset in bundle.LoadAllAssets<TextAsset>())
-			{
-				Main.LogInfo($"Loading JSON-based material asset '{asset.name}'");
-				BaseJson baseJson = null;
-				try
-				{
-					try
-					{
-						JObject jObject = JObject.Parse(asset.text);
-						if (jObject.TryGetValue("Type", out JToken jToken))
-						{
-							JsonType type = jToken.ToObject<JsonType>();
-							var json = jObject.ToObject(keyValuePairs[type]);
-							LoadedJsons.Add(json as BaseJson);
-						}
-					}
-					catch (Exception e)
-					{
-						Main.LogWarning(asset.name + " Could Not Be Loaded");
-						Main.LogWarning(e.Message);
-					}
-				}
-				catch (Exception e)
-				{
-					Main.LogWarning($"Material asset '{asset.name}' could not be loaded");
-				}
-			}
-			
-			foreach (BaseJson json in LoadedJsons)
-			{
-				if (json is CustomMaterial)
-				{
-					var material = json as CustomMaterial;
-					material.Deserialise();
-					material.ConvertMaterial(out Material newMaterial);
-					CustomMaterials.AddMaterial(material.Name, newMaterial);
-				}
-				if (json is CustomBaseMaterial)
-				{
-					var material = json as CustomBaseMaterial;
-					Material mat;
-					material.ConvertMaterial(out mat);
-					CustomMaterials.AddMaterial(mat.name, mat);
-				}
-			}
 		}
 	}
 
