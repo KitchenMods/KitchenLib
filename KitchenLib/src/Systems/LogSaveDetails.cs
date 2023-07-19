@@ -39,10 +39,15 @@ namespace KitchenLib.Systems
 					.SelectMany(mod => mod.GetPacks<AssemblyModPack>())
 					.Select(pack => pack.Name.Replace(".dll", "")).ToList();
 
-				saveDetails.Components = EntityManager
+				saveDetails.Components.Clear();
+				foreach (ComponentType component in EntityManager
 					.GetAllEntities()
-					.SelectMany(_ => EntityManager.GetChunk(_).Archetype.GetComponentTypes())
-					.ToDictionary(_ => _.GetManagedType().FullName, _ => TypeManager.GetTypeInfo(_.TypeIndex).StableTypeHash.ToString());
+					.SelectMany(_ => EntityManager.GetChunk(_).Archetype.GetComponentTypes()))
+				{
+					string key = component.GetManagedType().FullName;
+					if (!saveDetails.Components.ContainsKey(key))
+						saveDetails.Components.Add(key, TypeManager.GetTypeInfo(component.TypeIndex).StableTypeHash.ToString());
+				}
 
 				File.WriteAllText(path + "/details.json", JsonConvert.SerializeObject(saveDetails, Formatting.Indented));
 			}
