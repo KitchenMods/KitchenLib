@@ -18,6 +18,7 @@ using KitchenData;
 using System.IO;
 using KitchenLib.References;
 using Mono.WebBrowser;
+using KitchenLib.src.UI.PlateUp;
 
 namespace KitchenLib
 {
@@ -49,7 +50,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string MOD_BETA_VERSION = "RC-3";
+		internal const string MOD_BETA_VERSION = "RC-4";
 
 		/// <summary>
 		/// The compatible versions of the mod.
@@ -159,6 +160,7 @@ namespace KitchenLib
 				args.addMenu.Invoke(args.instance, new object[] { typeof(RevisedMainMenu), new RevisedMainMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<MainMenuAction>), new ModsMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<MainMenuAction>), new ModsPreferencesMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(KitchenLibBetaMenu<MainMenuAction>), new KitchenLibBetaMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
 			};
 
 			//Setting Up For Pause Menu
@@ -172,6 +174,7 @@ namespace KitchenLib
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<PauseMenuAction>), new ModsMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<PauseMenuAction>), new ModsPreferencesMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModSyncMenu), new ModSyncMenu(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(KitchenLibBetaMenu<PauseMenuAction>), new KitchenLibBetaMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 			};
 
 			Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent += (s, args) =>
