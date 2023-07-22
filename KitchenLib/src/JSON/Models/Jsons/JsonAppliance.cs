@@ -35,13 +35,5 @@ namespace KitchenLib.src.JSON.Models.Jsons
 		[JsonProperty("HeldAppliancePrefab")]
 		[JsonConverter(typeof(PrefabConverter))]
 		public object TempHeldAppliancePrefab { get; set; }
-
-		[JsonIgnore]
-		public override List<Appliance.ApplianceProcesses> Processes { get; protected set; } = new();
-		[JsonProperty("Processes")]
-		public List<ApplianceProcessesContainer> TempProcesses { get; set; } = new();
-
-
-
 	}
 }

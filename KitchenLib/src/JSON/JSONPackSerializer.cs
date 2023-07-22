@@ -74,7 +74,7 @@ namespace KitchenLib.JSON
 			}
 		}
 
-		internal static string SerializeJson(CustomGameDataObject JsonGDO)
+		internal static string SerializeJson(object JsonGDO)
 		{
 			JTokenWriter writer = new JTokenWriter();
 			Serializer.Serialize(writer, JsonGDO);

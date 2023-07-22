@@ -1,17 +1,28 @@
 ﻿using Kitchen;
 using KitchenData;
 using KitchenLib.JSON.Enums;
-using KitchenLib.Utils;
+using KitchenLib.JSON.Models.Containers;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace KitchenLib.JSON.Models.Containers
+namespace KitchenLib.src.JSON.JsonConverters
 {
-	public struct IAppliancePropertyContainer
+	public class IAppliancePropertyConverter : JsonConverter
 	{
-		public JObject jObject;
-
-		public IApplianceProperty Convert()
+		public override bool CanConvert(Type objectType)
 		{
+			return objectType == typeof(IApplianceProperty);
+		}
+
+		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+		{
+			JObject jObject = JObject.Load(reader);
+
 			if (jObject.TryGetValue("Type", out JToken type))
 			{
 				AppliancePropertyContext context = type.ToObject<AppliancePropertyContext>();
@@ -98,7 +109,7 @@ namespace KitchenLib.JSON.Models.Containers
 					AppliancePropertyContext.CDisableAutomation => new CDisableAutomation(),
 					AppliancePropertyContext.CGivesDecoration => new CGivesDecoration(),
 					AppliancePropertyContext.CProviderFillsOnAccept => new CProviderFillsOnAccept(),
-					AppliancePropertyContext.CItemProvider => ConvertItemProvider(jObject["Property"]["Item"].ToObject<int>()),
+					AppliancePropertyContext.CItemProvider => new CItemProviderContainer(),
 					AppliancePropertyContext.CFillAtInterval => new CFillAtInterval(),
 					AppliancePropertyContext.CDynamicItemProvider => new CDynamicItemProvider(),
 					AppliancePropertyContext.CDestroyApplianceAtNight => new CDestroyApplianceAtNight(),
@@ -140,19 +151,20 @@ namespace KitchenLib.JSON.Models.Containers
 					AppliancePropertyContext.CUpgradesTracker => new CUpgradesTracker(),
 				};
 
-				JSONPackSerializer.Serializer.Populate(jObject["Property"].CreateReader(), property);
+				serializer.Populate(jObject["Property"].CreateReader(), property);
+
+				if (context == AppliancePropertyContext.CItemProvider)
+					property = ((CItemProviderContainer)property).Convert();
+
 				return property;
 			}
 			return null;
 		}
 
-		public CItemProvider ConvertItemProvider(int id)
+		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
 		{
-			CItemProvider result = new CItemProvider();
-			object ptemp = result;
-			ReflectionUtils.GetField<CItemProvider>("Item").SetValue(ptemp, id);
-			result = (CItemProvider)ptemp;
-			return result;
+			JToken jToken = JToken.FromObject(value);
+			jToken.WriteTo(writer);
 		}
 	}
 }

@@ -43,15 +43,6 @@ namespace KitchenLib.JSON.Patches
 		}
 
 		[HarmonyPostfix]
-		[HarmonyPatch(typeof(JsonItemGroup), nameof(JsonItemGroup.Properties), MethodType.Getter)]
-		public static void Postfix_get_Properties(JsonItemGroup __instance, ref List<IItemProperty> __result)
-		{
-			__result = __instance.TempProperties
-				.Select(_ => _.Convert())
-				.ToList();
-		}
-
-		[HarmonyPostfix]
 		[HarmonyPatch(typeof(JsonItemGroup), nameof(JsonItemGroup.DirtiesTo), MethodType.Getter)]
 		public static void Postfix_get_DirtiesTo(JsonItemGroup __instance, ref Item __result)
 		{

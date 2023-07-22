@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
-using KitchenLib.Utils;
 
 namespace KitchenLib.JSON.Models.Jsons
 {
@@ -22,7 +21,7 @@ namespace KitchenLib.JSON.Models.Jsons
 		public string GDOName { get; set; }
 
 		[JsonProperty("Materials")]
-		public List<MaterialsContainer> Materials { get; set; } = new();
+		public MaterialsContainer Materials { get; set; }
 
 		[JsonIgnore]
 		public override GameObject Prefab { get; protected set; }
@@ -45,11 +44,6 @@ namespace KitchenLib.JSON.Models.Jsons
 		public override Item.ItemProcess AutomaticItemProcess { get; protected set; } = new();
 		[JsonProperty("AutomaticItemProcess")]
 		public ItemProcessContainer TempAutomaticItemProcess { get; set; } = new();
-
-		[JsonIgnore]
-		public override List<IItemProperty> Properties { get; protected set; } = new();
-		[JsonProperty("Properties")]
-		public List<IItemPropertyContainer> TempProperties { get; set; } = new();
 
 		[JsonIgnore]
 		public override Item DirtiesTo { get; protected set; }
@@ -99,18 +93,22 @@ namespace KitchenLib.JSON.Models.Jsons
 			ModID = Context.Item2;
 		}
 
+		public override void OnRegister(GameDataObject gameDataObject)
+		{
+			base.OnRegister(gameDataObject); 
+			Main.LogInfo($"Running On Register 2");
+		}
+
 		public override void OnRegister(Item gameDataObject)
 		{
-			gameDataObject.name = GDOName;
+			Main.LogInfo($"Running On Register");
+			//gameDataObject.name = GDOName;
 
-			foreach (MaterialsContainer container in Materials)
-			{
-				MaterialUtils.ApplyMaterial(
-					gameDataObject.Prefab,
-					container.Path,
-					container.Convert()
-				);
-			}
+			//Main.LogInfo($"JSON Item OnRegister");
+			//Main.LogInfo($"{Materials.Materials.ToString(Formatting.Indented)}");
+
+			//Materials.Convert(gameDataObject.Prefab);
+			//base.OnRegister(gameDataObject);
 		}
 	}
 }
