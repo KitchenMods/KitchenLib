@@ -14,7 +14,7 @@ namespace KitchenLib.Customs
     public abstract class CustomLayoutProfile : CustomLocalisedGameDataObject<LayoutProfile, BasicInfo>
     {
 		[Obsolete("Please use NodeConnections")]
-        public virtual LayoutGraph Graph { get; protected set; }
+		public virtual LayoutGraph Graph { get; protected set; } = null;
         public virtual int MaximumTables { get; protected set; } = 3;
         public virtual List<GameDataObject> RequiredAppliances { get; protected set; } = new List<GameDataObject>();
         public virtual GameDataObject Table { get; protected set; }
@@ -42,9 +42,10 @@ namespace KitchenLib.Customs
                 result = UnityEngine.Object.Instantiate(gameData.Get<LayoutProfile>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
-			if (result.Graph != Graph) result.Graph = Graph;
 
-			if (result.Graph != null)
+
+			if (result.Graph != Graph) result.Graph = Graph;
+			if (NodeConnections.Count > 0)
 			{
 				result.Graph = new LayoutGraph
 				{
@@ -52,6 +53,7 @@ namespace KitchenLib.Customs
 				};
 				PopulateConnections(ref result.Graph, NodeConnections);
 			}
+
 
 
 			if (result.MaximumTables != MaximumTables) result.MaximumTables = MaximumTables;

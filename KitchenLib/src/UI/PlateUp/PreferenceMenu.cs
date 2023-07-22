@@ -7,6 +7,7 @@ using System.IO.Compression;
 using UnityEngine;
 using KitchenLib.Views;
 using KitchenLib.UI.PlateUp;
+using KitchenLib.src.UI.PlateUp;
 
 namespace KitchenLib.UI
 {
@@ -56,6 +57,13 @@ namespace KitchenLib.UI
 
 				if (Directory.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp"))
 					DeleteDirectory(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp");
+			}, 0, 1f, 0.2f);
+
+			New<SpacerElement>(true);
+
+			AddButton("KitchenLib Beta", async delegate (int i)
+			{
+				RequestSubMenu(typeof(KitchenLibBetaMenu<T>));
 			}, 0, 1f, 0.2f);
 
 			New<SpacerElement>(true);
