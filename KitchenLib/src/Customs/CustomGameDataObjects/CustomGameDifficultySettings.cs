@@ -20,7 +20,7 @@ namespace KitchenLib.Customs
         {
             GameDifficultySettings result = ScriptableObject.CreateInstance<GameDifficultySettings>();
 
-			Main.LogDebug($"[CustomGameDifficultySettings.Convert] [1.1] Convering Base");
+			Main.LogDebug($"[CustomGameDifficultySettings.Convert] [1.1] Converting Base");
 
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<GameDifficultySettings>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));

@@ -19,7 +19,7 @@ namespace KitchenLib.Customs
         {
             PlayerCosmetic result = ScriptableObject.CreateInstance<PlayerCosmetic>();
 
-			Main.LogDebug($"[CustomPlayerCosmetic.Convert] [1.1] Convering Base");
+			Main.LogDebug($"[CustomPlayerCosmetic.Convert] [1.1] Converting Base");
 
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<PlayerCosmetic>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
@@ -46,7 +46,7 @@ namespace KitchenLib.Customs
         {
             PlayerCosmetic result = (PlayerCosmetic)gameDataObject;
 
-			Main.LogDebug($"[CustomPlayerCosmetic.AttachDependentProperties] [1.1] Convering Base");
+			Main.LogDebug($"[CustomPlayerCosmetic.AttachDependentProperties] [1.1] Converting Base");
 
 			if (result.CustomerSettings != CustomerSettings) result.CustomerSettings = CustomerSettings;
         }

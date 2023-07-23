@@ -18,7 +18,7 @@ namespace KitchenLib.Customs
         {
             ThemeUnlock result = ScriptableObject.CreateInstance<ThemeUnlock>();
 
-			Main.LogDebug($"[CustomThemeUnlock.Convert] [1.1] Convering Base");
+			Main.LogDebug($"[CustomThemeUnlock.Convert] [1.1] Converting Base");
 
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<ThemeUnlock>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
@@ -46,7 +46,7 @@ namespace KitchenLib.Customs
                     result.Info.Add(info.Item1, info.Item2);
 			}
 
-			Main.LogDebug($"[CustomThemeUnlock.Convert] [1.2] Convering Overrides");
+			Main.LogDebug($"[CustomThemeUnlock.Convert] [1.2] Converting Overrides");
 
 			if (!string.IsNullOrEmpty(IconOverride))
                 UnlockOverrides.AddIconOverride(result.ID, IconOverride);
@@ -60,7 +60,7 @@ namespace KitchenLib.Customs
         {
             ThemeUnlock result = (ThemeUnlock)gameDataObject;
 
-			Main.LogDebug($"[CustomThemeUnlock.AttachDependentProperties] [1.1] Convering Base");
+			Main.LogDebug($"[CustomThemeUnlock.AttachDependentProperties] [1.1] Converting Base");
 
 			if (result.ParentTheme1 != ParentTheme1) result.ParentTheme1 = ParentTheme1;
             if (result.ParentTheme2 != ParentTheme2) result.ParentTheme2 = ParentTheme2;

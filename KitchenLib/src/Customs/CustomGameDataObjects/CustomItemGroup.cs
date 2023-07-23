@@ -25,7 +25,7 @@ namespace KitchenLib.Customs
         {
             ItemGroup result = ScriptableObject.CreateInstance<ItemGroup>();
 
-			Main.LogDebug($"[CustomItemGroup.Convert] [1.1] Convering Base");
+			Main.LogDebug($"[CustomItemGroup.Convert] [1.1] Converting Base");
 
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<ItemGroup>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
@@ -65,7 +65,7 @@ namespace KitchenLib.Customs
         {
             ItemGroup result = (ItemGroup)gameDataObject;
 
-			Main.LogDebug($"[CustomItemGroup.AttachDependentProperties] [1.1] Convering Base");
+			Main.LogDebug($"[CustomItemGroup.AttachDependentProperties] [1.1] Converting Base");
 
 			if (result.Properties != Properties) result.Properties = Properties;
             if (result.DirtiesTo != DirtiesTo) result.DirtiesTo = DirtiesTo;

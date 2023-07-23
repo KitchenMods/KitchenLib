@@ -37,7 +37,7 @@ namespace KitchenLib.Customs
         {
             Dish result = ScriptableObject.CreateInstance<Dish>();
 
-			Main.LogDebug($"[CustomDish.Convert] [1.1] Convering Base");
+			Main.LogDebug($"[CustomDish.Convert] [1.1] Converting Base");
 
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Dish>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
@@ -61,7 +61,7 @@ namespace KitchenLib.Customs
 
             if (result.Info != Info) result.Info = Info;
 
-			Main.LogDebug($"[CustomDish.Convert] [1.2] Convering Overrides");
+			Main.LogDebug($"[CustomDish.Convert] [1.2] Converting Overrides");
 
 			if (InfoList.Count > 0)
             {

@@ -21,7 +21,7 @@ namespace KitchenLib.Customs
         {
             EffectRepresentation result = ScriptableObject.CreateInstance<EffectRepresentation>();
 
-			Main.LogDebug($"[CustomEffectRepresentation.Convert] [1.1] Convering Base");
+			Main.LogDebug($"[CustomEffectRepresentation.Convert] [1.1] Converting Base");
 
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<EffectRepresentation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
@@ -29,7 +29,7 @@ namespace KitchenLib.Customs
             if (result.ID != ID) result.ID = ID;
             if (result.Info != Info) result.Info = Info;
 
-			Main.LogDebug($"[CustomEffectRepresentation.Convert] [1.2] Convering Overrides");
+			Main.LogDebug($"[CustomEffectRepresentation.Convert] [1.2] Converting Overrides");
 
 			if (InfoList.Count > 0)
             {

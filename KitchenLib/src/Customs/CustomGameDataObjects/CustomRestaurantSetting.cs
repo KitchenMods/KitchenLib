@@ -17,7 +17,7 @@ namespace KitchenLib.Customs
 		{
 			RestaurantSetting result = ScriptableObject.CreateInstance<RestaurantSetting>();
 
-			Main.LogDebug($"[CustomRestaurantSetting.Convert] [1.1] Convering Base");
+			Main.LogDebug($"[CustomRestaurantSetting.Convert] [1.1] Converting Base");
 
 			if (BaseGameDataObjectID != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<RestaurantSetting>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
@@ -42,7 +42,7 @@ namespace KitchenLib.Customs
 		{
 			RestaurantSetting result = (RestaurantSetting)GameDataObject;
 
-			Main.LogDebug($"[CustomRestaurantSetting.AttachDependentProperties] [1.1] Convering Base");
+			Main.LogDebug($"[CustomRestaurantSetting.AttachDependentProperties] [1.1] Converting Base");
 
 			if (result.Decorators != Decorators) result.Decorators = Decorators;
 			if (result.UnlockPack != UnlockPack) result.UnlockPack = UnlockPack;

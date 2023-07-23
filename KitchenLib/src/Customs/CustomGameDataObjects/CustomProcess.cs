@@ -20,7 +20,7 @@ namespace KitchenLib.Customs
         {
             Process result = ScriptableObject.CreateInstance<Process>();
 
-			Main.LogDebug($"[CustomProcess.Convert] [1.1] Convering Base");
+			Main.LogDebug($"[CustomProcess.Convert] [1.1] Converting Base");
 
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Process>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
@@ -57,7 +57,7 @@ namespace KitchenLib.Customs
         {
             Process result = (Process)gameDataObject;
 
-			Main.LogDebug($"[CustomProcess.AttachDependentProperties] [1.1] Convering Base");
+			Main.LogDebug($"[CustomProcess.AttachDependentProperties] [1.1] Converting Base");
 
 			if (result.BasicEnablingAppliance != BasicEnablingAppliance) result.BasicEnablingAppliance = BasicEnablingAppliance;
             if (result.IsPseudoprocessFor != IsPseudoprocessFor) result.IsPseudoprocessFor = IsPseudoprocessFor;

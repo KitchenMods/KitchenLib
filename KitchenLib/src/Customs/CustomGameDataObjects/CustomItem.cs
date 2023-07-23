@@ -56,7 +56,7 @@ namespace KitchenLib.Customs
         {
             Item result = ScriptableObject.CreateInstance<Item>();
 
-			Main.LogDebug($"[CustomItem.Convert] [1.1] Convering Base");
+			Main.LogDebug($"[CustomItem.Convert] [1.1] Converting Base");
 
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Item>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
@@ -82,7 +82,7 @@ namespace KitchenLib.Customs
             if (result.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (result.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
 
-			Main.LogDebug($"[CustomItem.Convert] [1.2] Convering Overrides");
+			Main.LogDebug($"[CustomItem.Convert] [1.2] Converting Overrides");
 
 			if (!string.IsNullOrEmpty(ColourBlindTag))
 			{
@@ -117,7 +117,7 @@ namespace KitchenLib.Customs
         {
             Item result = (Item)gameDataObject;
 
-			Main.LogDebug($"[CustomItem.AttachDependentProperties] [1.1] Convering Base");
+			Main.LogDebug($"[CustomItem.AttachDependentProperties] [1.1] Converting Base");
 
 			if (result.Properties != Properties) result.Properties = Properties;
             if (result.DirtiesTo != DirtiesTo) result.DirtiesTo = DirtiesTo;

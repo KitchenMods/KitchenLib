@@ -18,7 +18,7 @@ namespace KitchenLib.Customs
         {
             Effect result = ScriptableObject.CreateInstance<Effect>();
 
-			Main.LogDebug($"[CustomEffect.Convert] [1.1] Convering Base");
+			Main.LogDebug($"[CustomEffect.Convert] [1.1] Converting Base");
 
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Effect>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
@@ -36,7 +36,7 @@ namespace KitchenLib.Customs
         {
             Effect result = (Effect)gameDataObject;
 
-			Main.LogDebug($"[CustomEffect.AttachDependentProperties] [1.1] Convering Base");
+			Main.LogDebug($"[CustomEffect.AttachDependentProperties] [1.1] Converting Base");
 
 			if (result.EffectInformation != EffectInformation) result.EffectInformation = EffectInformation;
         }
