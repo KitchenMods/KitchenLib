@@ -38,10 +38,9 @@ namespace KitchenLib.Patches
 
 			public void LogException(Exception exception, UnityEngine.Object context)
 			{
-				string MOD_NAME = "PlateUp!";
 				if (exception.Data.Contains("MOD_NAME"))
 				{
-					MOD_NAME = (string)exception.Data["MOD_NAME"];
+					string MOD_NAME = (string)exception.Data["MOD_NAME"];
 					string message = $"[{MOD_NAME}] " + GetInnerExceptions(exception) + Environment.NewLine;
 					string[] stackTrace = Environment.StackTrace.Split(
 						new string[] { "\r\n", "\r", "\n" },
@@ -56,7 +55,7 @@ namespace KitchenLib.Patches
 				else
 				{
 					FieldInfo MessageField = ReflectionUtils.GetField<Exception>("_message", BindingFlags.Instance | BindingFlags.NonPublic);
-					MessageField.SetValue(exception, $"[{MOD_NAME}] " + exception.Message);
+					MessageField.SetValue(exception, $"[PlateUp!] " + exception.Message);
 					this.logHandler.LogException(exception, context);
 				}
 			}
