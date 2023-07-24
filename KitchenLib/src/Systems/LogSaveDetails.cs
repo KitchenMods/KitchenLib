@@ -7,7 +7,7 @@ using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
-namespace KitchenLib.src.Systems
+namespace KitchenLib.Systems
 {
 	[UpdateAfter(typeof(EndSimulationEntityCommandBufferSystem))]
 	[UpdateBefore(typeof(PerformSaveRequests))]
@@ -24,62 +24,39 @@ namespace KitchenLib.src.Systems
 		{
 			Entity entity = this.SaveRequests.First();
 			CRequestSave crequestSave = this.SaveRequests.First<CRequestSave>();
+
 			if (crequestSave.SaveType == SaveType.AutoFull)
 			{
 				EntityContext entityContext = new EntityContext(base.World.EntityManager);
 				string path = Path.Combine(Application.persistentDataPath, "Full", entityContext.Get<SSelectedLocation>().Selected.Slot.ToString());
-				SaveDetails saveDetails = null;
+				SaveDetails saveDetails = new SaveDetails();
 
 				if (!Directory.Exists(path))
 					Directory.CreateDirectory(path);
 
-				if (File.Exists(path + "/details.json"))
-					saveDetails = JsonConvert.DeserializeObject<SaveDetails>(File.ReadAllText(path + "/details.json"));
+				saveDetails.Mods = ModPreload.Mods
+					.Where(mod => mod.State == ModState.PostActivated)
+					.SelectMany(mod => mod.GetPacks<AssemblyModPack>())
+					.Select(pack => pack.Name.Replace(".dll", "")).ToList();
 
-				if (saveDetails == null)
-					saveDetails = new SaveDetails();
-
-				foreach (string x in GetModList())
+				saveDetails.Components.Clear();
+				foreach (ComponentType component in EntityManager
+					.GetAllEntities()
+					.SelectMany(_ => EntityManager.GetChunk(_).Archetype.GetComponentTypes()))
 				{
-					if (!saveDetails.Mods.Contains(x))
-					{
-						saveDetails.Mods.Add(x);
-					}
-				}
-				foreach (Entity e in EntityManager.GetAllEntities())
-				{
-					foreach (var component in EntityManager.GetChunk(e).Archetype.GetComponentTypes().Select(c => c.GetManagedType()))
-					{
-						if (!saveDetails.Components.ContainsKey(component.ToString()))
-						{
-							saveDetails.Components.Add(component.ToString(), component.GetHashCode().ToString());
-						}
-					}
+					string key = component.GetManagedType().FullName;
+					if (!saveDetails.Components.ContainsKey(key))
+						saveDetails.Components.Add(key, TypeManager.GetTypeInfo(component.TypeIndex).StableTypeHash.ToString());
 				}
 
 				File.WriteAllText(path + "/details.json", JsonConvert.SerializeObject(saveDetails, Formatting.Indented));
 			}
 		}
-
-		private string[] GetModList()
-		{
-			List<string> nonKlMods = ModPreload.Mods
-					.Where(mod => mod.State == ModState.PostActivated)
-					.SelectMany(mod => mod.GetPacks<AssemblyModPack>())
-					.Select(pack => pack.Name.Replace(".dll", "")).ToList();
-
-			return nonKlMods.ToArray();
-		}
-
-		private Dictionary<string, string> GetComponents()
-		{
-			return new Dictionary<string, string>();
-		}
 	}
 
 	internal class SaveDetails
 	{
-		public List<string> Mods = new List<string>();
-		public Dictionary<string, string> Components = new Dictionary<string, string>();
+		public List<string> Mods = new();
+		public Dictionary<string, string> Components = new();
 	}
 }

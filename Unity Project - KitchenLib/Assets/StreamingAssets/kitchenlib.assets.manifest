@@ -1,0 +1,20 @@
+ManifestFileVersion: 0
+CRC: 3670940416
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 5d4ab7ed6d5756ea516b1ffe8ae4db60
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 27295f96fcdc2b917bd061e8817c7e02
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Prefabs/Error_Appliance.prefab
+- Assets/Prefabs/Error_Item.prefab
+Dependencies: []

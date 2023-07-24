@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using HarmonyLib;
+using System.Reflection;
+using KitchenLib.Utils;
+using System.Linq;
 
 namespace KitchenLib.Patches
 {
@@ -35,7 +38,26 @@ namespace KitchenLib.Patches
 
 			public void LogException(Exception exception, UnityEngine.Object context)
 			{
-				logHandler.LogException(exception, context);
+				if (exception.Data.Contains("MOD_NAME"))
+				{
+					string MOD_NAME = (string)exception.Data["MOD_NAME"];
+					string message = $"[{MOD_NAME}] " + GetInnerExceptions(exception) + Environment.NewLine;
+					string[] stackTrace = Environment.StackTrace.Split(
+						new string[] { "\r\n", "\r", "\n" },
+						StringSplitOptions.None
+					);
+					for (int i = 5; i < stackTrace.Length; i++)
+					{
+						message += stackTrace[i] + Environment.NewLine;
+					}
+					LogFormat(LogType.Exception, context, message);
+				}
+				else
+				{
+					FieldInfo MessageField = ReflectionUtils.GetField<Exception>("_message", BindingFlags.Instance | BindingFlags.NonPublic);
+					MessageField.SetValue(exception, $"[PlateUp!] " + exception.Message);
+					this.logHandler.LogException(exception, context);
+				}
 			}
 
 			public void LogFormat(LogType logType, UnityEngine.Object context, string format, params object[] args)
@@ -45,36 +67,34 @@ namespace KitchenLib.Patches
 					return;
 				}
 
-				var typePrefix = "";
-				switch (logType)
+				string typePrefix = logType switch
 				{
-					case LogType.Error:
-						typePrefix = "ERROR";
-						break;
-					case LogType.Assert:
-						typePrefix = "ASSERT";
-						break;
-					case LogType.Warning:
-						typePrefix = "WARN";
-						break;
-					case LogType.Log:
-						typePrefix = "INFO";
-						break;
-					case LogType.Exception:
-						typePrefix = "EXCEPTION";
-						break;
-				}
+					LogType.Error => "[ERROR] ",
+					LogType.Assert => "[ASSERT] ",
+					LogType.Warning => "[WARN] ",
+					LogType.Log => "[INFO] ",
+					LogType.Exception => "[EXCEPTION] ",
+				};
 
-				var modIdPrefix = "";
+				string modIdPrefix = "";
 				if (!Regex.IsMatch(string.Format(format, args), "^\\*?\\[.+\\]"))
 				{
 					modIdPrefix = "[PlateUp!] ";
 				}
-				
 
-				var newFormat = $"[{typePrefix}] " + modIdPrefix + format;
+
+				string newFormat = typePrefix + modIdPrefix + format;
 
 				logHandler.LogFormat(logType, context, newFormat, args);
+			}
+
+			private string GetInnerExceptions(Exception e)
+			{
+				if (e.InnerException == null)
+				{
+					return e.Message;
+				}
+				return e.Message + Environment.NewLine + GetInnerExceptions(e.InnerException);
 			}
 		}
 	}
@@ -84,7 +104,18 @@ namespace KitchenLib.Patches
 	{
 		public static bool Prefix(ref string msg)
 		{
-			msg = msg.Replace(Environment.UserName, "[USERNAME]");
+			string[] split = Regex.Matches(msg, @"\W+|[\w]+")
+				.Cast<Match>()
+				.Select(_ => _.Value)
+				.ToArray();
+			for (int i = 0; i < split.Length; i++)
+			{
+				if (split[i] == Environment.UserName)
+				{
+					split[i] = "[USERNAME]";
+				}
+			}
+			msg = string.Join("", split);
 			return true;
 		}
 	}

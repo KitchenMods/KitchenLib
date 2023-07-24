@@ -25,15 +25,21 @@ namespace KitchenLib.Customs
         {
             ItemGroup result = ScriptableObject.CreateInstance<ItemGroup>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomItemGroup.Convert] [1.1] Converting Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<ItemGroup>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
             if (result.Prefab != Prefab) result.Prefab = Prefab;
-            if (result.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
+			if (!AutomaticItemProcess.Equals(result.AutomaticItemProcess)) result.AutomaticItemProcess = AutomaticItemProcess;
+			if (result.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
             if (result.ItemValue != ItemValue) result.ItemValue = ItemValue;
-            if (result.MaxOrderSharers != MaxOrderSharers) result.MaxOrderSharers = MaxOrderSharers;
-            if (result.SplitCount != SplitCount) result.SplitCount = SplitCount;
+			if (result.IsConsumedByCustomer != IsConsumedByCustomer) result.IsConsumedByCustomer = IsConsumedByCustomer;
+			if (result.MaxOrderSharers != MaxOrderSharers) result.MaxOrderSharers = MaxOrderSharers;
+			if (result.AlwaysOrderAdditionalItem != AlwaysOrderAdditionalItem) result.AlwaysOrderAdditionalItem = AlwaysOrderAdditionalItem;
+			if (result.AutoSatisfied != AutoSatisfied) result.AutoSatisfied = AutoSatisfied;
+			if (result.SplitCount != SplitCount) result.SplitCount = SplitCount;
             if (result.SplitSpeed != SplitSpeed) result.SplitSpeed = SplitSpeed;
             if (result.AllowSplitMerging != AllowSplitMerging) result.AllowSplitMerging = AllowSplitMerging;
             if (result.PreventExplicitSplit != PreventExplicitSplit) result.PreventExplicitSplit = PreventExplicitSplit;
@@ -44,9 +50,6 @@ namespace KitchenLib.Customs
             if (result.ItemStorageFlags != ItemStorageFlags) result.ItemStorageFlags = ItemStorageFlags;
             if (result.HoldPose != HoldPose) result.HoldPose = HoldPose;
             if (result.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
-
-			//if (!string.IsNullOrEmpty(ColourBlindTag))
-			//ColorblindUtils.itemLabels.Add(new ItemLabel { itemId = result.ID, label = ColourBlindTag });
 
             if (RewardOverride != -1)
                 ItemOverrides.AddRewardOverride(result.ID, RewardOverride);
@@ -62,7 +65,9 @@ namespace KitchenLib.Customs
         {
             ItemGroup result = (ItemGroup)gameDataObject;
 
-            if (result.Properties != Properties) result.Properties = Properties;
+			Main.LogDebug($"[CustomItemGroup.AttachDependentProperties] [1.1] Converting Base");
+
+			if (result.Properties != Properties) result.Properties = Properties;
             if (result.DirtiesTo != DirtiesTo) result.DirtiesTo = DirtiesTo;
             if (result.MayRequestExtraItems != MayRequestExtraItems) result.MayRequestExtraItems = MayRequestExtraItems;
             if (result.SplitSubItem != SplitSubItem) result.SplitSubItem = SplitSubItem;
@@ -96,8 +101,9 @@ namespace KitchenLib.Customs
 
             //Setup ItemGroupView for this ItemGroup
             if (AutoSetupItemGroupView)
-            {
-                T localView = result.Prefab.GetComponent<T>();
+			{
+				Main.LogDebug($"[CustomItemGroup.AttachDependentProperties] [1.2] Setting Up ItemGroupView");
+				T localView = result.Prefab.GetComponent<T>();
                 if (localView == null)
                     localView = result.Prefab.AddComponent<T>();
 
@@ -109,6 +115,7 @@ namespace KitchenLib.Customs
 			Item steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
 			if (steak != null)
 			{
+				Main.LogDebug($"[CustomItemGroup.AttachDependentProperties] [1.3] Setting Up Colorblind");
 				GameObject ColorBlind = GameObject.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject);
 				ColorBlind.name = "Colour Blind";
 				ColorBlind.transform.SetParent(result.Prefab.transform);

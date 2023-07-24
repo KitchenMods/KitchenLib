@@ -14,6 +14,7 @@ namespace KitchenLib.DataDumper.Dumpers
 			StringBuilder applianceRequiresProcessForShopDump = new StringBuilder();
 			StringBuilder applianceUpgradesDump = new StringBuilder();
 			StringBuilder applianceSectionDump = new StringBuilder();
+			StringBuilder applianceRequiresPhaseForShopDump = new StringBuilder();
 
 			applianceDump.AppendLine("ID,Type,Prefab,HeldAppliancePrefab,EffectRange," +
 				"EffectCondition,EffectType,EffectRepresentation,IsNonInteractive,Layer," +
@@ -27,6 +28,7 @@ namespace KitchenLib.DataDumper.Dumpers
 			applianceRequiresProcessForShopDump.AppendLine("ID,Type,Process");
 			applianceUpgradesDump.AppendLine("ID,Type,Upgrade");
 			applianceSectionDump.AppendLine("ID,Type,Title,Description,RangeDescription");
+			applianceRequiresPhaseForShopDump.AppendLine("ID,Type,Phase");
 
 			foreach (Appliance appliance in GameData.Main.Get<Appliance>())
 			{
@@ -54,6 +56,9 @@ namespace KitchenLib.DataDumper.Dumpers
 
 				foreach (Appliance.Section section in appliance.Sections)
 					applianceSectionDump.AppendLine($"{appliance.ID},{appliance.name},{section.Title},{section.Description},{section.RangeDescription}");
+
+				foreach (MenuPhase phase in appliance.RequiresPhaseForShop)
+					applianceRequiresPhaseForShopDump.AppendLine($"{appliance.ID},{appliance.name},{phase}");
 			}
 
 			SaveCSV("Appliance", "Appliances", applianceDump);
@@ -63,6 +68,7 @@ namespace KitchenLib.DataDumper.Dumpers
 			SaveCSV("Appliance", "ApplianceRequiresProcessForShop", applianceRequiresProcessForShopDump);
 			SaveCSV("Appliance", "ApplianceUpgrades", applianceUpgradesDump);
 			SaveCSV("Appliance", "ApplianceSections", applianceSectionDump);
+			SaveCSV("Appliance", "ApplianceRequiresPhaseForShop", applianceRequiresPhaseForShopDump);
 		}
 	}
 }

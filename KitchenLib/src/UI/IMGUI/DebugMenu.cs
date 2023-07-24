@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using Unity.Entities;
 using UnityEngine;
+using KitchenLib.Customs;
 
 namespace KitchenLib.UI
 {
@@ -127,16 +128,32 @@ namespace KitchenLib.UI
 			classGenerator.Add("}");
 
 			File.WriteAllLines(Path.Combine(Application.dataPath, "References.cs"), classGenerator.ToArray());
-			UnityEngine.Debug.Log("Data saved to: " + Path.Combine(Application.dataPath, "References.cs"));
 		}
 
 		private void GenerateClass<T>(ref List<string> list, GameData gamedata) where T : GameDataObject
+		{
+			GenerateReferenceClass<T>(ref list, gamedata);
+			GenerateEnumClass<T>(ref list, gamedata);
+		}
+
+		private void GenerateReferenceClass<T>(ref List<string> list, GameData gamedata) where T : GameDataObject
 		{
 			list.Add($"    public class {typeof(T).Name}References");
 			list.Add("    {");
 			foreach (T x in gamedata.Get<T>())
 			{
-				list.Add($"        public const int {(x.name).Replace(" ", "").Replace("-", "")} = {x.ID};\n");
+				list.Add($"        public static int {(x.name).Replace(" ", "").Replace("-", "")} => (int)_{typeof(T).Name}References.{(x.name).Replace(" ", "").Replace("-", "")};\n");
+			}
+			list.Add("    }");
+		}
+
+		private void GenerateEnumClass<T>(ref List<string> list, GameData gamedata) where T : GameDataObject
+		{
+			list.Add($"    internal enum _{typeof(T).Name}References");
+			list.Add("    {");
+			foreach (T x in gamedata.Get<T>())
+			{
+				list.Add($"        {(x.name).Replace(" ", "").Replace("-", "")} = {x.ID},\n");
 			}
 			list.Add("    }");
 		}

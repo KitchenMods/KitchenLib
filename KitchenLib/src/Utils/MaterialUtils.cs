@@ -324,6 +324,45 @@ namespace KitchenLib.Utils
             Color col = ColorFromHex(color);
             col.a = opacity;
             return CreateTransparent(name, col);
-        }
+		}
+
+		/// <summary>
+		/// Replace Materials from the Unity Editor with Materials from PlateUp!
+		/// </summary>
+		/// <param name="gameObject">The GameObject to modify.</param>
+		/// <returns>The modified GameObject</returns>
+		public static GameObject AssignMaterialsByNames(GameObject gameObject)
+		{
+			foreach (Transform transform in gameObject.GetComponentsInChildren<Transform>())
+			{
+				if (transform.gameObject.HasComponent<Renderer>())
+				{
+					Renderer renderer = transform.gameObject.GetComponent<Renderer>();
+					if (renderer != null)
+					{
+						Material[] materials = renderer.materials;
+						List<Material> newMaterials = new List<Material>();
+						foreach (Material material in materials)
+						{
+							Material mat = MaterialUtils.GetExistingMaterial(material.name.Replace(" (Instance)", ""));
+							if (mat == null)
+								mat = MaterialUtils.GetCustomMaterial(material.name.Replace(" (Instance)", ""));
+
+							if (mat != null)
+							{
+								newMaterials.Add(mat);
+							}
+							else
+							{
+								newMaterials.Add(material);
+							}
+						}
+						renderer.materials = newMaterials.ToArray();
+					}
+				}
+			}
+			return gameObject;
+		}
+
     }
 }

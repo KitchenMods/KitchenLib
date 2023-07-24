@@ -16,7 +16,9 @@ namespace KitchenLib.Customs
         {
             UnlockCard result = ScriptableObject.CreateInstance<UnlockCard>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomUnlockCard.Convert] [1.1] Converting Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<UnlockCard>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
@@ -30,17 +32,20 @@ namespace KitchenLib.Customs
             if (result.IsSpecificFranchiseTier != IsSpecificFranchiseTier) result.IsSpecificFranchiseTier = IsSpecificFranchiseTier;
             if (result.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
             if (result.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
+			if (result.BlocksAllOtherFood != BlocksAllOtherFood) result.BlocksAllOtherFood = BlocksAllOtherFood;
 
-            if (result.Info != Info) result.Info = Info;
+			if (result.Info != Info) result.Info = Info;
 
             if (InfoList.Count > 0)
             {
                 result.Info = new LocalisationObject<UnlockInfo>();
                 foreach ((Locale, UnlockInfo) info in InfoList)
                     result.Info.Add(info.Item1, info.Item2);
-            }
+			}
 
-            if (!string.IsNullOrEmpty(IconOverride))
+			Main.LogDebug($"[CustomUnlockCard.Convert] [1.2] Converting Overrides");
+
+			if (!string.IsNullOrEmpty(IconOverride))
 				UnlockOverrides.AddIconOverride(result.ID, IconOverride);
             if (ColourOverride != new Color())
 				UnlockOverrides.AddColourOverride(result.ID, ColourOverride);
@@ -52,11 +57,15 @@ namespace KitchenLib.Customs
         {
             UnlockCard result = (UnlockCard)gameDataObject;
 
-            FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
+			Main.LogDebug($"[CustomUnlockCard.AttachDependentProperties] [1.1] Converting Base");
+
+			FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
             FieldInfo hardcodedBlockers = ReflectionUtils.GetField<Unlock>("HardcodedBlockers");
 
             if (hardcodedRequirements.GetValue(result) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
             if (hardcodedBlockers.GetValue(result) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
-        }
+			if (result.AllowedFoods != AllowedFoods) result.AllowedFoods = AllowedFoods;
+			if (result.ForceFranchiseSetting != ForceFranchiseSetting) result.ForceFranchiseSetting = ForceFranchiseSetting;
+		}
     }
 }

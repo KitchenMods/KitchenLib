@@ -18,7 +18,9 @@ namespace KitchenLib.Customs
         {
             ThemeUnlock result = ScriptableObject.CreateInstance<ThemeUnlock>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomThemeUnlock.Convert] [1.1] Converting Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<ThemeUnlock>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
@@ -33,17 +35,20 @@ namespace KitchenLib.Customs
             if (result.IsSpecificFranchiseTier != IsSpecificFranchiseTier) result.IsSpecificFranchiseTier = IsSpecificFranchiseTier;
             if (result.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
             if (result.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
+			if (result.BlocksAllOtherFood != BlocksAllOtherFood) result.BlocksAllOtherFood = BlocksAllOtherFood;
 
-            if (result.Info != Info) result.Info = Info;
+			if (result.Info != Info) result.Info = Info;
 
             if (InfoList.Count > 0)
             {
                 result.Info = new LocalisationObject<UnlockInfo>();
                 foreach ((Locale, UnlockInfo) info in InfoList)
                     result.Info.Add(info.Item1, info.Item2);
-            }
+			}
 
-            if (!string.IsNullOrEmpty(IconOverride))
+			Main.LogDebug($"[CustomThemeUnlock.Convert] [1.2] Converting Overrides");
+
+			if (!string.IsNullOrEmpty(IconOverride))
                 UnlockOverrides.AddIconOverride(result.ID, IconOverride);
             if (ColourOverride != new Color())
 				UnlockOverrides.AddColourOverride(result.ID, ColourOverride);
@@ -55,10 +60,14 @@ namespace KitchenLib.Customs
         {
             ThemeUnlock result = (ThemeUnlock)gameDataObject;
 
-            if (result.ParentTheme1 != ParentTheme1) result.ParentTheme1 = ParentTheme1;
-            if (result.ParentTheme2 != ParentTheme2) result.ParentTheme2 = ParentTheme2;
+			Main.LogDebug($"[CustomThemeUnlock.AttachDependentProperties] [1.1] Converting Base");
 
-            FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
+			if (result.ParentTheme1 != ParentTheme1) result.ParentTheme1 = ParentTheme1;
+            if (result.ParentTheme2 != ParentTheme2) result.ParentTheme2 = ParentTheme2;
+			if (result.AllowedFoods != AllowedFoods) result.AllowedFoods = AllowedFoods;
+			if (result.ForceFranchiseSetting != ForceFranchiseSetting) result.ForceFranchiseSetting = ForceFranchiseSetting;
+
+			FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
             FieldInfo hardcodedBlockers = ReflectionUtils.GetField<Unlock>("HardcodedBlockers");
 
             if (hardcodedRequirements.GetValue(result) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);

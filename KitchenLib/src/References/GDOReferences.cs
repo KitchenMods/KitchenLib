@@ -2,2583 +2,5308 @@ namespace KitchenLib.References
 {
 	public class ApplianceReferences
 	{
-		public const int MixerHeated = 505496455;
+		public static int MixerHeated => (int)_ApplianceReferences.MixerHeated;
 
-		public const int MixerPusher = -1357906425;
+		public static int MixerPusher => (int)_ApplianceReferences.MixerPusher;
 
-		public const int MixerRapid = -1440053805;
+		public static int MixerRapid => (int)_ApplianceReferences.MixerRapid;
 
-		public const int Mixer = 1329097317;
+		public static int Mixer => (int)_ApplianceReferences.Mixer;
 
-		public const int SupplyCabinet = -1013770159;
+		public static int SupplyCabinet => (int)_ApplianceReferences.SupplyCabinet;
 
-		public const int BinCompactor = 2127051779;
+		public static int BinCompactor => (int)_ApplianceReferences.BinCompactor;
 
-		public const int BinComposter = -1632826946;
+		public static int BinComposter => (int)_ApplianceReferences.BinComposter;
 
-		public const int BinExpanded = -1855909480;
+		public static int BinExpanded => (int)_ApplianceReferences.BinExpanded;
 
-		public const int BinStarting = 481495292;
+		public static int BinStarting => (int)_ApplianceReferences.BinStarting;
 
-		public const int Bin = 1551609169;
+		public static int Bin => (int)_ApplianceReferences.Bin;
 
-		public const int FireExtinguisherHolder = 1286554202;
+		public static int FireExtinguisherHolder => (int)_ApplianceReferences.FireExtinguisherHolder;
 
-		public const int FloorBufferStation = 1351951642;
+		public static int FloorBufferStation => (int)_ApplianceReferences.FloorBufferStation;
 
-		public const int FloorProtector = 1765889988;
+		public static int FloorProtector => (int)_ApplianceReferences.FloorProtector;
 
-		public const int MopBucketFast = -1495393751;
+		public static int MopBucketFast => (int)_ApplianceReferences.MopBucketFast;
 
-		public const int MopBucketLasting = 1776760557;
+		public static int MopBucketLasting => (int)_ApplianceReferences.MopBucketLasting;
 
-		public const int MopBucket = -1993346570;
+		public static int MopBucket => (int)_ApplianceReferences.MopBucket;
 
-		public const int RobotBufferMobile = -751458770;
+		public static int RobotBufferMobile => (int)_ApplianceReferences.RobotBufferMobile;
 
-		public const int RobotBuffer = -1723340146;
+		public static int RobotBuffer => (int)_ApplianceReferences.RobotBuffer;
 
-		public const int RobotMopMobile = -2091039911;
+		public static int RobotMopMobile => (int)_ApplianceReferences.RobotMopMobile;
 
-		public const int RobotMop = -2147057861;
+		public static int RobotMop => (int)_ApplianceReferences.RobotMop;
 
-		public const int CoffeeMachine = -1609758240;
+		public static int CoffeeMachine => (int)_ApplianceReferences.CoffeeMachine;
 
-		public const int ColouringBookStand = -17368064;
+		public static int ColouringBookStand => (int)_ApplianceReferences.ColouringBookStand;
 
-		public const int Belt = 1973114260;
+		public static int Belt => (int)_ApplianceReferences.Belt;
 
-		public const int Combiner = -1906799936;
+		public static int Combiner => (int)_ApplianceReferences.Combiner;
 
-		public const int GrabberRotatable = -331651461;
+		public static int GrabberRotatable => (int)_ApplianceReferences.GrabberRotatable;
 
-		public const int GrabberSmart = -1238047163;
+		public static int GrabberSmart => (int)_ApplianceReferences.GrabberSmart;
 
-		public const int Grabber = -1029710921;
+		public static int Grabber => (int)_ApplianceReferences.Grabber;
 
-		public const int Portioner = -1462602185;
+		public static int Portioner => (int)_ApplianceReferences.Portioner;
 
-		public const int Teleporter = 459840623;
+		public static int Teleporter => (int)_ApplianceReferences.Teleporter;
 
-		public const int Countertop = -1248669347;
+		public static int Countertop => (int)_ApplianceReferences.Countertop;
 
-		public const int KneadingStationX = 1365340297;
+		public static int KneadingStationX => (int)_ApplianceReferences.KneadingStationX;
 
-		public const int Workstation = -1573577293;
+		public static int Workstation => (int)_ApplianceReferences.Workstation;
 
-		public const int AffordableBin = 620400448;
+		public static int AffordableBin => (int)_ApplianceReferences.AffordableBin;
 
-		public const int AffordableGumballMachine = 1830133512;
+		public static int AffordableGumballMachine => (int)_ApplianceReferences.AffordableGumballMachine;
 
-		public const int AffordableNeonSign1 = 1724963734;
+		public static int AffordableNeonSign1 => (int)_ApplianceReferences.AffordableNeonSign1;
 
-		public const int AffordableNeonSign2 = 371247235;
+		public static int AffordableNeonSign2 => (int)_ApplianceReferences.AffordableNeonSign2;
 
-		public const int AffordableRoofLight = 230540973;
+		public static int AffordableRoofLight => (int)_ApplianceReferences.AffordableRoofLight;
 
-		public const int AffordableStockArt = -1472471467;
+		public static int AffordableStockArt => (int)_ApplianceReferences.AffordableStockArt;
 
-		public const int AffordableWetFloorSign = -2108088224;
+		public static int AffordableWetFloorSign => (int)_ApplianceReferences.AffordableWetFloorSign;
 
-		public const int CosyBarrel = 1569358344;
+		public static int CosyBarrel => (int)_ApplianceReferences.CosyBarrel;
 
-		public const int CosyBookcase = -60168847;
+		public static int CosyBookcase => (int)_ApplianceReferences.CosyBookcase;
 
-		public const int CosyDartboard = -1941237931;
+		public static int CosyDartboard => (int)_ApplianceReferences.CosyDartboard;
 
-		public const int CosyFireplace = -441525746;
+		public static int CosyFireplace => (int)_ApplianceReferences.CosyFireplace;
 
-		public const int CosyRug = 591400026;
+		public static int CosyRug => (int)_ApplianceReferences.CosyRug;
 
-		public const int CosyWallLight = -1628995120;
+		public static int CosyWallLight => (int)_ApplianceReferences.CosyWallLight;
 
-		public const int ChristmasBanner = -1380985631;
+		public static int ChristmasBanner => (int)_ApplianceReferences.ChristmasBanner;
 
-		public const int ChristmasTree = 1797739089;
+		public static int ChristmasTree => (int)_ApplianceReferences.ChristmasTree;
 
-		public const int FairyLights = -4737636;
+		public static int FairyLights => (int)_ApplianceReferences.FairyLights;
 
-		public const int FancyCandelabra = -13481890;
+		public static int FancyCandelabra => (int)_ApplianceReferences.FancyCandelabra;
 
-		public const int FancyChandelier = 1233091186;
+		public static int FancyChandelier => (int)_ApplianceReferences.FancyChandelier;
 
-		public const int FancyFlowers = -1180623135;
+		public static int FancyFlowers => (int)_ApplianceReferences.FancyFlowers;
 
-		public const int FancyGlobe = 642318074;
+		public static int FancyGlobe => (int)_ApplianceReferences.FancyGlobe;
 
-		public const int FancyPainting = -1486785449;
+		public static int FancyPainting => (int)_ApplianceReferences.FancyPainting;
 
-		public const int FancyRug = 2076966627;
+		public static int FancyRug => (int)_ApplianceReferences.FancyRug;
 
-		public const int FancyStatue = -972644436;
+		public static int FancyStatue => (int)_ApplianceReferences.FancyStatue;
 
-		public const int FormalDogStatue = 1551024733;
+		public static int FormalDogStatue => (int)_ApplianceReferences.FormalDogStatue;
 
-		public const int FormalPlant = -1339970600;
+		public static int FormalPlant => (int)_ApplianceReferences.FormalPlant;
 
-		public const int FormalRoofLight = 908498444;
+		public static int FormalRoofLight => (int)_ApplianceReferences.FormalRoofLight;
 
-		public const int FormalStandingLamp = 744277037;
+		public static int FormalStandingLamp => (int)_ApplianceReferences.FormalStandingLamp;
 
-		public const int FormalVase = 531866927;
+		public static int FormalVase => (int)_ApplianceReferences.FormalVase;
 
-		public const int Fountain = 1220439284;
+		public static int Fountain => (int)_ApplianceReferences.Fountain;
 
-		public const int Painting = 668664567;
+		public static int Painting => (int)_ApplianceReferences.Painting;
 
-		public const int Plant = 756364626;
+		public static int Plant => (int)_ApplianceReferences.Plant;
 
-		public const int Rug = -648349801;
+		public static int Rug => (int)_ApplianceReferences.Rug;
 
-		public const int BeerTap = -1506601664;
+		public static int BeerTap => (int)_ApplianceReferences.BeerTap;
 
-		public const int WineBarrel = -2100580689;
+		public static int WineBarrel => (int)_ApplianceReferences.WineBarrel;
 
-		public const int Dumbwaiter = 532998682;
+		public static int Dumbwaiter => (int)_ApplianceReferences.Dumbwaiter;
 
-		public const int Fryer = 892856538;
+		public static int Fryer => (int)_ApplianceReferences.Fryer;
 
-		public const int Beehive = -544237849;
+		public static int Beehive => (int)_ApplianceReferences.Beehive;
 
-		public const int FlowerSpawn = 188952245;
+		public static int FlowerSpawn => (int)_ApplianceReferences.FlowerSpawn;
 
-		public const int GasLimiter = 1921027834;
+		public static int GasLimiter => (int)_ApplianceReferences.GasLimiter;
 
-		public const int GasSafetyOverride = -770041014;
+		public static int GasSafetyOverride => (int)_ApplianceReferences.GasSafetyOverride;
 
-		public const int HobDanger = -1448690107;
+		public static int HobDanger => (int)_ApplianceReferences.HobDanger;
 
-		public const int HobSafe = 1266458729;
+		public static int HobSafe => (int)_ApplianceReferences.HobSafe;
 
-		public const int HobStarting = 1154757341;
+		public static int HobStarting => (int)_ApplianceReferences.HobStarting;
 
-		public const int Hob = 862493270;
+		public static int Hob => (int)_ApplianceReferences.Hob;
 
-		public const int ManualHob = -441141351;
+		public static int ManualHob => (int)_ApplianceReferences.ManualHob;
 
-		public const int TutorialHob = 805530854;
+		public static int TutorialHob => (int)_ApplianceReferences.TutorialHob;
 
-		public const int HostStandBookings = -60938940;
+		public static int HostStandBookings => (int)_ApplianceReferences.HostStandBookings;
 
-		public const int HostStand = -63118559;
+		public static int HostStand => (int)_ApplianceReferences.HostStand;
 
-		public const int FoodDisplayStand = -1813414500;
+		public static int FoodDisplayStand => (int)_ApplianceReferences.FoodDisplayStand;
 
-		public const int BuffedFloor = 1630557157;
+		public static int BuffedFloor => (int)_ApplianceReferences.BuffedFloor;
 
-		public const int MessCustomer1 = -1324288299;
+		public static int MessCustomer1 => (int)_ApplianceReferences.MessCustomer1;
 
-		public const int MessCustomer2 = -374077567;
+		public static int MessCustomer2 => (int)_ApplianceReferences.MessCustomer2;
 
-		public const int MessCustomer3 = 147181555;
+		public static int MessCustomer3 => (int)_ApplianceReferences.MessCustomer3;
 
-		public const int MessKitchen1 = 31731938;
+		public static int MessKitchen1 => (int)_ApplianceReferences.MessKitchen1;
 
-		public const int MessKitchen2 = 1419995156;
+		public static int MessKitchen2 => (int)_ApplianceReferences.MessKitchen2;
 
-		public const int MessKitchen3 = 34773971;
+		public static int MessKitchen3 => (int)_ApplianceReferences.MessKitchen3;
 
-		public const int MopWaterLong = -1424385600;
+		public static int MopWaterLong => (int)_ApplianceReferences.MopWaterLong;
 
-		public const int MopWater = 377065033;
+		public static int MopWater => (int)_ApplianceReferences.MopWater;
 
-		public const int Nameplate = -483535085;
+		public static int Nameplate => (int)_ApplianceReferences.Nameplate;
 
-		public const int BlueprintLetter = 1553046198;
+		public static int BlueprintLetter => (int)_ApplianceReferences.BlueprintLetter;
 
-		public const int Blueprint = 1063254979;
+		public static int Blueprint => (int)_ApplianceReferences.Blueprint;
 
-		public const int FlooringApplicator = 1732122842;
+		public static int FlooringApplicator => (int)_ApplianceReferences.FlooringApplicator;
 
-		public const int Parcel = -1936421857;
+		public static int Parcel => (int)_ApplianceReferences.Parcel;
 
-		public const int WallpaperApplicator = 2041631136;
+		public static int WallpaperApplicator => (int)_ApplianceReferences.WallpaperApplicator;
 
-		public const int AccountingDesk = 949631021;
+		public static int AccountingDesk => (int)_ApplianceReferences.AccountingDesk;
 
-		public const int BlueprintCabinet = -571205127;
+		public static int BlueprintCabinet => (int)_ApplianceReferences.BlueprintCabinet;
 
-		public const int BlueprintCopyDesk = -729493805;
+		public static int BlueprintCopyDesk => (int)_ApplianceReferences.BlueprintCopyDesk;
 
-		public const int BlueprintDiscountDeskOld = -272437832;
+		public static int BlueprintDiscountDeskOld => (int)_ApplianceReferences.BlueprintDiscountDeskOld;
 
-		public const int BlueprintDiscountDesk = 1586911545;
+		public static int BlueprintDiscountDesk => (int)_ApplianceReferences.BlueprintDiscountDesk;
 
-		public const int BlueprintOrderingDesk = 1446975727;
+		public static int BlueprintOrderingDesk => (int)_ApplianceReferences.BlueprintOrderingDesk;
 
-		public const int BlueprintUpgradeDesk = 1139247360;
+		public static int BlueprintUpgradeDesk => (int)_ApplianceReferences.BlueprintUpgradeDesk;
 
-		public const int BookingDesk = 238041352;
+		public static int BookingDesk => (int)_ApplianceReferences.BookingDesk;
 
-		public const int ExtraLife = -1817838704;
+		public static int ExtraLife => (int)_ApplianceReferences.ExtraLife;
 
-		public const int OrderingTerminalFastFood = 136867583;
+		public static int OrderingTerminalFastFood => (int)_ApplianceReferences.OrderingTerminalFastFood;
 
-		public const int OrderingTerminalSpecialOffers = -246383526;
+		public static int OrderingTerminalSpecialOffers => (int)_ApplianceReferences.OrderingTerminalSpecialOffers;
 
-		public const int OrderingTerminal = -1610332021;
+		public static int OrderingTerminal => (int)_ApplianceReferences.OrderingTerminal;
 
-		public const int DoubleOven = 944301512;
+		public static int DoubleOven => (int)_ApplianceReferences.DoubleOven;
 
-		public const int Microwave = -1311702572;
+		public static int Microwave => (int)_ApplianceReferences.Microwave;
 
-		public const int Oven = -1068749602;
+		public static int Oven => (int)_ApplianceReferences.Oven;
 
-		public const int Balloons = 1147639502;
+		public static int Balloons => (int)_ApplianceReferences.Balloons;
 
-		public const int BirthdayBanner = -71664252;
+		public static int BirthdayBanner => (int)_ApplianceReferences.BirthdayBanner;
 
-		public const int Piano = -326328571;
+		public static int Piano => (int)_ApplianceReferences.Piano;
 
-		public const int SourceApple = -905438738;
+		public static int SourceApple => (int)_ApplianceReferences.SourceApple;
 
-		public const int SourceBeans = 1807525572;
+		public static int SourceBeans => (int)_ApplianceReferences.SourceBeans;
 
-		public const int SourceBonedMeat = 269523389;
+		public static int SourceBonedMeat => (int)_ApplianceReferences.SourceBonedMeat;
 
-		public const int SourceBroccoli = -1573812073;
+		public static int SourceBroccoli => (int)_ApplianceReferences.SourceBroccoli;
 
-		public const int SourceBurgerBuns = 759552160;
+		public static int SourceBurgerBuns => (int)_ApplianceReferences.SourceBurgerBuns;
 
-		public const int SourceBurgerPatty = 385684499;
+		public static int SourceBurgerPatty => (int)_ApplianceReferences.SourceBurgerPatty;
 
-		public const int SourceCarrot = -452101383;
+		public static int SourceCarrot => (int)_ApplianceReferences.SourceCarrot;
 
-		public const int SourceCheese = -117339838;
+		public static int SourceCheese => (int)_ApplianceReferences.SourceCheese;
 
-		public const int SourceEgg = 961148621;
+		public static int SourceEgg => (int)_ApplianceReferences.SourceEgg;
 
-		public const int SourceFish2 = -1735137431;
+		public static int SourceFish2 => (int)_ApplianceReferences.SourceFish2;
 
-		public const int SourceFish = -609358791;
+		public static int SourceFish => (int)_ApplianceReferences.SourceFish;
 
-		public const int SourceFlour = 925796718;
+		public static int SourceFlour => (int)_ApplianceReferences.SourceFlour;
 
-		public const int SourceHotdogBun = -1132411297;
+		public static int SourceHotdogBun => (int)_ApplianceReferences.SourceHotdogBun;
 
-		public const int SourceHotdog = 1799769627;
+		public static int SourceHotdog => (int)_ApplianceReferences.SourceHotdog;
 
-		public const int SourceIceCream = -1533430406;
+		public static int SourceIceCream => (int)_ApplianceReferences.SourceIceCream;
 
-		public const int SourceKetchup = -965827229;
+		public static int SourceKetchup => (int)_ApplianceReferences.SourceKetchup;
 
-		public const int SourceLettuce = 1193867305;
+		public static int SourceLettuce => (int)_ApplianceReferences.SourceLettuce;
 
-		public const int SourceMeat = -484165118;
+		public static int SourceMeat => (int)_ApplianceReferences.SourceMeat;
 
-		public const int SourceMushroom = -1097889139;
+		public static int SourceMushroom => (int)_ApplianceReferences.SourceMushroom;
 
-		public const int SourceMustard = -117356585;
+		public static int SourceMustard => (int)_ApplianceReferences.SourceMustard;
 
-		public const int SourceNuts = 1834063794;
+		public static int SourceNuts => (int)_ApplianceReferences.SourceNuts;
 
-		public const int SourceOil = -1963699221;
+		public static int SourceOil => (int)_ApplianceReferences.SourceOil;
 
-		public const int SourceOlive = -1434800013;
+		public static int SourceOlive => (int)_ApplianceReferences.SourceOlive;
 
-		public const int SourceOnion = -2042103798;
+		public static int SourceOnion => (int)_ApplianceReferences.SourceOnion;
 
-		public const int SourcePotato = 44541785;
+		public static int SourcePotato => (int)_ApplianceReferences.SourcePotato;
 
-		public const int SourceRice = -1201769154;
+		public static int SourceRice => (int)_ApplianceReferences.SourceRice;
 
-		public const int SourceThickMeat = -1507801323;
+		public static int SourceThickMeat => (int)_ApplianceReferences.SourceThickMeat;
 
-		public const int SourceThinMeat = 1800865634;
+		public static int SourceThinMeat => (int)_ApplianceReferences.SourceThinMeat;
 
-		public const int SourceTomato = -712909563;
+		public static int SourceTomato => (int)_ApplianceReferences.SourceTomato;
 
-		public const int SourceTurkey = -1506824829;
+		public static int SourceTurkey => (int)_ApplianceReferences.SourceTurkey;
 
-		public const int SourceWine = -1353971407;
+		public static int SourceWine => (int)_ApplianceReferences.SourceWine;
 
-		public const int BrokenEntity = -101564005;
+		public static int BrokenEntity => (int)_ApplianceReferences.BrokenEntity;
 
-		public const int FireEntity = -897970831;
+		public static int FireEntity => (int)_ApplianceReferences.FireEntity;
 
-		public const int ItemReturnWhenLost = -996680732;
+		public static int ItemReturnWhenLost => (int)_ApplianceReferences.ItemReturnWhenLost;
 
-		public const int PracticeModeTrigger = 946079892;
+		public static int PracticeModeTrigger => (int)_ApplianceReferences.PracticeModeTrigger;
 
-		public const int RerollShopTrigger = 1171429989;
+		public static int RerollShopTrigger => (int)_ApplianceReferences.RerollShopTrigger;
 
-		public const int TutorialTrigger = 161402590;
+		public static int TutorialTrigger => (int)_ApplianceReferences.TutorialTrigger;
 
-		public const int AutoPlater = 739504637;
+		public static int AutoPlater => (int)_ApplianceReferences.AutoPlater;
 
-		public const int DirtyPlateStackDEBUG = 1653145961;
+		public static int DirtyPlateStackDEBUG => (int)_ApplianceReferences.DirtyPlateStackDEBUG;
 
-		public const int DirtyPlateStack = 434150763;
+		public static int DirtyPlateStack => (int)_ApplianceReferences.DirtyPlateStack;
 
-		public const int ItemSourceReservation = 1270423542;
+		public static int ItemSourceReservation => (int)_ApplianceReferences.ItemSourceReservation;
 
-		public const int ItemSource = -1474018107;
+		public static int ItemSource => (int)_ApplianceReferences.ItemSource;
 
-		public const int PlateStackStarting = 380220741;
+		public static int PlateStackStarting => (int)_ApplianceReferences.PlateStackStarting;
 
-		public const int PlateStack = 1313469794;
+		public static int PlateStack => (int)_ApplianceReferences.PlateStack;
 
-		public const int PotStack = -957949759;
+		public static int PotStack => (int)_ApplianceReferences.PotStack;
 
-		public const int ServingBoardStack = 235423916;
+		public static int ServingBoardStack => (int)_ApplianceReferences.ServingBoardStack;
 
-		public const int WokStack = 314862254;
+		public static int WokStack => (int)_ApplianceReferences.WokStack;
 
-		public const int AlpineGround = -1291027873;
+		public static int AlpineGround => (int)_ApplianceReferences.AlpineGround;
 
-		public const int AlpineTree = -214921468;
+		public static int AlpineTree => (int)_ApplianceReferences.AlpineTree;
 
-		public const int Bush = -2135829561;
+		public static int Bush => (int)_ApplianceReferences.Bush;
 
-		public const int Cobblestone = -372462424;
+		public static int Cobblestone => (int)_ApplianceReferences.Cobblestone;
 
-		public const int CountrysideGround = 933445633;
+		public static int CountrysideGround => (int)_ApplianceReferences.CountrysideGround;
 
-		public const int Flower = -1555334152;
+		public static int Flower => (int)_ApplianceReferences.Flower;
 
-		public const int Flowerbed = 1980900762;
+		public static int Flowerbed => (int)_ApplianceReferences.Flowerbed;
 
-		public const int HalloweenBridge = 1855052205;
+		public static int HalloweenBridge => (int)_ApplianceReferences.HalloweenBridge;
 
-		public const int HalloweenFloor = -68388422;
+		public static int HalloweenFloor => (int)_ApplianceReferences.HalloweenFloor;
 
-		public const int HalloweenFog = -1200192498;
+		public static int HalloweenFog => (int)_ApplianceReferences.HalloweenFog;
 
-		public const int HalloweenPillar = -194750543;
+		public static int HalloweenPillar => (int)_ApplianceReferences.HalloweenPillar;
 
-		public const int HalloweenTrees = 1911132834;
+		public static int HalloweenTrees => (int)_ApplianceReferences.HalloweenTrees;
 
-		public const int HalloweenWall = 1365126444;
+		public static int HalloweenWall => (int)_ApplianceReferences.HalloweenWall;
 
-		public const int LogWall = -1265562836;
+		public static int LogWall => (int)_ApplianceReferences.LogWall;
 
-		public const int OutdoorMovementBlocker = -2046940874;
+		public static int OutdoorMovementBlocker => (int)_ApplianceReferences.OutdoorMovementBlocker;
 
-		public const int Rock = -923570273;
+		public static int Rock => (int)_ApplianceReferences.Rock;
 
-		public const int InternalWallPiece = -488268556;
+		public static int InternalWallPiece => (int)_ApplianceReferences.InternalWallPiece;
 
-		public const int StreetPiece = -548432204;
+		public static int StreetPiece => (int)_ApplianceReferences.StreetPiece;
 
-		public const int WallPiece = -758567246;
+		public static int WallPiece => (int)_ApplianceReferences.WallPiece;
 
-		public const int Tree = 532701855;
+		public static int Tree => (int)_ApplianceReferences.Tree;
 
-		public const int Freezer = -1857890774;
+		public static int Freezer => (int)_ApplianceReferences.Freezer;
 
-		public const int FrozenPrepStation = -759808000;
+		public static int FrozenPrepStation => (int)_ApplianceReferences.FrozenPrepStation;
 
-		public const int PrepStation = 1656358740;
+		public static int PrepStation => (int)_ApplianceReferences.PrepStation;
 
-		public const int Rack = -262439022;
+		public static int Rack => (int)_ApplianceReferences.Rack;
 
-		public const int StorageCupboard = 1890408483;
+		public static int StorageCupboard => (int)_ApplianceReferences.StorageCupboard;
 
-		public const int BreadstickBox = 639111696;
+		public static int BreadstickBox => (int)_ApplianceReferences.BreadstickBox;
 
-		public const int CandleBox = 1358522063;
+		public static int CandleBox => (int)_ApplianceReferences.CandleBox;
 
-		public const int FlowerPot = 221442949;
+		public static int FlowerPot => (int)_ApplianceReferences.FlowerPot;
 
-		public const int NapkinBox = 1528688658;
+		public static int NapkinBox => (int)_ApplianceReferences.NapkinBox;
 
-		public const int SharpCutlery = 2080633647;
+		public static int SharpCutlery => (int)_ApplianceReferences.SharpCutlery;
 
-		public const int SpecialsMenuBox = 446555792;
+		public static int SpecialsMenuBox => (int)_ApplianceReferences.SpecialsMenuBox;
 
-		public const int Chair = 938247786;
+		public static int Chair => (int)_ApplianceReferences.Chair;
 
-		public const int CoffeeTable = 1648733244;
+		public static int CoffeeTable => (int)_ApplianceReferences.CoffeeTable;
 
-		public const int GhostChair = -1979922052;
+		public static int GhostChair => (int)_ApplianceReferences.GhostChair;
 
-		public const int TableBar = -3721951;
+		public static int TableBar => (int)_ApplianceReferences.TableBar;
 
-		public const int TableBasicCloth = -34659638;
+		public static int TableBasicCloth => (int)_ApplianceReferences.TableBasicCloth;
 
-		public const int TableCheapMetal = -203679687;
+		public static int TableCheapMetal => (int)_ApplianceReferences.TableCheapMetal;
 
-		public const int TableFancyCloth = -2019409936;
+		public static int TableFancyCloth => (int)_ApplianceReferences.TableFancyCloth;
 
-		public const int TableLarge = 209074140;
+		public static int TableLarge => (int)_ApplianceReferences.TableLarge;
 
-		public const int RollingPinProvider = 1738351766;
+		public static int RollingPinProvider => (int)_ApplianceReferences.RollingPinProvider;
 
-		public const int ScrubbingBrushProvider = 624465484;
+		public static int ScrubbingBrushProvider => (int)_ApplianceReferences.ScrubbingBrushProvider;
 
-		public const int SharpKnifeProvider = 2023704259;
+		public static int SharpKnifeProvider => (int)_ApplianceReferences.SharpKnifeProvider;
 
-		public const int ShoeRackTrainers = 723626409;
+		public static int ShoeRackTrainers => (int)_ApplianceReferences.ShoeRackTrainers;
 
-		public const int ShoeRackWellies = 1796077718;
+		public static int ShoeRackWellies => (int)_ApplianceReferences.ShoeRackWellies;
 
-		public const int ShoeRackWorkBoots = 230848637;
+		public static int ShoeRackWorkBoots => (int)_ApplianceReferences.ShoeRackWorkBoots;
 
-		public const int TrayStand = 1129858275;
+		public static int TrayStand => (int)_ApplianceReferences.TrayStand;
 
-		public const int DishWasher = -823922901;
+		public static int DishWasher => (int)_ApplianceReferences.DishWasher;
 
-		public const int SinkLarge = -214126192;
+		public static int SinkLarge => (int)_ApplianceReferences.SinkLarge;
 
-		public const int SinkNormal = 1083874952;
+		public static int SinkNormal => (int)_ApplianceReferences.SinkNormal;
 
-		public const int SinkPower = 1467371088;
+		public static int SinkPower => (int)_ApplianceReferences.SinkPower;
 
-		public const int SinkSoak = 1860904347;
+		public static int SinkSoak => (int)_ApplianceReferences.SinkSoak;
 
-		public const int SinkStarting = -266993023;
+		public static int SinkStarting => (int)_ApplianceReferences.SinkStarting;
 
-		public const int WheelieBin = 2073091578;
+		public static int WheelieBin => (int)_ApplianceReferences.WheelieBin;
 
-		public const int Bed = -469149429;
+		public static int Bed => (int)_ApplianceReferences.Bed;
 
-		public const int InteractionProxy = 834743908;
+		public static int InteractionProxy => (int)_ApplianceReferences.InteractionProxy;
 
-		public const int UnoccupiedRoomIndicator = 951367272;
+		public static int UnoccupiedRoomIndicator => (int)_ApplianceReferences.UnoccupiedRoomIndicator;
 
-		public const int CardViewer = 1771016910;
+		public static int CardViewer => (int)_ApplianceReferences.CardViewer;
 
-		public const int ContractPedestal = -2122624266;
+		public static int ContractPedestal => (int)_ApplianceReferences.ContractPedestal;
 
-		public const int ContractSource = -404095277;
+		public static int ContractSource => (int)_ApplianceReferences.ContractSource;
 
-		public const int Projector = -1949016360;
+		public static int Projector => (int)_ApplianceReferences.Projector;
 
-		public const int ScrapFranchise = -581219245;
+		public static int ScrapFranchise => (int)_ApplianceReferences.ScrapFranchise;
 
-		public const int ContractsRoomLocked = -148578487;
+		public static int ContractsRoomLocked => (int)_ApplianceReferences.ContractsRoomLocked;
 
-		public const int ExpGrant = -1125517450;
+		public static int ExpGrant => (int)_ApplianceReferences.ExpGrant;
 
-		public const int GarageDecorations = -233558851;
+		public static int GarageDecorations => (int)_ApplianceReferences.GarageDecorations;
 
-		public const int GarageDivider = -342718019;
+		public static int GarageDivider => (int)_ApplianceReferences.GarageDivider;
 
-		public const int GarageShelf = 174737401;
+		public static int GarageShelf => (int)_ApplianceReferences.GarageShelf;
 
-		public const int LoadoutPedestal = 310022384;
+		public static int LoadoutPedestal => (int)_ApplianceReferences.LoadoutPedestal;
 
-		public const int WorkshopActivator = -1425710426;
+		public static int WorkshopActivator => (int)_ApplianceReferences.WorkshopActivator;
 
-		public const int WorkshopCraftingOutput = -1807971648;
+		public static int WorkshopCraftingOutput => (int)_ApplianceReferences.WorkshopCraftingOutput;
 
-		public const int WorkshopCraftingSlot = 268640447;
+		public static int WorkshopCraftingSlot => (int)_ApplianceReferences.WorkshopCraftingSlot;
 
-		public const int WorkshopFence = 1199575543;
+		public static int WorkshopFence => (int)_ApplianceReferences.WorkshopFence;
 
-		public const int WorkshopGate = -1451048989;
+		public static int WorkshopGate => (int)_ApplianceReferences.WorkshopGate;
 
-		public const int WorkshopMachine = -1820794030;
+		public static int WorkshopMachine => (int)_ApplianceReferences.WorkshopMachine;
 
-		public const int AnimalBowl = 871235082;
+		public static int AnimalBowl => (int)_ApplianceReferences.AnimalBowl;
 
-		public const int AnimalFakeSeat = 387240739;
+		public static int AnimalFakeSeat => (int)_ApplianceReferences.AnimalFakeSeat;
 
-		public const int InfiniteBin = 1159228054;
+		public static int InfiniteBin => (int)_ApplianceReferences.InfiniteBin;
 
-		public const int KitchenTutorial = -626547002;
+		public static int KitchenTutorial => (int)_ApplianceReferences.KitchenTutorial;
 
-		public const int DrawingBoardVisual = 359655899;
+		public static int DrawingBoardVisual => (int)_ApplianceReferences.DrawingBoardVisual;
 
-		public const int FoodPedestalFixed = -232172209;
+		public static int FoodPedestalFixed => (int)_ApplianceReferences.FoodPedestalFixed;
 
-		public const int FoodPedestal = -1528441435;
+		public static int FoodPedestal => (int)_ApplianceReferences.FoodPedestal;
 
-		public const int FoodSource = 564388954;
+		public static int FoodSource => (int)_ApplianceReferences.FoodSource;
 
-		public const int MapPedestalSeeded = 1363960331;
+		public static int MapPedestalSeeded => (int)_ApplianceReferences.MapPedestalSeeded;
 
-		public const int MapPedestal = -760874610;
+		public static int MapPedestal => (int)_ApplianceReferences.MapPedestal;
 
-		public const int MapSource = 1823459359;
+		public static int MapSource => (int)_ApplianceReferences.MapSource;
 
-		public const int OfficeDesk = 1659152562;
+		public static int OfficeDesk => (int)_ApplianceReferences.OfficeDesk;
 
-		public const int SeedRunIndicator = 477050702;
+		public static int SeedRunIndicator => (int)_ApplianceReferences.SeedRunIndicator;
 
-		public const int SeededRunSource = 1485375733;
+		public static int SeededRunSource => (int)_ApplianceReferences.SeededRunSource;
 
-		public const int SeededRunVisual = -1114059052;
+		public static int SeededRunVisual => (int)_ApplianceReferences.SeededRunVisual;
 
-		public const int BedroomColourSelector = -62256073;
+		public static int BedroomColourSelector => (int)_ApplianceReferences.BedroomColourSelector;
 
-		public const int BedroomCostumeSelector = 1636658728;
+		public static int BedroomCostumeSelector => (int)_ApplianceReferences.BedroomCostumeSelector;
 
-		public const int BedroomOutfitSelector = -1518462324;
+		public static int BedroomOutfitSelector => (int)_ApplianceReferences.BedroomOutfitSelector;
 
-		public const int ProfileEditorTrigger = -1260306608;
+		public static int ProfileEditorTrigger => (int)_ApplianceReferences.ProfileEditorTrigger;
 
-		public const int ReloadCrash = 1425494045;
+		public static int ReloadCrash => (int)_ApplianceReferences.ReloadCrash;
 
-		public const int SpeedrunBoardVisual = -1614041568;
+		public static int SpeedrunBoardVisual => (int)_ApplianceReferences.SpeedrunBoardVisual;
 
-		public const int StatsRoomLocked = -1051912790;
+		public static int StatsRoomLocked => (int)_ApplianceReferences.StatsRoomLocked;
 
-		public const int WorkshopRoomLocked = 1010867759;
+		public static int WorkshopRoomLocked => (int)_ApplianceReferences.WorkshopRoomLocked;
 
-		public const int BuilderFloor = -720353319;
+		public static int BuilderFloor => (int)_ApplianceReferences.BuilderFloor;
 
-		public const int CardSelector = -1997868587;
+		public static int CardSelector => (int)_ApplianceReferences.CardSelector;
 
-		public const int ConfirmCreateText = -1920103064;
+		public static int ConfirmCreateText => (int)_ApplianceReferences.ConfirmCreateText;
 
-		public const int TutorialFloor = -1235624607;
+		public static int TutorialFloor => (int)_ApplianceReferences.TutorialFloor;
 
-		public const int SourceChristmasCracker = 303858729;
+		public static int ClipboardStand => (int)_ApplianceReferences.ClipboardStand;
 
-		public const int SourceCranberry = 735786885;
+		public static int SourceChristmasCracker => (int)_ApplianceReferences.SourceChristmasCracker;
 
-		public const int SourceSugar = -2133205155;
+		public static int SourceCranberry => (int)_ApplianceReferences.SourceCranberry;
 
-		public const int BeltChristmasMap = -667884240;
+		public static int SourceSugar => (int)_ApplianceReferences.SourceSugar;
 
-		public const int GrabberChristmapMap = -697441390;
+		public static int BeltChristmasMap => (int)_ApplianceReferences.BeltChristmasMap;
 
-		public const int ShedMagicEverything = -349733673;
+		public static int GrabberChristmapMap => (int)_ApplianceReferences.GrabberChristmapMap;
 
-		public const int ShedTeleportTarget = 1836107598;
+		public static int ShedMagicEverything => (int)_ApplianceReferences.ShedMagicEverything;
 
-		public const int ShedInputPlaceholder = 369884364;
+		public static int ShedTeleportTarget => (int)_ApplianceReferences.ShedTeleportTarget;
 
-		public const int ShedOutputPlaceholder = -699013948;
+		public static int ShedInputPlaceholder => (int)_ApplianceReferences.ShedInputPlaceholder;
 
-		public const int FlowerArch = -471643137;
+		public static int ShedOutputPlaceholder => (int)_ApplianceReferences.ShedOutputPlaceholder;
 
-		public const int FriendsPoster = 142298503;
+		public static int FlowerArch => (int)_ApplianceReferences.FlowerArch;
 
-		public const int HeartBalloons = -2001861712;
+		public static int FriendsPoster => (int)_ApplianceReferences.FriendsPoster;
 
-		public const int HeartBunting = -1314508999;
+		public static int HeartBalloons => (int)_ApplianceReferences.HeartBalloons;
 
-		public const int LoveSign = 785615801;
+		public static int HeartBunting => (int)_ApplianceReferences.HeartBunting;
 
-		public const int SettingSelector = 645876063;
+		public static int LoveSign => (int)_ApplianceReferences.LoveSign;
 
-		public const int Cobwebs = -636342486;
+		public static int SettingSelector => (int)_ApplianceReferences.SettingSelector;
 
-		public const int GhostStatue = -1318523640;
+		public static int Cobwebs => (int)_ApplianceReferences.Cobwebs;
 
-		public const int Pumpkin = -621580281;
+		public static int GhostStatue => (int)_ApplianceReferences.GhostStatue;
 
-		public const int Skeleton = 115181910;
+		public static int Pumpkin => (int)_ApplianceReferences.Pumpkin;
 
-		public const int SourceCorn = 976574457;
+		public static int Skeleton => (int)_ApplianceReferences.Skeleton;
 
-		public const int SourceBananas = 235355384;
+		public static int SourceCorn => (int)_ApplianceReferences.SourceCorn;
 
-		public const int SourceStrawberries = -699333907;
+		public static int SourceBananas => (int)_ApplianceReferences.SourceBananas;
 
-		public const int SourcePumpkin = -1055654549;
+		public static int SourceStrawberries => (int)_ApplianceReferences.SourceStrawberries;
 
-		public const int BunnyPoster = 555321421;
+		public static int SourcePumpkin => (int)_ApplianceReferences.SourcePumpkin;
 
-		public const int Lantern = -2084684446;
+		public static int BunnyPoster => (int)_ApplianceReferences.BunnyPoster;
 
-		public const int SourceBamboo = -2092567672;
+		public static int Lantern => (int)_ApplianceReferences.Lantern;
 
-		public const int SourceSeaweed = 595306349;
+		public static int SourceBamboo => (int)_ApplianceReferences.SourceBamboo;
 
-		public const int SourceMandarin = -1210117767;
+		public static int SourceSeaweed => (int)_ApplianceReferences.SourceSeaweed;
 
-		public const int SourceSoySauce = -471813067;
+		public static int SourceMandarin => (int)_ApplianceReferences.SourceMandarin;
 
-		public const int LakeGround = -184765154;
+		public static int SourceSoySauce => (int)_ApplianceReferences.SourceSoySauce;
 
-		public const int RedEnvelopeLetter = -707206359;
+		public static int LakeGround => (int)_ApplianceReferences.LakeGround;
 
-		public const int TreeLake = 1134699240;
+		public static int RedEnvelopeLetter => (int)_ApplianceReferences.RedEnvelopeLetter;
 
-		public const int AchievementView = -916942203;
+		public static int TreeLake => (int)_ApplianceReferences.TreeLake;
 
-		public const int ExperienceView = 345407921;
+		public static int SourceCakeStand => (int)_ApplianceReferences.SourceCakeStand;
 
-		public const int LocationLoader = -509190559;
+		public static int IceDispenser => (int)_ApplianceReferences.IceDispenser;
 
-		public const int Map = 1274763392;
+		public static int MilkDispenser => (int)_ApplianceReferences.MilkDispenser;
 
-		public const int TurboStreetPiece = 965503721;
+		public static int SourceMilk => (int)_ApplianceReferences.SourceMilk;
 
-		public const int TurboWallPieceHalf = 260380903;
+		public static int SourceTeaBags => (int)_ApplianceReferences.SourceTeaBags;
 
-		public const int TurboWallPiece = -89571330;
+		public static int SourceTeaCups => (int)_ApplianceReferences.SourceTeaCups;
 
-		public const int UpgradeProgressView = 2114150010;
+		public static int SourceTeaPots => (int)_ApplianceReferences.SourceTeaPots;
 
-		public const int SourceCherry = 148543530;
+		public static int AchievementView => (int)_ApplianceReferences.AchievementView;
 
-		public const int SourceMilk = 120342736;
+		public static int ExperienceView => (int)_ApplianceReferences.ExperienceView;
 
-		public const int CobblestoneAutumn = -1382019219;
+		public static int LocationLoader => (int)_ApplianceReferences.LocationLoader;
 
-		public const int Fencing = -1403625488;
+		public static int Map => (int)_ApplianceReferences.Map;
 
-		public const int GrassAutumn = -1673904972;
+		public static int TurboStreetPiece => (int)_ApplianceReferences.TurboStreetPiece;
 
-		public const int Rock2 = 1752654754;
+		public static int TurboWallPieceHalf => (int)_ApplianceReferences.TurboWallPieceHalf;
 
-		public const int TreeAutumn = -1748395084;
+		public static int TurboWallPiece => (int)_ApplianceReferences.TurboWallPiece;
 
-		public const int ResearchExitText = -872135723;
+		public static int UpgradeProgressView => (int)_ApplianceReferences.UpgradeProgressView;
 
-		public const int ResearchableUpgrade = -1879606524;
+		public static int SourceCherry => (int)_ApplianceReferences.SourceCherry;
 
-		public const int UpgradeKit = -26827118;
+		public static int CobblestoneAutumn => (int)_ApplianceReferences.CobblestoneAutumn;
 
-		public const int kitchenlibViewHolder = -642195551;
+		public static int Fencing => (int)_ApplianceReferences.Fencing;
 
-		public const int kitchenlibInfoViewHolder = -927155181;
+		public static int GrassAutumn => (int)_ApplianceReferences.GrassAutumn;
 
-		public const int kitchenlibSendToClientViewHolder = 148759508;
+		public static int Rock2 => (int)_ApplianceReferences.Rock2;
 
-		public const int kitchenlibTileHighlighterViewController = 618910379;
+		public static int TreeAutumn => (int)_ApplianceReferences.TreeAutumn;
 
-		public const int kitchenlibClientEquipCapeViewHolder = -996307118;
+		public static int ResearchExitText => (int)_ApplianceReferences.ResearchExitText;
 
-		public const int kitchenlibSyncModsViewHolder = -1995745069;
+		public static int ResearchableUpgrade => (int)_ApplianceReferences.ResearchableUpgrade;
 
-		public const int kitchenlib_21_Balloon = 1753502646;
+		public static int UpgradeKit => (int)_ApplianceReferences.UpgradeKit;
+
+		public static int kitchenlibSyncModsViewHolder => (int)_ApplianceReferences.kitchenlibSyncModsViewHolder;
+
+	}
+	internal enum _ApplianceReferences
+	{
+		MixerHeated = 505496455,
+
+		MixerPusher = -1357906425,
+
+		MixerRapid = -1440053805,
+
+		Mixer = 1329097317,
+
+		SupplyCabinet = -1013770159,
+
+		BinCompactor = 2127051779,
+
+		BinComposter = -1632826946,
+
+		BinExpanded = -1855909480,
+
+		BinStarting = 481495292,
+
+		Bin = 1551609169,
+
+		FireExtinguisherHolder = 1286554202,
+
+		FloorBufferStation = 1351951642,
+
+		FloorProtector = 1765889988,
+
+		MopBucketFast = -1495393751,
+
+		MopBucketLasting = 1776760557,
+
+		MopBucket = -1993346570,
+
+		RobotBufferMobile = -751458770,
+
+		RobotBuffer = -1723340146,
+
+		RobotMopMobile = -2091039911,
+
+		RobotMop = -2147057861,
+
+		CoffeeMachine = -1609758240,
+
+		ColouringBookStand = -17368064,
+
+		Belt = 1973114260,
+
+		Combiner = -1906799936,
+
+		GrabberRotatable = -331651461,
+
+		GrabberSmart = -1238047163,
+
+		Grabber = -1029710921,
+
+		Portioner = -1462602185,
+
+		Teleporter = 459840623,
+
+		Countertop = -1248669347,
+
+		KneadingStationX = 1365340297,
+
+		Workstation = -1573577293,
+
+		AffordableBin = 620400448,
+
+		AffordableGumballMachine = 1830133512,
+
+		AffordableNeonSign1 = 1724963734,
+
+		AffordableNeonSign2 = 371247235,
+
+		AffordableRoofLight = 230540973,
+
+		AffordableStockArt = -1472471467,
+
+		AffordableWetFloorSign = -2108088224,
+
+		CosyBarrel = 1569358344,
+
+		CosyBookcase = -60168847,
+
+		CosyDartboard = -1941237931,
+
+		CosyFireplace = -441525746,
+
+		CosyRug = 591400026,
+
+		CosyWallLight = -1628995120,
+
+		ChristmasBanner = -1380985631,
+
+		ChristmasTree = 1797739089,
+
+		FairyLights = -4737636,
+
+		FancyCandelabra = -13481890,
+
+		FancyChandelier = 1233091186,
+
+		FancyFlowers = -1180623135,
+
+		FancyGlobe = 642318074,
+
+		FancyPainting = -1486785449,
+
+		FancyRug = 2076966627,
+
+		FancyStatue = -972644436,
+
+		FormalDogStatue = 1551024733,
+
+		FormalPlant = -1339970600,
+
+		FormalRoofLight = 908498444,
+
+		FormalStandingLamp = 744277037,
+
+		FormalVase = 531866927,
+
+		Fountain = 1220439284,
+
+		Painting = 668664567,
+
+		Plant = 756364626,
+
+		Rug = -648349801,
+
+		BeerTap = -1506601664,
+
+		WineBarrel = -2100580689,
+
+		Dumbwaiter = 532998682,
+
+		Fryer = 892856538,
+
+		Beehive = -544237849,
+
+		FlowerSpawn = 188952245,
+
+		GasLimiter = 1921027834,
+
+		GasSafetyOverride = -770041014,
+
+		HobDanger = -1448690107,
+
+		HobSafe = 1266458729,
+
+		HobStarting = 1154757341,
+
+		Hob = 862493270,
+
+		ManualHob = -441141351,
+
+		TutorialHob = 805530854,
+
+		HostStandBookings = -60938940,
+
+		HostStand = -63118559,
+
+		FoodDisplayStand = -1813414500,
+
+		BuffedFloor = 1630557157,
+
+		MessCustomer1 = -1324288299,
+
+		MessCustomer2 = -374077567,
+
+		MessCustomer3 = 147181555,
+
+		MessKitchen1 = 31731938,
+
+		MessKitchen2 = 1419995156,
+
+		MessKitchen3 = 34773971,
+
+		MopWaterLong = -1424385600,
+
+		MopWater = 377065033,
+
+		Nameplate = -483535085,
+
+		BlueprintLetter = 1553046198,
+
+		Blueprint = 1063254979,
+
+		FlooringApplicator = 1732122842,
+
+		Parcel = -1936421857,
+
+		WallpaperApplicator = 2041631136,
+
+		AccountingDesk = 949631021,
+
+		BlueprintCabinet = -571205127,
+
+		BlueprintCopyDesk = -729493805,
+
+		BlueprintDiscountDeskOld = -272437832,
+
+		BlueprintDiscountDesk = 1586911545,
+
+		BlueprintOrderingDesk = 1446975727,
+
+		BlueprintUpgradeDesk = 1139247360,
+
+		BookingDesk = 238041352,
+
+		ExtraLife = -1817838704,
+
+		OrderingTerminalFastFood = 136867583,
+
+		OrderingTerminalSpecialOffers = -246383526,
+
+		OrderingTerminal = -1610332021,
+
+		DoubleOven = 944301512,
+
+		Microwave = -1311702572,
+
+		Oven = -1068749602,
+
+		Balloons = 1147639502,
+
+		BirthdayBanner = -71664252,
+
+		Piano = -326328571,
+
+		SourceApple = -905438738,
+
+		SourceBeans = 1807525572,
+
+		SourceBonedMeat = 269523389,
+
+		SourceBroccoli = -1573812073,
+
+		SourceBurgerBuns = 759552160,
+
+		SourceBurgerPatty = 385684499,
+
+		SourceCarrot = -452101383,
+
+		SourceCheese = -117339838,
+
+		SourceEgg = 961148621,
+
+		SourceFish2 = -1735137431,
+
+		SourceFish = -609358791,
+
+		SourceFlour = 925796718,
+
+		SourceHotdogBun = -1132411297,
+
+		SourceHotdog = 1799769627,
+
+		SourceIceCream = -1533430406,
+
+		SourceKetchup = -965827229,
+
+		SourceLettuce = 1193867305,
+
+		SourceMeat = -484165118,
+
+		SourceMushroom = -1097889139,
+
+		SourceMustard = -117356585,
+
+		SourceNuts = 1834063794,
+
+		SourceOil = -1963699221,
+
+		SourceOlive = -1434800013,
+
+		SourceOnion = -2042103798,
+
+		SourcePotato = 44541785,
+
+		SourceRice = -1201769154,
+
+		SourceThickMeat = -1507801323,
+
+		SourceThinMeat = 1800865634,
+
+		SourceTomato = -712909563,
+
+		SourceTurkey = -1506824829,
+
+		SourceWine = -1353971407,
+
+		BrokenEntity = -101564005,
+
+		FireEntity = -897970831,
+
+		ItemReturnWhenLost = -996680732,
+
+		PracticeModeTrigger = 946079892,
+
+		RerollShopTrigger = 1171429989,
+
+		TutorialTrigger = 161402590,
+
+		AutoPlater = 739504637,
+
+		DirtyPlateStackDEBUG = 1653145961,
+
+		DirtyPlateStack = 434150763,
+
+		ItemSourceReservation = 1270423542,
+
+		ItemSource = -1474018107,
+
+		PlateStackStarting = 380220741,
+
+		PlateStack = 1313469794,
+
+		PotStack = -957949759,
+
+		ServingBoardStack = 235423916,
+
+		WokStack = 314862254,
+
+		AlpineGround = -1291027873,
+
+		AlpineTree = -214921468,
+
+		Bush = -2135829561,
+
+		Cobblestone = -372462424,
+
+		CountrysideGround = 933445633,
+
+		Flower = -1555334152,
+
+		Flowerbed = 1980900762,
+
+		HalloweenBridge = 1855052205,
+
+		HalloweenFloor = -68388422,
+
+		HalloweenFog = -1200192498,
+
+		HalloweenPillar = -194750543,
+
+		HalloweenTrees = 1911132834,
+
+		HalloweenWall = 1365126444,
+
+		LogWall = -1265562836,
+
+		OutdoorMovementBlocker = -2046940874,
+
+		Rock = -923570273,
+
+		InternalWallPiece = -488268556,
+
+		StreetPiece = -548432204,
+
+		WallPiece = -758567246,
+
+		Tree = 532701855,
+
+		Freezer = -1857890774,
+
+		FrozenPrepStation = -759808000,
+
+		PrepStation = 1656358740,
+
+		Rack = -262439022,
+
+		StorageCupboard = 1890408483,
+
+		BreadstickBox = 639111696,
+
+		CandleBox = 1358522063,
+
+		FlowerPot = 221442949,
+
+		NapkinBox = 1528688658,
+
+		SharpCutlery = 2080633647,
+
+		SpecialsMenuBox = 446555792,
+
+		Chair = 938247786,
+
+		CoffeeTable = 1648733244,
+
+		GhostChair = -1979922052,
+
+		TableBar = -3721951,
+
+		TableBasicCloth = -34659638,
+
+		TableCheapMetal = -203679687,
+
+		TableFancyCloth = -2019409936,
+
+		TableLarge = 209074140,
+
+		RollingPinProvider = 1738351766,
+
+		ScrubbingBrushProvider = 624465484,
+
+		SharpKnifeProvider = 2023704259,
+
+		ShoeRackTrainers = 723626409,
+
+		ShoeRackWellies = 1796077718,
+
+		ShoeRackWorkBoots = 230848637,
+
+		TrayStand = 1129858275,
+
+		DishWasher = -823922901,
+
+		SinkLarge = -214126192,
+
+		SinkNormal = 1083874952,
+
+		SinkPower = 1467371088,
+
+		SinkSoak = 1860904347,
+
+		SinkStarting = -266993023,
+
+		WheelieBin = 2073091578,
+
+		Bed = -469149429,
+
+		InteractionProxy = 834743908,
+
+		UnoccupiedRoomIndicator = 951367272,
+
+		CardViewer = 1771016910,
+
+		ContractPedestal = -2122624266,
+
+		ContractSource = -404095277,
+
+		Projector = -1949016360,
+
+		ScrapFranchise = -581219245,
+
+		ContractsRoomLocked = -148578487,
+
+		ExpGrant = -1125517450,
+
+		GarageDecorations = -233558851,
+
+		GarageDivider = -342718019,
+
+		GarageShelf = 174737401,
+
+		LoadoutPedestal = 310022384,
+
+		WorkshopActivator = -1425710426,
+
+		WorkshopCraftingOutput = -1807971648,
+
+		WorkshopCraftingSlot = 268640447,
+
+		WorkshopFence = 1199575543,
+
+		WorkshopGate = -1451048989,
+
+		WorkshopMachine = -1820794030,
+
+		AnimalBowl = 871235082,
+
+		AnimalFakeSeat = 387240739,
+
+		InfiniteBin = 1159228054,
+
+		KitchenTutorial = -626547002,
+
+		DrawingBoardVisual = 359655899,
+
+		FoodPedestalFixed = -232172209,
+
+		FoodPedestal = -1528441435,
+
+		FoodSource = 564388954,
+
+		MapPedestalSeeded = 1363960331,
+
+		MapPedestal = -760874610,
+
+		MapSource = 1823459359,
+
+		OfficeDesk = 1659152562,
+
+		SeedRunIndicator = 477050702,
+
+		SeededRunSource = 1485375733,
+
+		SeededRunVisual = -1114059052,
+
+		BedroomColourSelector = -62256073,
+
+		BedroomCostumeSelector = 1636658728,
+
+		BedroomOutfitSelector = -1518462324,
+
+		ProfileEditorTrigger = -1260306608,
+
+		ReloadCrash = 1425494045,
+
+		SpeedrunBoardVisual = -1614041568,
+
+		StatsRoomLocked = -1051912790,
+
+		WorkshopRoomLocked = 1010867759,
+
+		BuilderFloor = -720353319,
+
+		CardSelector = -1997868587,
+
+		ConfirmCreateText = -1920103064,
+
+		TutorialFloor = -1235624607,
+
+		ClipboardStand = -2070005162,
+
+		SourceChristmasCracker = 303858729,
+
+		SourceCranberry = 735786885,
+
+		SourceSugar = -2133205155,
+
+		BeltChristmasMap = -667884240,
+
+		GrabberChristmapMap = -697441390,
+
+		ShedMagicEverything = -349733673,
+
+		ShedTeleportTarget = 1836107598,
+
+		ShedInputPlaceholder = 369884364,
+
+		ShedOutputPlaceholder = -699013948,
+
+		FlowerArch = -471643137,
+
+		FriendsPoster = 142298503,
+
+		HeartBalloons = -2001861712,
+
+		HeartBunting = -1314508999,
+
+		LoveSign = 785615801,
+
+		SettingSelector = 645876063,
+
+		Cobwebs = -636342486,
+
+		GhostStatue = -1318523640,
+
+		Pumpkin = -621580281,
+
+		Skeleton = 115181910,
+
+		SourceCorn = 976574457,
+
+		SourceBananas = 235355384,
+
+		SourceStrawberries = -699333907,
+
+		SourcePumpkin = -1055654549,
+
+		BunnyPoster = 555321421,
+
+		Lantern = -2084684446,
+
+		SourceBamboo = -2092567672,
+
+		SourceSeaweed = 595306349,
+
+		SourceMandarin = -1210117767,
+
+		SourceSoySauce = -471813067,
+
+		LakeGround = -184765154,
+
+		RedEnvelopeLetter = -707206359,
+
+		TreeLake = 1134699240,
+
+		SourceCakeStand = 143484231,
+
+		IceDispenser = 801015432,
+
+		MilkDispenser = -557736569,
+
+		SourceMilk = 120342736,
+
+		SourceTeaBags = -1598460622,
+
+		SourceTeaCups = 1377093570,
+
+		SourceTeaPots = -762638188,
+
+		AchievementView = -916942203,
+
+		ExperienceView = 345407921,
+
+		LocationLoader = -509190559,
+
+		Map = 1274763392,
+
+		TurboStreetPiece = 965503721,
+
+		TurboWallPieceHalf = 260380903,
+
+		TurboWallPiece = -89571330,
+
+		UpgradeProgressView = 2114150010,
+
+		SourceCherry = 148543530,
+
+		CobblestoneAutumn = -1382019219,
+
+		Fencing = -1403625488,
+
+		GrassAutumn = -1673904972,
+
+		Rock2 = 1752654754,
+
+		TreeAutumn = -1748395084,
+
+		ResearchExitText = -872135723,
+
+		ResearchableUpgrade = -1879606524,
+
+		UpgradeKit = -26827118,
+
+		kitchenlibSyncModsViewHolder = -1995745069,
 
 	}
 	public class CompositeUnlockPackReferences
 	{
-		public const int ChristmasPack = 1370599169;
+		public static int ChristmasPack => (int)_CompositeUnlockPackReferences.ChristmasPack;
 
-		public const int DefaultCompositePack = -2020288853;
+		public static int DefaultCompositePack => (int)_CompositeUnlockPackReferences.DefaultCompositePack;
 
-		public const int FebruaryPack = -654728586;
+		public static int FebruaryPack => (int)_CompositeUnlockPackReferences.FebruaryPack;
 
-		public const int HalloweenPack = -839658581;
+		public static int HalloweenPack => (int)_CompositeUnlockPackReferences.HalloweenPack;
 
-		public const int JanuaryPack = -1893039732;
+		public static int JanuaryPack => (int)_CompositeUnlockPackReferences.JanuaryPack;
 
-		public const int MarchPack = -619515969;
+		public static int JunePack => (int)_CompositeUnlockPackReferences.JunePack;
 
-		public const int AutumnPack = 698670060;
+		public static int MarchPack => (int)_CompositeUnlockPackReferences.MarchPack;
+
+		public static int AutumnPack => (int)_CompositeUnlockPackReferences.AutumnPack;
+
+	}
+	internal enum _CompositeUnlockPackReferences
+	{
+		ChristmasPack = 1370599169,
+
+		DefaultCompositePack = -2020288853,
+
+		FebruaryPack = -654728586,
+
+		HalloweenPack = -839658581,
+
+		JanuaryPack = -1893039732,
+
+		JunePack = 1774091848,
+
+		MarchPack = -619515969,
+
+		AutumnPack = 698670060,
 
 	}
 	public class CrateSetReferences
 	{
 	}
+	internal enum _CrateSetReferences
+	{
+	}
 	public class DecorReferences
 	{
-		public const int FloorCarpetBlue = 264635314;
+		public static int FloorCarpetBlue => (int)_DecorReferences.FloorCarpetBlue;
 
-		public const int FloorCarpetOddBeige = -2027669857;
+		public static int FloorCarpetOddBeige => (int)_DecorReferences.FloorCarpetOddBeige;
 
-		public const int FloorCarpetRed = 39375073;
+		public static int FloorCarpetRed => (int)_DecorReferences.FloorCarpetRed;
 
-		public const int FloorLinoBlue = -447054917;
+		public static int FloorLinoBlue => (int)_DecorReferences.FloorLinoBlue;
 
-		public const int FloorTilesBlackandWhite = -1630328484;
+		public static int FloorTilesBlackandWhite => (int)_DecorReferences.FloorTilesBlackandWhite;
 
-		public const int FloorTilesSlate = -1581156166;
+		public static int FloorTilesSlate => (int)_DecorReferences.FloorTilesSlate;
 
-		public const int FloorTilesTerracotta = 1721147734;
+		public static int FloorTilesTerracotta => (int)_DecorReferences.FloorTilesTerracotta;
 
-		public const int FloorWoodChevrons = 262448704;
+		public static int FloorWoodChevrons => (int)_DecorReferences.FloorWoodChevrons;
 
-		public const int FloorWoodNeatPlanks = -1941228876;
+		public static int FloorWoodNeatPlanks => (int)_DecorReferences.FloorWoodNeatPlanks;
 
-		public const int WallpaperBasicBeige = 692869852;
+		public static int WallpaperBasicBeige => (int)_DecorReferences.WallpaperBasicBeige;
 
-		public const int WallpaperBasicBlue = -909214682;
+		public static int WallpaperBasicBlue => (int)_DecorReferences.WallpaperBasicBlue;
 
-		public const int WallpaperBasicDeepRed = 32074585;
+		public static int WallpaperBasicDeepRed => (int)_DecorReferences.WallpaperBasicDeepRed;
 
-		public const int WallpaperBasicGreen = -1912408828;
+		public static int WallpaperBasicGreen => (int)_DecorReferences.WallpaperBasicGreen;
 
-		public const int WallpaperBasicRed = 2048792633;
+		public static int WallpaperBasicRed => (int)_DecorReferences.WallpaperBasicRed;
 
-		public const int WallpaperBasicYellow = -247477402;
+		public static int WallpaperBasicYellow => (int)_DecorReferences.WallpaperBasicYellow;
 
-		public const int WallpaperPatternSnow = 1039076012;
+		public static int WallpaperPatternSnow => (int)_DecorReferences.WallpaperPatternSnow;
 
-		public const int WallpaperStripesRed = 1327221289;
+		public static int WallpaperStripesRed => (int)_DecorReferences.WallpaperStripesRed;
 
-		public const int FloorMarbleDark = 1239121153;
+		public static int FloorMarbleDark => (int)_DecorReferences.FloorMarbleDark;
 
-		public const int FloorMarble = 1542896199;
+		public static int FloorMarble => (int)_DecorReferences.FloorMarble;
 
-		public const int WallpaperHeartsIcons = 770196872;
+		public static int WallpaperHeartsIcons => (int)_DecorReferences.WallpaperHeartsIcons;
 
-		public const int WallpaperHearts = -98508441;
+		public static int WallpaperHearts => (int)_DecorReferences.WallpaperHearts;
 
-		public const int FloorPlanksSmart = 1519770899;
+		public static int FloorPlanksSmart => (int)_DecorReferences.FloorPlanksSmart;
 
-		public const int FloorPlanksTattered = -281022317;
+		public static int FloorPlanksTattered => (int)_DecorReferences.FloorPlanksTattered;
 
-		public const int FloorTilesCobblestone = 392388777;
+		public static int FloorTilesCobblestone => (int)_DecorReferences.FloorTilesCobblestone;
 
-		public const int FloorTilesHex = -128404883;
+		public static int FloorTilesHex => (int)_DecorReferences.FloorTilesHex;
 
-		public const int FloorTilesSimple = 1957884903;
+		public static int FloorTilesSimple => (int)_DecorReferences.FloorTilesSimple;
 
-		public const int WallpaperPatternBones = -2142082440;
+		public static int WallpaperPatternBones => (int)_DecorReferences.WallpaperPatternBones;
 
-		public const int WallpaperPatternFloral = 283381985;
+		public static int WallpaperPatternFloral => (int)_DecorReferences.WallpaperPatternFloral;
 
-		public const int WallpaperStripesBlue = 12309799;
+		public static int WallpaperStripesBlue => (int)_DecorReferences.WallpaperStripesBlue;
 
-		public const int WallpaperStripesGreen = -1869605173;
+		public static int WallpaperStripesGreen => (int)_DecorReferences.WallpaperStripesGreen;
 
-		public const int WallpaperTilesBlue = 1319696126;
+		public static int WallpaperTilesBlue => (int)_DecorReferences.WallpaperTilesBlue;
 
-		public const int WallpaperTilesRed = 770049390;
+		public static int WallpaperTilesRed => (int)_DecorReferences.WallpaperTilesRed;
 
-		public const int WallpaperCNY1 = 403272335;
+		public static int WallpaperCNY1 => (int)_DecorReferences.WallpaperCNY1;
 
-		public const int WallpaperCNY2 = 182226086;
+		public static int WallpaperCNY2 => (int)_DecorReferences.WallpaperCNY2;
 
-		public const int WallpaperCNY3 = -1951323820;
+		public static int WallpaperCNY3 => (int)_DecorReferences.WallpaperCNY3;
 
-		public const int WallpaperLeaves = 1802235039;
+		public static int WallpaperLeaves => (int)_DecorReferences.WallpaperLeaves;
 
-		public const int WallpaperStripesOrange = -1765627192;
+		public static int WallpaperStripesOrange => (int)_DecorReferences.WallpaperStripesOrange;
 
-		public const int WallpaperTress = 824277831;
+		public static int WallpaperTress => (int)_DecorReferences.WallpaperTress;
 
-		public const int WallpaperTurkey = 2057848768;
+		public static int WallpaperTurkey => (int)_DecorReferences.WallpaperTurkey;
+
+	}
+	internal enum _DecorReferences
+	{
+		FloorCarpetBlue = 264635314,
+
+		FloorCarpetOddBeige = -2027669857,
+
+		FloorCarpetRed = 39375073,
+
+		FloorLinoBlue = -447054917,
+
+		FloorTilesBlackandWhite = -1630328484,
+
+		FloorTilesSlate = -1581156166,
+
+		FloorTilesTerracotta = 1721147734,
+
+		FloorWoodChevrons = 262448704,
+
+		FloorWoodNeatPlanks = -1941228876,
+
+		WallpaperBasicBeige = 692869852,
+
+		WallpaperBasicBlue = -909214682,
+
+		WallpaperBasicDeepRed = 32074585,
+
+		WallpaperBasicGreen = -1912408828,
+
+		WallpaperBasicRed = 2048792633,
+
+		WallpaperBasicYellow = -247477402,
+
+		WallpaperPatternSnow = 1039076012,
+
+		WallpaperStripesRed = 1327221289,
+
+		FloorMarbleDark = 1239121153,
+
+		FloorMarble = 1542896199,
+
+		WallpaperHeartsIcons = 770196872,
+
+		WallpaperHearts = -98508441,
+
+		FloorPlanksSmart = 1519770899,
+
+		FloorPlanksTattered = -281022317,
+
+		FloorTilesCobblestone = 392388777,
+
+		FloorTilesHex = -128404883,
+
+		FloorTilesSimple = 1957884903,
+
+		WallpaperPatternBones = -2142082440,
+
+		WallpaperPatternFloral = 283381985,
+
+		WallpaperStripesBlue = 12309799,
+
+		WallpaperStripesGreen = -1869605173,
+
+		WallpaperTilesBlue = 1319696126,
+
+		WallpaperTilesRed = 770049390,
+
+		WallpaperCNY1 = 403272335,
+
+		WallpaperCNY2 = 182226086,
+
+		WallpaperCNY3 = -1951323820,
+
+		WallpaperLeaves = 1802235039,
+
+		WallpaperStripesOrange = -1765627192,
+
+		WallpaperTress = 824277831,
+
+		WallpaperTurkey = 2057848768,
 
 	}
 	public class DishReferences
 	{
-		public const int CoffeeDessert = -85470894;
+		public static int CoffeeDessert => (int)_DishReferences.CoffeeDessert;
 
-		public const int IceCream = 373996608;
+		public static int IceCream => (int)_DishReferences.IceCream;
 
-		public const int BreakfastBase = -2075899;
+		public static int BreakfastBase => (int)_DishReferences.BreakfastBase;
 
-		public const int BreakfastBeans = -1199743580;
+		public static int BreakfastBeans => (int)_DishReferences.BreakfastBeans;
 
-		public const int BreakfastExtras = 1436814208;
+		public static int BreakfastExtras => (int)_DishReferences.BreakfastExtras;
 
-		public const int BreakfastVeganExtras = -1998930853;
+		public static int BreakfastVeganExtras => (int)_DishReferences.BreakfastVeganExtras;
 
-		public const int BurgerBase = -1778969928;
+		public static int BurgerBase => (int)_DishReferences.BurgerBase;
 
-		public const int BurgerCheese = 965292477;
+		public static int BurgerCheese => (int)_DishReferences.BurgerCheese;
 
-		public const int BurgerFreshPatties = -1091625127;
+		public static int BurgerFreshPatties => (int)_DishReferences.BurgerFreshPatties;
 
-		public const int BurgerTomatoandOnion = 1298035216;
+		public static int BurgerTomatoandOnion => (int)_DishReferences.BurgerTomatoandOnion;
 
-		public const int HotdogBase = 1626323920;
+		public static int HotdogBase => (int)_DishReferences.HotdogBase;
 
-		public const int HotdogCondimentMustard = -278713285;
+		public static int HotdogCondimentMustard => (int)_DishReferences.HotdogCondimentMustard;
 
-		public const int FishBase = 1743900205;
+		public static int FishBase => (int)_DishReferences.FishBase;
 
-		public const int FishCrabCake = -297968808;
+		public static int FishCrabCake => (int)_DishReferences.FishCrabCake;
 
-		public const int FishExtraChoice2 = 243846255;
+		public static int FishExtraChoice2 => (int)_DishReferences.FishExtraChoice2;
 
-		public const int FishExtraChoice = -243820179;
+		public static int FishExtraChoice => (int)_DishReferences.FishExtraChoice;
 
-		public const int FishFillet = 1442262270;
+		public static int FishFillet => (int)_DishReferences.FishFillet;
 
-		public const int FishOyster = 274986412;
+		public static int FishOyster => (int)_DishReferences.FishOyster;
 
-		public const int FishSpiny = -643878280;
+		public static int FishSpiny => (int)_DishReferences.FishSpiny;
 
-		public const int BirthdayCake = -1528287489;
+		public static int BirthdayCake => (int)_DishReferences.BirthdayCake;
 
-		public const int RoastMeat = 670300431;
+		public static int RoastMeat => (int)_DishReferences.RoastMeat;
 
-		public const int PieApple = -211821608;
+		public static int PieApple => (int)_DishReferences.PieApple;
 
-		public const int PieBase = -133939790;
+		public static int PieBase => (int)_DishReferences.PieBase;
 
-		public const int PieMushroom = -1992316049;
+		public static int PieMushroom => (int)_DishReferences.PieMushroom;
 
-		public const int PieVegetable = -1802123036;
+		public static int PieVegetable => (int)_DishReferences.PieVegetable;
 
-		public const int SaladApple = 1570910782;
+		public static int SaladApple => (int)_DishReferences.SaladApple;
 
-		public const int SaladBase = 1356267749;
+		public static int SaladBase => (int)_DishReferences.SaladBase;
 
-		public const int SaladPotato = -862637543;
+		public static int SaladPotato => (int)_DishReferences.SaladPotato;
 
-		public const int SaladToppings = 372460604;
+		public static int SaladToppings => (int)_DishReferences.SaladToppings;
 
-		public const int BonedSteaks = 1384317454;
+		public static int BonedSteaks => (int)_DishReferences.BonedSteaks;
 
-		public const int SteakSauceMushroomSauce = -953651922;
+		public static int SteakSauceMushroomSauce => (int)_DishReferences.SteakSauceMushroomSauce;
 
-		public const int SteakSauceRedWineJus = 2074054556;
+		public static int SteakSauceRedWineJus => (int)_DishReferences.SteakSauceRedWineJus;
 
-		public const int SteakToppingMushroom = -1192928429;
+		public static int SteakToppingMushroom => (int)_DishReferences.SteakToppingMushroom;
 
-		public const int SteakToppingTomato = -851525606;
+		public static int SteakToppingTomato => (int)_DishReferences.SteakToppingTomato;
 
-		public const int Steak = -959076098;
+		public static int Steak => (int)_DishReferences.Steak;
 
-		public const int ThickSteaks = 1916300984;
+		public static int ThickSteaks => (int)_DishReferences.ThickSteaks;
 
-		public const int ThinSteaks = -1716993344;
+		public static int ThinSteaks => (int)_DishReferences.ThinSteaks;
 
-		public const int StirFryBase = -1653221873;
+		public static int StirFryBase => (int)_DishReferences.StirFryBase;
 
-		public const int StirFryMeat = -204178430;
+		public static int StirFryMeat => (int)_DishReferences.StirFryMeat;
 
-		public const int Broccoli = 1380953991;
+		public static int Broccoli => (int)_DishReferences.Broccoli;
 
-		public const int Chips = -520693398;
+		public static int Chips => (int)_DishReferences.Chips;
 
-		public const int MashedPotato = 364243605;
+		public static int MashedPotato => (int)_DishReferences.MashedPotato;
 
-		public const int CarrotSoup = 2012685115;
+		public static int CarrotSoup => (int)_DishReferences.CarrotSoup;
 
-		public const int MeatSoup = -997241706;
+		public static int MeatSoup => (int)_DishReferences.MeatSoup;
 
-		public const int TomatoSoup = -233806503;
+		public static int TomatoSoup => (int)_DishReferences.TomatoSoup;
 
-		public const int CheeseBoard = 312770813;
+		public static int CheeseBoard => (int)_DishReferences.CheeseBoard;
 
-		public const int PizzaBase = 550743424;
+		public static int PizzaBase => (int)_DishReferences.PizzaBase;
 
-		public const int PizzaMushroom = 1434421325;
+		public static int PizzaMushroom => (int)_DishReferences.PizzaMushroom;
 
-		public const int PizzaOnion = -2071275506;
+		public static int PizzaOnion => (int)_DishReferences.PizzaOnion;
 
-		public const int OnionRings = -1745179096;
+		public static int OnionRings => (int)_DishReferences.OnionRings;
 
-		public const int Cracker = 878396172;
+		public static int Cracker => (int)_DishReferences.Cracker;
 
-		public const int TurkeyCranberrySauce = 1398180456;
+		public static int TurkeyCranberrySauce => (int)_DishReferences.TurkeyCranberrySauce;
 
-		public const int TurkeyGravy = -1460640973;
+		public static int TurkeyGravy => (int)_DishReferences.TurkeyGravy;
 
-		public const int TurkeyStuffing = -1243742384;
+		public static int TurkeyStuffing => (int)_DishReferences.TurkeyStuffing;
 
-		public const int CornOnCob = 1168007081;
+		public static int CornOnCob => (int)_DishReferences.CornOnCob;
 
-		public const int IceCreamBanana = -95393944;
+		public static int IceCreamBanana => (int)_DishReferences.IceCreamBanana;
 
-		public const int IceCreamNuts = -81988936;
+		public static int IceCreamNuts => (int)_DishReferences.IceCreamNuts;
 
-		public const int IceCreamStrawberry = 2105828628;
+		public static int IceCreamStrawberry => (int)_DishReferences.IceCreamStrawberry;
 
-		public const int PiePumpkin = 400765800;
+		public static int PiePumpkin => (int)_DishReferences.PiePumpkin;
 
-		public const int PumpkinSeed = 1393945424;
+		public static int PumpkinSeed => (int)_DishReferences.PumpkinSeed;
 
-		public const int PumpkinSoup = 1984233383;
+		public static int PumpkinSoup => (int)_DishReferences.PumpkinSoup;
 
-		public const int Bamboo = -1742801708;
+		public static int Bamboo => (int)_DishReferences.Bamboo;
 
-		public const int StirFryBamboo = -437161441;
+		public static int StirFryBamboo => (int)_DishReferences.StirFryBamboo;
 
-		public const int DumplingSoySauce = -1759612454;
+		public static int DumplingSoySauce => (int)_DishReferences.DumplingSoySauce;
 
-		public const int Dumplings = 367917843;
+		public static int Dumplings => (int)_DishReferences.Dumplings;
 
-		public const int DumplingsSeaweed = 137627410;
+		public static int DumplingsSeaweed => (int)_DishReferences.DumplingsSeaweed;
 
-		public const int Mandarin = 1696424557;
+		public static int Mandarin => (int)_DishReferences.Mandarin;
 
-		public const int StirFryMushroom = 1642878331;
+		public static int StirFryMushroom => (int)_DishReferences.StirFryMushroom;
 
-		public const int StirFrySoySauce = 1064343768;
+		public static int StirFrySoySauce => (int)_DishReferences.StirFrySoySauce;
 
-		public const int NutRoastBase = 536093200;
+		public static int CoffeeCakeStand => (int)_DishReferences.CoffeeCakeStand;
 
-		public const int Affogato = -1405391769;
+		public static int CoffeeBaseDessert => (int)_DishReferences.CoffeeBaseDessert;
 
-		public const int BreadStarter = 1847735819;
+		public static int ExtraMilk => (int)_DishReferences.ExtraMilk;
 
-		public const int BroccoliCheeseSoup = -1015158173;
+		public static int ExtraSugar => (int)_DishReferences.ExtraSugar;
 
-		public const int CherryPie = 12170609;
+		public static int CoffeeIced => (int)_DishReferences.CoffeeIced;
 
-		public const int RoastPotato = -1289628495;
+		public static int CoffeeLatte => (int)_DishReferences.CoffeeLatte;
 
-		public const int Sweetcorn = -338554380;
+		public static int Tea => (int)_DishReferences.Tea;
 
-		public const int Waffles = -1409566802;
+		public static int NutRoastBase => (int)_DishReferences.NutRoastBase;
 
-		public const int TurkeyBase = 1551533879;
+		public static int Affogato => (int)_DishReferences.Affogato;
+
+		public static int BreadStarter => (int)_DishReferences.BreadStarter;
+
+		public static int BroccoliCheeseSoup => (int)_DishReferences.BroccoliCheeseSoup;
+
+		public static int CherryPie => (int)_DishReferences.CherryPie;
+
+		public static int RoastPotato => (int)_DishReferences.RoastPotato;
+
+		public static int Sweetcorn => (int)_DishReferences.Sweetcorn;
+
+		public static int Waffles => (int)_DishReferences.Waffles;
+
+		public static int TurkeyBase => (int)_DishReferences.TurkeyBase;
+
+	}
+	internal enum _DishReferences
+	{
+		CoffeeDessert = -85470894,
+
+		IceCream = 373996608,
+
+		BreakfastBase = -2075899,
+
+		BreakfastBeans = -1199743580,
+
+		BreakfastExtras = 1436814208,
+
+		BreakfastVeganExtras = -1998930853,
+
+		BurgerBase = -1778969928,
+
+		BurgerCheese = 965292477,
+
+		BurgerFreshPatties = -1091625127,
+
+		BurgerTomatoandOnion = 1298035216,
+
+		HotdogBase = 1626323920,
+
+		HotdogCondimentMustard = -278713285,
+
+		FishBase = 1743900205,
+
+		FishCrabCake = -297968808,
+
+		FishExtraChoice2 = 243846255,
+
+		FishExtraChoice = -243820179,
+
+		FishFillet = 1442262270,
+
+		FishOyster = 274986412,
+
+		FishSpiny = -643878280,
+
+		BirthdayCake = -1528287489,
+
+		RoastMeat = 670300431,
+
+		PieApple = -211821608,
+
+		PieBase = -133939790,
+
+		PieMushroom = -1992316049,
+
+		PieVegetable = -1802123036,
+
+		SaladApple = 1570910782,
+
+		SaladBase = 1356267749,
+
+		SaladPotato = -862637543,
+
+		SaladToppings = 372460604,
+
+		BonedSteaks = 1384317454,
+
+		SteakSauceMushroomSauce = -953651922,
+
+		SteakSauceRedWineJus = 2074054556,
+
+		SteakToppingMushroom = -1192928429,
+
+		SteakToppingTomato = -851525606,
+
+		Steak = -959076098,
+
+		ThickSteaks = 1916300984,
+
+		ThinSteaks = -1716993344,
+
+		StirFryBase = -1653221873,
+
+		StirFryMeat = -204178430,
+
+		Broccoli = 1380953991,
+
+		Chips = -520693398,
+
+		MashedPotato = 364243605,
+
+		CarrotSoup = 2012685115,
+
+		MeatSoup = -997241706,
+
+		TomatoSoup = -233806503,
+
+		CheeseBoard = 312770813,
+
+		PizzaBase = 550743424,
+
+		PizzaMushroom = 1434421325,
+
+		PizzaOnion = -2071275506,
+
+		OnionRings = -1745179096,
+
+		Cracker = 878396172,
+
+		TurkeyCranberrySauce = 1398180456,
+
+		TurkeyGravy = -1460640973,
+
+		TurkeyStuffing = -1243742384,
+
+		CornOnCob = 1168007081,
+
+		IceCreamBanana = -95393944,
+
+		IceCreamNuts = -81988936,
+
+		IceCreamStrawberry = 2105828628,
+
+		PiePumpkin = 400765800,
+
+		PumpkinSeed = 1393945424,
+
+		PumpkinSoup = 1984233383,
+
+		Bamboo = -1742801708,
+
+		StirFryBamboo = -437161441,
+
+		DumplingSoySauce = -1759612454,
+
+		Dumplings = 367917843,
+
+		DumplingsSeaweed = 137627410,
+
+		Mandarin = 1696424557,
+
+		StirFryMushroom = 1642878331,
+
+		StirFrySoySauce = 1064343768,
+
+		CoffeeCakeStand = 1103885337,
+
+		CoffeeBaseDessert = 16318784,
+
+		ExtraMilk = -740215310,
+
+		ExtraSugar = -696561631,
+
+		CoffeeIced = 2133632711,
+
+		CoffeeLatte = -141282934,
+
+		Tea = 1398671754,
+
+		NutRoastBase = 536093200,
+
+		Affogato = -1405391769,
+
+		BreadStarter = 1847735819,
+
+		BroccoliCheeseSoup = -1015158173,
+
+		CherryPie = 12170609,
+
+		RoastPotato = -1289628495,
+
+		Sweetcorn = -338554380,
+
+		Waffles = -1409566802,
+
+		TurkeyBase = 1551533879,
 
 	}
 	public class EffectReferences
 	{
-		public const int Breadsticks = 1302953360;
+		public static int Breadsticks => (int)_EffectReferences.Breadsticks;
 
-		public const int Candles = -1547173787;
+		public static int Candles => (int)_EffectReferences.Candles;
 
-		public const int Napkins = -335906604;
+		public static int Napkins => (int)_EffectReferences.Napkins;
 
-		public const int SharpCutlery = 510269892;
+		public static int SharpCutlery => (int)_EffectReferences.SharpCutlery;
+
+	}
+	internal enum _EffectReferences
+	{
+		Breadsticks = 1302953360,
+
+		Candles = -1547173787,
+
+		Napkins = -335906604,
+
+		SharpCutlery = 510269892,
 
 	}
 	public class EffectRepresentationReferences
 	{
-		public const int CalmingPainting = -2022756845;
+		public static int CalmingPainting => (int)_EffectRepresentationReferences.CalmingPainting;
 
-		public const int Plant = 1189942481;
+		public static int Plant => (int)_EffectRepresentationReferences.Plant;
 
-		public const int BinPenalty = 1296271401;
+		public static int BinPenalty => (int)_EffectRepresentationReferences.BinPenalty;
 
-		public const int HobPenalty = 1614740241;
+		public static int HobPenalty => (int)_EffectRepresentationReferences.HobPenalty;
 
-		public const int SinkPenalty = 1715530618;
+		public static int SinkPenalty => (int)_EffectRepresentationReferences.SinkPenalty;
+
+	}
+	internal enum _EffectRepresentationReferences
+	{
+		CalmingPainting = -2022756845,
+
+		Plant = 1189942481,
+
+		BinPenalty = 1296271401,
+
+		HobPenalty = 1614740241,
+
+		SinkPenalty = 1715530618,
 
 	}
 	public class GardenProfileReferences
 	{
-		public const int Flowers = -1099437648;
+		public static int Flowers => (int)_GardenProfileReferences.Flowers;
 
-		public const int OvernightSpawns = 792356959;
+		public static int OvernightSpawns => (int)_GardenProfileReferences.OvernightSpawns;
+
+	}
+	internal enum _GardenProfileReferences
+	{
+		Flowers = -1099437648,
+
+		OvernightSpawns = 792356959,
 
 	}
 	public class ItemReferences
 	{
-		public const int BeansCooked = 1286433124;
+		public static int BeansCooked => (int)_ItemReferences.BeansCooked;
 
-		public const int BeansIngredient = 75221795;
+		public static int BeansIngredient => (int)_ItemReferences.BeansIngredient;
 
-		public const int BeansRawPot = -1921097327;
+		public static int BeansRawPot => (int)_ItemReferences.BeansRawPot;
 
-		public const int BeansServing = -2138118944;
+		public static int BeansServing => (int)_ItemReferences.BeansServing;
 
-		public const int BreadBaked = -1867438686;
+		public static int BreadBaked => (int)_ItemReferences.BreadBaked;
 
-		public const int BreadSlice = -306959510;
+		public static int BreadSlice => (int)_ItemReferences.BreadSlice;
 
-		public const int BreadToast = 428559718;
+		public static int BreadToast => (int)_ItemReferences.BreadToast;
 
-		public const int BreakfastPlated = 1754241573;
+		public static int BreakfastPlated => (int)_ItemReferences.BreakfastPlated;
 
-		public const int EggCooked = 1324261001;
+		public static int EggCooked => (int)_ItemReferences.EggCooked;
 
-		public const int BurgerPlated = -884392267;
+		public static int BurgerPlated => (int)_ItemReferences.BurgerPlated;
 
-		public const int BurgerUnplated = -417685193;
+		public static int BurgerUnplated => (int)_ItemReferences.BurgerUnplated;
 
-		public const int BurgerBun = -1756808590;
+		public static int BurgerBun => (int)_ItemReferences.BurgerBun;
 
-		public const int BurgerPattyCooked = 687585830;
+		public static int BurgerPattyCooked => (int)_ItemReferences.BurgerPattyCooked;
 
-		public const int BurgerPattyRaw = 1150879908;
+		public static int BurgerPattyRaw => (int)_ItemReferences.BurgerPattyRaw;
 
-		public const int CondimentKetchup = -1075930689;
+		public static int CondimentKetchup => (int)_ItemReferences.CondimentKetchup;
 
-		public const int CondimentMustard = -1114203942;
+		public static int CondimentMustard => (int)_ItemReferences.CondimentMustard;
 
-		public const int HotdogCooked = -248200024;
+		public static int HotdogCooked => (int)_ItemReferences.HotdogCooked;
 
-		public const int HotdogPlated = 1702578261;
+		public static int HotdogPlated => (int)_ItemReferences.HotdogPlated;
 
-		public const int HotdogRaw = 1702717896;
+		public static int HotdogRaw => (int)_ItemReferences.HotdogRaw;
 
-		public const int HotdogUnplated = 1134979829;
+		public static int HotdogUnplated => (int)_ItemReferences.HotdogUnplated;
 
-		public const int HotdogBun = 756326364;
+		public static int HotdogBun => (int)_ItemReferences.HotdogBun;
 
-		public const int Contract = 1778270917;
+		public static int Contract => (int)_ItemReferences.Contract;
 
-		public const int Crate = -2065950566;
+		public static int Crate => (int)_ItemReferences.Crate;
 
-		public const int DishChoice = -509800267;
+		public static int DishChoice => (int)_ItemReferences.DishChoice;
 
-		public const int FranchiseCardSet = -1677093775;
+		public static int FranchiseCardSet => (int)_ItemReferences.FranchiseCardSet;
 
-		public const int LayoutMap = -70952701;
+		public static int LayoutMap => (int)_ItemReferences.LayoutMap;
 
-		public const int NonLoadoutCrate = -620886547;
+		public static int NonLoadoutCrate => (int)_ItemReferences.NonLoadoutCrate;
 
-		public const int BirthdayCake = -1950713115;
+		public static int BirthdayCake => (int)_ItemReferences.BirthdayCake;
 
-		public const int CakeSlice = -1842891105;
+		public static int CakeSlice => (int)_ItemReferences.CakeSlice;
 
-		public const int ColouringBook = -1843738466;
+		public static int ColouringBook => (int)_ItemReferences.ColouringBook;
 
-		public const int CheeseBoardServing = 1639948793;
+		public static int CheeseBoardServing => (int)_ItemReferences.CheeseBoardServing;
 
-		public const int ServingBoard = -626784042;
+		public static int ServingBoard => (int)_ItemReferences.ServingBoard;
 
-		public const int CoffeeCupCoffee = -1293050650;
+		public static int CoffeeCupCoffee => (int)_ItemReferences.CoffeeCupCoffee;
 
-		public const int CoffeeCup = 364023067;
+		public static int CoffeeCup => (int)_ItemReferences.CoffeeCup;
 
-		public const int IceCreamChocolate = 502129042;
+		public static int IceCreamChocolate => (int)_ItemReferences.IceCreamChocolate;
 
-		public const int IceCreamServing = -1307479546;
+		public static int IceCreamServing => (int)_ItemReferences.IceCreamServing;
 
-		public const int IceCreamStrawberry = 186895094;
+		public static int IceCreamStrawberry => (int)_ItemReferences.IceCreamStrawberry;
 
-		public const int IceCreamVanilla = 1570518340;
+		public static int IceCreamVanilla => (int)_ItemReferences.IceCreamVanilla;
 
-		public const int BeerMug = 369328905;
+		public static int BeerMug => (int)_ItemReferences.BeerMug;
 
-		public const int WineBottle = 1387195911;
+		public static int WineBottle => (int)_ItemReferences.WineBottle;
 
-		public const int CrabCakeEgged = 1195805465;
+		public static int CrabCakeEgged => (int)_ItemReferences.CrabCakeEgged;
 
-		public const int CrabCakeFloured = 1914908152;
+		public static int CrabCakeFloured => (int)_ItemReferences.CrabCakeFloured;
 
-		public const int CrabCakePlated = 1939124686;
+		public static int CrabCakePlated => (int)_ItemReferences.CrabCakePlated;
 
-		public const int CrabChopped = 1678080982;
+		public static int CrabChopped => (int)_ItemReferences.CrabChopped;
 
-		public const int CrabCookedCake = -2007852530;
+		public static int CrabCookedCake => (int)_ItemReferences.CrabCookedCake;
 
-		public const int CrabRaw = -1452580334;
+		public static int CrabRaw => (int)_ItemReferences.CrabRaw;
 
-		public const int FishBlueFried = 454058921;
+		public static int FishBlueFried => (int)_ItemReferences.FishBlueFried;
 
-		public const int FishBluePlated = 536781335;
+		public static int FishBluePlated => (int)_ItemReferences.FishBluePlated;
 
-		public const int FishBlueRaw = 1592653566;
+		public static int FishBlueRaw => (int)_ItemReferences.FishBlueRaw;
 
-		public const int FishBurned = 9768533;
+		public static int FishBurned => (int)_ItemReferences.FishBurned;
 
-		public const int FishFilletCooked = -505249062;
+		public static int FishFilletCooked => (int)_ItemReferences.FishFilletCooked;
 
-		public const int FishFilletPlated = 1011454010;
+		public static int FishFilletPlated => (int)_ItemReferences.FishFilletPlated;
 
-		public const int FishFilletRaw = -2145487392;
+		public static int FishFilletRaw => (int)_ItemReferences.FishFilletRaw;
 
-		public const int FishFillet = 1607298447;
+		public static int FishFillet => (int)_ItemReferences.FishFillet;
 
-		public const int FishOysterPlated = 403539963;
+		public static int FishOysterPlated => (int)_ItemReferences.FishOysterPlated;
 
-		public const int FishOysterRaw = 216090589;
+		public static int FishOysterRaw => (int)_ItemReferences.FishOysterRaw;
 
-		public const int FishOysterShucked = -920494794;
+		public static int FishOysterShucked => (int)_ItemReferences.FishOysterShucked;
 
-		public const int FishPinkFried = 411057095;
+		public static int FishPinkFried => (int)_ItemReferences.FishPinkFried;
 
-		public const int FishPinkPlated = -1608542149;
+		public static int FishPinkPlated => (int)_ItemReferences.FishPinkPlated;
 
-		public const int FishPinkRaw = 1244918234;
+		public static int FishPinkRaw => (int)_ItemReferences.FishPinkRaw;
 
-		public const int FishSpecialExtraChoice1 = 107399665;
+		public static int FishSpecialExtraChoice1 => (int)_ItemReferences.FishSpecialExtraChoice1;
 
-		public const int FishSpecialExtraChoice2 = 2113587247;
+		public static int FishSpecialExtraChoice2 => (int)_ItemReferences.FishSpecialExtraChoice2;
 
-		public const int FishSpinyBones = -1724190260;
+		public static int FishSpinyBones => (int)_ItemReferences.FishSpinyBones;
 
-		public const int FishSpinyCooked = 1247388187;
+		public static int FishSpinyCooked => (int)_ItemReferences.FishSpinyCooked;
 
-		public const int FishSpinyDeboned = -890521693;
+		public static int FishSpinyDeboned => (int)_ItemReferences.FishSpinyDeboned;
 
-		public const int FishSpinyPlated = -491640227;
+		public static int FishSpinyPlated => (int)_ItemReferences.FishSpinyPlated;
 
-		public const int FishSpinyRaw = -2047884387;
+		public static int FishSpinyRaw => (int)_ItemReferences.FishSpinyRaw;
 
-		public const int AppleSlices = 252763172;
+		public static int AppleSlices => (int)_ItemReferences.AppleSlices;
 
-		public const int Apple = 681117884;
+		public static int Apple => (int)_ItemReferences.Apple;
 
-		public const int BurnedBread = -263299406;
+		public static int BurnedBread => (int)_ItemReferences.BurnedBread;
 
-		public const int BurnedFood = -1960690485;
+		public static int BurnedFood => (int)_ItemReferences.BurnedFood;
 
-		public const int Carrot = -1944015682;
+		public static int Carrot => (int)_ItemReferences.Carrot;
 
-		public const int CookedApple = 617153544;
+		public static int CookedApple => (int)_ItemReferences.CookedApple;
 
-		public const int Dough = 1296980128;
+		public static int Dough => (int)_ItemReferences.Dough;
 
-		public const int EggCracked = 378690159;
+		public static int EggCracked => (int)_ItemReferences.EggCracked;
 
-		public const int Egg = 1755299639;
+		public static int Egg => (int)_ItemReferences.Egg;
 
-		public const int Flour = 1378842682;
+		public static int Flour => (int)_ItemReferences.Flour;
 
-		public const int Mayonnaise = 564003642;
+		public static int Mayonnaise => (int)_ItemReferences.Mayonnaise;
 
-		public const int MeatBoned = -315069952;
+		public static int MeatBoned => (int)_ItemReferences.MeatBoned;
 
-		public const int MeatThick = -45632521;
+		public static int MeatThick => (int)_ItemReferences.MeatThick;
 
-		public const int MeatThin = 1256038534;
+		public static int MeatThin => (int)_ItemReferences.MeatThin;
 
-		public const int Meat = 1306214641;
+		public static int Meat => (int)_ItemReferences.Meat;
 
-		public const int MushroomChopped = -2093899333;
+		public static int MushroomChopped => (int)_ItemReferences.MushroomChopped;
 
-		public const int MushroomCookedWrapped = -336580972;
+		public static int MushroomCookedWrapped => (int)_ItemReferences.MushroomCookedWrapped;
 
-		public const int Mushroom = 313161428;
+		public static int Mushroom => (int)_ItemReferences.Mushroom;
 
-		public const int OilIngredient = -1853193980;
+		public static int OilIngredient => (int)_ItemReferences.OilIngredient;
 
-		public const int Oil = -1900989960;
+		public static int Oil => (int)_ItemReferences.Oil;
 
-		public const int Onion = -201067776;
+		public static int Onion => (int)_ItemReferences.Onion;
 
-		public const int PotatoChoppedCooked = -1399719685;
+		public static int PotatoChoppedCooked => (int)_ItemReferences.PotatoChoppedCooked;
 
-		public const int PotatoChoppedPotCooked = 2010203194;
+		public static int PotatoChoppedPotCooked => (int)_ItemReferences.PotatoChoppedPotCooked;
 
-		public const int PotatoChoppedPotRaw = -706413527;
+		public static int PotatoChoppedPotRaw => (int)_ItemReferences.PotatoChoppedPotRaw;
 
-		public const int PotatoChopped = 35611244;
+		public static int PotatoChopped => (int)_ItemReferences.PotatoChopped;
 
-		public const int Potato = -1972529263;
+		public static int Potato => (int)_ItemReferences.Potato;
 
-		public const int Water = 1657174953;
+		public static int Water => (int)_ItemReferences.Water;
 
-		public const int BinBag = -1660145659;
+		public static int BinBag => (int)_ItemReferences.BinBag;
 
-		public const int DisposableRubbish = -1931641307;
+		public static int DisposableRubbish => (int)_ItemReferences.DisposableRubbish;
 
-		public const int FlammableBinBag = 895813906;
+		public static int FlammableBinBag => (int)_ItemReferences.FlammableBinBag;
 
-		public const int Menu = 1491776620;
+		public static int Menu => (int)_ItemReferences.Menu;
 
-		public const int TableBlockRubbish = -1863985141;
+		public static int TableBlockRubbish => (int)_ItemReferences.TableBlockRubbish;
 
-		public const int PieAppleCooked = 82666420;
+		public static int PieAppleCooked => (int)_ItemReferences.PieAppleCooked;
 
-		public const int PieAppleRaw = -642148977;
+		public static int PieAppleRaw => (int)_ItemReferences.PieAppleRaw;
 
-		public const int PieDessertPlated = 1605432111;
+		public static int PieDessertPlated => (int)_ItemReferences.PieDessertPlated;
 
-		public const int PieMeatCooked = 1030798878;
+		public static int PieMeatCooked => (int)_ItemReferences.PieMeatCooked;
 
-		public const int PieMeatRawBlindBaked = -671227602;
+		public static int PieMeatRawBlindBaked => (int)_ItemReferences.PieMeatRawBlindBaked;
 
-		public const int PieMeatRaw = -469170277;
+		public static int PieMeatRaw => (int)_ItemReferences.PieMeatRaw;
 
-		public const int PieMushroomCooked = 280553412;
+		public static int PieMushroomCooked => (int)_ItemReferences.PieMushroomCooked;
 
-		public const int PieMushroomRawBlindBaked = 415541985;
+		public static int PieMushroomRawBlindBaked => (int)_ItemReferences.PieMushroomRawBlindBaked;
 
-		public const int PieMushroomRaw = 427507425;
+		public static int PieMushroomRaw => (int)_ItemReferences.PieMushroomRaw;
 
-		public const int PiePlated = 861630222;
+		public static int PiePlated => (int)_ItemReferences.PiePlated;
 
-		public const int PieVegetableCooked = -1612932608;
+		public static int PieVegetableCooked => (int)_ItemReferences.PieVegetableCooked;
 
-		public const int PieVegetableRawBlindBaked = -1701915481;
+		public static int PieVegetableRawBlindBaked => (int)_ItemReferences.PieVegetableRawBlindBaked;
 
-		public const int PieVegetableRaw = -1428220456;
+		public static int PieVegetableRaw => (int)_ItemReferences.PieVegetableRaw;
 
-		public const int PieCrustCooked = 1963815217;
+		public static int PieCrustCooked => (int)_ItemReferences.PieCrustCooked;
 
-		public const int PieCrustRaw = 164600160;
+		public static int PieCrustRaw => (int)_ItemReferences.PieCrustRaw;
 
-		public const int CheeseGrated = 263830100;
+		public static int CheeseGrated => (int)_ItemReferences.CheeseGrated;
 
-		public const int CheeseWrappedCooked = -369505908;
+		public static int CheeseWrappedCooked => (int)_ItemReferences.CheeseWrappedCooked;
 
-		public const int Cheese = -755280170;
+		public static int Cheese => (int)_ItemReferences.Cheese;
 
-		public const int PizzaBurned = -1063655063;
+		public static int PizzaBurned => (int)_ItemReferences.PizzaBurned;
 
-		public const int PizzaCooked = -1196800934;
+		public static int PizzaCooked => (int)_ItemReferences.PizzaCooked;
 
-		public const int PizzaCrust = -48499881;
+		public static int PizzaCrust => (int)_ItemReferences.PizzaCrust;
 
-		public const int PizzaPlated = -1087205958;
+		public static int PizzaPlated => (int)_ItemReferences.PizzaPlated;
 
-		public const int PizzaRaw = 445221203;
+		public static int PizzaRaw => (int)_ItemReferences.PizzaRaw;
 
-		public const int PizzaSlice = 938942828;
+		public static int PizzaSlice => (int)_ItemReferences.PizzaSlice;
 
-		public const int TomatoSauce = -1317168923;
+		public static int TomatoSauce => (int)_ItemReferences.TomatoSauce;
 
-		public const int ForgetMeNot = -401734755;
+		public static int ForgetMeNot => (int)_ItemReferences.ForgetMeNot;
 
-		public const int Leave = -1310307277;
+		public static int Leave => (int)_ItemReferences.Leave;
 
-		public const int Patience = -808698209;
+		public static int Patience => (int)_ItemReferences.Patience;
 
-		public const int RoastLegCooked = -1801513942;
+		public static int RoastLegCooked => (int)_ItemReferences.RoastLegCooked;
 
-		public const int RoastLegDepleted = -2002011353;
+		public static int RoastLegDepleted => (int)_ItemReferences.RoastLegDepleted;
 
-		public const int RoastLegRaw = -1574653982;
+		public static int RoastLegRaw => (int)_ItemReferences.RoastLegRaw;
 
-		public const int RoastLegServed = -166749992;
+		public static int RoastLegServed => (int)_ItemReferences.RoastLegServed;
 
-		public const int LettuceChopped = -1397390776;
+		public static int LettuceChopped => (int)_ItemReferences.LettuceChopped;
 
-		public const int Lettuce = -65594226;
+		public static int Lettuce => (int)_ItemReferences.Lettuce;
 
-		public const int Olive = 892659864;
+		public static int Olive => (int)_ItemReferences.Olive;
 
-		public const int OnionChopped = -1252408744;
+		public static int OnionChopped => (int)_ItemReferences.OnionChopped;
 
-		public const int OnionCookedWrapped = -1633089577;
+		public static int OnionCookedWrapped => (int)_ItemReferences.OnionCookedWrapped;
 
-		public const int SaladApplePlated = 599544171;
+		public static int SaladApplePlated => (int)_ItemReferences.SaladApplePlated;
 
-		public const int SaladPlated = -1835015742;
+		public static int SaladPlated => (int)_ItemReferences.SaladPlated;
 
-		public const int SaladPotatoPlated = -2053442418;
+		public static int SaladPotatoPlated => (int)_ItemReferences.SaladPotatoPlated;
 
-		public const int TomatoChopped = -853757044;
+		public static int TomatoChopped => (int)_ItemReferences.TomatoChopped;
 
-		public const int Tomato = 1242961771;
+		public static int Tomato => (int)_ItemReferences.Tomato;
 
-		public const int BrothCookedOnion = -69847810;
+		public static int BrothCookedOnion => (int)_ItemReferences.BrothCookedOnion;
 
-		public const int BrothRawOnion = 1370203151;
+		public static int BrothRawOnion => (int)_ItemReferences.BrothRawOnion;
 
-		public const int SauceMushroomCooked = 65943925;
+		public static int SauceMushroomCooked => (int)_ItemReferences.SauceMushroomCooked;
 
-		public const int SauceMushroomPortion = -1217105161;
+		public static int SauceMushroomPortion => (int)_ItemReferences.SauceMushroomPortion;
 
-		public const int SauceMushroomRaw = -2105805937;
+		public static int SauceMushroomRaw => (int)_ItemReferences.SauceMushroomRaw;
 
-		public const int SauceRedCooked = 1690253467;
+		public static int SauceRedCooked => (int)_ItemReferences.SauceRedCooked;
 
-		public const int SauceRedPortion = -285798592;
+		public static int SauceRedPortion => (int)_ItemReferences.SauceRedPortion;
 
-		public const int SauceRedRaw = 1289839594;
+		public static int SauceRedRaw => (int)_ItemReferences.SauceRedRaw;
 
-		public const int BroccoliChopped = 748471091;
+		public static int BroccoliChopped => (int)_ItemReferences.BroccoliChopped;
 
-		public const int BroccoliCookedPot = 98665743;
+		public static int BroccoliCookedPot => (int)_ItemReferences.BroccoliCookedPot;
 
-		public const int BroccoliPot = 2141493703;
+		public static int BroccoliPot => (int)_ItemReferences.BroccoliPot;
 
-		public const int BroccoliRaw = -1774883004;
+		public static int BroccoliRaw => (int)_ItemReferences.BroccoliRaw;
 
-		public const int BroccoliServing = -1520921913;
+		public static int BroccoliServing => (int)_ItemReferences.BroccoliServing;
 
-		public const int ChipsCooked = -259844528;
+		public static int ChipsCooked => (int)_ItemReferences.ChipsCooked;
 
-		public const int BoiledPotatoCooked = -1965870011;
+		public static int BoiledPotatoCooked => (int)_ItemReferences.BoiledPotatoCooked;
 
-		public const int BoiledPotatoMashed = -1341614392;
+		public static int BoiledPotatoMashed => (int)_ItemReferences.BoiledPotatoMashed;
 
-		public const int BoiledPotatoRaw = -735644169;
+		public static int BoiledPotatoRaw => (int)_ItemReferences.BoiledPotatoRaw;
 
-		public const int BoiledPotatoServing = 107345299;
+		public static int BoiledPotatoServing => (int)_ItemReferences.BoiledPotatoServing;
 
-		public const int OnionRingsCooked = -1086687302;
+		public static int OnionRingsCooked => (int)_ItemReferences.OnionRingsCooked;
 
-		public const int OnionRingsRaw = 1818895897;
+		public static int OnionRingsRaw => (int)_ItemReferences.OnionRingsRaw;
 
-		public const int ServedSoupCarrot = 409276704;
+		public static int ServedSoupCarrot => (int)_ItemReferences.ServedSoupCarrot;
 
-		public const int ServedSoupMeat = 1684936685;
+		public static int ServedSoupMeat => (int)_ItemReferences.ServedSoupMeat;
 
-		public const int ServedSoupTomato = 894680043;
+		public static int ServedSoupTomato => (int)_ItemReferences.ServedSoupTomato;
 
-		public const int SoupCarrotCooked = -1582466042;
+		public static int SoupCarrotCooked => (int)_ItemReferences.SoupCarrotCooked;
 
-		public const int SoupCarrotRaw = -1361723814;
+		public static int SoupCarrotRaw => (int)_ItemReferences.SoupCarrotRaw;
 
-		public const int SoupChoppedCarrotRaw = 1655490768;
+		public static int SoupChoppedCarrotRaw => (int)_ItemReferences.SoupChoppedCarrotRaw;
 
-		public const int SoupChoppedMeatRaw = 2043533161;
+		public static int SoupChoppedMeatRaw => (int)_ItemReferences.SoupChoppedMeatRaw;
 
-		public const int SoupChoppedTomatoRaw = -996662132;
+		public static int SoupChoppedTomatoRaw => (int)_ItemReferences.SoupChoppedTomatoRaw;
 
-		public const int SoupDepleted = 1859809622;
+		public static int SoupDepleted => (int)_ItemReferences.SoupDepleted;
 
-		public const int SoupMeatCooked = -1284423669;
+		public static int SoupMeatCooked => (int)_ItemReferences.SoupMeatCooked;
 
-		public const int SoupMeatRaw = 1064697910;
+		public static int SoupMeatRaw => (int)_ItemReferences.SoupMeatRaw;
 
-		public const int SoupRefilled = -719587509;
+		public static int SoupRefilled => (int)_ItemReferences.SoupRefilled;
 
-		public const int SoupTomatoCooked = 1752228187;
+		public static int SoupTomatoCooked => (int)_ItemReferences.SoupTomatoCooked;
 
-		public const int SoupTomatoRaw = -1863787598;
+		public static int SoupTomatoRaw => (int)_ItemReferences.SoupTomatoRaw;
 
-		public const int BonedSteakBone = -1955934157;
+		public static int BonedSteakBone => (int)_ItemReferences.BonedSteakBone;
 
-		public const int BonedSteakBurned = 936242560;
+		public static int BonedSteakBurned => (int)_ItemReferences.BonedSteakBurned;
 
-		public const int BonedSteakMedium = 418682003;
+		public static int BonedSteakMedium => (int)_ItemReferences.BonedSteakMedium;
 
-		public const int BonedSteakPlated = -783008587;
+		public static int BonedSteakPlated => (int)_ItemReferences.BonedSteakPlated;
 
-		public const int BonedSteakRare = -260257840;
+		public static int BonedSteakRare => (int)_ItemReferences.BonedSteakRare;
 
-		public const int BonedSteakWelldone = 153969149;
+		public static int BonedSteakWelldone => (int)_ItemReferences.BonedSteakWelldone;
 
-		public const int PlateDirtywithBone = 348289471;
+		public static int PlateDirtywithBone => (int)_ItemReferences.PlateDirtywithBone;
 
-		public const int SteakBurned = 320607572;
+		public static int SteakBurned => (int)_ItemReferences.SteakBurned;
 
-		public const int SteakMedium = 744193417;
+		public static int SteakMedium => (int)_ItemReferences.SteakMedium;
 
-		public const int SteakPlated = -1034349623;
+		public static int SteakPlated => (int)_ItemReferences.SteakPlated;
 
-		public const int SteakRare = 1936140106;
+		public static int SteakRare => (int)_ItemReferences.SteakRare;
 
-		public const int SteakWelldone = -1631681807;
+		public static int SteakWelldone => (int)_ItemReferences.SteakWelldone;
 
-		public const int ThickSteakBurned = 958173724;
+		public static int ThickSteakBurned => (int)_ItemReferences.ThickSteakBurned;
 
-		public const int ThickSteakMedium = -283606362;
+		public static int ThickSteakMedium => (int)_ItemReferences.ThickSteakMedium;
 
-		public const int ThickSteakPlated = 1067846341;
+		public static int ThickSteakPlated => (int)_ItemReferences.ThickSteakPlated;
 
-		public const int ThickSteakRare = -510353055;
+		public static int ThickSteakRare => (int)_ItemReferences.ThickSteakRare;
 
-		public const int ThickSteakWelldone = 623804310;
+		public static int ThickSteakWelldone => (int)_ItemReferences.ThickSteakWelldone;
 
-		public const int ThinSteakBurned = 469714996;
+		public static int ThinSteakBurned => (int)_ItemReferences.ThinSteakBurned;
 
-		public const int ThinSteakMedium = 1645212811;
+		public static int ThinSteakMedium => (int)_ItemReferences.ThinSteakMedium;
 
-		public const int ThinSteakPlated = 1173464355;
+		public static int ThinSteakPlated => (int)_ItemReferences.ThinSteakPlated;
 
-		public const int ThinSteakRare = -1720486713;
+		public static int ThinSteakRare => (int)_ItemReferences.ThinSteakRare;
 
-		public const int ThinSteakWelldone = -989359657;
+		public static int ThinSteakWelldone => (int)_ItemReferences.ThinSteakWelldone;
 
-		public const int BroccoliChoppedContainerCooked = 1453647256;
+		public static int BroccoliChoppedContainerCooked => (int)_ItemReferences.BroccoliChoppedContainerCooked;
 
-		public const int CarrotChoppedContainerCooked = -1406021079;
+		public static int CarrotChoppedContainerCooked => (int)_ItemReferences.CarrotChoppedContainerCooked;
 
-		public const int CarrotChopped = -830135945;
+		public static int CarrotChopped => (int)_ItemReferences.CarrotChopped;
 
-		public const int MeatChoppedContainerCooked = -1018018897;
+		public static int MeatChoppedContainerCooked => (int)_ItemReferences.MeatChoppedContainerCooked;
 
-		public const int MeatChopped = 1005005768;
+		public static int MeatChopped => (int)_ItemReferences.MeatChopped;
 
-		public const int RiceContainerCooked = 1928939081;
+		public static int RiceContainerCooked => (int)_ItemReferences.RiceContainerCooked;
 
-		public const int Rice = 1271508828;
+		public static int Rice => (int)_ItemReferences.Rice;
 
-		public const int StirFryCooked = 150639636;
+		public static int StirFryCooked => (int)_ItemReferences.StirFryCooked;
 
-		public const int StirFryPlated = -361808208;
+		public static int StirFryPlated => (int)_ItemReferences.StirFryPlated;
 
-		public const int StirFryRaw = 1475451665;
+		public static int StirFryRaw => (int)_ItemReferences.StirFryRaw;
 
-		public const int WokBurned = 1770849684;
+		public static int WokBurned => (int)_ItemReferences.WokBurned;
 
-		public const int Wok = -2135410839;
+		public static int Wok => (int)_ItemReferences.Wok;
 
-		public const int Breadsticks = -44050480;
+		public static int Breadsticks => (int)_ItemReferences.Breadsticks;
 
-		public const int Candle = -731135737;
+		public static int Candle => (int)_ItemReferences.Candle;
 
-		public const int Napkin = -834566246;
+		public static int Napkin => (int)_ItemReferences.Napkin;
 
-		public const int SharpCutlery = 269092883;
+		public static int SharpCutlery => (int)_ItemReferences.SharpCutlery;
 
-		public const int SpecialsMenu = -538929686;
+		public static int SpecialsMenu => (int)_ItemReferences.SpecialsMenu;
 
-		public const int TestCombineItem1 = 1453292775;
+		public static int TestCombineItem1 => (int)_ItemReferences.TestCombineItem1;
 
-		public const int TestCombineItem2 = 1135389096;
+		public static int TestCombineItem2 => (int)_ItemReferences.TestCombineItem2;
 
-		public const int TestItemGroup = 26858422;
+		public static int TestItemGroup => (int)_ItemReferences.TestItemGroup;
 
-		public const int TestNonCombineItem = -587882643;
+		public static int TestNonCombineItem => (int)_ItemReferences.TestNonCombineItem;
 
-		public const int FireExtinguisher = -241697184;
+		public static int FireExtinguisher => (int)_ItemReferences.FireExtinguisher;
 
-		public const int FloorBuffer = -864849315;
+		public static int FloorBuffer => (int)_ItemReferences.FloorBuffer;
 
-		public const int RollingPin = -2110926326;
+		public static int RollingPin => (int)_ItemReferences.RollingPin;
 
-		public const int ScrubbingBrush = -110929446;
+		public static int ScrubbingBrush => (int)_ItemReferences.ScrubbingBrush;
 
-		public const int SharpKnife = -670427032;
+		public static int SharpKnife => (int)_ItemReferences.SharpKnife;
 
-		public const int MopFast = -2083359821;
+		public static int MopFast => (int)_ItemReferences.MopFast;
 
-		public const int MopLasting = -819389746;
+		public static int MopLasting => (int)_ItemReferences.MopLasting;
 
-		public const int Mop = 1142792325;
+		public static int Mop => (int)_ItemReferences.Mop;
 
-		public const int PlateDirtySoaked = 1882569246;
+		public static int PlateDirtySoaked => (int)_ItemReferences.PlateDirtySoaked;
 
-		public const int PlateDirtywithfood = -1527669626;
+		public static int PlateDirtywithfood => (int)_ItemReferences.PlateDirtywithfood;
 
-		public const int PlateDirty = 1517992271;
+		public static int PlateDirty => (int)_ItemReferences.PlateDirty;
 
-		public const int Plate = 793377380;
+		public static int Plate => (int)_ItemReferences.Plate;
 
-		public const int PotDirty = 1026000491;
+		public static int PotDirty => (int)_ItemReferences.PotDirty;
 
-		public const int Pot = -486398094;
+		public static int Pot => (int)_ItemReferences.Pot;
 
-		public const int SupplyBox = -601076588;
+		public static int SupplyBox => (int)_ItemReferences.SupplyBox;
 
-		public const int Tray = 869580494;
+		public static int Tray => (int)_ItemReferences.Tray;
 
-		public const int ChristmasCracker = 749675166;
+		public static int Clipboard => (int)_ItemReferences.Clipboard;
 
-		public const int CranberriesChopped = 163163953;
+		public static int ChristmasCracker => (int)_ItemReferences.ChristmasCracker;
 
-		public const int Cranberries = 1474921248;
+		public static int CranberriesChopped => (int)_ItemReferences.CranberriesChopped;
 
-		public const int CranberrySauce = -1788071646;
+		public static int Cranberries => (int)_ItemReferences.Cranberries;
 
-		public const int Sugar = -849164789;
+		public static int CranberrySauce => (int)_ItemReferences.CranberrySauce;
 
-		public const int GravyTurkeyCooked = 294281422;
+		public static int Sugar => (int)_ItemReferences.Sugar;
 
-		public const int GravyTurkeyRaw = 1696315132;
+		public static int GravyTurkeyCooked => (int)_ItemReferences.GravyTurkeyCooked;
 
-		public const int TurkeyBones = -777417645;
+		public static int GravyTurkeyRaw => (int)_ItemReferences.GravyTurkeyRaw;
 
-		public const int TurkeyGravy = 1168127977;
+		public static int TurkeyBones => (int)_ItemReferences.TurkeyBones;
 
-		public const int Breadcrumbs = 235356204;
+		public static int TurkeyGravy => (int)_ItemReferences.TurkeyGravy;
 
-		public const int StuffingRaw = 1427021177;
+		public static int Breadcrumbs => (int)_ItemReferences.Breadcrumbs;
 
-		public const int Stuffing = -352397598;
+		public static int StuffingRaw => (int)_ItemReferences.StuffingRaw;
 
-		public const int CornCooked = -1640761177;
+		public static int Stuffing => (int)_ItemReferences.Stuffing;
 
-		public const int CornHusk = 1075166571;
+		public static int CornCooked => (int)_ItemReferences.CornCooked;
 
-		public const int CornHusked = -1854029532;
+		public static int CornHusk => (int)_ItemReferences.CornHusk;
 
-		public const int CornRaw = 529258958;
+		public static int CornHusked => (int)_ItemReferences.CornHusked;
 
-		public const int PiePumpkinCooked = -126602470;
+		public static int CornRaw => (int)_ItemReferences.CornRaw;
 
-		public const int PiePumpkinRawBlindBaked = -677830190;
+		public static int PiePumpkinCooked => (int)_ItemReferences.PiePumpkinCooked;
 
-		public const int PiePumpkinRaw = 1776321746;
+		public static int PiePumpkinRawBlindBaked => (int)_ItemReferences.PiePumpkinRawBlindBaked;
 
-		public const int PumpkinHollow = 951737916;
+		public static int PiePumpkinRaw => (int)_ItemReferences.PiePumpkinRaw;
 
-		public const int PumpkinPieces = -711877651;
+		public static int PumpkinHollow => (int)_ItemReferences.PumpkinHollow;
 
-		public const int PumpkinSeedsRoasted = 1018675021;
+		public static int PumpkinPieces => (int)_ItemReferences.PumpkinPieces;
 
-		public const int PumpkinSeeds = -1498186615;
+		public static int PumpkinSeedsRoasted => (int)_ItemReferences.PumpkinSeedsRoasted;
 
-		public const int Pumpkin = -165143951;
+		public static int PumpkinSeeds => (int)_ItemReferences.PumpkinSeeds;
 
-		public const int ServedSoupPumpkin = 790436685;
+		public static int Pumpkin => (int)_ItemReferences.Pumpkin;
 
-		public const int SoupPumpkinCooked = 407468560;
+		public static int ServedSoupPumpkin => (int)_ItemReferences.ServedSoupPumpkin;
 
-		public const int SoupPumpkinRaw = 801092248;
+		public static int SoupPumpkinCooked => (int)_ItemReferences.SoupPumpkinCooked;
 
-		public const int BambooCookedContainerCooked = 880804869;
+		public static int SoupPumpkinRaw => (int)_ItemReferences.SoupPumpkinRaw;
 
-		public const int BambooCooked = 2037858460;
+		public static int BambooCookedContainerCooked => (int)_ItemReferences.BambooCookedContainerCooked;
 
-		public const int BambooPotCooked = 2019756794;
+		public static int BambooCooked => (int)_ItemReferences.BambooCooked;
 
-		public const int BambooPot = -1652763586;
+		public static int BambooPotCooked => (int)_ItemReferences.BambooPotCooked;
 
-		public const int BambooRaw = -1635701703;
+		public static int BambooPot => (int)_ItemReferences.BambooPot;
 
-		public const int CookedDumplings = 1640282430;
+		public static int BambooRaw => (int)_ItemReferences.BambooRaw;
 
-		public const int DumplingsPlated = -1938035042;
+		public static int CookedDumplings => (int)_ItemReferences.CookedDumplings;
 
-		public const int DumplingsRaw = 1867434040;
+		public static int DumplingsPlated => (int)_ItemReferences.DumplingsPlated;
 
-		public const int PreparedDumplings = 718093067;
+		public static int DumplingsRaw => (int)_ItemReferences.DumplingsRaw;
 
-		public const int SeaweedCooked = -1847818036;
+		public static int PreparedDumplings => (int)_ItemReferences.PreparedDumplings;
 
-		public const int Seaweed = 1297982178;
+		public static int SeaweedCooked => (int)_ItemReferences.SeaweedCooked;
 
-		public const int MandarinRaw = 1291848678;
+		public static int Seaweed => (int)_ItemReferences.Seaweed;
 
-		public const int MandarinSlice = 448483396;
+		public static int MandarinRaw => (int)_ItemReferences.MandarinRaw;
 
-		public const int MandarinSlices2Serving = -263257027;
+		public static int MandarinSlice => (int)_ItemReferences.MandarinSlice;
 
-		public const int MandarinSlices4Serving = 226055037;
+		public static int MandarinSlices2Serving => (int)_ItemReferences.MandarinSlices2Serving;
 
-		public const int CondimentSoySauce = 1190974918;
+		public static int MandarinSlices4Serving => (int)_ItemReferences.MandarinSlices4Serving;
 
-		public const int NutMixtureBaked = -1945246136;
+		public static int CondimentSoySauce => (int)_ItemReferences.CondimentSoySauce;
 
-		public const int NutMixturePortion = -1294491269;
+		public static int ExtraCakeStand => (int)_ItemReferences.ExtraCakeStand;
 
-		public const int NutMixture = -1515496760;
+		public static int Ice => (int)_ItemReferences.Ice;
 
-		public const int NutRoastPlated = -1934880099;
+		public static int IcedCoffee => (int)_ItemReferences.IcedCoffee;
 
-		public const int NutsChopped = -2100850612;
+		public static int Latte => (int)_ItemReferences.Latte;
 
-		public const int NutsIngredient = 609827370;
+		public static int MilkFrothedIngredient => (int)_ItemReferences.MilkFrothedIngredient;
 
-		public const int AffogatoItem = -249136431;
+		public static int Milk => (int)_ItemReferences.Milk;
 
-		public const int BreadStarterItem = 1503471951;
+		public static int TeaBag => (int)_ItemReferences.TeaBag;
 
-		public const int ServedSoupBroccoliCheese = 1384211889;
+		public static int TeaCup => (int)_ItemReferences.TeaCup;
 
-		public const int SoupBroccoliCheeseCooked = 226578993;
+		public static int TeaPotSteeped => (int)_ItemReferences.TeaPotSteeped;
 
-		public const int SoupBroccoliCheeseRaw = 1030599135;
+		public static int TeaPotUnsteeped => (int)_ItemReferences.TeaPotUnsteeped;
 
-		public const int Cherry = -2056677123;
+		public static int TeaPot => (int)_ItemReferences.TeaPot;
 
-		public const int PieCherryCooked = 1842093636;
+		public static int NutMixtureBaked => (int)_ItemReferences.NutMixtureBaked;
 
-		public const int PieCherryRawBlindBaked = -135657781;
+		public static int NutMixturePortion => (int)_ItemReferences.NutMixturePortion;
 
-		public const int PieCherryRaw = 1196761342;
+		public static int NutMixture => (int)_ItemReferences.NutMixture;
 
-		public const int RoastPotatoItem = -939434748;
+		public static int NutRoastPlated => (int)_ItemReferences.NutRoastPlated;
 
-		public const int TurkeyBurned = -1755371377;
+		public static int NutsChopped => (int)_ItemReferences.NutsChopped;
 
-		public const int TurkeyCooked = -1568853395;
+		public static int NutsIngredient => (int)_ItemReferences.NutsIngredient;
 
-		public const int TurkeyIngredient = -1831502471;
+		public static int AffogatoItem => (int)_ItemReferences.AffogatoItem;
 
-		public const int TurkeyPlated = 1792757441;
+		public static int BreadStarterItem => (int)_ItemReferences.BreadStarterItem;
 
-		public const int TurkeySlice = -914826716;
+		public static int ServedSoupBroccoliCheese => (int)_ItemReferences.ServedSoupBroccoliCheese;
 
-		public const int ResearchFlask = 56610526;
+		public static int SoupBroccoliCheeseCooked => (int)_ItemReferences.SoupBroccoliCheeseCooked;
 
-		public const int kitchenlibPride_Flag = 109014523;
+		public static int SoupBroccoliCheeseRaw => (int)_ItemReferences.SoupBroccoliCheeseRaw;
+
+		public static int Cherry => (int)_ItemReferences.Cherry;
+
+		public static int PieCherryCooked => (int)_ItemReferences.PieCherryCooked;
+
+		public static int PieCherryRawBlindBaked => (int)_ItemReferences.PieCherryRawBlindBaked;
+
+		public static int PieCherryRaw => (int)_ItemReferences.PieCherryRaw;
+
+		public static int RoastPotatoItem => (int)_ItemReferences.RoastPotatoItem;
+
+		public static int TurkeyBurned => (int)_ItemReferences.TurkeyBurned;
+
+		public static int TurkeyCooked => (int)_ItemReferences.TurkeyCooked;
+
+		public static int TurkeyIngredient => (int)_ItemReferences.TurkeyIngredient;
+
+		public static int TurkeyPlated => (int)_ItemReferences.TurkeyPlated;
+
+		public static int TurkeySlice => (int)_ItemReferences.TurkeySlice;
+
+		public static int ResearchFlask => (int)_ItemReferences.ResearchFlask;
+
+	}
+	internal enum _ItemReferences
+	{
+		BeansCooked = 1286433124,
+
+		BeansIngredient = 75221795,
+
+		BeansRawPot = -1921097327,
+
+		BeansServing = -2138118944,
+
+		BreadBaked = -1867438686,
+
+		BreadSlice = -306959510,
+
+		BreadToast = 428559718,
+
+		BreakfastPlated = 1754241573,
+
+		EggCooked = 1324261001,
+
+		BurgerPlated = -884392267,
+
+		BurgerUnplated = -417685193,
+
+		BurgerBun = -1756808590,
+
+		BurgerPattyCooked = 687585830,
+
+		BurgerPattyRaw = 1150879908,
+
+		CondimentKetchup = -1075930689,
+
+		CondimentMustard = -1114203942,
+
+		HotdogCooked = -248200024,
+
+		HotdogPlated = 1702578261,
+
+		HotdogRaw = 1702717896,
+
+		HotdogUnplated = 1134979829,
+
+		HotdogBun = 756326364,
+
+		Contract = 1778270917,
+
+		Crate = -2065950566,
+
+		DishChoice = -509800267,
+
+		FranchiseCardSet = -1677093775,
+
+		LayoutMap = -70952701,
+
+		NonLoadoutCrate = -620886547,
+
+		BirthdayCake = -1950713115,
+
+		CakeSlice = -1842891105,
+
+		ColouringBook = -1843738466,
+
+		CheeseBoardServing = 1639948793,
+
+		ServingBoard = -626784042,
+
+		CoffeeCupCoffee = -1293050650,
+
+		CoffeeCup = 364023067,
+
+		IceCreamChocolate = 502129042,
+
+		IceCreamServing = -1307479546,
+
+		IceCreamStrawberry = 186895094,
+
+		IceCreamVanilla = 1570518340,
+
+		BeerMug = 369328905,
+
+		WineBottle = 1387195911,
+
+		CrabCakeEgged = 1195805465,
+
+		CrabCakeFloured = 1914908152,
+
+		CrabCakePlated = 1939124686,
+
+		CrabChopped = 1678080982,
+
+		CrabCookedCake = -2007852530,
+
+		CrabRaw = -1452580334,
+
+		FishBlueFried = 454058921,
+
+		FishBluePlated = 536781335,
+
+		FishBlueRaw = 1592653566,
+
+		FishBurned = 9768533,
+
+		FishFilletCooked = -505249062,
+
+		FishFilletPlated = 1011454010,
+
+		FishFilletRaw = -2145487392,
+
+		FishFillet = 1607298447,
+
+		FishOysterPlated = 403539963,
+
+		FishOysterRaw = 216090589,
+
+		FishOysterShucked = -920494794,
+
+		FishPinkFried = 411057095,
+
+		FishPinkPlated = -1608542149,
+
+		FishPinkRaw = 1244918234,
+
+		FishSpecialExtraChoice1 = 107399665,
+
+		FishSpecialExtraChoice2 = 2113587247,
+
+		FishSpinyBones = -1724190260,
+
+		FishSpinyCooked = 1247388187,
+
+		FishSpinyDeboned = -890521693,
+
+		FishSpinyPlated = -491640227,
+
+		FishSpinyRaw = -2047884387,
+
+		AppleSlices = 252763172,
+
+		Apple = 681117884,
+
+		BurnedBread = -263299406,
+
+		BurnedFood = -1960690485,
+
+		Carrot = -1944015682,
+
+		CookedApple = 617153544,
+
+		Dough = 1296980128,
+
+		EggCracked = 378690159,
+
+		Egg = 1755299639,
+
+		Flour = 1378842682,
+
+		Mayonnaise = 564003642,
+
+		MeatBoned = -315069952,
+
+		MeatThick = -45632521,
+
+		MeatThin = 1256038534,
+
+		Meat = 1306214641,
+
+		MushroomChopped = -2093899333,
+
+		MushroomCookedWrapped = -336580972,
+
+		Mushroom = 313161428,
+
+		OilIngredient = -1853193980,
+
+		Oil = -1900989960,
+
+		Onion = -201067776,
+
+		PotatoChoppedCooked = -1399719685,
+
+		PotatoChoppedPotCooked = 2010203194,
+
+		PotatoChoppedPotRaw = -706413527,
+
+		PotatoChopped = 35611244,
+
+		Potato = -1972529263,
+
+		Water = 1657174953,
+
+		BinBag = -1660145659,
+
+		DisposableRubbish = -1931641307,
+
+		FlammableBinBag = 895813906,
+
+		Menu = 1491776620,
+
+		TableBlockRubbish = -1863985141,
+
+		PieAppleCooked = 82666420,
+
+		PieAppleRaw = -642148977,
+
+		PieDessertPlated = 1605432111,
+
+		PieMeatCooked = 1030798878,
+
+		PieMeatRawBlindBaked = -671227602,
+
+		PieMeatRaw = -469170277,
+
+		PieMushroomCooked = 280553412,
+
+		PieMushroomRawBlindBaked = 415541985,
+
+		PieMushroomRaw = 427507425,
+
+		PiePlated = 861630222,
+
+		PieVegetableCooked = -1612932608,
+
+		PieVegetableRawBlindBaked = -1701915481,
+
+		PieVegetableRaw = -1428220456,
+
+		PieCrustCooked = 1963815217,
+
+		PieCrustRaw = 164600160,
+
+		CheeseGrated = 263830100,
+
+		CheeseWrappedCooked = -369505908,
+
+		Cheese = -755280170,
+
+		PizzaBurned = -1063655063,
+
+		PizzaCooked = -1196800934,
+
+		PizzaCrust = -48499881,
+
+		PizzaPlated = -1087205958,
+
+		PizzaRaw = 445221203,
+
+		PizzaSlice = 938942828,
+
+		TomatoSauce = -1317168923,
+
+		ForgetMeNot = -401734755,
+
+		Leave = -1310307277,
+
+		Patience = -808698209,
+
+		RoastLegCooked = -1801513942,
+
+		RoastLegDepleted = -2002011353,
+
+		RoastLegRaw = -1574653982,
+
+		RoastLegServed = -166749992,
+
+		LettuceChopped = -1397390776,
+
+		Lettuce = -65594226,
+
+		Olive = 892659864,
+
+		OnionChopped = -1252408744,
+
+		OnionCookedWrapped = -1633089577,
+
+		SaladApplePlated = 599544171,
+
+		SaladPlated = -1835015742,
+
+		SaladPotatoPlated = -2053442418,
+
+		TomatoChopped = -853757044,
+
+		Tomato = 1242961771,
+
+		BrothCookedOnion = -69847810,
+
+		BrothRawOnion = 1370203151,
+
+		SauceMushroomCooked = 65943925,
+
+		SauceMushroomPortion = -1217105161,
+
+		SauceMushroomRaw = -2105805937,
+
+		SauceRedCooked = 1690253467,
+
+		SauceRedPortion = -285798592,
+
+		SauceRedRaw = 1289839594,
+
+		BroccoliChopped = 748471091,
+
+		BroccoliCookedPot = 98665743,
+
+		BroccoliPot = 2141493703,
+
+		BroccoliRaw = -1774883004,
+
+		BroccoliServing = -1520921913,
+
+		ChipsCooked = -259844528,
+
+		BoiledPotatoCooked = -1965870011,
+
+		BoiledPotatoMashed = -1341614392,
+
+		BoiledPotatoRaw = -735644169,
+
+		BoiledPotatoServing = 107345299,
+
+		OnionRingsCooked = -1086687302,
+
+		OnionRingsRaw = 1818895897,
+
+		ServedSoupCarrot = 409276704,
+
+		ServedSoupMeat = 1684936685,
+
+		ServedSoupTomato = 894680043,
+
+		SoupCarrotCooked = -1582466042,
+
+		SoupCarrotRaw = -1361723814,
+
+		SoupChoppedCarrotRaw = 1655490768,
+
+		SoupChoppedMeatRaw = 2043533161,
+
+		SoupChoppedTomatoRaw = -996662132,
+
+		SoupDepleted = 1859809622,
+
+		SoupMeatCooked = -1284423669,
+
+		SoupMeatRaw = 1064697910,
+
+		SoupRefilled = -719587509,
+
+		SoupTomatoCooked = 1752228187,
+
+		SoupTomatoRaw = -1863787598,
+
+		BonedSteakBone = -1955934157,
+
+		BonedSteakBurned = 936242560,
+
+		BonedSteakMedium = 418682003,
+
+		BonedSteakPlated = -783008587,
+
+		BonedSteakRare = -260257840,
+
+		BonedSteakWelldone = 153969149,
+
+		PlateDirtywithBone = 348289471,
+
+		SteakBurned = 320607572,
+
+		SteakMedium = 744193417,
+
+		SteakPlated = -1034349623,
+
+		SteakRare = 1936140106,
+
+		SteakWelldone = -1631681807,
+
+		ThickSteakBurned = 958173724,
+
+		ThickSteakMedium = -283606362,
+
+		ThickSteakPlated = 1067846341,
+
+		ThickSteakRare = -510353055,
+
+		ThickSteakWelldone = 623804310,
+
+		ThinSteakBurned = 469714996,
+
+		ThinSteakMedium = 1645212811,
+
+		ThinSteakPlated = 1173464355,
+
+		ThinSteakRare = -1720486713,
+
+		ThinSteakWelldone = -989359657,
+
+		BroccoliChoppedContainerCooked = 1453647256,
+
+		CarrotChoppedContainerCooked = -1406021079,
+
+		CarrotChopped = -830135945,
+
+		MeatChoppedContainerCooked = -1018018897,
+
+		MeatChopped = 1005005768,
+
+		RiceContainerCooked = 1928939081,
+
+		Rice = 1271508828,
+
+		StirFryCooked = 150639636,
+
+		StirFryPlated = -361808208,
+
+		StirFryRaw = 1475451665,
+
+		WokBurned = 1770849684,
+
+		Wok = -2135410839,
+
+		Breadsticks = -44050480,
+
+		Candle = -731135737,
+
+		Napkin = -834566246,
+
+		SharpCutlery = 269092883,
+
+		SpecialsMenu = -538929686,
+
+		TestCombineItem1 = 1453292775,
+
+		TestCombineItem2 = 1135389096,
+
+		TestItemGroup = 26858422,
+
+		TestNonCombineItem = -587882643,
+
+		FireExtinguisher = -241697184,
+
+		FloorBuffer = -864849315,
+
+		RollingPin = -2110926326,
+
+		ScrubbingBrush = -110929446,
+
+		SharpKnife = -670427032,
+
+		MopFast = -2083359821,
+
+		MopLasting = -819389746,
+
+		Mop = 1142792325,
+
+		PlateDirtySoaked = 1882569246,
+
+		PlateDirtywithfood = -1527669626,
+
+		PlateDirty = 1517992271,
+
+		Plate = 793377380,
+
+		PotDirty = 1026000491,
+
+		Pot = -486398094,
+
+		SupplyBox = -601076588,
+
+		Tray = 869580494,
+
+		Clipboard = 123647569,
+
+		ChristmasCracker = 749675166,
+
+		CranberriesChopped = 163163953,
+
+		Cranberries = 1474921248,
+
+		CranberrySauce = -1788071646,
+
+		Sugar = -849164789,
+
+		GravyTurkeyCooked = 294281422,
+
+		GravyTurkeyRaw = 1696315132,
+
+		TurkeyBones = -777417645,
+
+		TurkeyGravy = 1168127977,
+
+		Breadcrumbs = 235356204,
+
+		StuffingRaw = 1427021177,
+
+		Stuffing = -352397598,
+
+		CornCooked = -1640761177,
+
+		CornHusk = 1075166571,
+
+		CornHusked = -1854029532,
+
+		CornRaw = 529258958,
+
+		PiePumpkinCooked = -126602470,
+
+		PiePumpkinRawBlindBaked = -677830190,
+
+		PiePumpkinRaw = 1776321746,
+
+		PumpkinHollow = 951737916,
+
+		PumpkinPieces = -711877651,
+
+		PumpkinSeedsRoasted = 1018675021,
+
+		PumpkinSeeds = -1498186615,
+
+		Pumpkin = -165143951,
+
+		ServedSoupPumpkin = 790436685,
+
+		SoupPumpkinCooked = 407468560,
+
+		SoupPumpkinRaw = 801092248,
+
+		BambooCookedContainerCooked = 880804869,
+
+		BambooCooked = 2037858460,
+
+		BambooPotCooked = 2019756794,
+
+		BambooPot = -1652763586,
+
+		BambooRaw = -1635701703,
+
+		CookedDumplings = 1640282430,
+
+		DumplingsPlated = -1938035042,
+
+		DumplingsRaw = 1867434040,
+
+		PreparedDumplings = 718093067,
+
+		SeaweedCooked = -1847818036,
+
+		Seaweed = 1297982178,
+
+		MandarinRaw = 1291848678,
+
+		MandarinSlice = 448483396,
+
+		MandarinSlices2Serving = -263257027,
+
+		MandarinSlices4Serving = 226055037,
+
+		CondimentSoySauce = 1190974918,
+
+		ExtraCakeStand = 41735497,
+
+		Ice = -442824475,
+
+		IcedCoffee = -1388933833,
+
+		Latte = 184647209,
+
+		MilkFrothedIngredient = -1313420767,
+
+		Milk = 329108931,
+
+		TeaBag = 574857689,
+
+		TeaCup = -1721929071,
+
+		TeaPotSteeped = -908710218,
+
+		TeaPotUnsteeped = 707327422,
+
+		TeaPot = 712770280,
+
+		NutMixtureBaked = -1945246136,
+
+		NutMixturePortion = -1294491269,
+
+		NutMixture = -1515496760,
+
+		NutRoastPlated = -1934880099,
+
+		NutsChopped = -2100850612,
+
+		NutsIngredient = 609827370,
+
+		AffogatoItem = -249136431,
+
+		BreadStarterItem = 1503471951,
+
+		ServedSoupBroccoliCheese = 1384211889,
+
+		SoupBroccoliCheeseCooked = 226578993,
+
+		SoupBroccoliCheeseRaw = 1030599135,
+
+		Cherry = -2056677123,
+
+		PieCherryCooked = 1842093636,
+
+		PieCherryRawBlindBaked = -135657781,
+
+		PieCherryRaw = 1196761342,
+
+		RoastPotatoItem = -939434748,
+
+		TurkeyBurned = -1755371377,
+
+		TurkeyCooked = -1568853395,
+
+		TurkeyIngredient = -1831502471,
+
+		TurkeyPlated = 1792757441,
+
+		TurkeySlice = -914826716,
+
+		ResearchFlask = 56610526,
 
 	}
 	public class ItemGroupReferences
 	{
-		public const int BeansRawPot = -1921097327;
+		public static int BeansRawPot => (int)_ItemGroupReferences.BeansRawPot;
 
-		public const int BreakfastPlated = 1754241573;
+		public static int BreakfastPlated => (int)_ItemGroupReferences.BreakfastPlated;
 
-		public const int BurgerPlated = -884392267;
+		public static int BurgerPlated => (int)_ItemGroupReferences.BurgerPlated;
 
-		public const int BurgerUnplated = -417685193;
+		public static int BurgerUnplated => (int)_ItemGroupReferences.BurgerUnplated;
 
-		public const int BurgerPattyRaw = 1150879908;
+		public static int BurgerPattyRaw => (int)_ItemGroupReferences.BurgerPattyRaw;
 
-		public const int HotdogPlated = 1702578261;
+		public static int HotdogPlated => (int)_ItemGroupReferences.HotdogPlated;
 
-		public const int HotdogUnplated = 1134979829;
+		public static int HotdogUnplated => (int)_ItemGroupReferences.HotdogUnplated;
 
-		public const int CheeseBoardServing = 1639948793;
+		public static int CheeseBoardServing => (int)_ItemGroupReferences.CheeseBoardServing;
 
-		public const int IceCreamServing = -1307479546;
+		public static int CoffeeCupCoffee => (int)_ItemGroupReferences.CoffeeCupCoffee;
 
-		public const int CrabCakeEgged = 1195805465;
+		public static int IceCreamServing => (int)_ItemGroupReferences.IceCreamServing;
 
-		public const int CrabCakeFloured = 1914908152;
+		public static int CrabCakeEgged => (int)_ItemGroupReferences.CrabCakeEgged;
 
-		public const int CrabCakePlated = 1939124686;
+		public static int CrabCakeFloured => (int)_ItemGroupReferences.CrabCakeFloured;
 
-		public const int FishBluePlated = 536781335;
+		public static int CrabCakePlated => (int)_ItemGroupReferences.CrabCakePlated;
 
-		public const int FishFilletPlated = 1011454010;
+		public static int FishBluePlated => (int)_ItemGroupReferences.FishBluePlated;
 
-		public const int FishOysterPlated = 403539963;
+		public static int FishFilletPlated => (int)_ItemGroupReferences.FishFilletPlated;
 
-		public const int FishPinkPlated = -1608542149;
+		public static int FishOysterPlated => (int)_ItemGroupReferences.FishOysterPlated;
 
-		public const int FishSpinyPlated = -491640227;
+		public static int FishPinkPlated => (int)_ItemGroupReferences.FishPinkPlated;
 
-		public const int Dough = 1296980128;
+		public static int FishSpinyPlated => (int)_ItemGroupReferences.FishSpinyPlated;
 
-		public const int Mayonnaise = 564003642;
+		public static int Dough => (int)_ItemGroupReferences.Dough;
 
-		public const int PotatoChoppedPotRaw = -706413527;
+		public static int Mayonnaise => (int)_ItemGroupReferences.Mayonnaise;
 
-		public const int PieAppleRaw = -642148977;
+		public static int PotatoChoppedPotRaw => (int)_ItemGroupReferences.PotatoChoppedPotRaw;
 
-		public const int PieDessertPlated = 1605432111;
+		public static int PieAppleRaw => (int)_ItemGroupReferences.PieAppleRaw;
 
-		public const int PieMeatRawBlindBaked = -671227602;
+		public static int PieDessertPlated => (int)_ItemGroupReferences.PieDessertPlated;
 
-		public const int PieMeatRaw = -469170277;
+		public static int PieMeatRawBlindBaked => (int)_ItemGroupReferences.PieMeatRawBlindBaked;
 
-		public const int PieMushroomRawBlindBaked = 415541985;
+		public static int PieMeatRaw => (int)_ItemGroupReferences.PieMeatRaw;
 
-		public const int PieMushroomRaw = 427507425;
+		public static int PieMushroomRawBlindBaked => (int)_ItemGroupReferences.PieMushroomRawBlindBaked;
 
-		public const int PiePlated = 861630222;
+		public static int PieMushroomRaw => (int)_ItemGroupReferences.PieMushroomRaw;
 
-		public const int PieVegetableRawBlindBaked = -1701915481;
+		public static int PiePlated => (int)_ItemGroupReferences.PiePlated;
 
-		public const int PieVegetableRaw = -1428220456;
+		public static int PieVegetableRawBlindBaked => (int)_ItemGroupReferences.PieVegetableRawBlindBaked;
 
-		public const int PizzaCooked = -1196800934;
+		public static int PieVegetableRaw => (int)_ItemGroupReferences.PieVegetableRaw;
 
-		public const int PizzaCrust = -48499881;
+		public static int PizzaCooked => (int)_ItemGroupReferences.PizzaCooked;
 
-		public const int PizzaPlated = -1087205958;
+		public static int PizzaCrust => (int)_ItemGroupReferences.PizzaCrust;
 
-		public const int PizzaRaw = 445221203;
+		public static int PizzaPlated => (int)_ItemGroupReferences.PizzaPlated;
 
-		public const int PizzaSlice = 938942828;
+		public static int PizzaRaw => (int)_ItemGroupReferences.PizzaRaw;
 
-		public const int SaladApplePlated = 599544171;
+		public static int PizzaSlice => (int)_ItemGroupReferences.PizzaSlice;
 
-		public const int SaladPlated = -1835015742;
+		public static int SaladApplePlated => (int)_ItemGroupReferences.SaladApplePlated;
 
-		public const int SaladPotatoPlated = -2053442418;
+		public static int SaladPlated => (int)_ItemGroupReferences.SaladPlated;
 
-		public const int BrothRawOnion = 1370203151;
+		public static int SaladPotatoPlated => (int)_ItemGroupReferences.SaladPotatoPlated;
 
-		public const int SauceMushroomCooked = 65943925;
+		public static int BrothRawOnion => (int)_ItemGroupReferences.BrothRawOnion;
 
-		public const int SauceMushroomRaw = -2105805937;
+		public static int SauceMushroomCooked => (int)_ItemGroupReferences.SauceMushroomCooked;
 
-		public const int SauceRedCooked = 1690253467;
+		public static int SauceMushroomRaw => (int)_ItemGroupReferences.SauceMushroomRaw;
 
-		public const int SauceRedRaw = 1289839594;
+		public static int SauceRedCooked => (int)_ItemGroupReferences.SauceRedCooked;
 
-		public const int BroccoliPot = 2141493703;
+		public static int SauceRedRaw => (int)_ItemGroupReferences.SauceRedRaw;
 
-		public const int BoiledPotatoRaw = -735644169;
+		public static int BroccoliPot => (int)_ItemGroupReferences.BroccoliPot;
 
-		public const int OnionRingsRaw = 1818895897;
+		public static int BoiledPotatoRaw => (int)_ItemGroupReferences.BoiledPotatoRaw;
 
-		public const int SoupCarrotRaw = -1361723814;
+		public static int OnionRingsRaw => (int)_ItemGroupReferences.OnionRingsRaw;
 
-		public const int SoupChoppedCarrotRaw = 1655490768;
+		public static int SoupCarrotRaw => (int)_ItemGroupReferences.SoupCarrotRaw;
 
-		public const int SoupChoppedMeatRaw = 2043533161;
+		public static int SoupChoppedCarrotRaw => (int)_ItemGroupReferences.SoupChoppedCarrotRaw;
 
-		public const int SoupChoppedTomatoRaw = -996662132;
+		public static int SoupChoppedMeatRaw => (int)_ItemGroupReferences.SoupChoppedMeatRaw;
 
-		public const int SoupMeatRaw = 1064697910;
+		public static int SoupChoppedTomatoRaw => (int)_ItemGroupReferences.SoupChoppedTomatoRaw;
 
-		public const int SoupRefilled = -719587509;
+		public static int SoupMeatRaw => (int)_ItemGroupReferences.SoupMeatRaw;
 
-		public const int SoupTomatoRaw = -1863787598;
+		public static int SoupRefilled => (int)_ItemGroupReferences.SoupRefilled;
 
-		public const int BonedSteakPlated = -783008587;
+		public static int SoupTomatoRaw => (int)_ItemGroupReferences.SoupTomatoRaw;
 
-		public const int SteakPlated = -1034349623;
+		public static int BonedSteakPlated => (int)_ItemGroupReferences.BonedSteakPlated;
 
-		public const int ThickSteakPlated = 1067846341;
+		public static int SteakPlated => (int)_ItemGroupReferences.SteakPlated;
 
-		public const int ThinSteakPlated = 1173464355;
+		public static int ThickSteakPlated => (int)_ItemGroupReferences.ThickSteakPlated;
 
-		public const int StirFryCooked = 150639636;
+		public static int ThinSteakPlated => (int)_ItemGroupReferences.ThinSteakPlated;
 
-		public const int StirFryPlated = -361808208;
+		public static int StirFryCooked => (int)_ItemGroupReferences.StirFryCooked;
 
-		public const int StirFryRaw = 1475451665;
+		public static int StirFryPlated => (int)_ItemGroupReferences.StirFryPlated;
 
-		public const int TestItemGroup = 26858422;
+		public static int StirFryRaw => (int)_ItemGroupReferences.StirFryRaw;
 
-		public const int CranberrySauce = -1788071646;
+		public static int TestItemGroup => (int)_ItemGroupReferences.TestItemGroup;
 
-		public const int GravyTurkeyRaw = 1696315132;
+		public static int CranberrySauce => (int)_ItemGroupReferences.CranberrySauce;
 
-		public const int StuffingRaw = 1427021177;
+		public static int GravyTurkeyRaw => (int)_ItemGroupReferences.GravyTurkeyRaw;
 
-		public const int PiePumpkinRawBlindBaked = -677830190;
+		public static int StuffingRaw => (int)_ItemGroupReferences.StuffingRaw;
 
-		public const int PiePumpkinRaw = 1776321746;
+		public static int PiePumpkinRawBlindBaked => (int)_ItemGroupReferences.PiePumpkinRawBlindBaked;
 
-		public const int SoupPumpkinRaw = 801092248;
+		public static int PiePumpkinRaw => (int)_ItemGroupReferences.PiePumpkinRaw;
 
-		public const int BambooPot = -1652763586;
+		public static int SoupPumpkinRaw => (int)_ItemGroupReferences.SoupPumpkinRaw;
 
-		public const int DumplingsPlated = -1938035042;
+		public static int BambooPot => (int)_ItemGroupReferences.BambooPot;
 
-		public const int DumplingsRaw = 1867434040;
+		public static int DumplingsPlated => (int)_ItemGroupReferences.DumplingsPlated;
 
-		public const int MandarinSlices2Serving = -263257027;
+		public static int DumplingsRaw => (int)_ItemGroupReferences.DumplingsRaw;
 
-		public const int MandarinSlices4Serving = 226055037;
+		public static int MandarinSlices2Serving => (int)_ItemGroupReferences.MandarinSlices2Serving;
 
-		public const int NutMixture = -1515496760;
+		public static int MandarinSlices4Serving => (int)_ItemGroupReferences.MandarinSlices4Serving;
 
-		public const int NutRoastPlated = -1934880099;
+		public static int IcedCoffee => (int)_ItemGroupReferences.IcedCoffee;
 
-		public const int AffogatoItem = -249136431;
+		public static int Latte => (int)_ItemGroupReferences.Latte;
 
-		public const int BreadStarterItem = 1503471951;
+		public static int TeaPotSteeped => (int)_ItemGroupReferences.TeaPotSteeped;
 
-		public const int SoupBroccoliCheeseRaw = 1030599135;
+		public static int TeaPotUnsteeped => (int)_ItemGroupReferences.TeaPotUnsteeped;
 
-		public const int PieCherryRawBlindBaked = -135657781;
+		public static int NutMixture => (int)_ItemGroupReferences.NutMixture;
 
-		public const int PieCherryRaw = 1196761342;
+		public static int NutRoastPlated => (int)_ItemGroupReferences.NutRoastPlated;
 
-		public const int TurkeyPlated = 1792757441;
+		public static int AffogatoItem => (int)_ItemGroupReferences.AffogatoItem;
+
+		public static int BreadStarterItem => (int)_ItemGroupReferences.BreadStarterItem;
+
+		public static int SoupBroccoliCheeseRaw => (int)_ItemGroupReferences.SoupBroccoliCheeseRaw;
+
+		public static int PieCherryRawBlindBaked => (int)_ItemGroupReferences.PieCherryRawBlindBaked;
+
+		public static int PieCherryRaw => (int)_ItemGroupReferences.PieCherryRaw;
+
+		public static int TurkeyPlated => (int)_ItemGroupReferences.TurkeyPlated;
+
+	}
+	internal enum _ItemGroupReferences
+	{
+		BeansRawPot = -1921097327,
+
+		BreakfastPlated = 1754241573,
+
+		BurgerPlated = -884392267,
+
+		BurgerUnplated = -417685193,
+
+		BurgerPattyRaw = 1150879908,
+
+		HotdogPlated = 1702578261,
+
+		HotdogUnplated = 1134979829,
+
+		CheeseBoardServing = 1639948793,
+
+		CoffeeCupCoffee = -1293050650,
+
+		IceCreamServing = -1307479546,
+
+		CrabCakeEgged = 1195805465,
+
+		CrabCakeFloured = 1914908152,
+
+		CrabCakePlated = 1939124686,
+
+		FishBluePlated = 536781335,
+
+		FishFilletPlated = 1011454010,
+
+		FishOysterPlated = 403539963,
+
+		FishPinkPlated = -1608542149,
+
+		FishSpinyPlated = -491640227,
+
+		Dough = 1296980128,
+
+		Mayonnaise = 564003642,
+
+		PotatoChoppedPotRaw = -706413527,
+
+		PieAppleRaw = -642148977,
+
+		PieDessertPlated = 1605432111,
+
+		PieMeatRawBlindBaked = -671227602,
+
+		PieMeatRaw = -469170277,
+
+		PieMushroomRawBlindBaked = 415541985,
+
+		PieMushroomRaw = 427507425,
+
+		PiePlated = 861630222,
+
+		PieVegetableRawBlindBaked = -1701915481,
+
+		PieVegetableRaw = -1428220456,
+
+		PizzaCooked = -1196800934,
+
+		PizzaCrust = -48499881,
+
+		PizzaPlated = -1087205958,
+
+		PizzaRaw = 445221203,
+
+		PizzaSlice = 938942828,
+
+		SaladApplePlated = 599544171,
+
+		SaladPlated = -1835015742,
+
+		SaladPotatoPlated = -2053442418,
+
+		BrothRawOnion = 1370203151,
+
+		SauceMushroomCooked = 65943925,
+
+		SauceMushroomRaw = -2105805937,
+
+		SauceRedCooked = 1690253467,
+
+		SauceRedRaw = 1289839594,
+
+		BroccoliPot = 2141493703,
+
+		BoiledPotatoRaw = -735644169,
+
+		OnionRingsRaw = 1818895897,
+
+		SoupCarrotRaw = -1361723814,
+
+		SoupChoppedCarrotRaw = 1655490768,
+
+		SoupChoppedMeatRaw = 2043533161,
+
+		SoupChoppedTomatoRaw = -996662132,
+
+		SoupMeatRaw = 1064697910,
+
+		SoupRefilled = -719587509,
+
+		SoupTomatoRaw = -1863787598,
+
+		BonedSteakPlated = -783008587,
+
+		SteakPlated = -1034349623,
+
+		ThickSteakPlated = 1067846341,
+
+		ThinSteakPlated = 1173464355,
+
+		StirFryCooked = 150639636,
+
+		StirFryPlated = -361808208,
+
+		StirFryRaw = 1475451665,
+
+		TestItemGroup = 26858422,
+
+		CranberrySauce = -1788071646,
+
+		GravyTurkeyRaw = 1696315132,
+
+		StuffingRaw = 1427021177,
+
+		PiePumpkinRawBlindBaked = -677830190,
+
+		PiePumpkinRaw = 1776321746,
+
+		SoupPumpkinRaw = 801092248,
+
+		BambooPot = -1652763586,
+
+		DumplingsPlated = -1938035042,
+
+		DumplingsRaw = 1867434040,
+
+		MandarinSlices2Serving = -263257027,
+
+		MandarinSlices4Serving = 226055037,
+
+		IcedCoffee = -1388933833,
+
+		Latte = 184647209,
+
+		TeaPotSteeped = -908710218,
+
+		TeaPotUnsteeped = 707327422,
+
+		NutMixture = -1515496760,
+
+		NutRoastPlated = -1934880099,
+
+		AffogatoItem = -249136431,
+
+		BreadStarterItem = 1503471951,
+
+		SoupBroccoliCheeseRaw = 1030599135,
+
+		PieCherryRawBlindBaked = -135657781,
+
+		PieCherryRaw = 1196761342,
+
+		TurkeyPlated = 1792757441,
 
 	}
 	public class LayoutProfileReferences
 	{
-		public const int LayoutProfile = -791067106;
+		public static int LayoutProfile => (int)_LayoutProfileReferences.LayoutProfile;
 
-		public const int FebruaryLayout = -1017771555;
+		public static int FebruaryLayout => (int)_LayoutProfileReferences.FebruaryLayout;
 
-		public const int JanuaryLayoutProfile = -1207945624;
+		public static int JanuaryLayoutProfile => (int)_LayoutProfileReferences.JanuaryLayoutProfile;
 
-		public const int TurboDinerLayout = -2142472895;
+		public static int CoffeeshopLayout => (int)_LayoutProfileReferences.CoffeeshopLayout;
 
-		public const int BasicLayout = 222370461;
+		public static int TurboDinerLayout => (int)_LayoutProfileReferences.TurboDinerLayout;
 
-		public const int DinerLayout = -80202533;
+		public static int BasicLayout => (int)_LayoutProfileReferences.BasicLayout;
 
-		public const int ExtendedLayout = 557943155;
+		public static int DinerLayout => (int)_LayoutProfileReferences.DinerLayout;
 
-		public const int HugeLayout = 154938708;
+		public static int ExtendedLayout => (int)_LayoutProfileReferences.ExtendedLayout;
 
-		public const int MediumLayout = -2045800810;
+		public static int HugeLayout => (int)_LayoutProfileReferences.HugeLayout;
+
+		public static int MediumLayout => (int)_LayoutProfileReferences.MediumLayout;
+
+	}
+	internal enum _LayoutProfileReferences
+	{
+		LayoutProfile = -791067106,
+
+		FebruaryLayout = -1017771555,
+
+		JanuaryLayoutProfile = -1207945624,
+
+		CoffeeshopLayout = -1203731809,
+
+		TurboDinerLayout = -2142472895,
+
+		BasicLayout = 222370461,
+
+		DinerLayout = -80202533,
+
+		ExtendedLayout = 557943155,
+
+		HugeLayout = 154938708,
+
+		MediumLayout = -2045800810,
 
 	}
 	public class LevelUpgradeSetReferences
 	{
-		public const int Contracts = 1232525840;
+		public static int Contracts => (int)_LevelUpgradeSetReferences.Contracts;
 
-		public const int Dishes = -1972821425;
+		public static int Dishes => (int)_LevelUpgradeSetReferences.Dishes;
 
-		public const int FranchiseUpgrades = 1567961099;
+		public static int FranchiseUpgrades => (int)_LevelUpgradeSetReferences.FranchiseUpgrades;
 
-		public const int Settings = 616825469;
+		public static int Settings => (int)_LevelUpgradeSetReferences.Settings;
 
-		public const int Special = -1300343155;
+		public static int Special => (int)_LevelUpgradeSetReferences.Special;
+
+	}
+	internal enum _LevelUpgradeSetReferences
+	{
+		Contracts = 1232525840,
+
+		Dishes = -1972821425,
+
+		FranchiseUpgrades = 1567961099,
+
+		Settings = 616825469,
+
+		Special = -1300343155,
 
 	}
 	public class ModularUnlockPackReferences
 	{
-		public const int ChristmasSpecialCard = 83496670;
+		public static int ChristmasSpecialCard => (int)_ModularUnlockPackReferences.ChristmasSpecialCard;
 
-		public const int FebruarySpecialCard = 2136512392;
+		public static int FebruarySpecialCard => (int)_ModularUnlockPackReferences.FebruarySpecialCard;
 
-		public const int JanuaryCards = 1091353668;
+		public static int JanuaryCards => (int)_ModularUnlockPackReferences.JanuaryCards;
 
-		public const int MarchCards = 802797822;
+		public static int JuneCards => (int)_ModularUnlockPackReferences.JuneCards;
 
-		public const int AutumnDishCards = -320463696;
+		public static int MarchCards => (int)_ModularUnlockPackReferences.MarchCards;
 
-		public const int AutumnSpecialCard = -1306979157;
+		public static int AutumnDishCards => (int)_ModularUnlockPackReferences.AutumnDishCards;
 
-		public const int FranchiseCardsPack = 1355831133;
+		public static int AutumnSpecialCard => (int)_ModularUnlockPackReferences.AutumnSpecialCard;
 
-		public const int HalloweenCards = -2066335466;
+		public static int FranchiseCardsPack => (int)_ModularUnlockPackReferences.FranchiseCardsPack;
 
-		public const int NormalCardsPack = 1659224512;
+		public static int HalloweenCards => (int)_ModularUnlockPackReferences.HalloweenCards;
 
-		public const int ThemeCardsPack = 786043106;
+		public static int NormalCardsPack => (int)_ModularUnlockPackReferences.NormalCardsPack;
+
+		public static int ThemeCardsPack => (int)_ModularUnlockPackReferences.ThemeCardsPack;
+
+	}
+	internal enum _ModularUnlockPackReferences
+	{
+		ChristmasSpecialCard = 83496670,
+
+		FebruarySpecialCard = 2136512392,
+
+		JanuaryCards = 1091353668,
+
+		JuneCards = 138545119,
+
+		MarchCards = 802797822,
+
+		AutumnDishCards = -320463696,
+
+		AutumnSpecialCard = -1306979157,
+
+		FranchiseCardsPack = 1355831133,
+
+		HalloweenCards = -2066335466,
+
+		NormalCardsPack = 1659224512,
+
+		ThemeCardsPack = 786043106,
 
 	}
 	public class PlayerCosmeticReferences
 	{
-		public const int ApronOutfit = 1057760440;
+		public static int ApronOutfit => (int)_PlayerCosmeticReferences.ApronOutfit;
 
-		public const int ChefOutfit = -856773417;
+		public static int ChefOutfit => (int)_PlayerCosmeticReferences.ChefOutfit;
 
-		public const int WaiterOutfit = -96950831;
+		public static int WaiterOutfit => (int)_PlayerCosmeticReferences.WaiterOutfit;
 
-		public const int ArrowHat = 825204978;
+		public static int ArrowHat => (int)_PlayerCosmeticReferences.ArrowHat;
 
-		public const int BunnyEarHat = -724222583;
+		public static int BunnyEarHat => (int)_PlayerCosmeticReferences.BunnyEarHat;
 
-		public const int BunnyHat = 1872813840;
+		public static int BunnyHat => (int)_PlayerCosmeticReferences.BunnyHat;
 
-		public const int CapeHat = 1452596598;
+		public static int CapeHat => (int)_PlayerCosmeticReferences.CapeHat;
 
-		public const int CatEarHat = 1710984409;
+		public static int CatEarHat => (int)_PlayerCosmeticReferences.CatEarHat;
 
-		public const int CrownHat = 336384908;
+		public static int CrownHat => (int)_PlayerCosmeticReferences.CrownHat;
 
-		public const int GhostHat = 650083035;
+		public static int GhostHat => (int)_PlayerCosmeticReferences.GhostHat;
 
-		public const int GlassesHat = -414361331;
+		public static int GlassesHat => (int)_PlayerCosmeticReferences.GlassesHat;
 
-		public const int HotDogHat = 1279092761;
+		public static int HotDogHat => (int)_PlayerCosmeticReferences.HotDogHat;
 
-		public const int PirateHat = -730990847;
+		public static int PirateHat => (int)_PlayerCosmeticReferences.PirateHat;
 
-		public const int PizzaHat = -1377439653;
+		public static int PizzaHat => (int)_PlayerCosmeticReferences.PizzaHat;
 
-		public const int PumpkinHat = -315509724;
+		public static int PumpkinHat => (int)_PlayerCosmeticReferences.PumpkinHat;
 
-		public const int WitchHat = 2124605287;
+		public static int WitchHat => (int)_PlayerCosmeticReferences.WitchHat;
 
-		public const int HotDogBody = -1194011786;
+		public static int HotDogBody => (int)_PlayerCosmeticReferences.HotDogBody;
 
-		public const int ElfHat = -670719672;
+		public static int ElfHat => (int)_PlayerCosmeticReferences.ElfHat;
 
-		public const int FairyLightsHat = -223786480;
+		public static int FairyLightsHat => (int)_PlayerCosmeticReferences.FairyLightsHat;
 
-		public const int SantaHat = -95220911;
+		public static int SantaHat => (int)_PlayerCosmeticReferences.SantaHat;
 
-		public const int CoupleEffect = 959269165;
+		public static int CoupleEffect => (int)_PlayerCosmeticReferences.CoupleEffect;
 
-		public const int FirstDateEffect = -1206765141;
+		public static int FirstDateEffect => (int)_PlayerCosmeticReferences.FirstDateEffect;
 
-		public const int PlayerCoupleEffect = 1422541752;
+		public static int PlayerCoupleEffect => (int)_PlayerCosmeticReferences.PlayerCoupleEffect;
 
-		public const int PlayerFirstDateEffect = 940774659;
+		public static int PlayerFirstDateEffect => (int)_PlayerCosmeticReferences.PlayerFirstDateEffect;
 
-		public const int BeanieBlue = -999926542;
+		public static int BeanieBlue => (int)_PlayerCosmeticReferences.BeanieBlue;
 
-		public const int BeanieGreen = 429894386;
+		public static int BeanieGreen => (int)_PlayerCosmeticReferences.BeanieGreen;
 
-		public const int BeanieOrange = -81677509;
+		public static int BeanieOrange => (int)_PlayerCosmeticReferences.BeanieOrange;
 
-		public const int BeaniePink = -1202814096;
+		public static int BeaniePink => (int)_PlayerCosmeticReferences.BeaniePink;
 
-		public const int BeanieRed = 133088131;
+		public static int BeanieRed => (int)_PlayerCosmeticReferences.BeanieRed;
 
-		public const int EggHat = 1081340831;
+		public static int EggHat => (int)_PlayerCosmeticReferences.EggHat;
 
-		public const int TurkeyHat = -1920946004;
+		public static int TurkeyHat => (int)_PlayerCosmeticReferences.TurkeyHat;
 
-		public const int kitchenlibItsHappening_Cape = 702532359;
+	}
+	internal enum _PlayerCosmeticReferences
+	{
+		ApronOutfit = 1057760440,
 
-		public const int kitchenlibStaff_Cape = 1043620626;
+		ChefOutfit = -856773417,
 
-		public const int kitchenlibKitchenLib_Cape = 1651245555;
+		WaiterOutfit = -96950831,
 
-		public const int kitchenlibSupport_Cape = -352432517;
+		ArrowHat = 825204978,
 
-		public const int kitchenlibTwitch_Cape = -1185733169;
+		BunnyEarHat = -724222583,
 
-		public const int kitchenlibEaster_Cape = -1918716102;
+		BunnyHat = 1872813840,
 
-		public const int kitchenlibGears_Cape = -305886254;
+		CapeHat = 1452596598,
 
-		public const int kitchenlibDiscord_Boost_Cape = -600798204;
+		CatEarHat = 1710984409,
 
-		public const int kitchenlibTroll_Cape = -502301556;
+		CrownHat = 336384908,
+
+		GhostHat = 650083035,
+
+		GlassesHat = -414361331,
+
+		HotDogHat = 1279092761,
+
+		PirateHat = -730990847,
+
+		PizzaHat = -1377439653,
+
+		PumpkinHat = -315509724,
+
+		WitchHat = 2124605287,
+
+		HotDogBody = -1194011786,
+
+		ElfHat = -670719672,
+
+		FairyLightsHat = -223786480,
+
+		SantaHat = -95220911,
+
+		CoupleEffect = 959269165,
+
+		FirstDateEffect = -1206765141,
+
+		PlayerCoupleEffect = 1422541752,
+
+		PlayerFirstDateEffect = 940774659,
+
+		BeanieBlue = -999926542,
+
+		BeanieGreen = 429894386,
+
+		BeanieOrange = -81677509,
+
+		BeaniePink = -1202814096,
+
+		BeanieRed = 133088131,
+
+		EggHat = 1081340831,
+
+		TurkeyHat = -1920946004,
 
 	}
 	public class ProcessReferences
 	{
-		public const int Chop = 2087693779;
+		public static int FrothMilk => (int)_ProcessReferences.FrothMilk;
 
-		public const int CleanSoak = -2048664109;
+		public static int SteepTea => (int)_ProcessReferences.SteepTea;
 
-		public const int Clean = 620897674;
+		public static int Chop => (int)_ProcessReferences.Chop;
 
-		public const int Cook = 1972879238;
+		public static int CleanSoak => (int)_ProcessReferences.CleanSoak;
 
-		public const int ExtinguishFire = -2063819574;
+		public static int Clean => (int)_ProcessReferences.Clean;
 
-		public const int FillCoffee = -1316622579;
+		public static int Cook => (int)_ProcessReferences.Cook;
 
-		public const int Knead = -523839730;
+		public static int ExtinguishFire => (int)_ProcessReferences.ExtinguishFire;
 
-		public const int BringNewCustomer = 298778045;
+		public static int FillCoffee => (int)_ProcessReferences.FillCoffee;
 
-		public const int Copy = -1622218557;
+		public static int Knead => (int)_ProcessReferences.Knead;
 
-		public const int Upgrade = 742419440;
+		public static int BringNewCustomer => (int)_ProcessReferences.BringNewCustomer;
 
-		public const int ChairInteraction = -1677305898;
+		public static int Copy => (int)_ProcessReferences.Copy;
 
-		public const int RequireOven = -1706154991;
+		public static int Upgrade => (int)_ProcessReferences.Upgrade;
 
-		public const int Purchase = 623753606;
+		public static int ChairInteraction => (int)_ProcessReferences.ChairInteraction;
+
+		public static int RequireOven => (int)_ProcessReferences.RequireOven;
+
+		public static int Purchase => (int)_ProcessReferences.Purchase;
+
+	}
+	internal enum _ProcessReferences
+	{
+		FrothMilk = 510796221,
+
+		SteepTea = 1393363605,
+
+		Chop = 2087693779,
+
+		CleanSoak = -2048664109,
+
+		Clean = 620897674,
+
+		Cook = 1972879238,
+
+		ExtinguishFire = -2063819574,
+
+		FillCoffee = -1316622579,
+
+		Knead = -523839730,
+
+		BringNewCustomer = 298778045,
+
+		Copy = -1622218557,
+
+		Upgrade = 742419440,
+
+		ChairInteraction = -1677305898,
+
+		RequireOven = -1706154991,
+
+		Purchase = 623753606,
 
 	}
 	public class RandomUpgradeSetReferences
 	{
-		public const int FailureRewards = 1965532508;
+		public static int FailureRewards => (int)_RandomUpgradeSetReferences.FailureRewards;
 
-		public const int HighRewards = -1302090208;
+		public static int HighRewards => (int)_RandomUpgradeSetReferences.HighRewards;
 
-		public const int LowRewards = 885267936;
+		public static int LowRewards => (int)_RandomUpgradeSetReferences.LowRewards;
 
-		public const int MediumRewards = -1658553093;
+		public static int MediumRewards => (int)_RandomUpgradeSetReferences.MediumRewards;
+
+	}
+	internal enum _RandomUpgradeSetReferences
+	{
+		FailureRewards = 1965532508,
+
+		HighRewards = -1302090208,
+
+		LowRewards = 885267936,
+
+		MediumRewards = -1658553093,
 
 	}
 	public class ResearchReferences
 	{
-		public const int Fish = -558005112;
+		public static int Fish => (int)_ResearchReferences.Fish;
 
-		public const int Steak = -352638173;
+		public static int Steak => (int)_ResearchReferences.Steak;
+
+	}
+	internal enum _ResearchReferences
+	{
+		Fish = -558005112,
+
+		Steak = -352638173,
 
 	}
 	public class ShopReferences
 	{
-		public const int Christmas = -206225979;
+		public static int Christmas => (int)_ShopReferences.Christmas;
 
-		public const int Convey = 1307701180;
+		public static int Convey => (int)_ShopReferences.Convey;
 
-		public const int Cooking = -868164825;
+		public static int Cooking => (int)_ShopReferences.Cooking;
 
-		public const int Decor = -291899010;
+		public static int Decor => (int)_ShopReferences.Decor;
 
-		public const int Decorations = -939480369;
+		public static int Decorations => (int)_ShopReferences.Decorations;
 
-		public const int FrontOfHouse = -1495845459;
+		public static int FrontOfHouse => (int)_ShopReferences.FrontOfHouse;
 
-		public const int Supplies = 1277689090;
+		public static int Supplies => (int)_ShopReferences.Supplies;
 
-		public const int Tech = -1561785760;
+		public static int Tech => (int)_ShopReferences.Tech;
 
-		public const int Washing = -1807949493;
+		public static int Washing => (int)_ShopReferences.Washing;
+
+	}
+	internal enum _ShopReferences
+	{
+		Christmas = -206225979,
+
+		Convey = 1307701180,
+
+		Cooking = -868164825,
+
+		Decor = -291899010,
+
+		Decorations = -939480369,
+
+		FrontOfHouse = -1495845459,
+
+		Supplies = 1277689090,
+
+		Tech = -1561785760,
+
+		Washing = -1807949493,
 
 	}
 	public class ThemeUnlockReferences
 	{
 	}
+	internal enum _ThemeUnlockReferences
+	{
+	}
 	public class UnlockReferences
 	{
-		public const int CoffeeDessert = -85470894;
+		public static int CoffeeDessert => (int)_UnlockReferences.CoffeeDessert;
 
-		public const int IceCream = 373996608;
+		public static int IceCream => (int)_UnlockReferences.IceCream;
 
-		public const int BreakfastBase = -2075899;
+		public static int BreakfastBase => (int)_UnlockReferences.BreakfastBase;
 
-		public const int BreakfastBeans = -1199743580;
+		public static int BreakfastBeans => (int)_UnlockReferences.BreakfastBeans;
 
-		public const int BreakfastExtras = 1436814208;
+		public static int BreakfastExtras => (int)_UnlockReferences.BreakfastExtras;
 
-		public const int BreakfastVeganExtras = -1998930853;
+		public static int BreakfastVeganExtras => (int)_UnlockReferences.BreakfastVeganExtras;
 
-		public const int BurgerBase = -1778969928;
+		public static int BurgerBase => (int)_UnlockReferences.BurgerBase;
 
-		public const int BurgerCheese = 965292477;
+		public static int BurgerCheese => (int)_UnlockReferences.BurgerCheese;
 
-		public const int BurgerFreshPatties = -1091625127;
+		public static int BurgerFreshPatties => (int)_UnlockReferences.BurgerFreshPatties;
 
-		public const int BurgerTomatoandOnion = 1298035216;
+		public static int BurgerTomatoandOnion => (int)_UnlockReferences.BurgerTomatoandOnion;
 
-		public const int HotdogBase = 1626323920;
+		public static int HotdogBase => (int)_UnlockReferences.HotdogBase;
 
-		public const int HotdogCondimentMustard = -278713285;
+		public static int HotdogCondimentMustard => (int)_UnlockReferences.HotdogCondimentMustard;
 
-		public const int FishBase = 1743900205;
+		public static int FishBase => (int)_UnlockReferences.FishBase;
 
-		public const int FishCrabCake = -297968808;
+		public static int FishCrabCake => (int)_UnlockReferences.FishCrabCake;
 
-		public const int FishExtraChoice2 = 243846255;
+		public static int FishExtraChoice2 => (int)_UnlockReferences.FishExtraChoice2;
 
-		public const int FishExtraChoice = -243820179;
+		public static int FishExtraChoice => (int)_UnlockReferences.FishExtraChoice;
 
-		public const int FishFillet = 1442262270;
+		public static int FishFillet => (int)_UnlockReferences.FishFillet;
 
-		public const int FishOyster = 274986412;
+		public static int FishOyster => (int)_UnlockReferences.FishOyster;
 
-		public const int FishSpiny = -643878280;
+		public static int FishSpiny => (int)_UnlockReferences.FishSpiny;
 
-		public const int BirthdayCake = -1528287489;
+		public static int BirthdayCake => (int)_UnlockReferences.BirthdayCake;
 
-		public const int RoastMeat = 670300431;
+		public static int RoastMeat => (int)_UnlockReferences.RoastMeat;
 
-		public const int PieApple = -211821608;
+		public static int PieApple => (int)_UnlockReferences.PieApple;
 
-		public const int PieBase = -133939790;
+		public static int PieBase => (int)_UnlockReferences.PieBase;
 
-		public const int PieMushroom = -1992316049;
+		public static int PieMushroom => (int)_UnlockReferences.PieMushroom;
 
-		public const int PieVegetable = -1802123036;
+		public static int PieVegetable => (int)_UnlockReferences.PieVegetable;
 
-		public const int SaladApple = 1570910782;
+		public static int SaladApple => (int)_UnlockReferences.SaladApple;
 
-		public const int SaladBase = 1356267749;
+		public static int SaladBase => (int)_UnlockReferences.SaladBase;
 
-		public const int SaladPotato = -862637543;
+		public static int SaladPotato => (int)_UnlockReferences.SaladPotato;
 
-		public const int SaladToppings = 372460604;
+		public static int SaladToppings => (int)_UnlockReferences.SaladToppings;
 
-		public const int BonedSteaks = 1384317454;
+		public static int BonedSteaks => (int)_UnlockReferences.BonedSteaks;
 
-		public const int SteakSauceMushroomSauce = -953651922;
+		public static int SteakSauceMushroomSauce => (int)_UnlockReferences.SteakSauceMushroomSauce;
 
-		public const int SteakSauceRedWineJus = 2074054556;
+		public static int SteakSauceRedWineJus => (int)_UnlockReferences.SteakSauceRedWineJus;
 
-		public const int SteakToppingMushroom = -1192928429;
+		public static int SteakToppingMushroom => (int)_UnlockReferences.SteakToppingMushroom;
 
-		public const int SteakToppingTomato = -851525606;
+		public static int SteakToppingTomato => (int)_UnlockReferences.SteakToppingTomato;
 
-		public const int Steak = -959076098;
+		public static int Steak => (int)_UnlockReferences.Steak;
 
-		public const int ThickSteaks = 1916300984;
+		public static int ThickSteaks => (int)_UnlockReferences.ThickSteaks;
 
-		public const int ThinSteaks = -1716993344;
+		public static int ThinSteaks => (int)_UnlockReferences.ThinSteaks;
 
-		public const int StirFryBase = -1653221873;
+		public static int StirFryBase => (int)_UnlockReferences.StirFryBase;
 
-		public const int StirFryMeat = -204178430;
+		public static int StirFryMeat => (int)_UnlockReferences.StirFryMeat;
 
-		public const int Broccoli = 1380953991;
+		public static int Broccoli => (int)_UnlockReferences.Broccoli;
 
-		public const int Chips = -520693398;
+		public static int Chips => (int)_UnlockReferences.Chips;
 
-		public const int MashedPotato = 364243605;
+		public static int MashedPotato => (int)_UnlockReferences.MashedPotato;
 
-		public const int CarrotSoup = 2012685115;
+		public static int CarrotSoup => (int)_UnlockReferences.CarrotSoup;
 
-		public const int MeatSoup = -997241706;
+		public static int MeatSoup => (int)_UnlockReferences.MeatSoup;
 
-		public const int TomatoSoup = -233806503;
+		public static int TomatoSoup => (int)_UnlockReferences.TomatoSoup;
 
-		public const int CheeseBoard = 312770813;
+		public static int CheeseBoard => (int)_UnlockReferences.CheeseBoard;
 
-		public const int PizzaBase = 550743424;
+		public static int PizzaBase => (int)_UnlockReferences.PizzaBase;
 
-		public const int PizzaMushroom = 1434421325;
+		public static int PizzaMushroom => (int)_UnlockReferences.PizzaMushroom;
 
-		public const int PizzaOnion = -2071275506;
+		public static int PizzaOnion => (int)_UnlockReferences.PizzaOnion;
 
-		public const int OnionRings = -1745179096;
+		public static int OnionRings => (int)_UnlockReferences.OnionRings;
 
-		public const int ChristmasConveyors = -361249036;
+		public static int ChristmasConveyors => (int)_UnlockReferences.ChristmasConveyors;
 
-		public const int Cracker = 878396172;
+		public static int Cracker => (int)_UnlockReferences.Cracker;
 
-		public const int TurkeyCranberrySauce = 1398180456;
+		public static int TurkeyCranberrySauce => (int)_UnlockReferences.TurkeyCranberrySauce;
 
-		public const int TurkeyGravy = -1460640973;
+		public static int TurkeyGravy => (int)_UnlockReferences.TurkeyGravy;
 
-		public const int TurkeyStuffing = -1243742384;
+		public static int TurkeyStuffing => (int)_UnlockReferences.TurkeyStuffing;
 
-		public const int Couples = -2106646073;
+		public static int Couples => (int)_UnlockReferences.Couples;
 
-		public const int DoubleDates = 2028238661;
+		public static int DoubleDates => (int)_UnlockReferences.DoubleDates;
 
-		public const int FirstDates = 587399881;
+		public static int FirstDates => (int)_UnlockReferences.FirstDates;
 
-		public const int StapleFlowerPots = 1491215862;
+		public static int StapleFlowerPots => (int)_UnlockReferences.StapleFlowerPots;
 
-		public const int CustomerBursts = 1642577536;
+		public static int CustomerBursts => (int)_UnlockReferences.CustomerBursts;
 
-		public const int MessesSlowCustomers = -1737101581;
+		public static int MessesSlowCustomers => (int)_UnlockReferences.MessesSlowCustomers;
 
-		public const int PickyEaters = -2040314977;
+		public static int PickyEaters => (int)_UnlockReferences.PickyEaters;
 
-		public const int TippingCulture = 73422455;
+		public static int TippingCulture => (int)_UnlockReferences.TippingCulture;
 
-		public const int CornOnCob = 1168007081;
+		public static int CornOnCob => (int)_UnlockReferences.CornOnCob;
 
-		public const int IceCreamBanana = -95393944;
+		public static int IceCreamBanana => (int)_UnlockReferences.IceCreamBanana;
 
-		public const int IceCreamNuts = -81988936;
+		public static int IceCreamNuts => (int)_UnlockReferences.IceCreamNuts;
 
-		public const int IceCreamStrawberry = 2105828628;
+		public static int IceCreamStrawberry => (int)_UnlockReferences.IceCreamStrawberry;
 
-		public const int PiePumpkin = 400765800;
+		public static int PiePumpkin => (int)_UnlockReferences.PiePumpkin;
 
-		public const int PumpkinSeed = 1393945424;
+		public static int PumpkinSeed => (int)_UnlockReferences.PumpkinSeed;
 
-		public const int PumpkinSoup = 1984233383;
+		public static int PumpkinSoup => (int)_UnlockReferences.PumpkinSoup;
 
-		public const int TreatCustomersareCats = -2072924167;
+		public static int TreatCustomersareCats => (int)_UnlockReferences.TreatCustomersareCats;
 
-		public const int TreatExtraBlueprints = 942723993;
+		public static int TreatExtraBlueprints => (int)_UnlockReferences.TreatExtraBlueprints;
 
-		public const int TreatExtraDecorationAffordable = -1086090066;
+		public static int TreatExtraDecorationAffordable => (int)_UnlockReferences.TreatExtraDecorationAffordable;
 
-		public const int TreatExtraDecorationCharming = 761584062;
+		public static int TreatExtraDecorationCharming => (int)_UnlockReferences.TreatExtraDecorationCharming;
 
-		public const int TreatExtraDecorationExclusive = 5738470;
+		public static int TreatExtraDecorationExclusive => (int)_UnlockReferences.TreatExtraDecorationExclusive;
 
-		public const int TreatExtraDecorationFormal = 898820513;
+		public static int TreatExtraDecorationFormal => (int)_UnlockReferences.TreatExtraDecorationFormal;
 
-		public const int TreatFreeMoney = -1728887993;
+		public static int TreatFreeMoney => (int)_UnlockReferences.TreatFreeMoney;
 
-		public const int TrickAppliancesBadProcessesFasterAtNight = 1838568431;
+		public static int TrickAppliancesBadProcessesFasterAtNight => (int)_UnlockReferences.TrickAppliancesBadProcessesFasterAtNight;
 
-		public const int TrickBookingDesksareAutomatic = 61056284;
+		public static int TrickBookingDesksareAutomatic => (int)_UnlockReferences.TrickBookingDesksareAutomatic;
 
-		public const int TrickConstantFires = 2112990883;
+		public static int TrickConstantFires => (int)_UnlockReferences.TrickConstantFires;
 
-		public const int TrickConstantMess = -1477157706;
+		public static int TrickConstantMess => (int)_UnlockReferences.TrickConstantMess;
 
-		public const int TrickCustomersChangeMindAtNight = -209485820;
+		public static int TrickCustomersChangeMindAtNight => (int)_UnlockReferences.TrickCustomersChangeMindAtNight;
 
-		public const int TrickCustomersComeAlone = 83673522;
+		public static int TrickCustomersComeAlone => (int)_UnlockReferences.TrickCustomersComeAlone;
 
-		public const int TrickCustomersLeavingStartFires = 1139286658;
+		public static int TrickCustomersLeavingStartFires => (int)_UnlockReferences.TrickCustomersLeavingStartFires;
 
-		public const int TrickCustomersLessPatienceAtNight = 79859072;
+		public static int TrickCustomersLessPatienceAtNight => (int)_UnlockReferences.TrickCustomersLessPatienceAtNight;
 
-		public const int TrickCustomersMaxSize = -2123879305;
+		public static int TrickCustomersMaxSize => (int)_UnlockReferences.TrickCustomersMaxSize;
 
-		public const int TrickOneTableMax = -1895806374;
+		public static int TrickOneTableMax => (int)_UnlockReferences.TrickOneTableMax;
 
-		public const int TrickPlayersSwapPlacesRandomly = -1839415999;
+		public static int TrickPlayersSwapPlacesRandomly => (int)_UnlockReferences.TrickPlayersSwapPlacesRandomly;
 
-		public const int TrickPlayersWearSlippers = -269971294;
+		public static int TrickPlayersWearSlippers => (int)_UnlockReferences.TrickPlayersWearSlippers;
 
-		public const int TrickQueuePatienceStays = 1892828942;
+		public static int TrickQueuePatienceStays => (int)_UnlockReferences.TrickQueuePatienceStays;
 
-		public const int TrickRandomOrderSatisfaction = 524188336;
+		public static int TrickRandomOrderSatisfaction => (int)_UnlockReferences.TrickRandomOrderSatisfaction;
 
-		public const int TrickResearchCausesFire = -241426865;
+		public static int TrickResearchCausesFire => (int)_UnlockReferences.TrickResearchCausesFire;
 
-		public const int TrickResetMoneyEachDay = 797208634;
+		public static int TrickResetMoneyEachDay => (int)_UnlockReferences.TrickResetMoneyEachDay;
 
-		public const int TrickSlowConveyors = 561747534;
+		public static int TrickSlowConveyors => (int)_UnlockReferences.TrickSlowConveyors;
 
-		public const int TrickSlowPlayersThroughDay = -1921275517;
+		public static int TrickSlowPlayersThroughDay => (int)_UnlockReferences.TrickSlowPlayersThroughDay;
 
-		public const int JanuaryRedEnvelopes = -1273613313;
+		public static int JanuaryRedEnvelopes => (int)_UnlockReferences.JanuaryRedEnvelopes;
 
-		public const int Bamboo = -1742801708;
+		public static int Bamboo => (int)_UnlockReferences.Bamboo;
 
-		public const int StirFryBamboo = -437161441;
+		public static int StirFryBamboo => (int)_UnlockReferences.StirFryBamboo;
 
-		public const int DumplingSoySauce = -1759612454;
+		public static int DumplingSoySauce => (int)_UnlockReferences.DumplingSoySauce;
 
-		public const int Dumplings = 367917843;
+		public static int Dumplings => (int)_UnlockReferences.Dumplings;
 
-		public const int DumplingsSeaweed = 137627410;
+		public static int DumplingsSeaweed => (int)_UnlockReferences.DumplingsSeaweed;
 
-		public const int Mandarin = 1696424557;
+		public static int Mandarin => (int)_UnlockReferences.Mandarin;
 
-		public const int StirFryMushroom = 1642878331;
+		public static int StirFryMushroom => (int)_UnlockReferences.StirFryMushroom;
 
-		public const int StirFrySoySauce = 1064343768;
+		public static int StirFrySoySauce => (int)_UnlockReferences.StirFrySoySauce;
 
-		public const int TurboMode = 1958825350;
+		public static int ExtraCoffee => (int)_UnlockReferences.ExtraCoffee;
 
-		public const int NovemberTableSizeIncrease = 319209671;
+		public static int SlowBrewCoffee => (int)_UnlockReferences.SlowBrewCoffee;
 
-		public const int NutRoastBase = 536093200;
+		public static int CoffeeCakeStand => (int)_UnlockReferences.CoffeeCakeStand;
 
-		public const int Affogato = -1405391769;
+		public static int CoffeeBaseDessert => (int)_UnlockReferences.CoffeeBaseDessert;
 
-		public const int BreadStarter = 1847735819;
+		public static int ExtraMilk => (int)_UnlockReferences.ExtraMilk;
 
-		public const int BroccoliCheeseSoup = -1015158173;
+		public static int ExtraSugar => (int)_UnlockReferences.ExtraSugar;
 
-		public const int CherryPie = 12170609;
+		public static int CoffeeIced => (int)_UnlockReferences.CoffeeIced;
 
-		public const int RoastPotato = -1289628495;
+		public static int CoffeeLatte => (int)_UnlockReferences.CoffeeLatte;
 
-		public const int Sweetcorn = -338554380;
+		public static int Tea => (int)_UnlockReferences.Tea;
 
-		public const int Waffles = -1409566802;
+		public static int CoffeeshopMode => (int)_UnlockReferences.CoffeeshopMode;
 
-		public const int TurkeyBase = 1551533879;
+		public static int TurboMode => (int)_UnlockReferences.TurboMode;
 
-		public const int AllYouCanEatIncrease = 2055765569;
+		public static int NovemberTableSizeIncrease => (int)_UnlockReferences.NovemberTableSizeIncrease;
 
-		public const int AllYouCanEat = -347199069;
+		public static int NutRoastBase => (int)_UnlockReferences.NutRoastBase;
 
-		public const int ChangeOrdersAfterOrdering = 233335391;
+		public static int Affogato => (int)_UnlockReferences.Affogato;
 
-		public const int ClosingTime = -1815978981;
+		public static int BreadStarter => (int)_UnlockReferences.BreadStarter;
 
-		public const int CustomersEatSlowly = -287956430;
+		public static int BroccoliCheeseSoup => (int)_UnlockReferences.BroccoliCheeseSoup;
 
-		public const int CustomersRequireWalking = 220354841;
+		public static int CherryPie => (int)_UnlockReferences.CherryPie;
 
-		public const int DinnerRush = -37551439;
+		public static int RoastPotato => (int)_UnlockReferences.RoastPotato;
 
-		public const int FlexibleDining = -2112255403;
+		public static int Sweetcorn => (int)_UnlockReferences.Sweetcorn;
 
-		public const int IndividualDining = -1747821833;
+		public static int Waffles => (int)_UnlockReferences.Waffles;
 
-		public const int LargeGroups = -523195599;
+		public static int TurkeyBase => (int)_UnlockReferences.TurkeyBase;
 
-		public const int MediumGroups = -1183014556;
+		public static int AllYouCanEatIncrease => (int)_UnlockReferences.AllYouCanEatIncrease;
 
-		public const int HiddenOrders = 165138001;
+		public static int AllYouCanEat => (int)_UnlockReferences.AllYouCanEat;
 
-		public const int HiddenPatience = -28708234;
+		public static int ChangeOrdersAfterOrdering => (int)_UnlockReferences.ChangeOrdersAfterOrdering;
 
-		public const int HiddenProcesses = -1617744928;
+		public static int ClosingTime => (int)_UnlockReferences.ClosingTime;
 
-		public const int InstantOrders = 1530184692;
+		public static int CustomersEatSlowly => (int)_UnlockReferences.CustomersEatSlowly;
 
-		public const int LessMoney = 113582858;
+		public static int CustomersRequireWalking => (int)_UnlockReferences.CustomersRequireWalking;
 
-		public const int LosePatienceInView = -913531466;
+		public static int DinnerRush => (int)_UnlockReferences.DinnerRush;
 
-		public const int LunchRush = -53330922;
+		public static int FlexibleDining => (int)_UnlockReferences.FlexibleDining;
 
-		public const int MessRangeIncrease = -491994319;
+		public static int IndividualDining => (int)_UnlockReferences.IndividualDining;
 
-		public const int MessyCustomers = 1151685289;
+		public static int LargeGroups => (int)_UnlockReferences.LargeGroups;
 
-		public const int MoreCustomers2 = 73387665;
+		public static int MediumGroups => (int)_UnlockReferences.MediumGroups;
 
-		public const int MoreCustomers = 1765310572;
+		public static int HiddenOrders => (int)_UnlockReferences.HiddenOrders;
 
-		public const int MorningRush = 2079763934;
+		public static int HiddenPatience => (int)_UnlockReferences.HiddenPatience;
 
-		public const int OneUpgradePerDay = 1914014233;
+		public static int HiddenProcesses => (int)_UnlockReferences.HiddenProcesses;
 
-		public const int PatienceDecrease = -534291083;
+		public static int InstantOrders => (int)_UnlockReferences.InstantOrders;
 
-		public const int QuickerBurning = -957080051;
+		public static int LessMoney => (int)_UnlockReferences.LessMoney;
 
-		public const int SlowProcesses = 1103452725;
+		public static int LosePatienceInView => (int)_UnlockReferences.LosePatienceInView;
 
-		public const int Affordable = -1857686620;
+		public static int LunchRush => (int)_UnlockReferences.LunchRush;
 
-		public const int Charming = 1293847744;
+		public static int MessRangeIncrease => (int)_UnlockReferences.MessRangeIncrease;
 
-		public const int Exclusive = -1323758054;
+		public static int MessyCustomers => (int)_UnlockReferences.MessyCustomers;
 
-		public const int Formal = -1641333859;
+		public static int MoreCustomers2 => (int)_UnlockReferences.MoreCustomers2;
 
-		public const int FranchiseNewDish0 = 409052852;
+		public static int MoreCustomers => (int)_UnlockReferences.MoreCustomers;
 
-		public const int FranchiseNewDish1 = -1690048134;
+		public static int MorningRush => (int)_UnlockReferences.MorningRush;
 
-		public const int FranchiseNewDish2 = 2026578658;
+		public static int OneUpgradePerDay => (int)_UnlockReferences.OneUpgradePerDay;
 
-		public const int FranchiseNewDish3 = -437866401;
+		public static int PatienceDecrease => (int)_UnlockReferences.PatienceDecrease;
 
-		public const int FranchiseNewDish4 = -1122993754;
+		public static int QuickerBurning => (int)_UnlockReferences.QuickerBurning;
 
-		public const int FranchiseNewDish5 = -1189327033;
+		public static int SlowProcesses => (int)_UnlockReferences.SlowProcesses;
 
-		public const int FranchiseBonusMoney = -1205203705;
+		public static int Affordable => (int)_UnlockReferences.Affordable;
 
-		public const int FranchiseFlatBonusMoney = -947047181;
+		public static int Charming => (int)_UnlockReferences.Charming;
 
-		public const int FranchiseStartingBonusGrabber = 1298492736;
+		public static int Exclusive => (int)_UnlockReferences.Exclusive;
 
-		public const int FranchiseStartingBonusLargeSink = 1173444265;
+		public static int Formal => (int)_UnlockReferences.Formal;
 
-		public const int FranchiseStartingBonusMoney = -1096314451;
+		public static int FranchiseNewDish0 => (int)_UnlockReferences.FranchiseNewDish0;
 
-		public const int FranchiseLivesRefresh = 2022427578;
+		public static int FranchiseNewDish1 => (int)_UnlockReferences.FranchiseNewDish1;
 
-		public const int FranchisePrepTime = -401283600;
+		public static int FranchiseNewDish2 => (int)_UnlockReferences.FranchiseNewDish2;
 
-		public const int FranchiseDoubleBlueprintDesks = -357483693;
+		public static int FranchiseNewDish3 => (int)_UnlockReferences.FranchiseNewDish3;
 
-		public const int FranchiseExtraShopBlueprint = 868780472;
+		public static int FranchiseNewDish4 => (int)_UnlockReferences.FranchiseNewDish4;
 
-		public const int FranchiseGlobalDiscount = -1418317596;
+		public static int FranchiseNewDish5 => (int)_UnlockReferences.FranchiseNewDish5;
 
-		public const int FranchiseRandomShopPrices = -98765415;
+		public static int FranchiseBonusMoney => (int)_UnlockReferences.FranchiseBonusMoney;
 
-		public const int FranchiseRandomStartingBlueprint = 1618418478;
+		public static int FranchiseFlatBonusMoney => (int)_UnlockReferences.FranchiseFlatBonusMoney;
 
-		public const int FranchiseRebuyBlueprintChance = 1543829883;
+		public static int FranchiseStartingBonusGrabber => (int)_UnlockReferences.FranchiseStartingBonusGrabber;
 
-		public const int FranchiseShopItemsRefresh = -1010143518;
+		public static int FranchiseStartingBonusLargeSink => (int)_UnlockReferences.FranchiseStartingBonusLargeSink;
 
-		public const int FranchiseUpgradedShopChance = -1269806478;
+		public static int FranchiseStartingBonusMoney => (int)_UnlockReferences.FranchiseStartingBonusMoney;
 
-		public const int FranchiseStapleBelt = 1818403570;
+		public static int FranchiseLivesRefresh => (int)_UnlockReferences.FranchiseLivesRefresh;
 
-		public const int FranchiseStapleCoffeeTable = -1121427945;
+		public static int FranchisePrepTime => (int)_UnlockReferences.FranchisePrepTime;
 
-		public const int FranchiseStapleFloorProtector = 1101419251;
+		public static int FranchiseDoubleBlueprintDesks => (int)_UnlockReferences.FranchiseDoubleBlueprintDesks;
 
-		public const int FranchiseStapleFlowers = -220105135;
+		public static int FranchiseExtraShopBlueprint => (int)_UnlockReferences.FranchiseExtraShopBlueprint;
 
-		public const int FranchiseStapleMetalTable = -178381693;
+		public static int FranchiseGlobalDiscount => (int)_UnlockReferences.FranchiseGlobalDiscount;
 
-		public const int FranchiseStapleSimpleClothTable = -373772933;
+		public static int FranchiseRandomShopPrices => (int)_UnlockReferences.FranchiseRandomShopPrices;
 
-		public const int OldFranchiseAddDish = 1366303950;
+		public static int FranchiseRandomStartingBlueprint => (int)_UnlockReferences.FranchiseRandomStartingBlueprint;
 
-		public const int OldFranchiseCustomerBoost = 779560009;
+		public static int FranchiseRebuyBlueprintChance => (int)_UnlockReferences.FranchiseRebuyBlueprintChance;
 
-		public const int OldFranchiseLargerGroups = 337471011;
+		public static int FranchiseShopItemsRefresh => (int)_UnlockReferences.FranchiseShopItemsRefresh;
 
-		public const int OldFranchiseLessMoney = 1197914155;
+		public static int FranchiseUpgradedShopChance => (int)_UnlockReferences.FranchiseUpgradedShopChance;
 
-		public const int OldFranchiseOneUpgradePerDay = -1641150757;
+		public static int FranchiseStapleBelt => (int)_UnlockReferences.FranchiseStapleBelt;
 
-		public const int OldFranchiseQuickerBurning = 686050224;
+		public static int FranchiseStapleCoffeeTable => (int)_UnlockReferences.FranchiseStapleCoffeeTable;
 
-		public const int OldFranchiseSlowProcesses = -760406109;
+		public static int FranchiseStapleFloorProtector => (int)_UnlockReferences.FranchiseStapleFloorProtector;
 
-		public const int OldFranchise1AddDish = -771711089;
+		public static int FranchiseStapleFlowers => (int)_UnlockReferences.FranchiseStapleFlowers;
 
-		public const int OldFranchise1CustomerBoost = 840658034;
+		public static int FranchiseStapleMetalTable => (int)_UnlockReferences.FranchiseStapleMetalTable;
 
-		public const int OldFranchise1PatienceDecrease = 965426081;
+		public static int FranchiseStapleSimpleClothTable => (int)_UnlockReferences.FranchiseStapleSimpleClothTable;
 
-		public const int OldFranchise2AddDish = -1586319402;
+		public static int OldFranchiseAddDish => (int)_UnlockReferences.OldFranchiseAddDish;
 
-		public const int OldFranchise2CustomerBoost = -1893812821;
+		public static int OldFranchiseCustomerBoost => (int)_UnlockReferences.OldFranchiseCustomerBoost;
 
-		public const int OldFranchise2PatienceDecrease = 1689349004;
+		public static int OldFranchiseLargerGroups => (int)_UnlockReferences.OldFranchiseLargerGroups;
+
+		public static int OldFranchiseLessMoney => (int)_UnlockReferences.OldFranchiseLessMoney;
+
+		public static int OldFranchiseOneUpgradePerDay => (int)_UnlockReferences.OldFranchiseOneUpgradePerDay;
+
+		public static int OldFranchiseQuickerBurning => (int)_UnlockReferences.OldFranchiseQuickerBurning;
+
+		public static int OldFranchiseSlowProcesses => (int)_UnlockReferences.OldFranchiseSlowProcesses;
+
+		public static int OldFranchise1AddDish => (int)_UnlockReferences.OldFranchise1AddDish;
+
+		public static int OldFranchise1CustomerBoost => (int)_UnlockReferences.OldFranchise1CustomerBoost;
+
+		public static int OldFranchise1PatienceDecrease => (int)_UnlockReferences.OldFranchise1PatienceDecrease;
+
+		public static int OldFranchise2AddDish => (int)_UnlockReferences.OldFranchise2AddDish;
+
+		public static int OldFranchise2CustomerBoost => (int)_UnlockReferences.OldFranchise2CustomerBoost;
+
+		public static int OldFranchise2PatienceDecrease => (int)_UnlockReferences.OldFranchise2PatienceDecrease;
+
+	}
+	internal enum _UnlockReferences
+	{
+		CoffeeDessert = -85470894,
+
+		IceCream = 373996608,
+
+		BreakfastBase = -2075899,
+
+		BreakfastBeans = -1199743580,
+
+		BreakfastExtras = 1436814208,
+
+		BreakfastVeganExtras = -1998930853,
+
+		BurgerBase = -1778969928,
+
+		BurgerCheese = 965292477,
+
+		BurgerFreshPatties = -1091625127,
+
+		BurgerTomatoandOnion = 1298035216,
+
+		HotdogBase = 1626323920,
+
+		HotdogCondimentMustard = -278713285,
+
+		FishBase = 1743900205,
+
+		FishCrabCake = -297968808,
+
+		FishExtraChoice2 = 243846255,
+
+		FishExtraChoice = -243820179,
+
+		FishFillet = 1442262270,
+
+		FishOyster = 274986412,
+
+		FishSpiny = -643878280,
+
+		BirthdayCake = -1528287489,
+
+		RoastMeat = 670300431,
+
+		PieApple = -211821608,
+
+		PieBase = -133939790,
+
+		PieMushroom = -1992316049,
+
+		PieVegetable = -1802123036,
+
+		SaladApple = 1570910782,
+
+		SaladBase = 1356267749,
+
+		SaladPotato = -862637543,
+
+		SaladToppings = 372460604,
+
+		BonedSteaks = 1384317454,
+
+		SteakSauceMushroomSauce = -953651922,
+
+		SteakSauceRedWineJus = 2074054556,
+
+		SteakToppingMushroom = -1192928429,
+
+		SteakToppingTomato = -851525606,
+
+		Steak = -959076098,
+
+		ThickSteaks = 1916300984,
+
+		ThinSteaks = -1716993344,
+
+		StirFryBase = -1653221873,
+
+		StirFryMeat = -204178430,
+
+		Broccoli = 1380953991,
+
+		Chips = -520693398,
+
+		MashedPotato = 364243605,
+
+		CarrotSoup = 2012685115,
+
+		MeatSoup = -997241706,
+
+		TomatoSoup = -233806503,
+
+		CheeseBoard = 312770813,
+
+		PizzaBase = 550743424,
+
+		PizzaMushroom = 1434421325,
+
+		PizzaOnion = -2071275506,
+
+		OnionRings = -1745179096,
+
+		ChristmasConveyors = -361249036,
+
+		Cracker = 878396172,
+
+		TurkeyCranberrySauce = 1398180456,
+
+		TurkeyGravy = -1460640973,
+
+		TurkeyStuffing = -1243742384,
+
+		Couples = -2106646073,
+
+		DoubleDates = 2028238661,
+
+		FirstDates = 587399881,
+
+		StapleFlowerPots = 1491215862,
+
+		CustomerBursts = 1642577536,
+
+		MessesSlowCustomers = -1737101581,
+
+		PickyEaters = -2040314977,
+
+		TippingCulture = 73422455,
+
+		CornOnCob = 1168007081,
+
+		IceCreamBanana = -95393944,
+
+		IceCreamNuts = -81988936,
+
+		IceCreamStrawberry = 2105828628,
+
+		PiePumpkin = 400765800,
+
+		PumpkinSeed = 1393945424,
+
+		PumpkinSoup = 1984233383,
+
+		TreatCustomersareCats = -2072924167,
+
+		TreatExtraBlueprints = 942723993,
+
+		TreatExtraDecorationAffordable = -1086090066,
+
+		TreatExtraDecorationCharming = 761584062,
+
+		TreatExtraDecorationExclusive = 5738470,
+
+		TreatExtraDecorationFormal = 898820513,
+
+		TreatFreeMoney = -1728887993,
+
+		TrickAppliancesBadProcessesFasterAtNight = 1838568431,
+
+		TrickBookingDesksareAutomatic = 61056284,
+
+		TrickConstantFires = 2112990883,
+
+		TrickConstantMess = -1477157706,
+
+		TrickCustomersChangeMindAtNight = -209485820,
+
+		TrickCustomersComeAlone = 83673522,
+
+		TrickCustomersLeavingStartFires = 1139286658,
+
+		TrickCustomersLessPatienceAtNight = 79859072,
+
+		TrickCustomersMaxSize = -2123879305,
+
+		TrickOneTableMax = -1895806374,
+
+		TrickPlayersSwapPlacesRandomly = -1839415999,
+
+		TrickPlayersWearSlippers = -269971294,
+
+		TrickQueuePatienceStays = 1892828942,
+
+		TrickRandomOrderSatisfaction = 524188336,
+
+		TrickResearchCausesFire = -241426865,
+
+		TrickResetMoneyEachDay = 797208634,
+
+		TrickSlowConveyors = 561747534,
+
+		TrickSlowPlayersThroughDay = -1921275517,
+
+		JanuaryRedEnvelopes = -1273613313,
+
+		Bamboo = -1742801708,
+
+		StirFryBamboo = -437161441,
+
+		DumplingSoySauce = -1759612454,
+
+		Dumplings = 367917843,
+
+		DumplingsSeaweed = 137627410,
+
+		Mandarin = 1696424557,
+
+		StirFryMushroom = 1642878331,
+
+		StirFrySoySauce = 1064343768,
+
+		ExtraCoffee = 251686519,
+
+		SlowBrewCoffee = 2079359756,
+
+		CoffeeCakeStand = 1103885337,
+
+		CoffeeBaseDessert = 16318784,
+
+		ExtraMilk = -740215310,
+
+		ExtraSugar = -696561631,
+
+		CoffeeIced = 2133632711,
+
+		CoffeeLatte = -141282934,
+
+		Tea = 1398671754,
+
+		CoffeeshopMode = 746549422,
+
+		TurboMode = 1958825350,
+
+		NovemberTableSizeIncrease = 319209671,
+
+		NutRoastBase = 536093200,
+
+		Affogato = -1405391769,
+
+		BreadStarter = 1847735819,
+
+		BroccoliCheeseSoup = -1015158173,
+
+		CherryPie = 12170609,
+
+		RoastPotato = -1289628495,
+
+		Sweetcorn = -338554380,
+
+		Waffles = -1409566802,
+
+		TurkeyBase = 1551533879,
+
+		AllYouCanEatIncrease = 2055765569,
+
+		AllYouCanEat = -347199069,
+
+		ChangeOrdersAfterOrdering = 233335391,
+
+		ClosingTime = -1815978981,
+
+		CustomersEatSlowly = -287956430,
+
+		CustomersRequireWalking = 220354841,
+
+		DinnerRush = -37551439,
+
+		FlexibleDining = -2112255403,
+
+		IndividualDining = -1747821833,
+
+		LargeGroups = -523195599,
+
+		MediumGroups = -1183014556,
+
+		HiddenOrders = 165138001,
+
+		HiddenPatience = -28708234,
+
+		HiddenProcesses = -1617744928,
+
+		InstantOrders = 1530184692,
+
+		LessMoney = 113582858,
+
+		LosePatienceInView = -913531466,
+
+		LunchRush = -53330922,
+
+		MessRangeIncrease = -491994319,
+
+		MessyCustomers = 1151685289,
+
+		MoreCustomers2 = 73387665,
+
+		MoreCustomers = 1765310572,
+
+		MorningRush = 2079763934,
+
+		OneUpgradePerDay = 1914014233,
+
+		PatienceDecrease = -534291083,
+
+		QuickerBurning = -957080051,
+
+		SlowProcesses = 1103452725,
+
+		Affordable = -1857686620,
+
+		Charming = 1293847744,
+
+		Exclusive = -1323758054,
+
+		Formal = -1641333859,
+
+		FranchiseNewDish0 = 409052852,
+
+		FranchiseNewDish1 = -1690048134,
+
+		FranchiseNewDish2 = 2026578658,
+
+		FranchiseNewDish3 = -437866401,
+
+		FranchiseNewDish4 = -1122993754,
+
+		FranchiseNewDish5 = -1189327033,
+
+		FranchiseBonusMoney = -1205203705,
+
+		FranchiseFlatBonusMoney = -947047181,
+
+		FranchiseStartingBonusGrabber = 1298492736,
+
+		FranchiseStartingBonusLargeSink = 1173444265,
+
+		FranchiseStartingBonusMoney = -1096314451,
+
+		FranchiseLivesRefresh = 2022427578,
+
+		FranchisePrepTime = -401283600,
+
+		FranchiseDoubleBlueprintDesks = -357483693,
+
+		FranchiseExtraShopBlueprint = 868780472,
+
+		FranchiseGlobalDiscount = -1418317596,
+
+		FranchiseRandomShopPrices = -98765415,
+
+		FranchiseRandomStartingBlueprint = 1618418478,
+
+		FranchiseRebuyBlueprintChance = 1543829883,
+
+		FranchiseShopItemsRefresh = -1010143518,
+
+		FranchiseUpgradedShopChance = -1269806478,
+
+		FranchiseStapleBelt = 1818403570,
+
+		FranchiseStapleCoffeeTable = -1121427945,
+
+		FranchiseStapleFloorProtector = 1101419251,
+
+		FranchiseStapleFlowers = -220105135,
+
+		FranchiseStapleMetalTable = -178381693,
+
+		FranchiseStapleSimpleClothTable = -373772933,
+
+		OldFranchiseAddDish = 1366303950,
+
+		OldFranchiseCustomerBoost = 779560009,
+
+		OldFranchiseLargerGroups = 337471011,
+
+		OldFranchiseLessMoney = 1197914155,
+
+		OldFranchiseOneUpgradePerDay = -1641150757,
+
+		OldFranchiseQuickerBurning = 686050224,
+
+		OldFranchiseSlowProcesses = -760406109,
+
+		OldFranchise1AddDish = -771711089,
+
+		OldFranchise1CustomerBoost = 840658034,
+
+		OldFranchise1PatienceDecrease = 965426081,
+
+		OldFranchise2AddDish = -1586319402,
+
+		OldFranchise2CustomerBoost = -1893812821,
+
+		OldFranchise2PatienceDecrease = 1689349004,
 
 	}
 	public class UnlockCardReferences
 	{
-		public const int ChristmasConveyors = -361249036;
+		public static int ChristmasConveyors => (int)_UnlockCardReferences.ChristmasConveyors;
 
-		public const int Couples = -2106646073;
+		public static int Couples => (int)_UnlockCardReferences.Couples;
 
-		public const int DoubleDates = 2028238661;
+		public static int DoubleDates => (int)_UnlockCardReferences.DoubleDates;
 
-		public const int FirstDates = 587399881;
+		public static int FirstDates => (int)_UnlockCardReferences.FirstDates;
 
-		public const int StapleFlowerPots = 1491215862;
+		public static int StapleFlowerPots => (int)_UnlockCardReferences.StapleFlowerPots;
 
-		public const int CustomerBursts = 1642577536;
+		public static int CustomerBursts => (int)_UnlockCardReferences.CustomerBursts;
 
-		public const int MessesSlowCustomers = -1737101581;
+		public static int MessesSlowCustomers => (int)_UnlockCardReferences.MessesSlowCustomers;
 
-		public const int PickyEaters = -2040314977;
+		public static int PickyEaters => (int)_UnlockCardReferences.PickyEaters;
 
-		public const int TippingCulture = 73422455;
+		public static int TippingCulture => (int)_UnlockCardReferences.TippingCulture;
 
-		public const int TreatCustomersareCats = -2072924167;
+		public static int TreatCustomersareCats => (int)_UnlockCardReferences.TreatCustomersareCats;
 
-		public const int TreatExtraBlueprints = 942723993;
+		public static int TreatExtraBlueprints => (int)_UnlockCardReferences.TreatExtraBlueprints;
 
-		public const int TreatExtraDecorationAffordable = -1086090066;
+		public static int TreatExtraDecorationAffordable => (int)_UnlockCardReferences.TreatExtraDecorationAffordable;
 
-		public const int TreatExtraDecorationCharming = 761584062;
+		public static int TreatExtraDecorationCharming => (int)_UnlockCardReferences.TreatExtraDecorationCharming;
 
-		public const int TreatExtraDecorationExclusive = 5738470;
+		public static int TreatExtraDecorationExclusive => (int)_UnlockCardReferences.TreatExtraDecorationExclusive;
 
-		public const int TreatExtraDecorationFormal = 898820513;
+		public static int TreatExtraDecorationFormal => (int)_UnlockCardReferences.TreatExtraDecorationFormal;
 
-		public const int TreatFreeMoney = -1728887993;
+		public static int TreatFreeMoney => (int)_UnlockCardReferences.TreatFreeMoney;
 
-		public const int TrickAppliancesBadProcessesFasterAtNight = 1838568431;
+		public static int TrickAppliancesBadProcessesFasterAtNight => (int)_UnlockCardReferences.TrickAppliancesBadProcessesFasterAtNight;
 
-		public const int TrickBookingDesksareAutomatic = 61056284;
+		public static int TrickBookingDesksareAutomatic => (int)_UnlockCardReferences.TrickBookingDesksareAutomatic;
 
-		public const int TrickConstantFires = 2112990883;
+		public static int TrickConstantFires => (int)_UnlockCardReferences.TrickConstantFires;
 
-		public const int TrickConstantMess = -1477157706;
+		public static int TrickConstantMess => (int)_UnlockCardReferences.TrickConstantMess;
 
-		public const int TrickCustomersChangeMindAtNight = -209485820;
+		public static int TrickCustomersChangeMindAtNight => (int)_UnlockCardReferences.TrickCustomersChangeMindAtNight;
 
-		public const int TrickCustomersComeAlone = 83673522;
+		public static int TrickCustomersComeAlone => (int)_UnlockCardReferences.TrickCustomersComeAlone;
 
-		public const int TrickCustomersLeavingStartFires = 1139286658;
+		public static int TrickCustomersLeavingStartFires => (int)_UnlockCardReferences.TrickCustomersLeavingStartFires;
 
-		public const int TrickCustomersLessPatienceAtNight = 79859072;
+		public static int TrickCustomersLessPatienceAtNight => (int)_UnlockCardReferences.TrickCustomersLessPatienceAtNight;
 
-		public const int TrickCustomersMaxSize = -2123879305;
+		public static int TrickCustomersMaxSize => (int)_UnlockCardReferences.TrickCustomersMaxSize;
 
-		public const int TrickOneTableMax = -1895806374;
+		public static int TrickOneTableMax => (int)_UnlockCardReferences.TrickOneTableMax;
 
-		public const int TrickPlayersSwapPlacesRandomly = -1839415999;
+		public static int TrickPlayersSwapPlacesRandomly => (int)_UnlockCardReferences.TrickPlayersSwapPlacesRandomly;
 
-		public const int TrickPlayersWearSlippers = -269971294;
+		public static int TrickPlayersWearSlippers => (int)_UnlockCardReferences.TrickPlayersWearSlippers;
 
-		public const int TrickQueuePatienceStays = 1892828942;
+		public static int TrickQueuePatienceStays => (int)_UnlockCardReferences.TrickQueuePatienceStays;
 
-		public const int TrickRandomOrderSatisfaction = 524188336;
+		public static int TrickRandomOrderSatisfaction => (int)_UnlockCardReferences.TrickRandomOrderSatisfaction;
 
-		public const int TrickResearchCausesFire = -241426865;
+		public static int TrickResearchCausesFire => (int)_UnlockCardReferences.TrickResearchCausesFire;
 
-		public const int TrickResetMoneyEachDay = 797208634;
+		public static int TrickResetMoneyEachDay => (int)_UnlockCardReferences.TrickResetMoneyEachDay;
 
-		public const int TrickSlowConveyors = 561747534;
+		public static int TrickSlowConveyors => (int)_UnlockCardReferences.TrickSlowConveyors;
 
-		public const int TrickSlowPlayersThroughDay = -1921275517;
+		public static int TrickSlowPlayersThroughDay => (int)_UnlockCardReferences.TrickSlowPlayersThroughDay;
 
-		public const int JanuaryRedEnvelopes = -1273613313;
+		public static int JanuaryRedEnvelopes => (int)_UnlockCardReferences.JanuaryRedEnvelopes;
 
-		public const int TurboMode = 1958825350;
+		public static int ExtraCoffee => (int)_UnlockCardReferences.ExtraCoffee;
 
-		public const int NovemberTableSizeIncrease = 319209671;
+		public static int SlowBrewCoffee => (int)_UnlockCardReferences.SlowBrewCoffee;
 
-		public const int AllYouCanEatIncrease = 2055765569;
+		public static int CoffeeshopMode => (int)_UnlockCardReferences.CoffeeshopMode;
 
-		public const int AllYouCanEat = -347199069;
+		public static int TurboMode => (int)_UnlockCardReferences.TurboMode;
 
-		public const int ChangeOrdersAfterOrdering = 233335391;
+		public static int NovemberTableSizeIncrease => (int)_UnlockCardReferences.NovemberTableSizeIncrease;
 
-		public const int ClosingTime = -1815978981;
+		public static int AllYouCanEatIncrease => (int)_UnlockCardReferences.AllYouCanEatIncrease;
 
-		public const int CustomersEatSlowly = -287956430;
+		public static int AllYouCanEat => (int)_UnlockCardReferences.AllYouCanEat;
 
-		public const int CustomersRequireWalking = 220354841;
+		public static int ChangeOrdersAfterOrdering => (int)_UnlockCardReferences.ChangeOrdersAfterOrdering;
 
-		public const int DinnerRush = -37551439;
+		public static int ClosingTime => (int)_UnlockCardReferences.ClosingTime;
 
-		public const int FlexibleDining = -2112255403;
+		public static int CustomersEatSlowly => (int)_UnlockCardReferences.CustomersEatSlowly;
 
-		public const int IndividualDining = -1747821833;
+		public static int CustomersRequireWalking => (int)_UnlockCardReferences.CustomersRequireWalking;
 
-		public const int LargeGroups = -523195599;
+		public static int DinnerRush => (int)_UnlockCardReferences.DinnerRush;
 
-		public const int MediumGroups = -1183014556;
+		public static int FlexibleDining => (int)_UnlockCardReferences.FlexibleDining;
 
-		public const int HiddenOrders = 165138001;
+		public static int IndividualDining => (int)_UnlockCardReferences.IndividualDining;
 
-		public const int HiddenPatience = -28708234;
+		public static int LargeGroups => (int)_UnlockCardReferences.LargeGroups;
 
-		public const int HiddenProcesses = -1617744928;
+		public static int MediumGroups => (int)_UnlockCardReferences.MediumGroups;
 
-		public const int InstantOrders = 1530184692;
+		public static int HiddenOrders => (int)_UnlockCardReferences.HiddenOrders;
 
-		public const int LessMoney = 113582858;
+		public static int HiddenPatience => (int)_UnlockCardReferences.HiddenPatience;
 
-		public const int LosePatienceInView = -913531466;
+		public static int HiddenProcesses => (int)_UnlockCardReferences.HiddenProcesses;
 
-		public const int LunchRush = -53330922;
+		public static int InstantOrders => (int)_UnlockCardReferences.InstantOrders;
 
-		public const int MessRangeIncrease = -491994319;
+		public static int LessMoney => (int)_UnlockCardReferences.LessMoney;
 
-		public const int MessyCustomers = 1151685289;
+		public static int LosePatienceInView => (int)_UnlockCardReferences.LosePatienceInView;
 
-		public const int MoreCustomers2 = 73387665;
+		public static int LunchRush => (int)_UnlockCardReferences.LunchRush;
 
-		public const int MoreCustomers = 1765310572;
+		public static int MessRangeIncrease => (int)_UnlockCardReferences.MessRangeIncrease;
 
-		public const int MorningRush = 2079763934;
+		public static int MessyCustomers => (int)_UnlockCardReferences.MessyCustomers;
 
-		public const int OneUpgradePerDay = 1914014233;
+		public static int MoreCustomers2 => (int)_UnlockCardReferences.MoreCustomers2;
 
-		public const int PatienceDecrease = -534291083;
+		public static int MoreCustomers => (int)_UnlockCardReferences.MoreCustomers;
 
-		public const int QuickerBurning = -957080051;
+		public static int MorningRush => (int)_UnlockCardReferences.MorningRush;
 
-		public const int SlowProcesses = 1103452725;
+		public static int OneUpgradePerDay => (int)_UnlockCardReferences.OneUpgradePerDay;
 
-		public const int Affordable = -1857686620;
+		public static int PatienceDecrease => (int)_UnlockCardReferences.PatienceDecrease;
 
-		public const int Charming = 1293847744;
+		public static int QuickerBurning => (int)_UnlockCardReferences.QuickerBurning;
 
-		public const int Exclusive = -1323758054;
+		public static int SlowProcesses => (int)_UnlockCardReferences.SlowProcesses;
 
-		public const int Formal = -1641333859;
+		public static int Affordable => (int)_UnlockCardReferences.Affordable;
 
-		public const int FranchiseNewDish0 = 409052852;
+		public static int Charming => (int)_UnlockCardReferences.Charming;
 
-		public const int FranchiseNewDish1 = -1690048134;
+		public static int Exclusive => (int)_UnlockCardReferences.Exclusive;
 
-		public const int FranchiseNewDish2 = 2026578658;
+		public static int Formal => (int)_UnlockCardReferences.Formal;
 
-		public const int FranchiseNewDish3 = -437866401;
+		public static int FranchiseNewDish0 => (int)_UnlockCardReferences.FranchiseNewDish0;
 
-		public const int FranchiseNewDish4 = -1122993754;
+		public static int FranchiseNewDish1 => (int)_UnlockCardReferences.FranchiseNewDish1;
 
-		public const int FranchiseNewDish5 = -1189327033;
+		public static int FranchiseNewDish2 => (int)_UnlockCardReferences.FranchiseNewDish2;
 
-		public const int FranchiseBonusMoney = -1205203705;
+		public static int FranchiseNewDish3 => (int)_UnlockCardReferences.FranchiseNewDish3;
 
-		public const int FranchiseFlatBonusMoney = -947047181;
+		public static int FranchiseNewDish4 => (int)_UnlockCardReferences.FranchiseNewDish4;
 
-		public const int FranchiseStartingBonusGrabber = 1298492736;
+		public static int FranchiseNewDish5 => (int)_UnlockCardReferences.FranchiseNewDish5;
 
-		public const int FranchiseStartingBonusLargeSink = 1173444265;
+		public static int FranchiseBonusMoney => (int)_UnlockCardReferences.FranchiseBonusMoney;
 
-		public const int FranchiseStartingBonusMoney = -1096314451;
+		public static int FranchiseFlatBonusMoney => (int)_UnlockCardReferences.FranchiseFlatBonusMoney;
 
-		public const int FranchiseLivesRefresh = 2022427578;
+		public static int FranchiseStartingBonusGrabber => (int)_UnlockCardReferences.FranchiseStartingBonusGrabber;
 
-		public const int FranchisePrepTime = -401283600;
+		public static int FranchiseStartingBonusLargeSink => (int)_UnlockCardReferences.FranchiseStartingBonusLargeSink;
 
-		public const int FranchiseDoubleBlueprintDesks = -357483693;
+		public static int FranchiseStartingBonusMoney => (int)_UnlockCardReferences.FranchiseStartingBonusMoney;
 
-		public const int FranchiseExtraShopBlueprint = 868780472;
+		public static int FranchiseLivesRefresh => (int)_UnlockCardReferences.FranchiseLivesRefresh;
 
-		public const int FranchiseGlobalDiscount = -1418317596;
+		public static int FranchisePrepTime => (int)_UnlockCardReferences.FranchisePrepTime;
 
-		public const int FranchiseRandomShopPrices = -98765415;
+		public static int FranchiseDoubleBlueprintDesks => (int)_UnlockCardReferences.FranchiseDoubleBlueprintDesks;
 
-		public const int FranchiseRandomStartingBlueprint = 1618418478;
+		public static int FranchiseExtraShopBlueprint => (int)_UnlockCardReferences.FranchiseExtraShopBlueprint;
 
-		public const int FranchiseRebuyBlueprintChance = 1543829883;
+		public static int FranchiseGlobalDiscount => (int)_UnlockCardReferences.FranchiseGlobalDiscount;
 
-		public const int FranchiseShopItemsRefresh = -1010143518;
+		public static int FranchiseRandomShopPrices => (int)_UnlockCardReferences.FranchiseRandomShopPrices;
 
-		public const int FranchiseUpgradedShopChance = -1269806478;
+		public static int FranchiseRandomStartingBlueprint => (int)_UnlockCardReferences.FranchiseRandomStartingBlueprint;
 
-		public const int FranchiseStapleBelt = 1818403570;
+		public static int FranchiseRebuyBlueprintChance => (int)_UnlockCardReferences.FranchiseRebuyBlueprintChance;
 
-		public const int FranchiseStapleCoffeeTable = -1121427945;
+		public static int FranchiseShopItemsRefresh => (int)_UnlockCardReferences.FranchiseShopItemsRefresh;
 
-		public const int FranchiseStapleFloorProtector = 1101419251;
+		public static int FranchiseUpgradedShopChance => (int)_UnlockCardReferences.FranchiseUpgradedShopChance;
 
-		public const int FranchiseStapleFlowers = -220105135;
+		public static int FranchiseStapleBelt => (int)_UnlockCardReferences.FranchiseStapleBelt;
 
-		public const int FranchiseStapleMetalTable = -178381693;
+		public static int FranchiseStapleCoffeeTable => (int)_UnlockCardReferences.FranchiseStapleCoffeeTable;
 
-		public const int FranchiseStapleSimpleClothTable = -373772933;
+		public static int FranchiseStapleFloorProtector => (int)_UnlockCardReferences.FranchiseStapleFloorProtector;
 
-		public const int OldFranchiseAddDish = 1366303950;
+		public static int FranchiseStapleFlowers => (int)_UnlockCardReferences.FranchiseStapleFlowers;
 
-		public const int OldFranchiseCustomerBoost = 779560009;
+		public static int FranchiseStapleMetalTable => (int)_UnlockCardReferences.FranchiseStapleMetalTable;
 
-		public const int OldFranchiseLargerGroups = 337471011;
+		public static int FranchiseStapleSimpleClothTable => (int)_UnlockCardReferences.FranchiseStapleSimpleClothTable;
 
-		public const int OldFranchiseLessMoney = 1197914155;
+		public static int OldFranchiseAddDish => (int)_UnlockCardReferences.OldFranchiseAddDish;
 
-		public const int OldFranchiseOneUpgradePerDay = -1641150757;
+		public static int OldFranchiseCustomerBoost => (int)_UnlockCardReferences.OldFranchiseCustomerBoost;
 
-		public const int OldFranchiseQuickerBurning = 686050224;
+		public static int OldFranchiseLargerGroups => (int)_UnlockCardReferences.OldFranchiseLargerGroups;
 
-		public const int OldFranchiseSlowProcesses = -760406109;
+		public static int OldFranchiseLessMoney => (int)_UnlockCardReferences.OldFranchiseLessMoney;
 
-		public const int OldFranchise1AddDish = -771711089;
+		public static int OldFranchiseOneUpgradePerDay => (int)_UnlockCardReferences.OldFranchiseOneUpgradePerDay;
 
-		public const int OldFranchise1CustomerBoost = 840658034;
+		public static int OldFranchiseQuickerBurning => (int)_UnlockCardReferences.OldFranchiseQuickerBurning;
 
-		public const int OldFranchise1PatienceDecrease = 965426081;
+		public static int OldFranchiseSlowProcesses => (int)_UnlockCardReferences.OldFranchiseSlowProcesses;
 
-		public const int OldFranchise2AddDish = -1586319402;
+		public static int OldFranchise1AddDish => (int)_UnlockCardReferences.OldFranchise1AddDish;
 
-		public const int OldFranchise2CustomerBoost = -1893812821;
+		public static int OldFranchise1CustomerBoost => (int)_UnlockCardReferences.OldFranchise1CustomerBoost;
 
-		public const int OldFranchise2PatienceDecrease = 1689349004;
+		public static int OldFranchise1PatienceDecrease => (int)_UnlockCardReferences.OldFranchise1PatienceDecrease;
+
+		public static int OldFranchise2AddDish => (int)_UnlockCardReferences.OldFranchise2AddDish;
+
+		public static int OldFranchise2CustomerBoost => (int)_UnlockCardReferences.OldFranchise2CustomerBoost;
+
+		public static int OldFranchise2PatienceDecrease => (int)_UnlockCardReferences.OldFranchise2PatienceDecrease;
+
+	}
+	internal enum _UnlockCardReferences
+	{
+		ChristmasConveyors = -361249036,
+
+		Couples = -2106646073,
+
+		DoubleDates = 2028238661,
+
+		FirstDates = 587399881,
+
+		StapleFlowerPots = 1491215862,
+
+		CustomerBursts = 1642577536,
+
+		MessesSlowCustomers = -1737101581,
+
+		PickyEaters = -2040314977,
+
+		TippingCulture = 73422455,
+
+		TreatCustomersareCats = -2072924167,
+
+		TreatExtraBlueprints = 942723993,
+
+		TreatExtraDecorationAffordable = -1086090066,
+
+		TreatExtraDecorationCharming = 761584062,
+
+		TreatExtraDecorationExclusive = 5738470,
+
+		TreatExtraDecorationFormal = 898820513,
+
+		TreatFreeMoney = -1728887993,
+
+		TrickAppliancesBadProcessesFasterAtNight = 1838568431,
+
+		TrickBookingDesksareAutomatic = 61056284,
+
+		TrickConstantFires = 2112990883,
+
+		TrickConstantMess = -1477157706,
+
+		TrickCustomersChangeMindAtNight = -209485820,
+
+		TrickCustomersComeAlone = 83673522,
+
+		TrickCustomersLeavingStartFires = 1139286658,
+
+		TrickCustomersLessPatienceAtNight = 79859072,
+
+		TrickCustomersMaxSize = -2123879305,
+
+		TrickOneTableMax = -1895806374,
+
+		TrickPlayersSwapPlacesRandomly = -1839415999,
+
+		TrickPlayersWearSlippers = -269971294,
+
+		TrickQueuePatienceStays = 1892828942,
+
+		TrickRandomOrderSatisfaction = 524188336,
+
+		TrickResearchCausesFire = -241426865,
+
+		TrickResetMoneyEachDay = 797208634,
+
+		TrickSlowConveyors = 561747534,
+
+		TrickSlowPlayersThroughDay = -1921275517,
+
+		JanuaryRedEnvelopes = -1273613313,
+
+		ExtraCoffee = 251686519,
+
+		SlowBrewCoffee = 2079359756,
+
+		CoffeeshopMode = 746549422,
+
+		TurboMode = 1958825350,
+
+		NovemberTableSizeIncrease = 319209671,
+
+		AllYouCanEatIncrease = 2055765569,
+
+		AllYouCanEat = -347199069,
+
+		ChangeOrdersAfterOrdering = 233335391,
+
+		ClosingTime = -1815978981,
+
+		CustomersEatSlowly = -287956430,
+
+		CustomersRequireWalking = 220354841,
+
+		DinnerRush = -37551439,
+
+		FlexibleDining = -2112255403,
+
+		IndividualDining = -1747821833,
+
+		LargeGroups = -523195599,
+
+		MediumGroups = -1183014556,
+
+		HiddenOrders = 165138001,
+
+		HiddenPatience = -28708234,
+
+		HiddenProcesses = -1617744928,
+
+		InstantOrders = 1530184692,
+
+		LessMoney = 113582858,
+
+		LosePatienceInView = -913531466,
+
+		LunchRush = -53330922,
+
+		MessRangeIncrease = -491994319,
+
+		MessyCustomers = 1151685289,
+
+		MoreCustomers2 = 73387665,
+
+		MoreCustomers = 1765310572,
+
+		MorningRush = 2079763934,
+
+		OneUpgradePerDay = 1914014233,
+
+		PatienceDecrease = -534291083,
+
+		QuickerBurning = -957080051,
+
+		SlowProcesses = 1103452725,
+
+		Affordable = -1857686620,
+
+		Charming = 1293847744,
+
+		Exclusive = -1323758054,
+
+		Formal = -1641333859,
+
+		FranchiseNewDish0 = 409052852,
+
+		FranchiseNewDish1 = -1690048134,
+
+		FranchiseNewDish2 = 2026578658,
+
+		FranchiseNewDish3 = -437866401,
+
+		FranchiseNewDish4 = -1122993754,
+
+		FranchiseNewDish5 = -1189327033,
+
+		FranchiseBonusMoney = -1205203705,
+
+		FranchiseFlatBonusMoney = -947047181,
+
+		FranchiseStartingBonusGrabber = 1298492736,
+
+		FranchiseStartingBonusLargeSink = 1173444265,
+
+		FranchiseStartingBonusMoney = -1096314451,
+
+		FranchiseLivesRefresh = 2022427578,
+
+		FranchisePrepTime = -401283600,
+
+		FranchiseDoubleBlueprintDesks = -357483693,
+
+		FranchiseExtraShopBlueprint = 868780472,
+
+		FranchiseGlobalDiscount = -1418317596,
+
+		FranchiseRandomShopPrices = -98765415,
+
+		FranchiseRandomStartingBlueprint = 1618418478,
+
+		FranchiseRebuyBlueprintChance = 1543829883,
+
+		FranchiseShopItemsRefresh = -1010143518,
+
+		FranchiseUpgradedShopChance = -1269806478,
+
+		FranchiseStapleBelt = 1818403570,
+
+		FranchiseStapleCoffeeTable = -1121427945,
+
+		FranchiseStapleFloorProtector = 1101419251,
+
+		FranchiseStapleFlowers = -220105135,
+
+		FranchiseStapleMetalTable = -178381693,
+
+		FranchiseStapleSimpleClothTable = -373772933,
+
+		OldFranchiseAddDish = 1366303950,
+
+		OldFranchiseCustomerBoost = 779560009,
+
+		OldFranchiseLargerGroups = 337471011,
+
+		OldFranchiseLessMoney = 1197914155,
+
+		OldFranchiseOneUpgradePerDay = -1641150757,
+
+		OldFranchiseQuickerBurning = 686050224,
+
+		OldFranchiseSlowProcesses = -760406109,
+
+		OldFranchise1AddDish = -771711089,
+
+		OldFranchise1CustomerBoost = 840658034,
+
+		OldFranchise1PatienceDecrease = 965426081,
+
+		OldFranchise2AddDish = -1586319402,
+
+		OldFranchise2CustomerBoost = -1893812821,
+
+		OldFranchise2PatienceDecrease = 1689349004,
 
 	}
 	public class UnlockPackReferences
 	{
-		public const int ChristmasPack = 1370599169;
+		public static int ChristmasPack => (int)_UnlockPackReferences.ChristmasPack;
 
-		public const int ChristmasSpecialCard = 83496670;
+		public static int ChristmasSpecialCard => (int)_UnlockPackReferences.ChristmasSpecialCard;
 
-		public const int DefaultCompositePack = -2020288853;
+		public static int DefaultCompositePack => (int)_UnlockPackReferences.DefaultCompositePack;
 
-		public const int FebruaryPack = -654728586;
+		public static int FebruaryPack => (int)_UnlockPackReferences.FebruaryPack;
 
-		public const int FebruarySpecialCard = 2136512392;
+		public static int FebruarySpecialCard => (int)_UnlockPackReferences.FebruarySpecialCard;
 
-		public const int HalloweenPack = -839658581;
+		public static int HalloweenPack => (int)_UnlockPackReferences.HalloweenPack;
 
-		public const int JanuaryCards = 1091353668;
+		public static int JanuaryCards => (int)_UnlockPackReferences.JanuaryCards;
 
-		public const int JanuaryPack = -1893039732;
+		public static int JanuaryPack => (int)_UnlockPackReferences.JanuaryPack;
 
-		public const int MarchCards = 802797822;
+		public static int JuneCards => (int)_UnlockPackReferences.JuneCards;
 
-		public const int MarchPack = -619515969;
+		public static int JunePack => (int)_UnlockPackReferences.JunePack;
 
-		public const int AutumnDishCards = -320463696;
+		public static int MarchCards => (int)_UnlockPackReferences.MarchCards;
 
-		public const int AutumnPack = 698670060;
+		public static int MarchPack => (int)_UnlockPackReferences.MarchPack;
 
-		public const int AutumnSpecialCard = -1306979157;
+		public static int AutumnDishCards => (int)_UnlockPackReferences.AutumnDishCards;
 
-		public const int FranchiseCardsPack = 1355831133;
+		public static int AutumnPack => (int)_UnlockPackReferences.AutumnPack;
 
-		public const int HalloweenCards = -2066335466;
+		public static int AutumnSpecialCard => (int)_UnlockPackReferences.AutumnSpecialCard;
 
-		public const int NormalCardsPack = 1659224512;
+		public static int FranchiseCardsPack => (int)_UnlockPackReferences.FranchiseCardsPack;
 
-		public const int ThemeCardsPack = 786043106;
+		public static int HalloweenCards => (int)_UnlockPackReferences.HalloweenCards;
+
+		public static int NormalCardsPack => (int)_UnlockPackReferences.NormalCardsPack;
+
+		public static int ThemeCardsPack => (int)_UnlockPackReferences.ThemeCardsPack;
+
+	}
+	internal enum _UnlockPackReferences
+	{
+		ChristmasPack = 1370599169,
+
+		ChristmasSpecialCard = 83496670,
+
+		DefaultCompositePack = -2020288853,
+
+		FebruaryPack = -654728586,
+
+		FebruarySpecialCard = 2136512392,
+
+		HalloweenPack = -839658581,
+
+		JanuaryCards = 1091353668,
+
+		JanuaryPack = -1893039732,
+
+		JuneCards = 138545119,
+
+		JunePack = 1774091848,
+
+		MarchCards = 802797822,
+
+		MarchPack = -619515969,
+
+		AutumnDishCards = -320463696,
+
+		AutumnPack = 698670060,
+
+		AutumnSpecialCard = -1306979157,
+
+		FranchiseCardsPack = 1355831133,
+
+		HalloweenCards = -2066335466,
+
+		NormalCardsPack = 1659224512,
+
+		ThemeCardsPack = 786043106,
 
 	}
 	public class WorkshopRecipeReferences
 	{
-		public const int SameReshuffle2 = 1792697580;
+		public static int SameReshuffle2 => (int) _WorkshopRecipeReferences.SameReshuffle2;
 
-        public const int UpgradedintoKit2 = 1783705474;
+        public static int UpgradedintoKit2 => (int) _WorkshopRecipeReferences.UpgradedintoKit2;
 
-        public const int AnyRandom3 = -710212054;
+        public static int AnyRandom3 => (int) _WorkshopRecipeReferences.AnyRandom3;
 
-        public const int SameReshuffle3 = -495147897;
+        public static int SameReshuffle3 => (int) _WorkshopRecipeReferences.SameReshuffle3;
 
-        public const int UseUpgradeKit = 1299921510;
+        public static int UseUpgradeKit => (int)_WorkshopRecipeReferences.UseUpgradeKit;
+
+	}
+	internal enum _WorkshopRecipeReferences
+	{
+        SameReshuffle2 = 1792697580,
+
+        UpgradedintoKit2 = 1783705474,
+
+        AnyRandom3 = -710212054,
+
+        SameReshuffle3 = -495147897,
+
+		UseUpgradeKit = 1299921510,
 
 	}
 	public class CustomerTypeReferences
 	{
-		public const int Couple = -1011723507;
+		public static int Couple => (int)_CustomerTypeReferences.Couple;
 
-		public const int DoubleDates = 294644687;
+		public static int DoubleDates => (int)_CustomerTypeReferences.DoubleDates;
 
-		public const int FirstDate = -1977969432;
+		public static int FirstDate => (int)_CustomerTypeReferences.FirstDate;
 
-		public const int GenericCustomer = -260015680;
+		public static int GenericCustomer => (int)_CustomerTypeReferences.GenericCustomer;
+
+	}
+	internal enum _CustomerTypeReferences
+	{
+		Couple = -1011723507,
+
+		DoubleDates = 294644687,
+
+		FirstDate = -1977969432,
+
+		GenericCustomer = -260015680,
 
 	}
 	public class RestaurantSettingReferences
 	{
-		public const int SantaWorkshopSetting = -851159532;
+		public static int SantaWorkshopSetting => (int)_RestaurantSettingReferences.SantaWorkshopSetting;
 
-		public const int FebruarySetting = 1766067755;
+		public static int FebruarySetting => (int)_RestaurantSettingReferences.FebruarySetting;
 
-		public const int JanuarySetting = 507410699;
+		public static int JanuarySetting => (int)_RestaurantSettingReferences.JanuarySetting;
 
-		public const int MarchSetting = 1736695492;
+		public static int JuneSettingCoffeeshop => (int)_RestaurantSettingReferences.JuneSettingCoffeeshop;
 
-		public const int Autumn = -405456638;
+		public static int MarchSettingTurbo => (int)_RestaurantSettingReferences.MarchSettingTurbo;
 
-		public const int Alpine = -1864906012;
+		public static int Autumn => (int)_RestaurantSettingReferences.Autumn;
 
-		public const int City = 2002876295;
+		public static int Alpine => (int)_RestaurantSettingReferences.Alpine;
 
-		public const int Country = 447437163;
+		public static int City => (int)_RestaurantSettingReferences.City;
 
-		public const int Halloween = 82131534;
+		public static int Country => (int)_RestaurantSettingReferences.Country;
+
+		public static int Halloween => (int)_RestaurantSettingReferences.Halloween;
+
+	}
+	internal enum _RestaurantSettingReferences
+	{
+		SantaWorkshopSetting = -851159532,
+
+		FebruarySetting = 1766067755,
+
+		JanuarySetting = 507410699,
+
+		JuneSettingCoffeeshop = 1970109064,
+
+		MarchSettingTurbo = 1736695492,
+
+		Autumn = -405456638,
+
+		Alpine = -1864906012,
+
+		City = 2002876295,
+
+		Country = 447437163,
+
+		Halloween = 82131534,
 
 	}
 }

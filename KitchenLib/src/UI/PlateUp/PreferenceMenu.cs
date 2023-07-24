@@ -1,18 +1,13 @@
 ﻿using Kitchen;
 using Kitchen.Modules;
-using KitchenLib.Customs;
 using KitchenLib.Preferences;
-using KitchenLib.Utils;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
 using UnityEngine;
-using Steamworks.Data;
-using KitchenMods;
 using KitchenLib.Views;
+using KitchenLib.UI.PlateUp;
 using KitchenLib.src.UI.PlateUp;
-using KitchenLib.Systems;
 
 namespace KitchenLib.UI
 {
@@ -62,6 +57,13 @@ namespace KitchenLib.UI
 
 				if (Directory.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp"))
 					DeleteDirectory(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp");
+			}, 0, 1f, 0.2f);
+
+			New<SpacerElement>(true);
+
+			AddButton("KitchenLib Beta", async delegate (int i)
+			{
+				RequestSubMenu(typeof(KitchenLibBetaMenu<T>));
 			}, 0, 1f, 0.2f);
 
 			New<SpacerElement>(true);

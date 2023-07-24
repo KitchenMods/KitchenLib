@@ -16,7 +16,9 @@ namespace KitchenLib.Customs
         {
             Decor result = ScriptableObject.CreateInstance<Decor>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomDecor.Convert] [1.1] Converting Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Decor>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
@@ -31,7 +33,9 @@ namespace KitchenLib.Customs
         {
             Decor result = (Decor)gameDataObject;
 
-            if (result.ApplicatorAppliance != ApplicatorAppliance) result.ApplicatorAppliance = ApplicatorAppliance;
+			Main.LogDebug($"[CustomDecor.AttachDependentProperties] [1.1] Converting Base");
+
+			if (result.ApplicatorAppliance != ApplicatorAppliance) result.ApplicatorAppliance = ApplicatorAppliance;
         }
     }
 }

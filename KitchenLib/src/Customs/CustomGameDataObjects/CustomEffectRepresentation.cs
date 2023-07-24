@@ -21,13 +21,17 @@ namespace KitchenLib.Customs
         {
             EffectRepresentation result = ScriptableObject.CreateInstance<EffectRepresentation>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomEffectRepresentation.Convert] [1.1] Converting Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<EffectRepresentation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
             if (result.Info != Info) result.Info = Info;
 
-            if (InfoList.Count > 0)
+			Main.LogDebug($"[CustomEffectRepresentation.Convert] [1.2] Converting Overrides");
+
+			if (InfoList.Count > 0)
             {
                 result.Info = new LocalisationObject<EffectInfo>();
                 foreach ((Locale, EffectInfo) info in InfoList)

@@ -18,16 +18,14 @@ namespace KitchenLib.Patches
 	{
 		public static void Postfix(DisplayVersion __instance)
 		{
-			if (Main.manager.GetPreference<PreferenceBool>("datacollection").Value && Main.manager.GetPreference<PreferenceBool>("over13").Value)
-				__instance.Text.text = __instance.Text.text + "!";
-			else
-				__instance.Text.text = __instance.Text.text + ".";
+			__instance.Text.text = __instance.Text.text + "!";
 		}
 	}
 	#endregion
 
 	#region Multiplayer player profiles bug fix
 	
+	/*
 	[HarmonyPatch(typeof(PlayerInfoManager.UpdateView), "HandleResponse")]
 	internal class PlayerInfoManager_Patch
 	{
@@ -78,6 +76,7 @@ namespace KitchenLib.Patches
 			}
 		}
 	}
+	*/
 
 	#endregion
 }

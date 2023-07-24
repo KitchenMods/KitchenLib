@@ -17,6 +17,7 @@ namespace KitchenLib.DataDumper.Dumpers
 			foreach (ItemGroup itemGroup in GameData.Main.Get<ItemGroup>())
 			{
 				itemGroupDump.AppendLine($"{itemGroup.ID},{itemGroup.name},{itemGroup.CanContainSide},{itemGroup.ApplyProcessesToComponents},{itemGroup.AutoCollapsing}");
+
 				foreach (ItemGroup.ItemSet itemGroupSet in itemGroup.DerivedSets)
 				{
 					List<string> array = new List<string>();

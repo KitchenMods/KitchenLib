@@ -14,7 +14,9 @@ namespace KitchenLib.Customs
         {
             LevelUpgradeSet result = ScriptableObject.CreateInstance<LevelUpgradeSet>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomLevelUpgradeSet.Convert] [1.1] Converting Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<LevelUpgradeSet>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;

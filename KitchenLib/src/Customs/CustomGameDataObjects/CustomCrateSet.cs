@@ -14,7 +14,9 @@ namespace KitchenLib.Customs
         {
             CrateSet result = ScriptableObject.CreateInstance<CrateSet>();
 
-            if (BaseGameDataObjectID != -1)
+			Main.LogDebug($"[CustomCrateSet.Convert] [1.1] Converting Base");
+
+			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<CrateSet>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
             if (result.ID != ID) result.ID = ID;
@@ -26,7 +28,9 @@ namespace KitchenLib.Customs
         {
             CrateSet result = (CrateSet)gameDataObject;
 
-            if (result.Options != Options) result.Options = Options;
+			Main.LogDebug($"[CustomCrateSet.AttachDependentProperties] [1.1] Converting Base");
+
+			if (result.Options != Options) result.Options = Options;
         }
     }
 }
