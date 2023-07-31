@@ -23,6 +23,7 @@ namespace KitchenLib.Patches
 		{
 			Main.LogDebug("[RegisterCustomGDOsPatch.Postfix] [1.1] Begin Custom GDO Registration");
 			MaterialUtils.SetupMaterialIndex();
+			FontUtils.SetupFontIndex();
 			GDOUtils.SetupGDOIndex(__result);
 			ColorblindUtils.Init(__result);
 
