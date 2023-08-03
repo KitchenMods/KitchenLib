@@ -12,7 +12,11 @@ namespace KitchenLib.Customs
 	public abstract class CustomDish : CustomUnlock<Dish>
     {
         public virtual DishType Type { get; protected set; }
+		public virtual int Difficulty { get; protected set; }
+		public virtual Item UnlockItemOverride { get; protected set; }
+		public virtual bool HideInfoPanel { get; protected set; }
         public virtual string AchievementName { get; protected set; }
+		public virtual List<Dish> AlsoAddRecipes { get; protected set; } = new List<Dish>();
         public virtual HashSet<Dish.IngredientUnlock> ExtraOrderUnlocks { get; protected set; } = new HashSet<Dish.IngredientUnlock>();
         public virtual List<string> StartingNameSet { get; protected set; } = new List<string>();
         public virtual HashSet<Item> MinimumIngredients { get; protected set; } = new HashSet<Item>();
@@ -44,6 +48,8 @@ namespace KitchenLib.Customs
 
             if (result.ID != ID) result.ID = ID;
             if (result.Type != Type) result.Type = Type;
+            if (result.Difficulty != Difficulty) result.Difficulty = Difficulty;
+            if (result.HideInfoPanel != HideInfoPanel) result.HideInfoPanel = HideInfoPanel;
             if (result.AchievementName != AchievementName) result.AchievementName = AchievementName;
             if (result.StartingNameSet != StartingNameSet) result.StartingNameSet = StartingNameSet;
             if (result.IconPrefab != IconPrefab) result.IconPrefab = IconPrefab;
@@ -83,7 +89,9 @@ namespace KitchenLib.Customs
             Dish result = (Dish)gameDataObject;
 
 			Main.LogDebug($"[CustomDish.AttachDependentProperties] [1.1] Converting Base");
-
+			
+			if (result.UnlockItemOverride != UnlockItemOverride) result.UnlockItemOverride = UnlockItemOverride;
+			if (result.AlsoAddRecipes != AlsoAddRecipes) result.AlsoAddRecipes = AlsoAddRecipes;
 			if (result.ExtraOrderUnlocks != ExtraOrderUnlocks) result.ExtraOrderUnlocks = ExtraOrderUnlocks;
             if (result.MinimumIngredients != MinimumIngredients) result.MinimumIngredients = MinimumIngredients;
             if (result.RequiredProcesses != RequiredProcesses) result.RequiredProcesses = RequiredProcesses;

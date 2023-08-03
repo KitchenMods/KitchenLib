@@ -7,7 +7,6 @@ using System.IO.Compression;
 using UnityEngine;
 using KitchenLib.Views;
 using KitchenLib.UI.PlateUp;
-using KitchenLib.src.UI.PlateUp;
 
 namespace KitchenLib.UI
 {

@@ -16,9 +16,6 @@ using System.Runtime.CompilerServices;
 using System;
 using KitchenData;
 using System.IO;
-using KitchenLib.References;
-using Mono.WebBrowser;
-using KitchenLib.src.UI.PlateUp;
 
 namespace KitchenLib
 {
@@ -45,17 +42,17 @@ namespace KitchenLib
 		/// <summary>
 		/// The version of the mod.
 		/// </summary>
-		internal const string MOD_VERSION = "0.7.9";
+		internal const string MOD_VERSION = "0.8.0-";
 
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string MOD_BETA_VERSION = "";
+		internal const string MOD_BETA_VERSION = "1";
 
 		/// <summary>
 		/// The compatible versions of the mod.
 		/// </summary>
-		internal const string MOD_COMPATIBLE_VERSIONS = ">=1.1.6";
+		internal const string MOD_COMPATIBLE_VERSIONS = ">=1.1.7";
 
 		/// <summary>
 		/// The holder for synchronizing views.

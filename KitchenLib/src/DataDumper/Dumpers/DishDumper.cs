@@ -17,11 +17,12 @@ namespace KitchenLib.DataDumper.Dumpers
 			StringBuilder dishBlockProvidersDump = new StringBuilder();
 			StringBuilder dishPrerequisiteDishesDump = new StringBuilder();
 			StringBuilder dishAllowedFoodsDump = new StringBuilder();
+			StringBuilder dishAlsoAddRecipes = new StringBuilder();
 
 			StringBuilder dishRequiresDump = new StringBuilder();
 			StringBuilder dishBlockedByDump = new StringBuilder();
 
-			dishDump.AppendLine("ID,Type,Type,AchievementName,IconPrefab," +
+			dishDump.AppendLine("ID,Difficulty,UnlockItemOverride,HideInfoPanel,Type,Type,AchievementName,IconPrefab," +
 				"DisplayPrefab,IsSpeedrunDish,ExpReward,IsUnlockable,UnlockGroup,CardType," +
 				"MinimumFranchiseTier,IsSpecificFranchiseTier,CustomerMultiplier,SelectionBias,BlocksAllOtherFood,ForceFranchiseSetting");
 
@@ -34,13 +35,14 @@ namespace KitchenLib.DataDumper.Dumpers
 			dishBlockProvidersDump.AppendLine("ID,Type,Item");
 			dishPrerequisiteDishesDump.AppendLine("ID,Type,Dish");
 			dishAllowedFoodsDump.AppendLine("ID,Type,Dish");
+			dishAlsoAddRecipes.AppendLine("ID,Type,Dish");
 
 			dishRequiresDump.AppendLine("ID,Type,Unlock");
 			dishBlockedByDump.AppendLine("ID,Type,Unlock");
 
 			foreach (Dish dish in GameData.Main.Get<Dish>())
 			{
-				dishDump.AppendLine($"{dish.ID},{dish.name},{dish.Type},{dish.AchievementName},{dish.IconPrefab}," +
+				dishDump.AppendLine($"{dish.ID},{dish.name},{dish.Difficulty},{dish.UnlockItemOverride},{dish.HideInfoPanel},{dish.Type},{dish.AchievementName},{dish.IconPrefab}," +
 					$"{dish.DisplayPrefab},{dish.IsSpeedrunDish},{dish.ExpReward},{dish.IsUnlockable},{dish.UnlockGroup},{dish.CardType}," +
 					$"{dish.MinimumFranchiseTier},{dish.IsSpecificFranchiseTier},{dish.CustomerMultiplier},{dish.SelectionBias},{dish.BlocksAllOtherFood},{dish.ForceFranchiseSetting}");
 
@@ -76,6 +78,9 @@ namespace KitchenLib.DataDumper.Dumpers
 
 				foreach (Unlock allowedFood in dish.AllowedFoods)
 					dishAllowedFoodsDump.AppendLine($"{dish.ID},{dish.name},{allowedFood}");
+
+				foreach (Dish AlsoAddRecipes in dish.AlsoAddRecipes)
+					dishAlsoAddRecipes.AppendLine($"{dish.ID},{dish.name},{AlsoAddRecipes}");
 			}
 
 			SaveCSV("Dish", "Dishs", dishDump);
@@ -90,6 +95,7 @@ namespace KitchenLib.DataDumper.Dumpers
 			SaveCSV("Dish", "DishRequires", dishRequiresDump);
 			SaveCSV("Dish", "DishBlockedBy", dishBlockedByDump);
 			SaveCSV("Dish", "DishAllowedFoods", dishAllowedFoodsDump);
+			SaveCSV("Dish", "DishAlsoAddRecipes", dishAlsoAddRecipes);
 		}
 	}
 }

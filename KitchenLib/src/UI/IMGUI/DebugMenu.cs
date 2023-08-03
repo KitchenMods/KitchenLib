@@ -15,6 +15,7 @@ using System.IO;
 using Unity.Entities;
 using UnityEngine;
 using KitchenLib.Customs;
+using System.Reflection;
 
 namespace KitchenLib.UI
 {
@@ -65,6 +66,23 @@ namespace KitchenLib.UI
 				Dump<ContractDumper>();
 				Dump<CustomerTypeDumper>();
 				Dump<CustomerGroupDumper>();
+				List<string> GDOs = new List<string>();
+				if (File.Exists(Application.dataPath + "/Managed/Kitchen.GameData.dll"))
+				{
+					Assembly assem = Assembly.LoadFile(Application.dataPath + "/Managed/Kitchen.GameData.dll");
+					foreach (Type type in assem.GetTypes())
+					{
+						if (type.IsSubclassOf(typeof(GameDataObject)))
+						{
+							GDOs.Add(type.Name);
+							foreach (FieldInfo info in type.GetFields())
+							{
+								GDOs.Add("	" + info.Name);
+							}
+						}
+					}
+				}
+				File.WriteAllLines(Path.Combine(Application.persistentDataPath, "DataDump", "GDOs.txt"), GDOs.ToArray());
 			}
 			if (GUILayout.Button("Refresh Dish Options"))
 			{
@@ -142,7 +160,7 @@ namespace KitchenLib.UI
 			list.Add("    {");
 			foreach (T x in gamedata.Get<T>())
 			{
-				list.Add($"        public static int {(x.name).Replace(" ", "").Replace("-", "")} => (int)_{typeof(T).Name}References.{(x.name).Replace(" ", "").Replace("-", "")};\n");
+				list.Add($"        public static int {(x.name).Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "")} => (int)_{typeof(T).Name}References.{(x.name).Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "")};\n");
 			}
 			list.Add("    }");
 		}
@@ -153,7 +171,7 @@ namespace KitchenLib.UI
 			list.Add("    {");
 			foreach (T x in gamedata.Get<T>())
 			{
-				list.Add($"        {(x.name).Replace(" ", "").Replace("-", "")} = {x.ID},\n");
+				list.Add($"        {(x.name).Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "")} = {x.ID},\n");
 			}
 			list.Add("    }");
 		}

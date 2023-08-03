@@ -9,7 +9,7 @@ using KitchenLib.Views;
 using KitchenLib.UI.PlateUp;
 using Steamworks.Data;
 
-namespace KitchenLib.src.UI.PlateUp
+namespace KitchenLib.UI.PlateUp
 {
 	public class KitchenLibBetaMenu<T> : KLMenu<T>
 	{
