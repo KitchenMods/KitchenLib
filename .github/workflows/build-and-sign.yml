@@ -44,26 +44,11 @@ jobs:
       uses: CyberAndrii/steam-totp@c7f636bc64e77f1b901e0420b7890813141508ee
       with:
         shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
-
-    - name: Restore Cache
-      id: cache-things-restore
-      uses: actions/cache/restore@v3
-      with:
-        path: depots
-        key: plateup-cache
-        restore-keys: |
-          plateup-cache
         
     - name: Download PlateUp Files
       run: |
           ./DepotDownloader -app 1599600 -depot 1599601 -username ${{ secrets.STEAM_USERNAME }} -password ${{ secrets.STEAM_PASSWORD }} <<< "${{ steps.generate.outputs.code }}"
-    
-    - name: Save Cache
-      id: cache-things-save
-      uses: actions/cache/save@v3
-      with:
-        path: depots
-        key: plateup-cache-${{ hashFiles('depots/**/*.dll') }}
+  
 
      # Install the .NET Core workload
     - name: Install .NET Core
@@ -84,6 +69,7 @@ jobs:
         dotnet build -c $Configuration -p:GamePath=`ls -d $PWD/depots/1599601/**`/PlateUp -p:EnableModDeployLocal='false' -p:EnableGameDebugging='false' --os windows --no-self-contained ./KitchenLib/KitchenLib.csproj
         cp ./KitchenLib/bin/$Configuration/net472/windows-x64/KitchenLib-$Configuration.dll ./KitchenLib/content/
         cp ./KitchenLib/bin/$Configuration/net472/KitchenLib-$Configuration.xml ./KitchenLib/content/
+        cp ./KitchenLib/bin/$Configuration/net472/kitchenlib.assets ./KitchenLib/content/
       env:
         Configuration: ${{ matrix.configuration }}
 
