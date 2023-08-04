@@ -1,9 +1,5 @@
-﻿using Kitchen;
-using Kitchen.Modules;
-using KitchenLib.Preferences;
-using System.Collections.Generic;
+﻿using Kitchen.Modules;
 using System.IO;
-using System.IO.Compression;
 using UnityEngine;
 using KitchenLib.Views;
 using KitchenLib.UI.PlateUp;
@@ -13,56 +9,19 @@ namespace KitchenLib.UI
 	internal class PreferenceMenu<T> : KLMenu<T>
 	{
 		public PreferenceMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
-		
-		private Dictionary<ulong, Steamworks.Ugc.Item> Mods = new Dictionary<ulong, Steamworks.Ugc.Item>();
 
 		public override void Setup(int player_id)
 		{
-			Player player = null;
-			CPlayerCosmetics cosmetics = new CPlayerCosmetics();
-			PlayerManager pm = null;
-			if (typeof(T) == typeof(PauseMenuAction))
-			{
-				pm = Unity.Entities.World.DefaultGameObjectInjectionWorld.GetExistingSystem<PlayerManager>();
-				if (pm != null)
-				{
-					pm.GetPlayer(player_id, out player, false);
-					cosmetics = pm.EntityManager.GetComponentData<CPlayerCosmetics>(player.Entity);
-				}
-			}
-
 			New<SpacerElement>(true);
 
-			AddLabel("Changing Main Menu");
-			AddSelect(scrollingMenu);
-			scrollingMenu.OnChanged += delegate (object _, bool result)
+			AddButton("User Options", async delegate (int i)
 			{
-				Main.manager.GetPreference<PreferenceBool>("enableChangingMenu").Set(result);
-			};
-
-			New<SpacerElement>(true);
-
-			AddButton("Dump Details", delegate (int i)
-			{
-				if (Directory.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp"))
-					DeleteDirectory(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp");
-
-				if (File.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp.zip"))
-					File.Delete(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp.zip");
-
-				CopyFilesRecursively(Application.persistentDataPath, System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp");
-
-				ZipFile.CreateFromDirectory(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp", System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp.zip");
-
-				if (Directory.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp"))
-					DeleteDirectory(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/PlateUp");
+				RequestSubMenu(typeof(UserOptions<T>));
 			}, 0, 1f, 0.2f);
 
-			New<SpacerElement>(true);
-
-			AddButton("KitchenLib Beta", async delegate (int i)
+			AddButton("Developer Options", async delegate (int i)
 			{
-				RequestSubMenu(typeof(KitchenLibBetaMenu<T>));
+				RequestSubMenu(typeof(DeveloperOptions<T>));
 			}, 0, 1f, 0.2f);
 
 			New<SpacerElement>(true);
@@ -82,7 +41,6 @@ namespace KitchenLib.UI
 				RequestPreviousMenu();
 			}, 0, 1f, 0.2f);
 		}
-		private Option<bool> scrollingMenu = new Option<bool>(new List<bool> { true, false }, Main.manager.GetPreference<PreferenceBool>("enableChangingMenu").Value, new List<string> { "Enabled", "Disabled" });
 
 		private static void CopyFilesRecursively(string sourcePath, string targetPath)
 		{

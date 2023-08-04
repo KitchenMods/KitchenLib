@@ -156,7 +156,7 @@ namespace KitchenLib.UI
 
 		private void GenerateReferenceClass<T>(ref List<string> list, GameData gamedata) where T : GameDataObject
 		{
-			list.Add($"    public class {typeof(T).Name}References");
+			list.Add($"    public static class {typeof(T).Name}References");
 			list.Add("    {");
 			foreach (T x in gamedata.Get<T>())
 			{
@@ -167,7 +167,7 @@ namespace KitchenLib.UI
 
 		private void GenerateEnumClass<T>(ref List<string> list, GameData gamedata) where T : GameDataObject
 		{
-			list.Add($"    internal enum _{typeof(T).Name}References");
+			list.Add($"    public enum _{typeof(T).Name}References");
 			list.Add("    {");
 			foreach (T x in gamedata.Get<T>())
 			{

@@ -1,20 +1,28 @@
 ManifestFileVersion: 0
-CRC: 3670940416
+CRC: 2637982322
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5d4ab7ed6d5756ea516b1ffe8ae4db60
+    Hash: d50999386de63a05484afeecc497fb92
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 27295f96fcdc2b917bd061e8817c7e02
+    Hash: becf1de82c3203198347d2b4cf701dc7
 HashAppended: 0
 ClassTypes:
 - Class: 1
   Script: {instanceID: 0}
 - Class: 4
   Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Prefabs/Error_Appliance.prefab
+- Assets/Textures/hats.png
+- Assets/Textures/previousPage.png
+- Assets/Textures/vest.png
 - Assets/Prefabs/Error_Item.prefab
+- Assets/Textures/nextPage.png
 Dependencies: []

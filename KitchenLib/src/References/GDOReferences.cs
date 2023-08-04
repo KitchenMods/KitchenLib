@@ -1,6 +1,6 @@
 namespace KitchenLib.References
 {
-	public class ApplianceReferences
+	public static class ApplianceReferences
 	{
 		public static int MixerHeated => (int)_ApplianceReferences.MixerHeated;
 
@@ -657,7 +657,7 @@ namespace KitchenLib.References
 		public static int kitchenlibSyncModsViewHolder => (int)_ApplianceReferences.kitchenlibSyncModsViewHolder;
 
 	}
-	internal enum _ApplianceReferences
+	public enum _ApplianceReferences
 	{
 		MixerHeated = 505496455,
 
@@ -1314,7 +1314,7 @@ namespace KitchenLib.References
 		kitchenlibSyncModsViewHolder = -1995745069,
 
 	}
-	public class CompositeUnlockPackReferences
+	public static class CompositeUnlockPackReferences
 	{
 		public static int ChristmasPack => (int)_CompositeUnlockPackReferences.ChristmasPack;
 
@@ -1333,7 +1333,7 @@ namespace KitchenLib.References
 		public static int AutumnPack => (int)_CompositeUnlockPackReferences.AutumnPack;
 
 	}
-	internal enum _CompositeUnlockPackReferences
+	public enum _CompositeUnlockPackReferences
 	{
 		ChristmasPack = 1370599169,
 
@@ -1352,13 +1352,13 @@ namespace KitchenLib.References
 		AutumnPack = 698670060,
 
 	}
-	public class CrateSetReferences
+	public static class CrateSetReferences
 	{
 	}
-	internal enum _CrateSetReferences
+	public enum _CrateSetReferences
 	{
 	}
-	public class DecorReferences
+	public static class DecorReferences
 	{
 		public static int FloorCarpetBlue => (int)_DecorReferences.FloorCarpetBlue;
 
@@ -1439,7 +1439,7 @@ namespace KitchenLib.References
 		public static int WallpaperTurkey => (int)_DecorReferences.WallpaperTurkey;
 
 	}
-	internal enum _DecorReferences
+	public enum _DecorReferences
 	{
 		FloorCarpetBlue = 264635314,
 
@@ -1520,7 +1520,7 @@ namespace KitchenLib.References
 		WallpaperTurkey = 2057848768,
 
 	}
-	public class DishReferences
+	public static class DishReferences
 	{
 		public static int CoffeeDessert => (int)_DishReferences.CoffeeDessert;
 
@@ -1713,7 +1713,7 @@ namespace KitchenLib.References
 		public static int TurkeyBase => (int)_DishReferences.TurkeyBase;
 
 	}
-	internal enum _DishReferences
+	public enum _DishReferences
 	{
 		CoffeeDessert = -85470894,
 
@@ -1906,7 +1906,7 @@ namespace KitchenLib.References
 		TurkeyBase = 1551533879,
 
 	}
-	public class EffectReferences
+	public static class EffectReferences
 	{
 		public static int Breadsticks => (int)_EffectReferences.Breadsticks;
 
@@ -1917,7 +1917,7 @@ namespace KitchenLib.References
 		public static int SharpCutlery => (int)_EffectReferences.SharpCutlery;
 
 	}
-	internal enum _EffectReferences
+	public enum _EffectReferences
 	{
 		Breadsticks = 1302953360,
 
@@ -1928,7 +1928,7 @@ namespace KitchenLib.References
 		SharpCutlery = 510269892,
 
 	}
-	public class EffectRepresentationReferences
+	public static class EffectRepresentationReferences
 	{
 		public static int CalmingPainting => (int)_EffectRepresentationReferences.CalmingPainting;
 
@@ -1941,7 +1941,7 @@ namespace KitchenLib.References
 		public static int SinkPenalty => (int)_EffectRepresentationReferences.SinkPenalty;
 
 	}
-	internal enum _EffectRepresentationReferences
+	public enum _EffectRepresentationReferences
 	{
 		CalmingPainting = -2022756845,
 
@@ -1954,21 +1954,21 @@ namespace KitchenLib.References
 		SinkPenalty = 1715530618,
 
 	}
-	public class GardenProfileReferences
+	public static class GardenProfileReferences
 	{
 		public static int Flowers => (int)_GardenProfileReferences.Flowers;
 
 		public static int OvernightSpawns => (int)_GardenProfileReferences.OvernightSpawns;
 
 	}
-	internal enum _GardenProfileReferences
+	public enum _GardenProfileReferences
 	{
 		Flowers = -1099437648,
 
 		OvernightSpawns = 792356959,
 
 	}
-	public class ItemReferences
+	public static class ItemReferences
 	{
 		public static int BeansCooked => (int)_ItemReferences.BeansCooked;
 
@@ -2685,7 +2685,7 @@ namespace KitchenLib.References
 		public static int ResearchFlask => (int)_ItemReferences.ResearchFlask;
 
 	}
-	internal enum _ItemReferences
+	public enum _ItemReferences
 	{
 		BeansCooked = 1286433124,
 
@@ -3402,7 +3402,7 @@ namespace KitchenLib.References
 		ResearchFlask = 56610526,
 
 	}
-	public class ItemGroupReferences
+	public static class ItemGroupReferences
 	{
 		public static int BeansRawPot => (int)_ItemGroupReferences.BeansRawPot;
 
@@ -3613,7 +3613,7 @@ namespace KitchenLib.References
 		public static int TurkeyPlated => (int)_ItemGroupReferences.TurkeyPlated;
 
 	}
-	internal enum _ItemGroupReferences
+	public enum _ItemGroupReferences
 	{
 		BeansRawPot = -1921097327,
 
@@ -3824,7 +3824,7 @@ namespace KitchenLib.References
 		TurkeyPlated = 1792757441,
 
 	}
-	public class LayoutProfileReferences
+	public static class LayoutProfileReferences
 	{
 		public static int BakeryLayout => (int)_LayoutProfileReferences.BakeryLayout;
 
@@ -3849,7 +3849,7 @@ namespace KitchenLib.References
 		public static int MediumLayout => (int)_LayoutProfileReferences.MediumLayout;
 
 	}
-	internal enum _LayoutProfileReferences
+	public enum _LayoutProfileReferences
 	{
 		BakeryLayout = 206333080,
 
@@ -3874,7 +3874,7 @@ namespace KitchenLib.References
 		MediumLayout = -2045800810,
 
 	}
-	public class LevelUpgradeSetReferences
+	public static class LevelUpgradeSetReferences
 	{
 		public static int Contracts => (int)_LevelUpgradeSetReferences.Contracts;
 
@@ -3887,7 +3887,7 @@ namespace KitchenLib.References
 		public static int Special => (int)_LevelUpgradeSetReferences.Special;
 
 	}
-	internal enum _LevelUpgradeSetReferences
+	public enum _LevelUpgradeSetReferences
 	{
 		Contracts = 1232525840,
 
@@ -3900,7 +3900,7 @@ namespace KitchenLib.References
 		Special = -1300343155,
 
 	}
-	public class ModularUnlockPackReferences
+	public static class ModularUnlockPackReferences
 	{
 		public static int ChristmasSpecialCard => (int)_ModularUnlockPackReferences.ChristmasSpecialCard;
 
@@ -3925,7 +3925,7 @@ namespace KitchenLib.References
 		public static int ThemeCardsPack => (int)_ModularUnlockPackReferences.ThemeCardsPack;
 
 	}
-	internal enum _ModularUnlockPackReferences
+	public enum _ModularUnlockPackReferences
 	{
 		ChristmasSpecialCard = 83496670,
 
@@ -3950,7 +3950,7 @@ namespace KitchenLib.References
 		ThemeCardsPack = 786043106,
 
 	}
-	public class PlayerCosmeticReferences
+	public static class PlayerCosmeticReferences
 	{
 		public static int ApronOutfit => (int)_PlayerCosmeticReferences.ApronOutfit;
 
@@ -4026,8 +4026,9 @@ namespace KitchenLib.References
 
 		public static int TurkeyHat => (int)_PlayerCosmeticReferences.TurkeyHat;
 
+
 	}
-	internal enum _PlayerCosmeticReferences
+	public enum _PlayerCosmeticReferences
 	{
 		ApronOutfit = 1057760440,
 
@@ -4103,8 +4104,9 @@ namespace KitchenLib.References
 
 		TurkeyHat = -1920946004,
 
+
 	}
-	public class ProcessReferences
+	public static class ProcessReferences
 	{
 		public static int FrothMilk => (int)_ProcessReferences.FrothMilk;
 
@@ -4137,7 +4139,7 @@ namespace KitchenLib.References
 		public static int Purchase => (int)_ProcessReferences.Purchase;
 
 	}
-	internal enum _ProcessReferences
+	public enum _ProcessReferences
 	{
 		FrothMilk = 510796221,
 
@@ -4170,7 +4172,7 @@ namespace KitchenLib.References
 		Purchase = 623753606,
 
 	}
-	public class RandomUpgradeSetReferences
+	public static class RandomUpgradeSetReferences
 	{
 		public static int FailureRewards => (int)_RandomUpgradeSetReferences.FailureRewards;
 
@@ -4181,7 +4183,7 @@ namespace KitchenLib.References
 		public static int MediumRewards => (int)_RandomUpgradeSetReferences.MediumRewards;
 
 	}
-	internal enum _RandomUpgradeSetReferences
+	public enum _RandomUpgradeSetReferences
 	{
 		FailureRewards = 1965532508,
 
@@ -4192,21 +4194,21 @@ namespace KitchenLib.References
 		MediumRewards = -1658553093,
 
 	}
-	public class ResearchReferences
+	public static class ResearchReferences
 	{
 		public static int Fish => (int)_ResearchReferences.Fish;
 
 		public static int Steak => (int)_ResearchReferences.Steak;
 
 	}
-	internal enum _ResearchReferences
+	public enum _ResearchReferences
 	{
 		Fish = -558005112,
 
 		Steak = -352638173,
 
 	}
-	public class ShopReferences
+	public static class ShopReferences
 	{
 		public static int Christmas => (int)_ShopReferences.Christmas;
 
@@ -4227,7 +4229,7 @@ namespace KitchenLib.References
 		public static int Washing => (int)_ShopReferences.Washing;
 
 	}
-	internal enum _ShopReferences
+	public enum _ShopReferences
 	{
 		Christmas = -206225979,
 
@@ -4248,13 +4250,13 @@ namespace KitchenLib.References
 		Washing = -1807949493,
 
 	}
-	public class ThemeUnlockReferences
+	public static class ThemeUnlockReferences
 	{
 	}
-	internal enum _ThemeUnlockReferences
+	public enum _ThemeUnlockReferences
 	{
 	}
-	public class UnlockReferences
+	public static class UnlockReferences
 	{
 		public static int CoffeeDessert => (int)_UnlockReferences.CoffeeDessert;
 
@@ -4669,7 +4671,7 @@ namespace KitchenLib.References
 		public static int OldFranchise2PatienceDecrease => (int)_UnlockReferences.OldFranchise2PatienceDecrease;
 
 	}
-	internal enum _UnlockReferences
+	public enum _UnlockReferences
 	{
 		CoffeeDessert = -85470894,
 
@@ -5084,7 +5086,7 @@ namespace KitchenLib.References
 		OldFranchise2PatienceDecrease = 1689349004,
 
 	}
-	public class UnlockCardReferences
+	public static class UnlockCardReferences
 	{
 		public static int ChristmasConveyors => (int)_UnlockCardReferences.ChristmasConveyors;
 
@@ -5309,7 +5311,7 @@ namespace KitchenLib.References
 		public static int OldFranchise2PatienceDecrease => (int)_UnlockCardReferences.OldFranchise2PatienceDecrease;
 
 	}
-	internal enum _UnlockCardReferences
+	public enum _UnlockCardReferences
 	{
 		ChristmasConveyors = -361249036,
 
@@ -5534,7 +5536,7 @@ namespace KitchenLib.References
 		OldFranchise2PatienceDecrease = 1689349004,
 
 	}
-	public class UnlockPackReferences
+	public static class UnlockPackReferences
 	{
 		public static int ChristmasPack => (int)_UnlockPackReferences.ChristmasPack;
 
@@ -5575,7 +5577,7 @@ namespace KitchenLib.References
 		public static int ThemeCardsPack => (int)_UnlockPackReferences.ThemeCardsPack;
 
 	}
-	internal enum _UnlockPackReferences
+	public enum _UnlockPackReferences
 	{
 		ChristmasPack = 1370599169,
 
@@ -5616,7 +5618,7 @@ namespace KitchenLib.References
 		ThemeCardsPack = 786043106,
 
 	}
-	public class WorkshopRecipeReferences
+	public static class WorkshopRecipeReferences
 	{
 		public static int SameReshuffle2 => (int) _WorkshopRecipeReferences.SameReshuffle2;
 
@@ -5629,7 +5631,7 @@ namespace KitchenLib.References
         public static int UseUpgradeKit => (int)_WorkshopRecipeReferences.UseUpgradeKit;
 
 	}
-	internal enum _WorkshopRecipeReferences
+	public enum _WorkshopRecipeReferences
 	{
         SameReshuffle2 = 1792697580,
 
@@ -5642,7 +5644,7 @@ namespace KitchenLib.References
 		UseUpgradeKit = 1299921510,
 
 	}
-	public class CustomerTypeReferences
+	public static class CustomerTypeReferences
 	{
 		public static int Couple => (int)_CustomerTypeReferences.Couple;
 
@@ -5653,7 +5655,7 @@ namespace KitchenLib.References
 		public static int GenericCustomer => (int)_CustomerTypeReferences.GenericCustomer;
 
 	}
-	internal enum _CustomerTypeReferences
+	public enum _CustomerTypeReferences
 	{
 		Couple = -1011723507,
 
@@ -5664,7 +5666,7 @@ namespace KitchenLib.References
 		GenericCustomer = -260015680,
 
 	}
-	public class RestaurantSettingReferences
+	public static class RestaurantSettingReferences
 	{
 		public static int BakerySetting => (int)_RestaurantSettingReferences.BakerySetting;
 
@@ -5689,7 +5691,7 @@ namespace KitchenLib.References
 		public static int Halloween => (int)_RestaurantSettingReferences.Halloween;
 
 	}
-	internal enum _RestaurantSettingReferences
+	public enum _RestaurantSettingReferences
 	{
 		BakerySetting = -31920316,
 

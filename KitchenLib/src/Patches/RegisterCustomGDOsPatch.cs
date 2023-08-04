@@ -9,7 +9,7 @@ using KitchenLib.Systems;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using UnityEngine;
-using Shapes;
+using KitchenLib.src.Patches;
 
 namespace KitchenLib.Patches
 {
@@ -156,6 +156,16 @@ namespace KitchenLib.Patches
 						}
 
 						ItemGroupViewUtils.AddPossibleSide(__result, item);
+					}
+
+					if (gameDataObject.GetType() == typeof(PlayerCosmetic))
+					{
+						PlayerCosmetic cosmetic = (PlayerCosmetic)gameDataObject;
+						if (!cosmetic.DisableInGame)
+						{
+							if (cosmetic.CosmeticType == CosmeticType.Hat) { CosmeticMenuPatch.Hats.Add(cosmetic); }
+							if (cosmetic.CosmeticType == CosmeticType.Outfit) { CosmeticMenuPatch.Outfits.Add(cosmetic); }
+						}
 					}
 				}
 			}
