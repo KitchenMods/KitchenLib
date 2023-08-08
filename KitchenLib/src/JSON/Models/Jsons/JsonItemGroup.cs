@@ -1,13 +1,13 @@
-﻿using Kitchen;
-using KitchenData;
+﻿using KitchenData;
 using KitchenLib.Customs;
 using KitchenLib.JSON.Interfaces;
 using KitchenLib.JSON.JsonConverters;
 using KitchenLib.JSON.Models.Containers;
+using KitchenLib.JSON.Models.Views;
+using KitchenLib.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
 using UnityEngine;
 
@@ -25,8 +25,9 @@ namespace KitchenLib.JSON.Models.Jsons
 		[JsonProperty("Materials")]
 		public MaterialsContainer Materials { get; set; }
 
-		[JsonProperty("Components")]
-		public List<ComponentGroupContainer> ComponentGroup { get; set; } = new();
+		[JsonProperty("View")]
+		[JsonConverter(typeof(ViewConverter))]
+		public ItemGroupViewContainer View { get; set; }
 
 		[JsonIgnore]
 		public override List<ItemGroup.ItemSet> Sets { get; protected set; } = new();
@@ -109,45 +110,7 @@ namespace KitchenLib.JSON.Models.Jsons
 
 			Materials.Convert(gameDataObject.Prefab);
 
-			List<ItemGroupView.ComponentGroup> ComponentGroups = new();
-			List<ComponentGroupCondition> ComponentGroupsCondition = new();
-			foreach (ComponentGroupContainer container in ComponentGroup)
-			{
-				object result = container.Convert(gameDataObject.Prefab);
-				if (result is ItemGroupView.ComponentGroup)
-				{
-					ComponentGroups.Add((ItemGroupView.ComponentGroup)result);
-				}
-				else if (result is ComponentGroupCondition)
-				{
-					ComponentGroupsCondition.Add((ComponentGroupCondition)result);
-				}
-			}
-
-			gameDataObject.Prefab.GetComponent<JsonItemGroupView>().Setup(gameDataObject.Prefab, ComponentGroups, ComponentGroupsCondition);
-		}
-	}
-
-	internal class JsonItemGroupView : ItemGroupView
-	{
-		private List<int> items = new();
-		private List<ComponentGroupCondition> conditions = new();
-
-		internal void Setup(GameObject Prefab, List<ComponentGroup> containers, List<ComponentGroupCondition> conditions)
-		{
-			ComponentGroups = containers;
-			this.conditions = conditions;
-		}
-
-		public override void PerformUpdate(int item_id, ItemList components)
-		{
-			base.PerformUpdate(item_id, components);
-
-			if (!items.Contains(item_id))
-			{
-				items.Add(item_id);
-			}
-			Main.Logger.LogInfo($"ItemIDs: {string.Join(" ", items)}");
+			gameDataObject.Prefab.GetComponent<JsonItemGroupView>().Setup(gameDataObject.Prefab, View);
 		}
 	}
 }

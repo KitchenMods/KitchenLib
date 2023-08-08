@@ -264,6 +264,11 @@ namespace KitchenLib.JSON
 			else
 			{
 				string[] split = identifier.Split(':');
+				if (split.Length == 1)
+				{
+					Main.Logger.LogInfo($"{identifier} isn't recognized");
+					return null;
+				}
 				string mod_id = split[0];
 				string name = split[1];
 				return (T)GDOUtils.GetCustomGameDataObject(mod_id, name).GameDataObject;

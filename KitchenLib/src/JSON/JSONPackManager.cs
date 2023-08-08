@@ -1,8 +1,6 @@
 ﻿using KitchenLib.Customs;
 using KitchenLib.JSON.Enums;
 using KitchenLib.JSON.Models;
-using KitchenLib.JSON.Models.Jsons;
-using KitchenLib.Utils;
 using KitchenMods;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -42,6 +40,7 @@ namespace KitchenLib.JSON
 			{
 				string modname = manifest.ModName;
 				InitialiseSerializer(manifest.Author, modname);
+				Main.Logger.LogInfo($"Registering JSON gdos for {modname}");
 
 				foreach (JObject jObject in JSONCache[modname])
 				{
@@ -75,7 +74,7 @@ namespace KitchenLib.JSON
 			{
 				JSONCache.Add(key, new List<JObject> { jObject });
 			}
-			Main.Logger.LogInfo($"JSON cached for {key}");
+			Main.Logger.LogInfo($"JSON cached for {key}:{jObject["UniqueNameID"]}");
 		}
 
 		private static void RegisterAssetBundles(string key, IEnumerable<AssetBundle> bundles)

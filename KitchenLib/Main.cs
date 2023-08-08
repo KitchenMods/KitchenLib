@@ -93,7 +93,7 @@ namespace KitchenLib
 
 			manager = new PreferenceManager(MOD_ID);
 			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));
-			manager.RegisterPreference(new PreferenceBool("isDebug", false));
+			manager.RegisterPreference(new PreferenceBool("isDebug", true));
 			manager.Load();
 			manager.Save();
 

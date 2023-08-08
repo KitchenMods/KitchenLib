@@ -9,6 +9,7 @@ namespace KitchenLib.JSON.Models.Containers
 	public struct MaterialsContainer
 	{
 		public JObject Tree;
+		public JValue Base;
 
 		public IEnumerable<KeyValuePair<string, IEnumerable<Material>>> GetLeafNodes(JToken token, string key = "")
 		{
@@ -44,13 +45,20 @@ namespace KitchenLib.JSON.Models.Containers
 
 		public void Convert(GameObject Prefab)
 		{
-			foreach (KeyValuePair<string, IEnumerable<Material>> kvp in GetLeafNodes(Tree))
+			if (Base != null)
 			{
-				MaterialUtils.ApplyMaterial(
-					Prefab,
-					kvp.Key,
-					kvp.Value.ToArray()
-				);
+				MaterialUtils.ApplyMaterial(Prefab, JSONPackUtils.GetMaterialByName(Base.ToString()));
+			}
+			else
+			{
+				foreach (KeyValuePair<string, IEnumerable<Material>> kvp in GetLeafNodes(Tree))
+				{
+					MaterialUtils.ApplyMaterial(
+						Prefab,
+						kvp.Key,
+						kvp.Value.ToArray()
+					);
+				}
 			}
 		}
 	}

@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
+using KitchenLib.Utils;
+using KitchenLib.JSON.Models.Views;
 
 namespace KitchenLib.JSON.Models.Jsons
 {
@@ -22,6 +24,10 @@ namespace KitchenLib.JSON.Models.Jsons
 
 		[JsonProperty("Materials")]
 		public MaterialsContainer Materials { get; set; }
+
+		[JsonProperty("View")]
+		[JsonConverter(typeof(ViewConverter))]
+		public object View { get; set; }
 
 		[JsonIgnore]
 		public override GameObject Prefab { get; protected set; }
@@ -93,22 +99,26 @@ namespace KitchenLib.JSON.Models.Jsons
 			ModID = Context.Item2;
 		}
 
-		public override void OnRegister(GameDataObject gameDataObject)
-		{
-			base.OnRegister(gameDataObject); 
-			Main.LogInfo($"Running On Register 2");
-		}
-
 		public override void OnRegister(Item gameDataObject)
 		{
-			Main.LogInfo($"Running On Register");
-			//gameDataObject.name = GDOName;
+			gameDataObject.name = GDOName;
 
-			//Main.LogInfo($"JSON Item OnRegister");
-			//Main.LogInfo($"{Materials.Materials.ToString(Formatting.Indented)}");
+			Materials.Convert(gameDataObject.Prefab);
 
-			//Materials.Convert(gameDataObject.Prefab);
-			//base.OnRegister(gameDataObject);
+			if (View is ObjectsSplittableViewContainer ObjectsSplittableView)
+			{
+				if (!Prefab.HasComponent<JsonObjectsSplittableView>())
+				{
+					Prefab.AddComponent<JsonObjectsSplittableView>().Setup(gameDataObject.Prefab, ObjectsSplittableView);
+				}
+			}
+			else if (View is PositionSplittableViewContainer PositionSplittableView)
+			{
+				if (!Prefab.HasComponent<JsonPositionSplittableView>())
+				{
+					Prefab.AddComponent<JsonPositionSplittableView>().Setup(gameDataObject.Prefab, PositionSplittableView);
+				}
+			}
 		}
 	}
 }

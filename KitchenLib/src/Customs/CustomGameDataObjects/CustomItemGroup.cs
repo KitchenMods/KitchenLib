@@ -64,7 +64,6 @@ namespace KitchenLib.Customs
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             ItemGroup result = (ItemGroup)gameDataObject;
-
 			Main.LogDebug($"[CustomItemGroup.AttachDependentProperties] [1.1] Convering Base");
 
 			if (result.Properties != Properties) result.Properties = Properties;
@@ -112,6 +111,7 @@ namespace KitchenLib.Customs
                     ItemGroupViewUtils.AddSideContainer(gameData, result, localView);
                 }
 			}
+
 			Item steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
 			if (steak != null)
 			{
