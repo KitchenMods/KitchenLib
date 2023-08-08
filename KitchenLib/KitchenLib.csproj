@@ -5,7 +5,7 @@
 		<Configurations>Workshop</Configurations>
 		<AssemblyName>$(MSBuildProjectName)-Workshop</AssemblyName>
 		<LangVersion>latest</LangVersion>
-		<NoWarn>0612;0618;0672</NoWarn>
+		<NoWarn>0612;0618;0672;1591</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup>

@@ -145,7 +145,7 @@ namespace KitchenLib.UI
 
 			classGenerator.Add("}");
 
-			File.WriteAllLines(Path.Combine(Application.dataPath, "References.cs"), classGenerator.ToArray());
+			File.WriteAllLines(Path.Combine(Application.persistentDataPath, "Debug", "References.cs"), classGenerator.ToArray());
 		}
 
 		private void GenerateClass<T>(ref List<string> list, GameData gamedata) where T : GameDataObject
