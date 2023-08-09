@@ -237,28 +237,28 @@ namespace KitchenLib
 
 		[Obsolete]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogInfo(string message)
+		internal static void LogInfo(object message)
 		{
 			Debug.Log($"[{MOD_NAME}] " + message);
 		}
 
 		[Obsolete]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogWarning(string message)
+		internal static void LogWarning(object message)
 		{
 			Debug.LogWarning($"[{MOD_NAME}] " + message);
 		}
 
 		[Obsolete]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogError(string message)
+		internal static void LogError(object message)
 		{
 			Debug.LogError($"[{MOD_NAME}] " + message);
 		}
 
 		[Obsolete]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogDebug(string message)
+		internal static void LogDebug(object message)
 		{
 			if (manager.GetPreference<PreferenceBool>("isDebug").Value)
 				Debug.Log($"[{MOD_NAME}] [DEBUG] " + message);
