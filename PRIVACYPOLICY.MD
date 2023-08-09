@@ -1,17 +1,15 @@
 # KitchenLib Privacy Policy
 
-## Effective : 23/JUNE/2023
+## Effective : 09/AUGUST/2023
 
-At KitchenMods, we are committed to protecting the privacy of our users. When you use our software, we may collect certain information from you including your Hashed Steam ID, Steam Name, Game Version, KitchenLib Version, Last Playtime, Last Lobby, Resolution, and Game Settings.
+At KitchenMods, we are committed to protecting the privacy of our users. Previously users of our software(s) would have the ability to opt-in/opt-out of data collection, the following data was collected: Hashed Steam ID, Steam Name, Game Version, KitchenLib Version, Last Playtime, Last Lobby, Resolution, and Game Settings.
 
-When using KitchenLib users are provided with various data-collection related questions for us to determine if we have your consent to collect data or not, users are prompted with these questions on their first time using KitchenLib, although are able to change this in their Mod Preferences. When a user changes their preferences to opt-out, action is taken automatically as soon as the user is on an internet connection to remove all information from KitchenLib servers.
+All data previously collected was from the user's Steam profile, and PlateUp! game. No data regarding their system was collected.
 
-We collect this information in order to provide you with the best possible experience while using out software. We may use this information to improve our software related to statistics, and communicate changes to users.
+At no point was any data shared with third parties, and all data was stored on a secure server.
 
-Please be assured that we will not share this information with any third parties, except as required by law. We take the privacy and security of your information seriously, and we have implemented appropriate measures to protect it from unauthorised access.
+As of June 23, 2023, all previously collected data, and systems used to collect data has been destroyed as witnessed by PlateUp! developers.
 
-Some select KitchenLib developers will have access to data collected and stored, but will be unable to change, manipulate, or edit the data in any way. This data will be presented to us with a private web interface.
+If you have any questions or concerns about our privacy policy or the data removal process, please contact us on Discord at https://discord.gg/uPbuYVjJQq.
 
-If you have any questions or concerns about our privacy policy, please contact us on Discord https://discord.gg/uPbuYVjJQq.
-
-
+Thank you for your continued trust and support.
