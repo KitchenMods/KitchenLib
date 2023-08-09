@@ -72,7 +72,7 @@ namespace KitchenLib.Systems
                 mod => mod,
                 mod => mod.GetPacks<AssemblyModPack>()
                           .SelectMany(modPack => ((List<IModInitializer>)fInitializers.GetValue(modPack))
-                               .Where(m => m is BaseMod)
+                               .Where(m => m.GetType().BaseType.IsAssignableFrom(typeof(BaseMod)))
                                .Select(m => (BaseMod)m))
                           .ToList()
             );
