@@ -13,14 +13,16 @@ namespace KitchenLib.Customs
 	public abstract class CustomItemGroup : CustomItemGroup<ItemGroupViewUtils.DummyItemGroupView> { }
     public abstract class CustomItemGroup<T> : CustomItem<ItemGroup> where T : ItemGroupView
     {
+	    // Base-Game Variables
         public virtual List<ItemGroup.ItemSet> Sets { get; protected set; } = new List<ItemGroup.ItemSet>();
         public virtual bool CanContainSide { get; protected set; }
         public virtual bool ApplyProcessesToComponents { get; protected set; }
         public virtual bool AutoCollapsing { get; protected set; }
+        
+        // KitchenLib Variables
         public virtual bool AutoSetupItemGroupView { get; protected set; } = true;
 		public virtual List<ItemGroupView.ColourBlindLabel> Labels { get; protected set; } = new List<ItemGroupView.ColourBlindLabel>();
-
-		//private static readonly ItemGroup empty = ScriptableObject.CreateInstance<ItemGroup>();
+		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             ItemGroup result = ScriptableObject.CreateInstance<ItemGroup>();

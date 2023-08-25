@@ -6,6 +6,7 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomGameDifficultySettings : CustomGameDataObject<GameDifficultySettings>
     {
+	    // Base-Game Variables
         public virtual bool IsActive { get; protected set; } = false;
         public virtual float CustomersPerHourBase { get; protected set; } = 1f;
         public virtual float CustomersPerHourIncreasePerDay { get; protected set; } = 0.2f;
@@ -14,8 +15,7 @@ namespace KitchenLib.Customs
         public virtual float QueuePatienceBoost { get; protected set; } = 10f;
         public virtual float CustomerStarterChance { get; protected set; } = 1f;
         public virtual float GroupDessertChance { get; protected set; } = 1f;
-
-        //private static readonly GameDifficultySettings empty = ScriptableObject.CreateInstance<GameDifficultySettings>();
+		
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             GameDifficultySettings result = ScriptableObject.CreateInstance<GameDifficultySettings>();

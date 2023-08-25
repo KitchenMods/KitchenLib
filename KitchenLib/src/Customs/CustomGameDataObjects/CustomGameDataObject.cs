@@ -6,7 +6,10 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomGameDataObject
     {
+	    // Base-Game Variables
         public virtual int ID { get; internal set; }
+        
+        // KitchenLib Variables
         public int LegacyID { get; internal set; }
         public abstract string UniqueNameID { get; }
         public virtual int BaseGameDataObjectID { get; protected set; } = -1;

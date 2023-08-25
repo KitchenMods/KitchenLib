@@ -13,6 +13,7 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomLayoutProfile : CustomLocalisedGameDataObject<LayoutProfile, BasicInfo>
     {
+	    // Base-Game Variables
 		[Obsolete("Please use NodeConnections")]
 		public virtual LayoutGraph Graph { get; protected set; } = null;
         public virtual int MaximumTables { get; protected set; } = 3;
@@ -23,6 +24,8 @@ namespace KitchenLib.Customs
         public virtual Appliance WallPiece { get; protected set; }
         public virtual Appliance InternalWallPiece { get; protected set; }
         public virtual Appliance StreetPiece { get; protected set; }
+        
+        // KitchenLib Variables
 		public virtual List<NodeConnection> NodeConnections { get; protected set; } = new List<NodeConnection>();
 
         [Obsolete("Please set your Name in Info")]
@@ -30,8 +33,7 @@ namespace KitchenLib.Customs
 
         [Obsolete("Please set your Description in Info")]
         public virtual string Description { get; protected set; } = "A new layout type for your restaurants!";
-
-        //private static readonly LayoutProfile empty = ScriptableObject.CreateInstance<LayoutProfile>();
+		
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             LayoutProfile result = ScriptableObject.CreateInstance<LayoutProfile>();

@@ -7,6 +7,7 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomPlayerCosmetic : CustomLocalisedGameDataObject<PlayerCosmetic, CosmeticInfo>
     {
+	    // Base-Game Variables
         public virtual CosmeticType CosmeticType { get; protected set; }
         public virtual List<RestaurantSetting> CustomerSettings { get; protected set; } = new List<RestaurantSetting>();
         public virtual bool DisableInGame { get; protected set; }
@@ -14,7 +15,6 @@ namespace KitchenLib.Customs
         public virtual bool BlockHats { get; protected set; }
         public virtual GameObject Visual { get; protected set; }
 
-        //private static readonly PlayerCosmetic empty = ScriptableObject.CreateInstance<PlayerCosmetic>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             PlayerCosmetic result = ScriptableObject.CreateInstance<PlayerCosmetic>();
