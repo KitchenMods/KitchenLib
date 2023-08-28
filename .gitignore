@@ -404,3 +404,4 @@ FodyWeavers.xsd
 **/content/*.xml
 **/content/*.dll
 !KitchenLib/content/kitchenlib.assets
+.idea
