@@ -26,7 +26,7 @@ namespace KitchenLib.Customs
 		{
 			GlobalLocalisation result = ScriptableObject.CreateInstance<GlobalLocalisation>();
 
-			Main.LogDebug($"[CustomRestaurantSetting.Convert] [1.1] Converting Base");
+			Main.LogDebug($"[CustomGlobalLocalisation.Convert] [1.1] Converting Base");
 
 			if (BaseGameDataObjectID != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<GlobalLocalisation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));

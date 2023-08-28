@@ -15,7 +15,7 @@ namespace KitchenLib.Customs
 		{
 			FranchiseUpgrade result = ScriptableObject.CreateInstance<FranchiseUpgrade>();
 
-			Main.LogDebug($"[CustomRestaurantSetting.Convert] [1.1] Converting Base");
+			Main.LogDebug($"[CustomFranchiseUpgrade.Convert] [1.1] Converting Base");
 
 			if (BaseGameDataObjectID != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<FranchiseUpgrade>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));

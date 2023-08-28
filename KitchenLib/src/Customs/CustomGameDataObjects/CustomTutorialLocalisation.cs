@@ -18,7 +18,7 @@ namespace KitchenLib.Customs
 		{
 			TutorialLocalisation result = ScriptableObject.CreateInstance<TutorialLocalisation>();
 
-			Main.LogDebug($"[CustomRestaurantSetting.Convert] [1.1] Converting Base");
+			Main.LogDebug($"[CustomTutorialLocalisation.Convert] [1.1] Converting Base");
 
 			if (BaseGameDataObjectID != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<TutorialLocalisation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));

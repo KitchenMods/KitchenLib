@@ -12,7 +12,7 @@ namespace KitchenLib.Customs
         {
 	        CustomerGroup result = ScriptableObject.CreateInstance<CustomerGroup>();
 
-	        Main.LogDebug($"[CustomUnlockCard.Convert] [1.1] Converting Base");
+	        Main.LogDebug($"[CustomCustomerGroup.Convert] [1.1] Converting Base");
 
 	        if (BaseGameDataObjectID != -1)
 		        result = UnityEngine.Object.Instantiate(gameData.Get<CustomerGroup>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
@@ -39,7 +39,7 @@ namespace KitchenLib.Customs
 			        result.Info.Add(info.Item1, info.Item2);
 	        }
 
-	        Main.LogDebug($"[CustomUnlockCard.Convert] [1.2] Converting Overrides");
+	        Main.LogDebug($"[CustomCustomerGroup.Convert] [1.2] Converting Overrides");
 
 	        if (!string.IsNullOrEmpty(IconOverride))
 		        UnlockOverrides.AddIconOverride(result.ID, IconOverride);
@@ -53,7 +53,7 @@ namespace KitchenLib.Customs
 		{
 			CustomerGroup result = (CustomerGroup)gameDataObject;
 
-			Main.LogDebug($"[CustomUnlockCard.AttachDependentProperties] [1.1] Converting Base");
+			Main.LogDebug($"[CustomCustomerGroup.AttachDependentProperties] [1.1] Converting Base");
 
 			FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
 			FieldInfo hardcodedBlockers = ReflectionUtils.GetField<Unlock>("HardcodedBlockers");

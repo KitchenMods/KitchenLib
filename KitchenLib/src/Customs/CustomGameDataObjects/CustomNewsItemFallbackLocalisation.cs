@@ -17,7 +17,7 @@ namespace KitchenLib.Customs
 		{
 			NewsItemFallbackLocalisation result = ScriptableObject.CreateInstance<NewsItemFallbackLocalisation>();
 
-			Main.LogDebug($"[CustomRestaurantSetting.Convert] [1.1] Converting Base");
+			Main.LogDebug($"[CustomNewsItemFallbackLocalisation.Convert] [1.1] Converting Base");
 
 			if (BaseGameDataObjectID != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<NewsItemFallbackLocalisation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
