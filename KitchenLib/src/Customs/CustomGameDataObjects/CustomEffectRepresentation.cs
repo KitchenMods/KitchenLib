@@ -7,6 +7,7 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomEffectRepresentation : CustomLocalisedGameDataObject<EffectRepresentation, EffectInfo>
     {
+	    // Base-Game Variables
         [Obsolete("Please set your Name in Info")]
         public virtual string Name { get; protected set; }
 
@@ -16,7 +17,6 @@ namespace KitchenLib.Customs
         [Obsolete("Please set your Icon in Info")]
         public virtual string Icon { get; protected set; }
 
-        //private static readonly EffectRepresentation empty = ScriptableObject.CreateInstance<EffectRepresentation>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             EffectRepresentation result = ScriptableObject.CreateInstance<EffectRepresentation>();

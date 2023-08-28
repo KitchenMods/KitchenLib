@@ -1,0 +1,67 @@
+using KitchenData;
+using KitchenLib.Utils;
+using System.Linq;
+using System.Reflection;
+using UnityEngine;
+
+namespace KitchenLib.Customs
+{
+	public abstract class CustomCustomerGroup : CustomUnlockCard
+	{
+		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
+        {
+	        CustomerGroup result = ScriptableObject.CreateInstance<CustomerGroup>();
+
+	        Main.LogDebug($"[CustomCustomerGroup.Convert] [1.1] Converting Base");
+
+	        if (BaseGameDataObjectID != -1)
+		        result = UnityEngine.Object.Instantiate(gameData.Get<CustomerGroup>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
+
+	        if (result.ID != ID) result.ID = ID;
+	        if (result.Effects != Effects) result.Effects = Effects;
+
+	        if (result.ExpReward != ExpReward) result.ExpReward = ExpReward;
+	        if (result.IsUnlockable != IsUnlockable) result.IsUnlockable = IsUnlockable;
+	        if (result.UnlockGroup != UnlockGroup) result.UnlockGroup = UnlockGroup;
+	        if (result.CardType != CardType) result.CardType = CardType;
+	        if (result.MinimumFranchiseTier != MinimumFranchiseTier) result.MinimumFranchiseTier = MinimumFranchiseTier;
+	        if (result.IsSpecificFranchiseTier != IsSpecificFranchiseTier) result.IsSpecificFranchiseTier = IsSpecificFranchiseTier;
+	        if (result.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
+	        if (result.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
+	        if (result.BlocksAllOtherFood != BlocksAllOtherFood) result.BlocksAllOtherFood = BlocksAllOtherFood;
+
+	        if (result.Info != Info) result.Info = Info;
+
+	        if (InfoList.Count > 0)
+	        {
+		        result.Info = new LocalisationObject<UnlockInfo>();
+		        foreach ((Locale, UnlockInfo) info in InfoList)
+			        result.Info.Add(info.Item1, info.Item2);
+	        }
+
+	        Main.LogDebug($"[CustomCustomerGroup.Convert] [1.2] Converting Overrides");
+
+	        if (!string.IsNullOrEmpty(IconOverride))
+		        UnlockOverrides.AddIconOverride(result.ID, IconOverride);
+	        if (ColourOverride != new Color())
+		        UnlockOverrides.AddColourOverride(result.ID, ColourOverride);
+
+	        gameDataObject = result;
+        }
+
+		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
+		{
+			CustomerGroup result = (CustomerGroup)gameDataObject;
+
+			Main.LogDebug($"[CustomCustomerGroup.AttachDependentProperties] [1.1] Converting Base");
+
+			FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
+			FieldInfo hardcodedBlockers = ReflectionUtils.GetField<Unlock>("HardcodedBlockers");
+
+			if (hardcodedRequirements.GetValue(result) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
+			if (hardcodedBlockers.GetValue(result) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
+			if (result.AllowedFoods != AllowedFoods) result.AllowedFoods = AllowedFoods;
+			if (result.ForceFranchiseSetting != ForceFranchiseSetting) result.ForceFranchiseSetting = ForceFranchiseSetting;
+		}
+	}
+}

@@ -7,6 +7,7 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomProcess : CustomLocalisedGameDataObject<Process, ProcessInfo>
     {
+	    // Base-Game Variables
         public virtual GameDataObject BasicEnablingAppliance { get; protected set; }
         public virtual int EnablingApplianceCount { get; protected set; } = 1;
         public virtual Process IsPseudoprocessFor { get; protected set; }
@@ -14,8 +15,7 @@ namespace KitchenLib.Customs
 
         [Obsolete("Please set your Icon in Info")]
         public virtual string Icon { get; protected set; } = "!";
-
-        //private static readonly Process result = ScriptableObject.CreateInstance<Process>();
+		
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             Process result = ScriptableObject.CreateInstance<Process>();

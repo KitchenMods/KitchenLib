@@ -21,7 +21,6 @@ namespace KitchenLib.Utils
 				if (!FontIndex.ContainsKey(font.name))
 				{
 					FontIndex.Add(font.name, font);
-					Main.LogInfo("_" + font.name);
 				}
 			}
 
@@ -30,7 +29,6 @@ namespace KitchenLib.Utils
 				if (!TMPFontIndex.ContainsKey(font.name))
 				{
 					TMPFontIndex.Add(font.name, font);
-					Main.LogInfo("+" + font.name);
 				}
 			}
 		}

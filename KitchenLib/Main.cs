@@ -16,9 +16,6 @@ using System.Runtime.CompilerServices;
 using System;
 using KitchenData;
 using System.IO;
-using KitchenLib.References;
-using Mono.WebBrowser;
-using KitchenLib.src.UI.PlateUp;
 
 namespace KitchenLib
 {
@@ -45,7 +42,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The version of the mod.
 		/// </summary>
-		internal const string MOD_VERSION = "0.7.9";
+		internal const string MOD_VERSION = "0.8.0";
 
 		/// <summary>
 		/// The beta version of the mod.
@@ -55,7 +52,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The compatible versions of the mod.
 		/// </summary>
-		internal const string MOD_COMPATIBLE_VERSIONS = ">=1.1.6";
+		internal const string MOD_COMPATIBLE_VERSIONS = ">=1.1.7";
 
 		/// <summary>
 		/// The holder for synchronizing views.
@@ -92,6 +89,8 @@ namespace KitchenLib
 			manager = new PreferenceManager(MOD_ID);
 			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));
 			manager.RegisterPreference(new PreferenceBool("isDebug", false));
+			manager.RegisterPreference(new PreferenceInt("cosmeticWidth", 4));
+			manager.RegisterPreference(new PreferenceInt("cosmeticHeight", 2));
 			manager.Load();
 			manager.Save();
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).FirstOrDefault() ?? throw new MissingAssetBundleException(MOD_ID);
@@ -160,7 +159,8 @@ namespace KitchenLib
 				args.addMenu.Invoke(args.instance, new object[] { typeof(RevisedMainMenu), new RevisedMainMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<MainMenuAction>), new ModsMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<MainMenuAction>), new ModsPreferencesMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
-				args.addMenu.Invoke(args.instance, new object[] { typeof(KitchenLibBetaMenu<MainMenuAction>), new KitchenLibBetaMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(DeveloperOptions<MainMenuAction>), new DeveloperOptions<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(UserOptions<MainMenuAction>), new UserOptions<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
 			};
 
 			//Setting Up For Pause Menu
@@ -174,7 +174,8 @@ namespace KitchenLib
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<PauseMenuAction>), new ModsMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<PauseMenuAction>), new ModsPreferencesMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModSyncMenu), new ModSyncMenu(args.instance.ButtonContainer, args.module_list) });
-				args.addMenu.Invoke(args.instance, new object[] { typeof(KitchenLibBetaMenu<PauseMenuAction>), new KitchenLibBetaMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(DeveloperOptions<PauseMenuAction>), new DeveloperOptions<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(UserOptions<PauseMenuAction>), new UserOptions<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 			};
 
 			Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent += (s, args) =>
@@ -236,31 +237,45 @@ namespace KitchenLib
 
 		[Obsolete]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogInfo(string message)
+		internal static void LogInfo(object message)
 		{
 			Debug.Log($"[{MOD_NAME}] " + message);
 		}
 
 		[Obsolete]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogWarning(string message)
+		internal static void LogWarning(object message)
 		{
 			Debug.LogWarning($"[{MOD_NAME}] " + message);
 		}
 
 		[Obsolete]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogError(string message)
+		internal static void LogError(object message)
 		{
 			Debug.LogError($"[{MOD_NAME}] " + message);
 		}
 
 		[Obsolete]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogDebug(string message)
+		internal static void LogDebug(object message)
 		{
 			if (manager.GetPreference<PreferenceBool>("isDebug").Value)
 				Debug.Log($"[{MOD_NAME}] [DEBUG] " + message);
 		}
+
+		/*
+		public static Texture2D GetCosmeticSnapshot(PlayerCosmetic cosmetic, Color color, int width = 512, int height = 512) //Small memory leak - Add caching?
+		{
+			GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>((cosmetic.CosmeticType == CosmeticType.Hat) ? GameData.Main.ReferableObjects.CosmeticHatSnapshotPrefab : GameData.Main.ReferableObjects.CosmeticBodySnapshotPrefab);
+			GameObjectUtils.GetChild(gameObject, "MorphmanPlus/Body").GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color0", color);
+			PlayerCosmeticSubview component = gameObject.GetComponent<PlayerCosmeticSubview>();
+			component.SetCosmetic(cosmetic);
+			SnapshotTexture snapshotTexture = Snapshot.RenderToTexture(width, height, component.gameObject, 1f, 1f, -10f, 10f, component.transform.localPosition);
+			gameObject.SetActive(false);
+			UnityEngine.Object.Destroy(gameObject);
+			return snapshotTexture.Snapshot;
+		}
+		*/
 	}
 }

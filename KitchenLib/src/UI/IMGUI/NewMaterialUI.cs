@@ -3,7 +3,10 @@ using KitchenLib.DevUI;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Mime;
 using UnityEngine;
+using Kitchen;
+using TMPro;
 
 namespace KitchenLib.UI
 {
@@ -109,6 +112,13 @@ namespace KitchenLib.UI
 			}
 			GUILayout.EndArea();
 
+			GUILayout.BeginArea(new Rect(397, 150, 397, 25));
+			if (GUILayout.Button("Dump Existing Materials"))
+			{
+				GenerateMaterialDump();
+			}
+			GUILayout.EndArea();
+
 			GUILayout.BeginArea(new Rect(0, 200, 795, 800)); //Material Value Editor
 
 			GUILayout.Label("Material Name");
@@ -174,6 +184,7 @@ namespace KitchenLib.UI
 				materialInstance = new Material(selectedMaterial);
 			}
 		}
+		
 		private void UpdateMaterialCube()
 		{
 			if (materialInstance != null)
@@ -203,6 +214,32 @@ namespace KitchenLib.UI
 			Material tempMaterial = new Material(shader);
 			tempMaterial.name = shader.name;
 			return tempMaterial;
+		}
+
+		private void GenerateMaterialDump()
+		{
+			foreach (Material material in MaterialUtils.GetAllMaterials(false, new List<string>{ "Simple Flat", "Simple Transparent", "Flat", "Indicator Light", "Ghost", "Foliage", "Flat Image", "Fairy Lights", "Walls", "Blueprint Light" }))
+			{
+				GameObject gameObject = Main.bundle.LoadAsset<GameObject>("Material Cube");
+				gameObject.transform.position = new Vector3(0, 5, 0);
+				MaterialUtils.ApplyMaterial(gameObject, "Mesh", new Material[] { material } );
+				gameObject.GetChild(1).GetComponent<TextMeshPro>().text = material.name;
+
+				
+				Quaternion rotation = new Quaternion(0, 0, 0, 0);
+				SnapshotTexture texture = Snapshot.RenderPrefabToTexture(512, 512, gameObject, rotation, 0.5f, 0.5f, scale: 0.5f, position: -0.25f * new Vector3(0.0f, 1f, 1f));
+				byte[] bytes = null;
+				if (texture != null)
+					bytes = texture.Snapshot.EncodeToPNG();
+				if (bytes != null)
+				{
+					string path = Path.Combine(Application.persistentDataPath, "Debug/MaterialDumps");
+					if (!Directory.Exists(path))
+						Directory.CreateDirectory(path);
+					File.WriteAllBytes(Path.Combine(path, material.name + ".png"), bytes);
+				}
+
+			}
 		}
 	}
 }

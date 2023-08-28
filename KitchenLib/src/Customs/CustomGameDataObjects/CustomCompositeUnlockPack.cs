@@ -7,9 +7,9 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomCompositeUnlockPack : CustomUnlockPack<CompositeUnlockPack>
     {
+	    // Base-Game Variables
         public virtual List<UnlockPack> Packs { get; protected set; } = new List<UnlockPack>();
 
-        //private static readonly CompositeUnlockPack empty = ScriptableObject.CreateInstance<CompositeUnlockPack>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             CompositeUnlockPack result = ScriptableObject.CreateInstance<CompositeUnlockPack>();

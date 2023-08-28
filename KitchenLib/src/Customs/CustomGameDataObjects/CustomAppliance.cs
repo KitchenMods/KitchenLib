@@ -12,6 +12,7 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomAppliance : CustomLocalisedGameDataObject<Appliance, ApplianceInfo>, ICustomHasPrefab
     {
+	    // Base-Game Variables
         public virtual GameObject Prefab { get; protected set; }
         public virtual GameObject HeldAppliancePrefab { get; protected set; }
         public virtual List<Appliance.ApplianceProcesses> Processes { get; protected set; } = new List<Appliance.ApplianceProcesses>();
@@ -44,12 +45,14 @@ namespace KitchenLib.Customs
         public virtual bool SellOnlyAsUnique { get; protected set; }
         public virtual bool PreventSale { get; protected set; }
         public virtual List<Appliance> Upgrades { get; protected set; } = new List<Appliance>();
-		public virtual bool AutoGenerateNavMeshObject { get; protected set; } = true;
 
         [Obsolete("Should not be used by the user")]
         public virtual bool IsAnUpgrade { get; protected set; }
         public virtual bool IsNonCrated { get; protected set; }
         public virtual Item CrateItem { get; protected set; }
+        
+        // KitchenLib Variables
+		public virtual bool AutoGenerateNavMeshObject { get; protected set; } = true;
 
         [Obsolete("Please set your Name in Info")]
         public virtual string Name { get; protected set; } = "Appliance";
@@ -89,7 +92,6 @@ namespace KitchenLib.Customs
 
         public virtual int PurchaseCostOverride { get; protected set; } = -1;
 
-        //private static readonly Appliance empty = ScriptableObject.CreateInstance<Appliance>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
 			Appliance result = ScriptableObject.CreateInstance<Appliance>();

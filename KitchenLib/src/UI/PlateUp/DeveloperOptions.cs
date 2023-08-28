@@ -1,19 +1,14 @@
 ﻿using Kitchen;
 using Kitchen.Modules;
-using KitchenLib.Preferences;
 using System.Collections.Generic;
-using System.IO;
-using System.IO.Compression;
 using UnityEngine;
-using KitchenLib.Views;
-using KitchenLib.UI.PlateUp;
 using Steamworks.Data;
 
-namespace KitchenLib.src.UI.PlateUp
+namespace KitchenLib.UI.PlateUp
 {
-	public class KitchenLibBetaMenu<T> : KLMenu<T>
+	public class DeveloperOptions<T> : KLMenu<T>
 	{
-		public KitchenLibBetaMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
+		public DeveloperOptions(Transform container, ModuleList module_list) : base(container, module_list) { }
 
 		public static Dictionary<ulong, bool> subscribedVersion = new Dictionary<ulong, bool>();
 

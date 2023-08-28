@@ -150,31 +150,72 @@ namespace KitchenLib
 					AddMaterial(mat);
 				}
 			}
-
-			OnPostActivate(mod);
+			
+			try
+			{
+				OnPostActivate(mod);
+			}
+			catch (Exception e)
+			{
+				Main.LogWarning($"{ModID} has failed to PostActivate.");
+				Main.LogWarning(e);
+			}
+			
 			canRegisterGDO = false;
 		}
 
 		public sealed override void PostInject() //IModInitializer
 		{
-			OnPostInject();
+			try
+			{
+				OnPostInject();
+			}
+			catch (Exception e)
+			{
+				Main.LogWarning($"{ModID} has failed to PostInject.");
+				Main.LogWarning(e);
+			}
 		}
 
 		public sealed override void PreInject() //IModInitializer
 		{
-			OnPreInject();
+			try
+			{
+				OnPreInject();
+			}
+			catch (Exception e)
+			{
+				Main.LogWarning($"{ModID} has failed to PreInject.");
+				Main.LogWarning(e);
+			}
 		}
 
 		protected override void OnUpdate() //IModSystem
 		{
-			OnFrameUpdate();
+			try
+			{
+				OnFrameUpdate();
+			}
+			catch (Exception e)
+			{
+				Main.LogWarning($"{ModID} has failed to OnUpdate.");
+				Main.LogWarning(e);
+			}
 		}
 
 		protected sealed override void Initialise() //IModSystem
 		{
 			if (!ModRegistery.InitialisedMods.Contains(ModAuthor + ModID))
 			{
-				OnInitialise();
+				try
+				{
+					OnInitialise();
+				}
+				catch (Exception e)
+				{
+					Main.LogWarning($"{ModID} has failed to Initialise.");
+					Main.LogWarning(e);
+				}
 				ModRegistery.InitialisedMods.Add(ModAuthor + ModID);
 			}
 		}

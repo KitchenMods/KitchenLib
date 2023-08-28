@@ -6,6 +6,7 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomUnlock<T> : CustomLocalisedGameDataObject<T, UnlockInfo> where T : Unlock
     {
+	    // Base-Game Variables
         public virtual Unlock.RewardLevel ExpReward { get; protected set; } = Unlock.RewardLevel.Medium;
         public virtual bool IsUnlockable { get; protected set; } = true;
         public virtual UnlockGroup UnlockGroup { get; protected set; }
@@ -19,6 +20,8 @@ namespace KitchenLib.Customs
 		public virtual bool BlocksAllOtherFood { get; protected set; }
 		public virtual List<Unlock> AllowedFoods { get; protected set; } = new List<Unlock>();
 		public virtual RestaurantSetting ForceFranchiseSetting { get; protected set; }
+        
+		// KitchenLib Variables
         public virtual string IconOverride { get; protected set; }
         public virtual Color ColourOverride { get; protected set; }
 	}

@@ -13,14 +13,16 @@ namespace KitchenLib.Customs
 	public abstract class CustomItemGroup : CustomItemGroup<ItemGroupViewUtils.DummyItemGroupView> { }
     public abstract class CustomItemGroup<T> : CustomItem<ItemGroup> where T : ItemGroupView
     {
+	    // Base-Game Variables
         public virtual List<ItemGroup.ItemSet> Sets { get; protected set; } = new List<ItemGroup.ItemSet>();
         public virtual bool CanContainSide { get; protected set; }
         public virtual bool ApplyProcessesToComponents { get; protected set; }
         public virtual bool AutoCollapsing { get; protected set; }
+        
+        // KitchenLib Variables
         public virtual bool AutoSetupItemGroupView { get; protected set; } = true;
 		public virtual List<ItemGroupView.ColourBlindLabel> Labels { get; protected set; } = new List<ItemGroupView.ColourBlindLabel>();
-
-		//private static readonly ItemGroup empty = ScriptableObject.CreateInstance<ItemGroup>();
+		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             ItemGroup result = ScriptableObject.CreateInstance<ItemGroup>();
@@ -34,7 +36,8 @@ namespace KitchenLib.Customs
             if (result.Prefab != Prefab) result.Prefab = Prefab;
 			if (!AutomaticItemProcess.Equals(result.AutomaticItemProcess)) result.AutomaticItemProcess = AutomaticItemProcess;
 			if (result.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
-            if (result.ItemValue != ItemValue) result.ItemValue = ItemValue;
+			if (!result.EatingTime.Equals(EatingTime)) result.EatingTime = EatingTime;
+			if (result.ItemValue != ItemValue) result.ItemValue = ItemValue;
 			if (result.IsConsumedByCustomer != IsConsumedByCustomer) result.IsConsumedByCustomer = IsConsumedByCustomer;
 			if (result.MaxOrderSharers != MaxOrderSharers) result.MaxOrderSharers = MaxOrderSharers;
 			if (result.AlwaysOrderAdditionalItem != AlwaysOrderAdditionalItem) result.AlwaysOrderAdditionalItem = AlwaysOrderAdditionalItem;
@@ -70,13 +73,17 @@ namespace KitchenLib.Customs
 			if (result.Properties != Properties) result.Properties = Properties;
             if (result.DirtiesTo != DirtiesTo) result.DirtiesTo = DirtiesTo;
             if (result.MayRequestExtraItems != MayRequestExtraItems) result.MayRequestExtraItems = MayRequestExtraItems;
-            if (result.SplitSubItem != SplitSubItem) result.SplitSubItem = SplitSubItem;
+			if (result.SatisfiedBy != SatisfiedBy) result.SatisfiedBy = SatisfiedBy;
+			if (result.NeedsIngredients != NeedsIngredients) result.NeedsIngredients = NeedsIngredients;
+			if (result.SplitSubItem != SplitSubItem) result.SplitSubItem = SplitSubItem;
             if (result.SplitDepletedItems != SplitDepletedItems) result.SplitDepletedItems = SplitDepletedItems;
             if (result.SplitByComponentsHolder != SplitByComponentsHolder) result.SplitByComponentsHolder = SplitByComponentsHolder;
-            if (result.RefuseSplitWith != RefuseSplitWith) result.RefuseSplitWith = RefuseSplitWith;
+			if (result.SplitByComponentsWrapper != SplitByComponentsWrapper) result.SplitByComponentsWrapper = SplitByComponentsWrapper;
+			if (result.RefuseSplitWith != RefuseSplitWith) result.RefuseSplitWith = RefuseSplitWith;
             if (result.DisposesTo != DisposesTo) result.DisposesTo = DisposesTo;
             if (result.DedicatedProvider != DedicatedProvider) result.DedicatedProvider = DedicatedProvider;
-            if (result.ExtendedDirtItem != ExtendedDirtItem) result.ExtendedDirtItem = ExtendedDirtItem;
+			if (result.CreditSourceDish != CreditSourceDish) result.CreditSourceDish = CreditSourceDish;
+			if (result.ExtendedDirtItem != ExtendedDirtItem) result.ExtendedDirtItem = ExtendedDirtItem;
 
             FieldInfo processes = ReflectionUtils.GetField<Item>("Processes");
             FieldInfo sets = ReflectionUtils.GetField<ItemGroup>("Sets");

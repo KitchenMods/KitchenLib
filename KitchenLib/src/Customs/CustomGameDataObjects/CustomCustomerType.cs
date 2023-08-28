@@ -7,6 +7,7 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomCustomerType : CustomGameDataObject<CustomerType>
     {
+	    // Base-Game Variables
         public virtual bool IsGenericGroup { get; protected set; }
         public virtual bool RelativeGroupSize { get; protected set; }
         public virtual int MinGroupSize { get; protected set; }
@@ -15,9 +16,7 @@ namespace KitchenLib.Customs
         public virtual OrderingValues OrderingModifiers { get; protected set; }
         public virtual List<PlayerCosmetic> Cosmetics { get; protected set; } = new List<PlayerCosmetic>();
         public virtual List<ICustomerProperty> Properties { get; protected set; } = new List<ICustomerProperty>();
-
-
-        //private static readonly CustomerType empty = ScriptableObject.CreateInstance<CustomerType>();
+		
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             CustomerType result = ScriptableObject.CreateInstance<CustomerType>();

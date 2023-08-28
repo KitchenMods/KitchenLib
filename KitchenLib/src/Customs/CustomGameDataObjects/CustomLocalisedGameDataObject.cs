@@ -6,8 +6,11 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomLocalisedGameDataObject<T, L> : CustomGameDataObject<T> where T : GameDataObject where L : Localisation
 	{
+		// Base-Game Variables
 		[Obsolete("Please use InfoList.")]
 		public virtual LocalisationObject<L> Info { get; protected set; }
+        
+		// KitchenLib Variables
 		public virtual List<(Locale, L)> InfoList { get; protected set; } = new List<(Locale, L)>();
 	}
 

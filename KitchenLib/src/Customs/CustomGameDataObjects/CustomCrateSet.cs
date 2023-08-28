@@ -7,9 +7,8 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomCrateSet : CustomGameDataObject<CrateSet>
     {
+	    // Base-Game Variables
         public virtual List<Appliance> Options { get; protected set; } = new List<Appliance>();
-
-        //private static readonly CrateSet empty = ScriptableObject.CreateInstance<CrateSet>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             CrateSet result = ScriptableObject.CreateInstance<CrateSet>();

@@ -7,10 +7,10 @@ namespace KitchenLib.Customs
 {
     public abstract class CustomRandomUpgradeSet : CustomGameDataObject<RandomUpgradeSet>
     {
+	    // Base-Game Variables
         public virtual UpgradeRewardTier Tier { get; protected set; }
         public virtual List<IUpgrade> Rewards { get; protected set; } = new List<IUpgrade>();
 
-        //private static readonly RandomUpgradeSet empty = ScriptableObject.CreateInstance<RandomUpgradeSet>();
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             RandomUpgradeSet result = ScriptableObject.CreateInstance<RandomUpgradeSet>();

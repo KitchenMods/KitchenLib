@@ -48,7 +48,6 @@ jobs:
     - name: Download PlateUp Files
       run: |
           ./DepotDownloader -app 1599600 -depot 1599601 -username ${{ secrets.STEAM_USERNAME }} -password ${{ secrets.STEAM_PASSWORD }} <<< "${{ steps.generate.outputs.code }}"
-    
 
      # Install the .NET Core workload
     - name: Install .NET Core
@@ -69,6 +68,7 @@ jobs:
         dotnet build -c $Configuration -p:GamePath=`ls -d $PWD/depots/1599601/**`/PlateUp -p:EnableModDeployLocal='false' -p:EnableGameDebugging='false' --os windows --no-self-contained ./KitchenLib/KitchenLib.csproj
         cp ./KitchenLib/bin/$Configuration/net472/windows-x64/KitchenLib-$Configuration.dll ./KitchenLib/content/
         cp ./KitchenLib/bin/$Configuration/net472/KitchenLib-$Configuration.xml ./KitchenLib/content/
+        cp "./Unity Project - KitchenLib/Assets/StreamingAssets/kitchenlib.assets" ./KitchenLib/content/
       env:
         Configuration: ${{ matrix.configuration }}
 

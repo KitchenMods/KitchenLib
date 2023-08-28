@@ -126,28 +126,41 @@ namespace KitchenLib.Preferences
         /// </summary>
         public void Load()
         {
-            string json = "";
-            if (File.Exists(preferenceFilePath))
-                json = File.ReadAllText(preferenceFilePath);
-            if (string.IsNullOrEmpty(json))
-            {
-                Main.LogWarning($"Unable to load preferences, file empty or not saved.");
-                return;
-            }
+	        try
+	        {
+		        string json = "";
+		        if (File.Exists(preferenceFilePath))
+			        json = File.ReadAllText(preferenceFilePath);
+		        if (string.IsNullOrEmpty(json))
+		        {
+			        Main.LogWarning($"Unable to load preferences, file empty or not saved.");
+			        return;
+		        }
 
-            List<StoredPreference> storedPreferences = JsonConvert.DeserializeObject<List<StoredPreference>>(json);
-            foreach (StoredPreference pref in storedPreferences)
-            {
-                if (!preferences.ContainsKey((pref.Key, pref.Type)))
-                {
-                    Main.LogWarning($"Unable to load {pref.Key}, key not registered.");
-                }
-                else
-                {
-                    preferences[(pref.Key, pref.Type)].Deserialize(pref.Value);
-                }
-            }
-            storedPreferences.Clear();
+		        List<StoredPreference> storedPreferences = JsonConvert.DeserializeObject<List<StoredPreference>>(json);
+		        foreach (StoredPreference pref in storedPreferences)
+		        {
+			        if (!preferences.ContainsKey((pref.Key, pref.Type)))
+			        {
+				        Main.LogWarning($"Unable to load {pref.Key}, key not registered.");
+			        }
+			        else
+			        {
+				        preferences[(pref.Key, pref.Type)].Deserialize(pref.Value);
+			        }
+		        }
+		        storedPreferences.Clear();
+	        }
+	        catch
+	        {
+		        if (File.Exists(preferenceFilePath))
+		        {
+			        Main.LogWarning("Failed to load preferences file " + preferenceFilePath + ", backing up and replacing.");
+			        File.Move(preferenceFilePath, preferenceFilePath + ".backup");
+			        Save();
+			        Load();
+		        }
+	        }
         }
 
         /// <summary>
