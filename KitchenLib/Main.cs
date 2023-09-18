@@ -1,5 +1,4 @@
 using Kitchen;
-using KitchenLib.Colorblind;
 using KitchenLib.Customs;
 using KitchenLib.DevUI;
 using KitchenLib.Event;
@@ -14,8 +13,6 @@ using KitchenLib.Logging;
 using KitchenLib.Logging.Exceptions;
 using System.Runtime.CompilerServices;
 using System;
-using KitchenData;
-using System.IO;
 
 namespace KitchenLib
 {
@@ -135,8 +132,6 @@ namespace KitchenLib
 		{
 			GameObject go = new GameObject();
 			go.AddComponent<DevUIController>();
-
-			ColorblindUtils.AddSingleItemLabels(ColorblindUtils.itemLabels.ToArray());
 		}
 
 		/// <summary>
@@ -188,42 +183,9 @@ namespace KitchenLib
 				args.Menus.Add(typeof(PreferenceMenu<MainMenuAction>), new PreferenceMenu<MainMenuAction>(args.Container, args.Module_list));
 			};
 		}
-		private void ExtractAssets(GameDataObject gameDataObject)
-		{
-			FieldInfo[] fields = gameDataObject.GetType().GetFields();
-			foreach (FieldInfo field in fields)
-			{
-				if (field.FieldType == typeof(GameObject))
-				{
-					Texture2D texture = null;
-					GameObject prefab = (GameObject)field.GetValue(gameDataObject);
-					if (prefab != null)
-					{
-						texture = PrefabSnapshot.GetApplianceSnapshot(prefab);
-						byte[] bytes = null;
-						if (texture != null)
-							bytes = texture.EncodeToPNG();
-
-						var dirPath = Application.dataPath + "/../SaveImages/";
-						if (!Directory.Exists(dirPath))
-						{
-							Directory.CreateDirectory(dirPath);
-						}
-						if (bytes != null)
-							File.WriteAllBytes(dirPath + gameDataObject.ID + "-" + gameDataObject.GetType().ToString() + "-" + field.Name + ".png", bytes);
-					}
-				}
-			}
-		}
-
-		private void ExtractAllAssets()
-		{
-			foreach (GameDataObject gameDataObject in GameData.Main.Get<GameDataObject>())
-			{
-				ExtractAssets(gameDataObject);
-			}
-		}
-
+		
+		// Get all fields recursively with their values as a string array with a limit of 10, ensure null checks
+		
 		/// <summary>
 		/// Registers a new cape.
 		/// </summary>
@@ -263,19 +225,5 @@ namespace KitchenLib
 			if (manager.GetPreference<PreferenceBool>("isDebug").Value)
 				Debug.Log($"[{MOD_NAME}] [DEBUG] " + message);
 		}
-
-		/*
-		public static Texture2D GetCosmeticSnapshot(PlayerCosmetic cosmetic, Color color, int width = 512, int height = 512) //Small memory leak - Add caching?
-		{
-			GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>((cosmetic.CosmeticType == CosmeticType.Hat) ? GameData.Main.ReferableObjects.CosmeticHatSnapshotPrefab : GameData.Main.ReferableObjects.CosmeticBodySnapshotPrefab);
-			GameObjectUtils.GetChild(gameObject, "MorphmanPlus/Body").GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color0", color);
-			PlayerCosmeticSubview component = gameObject.GetComponent<PlayerCosmeticSubview>();
-			component.SetCosmetic(cosmetic);
-			SnapshotTexture snapshotTexture = Snapshot.RenderToTexture(width, height, component.gameObject, 1f, 1f, -10f, 10f, component.transform.localPosition);
-			gameObject.SetActive(false);
-			UnityEngine.Object.Destroy(gameObject);
-			return snapshotTexture.Snapshot;
-		}
-		*/
 	}
 }

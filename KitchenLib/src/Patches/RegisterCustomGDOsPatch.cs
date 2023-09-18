@@ -2,7 +2,6 @@ using System;
 using HarmonyLib;
 using Kitchen;
 using KitchenData;
-using KitchenLib.Colorblind;
 using KitchenLib.Customs;
 using KitchenLib.Event;
 using KitchenLib.Systems;
@@ -25,7 +24,6 @@ namespace KitchenLib.Patches
 			MaterialUtils.SetupMaterialIndex();
 			FontUtils.SetupFontIndex();
 			GDOUtils.SetupGDOIndex(__result);
-			ColorblindUtils.Init(__result);
 
 			if (FirstRun) // only build custom GDOs once
 			{
