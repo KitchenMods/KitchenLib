@@ -13,6 +13,8 @@ using KitchenLib.Logging;
 using KitchenLib.Logging.Exceptions;
 using System.Runtime.CompilerServices;
 using System;
+using System.Web.UI.WebControls;
+using KitchenData;
 
 namespace KitchenLib
 {
@@ -39,12 +41,12 @@ namespace KitchenLib
 		/// <summary>
 		/// The version of the mod.
 		/// </summary>
-		internal const string MOD_VERSION = "0.8.0";
+		internal const string MOD_VERSION = "0.8.1";
 
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string MOD_BETA_VERSION = "";
+		internal const string MOD_BETA_VERSION = "1";
 
 		/// <summary>
 		/// The compatible versions of the mod.

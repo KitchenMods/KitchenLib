@@ -4,13 +4,28 @@ using KitchenLib.Preferences;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using KitchenLib.Utils;
 using UnityEngine;
 
 namespace KitchenLib
 {
 	public class KLMenu<T> : Menu<T>
 	{
-		public KLMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
+		private PlayerPauseView view;
+		private Transform container;
+		public KLMenu(Transform container, ModuleList module_list) : base(container, module_list)
+		{
+			view = container.transform.parent.parent.parent.GetComponent<PlayerPauseView>();
+			this.container = container;
+		}
+
+		protected void ResetPanel()
+		{
+			MethodInfo setparneltarget = ReflectionUtils.GetMethod<PlayerPauseView>("SetPanelTarget");
+			container.transform.parent.parent.parent.localPosition = -ModuleList.BoundingBox.center;
+			setparneltarget.Invoke(view, new object[] { ModuleList });
+		}
 
 		public override void Setup(int player_id) { }
 		protected void BoolOption(BoolPreference pref)

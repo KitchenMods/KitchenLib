@@ -38,6 +38,7 @@ namespace KitchenLib.Customs
         public virtual bool IsAvailableAsLobbyOption { get; protected set; } = false;
         public virtual bool DestroyAfterModUninstall { get; protected set; } = true;
         public virtual Dictionary<Locale, string> Recipe { get; protected set; } = new Dictionary<Locale, string>();
+        public virtual bool BypassMainRequirementsCheck { get; protected set; } = false;
 
         
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -124,7 +125,20 @@ namespace KitchenLib.Customs
 				else
 					result.MinimumIngredients.Add((Item)GDOUtils.GetExistingGDO(ItemReferences.Plate));
 			}
-		}
+
+			if (result.Type == DishType.Main && HardcodedRequirements.Count == 0)
+			{
+				if (!BypassMainRequirementsCheck)
+				{
+					Main.LogDebug($"[CustomDish.AttachDependentProperties] [1.3] Converting Main Dish to Base Dish - No requirements found.");
+					result.Type = DishType.Base;
+				}
+				else
+				{
+					Main.LogDebug($"[CustomDish.AttachDependentProperties] [1.4] Converting Main Dish to Base Dish - Bypassing requirements check.");
+				}
+			}
+        }
 
         public override void OnRegister(GameDataObject gameDataObject)
         {
