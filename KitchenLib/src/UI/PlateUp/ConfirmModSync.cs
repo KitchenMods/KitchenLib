@@ -1,45 +1,72 @@
 ﻿using Kitchen.Modules;
 using Kitchen;
 using System.Collections.Generic;
-using System.Text;
+using Steamworks.Ugc;
 using UnityEngine;
 
 namespace KitchenLib.UI
 {
 	internal class ConfirmModSync : KLMenu<PauseMenuAction>
 	{
-		public static Dictionary<ulong, Steamworks.Ugc.Item> Mods = new Dictionary<ulong, Steamworks.Ugc.Item>();
-		private static List<string> ModNames = new List<string>();
 		public ConfirmModSync(Transform container, ModuleList module_list) : base(container, module_list)
 		{
 		}
+		public static List<Steamworks.Ugc.Item> MissingMods = new List<Steamworks.Ugc.Item>();
 		public override void Setup(int player_id)
 		{
-			StringBuilder builder = new StringBuilder();
-			foreach (Steamworks.Ugc.Item item in Mods.Values)
+			Redraw();
+		}
+
+		private bool ConfirmSync = false;
+		private bool Complete = false;
+		
+		private async void Redraw()
+		{
+			ModuleList.Clear();
+			if (!ConfirmSync && !Complete)
 			{
-				builder.Append(", " + item.Title);
+				AddInfo("Are you SURE you would like to install these mods?");
+				AddButton("Confirm", delegate (int i)
+				{
+					ConfirmSync = true;
+					Redraw();
+				}, 0, 1f, 0.2f);
+			}else if (ConfirmSync && !Complete)
+			{
+				AddInfo("Installing.. Please wait a moment.");
+				foreach (Item mod in MissingMods)
+				{
+					Main.LogInfo("Installing " + mod.Title);
+					await mod.Subscribe();
+				}
+				Complete = true;
+				Redraw();
+				return;
+			}else if (ConfirmSync && Complete)
+			{
+				ConfirmSync = false;
+				Complete = false;
+				AddInfo("Install Complete, please restart the game.");
+				
+				New<SpacerElement>(true);
+				New<SpacerElement>(true);
+
+				AddButton("Quit", delegate (int i)
+				{
+					Application.Quit();
+				}, 0, 1f, 0.2f);
+				ResetPanel();
+				return;
 			}
 
-			AddLabel("Are you sure you want to subscribe to these mods?");
-			AddInfo(builder.ToString().Substring(2));
-			
 			New<SpacerElement>(true);
 			New<SpacerElement>(true);
-			
-			AddButton("Confirm", delegate (int i)
-			{
-				foreach (Steamworks.Ugc.Item item in Mods.Values)
-				{
-					item.Subscribe();
-				}
-			}, 0, 1f, 0.2f);
-
 
 			AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate (int i)
 			{
 				this.RequestPreviousMenu();
 			}, 0, 1f, 0.2f);
+			ResetPanel();
 		}
 	}
 }
