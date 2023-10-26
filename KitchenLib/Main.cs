@@ -13,8 +13,6 @@ using KitchenLib.Logging;
 using KitchenLib.Logging.Exceptions;
 using System.Runtime.CompilerServices;
 using System;
-using System.Web.UI.WebControls;
-using KitchenData;
 
 namespace KitchenLib
 {
@@ -46,7 +44,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string MOD_BETA_VERSION = "1";
+		internal const string MOD_BETA_VERSION = "2";
 
 		/// <summary>
 		/// The compatible versions of the mod.
@@ -77,8 +75,13 @@ namespace KitchenLib
 		/// Initializes a new instance of the <see cref="Main"/> class.
 		/// </summary>
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
+		
 
-		/// <summary>
+
+
+
+
+    /// <summary>
 		/// Called after the mod is activated.
 		/// </summary>
 		/// <param name="mod">The mod instance.</param>
