@@ -7,6 +7,7 @@ using KitchenLib.Event;
 using KitchenLib.Systems;
 using KitchenLib.Utils;
 using System.Collections.Generic;
+using KitchenLib.Colorblind;
 using UnityEngine;
 using KitchenLib.src.Patches;
 
@@ -24,6 +25,7 @@ namespace KitchenLib.Patches
 			MaterialUtils.SetupMaterialIndex();
 			FontUtils.SetupFontIndex();
 			GDOUtils.SetupGDOIndex(__result);
+			ColorblindUtils.Init(__result);
 
 			if (FirstRun) // only build custom GDOs once
 			{
