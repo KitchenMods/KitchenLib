@@ -66,23 +66,23 @@ namespace KitchenLib.UI
 				Dump<ContractDumper>();
 				Dump<CustomerTypeDumper>();
 				Dump<CustomerGroupDumper>();
-				List<string> GDOs = new List<string>();
-				if (File.Exists(Application.dataPath + "/Managed/Kitchen.GameData.dll"))
+			
+				foreach (GameDataObject gdo in GameData.Main.Get<GameDataObject>())
 				{
-					Assembly assem = Assembly.LoadFile(Application.dataPath + "/Managed/Kitchen.GameData.dll");
-					foreach (Type type in assem.GetTypes())
-					{
-						if (type.IsSubclassOf(typeof(GameDataObject)))
-						{
-							GDOs.Add(type.Name);
-							foreach (FieldInfo info in type.GetFields())
-							{
-								GDOs.Add("	" + info.Name);
-							}
-						}
-					}
+					string dirpath = Path.Combine(Application.persistentDataPath, "DataDump", "TextDumps");
+					string gdopath = Path.Combine(dirpath, gdo.GetType().ToString());
+					string filepath = Path.Combine(gdopath, gdo.name + ".txt");
+
+					if (!Directory.Exists(dirpath))
+						Directory.CreateDirectory(dirpath);
+
+					if (!Directory.Exists(gdopath))
+						Directory.CreateDirectory(gdopath);
+				
+				
+					File.WriteAllLines(dirpath + "/" + gdo.GetType() + ".txt", DataDump.GetFieldNames(gdo));
+					File.WriteAllLines(filepath, DataDump.GetFieldValues(gdo).ToArray());
 				}
-				File.WriteAllLines(Path.Combine(Application.persistentDataPath, "DataDump", "GDOs.txt"), GDOs.ToArray());
 			}
 			if (GUILayout.Button("Refresh Dish Options"))
 			{
@@ -145,6 +145,8 @@ namespace KitchenLib.UI
 
 			classGenerator.Add("}");
 
+			if (!Directory.Exists(Path.Combine(Application.persistentDataPath, "Debug")))
+				Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "Debug"));
 			File.WriteAllLines(Path.Combine(Application.persistentDataPath, "Debug", "References.cs"), classGenerator.ToArray());
 		}
 

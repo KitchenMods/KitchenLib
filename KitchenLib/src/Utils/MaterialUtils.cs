@@ -202,6 +202,11 @@ namespace KitchenLib.Utils
 			}
 		}
 
+        /// <summary>
+        /// Gets a list of all Materials.
+        /// </summary>
+        /// <param name="includeCustom">If the returned list should contain custom Materials.</param>
+        /// <returns>The list of Materials.</returns>
 		public static List<Material> GetAllMaterials(bool includeCustom)
 		{
 			List<Material> materials = new List<Material>();
@@ -213,6 +218,12 @@ namespace KitchenLib.Utils
 			return materials;
 		}
 
+        /// <summary>
+        /// Gets a list of all Materials.
+        /// </summary>
+        /// <param name="includeCustom">If the returned list should contain custom Materials.</param>
+        /// <param name="shaders">What shaders to filter by.</param>
+        /// <returns>The list of Materials.</returns>
 		public static List<Material> GetAllMaterials(bool includeCustom, List<string> shaders)
 		{
 			List<Material> materials = new List<Material>();
@@ -292,6 +303,14 @@ namespace KitchenLib.Utils
             return new Color(((hex & 0xFF0000) >> 16) / 255.0f, ((hex & 0xFF00) >> 8) / 255.0f, (hex & 0xFF) / 255.0f);
         }
 
+        /// <summary>
+        /// Creates a new Material with the Simple Flat shader.
+        /// </summary>
+        /// <param name="name">The name for the Material.</param>
+        /// <param name="color">The Color for the Material.</param>
+        /// <param name="shininess">How shiny the Material should be.</param>
+        /// <param name="overlayScale">The scale for the Material's overlay.</param>
+        /// <returns>The created Material.</returns>
         public static Material CreateFlat(string name, Color color, float shininess = 0, float overlayScale = 10)
         {
             Material mat = new(Shader.Find("Simple Flat"))
@@ -304,11 +323,25 @@ namespace KitchenLib.Utils
             return mat;
         }
 
+        /// <summary>
+        /// Creates a new Material with the Simple Flat shader.
+        /// </summary>
+        /// <param name="name">The name for the Material.</param>
+        /// <param name="color">The hex code for the Material.</param>
+        /// <param name="shininess">How shiny the Material should be.</param>
+        /// <param name="overlayScale">The scale for the Material's overlay.</param>
+        /// <returns>The created Material.</returns>
         public static Material CreateFlat(string name, int color, float shininess = 0, float overlayScale = 10)
         {
             return CreateFlat(name, ColorFromHex(color), shininess, overlayScale);
         }
 
+        /// <summary>
+        /// Creates a new Material with the Simple Transparent shader.
+        /// </summary>
+        /// <param name="name">The name for the Material.</param>
+        /// <param name="color">The Color for the Material.</param>
+        /// <returns>The created Material.</returns>
         public static Material CreateTransparent(string name, Color color)
         {
             Material mat = new(Shader.Find("Simple Transparent"))
@@ -319,6 +352,13 @@ namespace KitchenLib.Utils
             return mat;
         }
 
+        /// <summary>
+        /// Creates a new Material with the Simple Transparent shader.
+        /// </summary>
+        /// <param name="name">The name for the Material.</param>
+        /// <param name="color">The hex code for the Material.</param>
+        /// <param name="opacity">The opacity for the Material.</param>
+        /// <returns>The created Material.</returns>
         public static Material CreateTransparent(string name, int color, float opacity)
         {
             Color col = ColorFromHex(color);

@@ -2,12 +2,12 @@ using System;
 using HarmonyLib;
 using Kitchen;
 using KitchenData;
-using KitchenLib.Colorblind;
 using KitchenLib.Customs;
 using KitchenLib.Event;
 using KitchenLib.Systems;
 using KitchenLib.Utils;
 using System.Collections.Generic;
+using KitchenLib.Colorblind;
 using UnityEngine;
 using KitchenLib.src.Patches;
 

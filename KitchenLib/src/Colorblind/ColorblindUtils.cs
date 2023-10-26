@@ -1,4 +1,5 @@
-﻿using Kitchen;
+﻿using System;
+using Kitchen;
 using KitchenData;
 using KitchenLib.References;
 using KitchenLib.Utils;
@@ -6,10 +7,12 @@ using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace KitchenLib.Colorblind
 {
 
+	[Obsolete("Please use CustomItem.ColourBlindTag or CustomItemGroup.Labels instead.")]
 	public static class ColorblindUtils
 	{
 

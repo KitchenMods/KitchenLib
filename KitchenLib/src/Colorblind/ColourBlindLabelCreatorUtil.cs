@@ -1,4 +1,5 @@
-﻿using Kitchen;
+﻿using System;
+using Kitchen;
 using KitchenData;
 using System.Collections;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Linq;
 namespace KitchenLib.Colorblind
 {
 
+	[Obsolete("Please use CustomItem.ColourBlindTag or CustomItemGroup.Labels instead.")]
 	public class ColourBlindLabelCreatorUtil : ItemGroupView
 	{
 
