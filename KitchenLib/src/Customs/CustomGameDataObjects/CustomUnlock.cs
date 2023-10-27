@@ -15,8 +15,8 @@ namespace KitchenLib.Customs
         public virtual bool IsSpecificFranchiseTier { get; protected set; }
         public virtual DishCustomerChange CustomerMultiplier { get; protected set; }
         public virtual float SelectionBias { get; protected set; } = 0f;
-        public virtual List<Unlock> HardcodedRequirements { get; protected set; }
-        public virtual List<Unlock> HardcodedBlockers { get; protected set; }
+        public virtual List<Unlock> HardcodedRequirements { get; protected set; } = new List<Unlock>();
+        public virtual List<Unlock> HardcodedBlockers { get; protected set; } = new List<Unlock>();
 		public virtual bool BlocksAllOtherFood { get; protected set; }
 		public virtual List<Unlock> AllowedFoods { get; protected set; } = new List<Unlock>();
 		public virtual RestaurantSetting ForceFranchiseSetting { get; protected set; }

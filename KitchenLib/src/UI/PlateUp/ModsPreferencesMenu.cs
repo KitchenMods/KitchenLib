@@ -5,6 +5,7 @@ using KitchenLib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using KitchenLib.Preferences;
 using UnityEngine;
 
 namespace KitchenLib
@@ -27,9 +28,19 @@ namespace KitchenLib
 
 		private static int CurrentPage = 0;
 
-
+		private static Type preferenceSystemMenuType = null;
+		
 		public static void RegisterMenu(string name, Type type, Type generic)
 		{
+			if (Main.manager.GetPreference<PreferenceBool>("mergeWithPreferenceSystem").Value && Main.preferenceSystemMenuType != null)
+			{
+				MethodInfo info = ReflectionUtils.GetMethod(Main.preferenceSystemMenuType.MakeGenericType(generic), "RegisterMenu");
+				if (info != null)
+				{
+					info.Invoke(null, new object[] { name, type, generic });
+					return;
+				}
+			}
 			if (!RegisteredMenus.ContainsKey((type, generic)))
 			{
 				if (!Pages.ContainsKey(generic))
