@@ -45,6 +45,7 @@ namespace KitchenLib.Customs
         public virtual bool SellOnlyAsUnique { get; protected set; }
         public virtual bool PreventSale { get; protected set; }
         public virtual List<Appliance> Upgrades { get; protected set; } = new List<Appliance>();
+        public virtual List<Appliance> Enchantments { get; protected set; } = new List<Appliance>();
 
         [Obsolete("Should not be used by the user")]
         public virtual bool IsAnUpgrade { get; protected set; }
@@ -198,6 +199,7 @@ namespace KitchenLib.Customs
             if (result.RequiresForShop != RequiresForShop) result.RequiresForShop = RequiresForShop;
             if (result.RequiresProcessForShop != RequiresProcessForShop) result.RequiresProcessForShop = RequiresProcessForShop;
             if (result.Upgrades != Upgrades) result.Upgrades = Upgrades;
+            if (result.Enchantments != Enchantments) result.Enchantments = Enchantments;
             if (result.CrateItem != CrateItem) result.CrateItem = CrateItem;
 
 			if (result.Prefab == null)

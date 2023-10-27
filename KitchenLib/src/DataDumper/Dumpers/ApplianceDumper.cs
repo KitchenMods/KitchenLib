@@ -13,6 +13,7 @@ namespace KitchenLib.DataDumper.Dumpers
 			StringBuilder applianceRequiresForShopDump = new StringBuilder();
 			StringBuilder applianceRequiresProcessForShopDump = new StringBuilder();
 			StringBuilder applianceUpgradesDump = new StringBuilder();
+			StringBuilder applianceEnchantmentsDump = new StringBuilder();
 			StringBuilder applianceSectionDump = new StringBuilder();
 			StringBuilder applianceRequiresPhaseForShopDump = new StringBuilder();
 
@@ -27,6 +28,7 @@ namespace KitchenLib.DataDumper.Dumpers
 			applianceRequiresForShopDump.AppendLine("ID,Type,Appliance");
 			applianceRequiresProcessForShopDump.AppendLine("ID,Type,Process");
 			applianceUpgradesDump.AppendLine("ID,Type,Upgrade");
+			applianceEnchantmentsDump.AppendLine("ID,Type,Enchantment");
 			applianceSectionDump.AppendLine("ID,Type,Title,Description,RangeDescription");
 			applianceRequiresPhaseForShopDump.AppendLine("ID,Type,Phase");
 
@@ -54,6 +56,9 @@ namespace KitchenLib.DataDumper.Dumpers
 				foreach (Appliance upgrade in appliance.Upgrades)
 					applianceUpgradesDump.AppendLine($"{appliance.ID},{appliance.name},{upgrade}");
 
+				foreach (Appliance enchantment in appliance.Enchantments)
+					applianceEnchantmentsDump.AppendLine($"{appliance.ID},{appliance.name},{enchantment}");
+
 				foreach (Appliance.Section section in appliance.Sections)
 					applianceSectionDump.AppendLine($"{appliance.ID},{appliance.name},{section.Title},{section.Description},{section.RangeDescription}");
 
@@ -67,6 +72,7 @@ namespace KitchenLib.DataDumper.Dumpers
 			SaveCSV("Appliance", "ApplianceRequiresForShop", applianceRequiresForShopDump);
 			SaveCSV("Appliance", "ApplianceRequiresProcessForShop", applianceRequiresProcessForShopDump);
 			SaveCSV("Appliance", "ApplianceUpgrades", applianceUpgradesDump);
+			SaveCSV("Appliance", "ApplianceEnchantments", applianceEnchantmentsDump);
 			SaveCSV("Appliance", "ApplianceSections", applianceSectionDump);
 			SaveCSV("Appliance", "ApplianceRequiresPhaseForShop", applianceRequiresPhaseForShopDump);
 		}
