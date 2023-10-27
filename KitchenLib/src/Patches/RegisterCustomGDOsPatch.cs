@@ -21,7 +21,6 @@ namespace KitchenLib.Patches
 
 		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result)
 		{
-			Main.LogDebug("[RegisterCustomGDOsPatch.Postfix] [1.1] Begin Custom GDO Registration");
 			MaterialUtils.SetupMaterialIndex();
 			FontUtils.SetupFontIndex();
 			GDOUtils.SetupGDOIndex(__result);
@@ -31,7 +30,7 @@ namespace KitchenLib.Patches
 			{
 				foreach (CustomGameDataObject gdo in CustomGDO.GDOs.Values)
 				{
-					Main.LogDebug($"[RegisterCustomGDOsPatch.Postfix] [1.2] Converting {gdo.ModID} - {gdo.UniqueNameID}");
+					Main.LogDebug($"-----===== Convert GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
 					GameDataObject gameDataObject;
 					gdo.Convert(__result, out gameDataObject);
 					gameDataObject.name = $"{gdo.ModID} - {gdo.UniqueNameID}";
@@ -41,26 +40,26 @@ namespace KitchenLib.Patches
 
 				foreach (CustomGameDataObject gdo in CustomGDO.GDOs.Values)
 				{
-					Main.LogDebug($"[RegisterCustomGDOsPatch.Postfix] [1.3] Attaching Dependent Properties of {gdo.ModID} - {gdo.UniqueNameID}");
+					
+					Main.LogDebug($"-----===== AttachDependentProperties GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
 					gdo.AttachDependentProperties(__result, gdo.GameDataObject);
 				}
 
 				foreach (CustomGameDataObject gdo in CustomGDO.GDOs.Values)
 				{
-					Main.LogDebug($"[RegisterCustomGDOsPatch.Postfix] [1.4] Registering {gdo.ModID} - {gdo.UniqueNameID}");
+					Main.LogDebug($"-----===== OnRegister GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
 					gdo.OnRegister(gdo.GameDataObject);
 				}
 			}
 
 			EventUtils.InvokeEvent(nameof(Events.BuildGameDataPreSetupEvent), Events.BuildGameDataPreSetupEvent?.GetInvocationList(), null, new BuildGameDataEventArgs(__result, FirstRun));
 
-			Main.LogDebug($"[RegisterCustomGDOsPatch.Postfix] [2.1] Begin Base-Game Registration (For CustomGDOs)");
 
 			foreach (GameDataObject gameDataObject in GameDataObjects)
 			{
+				Main.LogDebug($"-----===== SetupForGame GDO : ({gameDataObject.GetType().BaseType}) {gameDataObject.name} =====-----");
 				try
 				{
-					Main.LogDebug($"[RegisterCustomGDOsPatch.Postfix] [2.2] Setting Up For Game {gameDataObject.name}");
 					gameDataObject.SetupForGame();
 					gameDataObject.Localise(Localisation.CurrentLocale, __instance.StringSubstitutions);
 					GlobalLocalisation globalLocalisation = gameDataObject as GlobalLocalisation;
@@ -77,7 +76,7 @@ namespace KitchenLib.Patches
 
 			foreach (GameDataObject gameDataObject in GameDataObjects)
 			{
-				Main.LogDebug($"[RegisterCustomGDOsPatch.Postfix] [2.3] Setting Up Prefab {gameDataObject.name}");
+				Main.LogDebug($"-----===== Prefabs.Add GDO : ({gameDataObject.GetType().BaseType}) {gameDataObject.name} =====-----");
 				if (__result.Objects.ContainsKey(gameDataObject.ID))
 					break;
 				__result.Objects.Add(gameDataObject.ID, gameDataObject);
@@ -90,7 +89,7 @@ namespace KitchenLib.Patches
 
 			foreach (GameDataObject gameDataObject in GameDataObjects)
 			{
-				Main.LogDebug($"[RegisterCustomGDOsPatch.Postfix] [2.4] Setting Up Final {gameDataObject.name}");
+				Main.LogDebug($"-----===== SetupFinal GDO : ({gameDataObject.GetType().BaseType}) {gameDataObject.name} =====-----");
 				gameDataObject.SetupFinal();
 			}
 
@@ -101,9 +100,9 @@ namespace KitchenLib.Patches
 			 */
 			if (FirstRun) // only register recipes once
 			{
-				Main.LogDebug($"[RegisterCustomGDOsPatch.Postfix] [3.1] Executing GDO Specifics");
 				foreach (GameDataObject gameDataObject in GameDataObjects)
 				{
+					Main.LogDebug($"-----===== Specifics GDO : ({gameDataObject.GetType().BaseType}) {gameDataObject.name} =====-----");
 					// Dishes
 					if (gameDataObject.GetType() == typeof(Dish))
 					{
@@ -111,7 +110,6 @@ namespace KitchenLib.Patches
 						CustomDish customDish = (CustomDish)GDOUtils.GetCustomGameDataObject(dish.ID);
 						foreach (Locale locle in customDish.Recipe.Keys)
 						{
-							Main.LogDebug($"[RegisterCustomGDOsPatch.Postfix] [3.2] Setting Up Dish Recipe For {dish.name}");
 							__result.GlobalLocalisation.Recipes.Info.Get(locle).Text.Add(dish, customDish.Recipe[locle]);
 							foreach (RecipeLocalisation loc in __result.Get<RecipeLocalisation>())
 							{
@@ -137,7 +135,6 @@ namespace KitchenLib.Patches
 						}
 						if (customDish.IsAvailableAsLobbyOption)
 						{
-							Main.LogDebug($"[RegisterCustomGDOsPatch.Postfix] [3.3] Setting Up Dish Lobby Option For {dish.name}");
 							if (customDish.DestroyAfterModUninstall)
 								MainMenuDishDebugSystem.MenuOptions.Add(dish.ID);
 							else
@@ -149,7 +146,6 @@ namespace KitchenLib.Patches
 					if (gameDataObject.GetType() == typeof(Item) || gameDataObject.GetType() == typeof(ItemGroup))
 					{
 						Item item = (Item)gameDataObject;
-						Main.LogDebug($"[RegisterCustomGDOsPatch.Postfix] [3.4] Setting Up Side {item.name}");
 						if (!item.IsMergeableSide)
 						{
 							continue;

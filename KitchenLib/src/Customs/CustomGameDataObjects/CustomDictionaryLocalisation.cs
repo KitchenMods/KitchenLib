@@ -18,8 +18,6 @@ namespace KitchenLib.Customs
 		{
 			DictionaryLocalisation result = ScriptableObject.CreateInstance<DictionaryLocalisation>();
 
-			Main.LogDebug($"[CustomDictionaryLocalisation.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<DictionaryLocalisation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
