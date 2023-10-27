@@ -70,16 +70,16 @@ namespace KitchenLib
 		/// The logger for the mod.
 		/// </summary>
 		internal static KitchenLogger Logger;
-
+		
+		/// <summary>
+		/// The type of the preference system menu.
+		/// </summary>
+		internal static Type preferenceSystemMenuType = null;
+		
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Main"/> class.
 		/// </summary>
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
-		
-
-
-
-
 
     /// <summary>
 		/// Called after the mod is activated.
@@ -90,6 +90,7 @@ namespace KitchenLib
 			Logger = InitLogger();
 			manager = new PreferenceManager(MOD_ID);
 			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));
+			manager.RegisterPreference(new PreferenceBool("mergeWithPreferenceSystem", false));
 			manager.RegisterPreference(new PreferenceBool("isDebug", false));
 			manager.RegisterPreference(new PreferenceInt("cosmeticWidth", 4));
 			manager.RegisterPreference(new PreferenceInt("cosmeticHeight", 2));
@@ -97,6 +98,7 @@ namespace KitchenLib
 			manager.Save();
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).FirstOrDefault() ?? throw new MissingAssetBundleException(MOD_ID);
 			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
+			preferenceSystemMenuType = GetPreferenceSystemMenuType();
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
@@ -139,6 +141,25 @@ namespace KitchenLib
 			go.AddComponent<DevUIController>();
 		}
 
+		private Type GetPreferenceSystemMenuType()
+		{
+			if (preferenceSystemMenuType != null)
+				return preferenceSystemMenuType;
+			
+			foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+			{
+				foreach (Type t in assembly.GetTypes())
+				{
+					if (t.FullName == "PreferenceSystem.Menus.PreferenceSystemMenu`1")
+					{
+						return t;
+					}
+				}
+			}
+			
+			return null;
+		}
+		
 		/// <summary>
 		/// Sets up the menus for the mod.
 		/// </summary>
@@ -147,13 +168,7 @@ namespace KitchenLib
 
 			ModsPreferencesMenu<PauseMenuAction>.RegisterMenu("KitchenLib", typeof(PreferenceMenu<PauseMenuAction>), typeof(PauseMenuAction));
 			ModsPreferencesMenu<MainMenuAction>.RegisterMenu("KitchenLib", typeof(PreferenceMenu<MainMenuAction>), typeof(MainMenuAction));
-
-			//Setting Up For Main Menu
-			Events.StartMainMenu_SetupEvent += (s, args) =>
-			{
-				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mods", typeof(ModsMenu<MainMenuAction>), false });
-				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mod Preferences", typeof(ModsPreferencesMenu<MainMenuAction>), false });
-			};
+			
 			Events.MainMenuView_SetupMenusEvent += (s, args) =>
 			{
 				args.addMenu.Invoke(args.instance, new object[] { typeof(RevisedMainMenu), new RevisedMainMenu(args.instance.ButtonContainer, args.module_list) });
@@ -167,7 +182,8 @@ namespace KitchenLib
 			Events.MainMenu_SetupEvent += (s, args) =>
 			{
 				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mods", typeof(ModsMenu<PauseMenuAction>), false });
-				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mod Preferences", typeof(ModsPreferencesMenu<PauseMenuAction>), false });
+				if (!manager.GetPreference<PreferenceBool>("mergeWithPreferenceSystem").Value && preferenceSystemMenuType != null || preferenceSystemMenuType == null)
+					args.addSubmenuButton.Invoke(args.instance, new object[] { "Mod Preferences", typeof(ModsPreferencesMenu<PauseMenuAction>), false });
 			};
 			Events.PlayerPauseView_SetupMenusEvent += (s, args) =>
 			{
