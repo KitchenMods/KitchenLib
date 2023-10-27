@@ -25,7 +25,7 @@ namespace KitchenLib.UI
 			}, 0, 1f, 0.2f);
 
 			New<SpacerElement>(true);
-			if (SyncMods._isMissingMod)
+			if (SyncMods.MissingMods.Count > 0)
 			{
 				AddButton("Sync Mods", async delegate (int i)
 				{

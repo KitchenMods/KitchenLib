@@ -39,12 +39,12 @@ namespace KitchenLib
 		/// <summary>
 		/// The version of the mod.
 		/// </summary>
-		internal const string MOD_VERSION = "0.8.0.1";
+		internal const string MOD_VERSION = "0.8.1";
 
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string MOD_BETA_VERSION = "";
+		internal const string MOD_BETA_VERSION = "1";
 
 		/// <summary>
 		/// The compatible versions of the mod.
@@ -97,7 +97,7 @@ namespace KitchenLib
 			manager.Load();
 			manager.Save();
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).FirstOrDefault() ?? throw new MissingAssetBundleException(MOD_ID);
-			SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
+			// SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
 			preferenceSystemMenuType = GetPreferenceSystemMenuType();
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
@@ -190,6 +190,8 @@ namespace KitchenLib
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<PauseMenuAction>), new ModsMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<PauseMenuAction>), new ModsPreferencesMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModSyncMenu), new ModSyncMenu(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ConfirmModSync), new ConfirmModSync
+					(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(DeveloperOptions<PauseMenuAction>), new DeveloperOptions<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(UserOptions<PauseMenuAction>), new UserOptions<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
 			};
