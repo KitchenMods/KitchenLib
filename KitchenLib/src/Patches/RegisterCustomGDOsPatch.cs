@@ -26,6 +26,11 @@ namespace KitchenLib.Patches
 			FontUtils.SetupFontIndex();
 			GDOUtils.SetupGDOIndex(__result);
 			ColorblindUtils.Init(__result);
+			
+			foreach ((string, Type) x in ModsPreferencesMenu<MainMenuAction>.MenusToRegister.Keys)
+				ModsPreferencesMenu<MainMenuAction>.Register(x.Item1, x.Item2, ModsPreferencesMenu<MainMenuAction>.MenusToRegister[x]);
+			foreach ((string, Type) x in ModsPreferencesMenu<PauseMenuAction>.MenusToRegister.Keys)
+				ModsPreferencesMenu<PauseMenuAction>.Register(x.Item1, x.Item2, ModsPreferencesMenu<PauseMenuAction>.MenusToRegister[x]);
 
 			if (FirstRun) // only build custom GDOs once
 			{

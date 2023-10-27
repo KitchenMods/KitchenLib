@@ -24,15 +24,17 @@ namespace KitchenLib
 		private static Dictionary<Type, List<int>> Pages = new Dictionary<Type, List<int>>();
 		private static Dictionary<Type, List<string>> PageNames = new Dictionary<Type, List<string>>();
 
+		internal static Dictionary<(string, Type), Type> MenusToRegister = new Dictionary<(string, Type), Type>();
+
 		private Option<int> PageSelector = null;
 
 		private static int CurrentPage = 0;
 
 		private static Type preferenceSystemMenuType = null;
-		
-		public static void RegisterMenu(string name, Type type, Type generic)
+
+		internal static void Register(string name, Type type, Type generic)
 		{
-			if (Main.manager.GetPreference<PreferenceBool>("mergeWithPreferenceSystem").Value && Main.preferenceSystemMenuType != null)
+			if (Main.manager.GetPreference<PreferenceBool>("mergeWithPreferenceSystem") != null && Main.manager.GetPreference<PreferenceBool>("mergeWithPreferenceSystem").Value && Main.preferenceSystemMenuType != null)
 			{
 				MethodInfo info = ReflectionUtils.GetMethod(Main.preferenceSystemMenuType.MakeGenericType(generic), "RegisterMenu");
 				if (info != null)
@@ -87,6 +89,11 @@ namespace KitchenLib
 					MenuPages.Add((type, generic), page);
 				}
 			}
+		}
+
+		public static void RegisterMenu(string name, Type type, Type generic)
+		{
+			MenusToRegister.Add((name, type), generic);
 		}
 		private static void RegisterLegacyMenu(string name, Type type, bool skip_stack)
 		{

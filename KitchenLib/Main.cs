@@ -97,7 +97,6 @@ namespace KitchenLib
 			manager.Load();
 			manager.Save();
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).FirstOrDefault() ?? throw new MissingAssetBundleException(MOD_ID);
-			// SyncModsViewHolder = AddGameDataObject<SyncModsViewHolder>();
 			preferenceSystemMenuType = GetPreferenceSystemMenuType();
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
