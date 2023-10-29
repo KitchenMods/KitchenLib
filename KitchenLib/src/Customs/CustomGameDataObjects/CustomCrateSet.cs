@@ -13,8 +13,6 @@ namespace KitchenLib.Customs
         {
             CrateSet result = ScriptableObject.CreateInstance<CrateSet>();
 
-			Main.LogDebug($"[CustomCrateSet.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<CrateSet>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
@@ -26,8 +24,6 @@ namespace KitchenLib.Customs
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             CrateSet result = (CrateSet)gameDataObject;
-
-			Main.LogDebug($"[CustomCrateSet.AttachDependentProperties] [1.1] Converting Base");
 
 			if (result.Options != Options) result.Options = Options;
         }

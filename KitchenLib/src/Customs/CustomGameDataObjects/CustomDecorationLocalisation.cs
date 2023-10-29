@@ -19,8 +19,6 @@ namespace KitchenLib.Customs
 		{
 			DecorationLocalisation result = ScriptableObject.CreateInstance<DecorationLocalisation>();
 
-			Main.LogDebug($"[CustomDecorationLocalisation.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<DecorationLocalisation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 

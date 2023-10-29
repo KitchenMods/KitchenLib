@@ -17,8 +17,6 @@ namespace KitchenLib.Customs
         {
             Research result = ScriptableObject.CreateInstance<Research>();
 
-			Main.LogDebug($"[CustomResearch.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Research>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
@@ -39,8 +37,6 @@ namespace KitchenLib.Customs
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             Research result = ScriptableObject.CreateInstance<Research>();
-
-			Main.LogDebug($"[CustomResearch.AttachDependentProperties] [1.1] Converting Base");
 
 			if (result.Rewards != Rewards) result.Rewards = Rewards;
             if (result.EnablesResearchOf != EnablesResearchOf) result.EnablesResearchOf = EnablesResearchOf;

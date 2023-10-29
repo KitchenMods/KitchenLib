@@ -97,8 +97,6 @@ namespace KitchenLib.Customs
         {
 			Appliance result = ScriptableObject.CreateInstance<Appliance>();
 
-			Main.LogDebug($"[CustomAppliance.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
@@ -129,8 +127,6 @@ namespace KitchenLib.Customs
             if (result.IsNonCrated != IsNonCrated) result.IsNonCrated = IsNonCrated;
             if (result.Info != Info) result.Info = Info;
 
-			Main.LogDebug($"[CustomAppliance.Convert] [1.2] Converting Overrides");
-
 			if (PurchaseCostOverride != -1)
             {
                 ApplianceOverrides.AddPurchaseCostOverride(result.ID, PurchaseCostOverride);
@@ -159,8 +155,6 @@ namespace KitchenLib.Customs
 
 			if (AutoGenerateNavMeshObject && result.Prefab != null)
 			{
-
-				Main.LogDebug($"[CustomAppliance.Convert] [1.2] Generating NavMesh");
 				NavMeshObstacle navMeshObstacle = null;
 				foreach (Transform t in result.Prefab.GetComponentInChildren<Transform>())
 				{
@@ -191,8 +185,6 @@ namespace KitchenLib.Customs
         {
             Appliance result = (Appliance)gameDataObject;
 
-			Main.LogDebug($"[CustomAppliance.AttachDependentProperties] [1.1] Converting Base");
-
 			if (result.Processes != Processes) result.Processes = Processes;
             if (result.Properties != Properties) result.Properties = Properties;
             if (result.EffectRepresentation != EffectRepresentation) result.EffectRepresentation = EffectRepresentation;
@@ -204,7 +196,6 @@ namespace KitchenLib.Customs
 
 			if (result.Prefab == null)
 			{
-				Main.LogDebug($"[CustomAppliance.AttachDependentProperties] [1.2] Assigning Error Prefab");
 				result.Prefab = Main.bundle.LoadAsset<GameObject>("Error_Appliance");
 			}
         }

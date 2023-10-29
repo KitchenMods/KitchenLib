@@ -17,8 +17,6 @@ namespace KitchenLib.Customs
 		{
 			RecipeLocalisation result = ScriptableObject.CreateInstance<RecipeLocalisation>();
 
-			Main.LogDebug($"[CustomRecipeLocalisation.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<RecipeLocalisation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 

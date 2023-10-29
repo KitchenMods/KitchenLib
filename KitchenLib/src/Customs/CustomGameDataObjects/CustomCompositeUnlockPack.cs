@@ -14,8 +14,6 @@ namespace KitchenLib.Customs
         {
             CompositeUnlockPack result = ScriptableObject.CreateInstance<CompositeUnlockPack>();
 
-			Main.LogDebug($"[CustomCompositeUnlockPack.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<CompositeUnlockPack>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
@@ -27,8 +25,6 @@ namespace KitchenLib.Customs
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             CompositeUnlockPack result = (CompositeUnlockPack)gameDataObject;
-
-			Main.LogDebug($"[CustomCompositeUnlockPack.AttachDependentProperties] [1.1] Converting Base");
 
 			if (result.Packs != Packs) result.Packs = Packs;
         }

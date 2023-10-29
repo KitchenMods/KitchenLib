@@ -45,8 +45,6 @@ namespace KitchenLib.Customs
         {
             Dish result = ScriptableObject.CreateInstance<Dish>();
 
-			Main.LogDebug($"[CustomDish.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Dish>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
@@ -71,8 +69,6 @@ namespace KitchenLib.Customs
 
             if (result.Info != Info) result.Info = Info;
 
-			Main.LogDebug($"[CustomDish.Convert] [1.2] Converting Overrides");
-
 			if (InfoList.Count > 0)
             {
                 result.Info = new LocalisationObject<UnlockInfo>();
@@ -91,8 +87,6 @@ namespace KitchenLib.Customs
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             Dish result = (Dish)gameDataObject;
-
-			Main.LogDebug($"[CustomDish.AttachDependentProperties] [1.1] Converting Base");
 			
 			if (result.UnlockItemOverride != UnlockItemOverride) result.UnlockItemOverride = UnlockItemOverride;
 			if (result.AlsoAddRecipes != AlsoAddRecipes) result.AlsoAddRecipes = AlsoAddRecipes;
@@ -119,7 +113,6 @@ namespace KitchenLib.Customs
 			
 			if (!RequiredNoDishItem)
 			{
-				Main.LogDebug($"[CustomDish.AttachDependentProperties] [1.2] Assigning Default Requirement");
 				if (RequiredDishItem != null)
 					result.MinimumIngredients.Add(RequiredDishItem);
 				else
@@ -130,12 +123,7 @@ namespace KitchenLib.Customs
 			{
 				if (!BypassMainRequirementsCheck)
 				{
-					Main.LogDebug($"[CustomDish.AttachDependentProperties] [1.3] Converting Main Dish to Base Dish - No requirements found.");
 					result.Type = DishType.Base;
-				}
-				else
-				{
-					Main.LogDebug($"[CustomDish.AttachDependentProperties] [1.4] Converting Main Dish to Base Dish - Bypassing requirements check.");
 				}
 			}
         }
