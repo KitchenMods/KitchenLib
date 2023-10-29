@@ -30,6 +30,7 @@ namespace KitchenLib
 		private static List<Assembly> PatchedAssemblies = new List<Assembly>();
 		private bool isRegistered = false;
 		private bool canRegisterGDO = false;
+		private Mod mod;
 
 		[Obsolete("This will point to different mods at different times, use your own singleton variable instead.")]
 		public static BaseMod instance;
@@ -124,6 +125,7 @@ namespace KitchenLib
 
 		public sealed override void PostActivate(Mod mod) //IModInitializer
 		{
+			this.mod = mod;
 			foreach (AssetBundleModPack pack in mod.GetPacks<AssetBundleModPack>())
 			{
 				foreach (AssetBundle bundle in pack.AssetBundles)
@@ -225,6 +227,7 @@ namespace KitchenLib
 			T gdo = new T();
 			gdo.ModID = ModID;
 			gdo.ModName = ModName;
+			gdo.mod = mod;
 			if (canRegisterGDO)
 			{
 				return CustomGDO.RegisterGameDataObject(gdo);
