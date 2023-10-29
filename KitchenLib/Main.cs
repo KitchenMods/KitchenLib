@@ -91,6 +91,7 @@ namespace KitchenLib
 			manager = new PreferenceManager(MOD_ID);
 			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));
 			manager.RegisterPreference(new PreferenceBool("mergeWithPreferenceSystem", false));
+			manager.RegisterPreference(new PreferenceBool("forceLocalDishes", true));
 			manager.RegisterPreference(new PreferenceBool("isDebug", false));
 			manager.RegisterPreference(new PreferenceInt("cosmeticWidth", 4));
 			manager.RegisterPreference(new PreferenceInt("cosmeticHeight", 2));

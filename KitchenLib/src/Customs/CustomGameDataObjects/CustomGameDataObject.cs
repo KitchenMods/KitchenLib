@@ -1,6 +1,7 @@
 using KitchenData;
 using KitchenLib.Utils;
 using System;
+using KitchenMods;
 
 namespace KitchenLib.Customs
 {
@@ -16,6 +17,7 @@ namespace KitchenLib.Customs
 
         public string ModID = "";
         public string ModName = "";
+        public Mod mod;
         public GameDataObject GameDataObject;
 
         public abstract void Convert(GameData gameData, out GameDataObject gameDataObject);
