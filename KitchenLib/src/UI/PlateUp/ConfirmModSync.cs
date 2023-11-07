@@ -1,6 +1,8 @@
 ﻿using Kitchen.Modules;
 using Kitchen;
 using System.Collections.Generic;
+using KitchenLib.Preferences;
+using KitchenMods;
 using Steamworks.Ugc;
 using UnityEngine;
 
@@ -12,6 +14,7 @@ namespace KitchenLib.UI
 		{
 		}
 		public static List<Steamworks.Ugc.Item> MissingMods = new List<Steamworks.Ugc.Item>();
+		public static List<Steamworks.Ugc.Item> AllMods = new List<Steamworks.Ugc.Item>();
 		public override void Setup(int player_id)
 		{
 			Redraw();
@@ -33,12 +36,31 @@ namespace KitchenLib.UI
 				}, 0, 1f, 0.2f);
 			}else if (ConfirmSync && !Complete)
 			{
-				AddInfo("Installing.. Please wait a moment.");
-				foreach (Item mod in MissingMods)
+				if (Main.manager.GetPreference<PreferenceInt>("modSyncMethod").Value == 1)
 				{
-					Main.LogInfo("Installing " + mod.Title);
-					await mod.Subscribe();
+					AddInfo("Removing Current Mods...");
+					foreach (Mod mod in ModPreload.Mods)
+					{
+						var item = await Steamworks.Ugc.Item.GetAsync(mod.ID);
+						item.Value.Unsubscribe();
+					}
+					AddInfo("Installing...");
+					foreach (Item mod in AllMods)
+					{
+						Main.LogInfo("Installing " + mod.Title);
+						await mod.Subscribe();
+					}
 				}
+				else
+				{
+					AddInfo("Installing...");
+					foreach (Item mod in MissingMods)
+					{
+						Main.LogInfo("Installing " + mod.Title);
+						await mod.Subscribe();
+					}
+				}
+
 				Complete = true;
 				Redraw();
 				return;

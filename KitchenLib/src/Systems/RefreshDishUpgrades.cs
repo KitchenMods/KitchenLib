@@ -2,7 +2,6 @@
 using KitchenMods;
 using Unity.Collections;
 using Unity.Entities;
-using Random = UnityEngine.Random;
 
 namespace KitchenLib.Systems
 {
@@ -20,22 +19,22 @@ namespace KitchenLib.Systems
 		}
 		protected override void OnUpdate()
 		{
+		//		
+			NativeArray<Entity> dishUpgrades = DishUpgrades.ToEntityArray(Allocator.Temp);
+			NativeArray<Entity> dishOptions = DishOptions.ToEntityArray(Allocator.Temp);
 			if (Refresh)
 			{
 				Refresh = false;
-				
-				NativeArray<Entity> dishUpgrades = DishUpgrades.ToEntityArray(Allocator.Temp);
-				NativeArray<Entity> dishOptions = DishOptions.ToEntityArray(Allocator.Temp);
 
+				dishUpgrades.ShuffleInPlace();
 				for (int i = 0; i < dishOptions.Length; i++)
 				{
-					int x = EntityManager.GetComponentData<CDishUpgrade>(dishUpgrades[Random.Range(0, dishUpgrades.Length - 1)]).DishID;
+					int x = EntityManager.GetComponentData<CDishUpgrade>(dishUpgrades[i]).DishID;
 					EntityManager.SetComponentData<CDishChoice>(dishOptions[i], new CDishChoice { Dish = x });
 				}
-				
-				dishUpgrades.Dispose();
-				dishOptions.Dispose();
 			}
+			dishUpgrades.Dispose();
+			dishOptions.Dispose();
 		}
 	}
 }

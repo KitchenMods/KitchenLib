@@ -10,7 +10,7 @@ namespace KitchenLib.Systems
 	{
 		protected override void OnUpdate()
 		{
-			// EnsureView<SModSync>("KitchenLib.Views.SyncMods");
+			EnsureView<SModSync>("KitchenLib.Views.SyncMods");
 		}
 
 		private void EnsureView<T>(ViewType viewType) where T : IComponentData, new()

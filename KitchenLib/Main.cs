@@ -13,6 +13,9 @@ using KitchenLib.Logging;
 using KitchenLib.Logging.Exceptions;
 using System.Runtime.CompilerServices;
 using System;
+using System.IO;
+using KitchenData;
+using KitchenLib.References;
 
 namespace KitchenLib
 {
@@ -44,7 +47,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string MOD_BETA_VERSION = "3";
+		internal const string MOD_BETA_VERSION = "4";
 
 		/// <summary>
 		/// The compatible versions of the mod.
@@ -95,6 +98,7 @@ namespace KitchenLib
 			manager.RegisterPreference(new PreferenceBool("isDebug", false));
 			manager.RegisterPreference(new PreferenceInt("cosmeticWidth", 4));
 			manager.RegisterPreference(new PreferenceInt("cosmeticHeight", 2));
+			manager.RegisterPreference(new PreferenceInt("modSyncMethod", 0));
 			manager.Load();
 			manager.Save();
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).FirstOrDefault() ?? throw new MissingAssetBundleException(MOD_ID);

@@ -42,13 +42,15 @@ namespace KitchenLib.Views
 			[Key(0)] public List<ulong> Mods;
 			public bool IsChangedFrom(ViewData cached)
 			{
-				return Mods != cached.Mods;
+				return Mods.Count != cached.Mods.Count;
 			}
 		}
 		public static List<ulong> MissingMods = new List<ulong>();
+		public static List<ulong> AllMods = new List<ulong>();
 		protected override void UpdateData(ViewData view_data)
 		{
 			MissingMods.Clear();
+			AllMods.Clear();
 			List<ulong> localMods = new List<ulong>();
 			foreach (Mod mod in ModPreload.Mods)
 			{
@@ -56,6 +58,7 @@ namespace KitchenLib.Views
 			}
 			foreach (ulong mod in view_data.Mods)
 			{
+				AllMods.Add(mod);
 				if (!localMods.Contains(mod))
 				{
 					MissingMods.Add(mod);
