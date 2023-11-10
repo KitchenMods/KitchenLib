@@ -354,7 +354,6 @@ namespace KitchenLib
 			{
 				if(typeof(IAddGameData).IsAssignableFrom(type))
 				{
-					Main.Logger.LogWarning("THIS IS IMPORTANT: " + type.FullName);
 					keyValuePairs.Add(type.Name, AddGameDataObject(type));
 				}
 			}
