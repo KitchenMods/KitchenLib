@@ -7,6 +7,7 @@ using KitchenLib.Utils;
 using KitchenLib.Views;
 using KitchenMods;
 using Semver;
+using Sirenix.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -236,6 +237,28 @@ namespace KitchenLib
 			}
 		}
 
+		public CustomGameDataObject AddGameDataObject(Type t)
+		{
+			if(t.IsCastableTo(typeof(CustomGameDataObject)))
+			{
+				CustomGameDataObject gdo = (CustomGameDataObject)Activator.CreateInstance(t);
+				if (canRegisterGDO)
+				{
+					return CustomGDO.RegisterGameDataObject(gdo);
+				}
+				else
+				{
+					Main.Logger.LogWarning("Please Register GDOs in OnPostActivate(Mod mod) " + gdo.GetType().FullName);
+					return null;
+				}
+			}
+			else
+			{
+				Main.Logger.LogError("Please make sure " + t.FullName + " extends CustomGameDataObject");
+				return null;
+			}
+		}
+
 		public T AddSubProcess<T>() where T : CustomSubProcess, new()
 		{
 			T subProcess = new T();
@@ -321,6 +344,21 @@ namespace KitchenLib
 		public KitchenLogger InitLogger()
 		{
 			return new KitchenLogger(ModName);
+		}
+
+		public Dictionary<string, CustomGameDataObject> RegisterGameDataObjects(Type t)
+		{
+			Dictionary<string, CustomGameDataObject> keyValuePairs = new Dictionary<string, CustomGameDataObject>();
+			Assembly asm = ModRegistery.keyValuePairs[t];
+			foreach (Type type in asm.GetTypes())
+			{
+				if(typeof(IAddGameData).IsAssignableFrom(type))
+				{
+					Main.Logger.LogWarning("THIS IS IMPORTANT: " + type.FullName);
+					keyValuePairs.Add(type.Name, AddGameDataObject(type));
+				}
+			}
+			return keyValuePairs;
 		}
 	}
 }
