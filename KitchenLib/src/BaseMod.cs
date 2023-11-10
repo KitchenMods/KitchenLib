@@ -352,7 +352,7 @@ namespace KitchenLib
 			Assembly asm = ModRegistery.keyValuePairs[t];
 			foreach (Type type in asm.GetTypes())
 			{
-				if(typeof(IAddGameData).IsAssignableFrom(type))
+				if(typeof(IAddGDO).IsAssignableFrom(type))
 				{
 					keyValuePairs.Add(type.Name, AddGameDataObject(type));
 				}
