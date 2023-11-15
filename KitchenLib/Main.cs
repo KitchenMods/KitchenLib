@@ -13,9 +13,9 @@ using KitchenLib.Logging;
 using KitchenLib.Logging.Exceptions;
 using System.Runtime.CompilerServices;
 using System;
-using System.IO;
-using KitchenData;
-using KitchenLib.References;
+using KitchenLib.Components;
+using KitchenLib.Utils;
+using KitchenLib.Views;
 
 namespace KitchenLib
 {
@@ -53,11 +53,6 @@ namespace KitchenLib
 		/// The compatible versions of the mod.
 		/// </summary>
 		internal const string MOD_COMPATIBLE_VERSIONS = ">=1.1.7";
-
-		/// <summary>
-		/// The holder for synchronizing views.
-		/// </summary>
-		internal static CustomAppliance SyncModsViewHolder;
 
 		/// <summary>
 		/// The asset bundle for the mod.
@@ -108,6 +103,8 @@ namespace KitchenLib
 			RegisterMenu<DebugMenu>();
 			FeatureFlags.Init();
 
+			ViewUtils.RegisterView("KitchenLib.Views.SyncMods", typeof(SModSync), typeof(SyncMods));
+			
 			LogInfo(" __  ___  __  .___________.  ______  __    __   _______ .__   __.  __       __  .______  ");
 			LogInfo("|  |/  / |  | |           | /      ||  |  |  | |   ____||  \\ |  | |  |     |  | |   _  \\ ");
 			LogInfo("|  '  /  |  | `---|  |----`|  ,----'|  |__|  | |  |__   |   \\|  | |  |     |  | |  |_)  |");

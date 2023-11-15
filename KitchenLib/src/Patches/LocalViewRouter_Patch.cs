@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using HarmonyLib;
 using Kitchen;
-using KitchenLib.Utils;
-using KitchenLib.Views;
+using KitchenLib.Systems;
 using UnityEngine;
 
 namespace KitchenLib.Patches
@@ -9,18 +9,28 @@ namespace KitchenLib.Patches
 	[HarmonyPatch(typeof(LocalViewRouter), "GetPrefab")]
 	public class LocalViewRouter_Patch
 	{
-		static GameObject SyncModsPrefab;
+		public static readonly Dictionary<ViewType, GameObject> RegisteredViews = new Dictionary<ViewType, GameObject>();
 		static bool Prefix(ViewType view_type, ref GameObject __result)
 		{
-			if (view_type != (ViewType)VariousUtils.GetID("KitchenLib.Views.SyncMods"))
+			if (!ViewCreator.RegisteredViews.ContainsKey(view_type))
 				return true;
-
-			if (SyncModsPrefab == null)
+			if (RegisteredViews.ContainsKey(view_type))
 			{
-				SyncModsPrefab = new GameObject("KitchenLib.Views.SyncMods");
-				SyncModsPrefab.AddComponent<SyncMods>();
+				if (RegisteredViews[view_type] == null)
+				{
+					RegisteredViews.Remove(view_type);
+				}
+				else
+				{
+					__result = RegisteredViews[view_type];
+					return false;
+				}
 			}
-			__result = SyncModsPrefab;
+
+			GameObject prefab = new GameObject(ViewCreator.RegisteredViews[view_type].Item2.FullName);
+			prefab.AddComponent(ViewCreator.RegisteredViews[view_type].Item2);
+			RegisteredViews.Add(view_type, prefab);
+			__result = prefab;
 			return false;
 		}
 	}
