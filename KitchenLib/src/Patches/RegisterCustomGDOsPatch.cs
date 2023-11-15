@@ -23,6 +23,7 @@ namespace KitchenLib.Patches
 		{
 			MaterialUtils.SetupMaterialIndex();
 			FontUtils.SetupFontIndex();
+			VFXUtils.SetupVFXIndex();
 			GDOUtils.SetupGDOIndex(__result);
 			ColorblindUtils.Init(__result);
 			
