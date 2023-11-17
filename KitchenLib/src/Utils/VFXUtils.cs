@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using KitchenWashableTrash;
 using UnityEngine;
 using UnityEngine.VFX;
 
