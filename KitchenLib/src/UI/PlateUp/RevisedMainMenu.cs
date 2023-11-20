@@ -19,7 +19,9 @@ namespace KitchenLib.UI
 			{
 				AddLabel("!!BETA WARNING!!");
 				AddInfo("You are running a beta version of KitchebLib");
+				AddInfo("(Please backup your save files.)");
 				AddInfo("There will be bugs, this is for TESTING PURPOSES");
+				New<SpacerElement>(true);
 				New<SpacerElement>(true);
 				New<SpacerElement>(true);
 			}

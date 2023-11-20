@@ -9,8 +9,10 @@ using KitchenMods;
 using Semver;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using KitchenLib.Interfaces;
 using UnityEngine;
 
 namespace KitchenLib
@@ -152,7 +154,29 @@ namespace KitchenLib
 					AddMaterial(mat);
 				}
 			}
-			
+
+			if (this.GetType().GetInterfaces().Contains(typeof(IAutoRegisterAll)))
+			{
+				foreach (Type type in this.GetType().Assembly.GetTypes())
+				{
+					if (type.IsAbstract || !typeof(CustomGameDataObject).IsAssignableFrom(type) || typeof(IDontRegister).IsAssignableFrom(type))
+						continue;
+
+					AddGameDataObjectAutomatically(type);
+				}
+			}
+
+			foreach (AssemblyModPack pack in mod.GetPacks<AssemblyModPack>())
+			{
+				foreach (Type type in pack.Asm.GetTypes())
+				{
+					if (type.GetInterfaces().Contains(typeof(IRegisterGDO)))
+					{
+						AddGameDataObjectByInterface(type);
+					}
+				}
+			}
+
 			try
 			{
 				OnPostActivate(mod);
@@ -222,6 +246,24 @@ namespace KitchenLib
 			}
 		}
 
+		public object AddGameDataObjectByInterface(Type gdo)
+		{
+			Main.LogInfo($"Registering {gdo.FullName} by interface.");
+			return AddGameDataObjectType(gdo);
+		}
+
+		public object AddGameDataObjectAutomatically(Type gdo)
+		{
+			Main.LogInfo($"Registering {gdo.FullName} automatically.");
+			return AddGameDataObjectType(gdo);
+		}
+
+		internal object AddGameDataObjectType(Type gdo)
+		{
+			MethodInfo method = ReflectionUtils.GetMethod<BaseMod>("AddGameDataObject");
+			MethodInfo generic = method.MakeGenericMethod(gdo);
+			return generic.Invoke(this, new object[]{});
+		}
 		public T AddGameDataObject<T>() where T : CustomGameDataObject, new()
 		{
 			T gdo = new T();

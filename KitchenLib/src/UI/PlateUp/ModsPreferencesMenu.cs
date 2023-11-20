@@ -93,7 +93,8 @@ namespace KitchenLib
 
 		public static void RegisterMenu(string name, Type type, Type generic)
 		{
-			MenusToRegister.Add((name, type), generic);
+			if (!MenusToRegister.ContainsKey((name, type))) 
+				MenusToRegister.Add((name, type), generic);
 		}
 		private static void RegisterLegacyMenu(string name, Type type, bool skip_stack)
 		{

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using KitchenLib.Colorblind;
 using UnityEngine;
 using KitchenLib.src.Patches;
+using KitchenMods;
 
 namespace KitchenLib.Patches
 {
@@ -34,6 +35,35 @@ namespace KitchenLib.Patches
 
 			if (FirstRun) // only build custom GDOs once
 			{
+				foreach (CustomGameDataObject gdo in CustomGDO.GDOs.Values)
+				{
+					if (gdo.mod == null)
+					{
+						Main.LogWarning($"{gdo.GetType().FullName} Failed to register correctly. Attempting to fix...");
+						bool found = false;
+						foreach (Mod mod in ModPreload.Mods)
+						{
+							foreach (AssemblyModPack pack in mod.GetPacks<AssemblyModPack>())
+							{
+								foreach (Type type in pack.Asm.GetTypes())
+								{
+									if (type == gdo.GetType())
+									{
+										gdo.mod = mod;
+										Main.LogWarning($"Successfully fixed {gdo.GetType().FullName}");
+										found = true;
+										break;
+									}
+								}
+								if (found)
+									break;
+							}
+							if (found)
+								break;
+						}
+					}
+				}
+				
 				foreach (CustomGameDataObject gdo in CustomGDO.GDOs.Values)
 				{
 					Main.LogDebug($"-----===== Convert GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
@@ -146,7 +176,7 @@ namespace KitchenLib.Patches
 							else
 								MainMenuDishSystem.MenuOptions.Add(dish.ID);
 							
-							if (customDish.mod.Name == "")
+							if (customDish.mod != null && customDish.mod.Name == "")
 								BuildLocalDishOptions.MenuOptions.Add(dish.ID);
 						}
 					}
