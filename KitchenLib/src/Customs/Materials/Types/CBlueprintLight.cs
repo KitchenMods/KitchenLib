@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
+using imColorPicker;
+using KitchenLib.Interfaces;
 using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-	public class CBlueprintLight: CustomMaterial
+	public class CBlueprintLight: CustomMaterial, IMaterialEditor
 	{
 		public override JsonType Type => JsonType.CBlueprintLight;
 		[JsonIgnore]
@@ -40,37 +42,64 @@ namespace KitchenLib.Customs
 			_Color = new Vector4(_ColorX, _ColorY, _ColorZ, 0);
 			_Color0 = new Vector4(_Color0X, _Color0Y, _Color0Z, 0);
 		}
-		public static void GUI(Material material)
+		IMColorPicker mainColorPicker;
+		IMColorPicker subColorPicker;
+		public void GUI(Material material)
 		{
-			Vector4 _Color = material.GetVector("_Color");
-
-			GUILayout.Label("_Color");
-			_Color.x = GUILayout.HorizontalSlider(_Color.x, 0.0f, 3.0f);
-			_Color.y = GUILayout.HorizontalSlider(_Color.y, 0.0f, 3.0f);
-			_Color.z = GUILayout.HorizontalSlider(_Color.z, 0.0f, 3.0f);
-			material.SetVector("_Color", _Color);
-
+			if(mainColorPicker == null)
+				mainColorPicker = new IMColorPicker();
+			if(subColorPicker == null)
+				subColorPicker = new IMColorPicker();
 			
+			Vector4 _Color = material.GetVector("_Color");
 			Vector4 _Color0 = material.GetVector("_Color0");
-
-			GUILayout.Label("_Color0");
-			_Color0.x = GUILayout.HorizontalSlider(_Color0.x, 0.0f, 3.0f);
-			_Color0.y = GUILayout.HorizontalSlider(_Color0.y, 0.0f, 3.0f);
-			_Color0.z = GUILayout.HorizontalSlider(_Color0.z, 0.0f, 3.0f);
+			
+			GUILayout.BeginArea(new Rect(0, 0, 159, 20));
+			GUILayout.Label("Base Color");
+			GUILayout.EndArea();
+			
+			GUILayout.BeginArea(new Rect(0, 20, 159, 140));
+			_Color = mainColorPicker.DrawColorPicker(_Color);
+			material.SetVector("_Color", _Color);
+			GUILayout.EndArea();
+			material.SetVector("_Color", _Color);
+			
+			GUILayout.BeginArea(new Rect(159, 0, 159, 20));
+			GUILayout.Label("Sub Color");
+			GUILayout.EndArea();
+			
+			GUILayout.BeginArea(new Rect(159, 20, 159, 140));
+			_Color0 = subColorPicker.DrawColorPicker(_Color0);
 			material.SetVector("_Color0", _Color0);
-
-			float _HasColour = material.GetFloat("_HasColour");
-			GUILayout.Label("_HasColour");
-			_HasColour = GUILayout.HorizontalSlider(_HasColour, 0.0f, 1.0f);
-			material.SetFloat("_HasColour", _HasColour);
-
-			float _IsCopy = material.GetFloat("_IsCopy");
-			GUILayout.Label("_IsCopy");
-			_IsCopy = GUILayout.HorizontalSlider(_IsCopy, 0.0f, 1.0f);
-			material.SetFloat("_IsCopy", _IsCopy);
+			GUILayout.EndArea();
+			material.SetVector("_Color0", _Color0);
+			
+			GUILayout.BeginArea(new Rect(318, 20, 110, 20));
+			GUILayout.Label("Has Sub Colour");
+			GUILayout.EndArea();
+			
+			GUILayout.BeginArea(new Rect(428, 20, 49, 20));
+			material.SetFloat("_HasColour", float.Parse(GUILayout.TextField(material.GetFloat("_HasColour").ToString())));
+			GUILayout.EndArea();
+			
+			GUILayout.BeginArea(new Rect(477, 25, 318, 20));
+			material.SetFloat("_HasColour", GUILayout.HorizontalSlider(material.GetFloat("_HasColour"), 0.0f, 1.0f));
+			GUILayout.EndArea();
+			
+			GUILayout.BeginArea(new Rect(318, 40, 110, 20));
+			GUILayout.Label("Is Copy");
+			GUILayout.EndArea();
+			
+			GUILayout.BeginArea(new Rect(428, 40, 49, 20));
+			material.SetFloat("_IsCopy", float.Parse(GUILayout.TextField(material.GetFloat("_IsCopy").ToString())));
+			GUILayout.EndArea();
+			
+			GUILayout.BeginArea(new Rect(477, 45, 318, 20));
+			material.SetFloat("_IsCopy", GUILayout.HorizontalSlider(material.GetFloat("_IsCopy"), 0.0f, 1.0f));
+			GUILayout.EndArea();
 		}
 
-		public static void Export(Material material)
+		public void Export(Material material)
 		{
 			if (GUILayout.Button("Export"))
 			{

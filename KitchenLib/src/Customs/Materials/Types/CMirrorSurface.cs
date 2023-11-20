@@ -6,20 +6,20 @@ using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-	public class CFairyLight : CustomMaterial, IMaterialEditor
+	public class CMirrorSurface : CustomMaterial, IMaterialEditor
 	{
-		public override JsonType Type => JsonType.CFairyLight;
+		public override JsonType Type => JsonType.CMirrorSurface;
 		[JsonIgnore]
-		public virtual Color _Color { get; set; } = Color.black;
-		public float _ColorX = 0.0f;
-		public float _ColorY = 0.0f;
-		public float _ColorZ = 0.0f;
+		public virtual Color _Color1 { get; set; } = Color.black;
+		public float _Color1X = 0.0f;
+		public float _Color1Y = 0.0f;
+		public float _Color1Z = 0.0f;
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Fairy Light"));
+			Material result = new Material(Shader.Find("Mirror Surface"));
 
-			result.SetColor("_Color0", _Color);
+			result.SetColor("_Color1", _Color1);
 			result.name = Name;
 
 			material = result;
@@ -27,22 +27,22 @@ namespace KitchenLib.Customs
 
 		public override void Deserialise()
 		{
-			_Color = new Vector4(_ColorX, _ColorY, _ColorZ, 0);
+			_Color1 = new Vector4(_Color1X, _Color1Y, _Color1Z, 0);
 		}
 		IMColorPicker mainColorPicker;
 		public void GUI(Material material)
 		{
 			if(mainColorPicker == null)
 				mainColorPicker = new IMColorPicker();
-			Vector4 _Color0 = material.GetVector("_Color0");
+			Vector4 _Color1 = material.GetVector("_Color1");
 			
 			GUILayout.BeginArea(new Rect(0, 0, 159, 20));
 			GUILayout.Label("Base Color");
 			GUILayout.EndArea();
 			
 			GUILayout.BeginArea(new Rect(0, 20, 159, 140));
-			_Color0 = mainColorPicker.DrawColorPicker(_Color0);
-			material.SetVector("_Color0", _Color0);
+			_Color1 = mainColorPicker.DrawColorPicker(_Color1);
+			material.SetVector("_Color1", _Color1);
 			GUILayout.EndArea();
 		}
 
@@ -50,10 +50,10 @@ namespace KitchenLib.Customs
 		{
 			if (GUILayout.Button("Export"))
 			{
-				CFairyLight result = new CFairyLight();
-				result._ColorX = material.GetVector("_Color0").x;
-				result._ColorY = material.GetVector("_Color0").y;
-				result._ColorZ = material.GetVector("_Color0").z;
+				CMirrorSurface result = new CMirrorSurface();
+				result._Color1X = material.GetVector("_Color1").x;
+				result._Color1Y = material.GetVector("_Color1").y;
+				result._Color1Z = material.GetVector("_Color1").z;
 
 				result.Name = material.name;
 

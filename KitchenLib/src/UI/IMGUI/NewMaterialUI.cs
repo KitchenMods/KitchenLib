@@ -3,9 +3,11 @@ using KitchenLib.DevUI;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Mime;
 using UnityEngine;
 using Kitchen;
+using KitchenLib.Interfaces;
 using TMPro;
 
 namespace KitchenLib.UI
@@ -26,6 +28,30 @@ namespace KitchenLib.UI
 		private static string materialSelectorSearchBar = "";
 		public static string importFileText = "";
 		public static List<Material> MaterialTemplates = new List<Material>();
+
+		public static Dictionary<string, IMaterialEditor> editors = new Dictionary<string, IMaterialEditor>
+		{
+			{"Simple Flat", new CSimpleFlat()},
+			{"Blueprint Light", new CBlueprintLight()},
+			{"Fairy Light", new CFairyLight()},
+			{"Flat", new CFlat()},
+			{"Flat Image", new CFlatImage()},
+			{"Foliage", new CFoliage()},
+			{"Ghost", new CGhost()},
+			{"Indicator Light", new CIndicatorLight()},
+			{"Mirror", new CMirror()},
+			{"Simple Transparent", new CSimpleTransparent()},
+			{"Walls", new CWalls()},
+			{"Block Out Background", new CBlockOutBackground()},
+			{"Circular Timer", new CCircularTimer()},
+			{"Lake Surface", new CLakeSurface()},
+			{"Mirror Backing", new CMirrorBacking()},
+			{"Mirror Surface", new CMirrorSurface()},
+			{"Newspaper", new CNewspaper()},
+			{"Ping", new CPing()},
+			{"Preview Floor", new CPreviewFloor()},
+			{"Simple Flat - Player", new CSimpleFlatPlayer()},
+		};
 
 		public override void OnInit()
 		{
@@ -55,7 +81,7 @@ namespace KitchenLib.UI
 			else
 				cube.SetActive(false);
 
-			GUILayout.BeginArea(new Rect(0, 0, 397, 100)); //Default Material Selector
+			GUILayout.BeginArea(new Rect(0, 0, 397, 200)); //Default Material Selector
 			GUILayout.Label("Material Templates");
 			templateScrollPosition = GUILayout.BeginScrollView(templateScrollPosition, false, false, GUIStyle.none, GUI.skin.verticalScrollbar);
 			for (int i = 0; i < MaterialTemplates.Count; i++)
@@ -68,11 +94,11 @@ namespace KitchenLib.UI
 			GUILayout.EndScrollView();
 			GUILayout.EndArea();
 
-			GUILayout.BeginArea(new Rect(397, 0, 397, 100)); //Material Selector
+			GUILayout.BeginArea(new Rect(397, 0, 397, 200)); //Material Selector
 			GUILayout.Label("Existing Materials");
 			materialSelectorSearchBar = GUILayout.TextField(materialSelectorSearchBar);
 			materialSelectorScrollPosition = GUILayout.BeginScrollView(materialSelectorScrollPosition, false, false, GUIStyle.none, GUI.skin.verticalScrollbar);
-			foreach (Material material in MaterialUtils.GetAllMaterials(true, new List<string> { "Simple Flat", "Simple Transparent", "Flat", "Indicator Light", "Ghost", "Foliage", "Flat Image", "Fairy Lights", "Walls", "Blueprint Light" }))
+			foreach (Material material in MaterialUtils.GetAllMaterials(true, editors.Keys.ToList()))
 			{
 				if (material.name.ToLower().Contains(materialSelectorSearchBar.ToLower()))
 				{
@@ -85,18 +111,18 @@ namespace KitchenLib.UI
 			GUILayout.EndScrollView();
 			GUILayout.EndArea();
 
-			GUILayout.BeginArea(new Rect(0, 100, 397, 25));
+			GUILayout.BeginArea(new Rect(0, 200, 397, 25));
 			GUILayout.Label("Material Importer");
 			GUILayout.EndArea();
 
-			GUILayout.BeginArea(new Rect(397, 100, 397, 25));
+			GUILayout.BeginArea(new Rect(397, 200, 397, 25));
 			GUILayout.EndArea();
 
-			GUILayout.BeginArea(new Rect(0, 125, 397, 25));
+			GUILayout.BeginArea(new Rect(0, 225, 397, 25));
 			importFileText = GUILayout.TextField(importFileText);
 			GUILayout.EndArea();
 
-			GUILayout.BeginArea(new Rect(397, 125, 397, 25));
+			GUILayout.BeginArea(new Rect(397, 225, 397, 25));
 			if (GUILayout.Button("Import"))
 			{
 				string json = "";
@@ -112,61 +138,31 @@ namespace KitchenLib.UI
 			}
 			GUILayout.EndArea();
 
-			GUILayout.BeginArea(new Rect(397, 150, 397, 25));
+			GUILayout.BeginArea(new Rect(397, 250, 397, 25));
 			if (GUILayout.Button("Dump Existing Materials"))
 			{
 				GenerateMaterialDump();
 			}
 			GUILayout.EndArea();
 
-			GUILayout.BeginArea(new Rect(0, 200, 795, 800)); //Material Value Editor
+			GUILayout.BeginArea(new Rect(0, 300, 795, 60)); //Material Name Editor
 
 			GUILayout.Label("Material Name");
 			selectedMaterial.name = GUILayout.TextField(selectedMaterial.name);
+			GUILayout.EndArea();
+			
+			GUILayout.BeginArea(new Rect(0, 360, 795, 740)); //Material Value Editor
 
-			switch (selectedMaterial.shader.name)
+			if (editors.ContainsKey(selectedMaterial.shader.name))
 			{
-				case "Simple Flat":
-					CSimpleFlat.GUI(selectedMaterial);
-					CSimpleFlat.Export(selectedMaterial);
-					break;
-				case "Simple Transparent":
-					CSimpleTransparent.GUI(selectedMaterial);
-					CSimpleTransparent.Export(selectedMaterial);
-					break;
-				case "Flat Image":
-					CFlatImage.GUI(selectedMaterial);
-					CFlatImage.Export(selectedMaterial);
-					break;
-				case "Flat":
-					CFlat.GUI(selectedMaterial);
-					CFlat.Export(selectedMaterial);
-					break;
-				case "Indicator Light":
-					CIndicatorLight.GUI(selectedMaterial);
-					CIndicatorLight.Export(selectedMaterial);
-					break;
-				case "Ghost":
-					CGhost.GUI(selectedMaterial);
-					CGhost.Export(selectedMaterial);
-					break;
-				case "Fairy Light":
-					CFairyLight.GUI(selectedMaterial);
-					CFairyLight.Export(selectedMaterial);
-					break;
-				case "Foliage":
-					CFoliage.GUI(selectedMaterial);
-					CFoliage.Export(selectedMaterial);
-					break;
-				case "Walls":
-					CWalls.GUI(selectedMaterial);
-					CWalls.Export(selectedMaterial);
-					break;
-				case "Blueprint Light":
-					CBlueprintLight.GUI(selectedMaterial);
-					CBlueprintLight.Export(selectedMaterial);
-					break;
+				GUILayout.BeginArea(new Rect(0, 0, 795, 20));
+				editors[selectedMaterial.shader.name].Export(selectedMaterial);
+				GUILayout.EndArea();
+				GUILayout.BeginArea(new Rect(0, 40, 795, 700));
+				editors[selectedMaterial.shader.name].GUI(selectedMaterial);
+				GUILayout.EndArea();
 			}
+
 			SetCubeMaterial(selectedMaterial);
 			GUILayout.EndArea();
 		}
@@ -198,16 +194,15 @@ namespace KitchenLib.UI
 		}
 		private void SetupDefaultTemplates()
 		{
-			MaterialTemplates.Add(CreateTemplate(Shader.Find("Simple Flat")));
-			MaterialTemplates.Add(CreateTemplate(Shader.Find("Simple Transparent")));
-			MaterialTemplates.Add(CreateTemplate(Shader.Find("Flat Image")));
-			MaterialTemplates.Add(CreateTemplate(Shader.Find("Flat")));
-			MaterialTemplates.Add(CreateTemplate(Shader.Find("Indicator Light")));
-			MaterialTemplates.Add(CreateTemplate(Shader.Find("Ghost")));
-			MaterialTemplates.Add(CreateTemplate(Shader.Find("Fairy Light")));
-			MaterialTemplates.Add(CreateTemplate(Shader.Find("Foliage")));
-			MaterialTemplates.Add(CreateTemplate(Shader.Find("Walls")));
-			MaterialTemplates.Add(CreateTemplate(Shader.Find("Blueprint Light")));
+			foreach (string shader in editors.Keys)
+			{
+				MaterialTemplates.Add(CreateTemplate(Shader.Find(shader)));
+			}
+			
+			MaterialTemplates.Add(CreateTemplate(Shader.Find("Simple Flat Transparent")));
+			MaterialTemplates.Add(CreateTemplate(Shader.Find("UI Card")));
+			MaterialTemplates.Add(CreateTemplate(Shader.Find("UI Panel")));
+			MaterialTemplates.Add(CreateTemplate(Shader.Find("XP Badge")));
 		}
 		private Material CreateTemplate(Shader shader)
 		{
@@ -218,7 +213,7 @@ namespace KitchenLib.UI
 
 		private void GenerateMaterialDump()
 		{
-			foreach (Material material in MaterialUtils.GetAllMaterials(false, new List<string>{ "Simple Flat", "Simple Transparent", "Flat", "Indicator Light", "Ghost", "Foliage", "Flat Image", "Fairy Lights", "Walls", "Blueprint Light" }))
+			foreach (Material material in MaterialUtils.GetAllMaterials(false, editors.Keys.ToList()))
 			{
 				GameObject gameObject = Main.bundle.LoadAsset<GameObject>("Material Cube");
 				gameObject.transform.position = new Vector3(0, 5, 0);
