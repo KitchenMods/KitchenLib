@@ -1,27 +1,17 @@
-﻿using Kitchen;
-using Kitchen.NetworkSupport;
-using Kitchen.Transports;
-using KitchenData;
-using KitchenLib.DataDumper;
-using KitchenLib.DataDumper.Dumpers;
+﻿using KitchenData;
 using KitchenLib.DevUI;
 using KitchenLib.Patches;
-using KitchenLib.Utils;
 using KitchenLib.Systems;
-using Steamworks;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Unity.Entities;
+using KitchenLib.DataDumper;
 using UnityEngine;
-using KitchenLib.Customs;
-using System.Reflection;
 
 namespace KitchenLib.UI
 {
 	public class DebugMenu : BaseUI
 	{
-		public GameObject MaterialDisplay = null;
 		public DebugMenu()
 		{
 			ButtonName = "Debug";
@@ -30,69 +20,31 @@ namespace KitchenLib.UI
 		public override void OnInit()
 		{
 		}
+
 		public override void Setup()
 		{
+			GUILayout.BeginArea(new Rect(0, 10, 265, 30));
 			if (GUILayout.Button("References"))
 			{
 				GenerateReferences(GameData.Main);
 			}
+			GUILayout.EndArea();
+			
+			GUILayout.BeginArea(new Rect(265, 10, 265, 30));
 			if (GUILayout.Button("DataDump"))
 			{
-
-				Dump<CrateSetDumper>();
-				Dump<DecorDumper>();
-				Dump<EffectDumper>();
-				Dump<GameDifficultySettingsDumper>();
-				Dump<GardenProfileDumper>();
-				Dump<ItemDumper>();
-				Dump<ItemGroupDumper>();
-				Dump<LayoutProfileDumper>();
-				Dump<LevelUpgradeSetDumper>();
-				Dump<ProcessDumper>();
-				Dump<RandomUpgradeSetDumper>();
-				Dump<ShopDumper>();
-				Dump<CompositeUnlockPackDumper>();
-				Dump<ModularUnlockPackDumper>();
-				Dump<WorkshopRecipeDumper>();
-				Dump<ApplianceDumper>();
-				Dump<EffectRepresentationDumper>();
-				Dump<PlayerCosmeticDumper>();
-				Dump<ResearchDumper>();
-				Dump<DishDumper>();
-				Dump<ThemeUnlockDumper>();
-				Dump<UnlockCardDumper>();
-				Dump<RestaurantSettingDumper>();
-				Dump<FranchiseUpgradeDumper>();
-				Dump<ContractDumper>();
-				Dump<CustomerTypeDumper>();
-				Dump<CustomerGroupDumper>();
-			
-				foreach (GameDataObject gdo in GameData.Main.Get<GameDataObject>())
-				{
-					string dirpath = Path.Combine(Application.persistentDataPath, "DataDump", "TextDumps");
-					string gdopath = Path.Combine(dirpath, gdo.GetType().ToString());
-					string filepath = Path.Combine(gdopath, gdo.name + ".txt");
-
-					if (!Directory.Exists(dirpath))
-						Directory.CreateDirectory(dirpath);
-
-					if (!Directory.Exists(gdopath))
-						Directory.CreateDirectory(gdopath);
-				
-				
-					File.WriteAllLines(dirpath + "/" + gdo.GetType() + ".txt", DataDump.GetFieldNames(gdo));
-					File.WriteAllLines(filepath, DataDump.GetFieldValues(gdo).ToArray());
-				}
+				DumpData(GameData.Main);
 			}
+			GUILayout.EndArea();
+			
+			GUILayout.BeginArea(new Rect(530, 10, 265, 30));
 			if (GUILayout.Button("Refresh Dish Options"))
 			{
 				RefreshDishUpgrades.Refresh = true;
 			}
-			if (GUILayout.Button("Create Feature Flag Preferences File"))
-			{
-				FeatureFlags.SaveFeatureFlagFile();
-			}
-
+			GUILayout.EndArea();
+			
+			GUILayout.BeginArea(new Rect(0, 50, 795, 60));
 			GUILayout.Label("Log Levels");
 			GUILayout.BeginHorizontal();
 			foreach (LogType logType in Enum.GetValues(typeof(LogType)))
@@ -100,18 +52,34 @@ namespace KitchenLib.UI
 				DebugLogPatch.EnabledLevels[logType] = GUILayout.Toggle(DebugLogPatch.EnabledLevels[logType], logType.ToString());
 			}
 			GUILayout.EndHorizontal();
+			GUILayout.EndArea();
 		}
 
 		public override void Disable()
 		{
 		}
 
-		public void Dump<T>() where T : BaseDataDumper, new()
+		public void DumpData(GameData gameData)
 		{
-			(new T()).Dump();
+			foreach (GameDataObject gdo in GameData.Main.Get<GameDataObject>())
+			{
+				string dirpath = Path.Combine(Application.persistentDataPath, "DataDump");
+				string gdopath = Path.Combine(dirpath, gdo.GetType().ToString());
+				string filepath = Path.Combine(gdopath, gdo.name + ".txt");
+
+				if (!Directory.Exists(dirpath))
+					Directory.CreateDirectory(dirpath);
+
+				if (!Directory.Exists(gdopath))
+					Directory.CreateDirectory(gdopath);
+				
+				
+				File.WriteAllLines(dirpath + "/" + gdo.GetType() + ".txt", DataDump.GetFieldNames(gdo));
+				File.WriteAllLines(filepath, DataDump.GetFieldValues(gdo).ToArray());
+			}
 		}
 
-		private void GenerateReferences(GameData gameData)
+		public void GenerateReferences(GameData gameData)
 		{
 			List<string> classGenerator = new List<string>();
 			classGenerator.Add("namespace KitchenLib.References");
@@ -177,6 +145,5 @@ namespace KitchenLib.UI
 			}
 			list.Add("    }");
 		}
-
 	}
 }
