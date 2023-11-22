@@ -139,6 +139,16 @@ namespace KitchenLib
 		CFairyLight,
 		CFoliage,
 		CWalls,
-		CBlueprintLight
+		CBlueprintLight,
+		CMirror,
+		CBlockOutBackground,
+		CCircularTimer,
+		CLakeSurface,
+		CMirrorBacking,
+		CMirrorSurface,
+		CNewspaper,
+		CPing,
+		CPreviewFloor,
+		CSimpleFlatPlayer
 	}
 }

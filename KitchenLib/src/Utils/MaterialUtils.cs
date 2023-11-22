@@ -317,6 +317,7 @@ namespace KitchenLib.Utils
             {
                 name = name
             };
+            color.a = 0;
             mat.SetColor("_Color0", color);
             mat.SetFloat("_Shininess", shininess);
             mat.SetFloat("_OverlayScale", overlayScale);
@@ -371,7 +372,7 @@ namespace KitchenLib.Utils
 		/// </summary>
 		/// <param name="gameObject">The GameObject to modify.</param>
 		/// <returns>The modified GameObject</returns>
-		public static GameObject AssignMaterialsByNames(GameObject gameObject)
+		public static GameObject AssignMaterialsByNames(this GameObject gameObject)
 		{
 			foreach (Transform transform in gameObject.GetComponentsInChildren<Transform>())
 			{

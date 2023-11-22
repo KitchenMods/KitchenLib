@@ -21,8 +21,6 @@ namespace KitchenLib.Customs
         {
             CustomerType result = ScriptableObject.CreateInstance<CustomerType>();
 
-			Main.LogDebug($"[CustomCustomerType.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<CustomerType>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
@@ -41,8 +39,6 @@ namespace KitchenLib.Customs
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             CustomerType result = (CustomerType)gameDataObject;
-
-			Main.LogDebug($"[CustomCustomerType.AttachDependentProperties] [1.1] Converting Base");
 
 			if (result.Cosmetics != Cosmetics) result.Cosmetics = Cosmetics;
         }

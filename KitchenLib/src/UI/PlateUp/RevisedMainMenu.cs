@@ -19,7 +19,9 @@ namespace KitchenLib.UI
 			{
 				AddLabel("!!BETA WARNING!!");
 				AddInfo("You are running a beta version of KitchebLib");
+				AddInfo("(Please backup your save files.)");
 				AddInfo("There will be bugs, this is for TESTING PURPOSES");
+				New<SpacerElement>(true);
 				New<SpacerElement>(true);
 				New<SpacerElement>(true);
 			}
@@ -28,7 +30,10 @@ namespace KitchenLib.UI
 			AddSubmenuButton(GameData.Main.GlobalLocalisation["MAIN_MENU_MULTIPLAYER"], typeof(MultiplayerMainMenu), false);
 
 			AddSubmenuButton("Mods", typeof(ModsMenu<MainMenuAction>), false);
-			AddSubmenuButton("Mod Preferences", typeof(ModsPreferencesMenu<MainMenuAction>), false);
+			if (!Main.manager.GetPreference<PreferenceBool>("mergeWithPreferenceSystem").Value && Main.preferenceSystemMenuType != null || Main.preferenceSystemMenuType == null)
+			{
+				AddSubmenuButton("Mod Preferences", typeof(ModsPreferencesMenu<MainMenuAction>), false);
+			}
 
 			AddSubmenuButton(GameData.Main.GlobalLocalisation["MAIN_MENU_OPTIONS"], typeof(OptionsMenu<MainMenuAction>), false);
 			New<SpacerElement>(true);

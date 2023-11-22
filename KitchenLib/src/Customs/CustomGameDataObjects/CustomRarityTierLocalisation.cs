@@ -17,8 +17,6 @@ namespace KitchenLib.Customs
 		{
 			RarityTierLocalisation result = ScriptableObject.CreateInstance<RarityTierLocalisation>();
 
-			Main.LogDebug($"[CustomRarityTierLocalisation.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<RarityTierLocalisation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 

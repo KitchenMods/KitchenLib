@@ -18,8 +18,6 @@ namespace KitchenLib.Customs
 		{
 			StartDayWarningLocalisation result = ScriptableObject.CreateInstance<StartDayWarningLocalisation>();
 
-			Main.LogDebug($"[CustomStartDayWarningLocalisation.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<StartDayWarningLocalisation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 

@@ -16,7 +16,7 @@ namespace KitchenLib.Systems
 		}
 		protected override void OnUpdate()
 		{
-			EnsureView(syncModsView.ToEntityArray(Allocator.Temp), Main.SyncModsViewHolder.ID, typeof(CSyncModsView));
+			// EnsureView(syncModsView.ToEntityArray(Allocator.Temp), Main.SyncModsViewHolder.ID, typeof(CSyncModsView));
 		}
 
 		private void EnsureView(NativeArray<Entity> entities, int ApplianceID, Type marker)

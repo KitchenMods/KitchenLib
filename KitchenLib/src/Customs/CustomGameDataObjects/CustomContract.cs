@@ -15,8 +15,6 @@ namespace KitchenLib.Customs
 		{
 			Contract result = ScriptableObject.CreateInstance<Contract>();
 
-			Main.LogDebug($"[CustomContract.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<Contract>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 

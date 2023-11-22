@@ -1,93 +1,69 @@
 ﻿using Kitchen;
-using KitchenLib.Systems;
 using KitchenMods;
 using MessagePack;
 using Unity.Collections;
 using Unity.Entities;
 using System.Collections.Generic;
+using KitchenLib.Components;
 
 namespace KitchenLib.Views
 {
 	public class SyncMods : UpdatableObjectView<SyncMods.ViewData>
 	{
-		#region ECS View System (Runs on host and updates views to be broadcasted to clients)
 		public class UpdateView : IncrementalViewSystemBase<ViewData>, IModSystem
 		{
 			private EntityQuery Views;
-
 			protected override void Initialise()
 			{
 				base.Initialise();
-
-				Views = GetEntityQuery(new QueryHelper().All(typeof(CSyncModsView), typeof(CLinkedView)));
+				Views = GetEntityQuery(new QueryHelper().All(typeof(SModSync), typeof(CLinkedView)));
 			}
-
 			protected override void OnUpdate()
 			{
-				using var entities = Views.ToEntityArray(Allocator.Temp);
-				using var views = Views.ToComponentDataArray<CLinkedView>(Allocator.Temp);
-				
-
-				for (var i = 0; i < views.Length; i++)
+				NativeArray<CLinkedView> linkedViews = Views.ToComponentDataArray<CLinkedView>(Allocator.TempJob);
+				foreach (CLinkedView linkedView in linkedViews)
 				{
-					var view = views[i];
-
 					List<ulong> mods = new List<ulong>();
-
 					foreach (Mod mod in ModPreload.Mods)
 					{
 						mods.Add(mod.ID);
 					}
-
-					ViewData data = new ViewData
+					SendUpdate(linkedView.Identifier, new ViewData
 					{
 						Mods = mods
-					};
-
-					SendUpdate(view, data);
+					});
 				}
+				linkedViews.Dispose();
 			}
 		}
-		#endregion
-
-		#region Message Packet
 		[MessagePackObject(false)]
-		public struct ViewData : ISpecificViewData, IViewData.ICheckForChanges<ViewData>
+		public struct ViewData : IViewData, IViewData.ICheckForChanges<ViewData>
 		{
 			[Key(0)] public List<ulong> Mods;
-
-			public IUpdatableObject GetRelevantSubview(IObjectView view) => view.GetSubView<SyncMods>();
-
 			public bool IsChangedFrom(ViewData cached)
 			{
-				return Mods != cached.Mods;
+				return Mods.Count != cached.Mods.Count;
 			}
 		}
-		#endregion
-		public static bool _isMissingMod = false;
-		public static List<ulong> _mods;
+		public static List<ulong> MissingMods = new List<ulong>();
+		public static List<ulong> AllMods = new List<ulong>();
 		protected override void UpdateData(ViewData view_data)
 		{
-			List<ulong> mods = new List<ulong>();
-
+			MissingMods.Clear();
+			AllMods.Clear();
+			List<ulong> localMods = new List<ulong>();
 			foreach (Mod mod in ModPreload.Mods)
 			{
-				mods.Add(mod.ID);
+				localMods.Add(mod.ID);
 			}
-
-			_mods = view_data.Mods;
-
-			foreach (ulong modid in view_data.Mods)
+			foreach (ulong mod in view_data.Mods)
 			{
-				if (!mods.Contains(modid))
+				AllMods.Add(mod);
+				if (!localMods.Contains(mod))
 				{
-					_isMissingMod = true;
+					MissingMods.Add(mod);
 				}
 			}
-		}
-
-		void Update()
-		{
 		}
 	}
 }

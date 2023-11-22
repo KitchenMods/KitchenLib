@@ -11,6 +11,15 @@ namespace KitchenLib.Utils
 
 		public static Dictionary<(Type, string), FieldInfo> cachedFields = new Dictionary<(Type, string), FieldInfo>();
 
+		public static MethodInfo GetMethod(Type type, string methodName)
+		{
+			var tuple = (type, methodName);
+			if (cachedMethods.TryGetValue(tuple, out var cachedVal))
+				return cachedVal;
+			cachedMethods[tuple] = type.GetMethod(methodName);
+			return cachedMethods[tuple];
+		}
+
 		public static MethodInfo GetMethod<T>(string methodName, BindingFlags flags)
 		{
 			var tuple = (typeof(T), methodName);

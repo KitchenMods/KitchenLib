@@ -45,6 +45,7 @@ namespace KitchenLib.Customs
         public virtual bool SellOnlyAsUnique { get; protected set; }
         public virtual bool PreventSale { get; protected set; }
         public virtual List<Appliance> Upgrades { get; protected set; } = new List<Appliance>();
+        public virtual List<Appliance> Enchantments { get; protected set; } = new List<Appliance>();
 
         [Obsolete("Should not be used by the user")]
         public virtual bool IsAnUpgrade { get; protected set; }
@@ -96,8 +97,6 @@ namespace KitchenLib.Customs
         {
 			Appliance result = ScriptableObject.CreateInstance<Appliance>();
 
-			Main.LogDebug($"[CustomAppliance.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
@@ -128,8 +127,6 @@ namespace KitchenLib.Customs
             if (result.IsNonCrated != IsNonCrated) result.IsNonCrated = IsNonCrated;
             if (result.Info != Info) result.Info = Info;
 
-			Main.LogDebug($"[CustomAppliance.Convert] [1.2] Converting Overrides");
-
 			if (PurchaseCostOverride != -1)
             {
                 ApplianceOverrides.AddPurchaseCostOverride(result.ID, PurchaseCostOverride);
@@ -158,8 +155,6 @@ namespace KitchenLib.Customs
 
 			if (AutoGenerateNavMeshObject && result.Prefab != null)
 			{
-
-				Main.LogDebug($"[CustomAppliance.Convert] [1.2] Generating NavMesh");
 				NavMeshObstacle navMeshObstacle = null;
 				foreach (Transform t in result.Prefab.GetComponentInChildren<Transform>())
 				{
@@ -190,19 +185,17 @@ namespace KitchenLib.Customs
         {
             Appliance result = (Appliance)gameDataObject;
 
-			Main.LogDebug($"[CustomAppliance.AttachDependentProperties] [1.1] Converting Base");
-
 			if (result.Processes != Processes) result.Processes = Processes;
             if (result.Properties != Properties) result.Properties = Properties;
             if (result.EffectRepresentation != EffectRepresentation) result.EffectRepresentation = EffectRepresentation;
             if (result.RequiresForShop != RequiresForShop) result.RequiresForShop = RequiresForShop;
             if (result.RequiresProcessForShop != RequiresProcessForShop) result.RequiresProcessForShop = RequiresProcessForShop;
             if (result.Upgrades != Upgrades) result.Upgrades = Upgrades;
+            if (result.Enchantments != Enchantments) result.Enchantments = Enchantments;
             if (result.CrateItem != CrateItem) result.CrateItem = CrateItem;
 
 			if (result.Prefab == null)
 			{
-				Main.LogDebug($"[CustomAppliance.AttachDependentProperties] [1.2] Assigning Error Prefab");
 				result.Prefab = Main.bundle.LoadAsset<GameObject>("Error_Appliance");
 			}
         }

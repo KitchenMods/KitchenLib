@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
+using imColorPicker;
+using KitchenLib.Interfaces;
 using UnityEngine;
 
 namespace KitchenLib.Customs
 {
-	public class CFairyLight : CustomMaterial
+	public class CFairyLight : CustomMaterial, IMaterialEditor
 	{
 		public override JsonType Type => JsonType.CFairyLight;
 		[JsonIgnore]
@@ -27,18 +29,24 @@ namespace KitchenLib.Customs
 		{
 			_Color = new Vector4(_ColorX, _ColorY, _ColorZ, 0);
 		}
-		public static void GUI(Material material)
+		IMColorPicker mainColorPicker;
+		public void GUI(Material material)
 		{
-			Vector4 _Color = material.GetVector("_Color0");
-
-			GUILayout.Label("_Color0");
-			_Color.x = GUILayout.HorizontalSlider(_Color.x, 0.0f, 3.0f);
-			_Color.y = GUILayout.HorizontalSlider(_Color.y, 0.0f, 3.0f);
-			_Color.z = GUILayout.HorizontalSlider(_Color.z, 0.0f, 3.0f);
-			material.SetVector("_Color0", _Color);
+			if(mainColorPicker == null)
+				mainColorPicker = new IMColorPicker();
+			Vector4 _Color0 = material.GetVector("_Color0");
+			
+			GUILayout.BeginArea(new Rect(0, 0, 159, 20));
+			GUILayout.Label("Base Color");
+			GUILayout.EndArea();
+			
+			GUILayout.BeginArea(new Rect(0, 20, 159, 140));
+			_Color0 = mainColorPicker.DrawColorPicker(_Color0);
+			material.SetVector("_Color0", _Color0);
+			GUILayout.EndArea();
 		}
 
-		public static void Export(Material material)
+		public void Export(Material material)
 		{
 			if (GUILayout.Button("Export"))
 			{

@@ -50,7 +50,8 @@ namespace KitchenLib.Utils
 						newPrefab = item.Prefab;
 				}
 			}
-			else
+			
+			if (item.Prefab != null)
 			{
 				newPrefab = item.Prefab;
 			}

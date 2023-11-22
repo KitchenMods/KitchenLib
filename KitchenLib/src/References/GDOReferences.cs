@@ -524,23 +524,33 @@ namespace KitchenLib.References
 
 		public static int TutorialFloor => (int)_ApplianceReferences.TutorialFloor;
 
-		public static int SourceBigCakeTin => (int)_ApplianceReferences.SourceBigCakeTin;
+		public static int Cobwebs => (int)_ApplianceReferences.Cobwebs;
 
-		public static int SourceBrownieTray => (int)_ApplianceReferences.SourceBrownieTray;
+		public static int GhostStatue => (int)_ApplianceReferences.GhostStatue;
 
-		public static int SourceCookieTray => (int)_ApplianceReferences.SourceCookieTray;
+		public static int Pumpkin => (int)_ApplianceReferences.Pumpkin;
 
-		public static int SourceCupcakeTray => (int)_ApplianceReferences.SourceCupcakeTray;
+		public static int Skeleton => (int)_ApplianceReferences.Skeleton;
 
-		public static int SourceDoughnutTray => (int)_ApplianceReferences.SourceDoughnutTray;
+		public static int SourceCorn => (int)_ApplianceReferences.SourceCorn;
 
-		public static int SourceChocolate => (int)_ApplianceReferences.SourceChocolate;
+		public static int SourceBananas => (int)_ApplianceReferences.SourceBananas;
 
-		public static int SourceLemon => (int)_ApplianceReferences.SourceLemon;
+		public static int SourceStrawberries => (int)_ApplianceReferences.SourceStrawberries;
 
-		public static int ProviderMixingBowls => (int)_ApplianceReferences.ProviderMixingBowls;
+		public static int SourcePumpkin => (int)_ApplianceReferences.SourcePumpkin;
 
-		public static int ClipboardStand => (int)_ApplianceReferences.ClipboardStand;
+		public static int SourceCherry => (int)_ApplianceReferences.SourceCherry;
+
+		public static int CobblestoneAutumn => (int)_ApplianceReferences.CobblestoneAutumn;
+
+		public static int Fencing => (int)_ApplianceReferences.Fencing;
+
+		public static int GrassAutumn => (int)_ApplianceReferences.GrassAutumn;
+
+		public static int Rock2 => (int)_ApplianceReferences.Rock2;
+
+		public static int TreeAutumn => (int)_ApplianceReferences.TreeAutumn;
 
 		public static int SourceChristmasCracker => (int)_ApplianceReferences.SourceChristmasCracker;
 
@@ -560,34 +570,6 @@ namespace KitchenLib.References
 
 		public static int ShedOutputPlaceholder => (int)_ApplianceReferences.ShedOutputPlaceholder;
 
-		public static int FlowerArch => (int)_ApplianceReferences.FlowerArch;
-
-		public static int FriendsPoster => (int)_ApplianceReferences.FriendsPoster;
-
-		public static int HeartBalloons => (int)_ApplianceReferences.HeartBalloons;
-
-		public static int HeartBunting => (int)_ApplianceReferences.HeartBunting;
-
-		public static int LoveSign => (int)_ApplianceReferences.LoveSign;
-
-		public static int SettingSelector => (int)_ApplianceReferences.SettingSelector;
-
-		public static int Cobwebs => (int)_ApplianceReferences.Cobwebs;
-
-		public static int GhostStatue => (int)_ApplianceReferences.GhostStatue;
-
-		public static int Pumpkin => (int)_ApplianceReferences.Pumpkin;
-
-		public static int Skeleton => (int)_ApplianceReferences.Skeleton;
-
-		public static int SourceCorn => (int)_ApplianceReferences.SourceCorn;
-
-		public static int SourceBananas => (int)_ApplianceReferences.SourceBananas;
-
-		public static int SourceStrawberries => (int)_ApplianceReferences.SourceStrawberries;
-
-		public static int SourcePumpkin => (int)_ApplianceReferences.SourcePumpkin;
-
 		public static int BunnyPoster => (int)_ApplianceReferences.BunnyPoster;
 
 		public static int Lantern => (int)_ApplianceReferences.Lantern;
@@ -606,19 +588,17 @@ namespace KitchenLib.References
 
 		public static int TreeLake => (int)_ApplianceReferences.TreeLake;
 
-		public static int SourceCakeStand => (int)_ApplianceReferences.SourceCakeStand;
+		public static int FlowerArch => (int)_ApplianceReferences.FlowerArch;
 
-		public static int IceDispenser => (int)_ApplianceReferences.IceDispenser;
+		public static int FriendsPoster => (int)_ApplianceReferences.FriendsPoster;
 
-		public static int MilkDispenser => (int)_ApplianceReferences.MilkDispenser;
+		public static int HeartBalloons => (int)_ApplianceReferences.HeartBalloons;
 
-		public static int SourceMilk => (int)_ApplianceReferences.SourceMilk;
+		public static int HeartBunting => (int)_ApplianceReferences.HeartBunting;
 
-		public static int SourceTeaBags => (int)_ApplianceReferences.SourceTeaBags;
+		public static int LoveSign => (int)_ApplianceReferences.LoveSign;
 
-		public static int SourceTeaCups => (int)_ApplianceReferences.SourceTeaCups;
-
-		public static int SourceTeaPots => (int)_ApplianceReferences.SourceTeaPots;
+		public static int SettingSelector => (int)_ApplianceReferences.SettingSelector;
 
 		public static int AchievementView => (int)_ApplianceReferences.AchievementView;
 
@@ -636,17 +616,105 @@ namespace KitchenLib.References
 
 		public static int UpgradeProgressView => (int)_ApplianceReferences.UpgradeProgressView;
 
-		public static int SourceCherry => (int)_ApplianceReferences.SourceCherry;
+		public static int SourceCakeStand => (int)_ApplianceReferences.SourceCakeStand;
 
-		public static int CobblestoneAutumn => (int)_ApplianceReferences.CobblestoneAutumn;
+		public static int IceDispenser => (int)_ApplianceReferences.IceDispenser;
 
-		public static int Fencing => (int)_ApplianceReferences.Fencing;
+		public static int MilkDispenser => (int)_ApplianceReferences.MilkDispenser;
 
-		public static int GrassAutumn => (int)_ApplianceReferences.GrassAutumn;
+		public static int SourceMilk => (int)_ApplianceReferences.SourceMilk;
 
-		public static int Rock2 => (int)_ApplianceReferences.Rock2;
+		public static int SourceTeaBags => (int)_ApplianceReferences.SourceTeaBags;
 
-		public static int TreeAutumn => (int)_ApplianceReferences.TreeAutumn;
+		public static int SourceTeaCups => (int)_ApplianceReferences.SourceTeaCups;
+
+		public static int SourceTeaPots => (int)_ApplianceReferences.SourceTeaPots;
+
+		public static int SourceBigCakeTin => (int)_ApplianceReferences.SourceBigCakeTin;
+
+		public static int SourceBrownieTray => (int)_ApplianceReferences.SourceBrownieTray;
+
+		public static int SourceCookieTray => (int)_ApplianceReferences.SourceCookieTray;
+
+		public static int SourceCupcakeTray => (int)_ApplianceReferences.SourceCupcakeTray;
+
+		public static int SourceDoughnutTray => (int)_ApplianceReferences.SourceDoughnutTray;
+
+		public static int SourceChocolate => (int)_ApplianceReferences.SourceChocolate;
+
+		public static int SourceLemon => (int)_ApplianceReferences.SourceLemon;
+
+		public static int ProviderMixingBowls => (int)_ApplianceReferences.ProviderMixingBowls;
+
+		public static int Cauldron => (int)_ApplianceReferences.Cauldron;
+
+		public static int DecorationCandles => (int)_ApplianceReferences.DecorationCandles;
+
+		public static int DecorationPumpkinStack => (int)_ApplianceReferences.DecorationPumpkinStack;
+
+		public static int DecorationShelf => (int)_ApplianceReferences.DecorationShelf;
+
+		public static int EnchantingDesk => (int)_ApplianceReferences.EnchantingDesk;
+
+		public static int GhostClipboard => (int)_ApplianceReferences.GhostClipboard;
+
+		public static int GhostKnife => (int)_ApplianceReferences.GhostKnife;
+
+		public static int GhostRollingPin => (int)_ApplianceReferences.GhostRollingPin;
+
+		public static int GhostScrubber => (int)_ApplianceReferences.GhostScrubber;
+
+		public static int IllusionWall => (int)_ApplianceReferences.IllusionWall;
+
+		public static int InstantWandStand => (int)_ApplianceReferences.InstantWandStand;
+
+		public static int LevitationBelt => (int)_ApplianceReferences.LevitationBelt;
+
+		public static int LevitationStationTemporarySpot => (int)_ApplianceReferences.LevitationStationTemporarySpot;
+
+		public static int LevitationStation => (int)_ApplianceReferences.LevitationStation;
+
+		public static int MagicBroomBucket => (int)_ApplianceReferences.MagicBroomBucket;
+
+		public static int MagicBroom => (int)_ApplianceReferences.MagicBroom;
+
+		public static int MagicMirror => (int)_ApplianceReferences.MagicMirror;
+
+		public static int MagicSpring => (int)_ApplianceReferences.MagicSpring;
+
+		public static int ForceWitchDecorDiningFloor => (int)_ApplianceReferences.ForceWitchDecorDiningFloor;
+
+		public static int ForceWitchDecorDiningWall => (int)_ApplianceReferences.ForceWitchDecorDiningWall;
+
+		public static int ForceWitchDecorKitchenFloor => (int)_ApplianceReferences.ForceWitchDecorKitchenFloor;
+
+		public static int ForceWitchDecorKitchenWall => (int)_ApplianceReferences.ForceWitchDecorKitchenWall;
+
+		public static int ForceWitchDecorUnassignedFloor => (int)_ApplianceReferences.ForceWitchDecorUnassignedFloor;
+
+		public static int ForceWitchDecorUnassignedWall => (int)_ApplianceReferences.ForceWitchDecorUnassignedWall;
+
+		public static int WitchGround => (int)_ApplianceReferences.WitchGround;
+
+		public static int WitchOutdoorCandle => (int)_ApplianceReferences.WitchOutdoorCandle;
+
+		public static int WitchTree => (int)_ApplianceReferences.WitchTree;
+
+		public static int PicklingStation => (int)_ApplianceReferences.PicklingStation;
+
+		public static int PoisonAppleTree => (int)_ApplianceReferences.PoisonAppleTree;
+
+		public static int PouchofHoldingStand => (int)_ApplianceReferences.PouchofHoldingStand;
+
+		public static int SelfCleaningPlateStack => (int)_ApplianceReferences.SelfCleaningPlateStack;
+
+		public static int TablePermanentConsumables => (int)_ApplianceReferences.TablePermanentConsumables;
+
+		public static int TableSharingCauldron => (int)_ApplianceReferences.TableSharingCauldron;
+
+		public static int VanishingCircle => (int)_ApplianceReferences.VanishingCircle;
+
+		public static int ClipboardStand => (int)_ApplianceReferences.ClipboardStand;
 
 		public static int ResearchExitText => (int)_ApplianceReferences.ResearchExitText;
 
@@ -1181,23 +1249,33 @@ namespace KitchenLib.References
 
 		TutorialFloor = -1235624607,
 
-		SourceBigCakeTin = -660310536,
+		Cobwebs = -636342486,
 
-		SourceBrownieTray = -2135982034,
+		GhostStatue = -1318523640,
 
-		SourceCookieTray = -1723125645,
+		Pumpkin = -621580281,
 
-		SourceCupcakeTray = -315287689,
+		Skeleton = 115181910,
 
-		SourceDoughnutTray = 2136474391,
+		SourceCorn = 976574457,
 
-		SourceChocolate = 783588616,
+		SourceBananas = 235355384,
 
-		SourceLemon = 1470180731,
+		SourceStrawberries = -699333907,
 
-		ProviderMixingBowls = -217313684,
+		SourcePumpkin = -1055654549,
 
-		ClipboardStand = -2070005162,
+		SourceCherry = 148543530,
+
+		CobblestoneAutumn = -1382019219,
+
+		Fencing = -1403625488,
+
+		GrassAutumn = -1673904972,
+
+		Rock2 = 1752654754,
+
+		TreeAutumn = -1748395084,
 
 		SourceChristmasCracker = 303858729,
 
@@ -1217,34 +1295,6 @@ namespace KitchenLib.References
 
 		ShedOutputPlaceholder = -699013948,
 
-		FlowerArch = -471643137,
-
-		FriendsPoster = 142298503,
-
-		HeartBalloons = -2001861712,
-
-		HeartBunting = -1314508999,
-
-		LoveSign = 785615801,
-
-		SettingSelector = 645876063,
-
-		Cobwebs = -636342486,
-
-		GhostStatue = -1318523640,
-
-		Pumpkin = -621580281,
-
-		Skeleton = 115181910,
-
-		SourceCorn = 976574457,
-
-		SourceBananas = 235355384,
-
-		SourceStrawberries = -699333907,
-
-		SourcePumpkin = -1055654549,
-
 		BunnyPoster = 555321421,
 
 		Lantern = -2084684446,
@@ -1263,19 +1313,17 @@ namespace KitchenLib.References
 
 		TreeLake = 1134699240,
 
-		SourceCakeStand = 143484231,
+		FlowerArch = -471643137,
 
-		IceDispenser = 801015432,
+		FriendsPoster = 142298503,
 
-		MilkDispenser = -557736569,
+		HeartBalloons = -2001861712,
 
-		SourceMilk = 120342736,
+		HeartBunting = -1314508999,
 
-		SourceTeaBags = -1598460622,
+		LoveSign = 785615801,
 
-		SourceTeaCups = 1377093570,
-
-		SourceTeaPots = -762638188,
+		SettingSelector = 645876063,
 
 		AchievementView = -916942203,
 
@@ -1293,17 +1341,105 @@ namespace KitchenLib.References
 
 		UpgradeProgressView = 2114150010,
 
-		SourceCherry = 148543530,
+		SourceCakeStand = 143484231,
 
-		CobblestoneAutumn = -1382019219,
+		IceDispenser = 801015432,
 
-		Fencing = -1403625488,
+		MilkDispenser = -557736569,
 
-		GrassAutumn = -1673904972,
+		SourceMilk = 120342736,
 
-		Rock2 = 1752654754,
+		SourceTeaBags = -1598460622,
 
-		TreeAutumn = -1748395084,
+		SourceTeaCups = 1377093570,
+
+		SourceTeaPots = -762638188,
+
+		SourceBigCakeTin = -660310536,
+
+		SourceBrownieTray = -2135982034,
+
+		SourceCookieTray = -1723125645,
+
+		SourceCupcakeTray = -315287689,
+
+		SourceDoughnutTray = 2136474391,
+
+		SourceChocolate = 783588616,
+
+		SourceLemon = 1470180731,
+
+		ProviderMixingBowls = -217313684,
+
+		Cauldron = 782648278,
+
+		DecorationCandles = -1552572658,
+
+		DecorationPumpkinStack = -119593913,
+
+		DecorationShelf = -379172217,
+
+		EnchantingDesk = -292467039,
+
+		GhostClipboard = -1946127856,
+
+		GhostKnife = 1313278365,
+
+		GhostRollingPin = 689268680,
+
+		GhostScrubber = -560953757,
+
+		IllusionWall = -1780646993,
+
+		InstantWandStand = 1150470926,
+
+		LevitationBelt = 2044081363,
+
+		LevitationStationTemporarySpot = -1298525547,
+
+		LevitationStation = 119166501,
+
+		MagicBroomBucket = -1992638820,
+
+		MagicBroom = -877630314,
+
+		MagicMirror = 744482650,
+
+		MagicSpring = -1696198539,
+
+		ForceWitchDecorDiningFloor = -1835366879,
+
+		ForceWitchDecorDiningWall = 2031496644,
+
+		ForceWitchDecorKitchenFloor = 1391464545,
+
+		ForceWitchDecorKitchenWall = 477535207,
+
+		ForceWitchDecorUnassignedFloor = 923307040,
+
+		ForceWitchDecorUnassignedWall = -1090855913,
+
+		WitchGround = 50273892,
+
+		WitchOutdoorCandle = -70663877,
+
+		WitchTree = -2123542635,
+
+		PicklingStation = 423254987,
+
+		PoisonAppleTree = 267288096,
+
+		PouchofHoldingStand = 29164230,
+
+		SelfCleaningPlateStack = 540526865,
+
+		TablePermanentConsumables = 2000892639,
+
+		TableSharingCauldron = -1688921160,
+
+		VanishingCircle = 1492264331,
+
+		ClipboardStand = -2070005162,
 
 		ResearchExitText = -872135723,
 
@@ -1316,40 +1452,44 @@ namespace KitchenLib.References
 	}
 	public static class CompositeUnlockPackReferences
 	{
+		public static int AutumnPack => (int)_CompositeUnlockPackReferences.AutumnPack;
+
 		public static int ChristmasPack => (int)_CompositeUnlockPackReferences.ChristmasPack;
-
-		public static int DefaultCompositePack => (int)_CompositeUnlockPackReferences.DefaultCompositePack;
-
-		public static int FebruaryPack => (int)_CompositeUnlockPackReferences.FebruaryPack;
-
-		public static int HalloweenPack => (int)_CompositeUnlockPackReferences.HalloweenPack;
 
 		public static int JanuaryPack => (int)_CompositeUnlockPackReferences.JanuaryPack;
 
-		public static int JunePack => (int)_CompositeUnlockPackReferences.JunePack;
+		public static int FebruaryPack => (int)_CompositeUnlockPackReferences.FebruaryPack;
 
 		public static int MarchPack => (int)_CompositeUnlockPackReferences.MarchPack;
 
-		public static int AutumnPack => (int)_CompositeUnlockPackReferences.AutumnPack;
+		public static int JunePack => (int)_CompositeUnlockPackReferences.JunePack;
+
+		public static int WitchCardPack => (int)_CompositeUnlockPackReferences.WitchCardPack;
+
+		public static int DefaultCompositePack => (int)_CompositeUnlockPackReferences.DefaultCompositePack;
+
+		public static int HalloweenPack => (int)_CompositeUnlockPackReferences.HalloweenPack;
 
 	}
 	public enum _CompositeUnlockPackReferences
 	{
+		AutumnPack = 698670060,
+
 		ChristmasPack = 1370599169,
-
-		DefaultCompositePack = -2020288853,
-
-		FebruaryPack = -654728586,
-
-		HalloweenPack = -839658581,
 
 		JanuaryPack = -1893039732,
 
-		JunePack = 1774091848,
+		FebruaryPack = -654728586,
 
 		MarchPack = -619515969,
 
-		AutumnPack = 698670060,
+		JunePack = 1774091848,
+
+		WitchCardPack = -37697044,
+
+		DefaultCompositePack = -2020288853,
+
+		HalloweenPack = -839658581,
 
 	}
 	public static class CrateSetReferences
@@ -1390,18 +1530,6 @@ namespace KitchenLib.References
 
 		public static int WallpaperBasicYellow => (int)_DecorReferences.WallpaperBasicYellow;
 
-		public static int WallpaperPatternSnow => (int)_DecorReferences.WallpaperPatternSnow;
-
-		public static int WallpaperStripesRed => (int)_DecorReferences.WallpaperStripesRed;
-
-		public static int FloorMarbleDark => (int)_DecorReferences.FloorMarbleDark;
-
-		public static int FloorMarble => (int)_DecorReferences.FloorMarble;
-
-		public static int WallpaperHeartsIcons => (int)_DecorReferences.WallpaperHeartsIcons;
-
-		public static int WallpaperHearts => (int)_DecorReferences.WallpaperHearts;
-
 		public static int FloorPlanksSmart => (int)_DecorReferences.FloorPlanksSmart;
 
 		public static int FloorPlanksTattered => (int)_DecorReferences.FloorPlanksTattered;
@@ -1424,12 +1552,6 @@ namespace KitchenLib.References
 
 		public static int WallpaperTilesRed => (int)_DecorReferences.WallpaperTilesRed;
 
-		public static int WallpaperCNY1 => (int)_DecorReferences.WallpaperCNY1;
-
-		public static int WallpaperCNY2 => (int)_DecorReferences.WallpaperCNY2;
-
-		public static int WallpaperCNY3 => (int)_DecorReferences.WallpaperCNY3;
-
 		public static int WallpaperLeaves => (int)_DecorReferences.WallpaperLeaves;
 
 		public static int WallpaperStripesOrange => (int)_DecorReferences.WallpaperStripesOrange;
@@ -1437,6 +1559,24 @@ namespace KitchenLib.References
 		public static int WallpaperTrees => (int)_DecorReferences.WallpaperTrees;
 
 		public static int WallpaperTurkey => (int)_DecorReferences.WallpaperTurkey;
+
+		public static int WallpaperPatternSnow => (int)_DecorReferences.WallpaperPatternSnow;
+
+		public static int WallpaperStripesRed => (int)_DecorReferences.WallpaperStripesRed;
+
+		public static int WallpaperCNY1 => (int)_DecorReferences.WallpaperCNY1;
+
+		public static int WallpaperCNY2 => (int)_DecorReferences.WallpaperCNY2;
+
+		public static int WallpaperCNY3 => (int)_DecorReferences.WallpaperCNY3;
+
+		public static int FloorMarbleDark => (int)_DecorReferences.FloorMarbleDark;
+
+		public static int FloorMarble => (int)_DecorReferences.FloorMarble;
+
+		public static int WallpaperHeartsIcons => (int)_DecorReferences.WallpaperHeartsIcons;
+
+		public static int WallpaperHearts => (int)_DecorReferences.WallpaperHearts;
 
 	}
 	public enum _DecorReferences
@@ -1471,18 +1611,6 @@ namespace KitchenLib.References
 
 		WallpaperBasicYellow = -247477402,
 
-		WallpaperPatternSnow = 1039076012,
-
-		WallpaperStripesRed = 1327221289,
-
-		FloorMarbleDark = 1239121153,
-
-		FloorMarble = 1542896199,
-
-		WallpaperHeartsIcons = 770196872,
-
-		WallpaperHearts = -98508441,
-
 		FloorPlanksSmart = 1519770899,
 
 		FloorPlanksTattered = -281022317,
@@ -1505,12 +1633,6 @@ namespace KitchenLib.References
 
 		WallpaperTilesRed = 770049390,
 
-		WallpaperCNY1 = 403272335,
-
-		WallpaperCNY2 = 182226086,
-
-		WallpaperCNY3 = -1951323820,
-
 		WallpaperLeaves = 1802235039,
 
 		WallpaperStripesOrange = -1765627192,
@@ -1518,6 +1640,24 @@ namespace KitchenLib.References
 		WallpaperTrees = 824277831,
 
 		WallpaperTurkey = 2057848768,
+
+		WallpaperPatternSnow = 1039076012,
+
+		WallpaperStripesRed = 1327221289,
+
+		WallpaperCNY1 = 403272335,
+
+		WallpaperCNY2 = 182226086,
+
+		WallpaperCNY3 = -1951323820,
+
+		FloorMarbleDark = 1239121153,
+
+		FloorMarble = 1542896199,
+
+		WallpaperHeartsIcons = 770196872,
+
+		WallpaperHearts = -98508441,
 
 	}
 	public static class DishReferences
@@ -1622,34 +1762,6 @@ namespace KitchenLib.References
 
 		public static int OnionRings => (int)_DishReferences.OnionRings;
 
-		public static int BigCake => (int)_DishReferences.BigCake;
-
-		public static int Brownies => (int)_DishReferences.Brownies;
-
-		public static int CakeBatterRecipeOnly => (int)_DishReferences.CakeBatterRecipeOnly;
-
-		public static int CakeFlavourChocolate => (int)_DishReferences.CakeFlavourChocolate;
-
-		public static int CakeFlavourCoffee => (int)_DishReferences.CakeFlavourCoffee;
-
-		public static int CakeFlavourLemon => (int)_DishReferences.CakeFlavourLemon;
-
-		public static int Cookies => (int)_DishReferences.Cookies;
-
-		public static int Cupcake => (int)_DishReferences.Cupcake;
-
-		public static int Doughnuts => (int)_DishReferences.Doughnuts;
-
-		public static int Cakes => (int)_DishReferences.Cakes;
-
-		public static int Cracker => (int)_DishReferences.Cracker;
-
-		public static int TurkeyCranberrySauce => (int)_DishReferences.TurkeyCranberrySauce;
-
-		public static int TurkeyGravy => (int)_DishReferences.TurkeyGravy;
-
-		public static int TurkeyStuffing => (int)_DishReferences.TurkeyStuffing;
-
 		public static int CornOnCob => (int)_DishReferences.CornOnCob;
 
 		public static int IceCreamBanana => (int)_DishReferences.IceCreamBanana;
@@ -1663,6 +1775,32 @@ namespace KitchenLib.References
 		public static int PumpkinSeed => (int)_DishReferences.PumpkinSeed;
 
 		public static int PumpkinSoup => (int)_DishReferences.PumpkinSoup;
+
+		public static int NutRoastBase => (int)_DishReferences.NutRoastBase;
+
+		public static int Affogato => (int)_DishReferences.Affogato;
+
+		public static int BreadStarter => (int)_DishReferences.BreadStarter;
+
+		public static int BroccoliCheeseSoup => (int)_DishReferences.BroccoliCheeseSoup;
+
+		public static int CherryPie => (int)_DishReferences.CherryPie;
+
+		public static int RoastPotato => (int)_DishReferences.RoastPotato;
+
+		public static int Sweetcorn => (int)_DishReferences.Sweetcorn;
+
+		public static int Waffles => (int)_DishReferences.Waffles;
+
+		public static int TurkeyBase => (int)_DishReferences.TurkeyBase;
+
+		public static int Cracker => (int)_DishReferences.Cracker;
+
+		public static int TurkeyCranberrySauce => (int)_DishReferences.TurkeyCranberrySauce;
+
+		public static int TurkeyGravy => (int)_DishReferences.TurkeyGravy;
+
+		public static int TurkeyStuffing => (int)_DishReferences.TurkeyStuffing;
 
 		public static int Bamboo => (int)_DishReferences.Bamboo;
 
@@ -1694,23 +1832,25 @@ namespace KitchenLib.References
 
 		public static int Tea => (int)_DishReferences.Tea;
 
-		public static int NutRoastBase => (int)_DishReferences.NutRoastBase;
+		public static int BigCake => (int)_DishReferences.BigCake;
 
-		public static int Affogato => (int)_DishReferences.Affogato;
+		public static int Brownies => (int)_DishReferences.Brownies;
 
-		public static int BreadStarter => (int)_DishReferences.BreadStarter;
+		public static int CakeBatterRecipeOnly => (int)_DishReferences.CakeBatterRecipeOnly;
 
-		public static int BroccoliCheeseSoup => (int)_DishReferences.BroccoliCheeseSoup;
+		public static int CakeFlavourChocolate => (int)_DishReferences.CakeFlavourChocolate;
 
-		public static int CherryPie => (int)_DishReferences.CherryPie;
+		public static int CakeFlavourCoffee => (int)_DishReferences.CakeFlavourCoffee;
 
-		public static int RoastPotato => (int)_DishReferences.RoastPotato;
+		public static int CakeFlavourLemon => (int)_DishReferences.CakeFlavourLemon;
 
-		public static int Sweetcorn => (int)_DishReferences.Sweetcorn;
+		public static int Cookies => (int)_DishReferences.Cookies;
 
-		public static int Waffles => (int)_DishReferences.Waffles;
+		public static int Cupcake => (int)_DishReferences.Cupcake;
 
-		public static int TurkeyBase => (int)_DishReferences.TurkeyBase;
+		public static int Doughnuts => (int)_DishReferences.Doughnuts;
+
+		public static int Cakes => (int)_DishReferences.Cakes;
 
 	}
 	public enum _DishReferences
@@ -1815,34 +1955,6 @@ namespace KitchenLib.References
 
 		OnionRings = -1745179096,
 
-		BigCake = 1316998108,
-
-		Brownies = 1609120418,
-
-		CakeBatterRecipeOnly = -1115351824,
-
-		CakeFlavourChocolate = -1081939710,
-
-		CakeFlavourCoffee = -810134986,
-
-		CakeFlavourLemon = -1693098895,
-
-		Cookies = 1902212503,
-
-		Cupcake = 627241196,
-
-		Doughnuts = -1166412657,
-
-		Cakes = 1113735761,
-
-		Cracker = 878396172,
-
-		TurkeyCranberrySauce = 1398180456,
-
-		TurkeyGravy = -1460640973,
-
-		TurkeyStuffing = -1243742384,
-
 		CornOnCob = 1168007081,
 
 		IceCreamBanana = -95393944,
@@ -1856,6 +1968,32 @@ namespace KitchenLib.References
 		PumpkinSeed = 1393945424,
 
 		PumpkinSoup = 1984233383,
+
+		NutRoastBase = 536093200,
+
+		Affogato = -1405391769,
+
+		BreadStarter = 1847735819,
+
+		BroccoliCheeseSoup = -1015158173,
+
+		CherryPie = 12170609,
+
+		RoastPotato = -1289628495,
+
+		Sweetcorn = -338554380,
+
+		Waffles = -1409566802,
+
+		TurkeyBase = 1551533879,
+
+		Cracker = 878396172,
+
+		TurkeyCranberrySauce = 1398180456,
+
+		TurkeyGravy = -1460640973,
+
+		TurkeyStuffing = -1243742384,
 
 		Bamboo = -1742801708,
 
@@ -1887,23 +2025,25 @@ namespace KitchenLib.References
 
 		Tea = 1398671754,
 
-		NutRoastBase = 536093200,
+		BigCake = 1316998108,
 
-		Affogato = -1405391769,
+		Brownies = 1609120418,
 
-		BreadStarter = 1847735819,
+		CakeBatterRecipeOnly = -1115351824,
 
-		BroccoliCheeseSoup = -1015158173,
+		CakeFlavourChocolate = -1081939710,
 
-		CherryPie = 12170609,
+		CakeFlavourCoffee = -810134986,
 
-		RoastPotato = -1289628495,
+		CakeFlavourLemon = -1693098895,
 
-		Sweetcorn = -338554380,
+		Cookies = 1902212503,
 
-		Waffles = -1409566802,
+		Cupcake = 627241196,
 
-		TurkeyBase = 1551533879,
+		Doughnuts = -1166412657,
+
+		Cakes = 1113735761,
 
 	}
 	public static class EffectReferences
@@ -2438,6 +2578,156 @@ namespace KitchenLib.References
 
 		public static int Tray => (int)_ItemReferences.Tray;
 
+		public static int CornCooked => (int)_ItemReferences.CornCooked;
+
+		public static int CornHusk => (int)_ItemReferences.CornHusk;
+
+		public static int CornHusked => (int)_ItemReferences.CornHusked;
+
+		public static int CornRaw => (int)_ItemReferences.CornRaw;
+
+		public static int PiePumpkinCooked => (int)_ItemReferences.PiePumpkinCooked;
+
+		public static int PiePumpkinRawBlindBaked => (int)_ItemReferences.PiePumpkinRawBlindBaked;
+
+		public static int PiePumpkinRaw => (int)_ItemReferences.PiePumpkinRaw;
+
+		public static int PumpkinHollow => (int)_ItemReferences.PumpkinHollow;
+
+		public static int PumpkinPieces => (int)_ItemReferences.PumpkinPieces;
+
+		public static int PumpkinSeedsRoasted => (int)_ItemReferences.PumpkinSeedsRoasted;
+
+		public static int PumpkinSeeds => (int)_ItemReferences.PumpkinSeeds;
+
+		public static int Pumpkin => (int)_ItemReferences.Pumpkin;
+
+		public static int ServedSoupPumpkin => (int)_ItemReferences.ServedSoupPumpkin;
+
+		public static int SoupPumpkinCooked => (int)_ItemReferences.SoupPumpkinCooked;
+
+		public static int SoupPumpkinRaw => (int)_ItemReferences.SoupPumpkinRaw;
+
+		public static int NutMixtureBaked => (int)_ItemReferences.NutMixtureBaked;
+
+		public static int NutMixturePortion => (int)_ItemReferences.NutMixturePortion;
+
+		public static int NutMixture => (int)_ItemReferences.NutMixture;
+
+		public static int NutRoastPlated => (int)_ItemReferences.NutRoastPlated;
+
+		public static int NutsChopped => (int)_ItemReferences.NutsChopped;
+
+		public static int NutsIngredient => (int)_ItemReferences.NutsIngredient;
+
+		public static int AffogatoItem => (int)_ItemReferences.AffogatoItem;
+
+		public static int BreadStarterItem => (int)_ItemReferences.BreadStarterItem;
+
+		public static int ServedSoupBroccoliCheese => (int)_ItemReferences.ServedSoupBroccoliCheese;
+
+		public static int SoupBroccoliCheeseCooked => (int)_ItemReferences.SoupBroccoliCheeseCooked;
+
+		public static int SoupBroccoliCheeseRaw => (int)_ItemReferences.SoupBroccoliCheeseRaw;
+
+		public static int Cherry => (int)_ItemReferences.Cherry;
+
+		public static int PieCherryCooked => (int)_ItemReferences.PieCherryCooked;
+
+		public static int PieCherryRawBlindBaked => (int)_ItemReferences.PieCherryRawBlindBaked;
+
+		public static int PieCherryRaw => (int)_ItemReferences.PieCherryRaw;
+
+		public static int RoastPotatoItem => (int)_ItemReferences.RoastPotatoItem;
+
+		public static int TurkeyBurned => (int)_ItemReferences.TurkeyBurned;
+
+		public static int TurkeyCooked => (int)_ItemReferences.TurkeyCooked;
+
+		public static int TurkeyIngredient => (int)_ItemReferences.TurkeyIngredient;
+
+		public static int TurkeyPlated => (int)_ItemReferences.TurkeyPlated;
+
+		public static int TurkeySlice => (int)_ItemReferences.TurkeySlice;
+
+		public static int ChristmasCracker => (int)_ItemReferences.ChristmasCracker;
+
+		public static int CranberriesChopped => (int)_ItemReferences.CranberriesChopped;
+
+		public static int Cranberries => (int)_ItemReferences.Cranberries;
+
+		public static int CranberrySauce => (int)_ItemReferences.CranberrySauce;
+
+		public static int Sugar => (int)_ItemReferences.Sugar;
+
+		public static int GravyTurkeyCooked => (int)_ItemReferences.GravyTurkeyCooked;
+
+		public static int GravyTurkeyRaw => (int)_ItemReferences.GravyTurkeyRaw;
+
+		public static int TurkeyBones => (int)_ItemReferences.TurkeyBones;
+
+		public static int TurkeyGravy => (int)_ItemReferences.TurkeyGravy;
+
+		public static int Breadcrumbs => (int)_ItemReferences.Breadcrumbs;
+
+		public static int StuffingRaw => (int)_ItemReferences.StuffingRaw;
+
+		public static int Stuffing => (int)_ItemReferences.Stuffing;
+
+		public static int BambooCookedContainerCooked => (int)_ItemReferences.BambooCookedContainerCooked;
+
+		public static int BambooCooked => (int)_ItemReferences.BambooCooked;
+
+		public static int BambooPotCooked => (int)_ItemReferences.BambooPotCooked;
+
+		public static int BambooPot => (int)_ItemReferences.BambooPot;
+
+		public static int BambooRaw => (int)_ItemReferences.BambooRaw;
+
+		public static int CookedDumplings => (int)_ItemReferences.CookedDumplings;
+
+		public static int DumplingsPlated => (int)_ItemReferences.DumplingsPlated;
+
+		public static int DumplingsRaw => (int)_ItemReferences.DumplingsRaw;
+
+		public static int PreparedDumplings => (int)_ItemReferences.PreparedDumplings;
+
+		public static int SeaweedCooked => (int)_ItemReferences.SeaweedCooked;
+
+		public static int Seaweed => (int)_ItemReferences.Seaweed;
+
+		public static int MandarinRaw => (int)_ItemReferences.MandarinRaw;
+
+		public static int MandarinSlice => (int)_ItemReferences.MandarinSlice;
+
+		public static int MandarinSlices2Serving => (int)_ItemReferences.MandarinSlices2Serving;
+
+		public static int MandarinSlices4Serving => (int)_ItemReferences.MandarinSlices4Serving;
+
+		public static int CondimentSoySauce => (int)_ItemReferences.CondimentSoySauce;
+
+		public static int ExtraCakeStand => (int)_ItemReferences.ExtraCakeStand;
+
+		public static int Ice => (int)_ItemReferences.Ice;
+
+		public static int IcedCoffee => (int)_ItemReferences.IcedCoffee;
+
+		public static int Latte => (int)_ItemReferences.Latte;
+
+		public static int MilkFrothedIngredient => (int)_ItemReferences.MilkFrothedIngredient;
+
+		public static int Milk => (int)_ItemReferences.Milk;
+
+		public static int TeaBag => (int)_ItemReferences.TeaBag;
+
+		public static int TeaCup => (int)_ItemReferences.TeaCup;
+
+		public static int TeaPotSteeped => (int)_ItemReferences.TeaPotSteeped;
+
+		public static int TeaPotUnsteeped => (int)_ItemReferences.TeaPotUnsteeped;
+
+		public static int TeaPot => (int)_ItemReferences.TeaPot;
+
 		public static int ChocolateFlavour => (int)_ItemReferences.ChocolateFlavour;
 
 		public static int CoffeeFlavour => (int)_ItemReferences.CoffeeFlavour;
@@ -2530,157 +2820,15 @@ namespace KitchenLib.References
 
 		public static int MixingBowlUnmixed => (int)_ItemReferences.MixingBowlUnmixed;
 
+		public static int InstantWand => (int)_ItemReferences.InstantWand;
+
+		public static int PickleJar => (int)_ItemReferences.PickleJar;
+
+		public static int PoisonApple => (int)_ItemReferences.PoisonApple;
+
+		public static int PouchofHolding => (int)_ItemReferences.PouchofHolding;
+
 		public static int Clipboard => (int)_ItemReferences.Clipboard;
-
-		public static int ChristmasCracker => (int)_ItemReferences.ChristmasCracker;
-
-		public static int CranberriesChopped => (int)_ItemReferences.CranberriesChopped;
-
-		public static int Cranberries => (int)_ItemReferences.Cranberries;
-
-		public static int CranberrySauce => (int)_ItemReferences.CranberrySauce;
-
-		public static int Sugar => (int)_ItemReferences.Sugar;
-
-		public static int GravyTurkeyCooked => (int)_ItemReferences.GravyTurkeyCooked;
-
-		public static int GravyTurkeyRaw => (int)_ItemReferences.GravyTurkeyRaw;
-
-		public static int TurkeyBones => (int)_ItemReferences.TurkeyBones;
-
-		public static int TurkeyGravy => (int)_ItemReferences.TurkeyGravy;
-
-		public static int Breadcrumbs => (int)_ItemReferences.Breadcrumbs;
-
-		public static int StuffingRaw => (int)_ItemReferences.StuffingRaw;
-
-		public static int Stuffing => (int)_ItemReferences.Stuffing;
-
-		public static int CornCooked => (int)_ItemReferences.CornCooked;
-
-		public static int CornHusk => (int)_ItemReferences.CornHusk;
-
-		public static int CornHusked => (int)_ItemReferences.CornHusked;
-
-		public static int CornRaw => (int)_ItemReferences.CornRaw;
-
-		public static int PiePumpkinCooked => (int)_ItemReferences.PiePumpkinCooked;
-
-		public static int PiePumpkinRawBlindBaked => (int)_ItemReferences.PiePumpkinRawBlindBaked;
-
-		public static int PiePumpkinRaw => (int)_ItemReferences.PiePumpkinRaw;
-
-		public static int PumpkinHollow => (int)_ItemReferences.PumpkinHollow;
-
-		public static int PumpkinPieces => (int)_ItemReferences.PumpkinPieces;
-
-		public static int PumpkinSeedsRoasted => (int)_ItemReferences.PumpkinSeedsRoasted;
-
-		public static int PumpkinSeeds => (int)_ItemReferences.PumpkinSeeds;
-
-		public static int Pumpkin => (int)_ItemReferences.Pumpkin;
-
-		public static int ServedSoupPumpkin => (int)_ItemReferences.ServedSoupPumpkin;
-
-		public static int SoupPumpkinCooked => (int)_ItemReferences.SoupPumpkinCooked;
-
-		public static int SoupPumpkinRaw => (int)_ItemReferences.SoupPumpkinRaw;
-
-		public static int BambooCookedContainerCooked => (int)_ItemReferences.BambooCookedContainerCooked;
-
-		public static int BambooCooked => (int)_ItemReferences.BambooCooked;
-
-		public static int BambooPotCooked => (int)_ItemReferences.BambooPotCooked;
-
-		public static int BambooPot => (int)_ItemReferences.BambooPot;
-
-		public static int BambooRaw => (int)_ItemReferences.BambooRaw;
-
-		public static int CookedDumplings => (int)_ItemReferences.CookedDumplings;
-
-		public static int DumplingsPlated => (int)_ItemReferences.DumplingsPlated;
-
-		public static int DumplingsRaw => (int)_ItemReferences.DumplingsRaw;
-
-		public static int PreparedDumplings => (int)_ItemReferences.PreparedDumplings;
-
-		public static int SeaweedCooked => (int)_ItemReferences.SeaweedCooked;
-
-		public static int Seaweed => (int)_ItemReferences.Seaweed;
-
-		public static int MandarinRaw => (int)_ItemReferences.MandarinRaw;
-
-		public static int MandarinSlice => (int)_ItemReferences.MandarinSlice;
-
-		public static int MandarinSlices2Serving => (int)_ItemReferences.MandarinSlices2Serving;
-
-		public static int MandarinSlices4Serving => (int)_ItemReferences.MandarinSlices4Serving;
-
-		public static int CondimentSoySauce => (int)_ItemReferences.CondimentSoySauce;
-
-		public static int ExtraCakeStand => (int)_ItemReferences.ExtraCakeStand;
-
-		public static int Ice => (int)_ItemReferences.Ice;
-
-		public static int IcedCoffee => (int)_ItemReferences.IcedCoffee;
-
-		public static int Latte => (int)_ItemReferences.Latte;
-
-		public static int MilkFrothedIngredient => (int)_ItemReferences.MilkFrothedIngredient;
-
-		public static int Milk => (int)_ItemReferences.Milk;
-
-		public static int TeaBag => (int)_ItemReferences.TeaBag;
-
-		public static int TeaCup => (int)_ItemReferences.TeaCup;
-
-		public static int TeaPotSteeped => (int)_ItemReferences.TeaPotSteeped;
-
-		public static int TeaPotUnsteeped => (int)_ItemReferences.TeaPotUnsteeped;
-
-		public static int TeaPot => (int)_ItemReferences.TeaPot;
-
-		public static int NutMixtureBaked => (int)_ItemReferences.NutMixtureBaked;
-
-		public static int NutMixturePortion => (int)_ItemReferences.NutMixturePortion;
-
-		public static int NutMixture => (int)_ItemReferences.NutMixture;
-
-		public static int NutRoastPlated => (int)_ItemReferences.NutRoastPlated;
-
-		public static int NutsChopped => (int)_ItemReferences.NutsChopped;
-
-		public static int NutsIngredient => (int)_ItemReferences.NutsIngredient;
-
-		public static int AffogatoItem => (int)_ItemReferences.AffogatoItem;
-
-		public static int BreadStarterItem => (int)_ItemReferences.BreadStarterItem;
-
-		public static int ServedSoupBroccoliCheese => (int)_ItemReferences.ServedSoupBroccoliCheese;
-
-		public static int SoupBroccoliCheeseCooked => (int)_ItemReferences.SoupBroccoliCheeseCooked;
-
-		public static int SoupBroccoliCheeseRaw => (int)_ItemReferences.SoupBroccoliCheeseRaw;
-
-		public static int Cherry => (int)_ItemReferences.Cherry;
-
-		public static int PieCherryCooked => (int)_ItemReferences.PieCherryCooked;
-
-		public static int PieCherryRawBlindBaked => (int)_ItemReferences.PieCherryRawBlindBaked;
-
-		public static int PieCherryRaw => (int)_ItemReferences.PieCherryRaw;
-
-		public static int RoastPotatoItem => (int)_ItemReferences.RoastPotatoItem;
-
-		public static int TurkeyBurned => (int)_ItemReferences.TurkeyBurned;
-
-		public static int TurkeyCooked => (int)_ItemReferences.TurkeyCooked;
-
-		public static int TurkeyIngredient => (int)_ItemReferences.TurkeyIngredient;
-
-		public static int TurkeyPlated => (int)_ItemReferences.TurkeyPlated;
-
-		public static int TurkeySlice => (int)_ItemReferences.TurkeySlice;
 
 		public static int ResearchFlask => (int)_ItemReferences.ResearchFlask;
 
@@ -3155,6 +3303,156 @@ namespace KitchenLib.References
 
 		Tray = 869580494,
 
+		CornCooked = -1640761177,
+
+		CornHusk = 1075166571,
+
+		CornHusked = -1854029532,
+
+		CornRaw = 529258958,
+
+		PiePumpkinCooked = -126602470,
+
+		PiePumpkinRawBlindBaked = -677830190,
+
+		PiePumpkinRaw = 1776321746,
+
+		PumpkinHollow = 951737916,
+
+		PumpkinPieces = -711877651,
+
+		PumpkinSeedsRoasted = 1018675021,
+
+		PumpkinSeeds = -1498186615,
+
+		Pumpkin = -165143951,
+
+		ServedSoupPumpkin = 790436685,
+
+		SoupPumpkinCooked = 407468560,
+
+		SoupPumpkinRaw = 801092248,
+
+		NutMixtureBaked = -1945246136,
+
+		NutMixturePortion = -1294491269,
+
+		NutMixture = -1515496760,
+
+		NutRoastPlated = -1934880099,
+
+		NutsChopped = -2100850612,
+
+		NutsIngredient = 609827370,
+
+		AffogatoItem = -249136431,
+
+		BreadStarterItem = 1503471951,
+
+		ServedSoupBroccoliCheese = 1384211889,
+
+		SoupBroccoliCheeseCooked = 226578993,
+
+		SoupBroccoliCheeseRaw = 1030599135,
+
+		Cherry = -2056677123,
+
+		PieCherryCooked = 1842093636,
+
+		PieCherryRawBlindBaked = -135657781,
+
+		PieCherryRaw = 1196761342,
+
+		RoastPotatoItem = -939434748,
+
+		TurkeyBurned = -1755371377,
+
+		TurkeyCooked = -1568853395,
+
+		TurkeyIngredient = -1831502471,
+
+		TurkeyPlated = 1792757441,
+
+		TurkeySlice = -914826716,
+
+		ChristmasCracker = 749675166,
+
+		CranberriesChopped = 163163953,
+
+		Cranberries = 1474921248,
+
+		CranberrySauce = -1788071646,
+
+		Sugar = -849164789,
+
+		GravyTurkeyCooked = 294281422,
+
+		GravyTurkeyRaw = 1696315132,
+
+		TurkeyBones = -777417645,
+
+		TurkeyGravy = 1168127977,
+
+		Breadcrumbs = 235356204,
+
+		StuffingRaw = 1427021177,
+
+		Stuffing = -352397598,
+
+		BambooCookedContainerCooked = 880804869,
+
+		BambooCooked = 2037858460,
+
+		BambooPotCooked = 2019756794,
+
+		BambooPot = -1652763586,
+
+		BambooRaw = -1635701703,
+
+		CookedDumplings = 1640282430,
+
+		DumplingsPlated = -1938035042,
+
+		DumplingsRaw = 1867434040,
+
+		PreparedDumplings = 718093067,
+
+		SeaweedCooked = -1847818036,
+
+		Seaweed = 1297982178,
+
+		MandarinRaw = 1291848678,
+
+		MandarinSlice = 448483396,
+
+		MandarinSlices2Serving = -263257027,
+
+		MandarinSlices4Serving = 226055037,
+
+		CondimentSoySauce = 1190974918,
+
+		ExtraCakeStand = 41735497,
+
+		Ice = -442824475,
+
+		IcedCoffee = -1388933833,
+
+		Latte = 184647209,
+
+		MilkFrothedIngredient = -1313420767,
+
+		Milk = 329108931,
+
+		TeaBag = 574857689,
+
+		TeaCup = -1721929071,
+
+		TeaPotSteeped = -908710218,
+
+		TeaPotUnsteeped = 707327422,
+
+		TeaPot = 712770280,
+
 		ChocolateFlavour = -1303191076,
 
 		CoffeeFlavour = -19982058,
@@ -3247,157 +3545,15 @@ namespace KitchenLib.References
 
 		MixingBowlUnmixed = 52652731,
 
+		InstantWand = -1945712391,
+
+		PickleJar = 1212452523,
+
+		PoisonApple = 1801950881,
+
+		PouchofHolding = 1103033456,
+
 		Clipboard = 123647569,
-
-		ChristmasCracker = 749675166,
-
-		CranberriesChopped = 163163953,
-
-		Cranberries = 1474921248,
-
-		CranberrySauce = -1788071646,
-
-		Sugar = -849164789,
-
-		GravyTurkeyCooked = 294281422,
-
-		GravyTurkeyRaw = 1696315132,
-
-		TurkeyBones = -777417645,
-
-		TurkeyGravy = 1168127977,
-
-		Breadcrumbs = 235356204,
-
-		StuffingRaw = 1427021177,
-
-		Stuffing = -352397598,
-
-		CornCooked = -1640761177,
-
-		CornHusk = 1075166571,
-
-		CornHusked = -1854029532,
-
-		CornRaw = 529258958,
-
-		PiePumpkinCooked = -126602470,
-
-		PiePumpkinRawBlindBaked = -677830190,
-
-		PiePumpkinRaw = 1776321746,
-
-		PumpkinHollow = 951737916,
-
-		PumpkinPieces = -711877651,
-
-		PumpkinSeedsRoasted = 1018675021,
-
-		PumpkinSeeds = -1498186615,
-
-		Pumpkin = -165143951,
-
-		ServedSoupPumpkin = 790436685,
-
-		SoupPumpkinCooked = 407468560,
-
-		SoupPumpkinRaw = 801092248,
-
-		BambooCookedContainerCooked = 880804869,
-
-		BambooCooked = 2037858460,
-
-		BambooPotCooked = 2019756794,
-
-		BambooPot = -1652763586,
-
-		BambooRaw = -1635701703,
-
-		CookedDumplings = 1640282430,
-
-		DumplingsPlated = -1938035042,
-
-		DumplingsRaw = 1867434040,
-
-		PreparedDumplings = 718093067,
-
-		SeaweedCooked = -1847818036,
-
-		Seaweed = 1297982178,
-
-		MandarinRaw = 1291848678,
-
-		MandarinSlice = 448483396,
-
-		MandarinSlices2Serving = -263257027,
-
-		MandarinSlices4Serving = 226055037,
-
-		CondimentSoySauce = 1190974918,
-
-		ExtraCakeStand = 41735497,
-
-		Ice = -442824475,
-
-		IcedCoffee = -1388933833,
-
-		Latte = 184647209,
-
-		MilkFrothedIngredient = -1313420767,
-
-		Milk = 329108931,
-
-		TeaBag = 574857689,
-
-		TeaCup = -1721929071,
-
-		TeaPotSteeped = -908710218,
-
-		TeaPotUnsteeped = 707327422,
-
-		TeaPot = 712770280,
-
-		NutMixtureBaked = -1945246136,
-
-		NutMixturePortion = -1294491269,
-
-		NutMixture = -1515496760,
-
-		NutRoastPlated = -1934880099,
-
-		NutsChopped = -2100850612,
-
-		NutsIngredient = 609827370,
-
-		AffogatoItem = -249136431,
-
-		BreadStarterItem = 1503471951,
-
-		ServedSoupBroccoliCheese = 1384211889,
-
-		SoupBroccoliCheeseCooked = 226578993,
-
-		SoupBroccoliCheeseRaw = 1030599135,
-
-		Cherry = -2056677123,
-
-		PieCherryCooked = 1842093636,
-
-		PieCherryRawBlindBaked = -135657781,
-
-		PieCherryRaw = 1196761342,
-
-		RoastPotatoItem = -939434748,
-
-		TurkeyBurned = -1755371377,
-
-		TurkeyCooked = -1568853395,
-
-		TurkeyIngredient = -1831502471,
-
-		TurkeyPlated = 1792757441,
-
-		TurkeySlice = -914826716,
 
 		ResearchFlask = 56610526,
 
@@ -3526,6 +3682,52 @@ namespace KitchenLib.References
 
 		public static int TestItemGroup => (int)_ItemGroupReferences.TestItemGroup;
 
+		public static int PiePumpkinRawBlindBaked => (int)_ItemGroupReferences.PiePumpkinRawBlindBaked;
+
+		public static int PiePumpkinRaw => (int)_ItemGroupReferences.PiePumpkinRaw;
+
+		public static int SoupPumpkinRaw => (int)_ItemGroupReferences.SoupPumpkinRaw;
+
+		public static int NutMixture => (int)_ItemGroupReferences.NutMixture;
+
+		public static int NutRoastPlated => (int)_ItemGroupReferences.NutRoastPlated;
+
+		public static int AffogatoItem => (int)_ItemGroupReferences.AffogatoItem;
+
+		public static int BreadStarterItem => (int)_ItemGroupReferences.BreadStarterItem;
+
+		public static int SoupBroccoliCheeseRaw => (int)_ItemGroupReferences.SoupBroccoliCheeseRaw;
+
+		public static int PieCherryRawBlindBaked => (int)_ItemGroupReferences.PieCherryRawBlindBaked;
+
+		public static int PieCherryRaw => (int)_ItemGroupReferences.PieCherryRaw;
+
+		public static int TurkeyPlated => (int)_ItemGroupReferences.TurkeyPlated;
+
+		public static int CranberrySauce => (int)_ItemGroupReferences.CranberrySauce;
+
+		public static int GravyTurkeyRaw => (int)_ItemGroupReferences.GravyTurkeyRaw;
+
+		public static int StuffingRaw => (int)_ItemGroupReferences.StuffingRaw;
+
+		public static int BambooPot => (int)_ItemGroupReferences.BambooPot;
+
+		public static int DumplingsPlated => (int)_ItemGroupReferences.DumplingsPlated;
+
+		public static int DumplingsRaw => (int)_ItemGroupReferences.DumplingsRaw;
+
+		public static int MandarinSlices2Serving => (int)_ItemGroupReferences.MandarinSlices2Serving;
+
+		public static int MandarinSlices4Serving => (int)_ItemGroupReferences.MandarinSlices4Serving;
+
+		public static int IcedCoffee => (int)_ItemGroupReferences.IcedCoffee;
+
+		public static int Latte => (int)_ItemGroupReferences.Latte;
+
+		public static int TeaPotSteeped => (int)_ItemGroupReferences.TeaPotSteeped;
+
+		public static int TeaPotUnsteeped => (int)_ItemGroupReferences.TeaPotUnsteeped;
+
 		public static int BigCakeTinBaked => (int)_ItemGroupReferences.BigCakeTinBaked;
 
 		public static int BigCakeTinCake => (int)_ItemGroupReferences.BigCakeTinCake;
@@ -3565,52 +3767,6 @@ namespace KitchenLib.References
 		public static int MixingBowlMixedWithMilk => (int)_ItemGroupReferences.MixingBowlMixedWithMilk;
 
 		public static int MixingBowlUnmixed => (int)_ItemGroupReferences.MixingBowlUnmixed;
-
-		public static int CranberrySauce => (int)_ItemGroupReferences.CranberrySauce;
-
-		public static int GravyTurkeyRaw => (int)_ItemGroupReferences.GravyTurkeyRaw;
-
-		public static int StuffingRaw => (int)_ItemGroupReferences.StuffingRaw;
-
-		public static int PiePumpkinRawBlindBaked => (int)_ItemGroupReferences.PiePumpkinRawBlindBaked;
-
-		public static int PiePumpkinRaw => (int)_ItemGroupReferences.PiePumpkinRaw;
-
-		public static int SoupPumpkinRaw => (int)_ItemGroupReferences.SoupPumpkinRaw;
-
-		public static int BambooPot => (int)_ItemGroupReferences.BambooPot;
-
-		public static int DumplingsPlated => (int)_ItemGroupReferences.DumplingsPlated;
-
-		public static int DumplingsRaw => (int)_ItemGroupReferences.DumplingsRaw;
-
-		public static int MandarinSlices2Serving => (int)_ItemGroupReferences.MandarinSlices2Serving;
-
-		public static int MandarinSlices4Serving => (int)_ItemGroupReferences.MandarinSlices4Serving;
-
-		public static int IcedCoffee => (int)_ItemGroupReferences.IcedCoffee;
-
-		public static int Latte => (int)_ItemGroupReferences.Latte;
-
-		public static int TeaPotSteeped => (int)_ItemGroupReferences.TeaPotSteeped;
-
-		public static int TeaPotUnsteeped => (int)_ItemGroupReferences.TeaPotUnsteeped;
-
-		public static int NutMixture => (int)_ItemGroupReferences.NutMixture;
-
-		public static int NutRoastPlated => (int)_ItemGroupReferences.NutRoastPlated;
-
-		public static int AffogatoItem => (int)_ItemGroupReferences.AffogatoItem;
-
-		public static int BreadStarterItem => (int)_ItemGroupReferences.BreadStarterItem;
-
-		public static int SoupBroccoliCheeseRaw => (int)_ItemGroupReferences.SoupBroccoliCheeseRaw;
-
-		public static int PieCherryRawBlindBaked => (int)_ItemGroupReferences.PieCherryRawBlindBaked;
-
-		public static int PieCherryRaw => (int)_ItemGroupReferences.PieCherryRaw;
-
-		public static int TurkeyPlated => (int)_ItemGroupReferences.TurkeyPlated;
 
 	}
 	public enum _ItemGroupReferences
@@ -3737,6 +3893,52 @@ namespace KitchenLib.References
 
 		TestItemGroup = 26858422,
 
+		PiePumpkinRawBlindBaked = -677830190,
+
+		PiePumpkinRaw = 1776321746,
+
+		SoupPumpkinRaw = 801092248,
+
+		NutMixture = -1515496760,
+
+		NutRoastPlated = -1934880099,
+
+		AffogatoItem = -249136431,
+
+		BreadStarterItem = 1503471951,
+
+		SoupBroccoliCheeseRaw = 1030599135,
+
+		PieCherryRawBlindBaked = -135657781,
+
+		PieCherryRaw = 1196761342,
+
+		TurkeyPlated = 1792757441,
+
+		CranberrySauce = -1788071646,
+
+		GravyTurkeyRaw = 1696315132,
+
+		StuffingRaw = 1427021177,
+
+		BambooPot = -1652763586,
+
+		DumplingsPlated = -1938035042,
+
+		DumplingsRaw = 1867434040,
+
+		MandarinSlices2Serving = -263257027,
+
+		MandarinSlices4Serving = 226055037,
+
+		IcedCoffee = -1388933833,
+
+		Latte = 184647209,
+
+		TeaPotSteeped = -908710218,
+
+		TeaPotUnsteeped = 707327422,
+
 		BigCakeTinBaked = 1547040416,
 
 		BigCakeTinCake = -1517722615,
@@ -3777,66 +3979,22 @@ namespace KitchenLib.References
 
 		MixingBowlUnmixed = 52652731,
 
-		CranberrySauce = -1788071646,
-
-		GravyTurkeyRaw = 1696315132,
-
-		StuffingRaw = 1427021177,
-
-		PiePumpkinRawBlindBaked = -677830190,
-
-		PiePumpkinRaw = 1776321746,
-
-		SoupPumpkinRaw = 801092248,
-
-		BambooPot = -1652763586,
-
-		DumplingsPlated = -1938035042,
-
-		DumplingsRaw = 1867434040,
-
-		MandarinSlices2Serving = -263257027,
-
-		MandarinSlices4Serving = 226055037,
-
-		IcedCoffee = -1388933833,
-
-		Latte = 184647209,
-
-		TeaPotSteeped = -908710218,
-
-		TeaPotUnsteeped = 707327422,
-
-		NutMixture = -1515496760,
-
-		NutRoastPlated = -1934880099,
-
-		AffogatoItem = -249136431,
-
-		BreadStarterItem = 1503471951,
-
-		SoupBroccoliCheeseRaw = 1030599135,
-
-		PieCherryRawBlindBaked = -135657781,
-
-		PieCherryRaw = 1196761342,
-
-		TurkeyPlated = 1792757441,
-
 	}
 	public static class LayoutProfileReferences
 	{
-		public static int BakeryLayout => (int)_LayoutProfileReferences.BakeryLayout;
-
 		public static int LayoutProfile => (int)_LayoutProfileReferences.LayoutProfile;
-
-		public static int FebruaryLayout => (int)_LayoutProfileReferences.FebruaryLayout;
 
 		public static int JanuaryLayoutProfile => (int)_LayoutProfileReferences.JanuaryLayoutProfile;
 
-		public static int CoffeeshopLayout => (int)_LayoutProfileReferences.CoffeeshopLayout;
+		public static int FebruaryLayout => (int)_LayoutProfileReferences.FebruaryLayout;
 
 		public static int TurboDinerLayout => (int)_LayoutProfileReferences.TurboDinerLayout;
+
+		public static int CoffeeshopLayout => (int)_LayoutProfileReferences.CoffeeshopLayout;
+
+		public static int BakeryLayout => (int)_LayoutProfileReferences.BakeryLayout;
+
+		public static int WitchLayout => (int)_LayoutProfileReferences.WitchLayout;
 
 		public static int BasicLayout => (int)_LayoutProfileReferences.BasicLayout;
 
@@ -3851,17 +4009,19 @@ namespace KitchenLib.References
 	}
 	public enum _LayoutProfileReferences
 	{
-		BakeryLayout = 206333080,
-
 		LayoutProfile = -791067106,
-
-		FebruaryLayout = -1017771555,
 
 		JanuaryLayoutProfile = -1207945624,
 
-		CoffeeshopLayout = -1203731809,
+		FebruaryLayout = -1017771555,
 
 		TurboDinerLayout = -2142472895,
+
+		CoffeeshopLayout = -1203731809,
+
+		BakeryLayout = 206333080,
+
+		WitchLayout = 394042671,
 
 		BasicLayout = 222370461,
 
@@ -3902,19 +4062,21 @@ namespace KitchenLib.References
 	}
 	public static class ModularUnlockPackReferences
 	{
-		public static int ChristmasSpecialCard => (int)_ModularUnlockPackReferences.ChristmasSpecialCard;
-
-		public static int FebruarySpecialCard => (int)_ModularUnlockPackReferences.FebruarySpecialCard;
-
-		public static int JanuaryCards => (int)_ModularUnlockPackReferences.JanuaryCards;
-
-		public static int JuneCards => (int)_ModularUnlockPackReferences.JuneCards;
-
-		public static int MarchCards => (int)_ModularUnlockPackReferences.MarchCards;
-
 		public static int AutumnDishCards => (int)_ModularUnlockPackReferences.AutumnDishCards;
 
 		public static int AutumnSpecialCard => (int)_ModularUnlockPackReferences.AutumnSpecialCard;
+
+		public static int ChristmasSpecialCard => (int)_ModularUnlockPackReferences.ChristmasSpecialCard;
+
+		public static int JanuaryCards => (int)_ModularUnlockPackReferences.JanuaryCards;
+
+		public static int FebruarySpecialCard => (int)_ModularUnlockPackReferences.FebruarySpecialCard;
+
+		public static int MarchCards => (int)_ModularUnlockPackReferences.MarchCards;
+
+		public static int JuneCards => (int)_ModularUnlockPackReferences.JuneCards;
+
+		public static int WitchCards => (int)_ModularUnlockPackReferences.WitchCards;
 
 		public static int FranchiseCardsPack => (int)_ModularUnlockPackReferences.FranchiseCardsPack;
 
@@ -3927,19 +4089,21 @@ namespace KitchenLib.References
 	}
 	public enum _ModularUnlockPackReferences
 	{
-		ChristmasSpecialCard = 83496670,
-
-		FebruarySpecialCard = 2136512392,
-
-		JanuaryCards = 1091353668,
-
-		JuneCards = 138545119,
-
-		MarchCards = 802797822,
-
 		AutumnDishCards = -320463696,
 
 		AutumnSpecialCard = -1306979157,
+
+		ChristmasSpecialCard = 83496670,
+
+		JanuaryCards = 1091353668,
+
+		FebruarySpecialCard = 2136512392,
+
+		MarchCards = 802797822,
+
+		JuneCards = 138545119,
+
+		WitchCards = -789810137,
 
 		FranchiseCardsPack = 1355831133,
 
@@ -3970,6 +4134,8 @@ namespace KitchenLib.References
 
 		public static int CrownHat => (int)_PlayerCosmeticReferences.CrownHat;
 
+		public static int GhostHatTransparent => (int)_PlayerCosmeticReferences.GhostHatTransparent;
+
 		public static int GhostHat => (int)_PlayerCosmeticReferences.GhostHat;
 
 		public static int GlassesHat => (int)_PlayerCosmeticReferences.GlassesHat;
@@ -3986,17 +4152,19 @@ namespace KitchenLib.References
 
 		public static int HotDogBody => (int)_PlayerCosmeticReferences.HotDogBody;
 
-		public static int CakeHat => (int)_PlayerCosmeticReferences.CakeHat;
+		public static int BeanieBlue => (int)_PlayerCosmeticReferences.BeanieBlue;
 
-		public static int CupcakeHat => (int)_PlayerCosmeticReferences.CupcakeHat;
+		public static int BeanieGreen => (int)_PlayerCosmeticReferences.BeanieGreen;
 
-		public static int PartyCandleHat => (int)_PlayerCosmeticReferences.PartyCandleHat;
+		public static int BeanieOrange => (int)_PlayerCosmeticReferences.BeanieOrange;
 
-		public static int PartyConeHat => (int)_PlayerCosmeticReferences.PartyConeHat;
+		public static int BeaniePink => (int)_PlayerCosmeticReferences.BeaniePink;
 
-		public static int SparklerHat => (int)_PlayerCosmeticReferences.SparklerHat;
+		public static int BeanieRed => (int)_PlayerCosmeticReferences.BeanieRed;
 
-		public static int NoHat => (int)_PlayerCosmeticReferences.NoHat;
+		public static int EggHat => (int)_PlayerCosmeticReferences.EggHat;
+
+		public static int TurkeyHat => (int)_PlayerCosmeticReferences.TurkeyHat;
 
 		public static int ElfHat => (int)_PlayerCosmeticReferences.ElfHat;
 
@@ -4012,20 +4180,25 @@ namespace KitchenLib.References
 
 		public static int PlayerFirstDateEffect => (int)_PlayerCosmeticReferences.PlayerFirstDateEffect;
 
-		public static int BeanieBlue => (int)_PlayerCosmeticReferences.BeanieBlue;
+		public static int CakeHat => (int)_PlayerCosmeticReferences.CakeHat;
 
-		public static int BeanieGreen => (int)_PlayerCosmeticReferences.BeanieGreen;
+		public static int CupcakeHat => (int)_PlayerCosmeticReferences.CupcakeHat;
 
-		public static int BeanieOrange => (int)_PlayerCosmeticReferences.BeanieOrange;
+		public static int PartyCandleHat => (int)_PlayerCosmeticReferences.PartyCandleHat;
 
-		public static int BeaniePink => (int)_PlayerCosmeticReferences.BeaniePink;
+		public static int PartyConeHat => (int)_PlayerCosmeticReferences.PartyConeHat;
 
-		public static int BeanieRed => (int)_PlayerCosmeticReferences.BeanieRed;
+		public static int SparklerHat => (int)_PlayerCosmeticReferences.SparklerHat;
 
-		public static int EggHat => (int)_PlayerCosmeticReferences.EggHat;
+		public static int NoHat => (int)_PlayerCosmeticReferences.NoHat;
 
-		public static int TurkeyHat => (int)_PlayerCosmeticReferences.TurkeyHat;
+		public static int WitchHatCandles => (int)_PlayerCosmeticReferences.WitchHatCandles;
 
+		public static int WitchHatCrystals => (int)_PlayerCosmeticReferences.WitchHatCrystals;
+
+		public static int WitchHatFlowery => (int)_PlayerCosmeticReferences.WitchHatFlowery;
+
+		public static int WitchHatLeaves => (int)_PlayerCosmeticReferences.WitchHatLeaves;
 
 	}
 	public enum _PlayerCosmeticReferences
@@ -4048,6 +4221,8 @@ namespace KitchenLib.References
 
 		CrownHat = 336384908,
 
+		GhostHatTransparent = 1601535819,
+
 		GhostHat = 650083035,
 
 		GlassesHat = -414361331,
@@ -4064,17 +4239,19 @@ namespace KitchenLib.References
 
 		HotDogBody = -1194011786,
 
-		CakeHat = -294760933,
+		BeanieBlue = -999926542,
 
-		CupcakeHat = -2138812738,
+		BeanieGreen = 429894386,
 
-		PartyCandleHat = 1088468290,
+		BeanieOrange = -81677509,
 
-		PartyConeHat = 1541406169,
+		BeaniePink = -1202814096,
 
-		SparklerHat = -859334059,
+		BeanieRed = 133088131,
 
-		NoHat = 1335368407,
+		EggHat = 1081340831,
+
+		TurkeyHat = -1920946004,
 
 		ElfHat = -670719672,
 
@@ -4090,20 +4267,25 @@ namespace KitchenLib.References
 
 		PlayerFirstDateEffect = 940774659,
 
-		BeanieBlue = -999926542,
+		CakeHat = -294760933,
 
-		BeanieGreen = 429894386,
+		CupcakeHat = -2138812738,
 
-		BeanieOrange = -81677509,
+		PartyCandleHat = 1088468290,
 
-		BeaniePink = -1202814096,
+		PartyConeHat = 1541406169,
 
-		BeanieRed = 133088131,
+		SparklerHat = -859334059,
 
-		EggHat = 1081340831,
+		NoHat = 1335368407,
 
-		TurkeyHat = -1920946004,
+		WitchHatCandles = -248116144,
 
+		WitchHatCrystals = -495236016,
+
+		WitchHatFlowery = -233680051,
+
+		WitchHatLeaves = 1243499033,
 
 	}
 	public static class ProcessReferences
@@ -4129,6 +4311,8 @@ namespace KitchenLib.References
 		public static int BringNewCustomer => (int)_ProcessReferences.BringNewCustomer;
 
 		public static int Copy => (int)_ProcessReferences.Copy;
+
+		public static int Enchant => (int)_ProcessReferences.Enchant;
 
 		public static int Upgrade => (int)_ProcessReferences.Upgrade;
 
@@ -4162,6 +4346,8 @@ namespace KitchenLib.References
 		BringNewCustomer = 298778045,
 
 		Copy = -1622218557,
+
+		Enchant = -1546354633,
 
 		Upgrade = 742419440,
 
@@ -4358,44 +4544,6 @@ namespace KitchenLib.References
 
 		public static int OnionRings => (int)_UnlockReferences.OnionRings;
 
-		public static int BigCake => (int)_UnlockReferences.BigCake;
-
-		public static int Brownies => (int)_UnlockReferences.Brownies;
-
-		public static int CakeBatterRecipeOnly => (int)_UnlockReferences.CakeBatterRecipeOnly;
-
-		public static int CakeFlavourChocolate => (int)_UnlockReferences.CakeFlavourChocolate;
-
-		public static int CakeFlavourCoffee => (int)_UnlockReferences.CakeFlavourCoffee;
-
-		public static int CakeFlavourLemon => (int)_UnlockReferences.CakeFlavourLemon;
-
-		public static int Cookies => (int)_UnlockReferences.Cookies;
-
-		public static int Cupcake => (int)_UnlockReferences.Cupcake;
-
-		public static int Doughnuts => (int)_UnlockReferences.Doughnuts;
-
-		public static int Cakes => (int)_UnlockReferences.Cakes;
-
-		public static int ChristmasConveyors => (int)_UnlockReferences.ChristmasConveyors;
-
-		public static int Cracker => (int)_UnlockReferences.Cracker;
-
-		public static int TurkeyCranberrySauce => (int)_UnlockReferences.TurkeyCranberrySauce;
-
-		public static int TurkeyGravy => (int)_UnlockReferences.TurkeyGravy;
-
-		public static int TurkeyStuffing => (int)_UnlockReferences.TurkeyStuffing;
-
-		public static int Couples => (int)_UnlockReferences.Couples;
-
-		public static int DoubleDates => (int)_UnlockReferences.DoubleDates;
-
-		public static int FirstDates => (int)_UnlockReferences.FirstDates;
-
-		public static int StapleFlowerPots => (int)_UnlockReferences.StapleFlowerPots;
-
 		public static int CustomerBursts => (int)_UnlockReferences.CustomerBursts;
 
 		public static int MessesSlowCustomers => (int)_UnlockReferences.MessesSlowCustomers;
@@ -4468,6 +4616,36 @@ namespace KitchenLib.References
 
 		public static int TrickSlowPlayersThroughDay => (int)_UnlockReferences.TrickSlowPlayersThroughDay;
 
+		public static int NovemberTableSizeIncrease => (int)_UnlockReferences.NovemberTableSizeIncrease;
+
+		public static int NutRoastBase => (int)_UnlockReferences.NutRoastBase;
+
+		public static int Affogato => (int)_UnlockReferences.Affogato;
+
+		public static int BreadStarter => (int)_UnlockReferences.BreadStarter;
+
+		public static int BroccoliCheeseSoup => (int)_UnlockReferences.BroccoliCheeseSoup;
+
+		public static int CherryPie => (int)_UnlockReferences.CherryPie;
+
+		public static int RoastPotato => (int)_UnlockReferences.RoastPotato;
+
+		public static int Sweetcorn => (int)_UnlockReferences.Sweetcorn;
+
+		public static int Waffles => (int)_UnlockReferences.Waffles;
+
+		public static int TurkeyBase => (int)_UnlockReferences.TurkeyBase;
+
+		public static int ChristmasConveyors => (int)_UnlockReferences.ChristmasConveyors;
+
+		public static int Cracker => (int)_UnlockReferences.Cracker;
+
+		public static int TurkeyCranberrySauce => (int)_UnlockReferences.TurkeyCranberrySauce;
+
+		public static int TurkeyGravy => (int)_UnlockReferences.TurkeyGravy;
+
+		public static int TurkeyStuffing => (int)_UnlockReferences.TurkeyStuffing;
+
 		public static int JanuaryRedEnvelopes => (int)_UnlockReferences.JanuaryRedEnvelopes;
 
 		public static int Bamboo => (int)_UnlockReferences.Bamboo;
@@ -4485,6 +4663,16 @@ namespace KitchenLib.References
 		public static int StirFryMushroom => (int)_UnlockReferences.StirFryMushroom;
 
 		public static int StirFrySoySauce => (int)_UnlockReferences.StirFrySoySauce;
+
+		public static int Couples => (int)_UnlockReferences.Couples;
+
+		public static int DoubleDates => (int)_UnlockReferences.DoubleDates;
+
+		public static int FirstDates => (int)_UnlockReferences.FirstDates;
+
+		public static int StapleFlowerPots => (int)_UnlockReferences.StapleFlowerPots;
+
+		public static int TurboMode => (int)_UnlockReferences.TurboMode;
 
 		public static int ExtraCoffee => (int)_UnlockReferences.ExtraCoffee;
 
@@ -4506,27 +4694,25 @@ namespace KitchenLib.References
 
 		public static int CoffeeshopMode => (int)_UnlockReferences.CoffeeshopMode;
 
-		public static int TurboMode => (int)_UnlockReferences.TurboMode;
+		public static int BigCake => (int)_UnlockReferences.BigCake;
 
-		public static int NovemberTableSizeIncrease => (int)_UnlockReferences.NovemberTableSizeIncrease;
+		public static int Brownies => (int)_UnlockReferences.Brownies;
 
-		public static int NutRoastBase => (int)_UnlockReferences.NutRoastBase;
+		public static int CakeBatterRecipeOnly => (int)_UnlockReferences.CakeBatterRecipeOnly;
 
-		public static int Affogato => (int)_UnlockReferences.Affogato;
+		public static int CakeFlavourChocolate => (int)_UnlockReferences.CakeFlavourChocolate;
 
-		public static int BreadStarter => (int)_UnlockReferences.BreadStarter;
+		public static int CakeFlavourCoffee => (int)_UnlockReferences.CakeFlavourCoffee;
 
-		public static int BroccoliCheeseSoup => (int)_UnlockReferences.BroccoliCheeseSoup;
+		public static int CakeFlavourLemon => (int)_UnlockReferences.CakeFlavourLemon;
 
-		public static int CherryPie => (int)_UnlockReferences.CherryPie;
+		public static int Cookies => (int)_UnlockReferences.Cookies;
 
-		public static int RoastPotato => (int)_UnlockReferences.RoastPotato;
+		public static int Cupcake => (int)_UnlockReferences.Cupcake;
 
-		public static int Sweetcorn => (int)_UnlockReferences.Sweetcorn;
+		public static int Doughnuts => (int)_UnlockReferences.Doughnuts;
 
-		public static int Waffles => (int)_UnlockReferences.Waffles;
-
-		public static int TurkeyBase => (int)_UnlockReferences.TurkeyBase;
+		public static int Cakes => (int)_UnlockReferences.Cakes;
 
 		public static int AllYouCanEatIncrease => (int)_UnlockReferences.AllYouCanEatIncrease;
 
@@ -4773,44 +4959,6 @@ namespace KitchenLib.References
 
 		OnionRings = -1745179096,
 
-		BigCake = 1316998108,
-
-		Brownies = 1609120418,
-
-		CakeBatterRecipeOnly = -1115351824,
-
-		CakeFlavourChocolate = -1081939710,
-
-		CakeFlavourCoffee = -810134986,
-
-		CakeFlavourLemon = -1693098895,
-
-		Cookies = 1902212503,
-
-		Cupcake = 627241196,
-
-		Doughnuts = -1166412657,
-
-		Cakes = 1113735761,
-
-		ChristmasConveyors = -361249036,
-
-		Cracker = 878396172,
-
-		TurkeyCranberrySauce = 1398180456,
-
-		TurkeyGravy = -1460640973,
-
-		TurkeyStuffing = -1243742384,
-
-		Couples = -2106646073,
-
-		DoubleDates = 2028238661,
-
-		FirstDates = 587399881,
-
-		StapleFlowerPots = 1491215862,
-
 		CustomerBursts = 1642577536,
 
 		MessesSlowCustomers = -1737101581,
@@ -4883,6 +5031,36 @@ namespace KitchenLib.References
 
 		TrickSlowPlayersThroughDay = -1921275517,
 
+		NovemberTableSizeIncrease = 319209671,
+
+		NutRoastBase = 536093200,
+
+		Affogato = -1405391769,
+
+		BreadStarter = 1847735819,
+
+		BroccoliCheeseSoup = -1015158173,
+
+		CherryPie = 12170609,
+
+		RoastPotato = -1289628495,
+
+		Sweetcorn = -338554380,
+
+		Waffles = -1409566802,
+
+		TurkeyBase = 1551533879,
+
+		ChristmasConveyors = -361249036,
+
+		Cracker = 878396172,
+
+		TurkeyCranberrySauce = 1398180456,
+
+		TurkeyGravy = -1460640973,
+
+		TurkeyStuffing = -1243742384,
+
 		JanuaryRedEnvelopes = -1273613313,
 
 		Bamboo = -1742801708,
@@ -4900,6 +5078,16 @@ namespace KitchenLib.References
 		StirFryMushroom = 1642878331,
 
 		StirFrySoySauce = 1064343768,
+
+		Couples = -2106646073,
+
+		DoubleDates = 2028238661,
+
+		FirstDates = 587399881,
+
+		StapleFlowerPots = 1491215862,
+
+		TurboMode = 1958825350,
 
 		ExtraCoffee = 251686519,
 
@@ -4921,27 +5109,25 @@ namespace KitchenLib.References
 
 		CoffeeshopMode = 746549422,
 
-		TurboMode = 1958825350,
+		BigCake = 1316998108,
 
-		NovemberTableSizeIncrease = 319209671,
+		Brownies = 1609120418,
 
-		NutRoastBase = 536093200,
+		CakeBatterRecipeOnly = -1115351824,
 
-		Affogato = -1405391769,
+		CakeFlavourChocolate = -1081939710,
 
-		BreadStarter = 1847735819,
+		CakeFlavourCoffee = -810134986,
 
-		BroccoliCheeseSoup = -1015158173,
+		CakeFlavourLemon = -1693098895,
 
-		CherryPie = 12170609,
+		Cookies = 1902212503,
 
-		RoastPotato = -1289628495,
+		Cupcake = 627241196,
 
-		Sweetcorn = -338554380,
+		Doughnuts = -1166412657,
 
-		Waffles = -1409566802,
-
-		TurkeyBase = 1551533879,
+		Cakes = 1113735761,
 
 		AllYouCanEatIncrease = 2055765569,
 
@@ -5088,16 +5274,6 @@ namespace KitchenLib.References
 	}
 	public static class UnlockCardReferences
 	{
-		public static int ChristmasConveyors => (int)_UnlockCardReferences.ChristmasConveyors;
-
-		public static int Couples => (int)_UnlockCardReferences.Couples;
-
-		public static int DoubleDates => (int)_UnlockCardReferences.DoubleDates;
-
-		public static int FirstDates => (int)_UnlockCardReferences.FirstDates;
-
-		public static int StapleFlowerPots => (int)_UnlockCardReferences.StapleFlowerPots;
-
 		public static int CustomerBursts => (int)_UnlockCardReferences.CustomerBursts;
 
 		public static int MessesSlowCustomers => (int)_UnlockCardReferences.MessesSlowCustomers;
@@ -5156,17 +5332,27 @@ namespace KitchenLib.References
 
 		public static int TrickSlowPlayersThroughDay => (int)_UnlockCardReferences.TrickSlowPlayersThroughDay;
 
+		public static int NovemberTableSizeIncrease => (int)_UnlockCardReferences.NovemberTableSizeIncrease;
+
+		public static int ChristmasConveyors => (int)_UnlockCardReferences.ChristmasConveyors;
+
 		public static int JanuaryRedEnvelopes => (int)_UnlockCardReferences.JanuaryRedEnvelopes;
+
+		public static int Couples => (int)_UnlockCardReferences.Couples;
+
+		public static int DoubleDates => (int)_UnlockCardReferences.DoubleDates;
+
+		public static int FirstDates => (int)_UnlockCardReferences.FirstDates;
+
+		public static int StapleFlowerPots => (int)_UnlockCardReferences.StapleFlowerPots;
+
+		public static int TurboMode => (int)_UnlockCardReferences.TurboMode;
 
 		public static int ExtraCoffee => (int)_UnlockCardReferences.ExtraCoffee;
 
 		public static int SlowBrewCoffee => (int)_UnlockCardReferences.SlowBrewCoffee;
 
 		public static int CoffeeshopMode => (int)_UnlockCardReferences.CoffeeshopMode;
-
-		public static int TurboMode => (int)_UnlockCardReferences.TurboMode;
-
-		public static int NovemberTableSizeIncrease => (int)_UnlockCardReferences.NovemberTableSizeIncrease;
 
 		public static int AllYouCanEatIncrease => (int)_UnlockCardReferences.AllYouCanEatIncrease;
 
@@ -5313,16 +5499,6 @@ namespace KitchenLib.References
 	}
 	public enum _UnlockCardReferences
 	{
-		ChristmasConveyors = -361249036,
-
-		Couples = -2106646073,
-
-		DoubleDates = 2028238661,
-
-		FirstDates = 587399881,
-
-		StapleFlowerPots = 1491215862,
-
 		CustomerBursts = 1642577536,
 
 		MessesSlowCustomers = -1737101581,
@@ -5381,17 +5557,27 @@ namespace KitchenLib.References
 
 		TrickSlowPlayersThroughDay = -1921275517,
 
+		NovemberTableSizeIncrease = 319209671,
+
+		ChristmasConveyors = -361249036,
+
 		JanuaryRedEnvelopes = -1273613313,
+
+		Couples = -2106646073,
+
+		DoubleDates = 2028238661,
+
+		FirstDates = 587399881,
+
+		StapleFlowerPots = 1491215862,
+
+		TurboMode = 1958825350,
 
 		ExtraCoffee = 251686519,
 
 		SlowBrewCoffee = 2079359756,
 
 		CoffeeshopMode = 746549422,
-
-		TurboMode = 1958825350,
-
-		NovemberTableSizeIncrease = 319209671,
 
 		AllYouCanEatIncrease = 2055765569,
 
@@ -5538,35 +5724,39 @@ namespace KitchenLib.References
 	}
 	public static class UnlockPackReferences
 	{
-		public static int ChristmasPack => (int)_UnlockPackReferences.ChristmasPack;
-
-		public static int ChristmasSpecialCard => (int)_UnlockPackReferences.ChristmasSpecialCard;
-
-		public static int DefaultCompositePack => (int)_UnlockPackReferences.DefaultCompositePack;
-
-		public static int FebruaryPack => (int)_UnlockPackReferences.FebruaryPack;
-
-		public static int FebruarySpecialCard => (int)_UnlockPackReferences.FebruarySpecialCard;
-
-		public static int HalloweenPack => (int)_UnlockPackReferences.HalloweenPack;
-
-		public static int JanuaryCards => (int)_UnlockPackReferences.JanuaryCards;
-
-		public static int JanuaryPack => (int)_UnlockPackReferences.JanuaryPack;
-
-		public static int JuneCards => (int)_UnlockPackReferences.JuneCards;
-
-		public static int JunePack => (int)_UnlockPackReferences.JunePack;
-
-		public static int MarchCards => (int)_UnlockPackReferences.MarchCards;
-
-		public static int MarchPack => (int)_UnlockPackReferences.MarchPack;
-
 		public static int AutumnDishCards => (int)_UnlockPackReferences.AutumnDishCards;
 
 		public static int AutumnPack => (int)_UnlockPackReferences.AutumnPack;
 
 		public static int AutumnSpecialCard => (int)_UnlockPackReferences.AutumnSpecialCard;
+
+		public static int ChristmasPack => (int)_UnlockPackReferences.ChristmasPack;
+
+		public static int ChristmasSpecialCard => (int)_UnlockPackReferences.ChristmasSpecialCard;
+
+		public static int JanuaryCards => (int)_UnlockPackReferences.JanuaryCards;
+
+		public static int JanuaryPack => (int)_UnlockPackReferences.JanuaryPack;
+
+		public static int FebruaryPack => (int)_UnlockPackReferences.FebruaryPack;
+
+		public static int FebruarySpecialCard => (int)_UnlockPackReferences.FebruarySpecialCard;
+
+		public static int MarchCards => (int)_UnlockPackReferences.MarchCards;
+
+		public static int MarchPack => (int)_UnlockPackReferences.MarchPack;
+
+		public static int JuneCards => (int)_UnlockPackReferences.JuneCards;
+
+		public static int JunePack => (int)_UnlockPackReferences.JunePack;
+
+		public static int WitchCardPack => (int)_UnlockPackReferences.WitchCardPack;
+
+		public static int WitchCards => (int)_UnlockPackReferences.WitchCards;
+
+		public static int DefaultCompositePack => (int)_UnlockPackReferences.DefaultCompositePack;
+
+		public static int HalloweenPack => (int)_UnlockPackReferences.HalloweenPack;
 
 		public static int FranchiseCardsPack => (int)_UnlockPackReferences.FranchiseCardsPack;
 
@@ -5579,35 +5769,39 @@ namespace KitchenLib.References
 	}
 	public enum _UnlockPackReferences
 	{
-		ChristmasPack = 1370599169,
-
-		ChristmasSpecialCard = 83496670,
-
-		DefaultCompositePack = -2020288853,
-
-		FebruaryPack = -654728586,
-
-		FebruarySpecialCard = 2136512392,
-
-		HalloweenPack = -839658581,
-
-		JanuaryCards = 1091353668,
-
-		JanuaryPack = -1893039732,
-
-		JuneCards = 138545119,
-
-		JunePack = 1774091848,
-
-		MarchCards = 802797822,
-
-		MarchPack = -619515969,
-
 		AutumnDishCards = -320463696,
 
 		AutumnPack = 698670060,
 
 		AutumnSpecialCard = -1306979157,
+
+		ChristmasPack = 1370599169,
+
+		ChristmasSpecialCard = 83496670,
+
+		JanuaryCards = 1091353668,
+
+		JanuaryPack = -1893039732,
+
+		FebruaryPack = -654728586,
+
+		FebruarySpecialCard = 2136512392,
+
+		MarchCards = 802797822,
+
+		MarchPack = -619515969,
+
+		JuneCards = 138545119,
+
+		JunePack = 1774091848,
+
+		WitchCardPack = -37697044,
+
+		WitchCards = -789810137,
+
+		DefaultCompositePack = -2020288853,
+
+		HalloweenPack = -839658581,
 
 		FranchiseCardsPack = 1355831133,
 
@@ -5668,19 +5862,21 @@ namespace KitchenLib.References
 	}
 	public static class RestaurantSettingReferences
 	{
-		public static int BakerySetting => (int)_RestaurantSettingReferences.BakerySetting;
+		public static int Autumn => (int)_RestaurantSettingReferences.Autumn;
 
 		public static int SantaWorkshopSetting => (int)_RestaurantSettingReferences.SantaWorkshopSetting;
 
-		public static int FebruarySetting => (int)_RestaurantSettingReferences.FebruarySetting;
-
 		public static int JanuarySetting => (int)_RestaurantSettingReferences.JanuarySetting;
 
-		public static int JuneSettingCoffeeshop => (int)_RestaurantSettingReferences.JuneSettingCoffeeshop;
+		public static int FebruarySetting => (int)_RestaurantSettingReferences.FebruarySetting;
 
 		public static int MarchSettingTurbo => (int)_RestaurantSettingReferences.MarchSettingTurbo;
 
-		public static int Autumn => (int)_RestaurantSettingReferences.Autumn;
+		public static int JuneSettingCoffeeshop => (int)_RestaurantSettingReferences.JuneSettingCoffeeshop;
+
+		public static int BakerySetting => (int)_RestaurantSettingReferences.BakerySetting;
+
+		public static int WitchHut2310 => (int)_RestaurantSettingReferences.WitchHut2310;
 
 		public static int Alpine => (int)_RestaurantSettingReferences.Alpine;
 
@@ -5693,19 +5889,21 @@ namespace KitchenLib.References
 	}
 	public enum _RestaurantSettingReferences
 	{
-		BakerySetting = -31920316,
+		Autumn = -405456638,
 
 		SantaWorkshopSetting = -851159532,
 
-		FebruarySetting = 1766067755,
-
 		JanuarySetting = 507410699,
 
-		JuneSettingCoffeeshop = 1970109064,
+		FebruarySetting = 1766067755,
 
 		MarchSettingTurbo = 1736695492,
 
-		Autumn = -405456638,
+		JuneSettingCoffeeshop = 1970109064,
+
+		BakerySetting = -31920316,
+
+		WitchHut2310 = 424841351,
 
 		Alpine = -1864906012,
 

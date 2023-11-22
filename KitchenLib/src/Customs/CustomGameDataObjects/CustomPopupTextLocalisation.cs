@@ -17,8 +17,6 @@ namespace KitchenLib.Customs
 		{
 			PopupTextLocalisation result = ScriptableObject.CreateInstance<PopupTextLocalisation>();
 
-			Main.LogDebug($"[CustomPopupTextLocalisation.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
 				result = UnityEngine.Object.Instantiate(gameData.Get<PopupTextLocalisation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 

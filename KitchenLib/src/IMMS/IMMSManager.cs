@@ -201,6 +201,7 @@ namespace KitchenLib.IMMS
 
 		protected override void OnUpdate()
 		{
+			/*
 			if (!HasSingleton<SIMMSManager>())
 			{
 				var entity = EntityManager.CreateEntity(typeof(CRequiresView), typeof(SIMMSManager), typeof(CPersistThroughSceneChanges));
@@ -210,6 +211,7 @@ namespace KitchenLib.IMMS
 					ViewMode = ViewMode.Screen // screen since this is purely a communication mechanism, not a world object
 				});
 			}
+			*/
 		}
 	}
 }

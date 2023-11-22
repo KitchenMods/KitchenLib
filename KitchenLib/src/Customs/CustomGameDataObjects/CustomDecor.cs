@@ -16,8 +16,6 @@ namespace KitchenLib.Customs
         {
             Decor result = ScriptableObject.CreateInstance<Decor>();
 
-			Main.LogDebug($"[CustomDecor.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<Decor>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
@@ -32,8 +30,6 @@ namespace KitchenLib.Customs
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             Decor result = (Decor)gameDataObject;
-
-			Main.LogDebug($"[CustomDecor.AttachDependentProperties] [1.1] Converting Base");
 
 			if (result.ApplicatorAppliance != ApplicatorAppliance) result.ApplicatorAppliance = ApplicatorAppliance;
         }

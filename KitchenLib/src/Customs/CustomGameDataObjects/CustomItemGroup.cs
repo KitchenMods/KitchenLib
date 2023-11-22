@@ -27,8 +27,6 @@ namespace KitchenLib.Customs
         {
             ItemGroup result = ScriptableObject.CreateInstance<ItemGroup>();
 
-			Main.LogDebug($"[CustomItemGroup.Convert] [1.1] Converting Base");
-
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<ItemGroup>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
@@ -67,8 +65,6 @@ namespace KitchenLib.Customs
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             ItemGroup result = (ItemGroup)gameDataObject;
-
-			Main.LogDebug($"[CustomItemGroup.AttachDependentProperties] [1.1] Converting Base");
 
 			if (result.Properties != Properties) result.Properties = Properties;
             if (result.DirtiesTo != DirtiesTo) result.DirtiesTo = DirtiesTo;
@@ -109,7 +105,6 @@ namespace KitchenLib.Customs
             //Setup ItemGroupView for this ItemGroup
             if (AutoSetupItemGroupView)
 			{
-				Main.LogDebug($"[CustomItemGroup.AttachDependentProperties] [1.2] Setting Up ItemGroupView");
 				T localView = result.Prefab.GetComponent<T>();
                 if (localView == null)
                     localView = result.Prefab.AddComponent<T>();
@@ -122,7 +117,6 @@ namespace KitchenLib.Customs
 			Item steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
 			if (steak != null)
 			{
-				Main.LogDebug($"[CustomItemGroup.AttachDependentProperties] [1.3] Setting Up Colorblind");
 				GameObject ColorBlind = GameObject.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject);
 				ColorBlind.name = "Colour Blind";
 				ColorBlind.transform.SetParent(result.Prefab.transform);

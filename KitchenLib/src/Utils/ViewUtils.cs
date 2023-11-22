@@ -1,4 +1,7 @@
-﻿using KitchenLib.Views;
+﻿using System;
+using Kitchen;
+using KitchenLib.Systems;
+using KitchenLib.Views;
 
 namespace KitchenLib.Utils
 {
@@ -31,6 +34,16 @@ namespace KitchenLib.Utils
 			}
 
 			return CustomViewType.None;
+		}
+		
+		public static void RegisterView(ViewType viewType, Type singleton, Type component)
+		{
+			ViewCreator.RegisteredViews.Add(viewType, (singleton, component));
+		}
+		
+		public static void RegisterView(string viewType, Type singleton, Type component)
+		{
+			ViewCreator.RegisterView((ViewType)VariousUtils.GetID(viewType), singleton, component);
 		}
 	}
 }
