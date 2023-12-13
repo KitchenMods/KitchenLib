@@ -722,8 +722,6 @@ namespace KitchenLib.References
 
 		public static int UpgradeKit => (int)_ApplianceReferences.UpgradeKit;
 
-		public static int kitchenlibSyncModsViewHolder => (int)_ApplianceReferences.kitchenlibSyncModsViewHolder;
-
 	}
 	public enum _ApplianceReferences
 	{
@@ -1446,8 +1444,6 @@ namespace KitchenLib.References
 		ResearchableUpgrade = -1879606524,
 
 		UpgradeKit = -26827118,
-
-		kitchenlibSyncModsViewHolder = -1995745069,
 
 	}
 	public static class CompositeUnlockPackReferences
@@ -4200,6 +4196,20 @@ namespace KitchenLib.References
 
 		public static int WitchHatLeaves => (int)_PlayerCosmeticReferences.WitchHatLeaves;
 
+		public static int BeeHat => (int)_PlayerCosmeticReferences.BeeHat;
+
+		public static int DwarfHat => (int)_PlayerCosmeticReferences.DwarfHat;
+
+		public static int PenguinOutfit => (int)_PlayerCosmeticReferences.PenguinOutfit;
+
+		public static int PigHat => (int)_PlayerCosmeticReferences.PigHat;
+
+		public static int RatHat => (int)_PlayerCosmeticReferences.RatHat;
+
+		public static int ToasterHat => (int)_PlayerCosmeticReferences.ToasterHat;
+
+		public static int WheelBoyHat => (int)_PlayerCosmeticReferences.WheelBoyHat;
+
 	}
 	public enum _PlayerCosmeticReferences
 	{
@@ -4286,6 +4296,20 @@ namespace KitchenLib.References
 		WitchHatFlowery = -233680051,
 
 		WitchHatLeaves = 1243499033,
+
+		BeeHat = -1081826389,
+
+		DwarfHat = -1077948768,
+
+		PenguinOutfit = 765190223,
+
+		PigHat = 557144597,
+
+		RatHat = 1000067739,
+
+		ToasterHat = 1129983609,
+
+		WheelBoyHat = 1674187527,
 
 	}
 	public static class ProcessReferences

@@ -13,6 +13,7 @@ namespace KitchenLib.Customs
         public virtual bool DisableInGame { get; protected set; }
         public virtual bool IsDefault { get; protected set; }
         public virtual bool BlockHats { get; protected set; }
+        public virtual float HeadSize { get; protected set; } = 1f;
         public virtual GameObject Visual { get; protected set; }
 
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -27,6 +28,7 @@ namespace KitchenLib.Customs
             if (result.DisableInGame != DisableInGame) result.DisableInGame = DisableInGame;
             if (result.IsDefault != IsDefault) result.IsDefault = IsDefault;
             if (result.BlockHats != BlockHats) result.BlockHats = BlockHats;
+            if (result.HeadSize != HeadSize) result.HeadSize = HeadSize;
             if (result.Visual != Visual) result.Visual = Visual;
             if (result.Info != Info) result.Info = Info;
 
