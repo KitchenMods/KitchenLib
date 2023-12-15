@@ -1,5 +1,4 @@
 using KitchenData;
-using KitchenLib.References;
 using KitchenLib.Utils;
 using System;
 using System.Collections.Generic;
@@ -111,14 +110,9 @@ namespace KitchenLib.Customs
             if (hardcodedRequirements.GetValue(result) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
             if (hardcodedBlockers.GetValue(result) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
 			
-			if (!RequiredNoDishItem)
-			{
-				if (RequiredDishItem != null)
-					result.MinimumIngredients.Add(RequiredDishItem);
-				else
-					result.MinimumIngredients.Add((Item)GDOUtils.GetExistingGDO(ItemReferences.Plate));
-			}
-
+            if (RequiredDishItem != null)
+	            result.MinimumIngredients.Add(RequiredDishItem);
+            
 			if (result.Type == DishType.Main && HardcodedRequirements.Count == 0)
 			{
 				if (!BypassMainRequirementsCheck)
