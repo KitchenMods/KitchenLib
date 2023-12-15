@@ -3,7 +3,6 @@ using Kitchen.Modules;
 using Kitchen;
 using KitchenLib.Preferences;
 using KitchenLib.Views;
-using KitchenMods;
 using Steamworks.Ugc;
 using UnityEngine;
 
