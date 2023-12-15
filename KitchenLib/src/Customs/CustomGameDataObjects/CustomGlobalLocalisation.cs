@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using TMPro;
-using UnityEngine.Rendering;
 using Font = KitchenData.Font;
 
 namespace KitchenLib.Customs

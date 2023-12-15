@@ -7,7 +7,6 @@ using System;
 using System.Linq;
 using System.Reflection;
 using KitchenLib.UI;
-using KitchenLib.Preferences;
 
 namespace KitchenLib.Patches
 {
