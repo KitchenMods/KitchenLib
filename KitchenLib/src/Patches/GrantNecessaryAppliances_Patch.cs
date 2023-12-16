@@ -17,11 +17,6 @@ namespace KitchenLib.Patches
 		private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
 			CodeMatcher matcher = new(instructions);
-
-			foreach (CodeInstruction instruction in matcher.InstructionEnumeration())
-			{
-				Main.LogInfo(instruction.opcode.ToString() + " " + instruction.operand);
-			}
 			
 			matcher.MatchForward(false,
 				new CodeMatch(OpCodes.Ldloc_S),
