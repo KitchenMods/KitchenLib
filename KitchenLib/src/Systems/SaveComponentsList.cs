@@ -35,19 +35,19 @@ namespace KitchenLib.Systems
 
 				foreach (ModPack modPack in packs)
 				{
-					if (modPack.GetType().Equals(typeof(AssemblyModPack)))
+					if (modPack.GetType() != typeof(AssemblyModPack)) continue;
+					
+					AssemblyModPack assemblyModPack = (AssemblyModPack)modPack;
+					foreach (Type type in assemblyModPack.Asm.GetTypes())
 					{
-						AssemblyModPack assemblyModPack = (AssemblyModPack)modPack;
-						foreach (Type type in assemblyModPack.Asm.GetTypes())
-						{
-							if (type.GetInterfaces().Contains(typeof(IComponentData)))
-							{
-								if (!_componentsMap.ContainsKey(mod.ID))
-									_componentsMap.Add(mod.ID, new ModComponents(mod.Name, new List<(ulong, string)>()));
-								
-								_componentsMap[mod.ID].Components.Add((TypeManager.GetTypeInfo(TypeManager.GetTypeIndex(type)).StableTypeHash, type.FullName));
-							}
-						}
+						if (!type.GetInterfaces().Contains(typeof(IComponentData))) continue;
+
+						if (!_componentsMap.ContainsKey(mod.ID))
+							_componentsMap.Add(mod.ID, new ModComponents(mod.Name, new List<(ulong, string)>()));
+
+						bool found = _componentsMap[mod.ID].Components.Any(entry => entry.Item1 == TypeManager.GetTypeInfo(TypeManager.GetTypeIndex(type)).StableTypeHash);
+						if (!found)
+							_componentsMap[mod.ID].Components.Add((TypeManager.GetTypeInfo(TypeManager.GetTypeIndex(type)).StableTypeHash, type.FullName));
 					}
 				}
 			}
