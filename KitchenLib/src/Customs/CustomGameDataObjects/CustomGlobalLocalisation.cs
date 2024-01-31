@@ -24,23 +24,19 @@ namespace KitchenLib.Customs
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			GlobalLocalisation result = ScriptableObject.CreateInstance<GlobalLocalisation>();
-
-			if (BaseGameDataObjectID != -1)
-				result = UnityEngine.Object.Instantiate(gameData.Get<GlobalLocalisation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-			if (result.ID != ID) result.ID = ID;
-			if (result.Info != Info) result.Info = Info;
-			if (result.Text != Text) result.Text = Text;
 			
-			if (result.PatienceFactorIcons != PatienceFactorIcons) result.PatienceFactorIcons = PatienceFactorIcons;
-			if (result.PatienceReasonIcons != PatienceReasonIcons) result.PatienceReasonIcons = PatienceReasonIcons;
-			if (result.DecorationIcons != DecorationIcons) result.DecorationIcons = DecorationIcons;
-			if (result.NewsItemFallbackLocalisation != NewsItemFallbackLocalisation) result.NewsItemFallbackLocalisation = NewsItemFallbackLocalisation;
-			if (result.StartDayWarningLocalisation != StartDayWarningLocalisation) result.StartDayWarningLocalisation = StartDayWarningLocalisation;
-			if (result.PopupTextLocalisation != PopupTextLocalisation) result.PopupTextLocalisation = PopupTextLocalisation;
-			if (result.Recipes != Recipes) result.Recipes = Recipes;
-			if (result.Fonts != Fonts) result.Fonts = Fonts;
-			if (result.ControllerIcons != ControllerIcons) result.ControllerIcons = ControllerIcons;
+			OverrideVariable(result, "ID", ID);
+			OverrideVariable(result, "Info", Info);
+			OverrideVariable(result, "Text", Text);
+			OverrideVariable(result, "PatienceFactorIcons", PatienceFactorIcons);
+			OverrideVariable(result, "PatienceReasonIcons", PatienceReasonIcons);
+			OverrideVariable(result, "DecorationIcons", DecorationIcons);
+			OverrideVariable(result, "NewsItemFallbackLocalisation", NewsItemFallbackLocalisation);
+			OverrideVariable(result, "StartDayWarningLocalisation", StartDayWarningLocalisation);
+			OverrideVariable(result, "PopupTextLocalisation", PopupTextLocalisation);
+			OverrideVariable(result, "Recipes", Recipes);
+			OverrideVariable(result, "Fonts", Fonts);
+			OverrideVariable(result, "ControllerIcons", ControllerIcons);
 			
 			gameDataObject = result;
 		}

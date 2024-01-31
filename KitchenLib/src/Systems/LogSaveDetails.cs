@@ -1,9 +1,10 @@
-﻿using Kitchen;
+﻿using System;
+using Kitchen;
 using KitchenMods;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using HarmonyLib;
 using Unity.Entities;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ namespace KitchenLib.Systems
 	public class LogSaveDetails : GameSystemBase
 	{
 		private EntityQuery SaveRequests;
+
 		protected override void Initialise()
 		{
 			SaveRequests = GetEntityQuery(typeof(CRequestSave));
@@ -27,36 +29,50 @@ namespace KitchenLib.Systems
 
 			if (crequestSave.SaveType == SaveType.AutoFull)
 			{
-				EntityContext entityContext = new EntityContext(base.World.EntityManager);
-				string path = Path.Combine(Application.persistentDataPath, "Full", entityContext.Get<SSelectedLocation>().Selected.Slot.ToString());
-				SaveDetails saveDetails = new SaveDetails();
-
-				if (!Directory.Exists(path))
-					Directory.CreateDirectory(path);
-
-				saveDetails.Mods = ModPreload.Mods
-					.Where(mod => mod.State == ModState.PostActivated)
-					.SelectMany(mod => mod.GetPacks<AssemblyModPack>())
-					.Select(pack => pack.Name.Replace(".dll", "")).ToList();
-
-				saveDetails.Components.Clear();
-				foreach (ComponentType component in EntityManager
-					.GetAllEntities()
-					.SelectMany(_ => EntityManager.GetChunk(_).Archetype.GetComponentTypes()))
+				string path = Path.Combine(Application.persistentDataPath, "Full", GetSingleton<SSelectedLocation>().Selected.Slot.ToString());
+				List<ModDetails> saveDetails = new();
+				foreach (Mod mod in ModPreload.Mods)
 				{
-					string key = component.GetManagedType().FullName;
-					if (!saveDetails.Components.ContainsKey(key))
-						saveDetails.Components.Add(key, TypeManager.GetTypeInfo(component.TypeIndex).StableTypeHash.ToString());
-				}
+					if (mod.ID == 0) continue;
 
+					ModDetails modDetails = new();
+					modDetails.ModID = mod.ID;
+					foreach (AssemblyModPack assemblyModPack in mod.GetPacks<AssemblyModPack>())
+					{
+						foreach (Type type in assemblyModPack.Asm.GetTypes())
+						{
+							Main.Logger.LogInfo("Type : " + type.Name);
+							if (!typeof(IComponentData).IsAssignableFrom(type) || type.IsInterface) continue;
+							
+
+							Main.Logger.LogInfo("IsComponent!");
+
+							ulong hash = TypeManager.GetTypeInfo(TypeManager.GetTypeIndex(type)).StableTypeHash;
+							modDetails.ComponentHashes.Add(new ComponentDetails
+							{
+								Hash = hash,
+								Name = type.Name
+							});
+						}
+					}
+
+					saveDetails.Add(modDetails);
+				}
+ 
 				File.WriteAllText(path + "/details.json", JsonConvert.SerializeObject(saveDetails, Formatting.Indented));
 			}
 		}
-	}
 
-	internal class SaveDetails
-	{
-		public List<string> Mods = new();
-		public Dictionary<string, string> Components = new();
+		internal class ModDetails
+		{
+			public ulong ModID;
+			public List<ComponentDetails> ComponentHashes = new();
+		}
+
+		internal class ComponentDetails
+		{
+			public ulong Hash;
+			public string Name;
+		}
 	}
 }

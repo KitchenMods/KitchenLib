@@ -17,15 +17,13 @@ namespace KitchenLib.Customs
         {
             Research result = ScriptableObject.CreateInstance<Research>();
 
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<Research>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
-            if (result.RequiredResearch != RequiredResearch) result.RequiredResearch = RequiredResearch;
-            if (result.Info != Info) result.Info = Info;
+            OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "RequiredResearch", RequiredResearch);
+            OverrideVariable(result, "RequiredResearch", RequiredResearch);
 
             if (InfoList.Count > 0)
             {
+	            Main.LogDebug($"Setting up localisation");
                 result.Info = new LocalisationObject<ResearchLocalisation>();
                 foreach ((Locale, ResearchLocalisation) info in InfoList)
                     result.Info.Add(info.Item1, info.Item2);
@@ -37,10 +35,10 @@ namespace KitchenLib.Customs
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             Research result = ScriptableObject.CreateInstance<Research>();
-
-			if (result.Rewards != Rewards) result.Rewards = Rewards;
-            if (result.EnablesResearchOf != EnablesResearchOf) result.EnablesResearchOf = EnablesResearchOf;
-            if (result.RequiresForResearch != RequiresForResearch) result.RequiresForResearch = RequiresForResearch;
+            
+            OverrideVariable(result, "Rewards", Rewards);
+            OverrideVariable(result, "EnablesResearchOf", EnablesResearchOf);
+            OverrideVariable(result, "RequiresForResearch", RequiresForResearch);
         }
     }
 }

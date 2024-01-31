@@ -19,19 +19,16 @@ namespace KitchenLib.Customs
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             GameDifficultySettings result = ScriptableObject.CreateInstance<GameDifficultySettings>();
-
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<GameDifficultySettings>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
-            if (result.IsActive != IsActive) result.IsActive = IsActive;
-            if (result.CustomersPerHourBase != CustomersPerHourBase) result.CustomersPerHourBase = CustomersPerHourBase;
-            if (result.CustomersPerHourIncreasePerDay != CustomersPerHourIncreasePerDay) result.CustomersPerHourIncreasePerDay = CustomersPerHourIncreasePerDay;
-            if (result.CustomerSideChance != CustomerSideChance) result.CustomerSideChance = CustomerSideChance;
-            if (result.QueuePatienceTime != QueuePatienceTime) result.QueuePatienceTime = QueuePatienceTime;
-            if (result.QueuePatienceBoost != QueuePatienceBoost) result.QueuePatienceBoost = QueuePatienceBoost;
-            if (result.CustomerStarterChance != CustomerStarterChance) result.CustomerStarterChance = CustomerStarterChance;
-            if (result.GroupDessertChance != GroupDessertChance) result.GroupDessertChance = GroupDessertChance;
+            
+            OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "IsActive", IsActive);
+            OverrideVariable(result, "CustomersPerHourBase", CustomersPerHourBase);
+            OverrideVariable(result, "CustomersPerHourIncreasePerDay", CustomersPerHourIncreasePerDay);
+            OverrideVariable(result, "CustomerSideChance", CustomerSideChance);
+            OverrideVariable(result, "QueuePatienceTime", QueuePatienceTime);
+            OverrideVariable(result, "QueuePatienceBoost", QueuePatienceBoost);
+            OverrideVariable(result, "CustomerStarterChance", CustomerStarterChance);
+            OverrideVariable(result, "GroupDessertChance", GroupDessertChance);
 
             gameDataObject = result;
         }

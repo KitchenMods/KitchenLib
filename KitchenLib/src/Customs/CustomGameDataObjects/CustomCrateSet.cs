@@ -1,6 +1,5 @@
 using KitchenData;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -13,10 +12,7 @@ namespace KitchenLib.Customs
         {
             CrateSet result = ScriptableObject.CreateInstance<CrateSet>();
 
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<CrateSet>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
+			OverrideVariable(result, "ID", ID);
 
             gameDataObject = result;
         }
@@ -25,7 +21,7 @@ namespace KitchenLib.Customs
         {
             CrateSet result = (CrateSet)gameDataObject;
 
-			if (result.Options != Options) result.Options = Options;
+			OverrideVariable(result, "Options", Options);
         }
     }
 }

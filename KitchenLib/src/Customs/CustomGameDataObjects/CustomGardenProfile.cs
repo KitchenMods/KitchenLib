@@ -14,11 +14,8 @@ namespace KitchenLib.Customs
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             GardenProfile result = ScriptableObject.CreateInstance<GardenProfile>();
-
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<GardenProfile>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
+            
+            OverrideVariable(result, "ID", ID);
 
             gameDataObject = result;
         }
@@ -26,9 +23,9 @@ namespace KitchenLib.Customs
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             GardenProfile result = (GardenProfile)gameDataObject;
-
-			if (result.SpawnHolder != SpawnHolder) result.SpawnHolder = SpawnHolder;
-            if (result.Spawns != Spawns) result.Spawns = Spawns;
+            
+            OverrideVariable(result, "SpawnHolder", SpawnHolder);
+            OverrideVariable(result, "Spawns", Spawns);
         }
     }
 }

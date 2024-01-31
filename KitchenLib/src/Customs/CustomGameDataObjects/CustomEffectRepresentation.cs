@@ -1,6 +1,5 @@
 using KitchenData;
 using System;
-using System.Linq;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -20,33 +19,33 @@ namespace KitchenLib.Customs
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             EffectRepresentation result = ScriptableObject.CreateInstance<EffectRepresentation>();
-
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<EffectRepresentation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
-            if (result.Info != Info) result.Info = Info;
-
+            
+            OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "Info", Info);
+            
 			if (InfoList.Count > 0)
-            {
-                result.Info = new LocalisationObject<EffectInfo>();
-                foreach ((Locale, EffectInfo) info in InfoList)
-                    result.Info.Add(info.Item1, info.Item2);
-            }
-
-            if (result.Info == null)
-            {
-                result.Info = new LocalisationObject<EffectInfo>();
-                if (!result.Info.Has(Locale.English))
-                {
-                    result.Info.Add(Locale.English, new EffectInfo
-                    {
-                        Name = Name,
-                        Description = Description,
-                        Icon = Icon
-                    });
-                }
-            }
+			{
+				Main.LogDebug($"Setting up localisation");
+				result.Info = new LocalisationObject<EffectInfo>();
+				foreach ((Locale, EffectInfo) info in InfoList)
+					result.Info.Add(info.Item1, info.Item2);
+			}
+			else
+			{
+				if (result.Info == null)
+				{
+					Main.LogDebug($"Setting up fallback localisation");
+					result.Info = new LocalisationObject<EffectInfo>();
+					if (!result.Info.Has(Locale.English))
+					{
+						EffectInfo effectInfo = ScriptableObject.CreateInstance<EffectInfo>();
+						effectInfo.Name = Name;
+						effectInfo.Description = Description;
+						effectInfo.Icon = Icon;
+						result.Info.Add(Locale.English, effectInfo);
+					}
+				}
+			}
 
             gameDataObject = result;
         }

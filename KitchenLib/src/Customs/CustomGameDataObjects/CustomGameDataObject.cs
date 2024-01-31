@@ -1,7 +1,10 @@
 using KitchenData;
 using KitchenLib.Utils;
 using System;
+using System.Reflection;
+using JetBrains.Annotations;
 using KitchenMods;
+using UnityEngine;
 
 namespace KitchenLib.Customs
 {
@@ -32,6 +35,24 @@ namespace KitchenLib.Customs
         public int GetLegacyHash()
         {
             return StringUtils.GetInt32HashCode($"{ModName}:{UniqueNameID}");
+        }
+
+        protected void OverrideVariable(object result, string varName, object value, bool supressError = false)
+        {
+	        try
+	        {
+		        FieldInfo fieldInfo = ReflectionUtils.GetField(result.GetType(), varName);
+		        Main.LogDebug($"Assigning : {value} >> {varName}");
+		        fieldInfo.SetValue(result, value);
+	        }
+	        catch (Exception e)
+	        {
+		        if (!supressError)
+		        {
+			        Main.LogError($"Failed to assign : {value} >> {varName}");
+			        Main.LogError(e);
+		        }
+	        }
         }
     }
 

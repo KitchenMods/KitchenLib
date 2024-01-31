@@ -19,17 +19,15 @@ namespace KitchenLib.Customs
 		{
 			RestaurantSetting result = ScriptableObject.CreateInstance<RestaurantSetting>();
 
-			if (BaseGameDataObjectID != -1)
-				result = UnityEngine.Object.Instantiate(gameData.Get<RestaurantSetting>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-			if (result.ID != ID) result.ID = ID;
-			if (result.WeatherMode != WeatherMode) result.WeatherMode = WeatherMode;
-			if (result.Prefab != Prefab) result.Prefab = Prefab;
-			if (result.AlwaysLight != AlwaysLight) result.AlwaysLight = AlwaysLight;
-			if (result.Info != Info) result.Info = Info;
+			OverrideVariable(result, "ID", ID);
+			OverrideVariable(result, "WeatherMode", WeatherMode);
+			OverrideVariable(result, "Prefab", Prefab);
+			OverrideVariable(result, "AlwaysLight", AlwaysLight);
+			OverrideVariable(result, "Info", Info);
 
 			if (InfoList.Count > 0)
 			{
+	            Main.LogDebug($"Setting up localisation");
 				result.Info = new LocalisationObject<BasicInfo>();
 				foreach ((Locale, BasicInfo) info in InfoList)
 					result.Info.Add(info.Item1, info.Item2);
@@ -42,10 +40,10 @@ namespace KitchenLib.Customs
 		{
 			RestaurantSetting result = (RestaurantSetting)GameDataObject;
 
-			if (result.Decorators != Decorators) result.Decorators = Decorators;
-			if (result.UnlockPack != UnlockPack) result.UnlockPack = UnlockPack;
-			if (result.StartingUnlock != StartingUnlock) result.StartingUnlock = StartingUnlock;
-			if (result.FixedDish != FixedDish) result.FixedDish = FixedDish;
+			OverrideVariable(result, "Decorators", Decorators);
+			OverrideVariable(result, "UnlockPack", UnlockPack);
+			OverrideVariable(result, "StartingUnlock", StartingUnlock);
+			OverrideVariable(result, "FixedDish", FixedDish);
 		}
 	}
 }

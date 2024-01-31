@@ -21,17 +21,14 @@ namespace KitchenLib.Customs
         {
             CustomerType result = ScriptableObject.CreateInstance<CustomerType>();
 
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<CustomerType>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
-            if (result.IsGenericGroup != IsGenericGroup) result.IsGenericGroup = IsGenericGroup;
-            if (result.RelativeGroupSize != RelativeGroupSize) result.RelativeGroupSize = RelativeGroupSize;
-            if (result.MinGroupSize != MinGroupSize) result.MinGroupSize = MinGroupSize;
-            if (result.MaxGroupSize != MaxGroupSize) result.MaxGroupSize = MaxGroupSize;
-            if (!result.PatienceModifiers.Equals(PatienceModifiers)) result.PatienceModifiers = PatienceModifiers;
-            if (!result.OrderingModifiers.Equals(OrderingModifiers)) result.OrderingModifiers = OrderingModifiers;
-            if (result.Properties != Properties) result.Properties = Properties;
+            OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "IsGenericGroup", IsGenericGroup);
+            OverrideVariable(result, "RelativeGroupSize", RelativeGroupSize);
+            OverrideVariable(result, "MinGroupSize", MinGroupSize);
+            OverrideVariable(result, "MaxGroupSize", MaxGroupSize);
+            OverrideVariable(result, "PatienceModifiers", PatienceModifiers);
+            OverrideVariable(result, "OrderingModifiers", OrderingModifiers);
+            OverrideVariable(result, "Properties", Properties);
 
             gameDataObject = result;
         }
@@ -40,7 +37,7 @@ namespace KitchenLib.Customs
         {
             CustomerType result = (CustomerType)gameDataObject;
 
-			if (result.Cosmetics != Cosmetics) result.Cosmetics = Cosmetics;
+			OverrideVariable(result, "Cosmetics", Cosmetics);
         }
     }
 }

@@ -19,21 +19,19 @@ namespace KitchenLib.Customs
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             PlayerCosmetic result = ScriptableObject.CreateInstance<PlayerCosmetic>();
-
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<PlayerCosmetic>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
-            if (result.CosmeticType != CosmeticType) result.CosmeticType = CosmeticType;
-            if (result.DisableInGame != DisableInGame) result.DisableInGame = DisableInGame;
-            if (result.IsDefault != IsDefault) result.IsDefault = IsDefault;
-            if (result.BlockHats != BlockHats) result.BlockHats = BlockHats;
-            if (result.HeadSize != HeadSize) result.HeadSize = HeadSize;
-            if (result.Visual != Visual) result.Visual = Visual;
-            if (result.Info != Info) result.Info = Info;
+            
+            OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "CosmeticType", CosmeticType);
+            OverrideVariable(result, "DisableInGame", DisableInGame);
+            OverrideVariable(result, "IsDefault", IsDefault);
+            OverrideVariable(result, "BlockHats", BlockHats);
+            OverrideVariable(result, "HeadSize", HeadSize);
+            OverrideVariable(result, "Visual", Visual);
+            OverrideVariable(result, "Info", Info);
 
             if (InfoList.Count > 0)
             {
+	            Main.LogDebug($"Setting up localisation");
                 result.Info = new LocalisationObject<CosmeticInfo>();
                 foreach ((Locale, CosmeticInfo) info in InfoList)
                     result.Info.Add(info.Item1, info.Item2);
@@ -46,7 +44,7 @@ namespace KitchenLib.Customs
         {
             PlayerCosmetic result = (PlayerCosmetic)gameDataObject;
 
-			if (result.CustomerSettings != CustomerSettings) result.CustomerSettings = CustomerSettings;
+			OverrideVariable(result, "CustomerSettings", CustomerSettings);
         }
     }
 }

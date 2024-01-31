@@ -17,14 +17,11 @@ namespace KitchenLib.Customs
         {
             Shop result = ScriptableObject.CreateInstance<Shop>();
 
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<Shop>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
-            if (result.Type != Type) result.Type = Type;
-            if (result.ItemsForSaleCount != ItemsForSaleCount) result.ItemsForSaleCount = ItemsForSaleCount;
-            if (result.WallpapersForSaleCount != WallpapersForSaleCount) result.WallpapersForSaleCount = WallpapersForSaleCount;
-
+            OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "Type", Type);
+            OverrideVariable(result, "ItemsForSaleCount", ItemsForSaleCount);
+            OverrideVariable(result, "WallpapersForSaleCount", WallpapersForSaleCount);
+            
             gameDataObject = result;
         }
 
@@ -32,8 +29,8 @@ namespace KitchenLib.Customs
         {
             Shop result = (Shop)gameDataObject;
 
-			if (result.Stock != Stock) result.Stock = Stock;
-            if (result.Decors != Decors) result.Decors = Decors;
+            OverrideVariable(result, "Stock", Stock);
+            OverrideVariable(result, "Decors", Decors);
         }
     }
 }

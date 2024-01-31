@@ -17,15 +17,12 @@ namespace KitchenLib.Customs
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             Effect result = ScriptableObject.CreateInstance<Effect>();
-
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<Effect>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
-            if (result.Properties != Properties) result.Properties = Properties;
-            if (result.EffectRange != EffectRange) result.EffectRange = EffectRange;
-            if (result.EffectCondition != EffectCondition) result.EffectCondition = EffectCondition;
-            if (result.EffectType != EffectType) result.EffectType = EffectType;
+            
+            OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "Properties", Properties);
+            OverrideVariable(result, "EffectRange", EffectRange);
+            OverrideVariable(result, "EffectCondition", EffectCondition);
+            OverrideVariable(result, "EffectType", EffectType);
 
             gameDataObject = result;
         }
@@ -34,7 +31,7 @@ namespace KitchenLib.Customs
         {
             Effect result = (Effect)gameDataObject;
 
-			if (result.EffectInformation != EffectInformation) result.EffectInformation = EffectInformation;
+			OverrideVariable(result, "EffectInformation", EffectInformation);
         }
     }
 }

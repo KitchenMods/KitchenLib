@@ -1,6 +1,5 @@
 ﻿using KitchenData;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -13,11 +12,8 @@ namespace KitchenLib.Customs
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             CompositeUnlockPack result = ScriptableObject.CreateInstance<CompositeUnlockPack>();
-
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<CompositeUnlockPack>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
+			
+            OverrideVariable(result, "ID", ID);
 
             gameDataObject = result;
         }
@@ -25,8 +21,8 @@ namespace KitchenLib.Customs
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             CompositeUnlockPack result = (CompositeUnlockPack)gameDataObject;
-
-			if (result.Packs != Packs) result.Packs = Packs;
+			
+			OverrideVariable(result, "Packs", Packs);
         }
     }
 }

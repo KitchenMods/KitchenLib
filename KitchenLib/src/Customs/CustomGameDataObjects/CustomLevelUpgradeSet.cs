@@ -13,12 +13,9 @@ namespace KitchenLib.Customs
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             LevelUpgradeSet result = ScriptableObject.CreateInstance<LevelUpgradeSet>();
-
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<LevelUpgradeSet>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
-            if (result.Upgrades != Upgrades) result.Upgrades = Upgrades;
+            
+            OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "Upgrades", Upgrades);
 
             gameDataObject = result;
         }

@@ -14,12 +14,9 @@ namespace KitchenLib.Customs
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             RandomUpgradeSet result = ScriptableObject.CreateInstance<RandomUpgradeSet>();
-
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<RandomUpgradeSet>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
-            if (result.Tier != Tier) result.Tier = Tier;
+            
+            OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "Tier", Tier);
 
             gameDataObject = result;
         }
@@ -28,7 +25,7 @@ namespace KitchenLib.Customs
         {
             RandomUpgradeSet result = (RandomUpgradeSet)gameDataObject;
 
-			if (result.Rewards != Rewards) result.Rewards = Rewards;
+			OverrideVariable(result, "Rewards", Rewards);
         }
     }
 }

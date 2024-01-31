@@ -15,14 +15,11 @@ namespace KitchenLib.Customs
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             Decor result = ScriptableObject.CreateInstance<Decor>();
-
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<Decor>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
-            if (result.Material != Material) result.Material = Material;
-            if (result.Type != Type) result.Type = Type;
-            if (result.IsAvailable != IsAvailable) result.IsAvailable = IsAvailable;
+            
+            OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "Material", Material);
+            OverrideVariable(result, "Type", Type);
+            OverrideVariable(result, "IsAvailable", IsAvailable);
 
             gameDataObject = result;
         }
@@ -31,7 +28,7 @@ namespace KitchenLib.Customs
         {
             Decor result = (Decor)gameDataObject;
 
-			if (result.ApplicatorAppliance != ApplicatorAppliance) result.ApplicatorAppliance = ApplicatorAppliance;
+			OverrideVariable(result, "ApplicatorAppliance", ApplicatorAppliance);
         }
     }
 }

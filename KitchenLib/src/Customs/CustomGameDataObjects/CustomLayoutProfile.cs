@@ -41,43 +41,44 @@ namespace KitchenLib.Customs
 			if (BaseGameDataObjectID != -1)
                 result = UnityEngine.Object.Instantiate(gameData.Get<LayoutProfile>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
 
-            if (result.ID != ID) result.ID = ID;
-
-
-			if (result.Graph != Graph) result.Graph = Graph;
+			OverrideVariable(result, "ID", ID);
+			OverrideVariable(result, "Graph", Graph);
+			OverrideVariable(result, "MaximumTables", MaximumTables);
+			OverrideVariable(result, "Info", Info);
+			
 			if (NodeConnections.Count > 0)
 			{
-				result.Graph = new LayoutGraph
-				{
-					nodes = new List<Node>()
-				};
+				Main.LogDebug($"Setting up NodeConnections");
+				LayoutGraph layoutGraph = ScriptableObject.CreateInstance<LayoutGraph>();
+				layoutGraph.nodes = new List<Node>();
 				PopulateConnections(ref result.Graph, NodeConnections);
 			}
-
-
-
-			if (result.MaximumTables != MaximumTables) result.MaximumTables = MaximumTables;
-            if (result.Info != Info) result.Info = Info;
+			
 
             if (InfoList.Count > 0)
             {
+	            Main.LogDebug($"Setting up localisation");
                 result.Info = new LocalisationObject<BasicInfo>();
                 foreach ((Locale, BasicInfo) info in InfoList)
                     result.Info.Add(info.Item1, info.Item2);
             }
-
-            if (result.Info == null)
+            else
             {
-                result.Info = new LocalisationObject<BasicInfo>();
-                if (!result.Info.Has(Locale.English))
-                {
-                    result.Info.Add(Locale.English, new BasicInfo
-                    {
-                        Name = Name,
-                        Description = Description
-                    });
-                }
+	            if (result.Info == null)
+	            {
+		            Main.LogDebug($"Setting up fallback localisation");
+		            result.Info = new LocalisationObject<BasicInfo>();
+		            if (!result.Info.Has(Locale.English))
+		            {
+			            BasicInfo basicInfo = ScriptableObject.CreateInstance<BasicInfo>();
+			            basicInfo.Name = Name;
+			            basicInfo.Description = Description;
+			            result.Info.Add(Locale.English, basicInfo);
+		            }
+	            }
             }
+
+            
 
 
 			gameDataObject = result;
@@ -86,14 +87,14 @@ namespace KitchenLib.Customs
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             LayoutProfile result = (LayoutProfile)gameDataObject;
-
-			if (result.RequiredAppliances != RequiredAppliances) result.RequiredAppliances = RequiredAppliances;
-            if (result.Table != Table) result.Table = Table;
-            if (result.Counter != Counter) result.Counter = Counter;
-            if (result.ExternalBin != ExternalBin) result.ExternalBin = ExternalBin;
-            if (result.WallPiece != WallPiece) result.WallPiece = WallPiece;
-            if (result.InternalWallPiece != InternalWallPiece) result.InternalWallPiece = InternalWallPiece;
-            if (result.StreetPiece != StreetPiece) result.StreetPiece = StreetPiece;
+            
+            OverrideVariable(result, "RequiredAppliances", RequiredAppliances);
+            OverrideVariable(result, "Table", Table);
+            OverrideVariable(result, "Counter", Counter);
+            OverrideVariable(result, "ExternalBin", ExternalBin);
+            OverrideVariable(result, "WallPiece", WallPiece);
+            OverrideVariable(result, "InternalWallPiece", InternalWallPiece);
+            OverrideVariable(result, "StreetPiece", StreetPiece);
         }
 		public struct NodeConnection
 		{

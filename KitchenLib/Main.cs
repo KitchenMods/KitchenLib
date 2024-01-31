@@ -47,7 +47,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string MOD_BETA_VERSION = "1";
+		internal const string MOD_BETA_VERSION = "2";
 
 		/// <summary>
 		/// The compatible versions of the mod.
@@ -101,7 +101,7 @@ namespace KitchenLib
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
 			RegisterMenu<DebugMenu>();
-			FeatureFlags.Init();
+			// FeatureFlags.Init(); // Disabled as it is not used.
 
 			ViewUtils.RegisterView("KitchenLib.Views.SyncMods", typeof(SModSync), typeof(SyncMods));
 			

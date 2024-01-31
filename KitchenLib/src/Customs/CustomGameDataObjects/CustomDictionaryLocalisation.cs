@@ -16,13 +16,10 @@ namespace KitchenLib.Customs
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			DictionaryLocalisation result = ScriptableObject.CreateInstance<DictionaryLocalisation>();
-
-			if (BaseGameDataObjectID != -1)
-				result = UnityEngine.Object.Instantiate(gameData.Get<DictionaryLocalisation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-			if (result.ID != ID) result.ID = ID;
-			if (result.Info != Info) result.Info = Info;
-			if (result.Text != Text) result.Text = Text;
+			
+			OverrideVariable(result, "ID", ID);
+			OverrideVariable(result, "Info", Info);
+			OverrideVariable(result, "Text", Text);
 			
 			gameDataObject = result;
 		}
