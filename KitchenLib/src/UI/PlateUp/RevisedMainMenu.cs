@@ -18,7 +18,7 @@ namespace KitchenLib.UI
 			if (Main.MOD_BETA_VERSION != "")
 			{
 				AddLabel("!!BETA WARNING!!");
-				AddInfo("You are running a beta version of KitchebLib");
+				AddInfo("You are running a beta version of KitchenLib");
 				AddInfo("(Please backup your save files.)");
 				AddInfo("There will be bugs, this is for TESTING PURPOSES");
 				New<SpacerElement>(true);

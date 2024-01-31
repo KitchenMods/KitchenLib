@@ -73,7 +73,12 @@ namespace KitchenLib
 		/// The type of the preference system menu.
 		/// </summary>
 		internal static Type preferenceSystemMenuType = null;
-		
+
+		/// <summary>
+		/// Whether or not extra debug info will be displayed. True when either the isDebug property in kitchenlib.json is True or when any mods (other than KL beta) are installed locally
+		/// </summary>
+		internal static bool debugLogging = false;
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Main"/> class.
 		/// </summary>
@@ -96,6 +101,7 @@ namespace KitchenLib
 			manager.RegisterPreference(new PreferenceInt("modSyncMethod", 0));
 			manager.Load();
 			manager.Save();
+			determineDebugLoggingStatus();
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).FirstOrDefault() ?? throw new MissingAssetBundleException(MOD_ID);
 			preferenceSystemMenuType = GetPreferenceSystemMenuType();
 			SetupMenus();
@@ -132,6 +138,17 @@ namespace KitchenLib
 			});
 			*/
 		}
+
+		private void determineDebugLoggingStatus() {
+			int localModCount = ModPreload.Mods.Where(mod => mod.Name == "").Count();
+			if (MOD_BETA_VERSION != "") {
+				localModCount--;
+			}
+			bool isDebug = manager.GetPreference<PreferenceBool>("isDebug").Value;
+			debugLogging = localModCount > 0 || isDebug;
+			LogInfo($"GDO debug logging: {debugLogging} (local mods: {localModCount}, isDebug: {isDebug})");
+		}
+
 
 		/// <summary>
 		/// Called during the initialization phase.
@@ -246,7 +263,7 @@ namespace KitchenLib
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void LogDebug(object message)
 		{
-			if (manager.GetPreference<PreferenceBool>("isDebug").Value)
+			if (debugLogging)
 				Debug.Log($"[{MOD_NAME}] [DEBUG] " + message);
 		}
 	}
