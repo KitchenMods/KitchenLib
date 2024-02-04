@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
@@ -7,8 +8,10 @@ namespace KitchenLib.Preferences
 {
     public class PreferenceManager
     {
-        private readonly string PREFERENCE_FOLDER_PATH = Application.persistentDataPath + "/UserData/Preferences";
+        private readonly string OLD_PREFERENCE_FOLDER_PATH = Application.persistentDataPath + "/UserData/Preferences";
+        private readonly string PREFERENCE_FOLDER_PATH = Application.persistentDataPath + "/ModData/Preferences";
         private string preferenceFilePath = "";
+        private string fileType = ".json";
 
         private readonly string modId;
         private readonly Dictionary<(string, string), PreferenceBase> preferences = new();
@@ -21,12 +24,42 @@ namespace KitchenLib.Preferences
         public PreferenceManager(string modId)
         {
             this.modId = modId;
-            if (!Directory.Exists($"{PREFERENCE_FOLDER_PATH}/{this.modId}"))
-                Directory.CreateDirectory($"{PREFERENCE_FOLDER_PATH}/{this.modId}");
-
-            preferenceFilePath = $"{PREFERENCE_FOLDER_PATH}/{this.modId}/{this.modId}{currentProfile}.json";
+            Setup();
         }
 
+        internal PreferenceManager(string modId, string fileType)
+        {
+	        this.fileType = fileType;
+	        this.modId = modId;
+	        Setup(true);
+        }
+
+        internal void Setup(bool isForcedFileType = false)
+        {
+	        if (Directory.Exists($"{OLD_PREFERENCE_FOLDER_PATH}/{this.modId}"))
+	        {
+		        Main.LogWarning($"Found old preferences folder for {this.modId}, moving to new location.");
+		        if (!Directory.Exists($"{PREFERENCE_FOLDER_PATH}/{this.modId}"))
+		        {
+			        Directory.Move($"{OLD_PREFERENCE_FOLDER_PATH}/{this.modId}", $"{PREFERENCE_FOLDER_PATH}/{this.modId}");
+		        }
+		        else
+		        {
+			        Main.Logger.LogWarning($"Failed to move old preferences folder for {this.modId}, folder already exists.");
+		        }
+	        }
+            
+	        if (!isForcedFileType)
+	        {
+		        fileType = BaseMod.globalPreferences.GetPreference<PreferenceBool>("steamCloudPreferences").Value ? ".plateupsave" : ".json";
+	        }
+	        
+	        if (!Directory.Exists($"{PREFERENCE_FOLDER_PATH}/{this.modId}"))
+		        Directory.CreateDirectory($"{PREFERENCE_FOLDER_PATH}/{this.modId}");
+
+	        preferenceFilePath = $"{PREFERENCE_FOLDER_PATH}/{this.modId}/{this.modId}{currentProfile}{fileType}";
+        }
+        
         /// <summary>
         /// Set the current mod-level preference profile of the preference manager.
         /// </summary>
@@ -36,7 +69,7 @@ namespace KitchenLib.Preferences
             if (!string.IsNullOrEmpty(profile))
                 profile = $"-{profile}";
             currentProfile = profile;
-            preferenceFilePath = $"{PREFERENCE_FOLDER_PATH}/{modId}/{modId}{currentProfile}.json";
+            preferenceFilePath = $"{PREFERENCE_FOLDER_PATH}/{modId}/{modId}{currentProfile}{fileType}";
         }
 
         /// <summary>
@@ -120,12 +153,52 @@ namespace KitchenLib.Preferences
             File.WriteAllText(preferenceFilePath, json);
         }
 
+        private void CheckFileType()
+        {
+	        if (fileType == ".json")
+	        {
+		        if (!File.Exists($"{PREFERENCE_FOLDER_PATH}/{modId}/{modId}{currentProfile}.plateupsave")) return;
+				
+		        if (!File.Exists($"{PREFERENCE_FOLDER_PATH}/{modId}/{modId}{currentProfile}.json"))
+		        {
+			        File.Move($"{PREFERENCE_FOLDER_PATH}/{modId}/{modId}{currentProfile}.plateupsave", $"{PREFERENCE_FOLDER_PATH}/{modId}/{modId}{currentProfile}.json");
+		        }
+		        else
+		        {
+			        Main.Logger.LogWarning($"Failed to convert preferences file for {modId} from .plateupsave to .json, file already exists.");
+		        }
+	        }
+	        else if (fileType == ".plateupsave")
+	        {
+		        if (!File.Exists($"{PREFERENCE_FOLDER_PATH}/{modId}/{modId}{currentProfile}.json")) return;
+				
+		        if (!File.Exists($"{PREFERENCE_FOLDER_PATH}/{modId}/{modId}{currentProfile}.plateupsave"))
+		        {
+			        File.Move($"{PREFERENCE_FOLDER_PATH}/{modId}/{modId}{currentProfile}.json", $"{PREFERENCE_FOLDER_PATH}/{modId}/{modId}{currentProfile}.plateupsave");
+		        }
+		        else
+		        {
+			        Main.Logger.LogWarning($"Failed to convert preferences file for {modId} from .json to .plateupsave, file already exists.");
+		        }
+	        }
+        }
+
         /// <summary>
         /// Load the values of the preferences managed by this preference manager from the
         /// current profile's file on disk.
         /// </summary>
         public void Load()
         {
+	        try
+	        {
+		        CheckFileType();
+	        }
+	        catch (Exception e)
+	        {
+		        Console.WriteLine(e);
+		        throw;
+	        }
+	        
 	        try
 	        {
 		        string json = "";

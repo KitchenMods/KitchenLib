@@ -195,9 +195,6 @@ namespace KitchenLib.Customs
             }
         }
 
-        /*
-         * Why is this here? This can be done in each OnRegister easily.
-         *
         public override void OnRegister(GameDataObject gameDataObject)
         {
             IHasPrefab gdo = gameDataObject as IHasPrefab;
@@ -205,14 +202,10 @@ namespace KitchenLib.Customs
             {
                 SetupPrefab(gdo.Prefab);
             }
-            else
-            {
-                Main.LogWarning($"Appliance with ID '{UniqueNameID}' does not have a prefab set.");
-            }
 
             base.OnRegister(gameDataObject);
         }
-        */
+        
         
         [Obsolete("Please use OnRegister")]
         public virtual void SetupPrefab(GameObject prefab) { }

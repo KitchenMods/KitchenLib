@@ -13,6 +13,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using KitchenLib.Interfaces;
+using KitchenLib.Preferences;
 using UnityEngine;
 
 namespace KitchenLib
@@ -28,6 +29,7 @@ namespace KitchenLib
 
 		public static KitchenVersion version;
 		public static SemVersion semVersion;
+		internal static PreferenceManager globalPreferences;
 
 		private static List<Assembly> PatchedAssemblies = new List<Assembly>();
 		private bool isRegistered = false;
@@ -177,6 +179,14 @@ namespace KitchenLib
 				}
 			}
 
+			if (globalPreferences == null)
+			{
+				globalPreferences = new PreferenceManager("kitchenlib.global", ".plateupsave");
+				globalPreferences.RegisterPreference(new PreferenceBool("steamCloudPreferences", false));
+				globalPreferences.Load();
+				globalPreferences.Save();
+			}
+			
 			try
 			{
 				OnPostActivate(mod);

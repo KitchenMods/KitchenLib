@@ -116,10 +116,6 @@ namespace KitchenLib.Customs
 				result.Type = DishType.Base;
 			}
         }
-        
-        /*
-         * Why is this here? This can be done in each OnRegister easily.
-         *
         public override void OnRegister(GameDataObject gameDataObject)
         {
             Dish dish = gameDataObject as Dish;
@@ -128,23 +124,14 @@ namespace KitchenLib.Customs
             {
                 SetupDisplayPrefab(dish.DisplayPrefab);
             }
-            else
-            {
-                Main.LogWarning($"Dish with ID '{UniqueNameID}' does not have a display prefab set.");
-            }
             if (dish?.IconPrefab != null)
             {
                 SetupDisplayPrefab(dish.IconPrefab);
-            }
-            else
-            {
-                Main.LogWarning($"Dish with ID '{UniqueNameID}' does not have an icon prefab set.");
             }
             
 
             base.OnRegister(gameDataObject);
         }
-        */
 
         [Obsolete("Please use OnRegister")]
         public virtual void SetupDisplayPrefab(GameObject prefab) { }
