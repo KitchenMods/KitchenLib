@@ -26,6 +26,12 @@ namespace KitchenLib.Systems
 			if (File.Exists(filePath)) 
 				_componentsMap = JsonConvert.DeserializeObject<Dictionary<ulong, ModComponents>>(File.ReadAllText(filePath));
 			
+			if (_componentsMap == null)
+			{
+				Main.Logger.LogWarning("_componentsMap is null, it really shouldn't be. Creating a new one.");
+				_componentsMap = new Dictionary<ulong, ModComponents>();
+			}
+			
 			FieldInfo packsInfo = ReflectionUtils.GetField<Mod>("Packs");
 			foreach (Mod mod in ModPreload.Mods)
 			{
