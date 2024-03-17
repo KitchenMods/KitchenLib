@@ -97,10 +97,6 @@ namespace KitchenLib.Utils
 
 		public class DummyItemGroupView : ItemGroupView
 		{
-			private void Awake()
-			{
-				ComponentGroups = new();
-			}
 		}
 	}
 }
