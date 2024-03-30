@@ -73,7 +73,7 @@ jobs:
         Configuration: ${{ matrix.configuration }}
 
     - name: cosign-installer
-      uses: sigstore/cosign-installer@v3.1.1
+      uses: sigstore/cosign-installer@v3.3.0
 
     # This performs signing with the Gitub OIDC token. See https://docs.sigstore.dev/cosign/overview/ for specifics
     - name: Sign with Github Key
