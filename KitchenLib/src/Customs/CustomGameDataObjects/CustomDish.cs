@@ -125,7 +125,10 @@ namespace KitchenLib.Customs
 				RecipeInfo info = gameData.GlobalLocalisation.Recipes.Info.Get(recipe.Key);
 				if (info != null)
 				{
-					info.Text.TryAdd(result, recipe.Value);
+					if (!info.Text.ContainsKey(result))
+					{
+						info.Text.Add(result, recipe.Value);
+					}
 				}
 			}
 						
@@ -134,7 +137,10 @@ namespace KitchenLib.Customs
 				foreach (Locale locale in Enum.GetValues(typeof(Locale)))
 				{
 					RecipeInfo info = gameData.GlobalLocalisation.Recipes.Info.Get(locale);
-					info.Text.TryAdd(result, fallback);
+					if (!info.Text.ContainsKey(result))
+					{
+						info.Text.Add(result, fallback);
+					}
 				}
 			}
         }
