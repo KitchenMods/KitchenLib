@@ -27,10 +27,7 @@ namespace KitchenLib.Customs
             
             if (InfoList.Count > 0)
             {
-	            Main.LogDebug($"Setting up localisation");
-	            result.Info = new LocalisationObject<ProcessInfo>();
-	            foreach ((Locale, ProcessInfo) info in InfoList)
-		            result.Info.Add(info.Item1, info.Item2);
+	            SetupLocalisation<ProcessInfo>(InfoList, ref result.Info);
             }
             else
             {

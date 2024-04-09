@@ -25,10 +25,7 @@ namespace KitchenLib.Customs
             
 			if (InfoList.Count > 0)
 			{
-				Main.LogDebug($"Setting up localisation");
-				result.Info = new LocalisationObject<EffectInfo>();
-				foreach ((Locale, EffectInfo) info in InfoList)
-					result.Info.Add(info.Item1, info.Item2);
+				SetupLocalisation<EffectInfo>(InfoList, ref result.Info);
 			}
 			else
 			{

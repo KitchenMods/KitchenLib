@@ -6,7 +6,6 @@ using KitchenLib.Utils;
 using System;
 using System.Linq;
 using System.Reflection;
-using KitchenLib.UI;
 
 namespace KitchenLib.Patches
 {
@@ -29,7 +28,7 @@ namespace KitchenLib.Patches
 		static void Postfix(MainMenuView __instance)
 		{
 			MethodInfo setMenu = ReflectionUtils.GetMethod<MainMenuView>("SetMenu");
-			setMenu.Invoke(__instance, new object[] { typeof(RevisedMainMenu), false });
+			setMenu.Invoke(__instance, new object[] { ErrorHandling.GetNextMenu(null), false });
 		}
 	}
 

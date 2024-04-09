@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using KitchenLib.Utils;
+using TMPro;
 using UnityEngine;
 
 namespace KitchenLib
@@ -14,17 +15,98 @@ namespace KitchenLib
 	{
 		private PlayerPauseView view;
 		private Transform container;
+		private ControlRebindElement rebind;
 		public KLMenu(Transform container, ModuleList module_list) : base(container, module_list)
 		{
 			view = container.transform.parent.parent.parent.GetComponent<PlayerPauseView>();
 			this.container = container;
 		}
+		private Dictionary<int, PageDetails> pageActions;
+		private Option<int> pageSelector;
+		protected Option<int> CreatePageSelector(Dictionary<int, PageDetails> pages)
+		{
+			pageActions = pages;
+			List<int> pageKeys = new List<int>(pageActions.Keys);
+			List<string> pageNames = new List<string>();
+			foreach (int key in pageKeys)
+			{
+				pageNames.Add(pageActions[key].title);
+			}
+			pageSelector = new Option<int>(pageKeys, 0, pageNames);
+			
+			pageSelector.OnChanged += (object _, int page) =>
+			{
+				if (pageActions.ContainsKey(page))
+				{
+					pageActions[page].action?.Invoke();
+				}
+			};
+			
+			return pageSelector;
+		}
+		
+		protected void CreateModLabels(Vector2 startingPosition, List<string> modNames, float columnWidth, float rowHeight, int modsPerColumn)
+		{
+			int counter = 0;
+			int row = 0;
+			
+			Dictionary<int, List<InfoBoxElement>> columns = new Dictionary<int, List<InfoBoxElement>>();
 
+			foreach (var modName in modNames)
+			{
+				InfoBoxElement infobox = AddInfo(modName);
+				TMP_Text text = infobox.gameObject.GetComponentsInChildren<TMP_Text>()[0];
+				RectTransform rect = text.gameObject.GetComponent<RectTransform>();
+				
+				Debug.Log(rect.sizeDelta);
+				
+				rect.sizeDelta = new Vector2(rect.sizeDelta.x - 0.5f, 1);
+				text.alignment = TextAlignmentOptions.Center;
+				text.enableAutoSizing = true;
+				text.havePropertiesChanged = true;
+				text.enableWordWrapping = false;
+				text.SetVerticesDirty();
+				text.SetLayoutDirty();
+				
+				if (!columns.ContainsKey(row))
+					columns.Add(row, new List<InfoBoxElement>());
+				
+				columns[row].Add(infobox);
+				counter++;
+				if (counter >= modsPerColumn)
+				{
+					counter = 0;
+					row++;
+				}
+			}
+			
+			foreach (var column in columns)
+			{
+				float columnCount = column.Value.Count;
+				float columnPosition = startingPosition.x - (columnWidth * (columnCount - 1) / 2f);
+				float rowPosition = startingPosition.y - (rowHeight * column.Key);
+				for (int i = 0; i < columnCount; i++)
+				{
+					column.Value[i].Position = new Vector2(columnPosition + (i * columnWidth), rowPosition);
+				}
+			}
+		}
+		
 		protected void ResetPanel()
 		{
 			MethodInfo setparneltarget = ReflectionUtils.GetMethod<PlayerPauseView>("SetPanelTarget");
 			container.transform.parent.parent.parent.localPosition = -ModuleList.BoundingBox.center;
 			setparneltarget.Invoke(view, new object[] { ModuleList });
+		}
+
+		protected ControlRebindElement GetRebindElement()
+		{
+			if (rebind != null)
+				return rebind;
+			
+			FieldInfo rebindField = ReflectionUtils.GetField<PlayerPauseView>("Rebind");
+			rebind = (ControlRebindElement)rebindField.GetValue(view);
+			return rebind;
 		}
 
 		public override void Setup(int player_id) { }
@@ -158,5 +240,11 @@ namespace KitchenLib
 			}
 			base.RequestSubMenu(base.GetType(), true);
 		}
+	}
+	
+	public struct PageDetails
+	{
+		public Action action;
+		public string title;
 	}
 }

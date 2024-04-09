@@ -13,6 +13,7 @@ using KitchenLib.Logging;
 using KitchenLib.Logging.Exceptions;
 using System.Runtime.CompilerServices;
 using System;
+using System.IO;
 using KitchenLib.Components;
 using KitchenLib.Utils;
 using KitchenLib.Views;
@@ -47,12 +48,12 @@ namespace KitchenLib
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string MOD_BETA_VERSION = "4";
+		internal const string MOD_BETA_VERSION = "6";
 
 		/// <summary>
 		/// The compatible versions of the mod.
 		/// </summary>
-		internal const string MOD_COMPATIBLE_VERSIONS = ">=1.1.8";
+		internal const string MOD_COMPATIBLE_VERSIONS = ">=1.1.9";
 
 		/// <summary>
 		/// The asset bundle for the mod.
@@ -190,6 +191,8 @@ namespace KitchenLib
 			Events.MainMenuView_SetupMenusEvent += (s, args) =>
 			{
 				args.addMenu.Invoke(args.instance, new object[] { typeof(RevisedMainMenu), new RevisedMainMenu(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(FailedGDOsMenu), new FailedGDOsMenu(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(FailedModsMenu), new FailedModsMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<MainMenuAction>), new ModsMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<MainMenuAction>), new ModsPreferencesMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(DeveloperOptions<MainMenuAction>), new DeveloperOptions<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
@@ -224,8 +227,6 @@ namespace KitchenLib
 				args.Menus.Add(typeof(PreferenceMenu<MainMenuAction>), new PreferenceMenu<MainMenuAction>(args.Container, args.Module_list));
 			};
 		}
-		
-		// Get all fields recursively with their values as a string array with a limit of 10, ensure null checks
 		
 		/// <summary>
 		/// Registers a new cape.

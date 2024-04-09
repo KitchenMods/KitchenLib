@@ -65,10 +65,7 @@ namespace KitchenLib.Customs
 
             if (InfoList.Count > 0)
             {
-	            Main.LogDebug($"Setting up localisation");
-	            result.Info = new LocalisationObject<UnlockInfo>();
-	            foreach ((Locale, UnlockInfo) info in InfoList)
-		            result.Info.Add(info.Item1, info.Item2);
+	            SetupLocalisation<UnlockInfo>(InfoList, ref result.Info);
             }
 
             if (!string.IsNullOrEmpty(IconOverride))
@@ -114,6 +111,31 @@ namespace KitchenLib.Customs
 			{
 				Main.LogDebug($"Assigning : {DishType.Base} >> Type");
 				result.Type = DishType.Base;
+			}
+			
+			
+			CustomDish customDish = (CustomDish)GDOUtils.GetCustomGameDataObject(result.ID);
+			string fallback = "";
+			foreach (var recipe in customDish.Recipe)
+			{
+				if (recipe.Key == Locale.English)
+				{
+					fallback = recipe.Value;
+				}
+				RecipeInfo info = gameData.GlobalLocalisation.Recipes.Info.Get(recipe.Key);
+				if (info != null)
+				{
+					info.Text.TryAdd(result, recipe.Value);
+				}
+			}
+						
+			if (!string.IsNullOrEmpty(fallback))
+			{
+				foreach (Locale locale in Enum.GetValues(typeof(Locale)))
+				{
+					RecipeInfo info = gameData.GlobalLocalisation.Recipes.Info.Get(locale);
+					info.Text.TryAdd(result, fallback);
+				}
 			}
         }
         public override void OnRegister(GameDataObject gameDataObject)

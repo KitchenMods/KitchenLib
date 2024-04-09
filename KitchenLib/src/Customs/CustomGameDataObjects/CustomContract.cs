@@ -20,10 +20,7 @@ namespace KitchenLib.Customs
 
 			if (InfoList.Count > 0)
 			{
-				Main.LogDebug($"Setting up localisation");
-				result.Info = new LocalisationObject<ContractInfo>();
-				foreach ((Locale, ContractInfo) info in InfoList)
-					result.Info.Add(info.Item1, info.Item2);
+				SetupLocalisation<ContractInfo>(InfoList, ref result.Info);
 			}
 			gameDataObject = result;
 		}

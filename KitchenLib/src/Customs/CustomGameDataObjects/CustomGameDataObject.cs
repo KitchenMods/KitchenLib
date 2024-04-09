@@ -1,6 +1,7 @@
 using KitchenData;
 using KitchenLib.Utils;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using JetBrains.Annotations;
 using KitchenMods;
@@ -54,6 +55,27 @@ namespace KitchenLib.Customs
 		        }
 	        }
         }
+
+        protected void SetupLocalisation<T>(List<(Locale, T)> InfoList, ref LocalisationObject<T> result) where T : Localisation
+		{
+	        Main.LogDebug($"Setting up localisation");
+	        result = new LocalisationObject<T>();
+
+	        T fallback = default;
+	        foreach ((Locale, T) info in InfoList)
+	        {
+		        if (info.Item1 == Locale.English)
+		        {
+			        fallback = info.Item2;
+		        }
+		        result.Add(info.Item1, info.Item2);
+	        }
+
+	        if (fallback != null)
+		        foreach (Locale locale in Enum.GetValues(typeof(Locale)))
+			        if (!result.Has(locale))
+				        result.Add(locale, fallback);
+		}
     }
 
     public abstract class CustomGameDataObject<T> : CustomGameDataObject where T : GameDataObject
