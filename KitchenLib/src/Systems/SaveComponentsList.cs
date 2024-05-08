@@ -17,6 +17,7 @@ namespace KitchenLib.Systems
 		private Dictionary<ulong, ModComponents> _componentsMap = new Dictionary<ulong, ModComponents>();
 		protected override void Initialise()
 		{
+			return;
 			string directoryPath = Path.Combine(Application.persistentDataPath, "UserData", "KitchenLib");
 			string filePath = Path.Combine(directoryPath, "componentHistory.json");
 			

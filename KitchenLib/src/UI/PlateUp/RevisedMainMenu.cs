@@ -3,6 +3,7 @@ using Kitchen;
 using KitchenData;
 using UnityEngine;
 using KitchenLib.Preferences;
+using KitchenLib.UI.PlateUp;
 
 namespace KitchenLib.UI
 {
@@ -34,6 +35,7 @@ namespace KitchenLib.UI
 			{
 				AddSubmenuButton("Mod Preferences", typeof(ModsPreferencesMenu<MainMenuAction>), false);
 			}
+			AddSubmenuButton("Mod Achievements", typeof(ModAchievementsMenu<MainMenuAction>), false);
 
 			AddSubmenuButton(GameData.Main.GlobalLocalisation["MAIN_MENU_OPTIONS"], typeof(OptionsMenu<MainMenuAction>), false);
 			New<SpacerElement>(true);

@@ -10,8 +10,7 @@
 
 	<PropertyGroup>
 		<EnableAssetBundleDeploy>true</EnableAssetBundleDeploy>
-		<AssetBundlePath>../Unity Project - KitchenLib/Assets/StreamingAssets/kitchenlib.assets</AssetBundlePath>
-		
+		<AssetBundlePath>..\Unity Project - KitchenLib\content\mod.assets</AssetBundlePath>
 		<EnableDocumentation>true</EnableDocumentation>
 	</PropertyGroup>
 
