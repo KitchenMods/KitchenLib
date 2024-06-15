@@ -405,3 +405,5 @@ FodyWeavers.xsd
 **/content/*.dll
 !KitchenLib/content/kitchenlib.assets
 .idea
+
+!Unity Project - KitchenLib/**/*
