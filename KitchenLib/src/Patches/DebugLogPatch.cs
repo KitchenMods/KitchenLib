@@ -98,7 +98,9 @@ namespace KitchenLib.Patches
 			}
 		}
 	}
-
+	
+	
+	/*
 	[HarmonyPatch(typeof(DebugLogHandler), "Internal_Log")]
 	internal class DebugLogHandler_Patch
 	{
@@ -119,4 +121,7 @@ namespace KitchenLib.Patches
 			return true;
 		}
 	}
+	*/
+	
+	
 }
