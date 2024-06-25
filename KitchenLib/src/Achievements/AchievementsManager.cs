@@ -143,6 +143,7 @@ namespace KitchenLib.Achievements
 			{
 				if (File.Exists(achievementFilePath))
 				{
+					Main.LogWarning(e.Message);
 					Main.LogWarning($"Failed to load achievements file {achievementFilePath} for {modId}, backing up and replacing.");
 					File.Move(achievementFilePath, achievementFilePath + ".backup");
 					Save();

@@ -14,13 +14,10 @@ using KitchenLib.Logging.Exceptions;
 using System.Runtime.CompilerServices;
 using System;
 using System.Collections.Generic;
-using KitchenData;
 using KitchenLib.Achievements;
 using KitchenLib.Components;
-using KitchenLib.References;
 using KitchenLib.Utils;
 using KitchenLib.Views;
-using Steamworks.Data;
 using Achievement = KitchenLib.Achievements.Achievement;
 
 namespace KitchenLib
@@ -110,7 +107,7 @@ namespace KitchenLib
 			manager.Load();
 			manager.Save();
 			
-			//determineDebugLoggingStatus();
+			determineDebugLoggingStatus();
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).FirstOrDefault() ?? throw new MissingAssetBundleException(MOD_ID);
 			preferenceSystemMenuType = GetPreferenceSystemMenuType();
 			SetupMenus();

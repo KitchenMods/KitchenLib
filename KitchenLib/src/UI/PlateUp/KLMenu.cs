@@ -58,8 +58,6 @@ namespace KitchenLib
 				TMP_Text text = infobox.gameObject.GetComponentsInChildren<TMP_Text>()[0];
 				RectTransform rect = text.gameObject.GetComponent<RectTransform>();
 				
-				Debug.Log(rect.sizeDelta);
-				
 				rect.sizeDelta = new Vector2(rect.sizeDelta.x - 0.5f, 1);
 				text.alignment = TextAlignmentOptions.Center;
 				text.enableAutoSizing = true;

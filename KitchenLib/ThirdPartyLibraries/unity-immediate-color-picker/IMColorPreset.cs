@@ -16,7 +16,7 @@ namespace imColorPicker
             }
         }
 
-        [SerializeField] List<Color> colors;
+        [SerializeField] List<Color> colors = new();
 
         public void Save(Color color)
         {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Kitchen;
 using Kitchen.Modules;
 using KitchenLib.Registry;
@@ -26,6 +27,10 @@ namespace KitchenLib
 			"MonoMod.RuntimeDetour.dll",
 			"MonoMod.Utils.dll",
 			"UniverseLib.Mono.dll",
+			"MonoMod.Backports.dll",
+			"MonoMod.Core.dll",
+			"MonoMod.Iced.dll",
+			"MonoMod.ILHelpers.dll",
 		};
 		
 		private string modToModNameAndVersion(BaseMod mod) => $"{mod.ModName}     v{mod.ModVersion}{mod.BetaVersion}";
@@ -48,9 +53,28 @@ namespace KitchenLib
 			{
 				foreach (AssemblyModPack pack in mod.GetPacks<AssemblyModPack>())
 				{
-					if (!blockedModNames.Contains(pack.Name))
+					if (blockedModNames.Contains(pack.Name) && !Main.debugLogging)
 					{
-						nonKitchenLibModNames.Add(pack.Name);
+						continue;
+					}
+
+					if (pack.Mod.ID == 0)
+					{
+						nonKitchenLibModNames.Add(pack.Name + " v?");
+					}
+					else
+					{
+						try
+						{
+							System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(Path.Combine(Application.dataPath, "..", "..", "..", "..", "workshop", "content", "1599600", pack.Mod.ID.ToString(), pack.Name));
+							string version = fvi.FileVersion;
+							nonKitchenLibModNames.Add(pack.Name + " v" + version);
+						}
+						catch (Exception e)
+						{
+							Debug.LogException(e);
+							nonKitchenLibModNames.Add(pack.Name + " v?");
+						}
 					}
 				}
 			}

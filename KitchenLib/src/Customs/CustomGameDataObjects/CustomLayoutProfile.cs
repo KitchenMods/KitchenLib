@@ -158,11 +158,6 @@ namespace KitchenLib.Customs
 					}
 					return true;
 				}
-
-				void LogNodeError(object msg)
-				{
-					Main.LogError($"{GetType().FullName} error! {msg}");
-				}
 			}
 		}
 	}

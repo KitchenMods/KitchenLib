@@ -25,10 +25,10 @@ namespace KitchenLib.UI.PlateUp
 				Main.manager.GetPreference<PreferenceInt>("modSyncMethod").Set(result);
 				Main.manager.Save();
 			};
-			Redraw();
+			LocalRedraw();
 		}
 		
-		private async void Redraw()
+		private async void LocalRedraw()
 		{
 			ModuleList.Clear();
 			if (SyncMods.MissingMods.Count == 0)
@@ -49,7 +49,7 @@ namespace KitchenLib.UI.PlateUp
 					var mod = await Steamworks.Ugc.Item.GetAsync(allmod);
 					AllMods.Add(mod.Value);
 				}
-				Redraw();
+				LocalRedraw();
 				return;
 			}
 			else
@@ -59,14 +59,12 @@ namespace KitchenLib.UI.PlateUp
 				New<SpacerElement>(true);
 				
 				AddInfo("Would you like to install the following mods?");
-				string label = "";
-				int count = 0;
 				
 				CreateModLabels(AddInfo("").Position, MissingMods.Select(mod => mod.Title).ToList(), 3, 0.3f, 6);
 				
 				New<SpacerElement>(true);
 				
-				AddButton("Install", async delegate (int i)
+				AddButton("Install", delegate (int i)
 				{
 					ConfirmModSync.MissingMods = MissingMods;
 					ConfirmModSync.AllMods = AllMods;

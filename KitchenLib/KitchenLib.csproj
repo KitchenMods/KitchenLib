@@ -12,18 +12,22 @@
 		<EnableAssetBundleDeploy>true</EnableAssetBundleDeploy>
 		<AssetBundlePath>..\Unity Project - KitchenLib\content\mod.assets</AssetBundlePath>
 		<EnableDocumentation>true</EnableDocumentation>
+		<GamePath Condition="!Exists('$(GamePath)')">E:\SteamLibrary\steamapps\common\PlateUp\PlateUp</GamePath>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<None Include="..\.editorconfig" Link=".editorconfig" />
 	</ItemGroup>
-
+	
 	<ItemGroup>
-	  <PackageReference Include="HarmonyX" Version="2.10.1" />
+	  <PackageReference Include="HarmonyX" Version="2.9.0" />
+	  <PackageReference Include="ILRepack" Version="2.0.34" />
 	  <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-	  <PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.8.3" />
+	  <PackageReference Include="Semver" Version="3.0.0-beta.1" />
+	  <PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.12.0" />
 	  <PackageReference Include="Krafs.Publicizer" Version="2.2.1" />
 	</ItemGroup>
+	
 	<ItemGroup>
 		<Publicize Include="Kitchen.Common:Kitchen.PlayerCosmeticSubview+AttachmentPoint" />
 		<Publicize Include="Kitchen.Common:Kitchen.PlayerCosmeticSubview+AttachedCosmetic" />
@@ -61,4 +65,18 @@
 		<None Remove="plateup_mod_metadata.json" />
 		<None Remove="*.png" />
 	</ItemGroup>
+	
+	<ItemGroup>
+		<MergeBinaries Include="$(BuildDir)IndexRange.dll" />
+		<MergeBinaries Include="$(BuildDir)Semver.dll" />
+		<MergeBinaries Include="$(BuildDir)Microsoft.Extensions.Primitives.dll" />
+	</ItemGroup>
+
+	<Target Name="Merge" AfterTargets="Build" Condition="$(EnableModDeployLocal) == 'true'">
+		<Message Text="'$(ILRepack)' /lib:'$(AssemblyReferencePath)' /lib:'$(BuildDir)' /out:'$(BuildDir)KitchenLib-Workshop.dll" Importance="high"/>
+		<ItemGroup>
+			<_MergeCommands Include="$(ILRepack) /lib:&quot;$(AssemblyReferencePath)&quot; /lib:&quot;$(BuildDir)&quot; /out:&quot;$(BuildDir)KitchenLib-Workshop.dll&quot; &quot;$(BuildDir)KitchenLib-Workshop.dll&quot; &quot;%(MergeBinaries.Identity)&quot;" />
+		</ItemGroup>
+		<Exec Command="%(_MergeCommands.Identity)" />
+	</Target>
 </Project>

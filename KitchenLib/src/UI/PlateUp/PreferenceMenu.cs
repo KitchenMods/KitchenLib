@@ -14,12 +14,12 @@ namespace KitchenLib.UI
 		{
 			New<SpacerElement>(true);
 
-			AddButton("User Options", async delegate (int i)
+			AddButton("User Options", delegate (int i)
 			{
 				RequestSubMenu(typeof(UserOptions<T>));
 			}, 0, 1f, 0.2f);
 
-			AddButton("Developer Options", async delegate (int i)
+			AddButton("Developer Options", delegate (int i)
 			{
 				RequestSubMenu(typeof(DeveloperOptions<T>));
 			}, 0, 1f, 0.2f);
@@ -27,7 +27,7 @@ namespace KitchenLib.UI
 			New<SpacerElement>(true);
 			if (SyncMods.MissingMods.Count > 0)
 			{
-				AddButton("Sync Mods", async delegate (int i)
+				AddButton("Sync Mods", delegate (int i)
 				{
 					RequestSubMenu(typeof(ModSyncMenu));
 				}, 0, 1f, 0.2f);

@@ -224,7 +224,6 @@ namespace imColorPicker
 										ClearPresetSelection();
                                         return;
                                     }
-                                    break;
                             }
                         }
                         GUILayout.Space(1f);
@@ -254,11 +253,6 @@ namespace imColorPicker
 
         void DrawSVHandler(Rect rect, ref Color c)
         {
-            const float size = 10f;
-            const float offset = 5f;
-            
-            // GUI.DrawTexture(new Rect(rect.x + s * rect.width - offset, rect.y + (1f - v) * rect.height - offset, size, size), circle);
-
             var e = Event.current;
             var p = e.mousePosition;
             if(e.button == 0 && (e.type == EventType.MouseDown || e.type == EventType.MouseDrag) && rect.Contains(p))
@@ -274,10 +268,6 @@ namespace imColorPicker
 
         void DrawHueHandler (Rect rect, ref Color c)
         {
-            const float size = 15f;
-            // GUI.DrawTexture(new Rect(rect.x - size * 0.75f, rect.y + (1f - h) * rect.height - size * 0.5f, size, size), rightArrow);
-            // GUI.DrawTexture(new Rect(rect.x + rect.width - size * 0.25f, rect.y + (1f - h) * rect.height - size * 0.5f, size, size), leftArrow);
-
             var e = Event.current;
             var p = e.mousePosition;
             if(e.button == 0 && (e.type == EventType.MouseDown || e.type == EventType.MouseDrag) && rect.Contains(p))

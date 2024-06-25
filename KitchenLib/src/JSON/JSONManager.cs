@@ -73,7 +73,6 @@ namespace KitchenLib
 			foreach (TextAsset asset in bundle.LoadAllAssets<TextAsset>())
 			{
 				Main.LogInfo($"Loading JSON-based material asset '{asset.name}'");
-				BaseJson baseJson = null;
 				try
 				{
 					try
@@ -94,6 +93,7 @@ namespace KitchenLib
 				}
 				catch (Exception e)
 				{
+					Main.LogWarning(e.Message);
 					Main.LogWarning($"Material asset '{asset.name}' could not be loaded");
 				}
 			}

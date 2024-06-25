@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using KitchenLib.Preferences;
-using Mono.Security.X509;
 using UnityEngine;
 
 namespace KitchenLib
@@ -30,8 +29,6 @@ namespace KitchenLib
 		private Option<int> PageSelector = null;
 
 		private static int CurrentPage = 0;
-
-		private static Type preferenceSystemMenuType = null;
 
 		internal static void Register(string name, Type type, Type generic)
 		{
