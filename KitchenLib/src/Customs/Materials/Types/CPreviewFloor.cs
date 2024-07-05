@@ -35,53 +35,28 @@ namespace KitchenLib.Customs
 		}
 		public void GUI(Material material)
 		{
-			GUILayout.BeginArea(new Rect(0, 20, 110, 20));
-			GUILayout.Label("Line Rate");
-			GUILayout.EndArea();
+			material.SetFloat("_LineRate", DrawSliderModule(new Rect(2, 2, 446, 24), "_LineRate", material.GetFloat("_LineRate"), 0, 30));
+			material.SetFloat("_LineOffset", DrawSliderModule(new Rect(2, 32, 446, 24), "_LineOffset", material.GetFloat("_LineOffset"), 0, 1));
+			material.SetFloat("_IsKitchenFloor", DrawToggleModule(new Rect(2, 66, 146, 25), "_IsKitchenFloor", material.GetFloat("_IsKitchenFloor") == 1) ? 1 : 0);
 			
-			GUILayout.BeginArea(new Rect(110, 20, 49, 20));
-			material.SetFloat("_LineRate", float.Parse(GUILayout.TextField(material.GetFloat("_LineRate").ToString())));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(159, 25, 318, 20));
-			material.SetFloat("_LineRate", GUILayout.HorizontalSlider(material.GetFloat("_LineRate"), 0.0f, 1.0f));
-			GUILayout.EndArea();
-			GUILayout.BeginArea(new Rect(0, 40, 110, 20));
-			GUILayout.Label("Line Offset");
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(110, 40, 49, 20));
-			material.SetFloat("_LineOffset", float.Parse(GUILayout.TextField(material.GetFloat("_LineOffset").ToString())));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(159, 45, 318, 20));
-			material.SetFloat("_LineOffset", GUILayout.HorizontalSlider(material.GetFloat("_LineOffset"), 0.0f, 1.0f));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(0, 60, 159, 20));
-			material.SetInt("_IsKitchenFloor", GUILayout.Toggle(material.GetInt("_IsKitchenFloor") == 1, "Is Kitchen Floor") ? 1 : 0);
-			if (material.GetInt("_IsKitchenFloor") == 0)
+			if (material.GetInt("_IsKitchenFloor") != 1)
 				material.DisableKeyword("_ISKITCHENFLOOR_ON");
 			else
 				material.EnableKeyword("_ISKITCHENFLOOR_ON");
-			GUILayout.EndArea();
 		}
 
-		public void Export(Material material)
+		public string Export(Material material)
 		{
-			if (GUILayout.Button("Export"))
-			{
-				CPreviewFloor result = new CPreviewFloor();
+			CPreviewFloor result = new CPreviewFloor();
 				
-				result._LineRate = material.GetFloat("_LineRate");
-				result._LineOffset = material.GetFloat("_LineOffset");
-				result._IsKitchenFloor = material.GetInt("_IsKitchenFloor") == 1;
+			result._LineRate = material.GetFloat("_LineRate");
+			result._LineOffset = material.GetFloat("_LineOffset");
+			result._IsKitchenFloor = material.GetInt("_IsKitchenFloor") == 1;
 
-				result.Name = material.name;
+			result.Name = material.name;
 
-				string json = JsonConvert.SerializeObject(result, Formatting.Indented);
-				System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + $"/{result.Name}.json", json);
-			}
+			string json = JsonConvert.SerializeObject(result, Formatting.Indented);
+			return json;
 		}
 	}
 }

@@ -35,33 +35,30 @@ namespace KitchenLib.Customs
 
 		public void GUI(Material material)
 		{
-			Vector4 _Centre = material.GetVector("_Centre");
-			_Centre.x = GUILayout.HorizontalSlider(_Centre.x, 0, 1);
-			_Centre.y = GUILayout.HorizontalSlider(_Centre.y, 0, 1);
-			_Centre.z = GUILayout.HorizontalSlider(_Centre.z, 0, 1);
-			_Centre.w = GUILayout.HorizontalSlider(_Centre.w, 0, 1);
+			_CentreX = DrawSliderModule(new Rect(2, 2, 446, 24), "_CentreX", _CentreX, 0, 1);
+			_CentreY = DrawSliderModule(new Rect(2, 32, 446, 24), "_CentreY", _CentreY, 0, 1);
+			_CentreZ = DrawSliderModule(new Rect(2, 62, 446, 24), "_CentreZ", _CentreZ, 0, 1);
+			_CentreW = DrawSliderModule(new Rect(2, 92, 446, 24), "_CentreW", _CentreW, 0, 1);
 			
-			material.SetFloat("_Radius", GUILayout.HorizontalSlider(material.GetFloat("_Radius"), 0, 1));
-			material.SetVector("_Centre", _Centre);
+			material.SetVector("_Centre", new Vector4(_CentreX, _CentreY, _CentreZ, _CentreW));
+			
+			material.SetFloat("_Radius", DrawSliderModule(new Rect(2, 152, 446, 24), "_Radius", material.GetFloat("_Radius"), 0, 1));
 		}
 
-		public void Export(Material material)
+		public string Export(Material material)
 		{
-			if (GUILayout.Button("Export"))
-			{
-				CMirror result = new CMirror();
-				result._CentreX = material.GetVector("_Centre").x;
-				result._CentreY = material.GetVector("_Centre").y;
-				result._CentreZ = material.GetVector("_Centre").z;
-				result._CentreW = material.GetVector("_Centre").w;
+			CMirror result = new CMirror();
+			result._CentreX = material.GetVector("_Centre").x;
+			result._CentreY = material.GetVector("_Centre").y;
+			result._CentreZ = material.GetVector("_Centre").z;
+			result._CentreW = material.GetVector("_Centre").w;
 
-				result._Radius = material.GetFloat("_Radius");
+			result._Radius = material.GetFloat("_Radius");
 				
-				result.Name = material.name;
+			result.Name = material.name;
 
-				string json = JsonConvert.SerializeObject(result, Formatting.Indented);
-				System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + $"/{result.Name}.json", json);
-			}
+			string json = JsonConvert.SerializeObject(result, Formatting.Indented);
+			return json;
 		}
 	}
 }

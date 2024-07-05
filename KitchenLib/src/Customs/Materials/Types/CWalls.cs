@@ -1,6 +1,5 @@
 ﻿using KitchenLib.Utils;
 using Newtonsoft.Json;
-using System;
 using System.IO;
 using imColorPicker;
 using KitchenLib.Interfaces;
@@ -267,39 +266,36 @@ namespace KitchenLib.Customs
 			
 		}
 
-		public void Export(Material material)
+		public string Export(Material material)
 		{
-			if (GUILayout.Button("Export"))
-			{
-				CWalls result = new CWalls();
-				result._Color0X = material.GetVector("_Color0").x;
-				result._Color0Y = material.GetVector("_Color0").y;
-				result._Color0Z = material.GetVector("_Color0").z;
+			CWalls result = new CWalls();
+			result._Color0X = material.GetVector("_Color0").x;
+			result._Color0Y = material.GetVector("_Color0").y;
+			result._Color0Z = material.GetVector("_Color0").z;
 
-				result._Colour2X = material.GetVector("_Colour2").x;
-				result._Colour2Y = material.GetVector("_Colour2").y;
-				result._Colour2Z = material.GetVector("_Colour2").z;
+			result._Colour2X = material.GetVector("_Colour2").x;
+			result._Colour2Y = material.GetVector("_Colour2").y;
+			result._Colour2Z = material.GetVector("_Colour2").z;
 
-				result._Highlight = material.GetInt("_Highlight") == 1;
-				result._HasTextureOverlay = material.GetInt("_HasTextureOverlay") == 1;
-				result._Shininess = material.GetFloat("_Shininess");
-				result._OverlayLowerBound = material.GetFloat("_OverlayLowerBound");
-				result._OverlayUpperBound = material.GetFloat("_OverlayUpperBound");
-				result._OverlayScale = material.GetFloat("_OverlayScale");
-				result._OverlayMin = material.GetFloat("_OverlayMin");
-				result._OverlayMax = material.GetFloat("_OverlayMax");
-				result._OverlayOffsetX = material.GetVector("_OverlayOffset").x;
-				result._OverlayOffsetY = material.GetVector("_OverlayOffset").y;
-				result._OverlayTextureScaleX = material.GetVector("_OverlayTextureScale").x;
-				result._OverlayTextureScaleY = material.GetVector("_OverlayTextureScale").y;
-				result._Flatness = material.GetFloat("_Flatness");
-				result._OverlayAsBase64 = imgtob64(material.GetTexture("_Overlay"));
+			result._Highlight = material.GetInt("_Highlight") == 1;
+			result._HasTextureOverlay = material.GetInt("_HasTextureOverlay") == 1;
+			result._Shininess = material.GetFloat("_Shininess");
+			result._OverlayLowerBound = material.GetFloat("_OverlayLowerBound");
+			result._OverlayUpperBound = material.GetFloat("_OverlayUpperBound");
+			result._OverlayScale = material.GetFloat("_OverlayScale");
+			result._OverlayMin = material.GetFloat("_OverlayMin");
+			result._OverlayMax = material.GetFloat("_OverlayMax");
+			result._OverlayOffsetX = material.GetVector("_OverlayOffset").x;
+			result._OverlayOffsetY = material.GetVector("_OverlayOffset").y;
+			result._OverlayTextureScaleX = material.GetVector("_OverlayTextureScale").x;
+			result._OverlayTextureScaleY = material.GetVector("_OverlayTextureScale").y;
+			result._Flatness = material.GetFloat("_Flatness");
+			result._OverlayAsBase64 = imgtob64(material.GetTexture("_Overlay"));
 
-				result.Name = material.name;
+			result.Name = material.name;
 
-				string json = JsonConvert.SerializeObject(result, Formatting.Indented);
-				System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + $"/{result.Name}.json", json);
-			}
+			string json = JsonConvert.SerializeObject(result, Formatting.Indented);
+			return json;
 		}
 	}
 }

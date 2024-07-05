@@ -47,20 +47,17 @@ namespace KitchenLib.Customs
 			GUILayout.EndArea();
 		}
 
-		public void Export(Material material)
+		public string Export(Material material)
 		{
-			if (GUILayout.Button("Export"))
-			{
-				CSimpleTransparent result = new CSimpleTransparent();
-				result._ColorX = material.GetVector("_Color").x;
-				result._ColorY = material.GetVector("_Color").y;
-				result._ColorZ = material.GetVector("_Color").z;
+			CSimpleTransparent result = new CSimpleTransparent();
+			result._ColorX = material.GetVector("_Color").x;
+			result._ColorY = material.GetVector("_Color").y;
+			result._ColorZ = material.GetVector("_Color").z;
 
-				result.Name = material.name;
+			result.Name = material.name;
 
-				string json = JsonConvert.SerializeObject(result, Formatting.Indented);
-				System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + $"/{result.Name}.json", json);
-			}
+			string json = JsonConvert.SerializeObject(result, Formatting.Indented);
+			return json;
 		}
 	}
 }

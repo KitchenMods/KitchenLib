@@ -38,84 +38,31 @@ namespace KitchenLib.Customs
 		{
 			_Image = ResourceUtils.LoadTextureFromBase64(_ImageAsBase64);
 		}
-		private static string imageFile = "";
+		private string imageFile = "";
 		public void GUI(Material material)
 		{
-			GUILayout.BeginArea(new Rect(0, 0, 159, 20));
-			GUILayout.Label("Texture File");
-			GUILayout.EndArea();
+			imageFile = DrawTextureModule(new Rect(2, 50, 292, 207),"Texture", imageFile, material);
 			
-			GUILayout.BeginArea(new Rect(159, 0, 318, 20));
-			imageFile = GUILayout.TextField(imageFile);
-			if (File.Exists(imageFile))
-				material.SetTexture("_Image", ResourceUtils.LoadTextureFromFile(imageFile));
-			GUILayout.EndArea();
+			material.SetFloat("_Alpha", DrawSliderModule(new Rect(2, 215, 446, 24), "_Alpha", material.GetFloat("_Alpha"), 0, 1));
+			material.SetFloat("_BlowoutScale1", DrawSliderModule(new Rect(2, 245, 446, 24), "_BlowoutScale1", material.GetFloat("_BlowoutScale1"), 0, 1));
+			material.SetFloat("_BlowoutOffset1", DrawSliderModule(new Rect(2, 275, 446, 24), "_BlowoutOffset1", material.GetFloat("_BlowoutOffset1"), 0, 1));
 			
-			GUILayout.BeginArea(new Rect(0, 20, 110, 20));
-			GUILayout.Label("Alpha");
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(110, 20, 49, 20));
-			material.SetFloat("_Alpha", float.Parse(GUILayout.TextField(material.GetFloat("_Alpha").ToString())));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(208, 25, 318, 20));
-			material.SetFloat("_Alpha", GUILayout.HorizontalSlider(material.GetFloat("_Alpha"), 0.0f, 1.0f));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(0, 40, 110, 20));
-			GUILayout.Label("Blowout Scale");
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(110, 40, 49, 20));
-			material.SetFloat("_BlowoutScale1", float.Parse(GUILayout.TextField(material.GetFloat("_BlowoutScale1").ToString())));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(208, 45, 318, 20));
-			material.SetFloat("_BlowoutScale1", GUILayout.HorizontalSlider(material.GetFloat("_BlowoutScale1"), 0.0f, 1.0f));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(0, 60, 110, 20));
-			GUILayout.Label("Blowout Offset");
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(110, 60, 49, 20));
-			material.SetFloat("_BlowoutOffset1", float.Parse(GUILayout.TextField(material.GetFloat("_BlowoutOffset1").ToString())));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(208, 65, 318, 20));
-			material.SetFloat("_BlowoutOffset1", GUILayout.HorizontalSlider(material.GetFloat("_BlowoutOffset1"), 0.0f, 1.0f));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(0, 80, 110, 20));
-			GUILayout.Label("Is Blowout");
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(110, 80, 49, 20));
-			material.SetFloat("_IsBlowout", float.Parse(GUILayout.TextField(material.GetFloat("_IsBlowout").ToString())));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(208, 85, 318, 20));
-			material.SetFloat("_IsBlowout", GUILayout.HorizontalSlider(material.GetFloat("_IsBlowout"), 0.0f, 1.0f));
-			GUILayout.EndArea();
+			material.SetFloat("_IsBlowout", DrawToggleModule(new Rect(2, 305, 146, 25), "_IsBlowout", material.GetFloat("_IsBlowout") == 1) ? 1 : 0);
 		}
 
-		public void Export(Material material)
+		public string Export(Material material)
 		{
-			if (GUILayout.Button("Export"))
-			{
-				CFlatImage result = new CFlatImage();
-				result._Alpha = material.GetFloat("_Alpha");
-				result._BlowoutScale1 = material.GetFloat("_BlowoutScale1");
-				result._BlowoutOffset1 = material.GetFloat("_BlowoutOffset1");
-				result._IsBlowout = material.GetFloat("_IsBlowout");
-				result._ImageAsBase64 = imgtob64(material.GetTexture("_Image"));
+			CFlatImage result = new CFlatImage();
+			result._Alpha = material.GetFloat("_Alpha");
+			result._BlowoutScale1 = material.GetFloat("_BlowoutScale1");
+			result._BlowoutOffset1 = material.GetFloat("_BlowoutOffset1");
+			result._IsBlowout = material.GetFloat("_IsBlowout");
+			result._ImageAsBase64 = imgtob64(material.GetTexture("_Image"));
 
-				result.Name = material.name;
+			result.Name = material.name;
 
-				string json = JsonConvert.SerializeObject(result, Formatting.Indented);
-				System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + $"/{result.Name}.json", json);
-			}
+			string json = JsonConvert.SerializeObject(result, Formatting.Indented);
+			return json;
 		}
 	}
 }

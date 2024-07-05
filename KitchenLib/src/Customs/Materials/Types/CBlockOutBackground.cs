@@ -14,6 +14,7 @@ namespace KitchenLib.Customs
 		public float _ColourX = 0.0f;
 		public float _ColourY = 0.0f;
 		public float _ColourZ = 0.0f;
+		public float _ColourA = 0.0f;
 
 		public override void ConvertMaterial(out Material material)
 		{
@@ -27,39 +28,29 @@ namespace KitchenLib.Customs
 
 		public override void Deserialise()
 		{
-			_Colour = new Vector4(_ColourX, _ColourY, _ColourZ, 0);
+			_Colour = new Vector4(_ColourX, _ColourY, _ColourZ, _ColourA);
 		}
 		IMColorPicker mainColorPicker;
 		public void GUI(Material material)
 		{
 			if(mainColorPicker == null)
 				mainColorPicker = new IMColorPicker();
-			Vector4 _Colour = material.GetVector("_Colour");
-			
-			GUILayout.BeginArea(new Rect(0, 0, 159, 20));
-			GUILayout.Label("Base Color");
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(0, 20, 159, 140));
-			_Colour = mainColorPicker.DrawColorPicker(_Colour);
-			material.SetVector("_Colour", _Colour);
-			GUILayout.EndArea();
+
+			material.SetColor("_Colour", DrawColorModule(new Rect(2, 2, 146, 186), mainColorPicker, "Primary Color", material.GetVector("_Colour")));
 		}
 
-		public void Export(Material material)
+		public string Export(Material material)
 		{
-			if (GUILayout.Button("Export"))
-			{
-				CBlockOutBackground result = new CBlockOutBackground();
-				result._ColourX = material.GetVector("_Colour").x;
-				result._ColourY = material.GetVector("_Colour").y;
-				result._ColourZ = material.GetVector("_Colour").z;
+			CBlockOutBackground result = new CBlockOutBackground();
+			result._ColourX = material.GetColor("_Colour").r;
+			result._ColourY = material.GetColor("_Colour").g;
+			result._ColourZ = material.GetColor("_Colour").b;
+			result._ColourA = material.GetColor("_Colour").a;
 
-				result.Name = material.name;
+			result.Name = material.name;
 
-				string json = JsonConvert.SerializeObject(result, Formatting.Indented);
-				System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + $"/{result.Name}.json", json);
-			}
+			string json = JsonConvert.SerializeObject(result, Formatting.Indented);
+			return json;
 		}
 	}
 }

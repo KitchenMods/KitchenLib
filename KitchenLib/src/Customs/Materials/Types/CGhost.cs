@@ -14,12 +14,17 @@ namespace KitchenLib.Customs
 		public float _ColorX = 0.0f;
 		public float _ColorY = 0.0f;
 		public float _ColorZ = 0.0f;
+		public float _ColorA = 0.0f;
+
+		public bool _Hatched { get; set; } = false;
+		
 
 		public override void ConvertMaterial(out Material material)
 		{
 			Material result = new Material(Shader.Find("Ghost"));
 
 			result.SetColor("_Colour", _Color);
+			result.SetFloat("_Hatched", _Hatched ? 1 : 0);
 			result.name = Name;
 
 			material = result;
@@ -27,40 +32,32 @@ namespace KitchenLib.Customs
 
 		public override void Deserialise()
 		{
-			_Color = new Vector4(_ColorX, _ColorY, _ColorZ, 0);
+			_Color = new Vector4(_ColorX, _ColorY, _ColorZ, _ColorA);
 		}
 		IMColorPicker mainColorPicker;
 		public void GUI(Material material)
 		{
 			if(mainColorPicker == null)
-				mainColorPicker = new IMColorPicker();
+				mainColorPicker = new IMColorPicker(); 
 			
-			Vector4 _Colour = material.GetVector("_Colour");
-			
-			GUILayout.BeginArea(new Rect(0, 0, 159, 20));
-			GUILayout.Label("Base Color");
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(0, 20, 159, 140));
-			_Colour = mainColorPicker.DrawColorPicker(_Colour);
-			material.SetVector("_Colour", _Colour);
-			GUILayout.EndArea();
+			material.SetColor("_Colour", DrawColorModule(new Rect(2, 2, 146, 186), mainColorPicker, "Primary Color", material.GetVector("_Colour")));
+			material.SetFloat("_Hatched", DrawToggleModule(new Rect(2, 195, 146, 25), "_Hatched", material.GetFloat("_Hatched") == 1) ? 1 : 0);
 		}
 
-		public void Export(Material material)
+		public string Export(Material material)
 		{
-			if (GUILayout.Button("Export"))
-			{
-				CGhost result = new CGhost();
-				result._ColorX = material.GetVector("_Colour").x;
-				result._ColorY = material.GetVector("_Colour").y;
-				result._ColorZ = material.GetVector("_Colour").z;
+			CGhost result = new CGhost();
+			result._ColorX = material.GetColor("_Colour").r;
+			result._ColorY = material.GetColor("_Colour").g;
+			result._ColorZ = material.GetColor("_Colour").b;
+			result._ColorA = material.GetColor("_Colour").a;
+			
+			result._Hatched = material.GetFloat("_Hatched") == 1;
 
-				result.Name = material.name;
+			result.Name = material.name;
 
-				string json = JsonConvert.SerializeObject(result, Formatting.Indented);
-				System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + $"/{result.Name}.json", json);
-			}
+			string json = JsonConvert.SerializeObject(result, Formatting.Indented);
+			return json;
 		}
 	}
 }

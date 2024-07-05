@@ -109,30 +109,27 @@ namespace KitchenLib.Customs
 			GUILayout.EndArea();
 		}
 
-		public void Export(Material material)
+		public string Export(Material material)
 		{
-			if (GUILayout.Button("Export"))
-			{
-				CSimpleFlatPlayer result = new CSimpleFlatPlayer();
-				result._Colour2X = material.GetVector("_Colour2").x;
-				result._Colour2Y = material.GetVector("_Colour2").y;
-				result._Colour2Z = material.GetVector("_Colour2").z;
+			CSimpleFlatPlayer result = new CSimpleFlatPlayer();
+			result._Colour2X = material.GetVector("_Colour2").x;
+			result._Colour2Y = material.GetVector("_Colour2").y;
+			result._Colour2Z = material.GetVector("_Colour2").z;
 				
-				result._Color0X = material.GetVector("_Color0").x;
-				result._Color0Y = material.GetVector("_Color0").y;
-				result._Color0Z = material.GetVector("_Color0").z;
+			result._Color0X = material.GetVector("_Color0").x;
+			result._Color0Y = material.GetVector("_Color0").y;
+			result._Color0Z = material.GetVector("_Color0").z;
 				
-				result._Shininess = material.GetFloat("_Shininess");
+			result._Shininess = material.GetFloat("_Shininess");
 				
-				result._MultiColour = material.GetInt("_MultiColour") == 1;
+			result._MultiColour = material.GetInt("_MultiColour") == 1;
 				
-				result._Flatness = material.GetFloat("_Flatness");
+			result._Flatness = material.GetFloat("_Flatness");
 
-				result.Name = material.name;
+			result.Name = material.name;
 
-				string json = JsonConvert.SerializeObject(result, Formatting.Indented);
-				System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + $"/{result.Name}.json", json);
-			}
+			string json = JsonConvert.SerializeObject(result, Formatting.Indented);
+			return json;
 		}
 	}
 }

@@ -20,6 +20,18 @@ using KitchenLib.Utils;
 using KitchenLib.Views;
 using Achievement = KitchenLib.Achievements.Achievement;
 
+/*
+ * TODO
+ * Finish Material Editor UIs
+ * - Simple Flat
+ * - Simple Flat Player
+ * - Simple Transparent
+ * - Walls
+ * - Add intensity to Fairy Light, Blueprint Light, Indicator Light, Lake Surface, Simple Flat Player, XP Badge
+ *
+ * Complete and polish Achievements UI
+ */
+
 namespace KitchenLib
 {
 	/// <summary>
@@ -66,7 +78,10 @@ namespace KitchenLib
 		/// The preference manager for the mod.
 		/// </summary>
 		internal static PreferenceManager manager;
-		
+
+		/// <summary>
+		/// The achievement manager for the mod.
+		/// </summary>
 		internal static AchievementsManager achievementsManager;
 
 		/// <summary>
@@ -112,6 +127,7 @@ namespace KitchenLib
 			preferenceSystemMenuType = GetPreferenceSystemMenuType();
 			SetupMenus();
 			RegisterMenu<NewMaterialUI>();
+			RegisterMenu<NewNewMaterialUI>();
 			RegisterMenu<DebugMenu>();
 			
 			achievementsManager = new AchievementsManager(MOD_ID, MOD_NAME);
@@ -132,8 +148,6 @@ namespace KitchenLib
 			LogInfo("|__|\\__\\ |__|     |__|      \\______||__|  |__| |_______||__| \\__| |_______||__| |______/ " + $"   v{MOD_VERSION}b{MOD_BETA_VERSION}");
 
 			Events.BuildGameDataEvent += (sender, args) => { if (args.firstBuild) AchievementsManager.SetupMenuElement(); };
-			
-			
 		}
 
 		private void determineDebugLoggingStatus() {
