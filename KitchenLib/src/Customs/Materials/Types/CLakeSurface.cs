@@ -91,7 +91,7 @@ namespace KitchenLib.Customs
 			material.SetVector("_NightSpec", new Vector4(_NightSpecX, _NightSpecY, _NightSpecZ, _NightSpecW));
 			
 			material.SetFloat("_TimeScale", DrawSliderModule(new Rect(2, 499, 446, 24), "_TimeScale", material.GetFloat("_TimeScale"), 0, 1));
-			material.SetFloat("Scale", DrawSliderModule(new Rect(2, 529, 446, 24), "Scale", material.GetFloat("Scale"), 0, 1));
+			material.SetFloat("_Scale", DrawSliderModule(new Rect(2, 529, 446, 24), "_Scale", material.GetFloat("_Scale"), 0, 1));
 		}
 
 		public string Export(Material material)

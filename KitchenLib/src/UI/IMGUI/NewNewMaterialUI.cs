@@ -15,7 +15,7 @@ namespace KitchenLib.UI
 	{
 		public NewNewMaterialUI()
 		{
-			ButtonName = "Materials2";
+			ButtonName = "Materials";
 		}
 
 		private Material selectedMaterial;
@@ -57,7 +57,7 @@ namespace KitchenLib.UI
 			{"Newspaper", new CNewspaper()},
 			{"Ping", new CPing()},
 			{"Preview Floor", new CPreviewFloor()},
-			{"Simple Flat - Player", new CSimpleFlatPlayer()},
+			{"Simple Flat - Player", new CSimpleFlatPlayer()}
 		};
 
 		public override void OnInit()
@@ -146,9 +146,10 @@ namespace KitchenLib.UI
 			materialSelectorScrollPosition = GUILayout.BeginScrollView(materialSelectorScrollPosition, false, false, GUIStyle.none, GUI.skin.verticalScrollbar);
 			foreach (Material material in MaterialUtils.GetAllMaterials(true, editors.Keys.ToList()))
 			{
-				if (material.name.ToLower().Contains(materialSelectorSearchBar.ToLower()))
+				string name = $"[{material.shader.name}] {material.name}";
+				if (name.ToLower().Contains(materialSelectorSearchBar.ToLower()))
 				{
-					if (GUILayout.Button(material.name))
+					if (GUILayout.Button(name))
 					{
 						SetDisplayMaterial(material);
 					}

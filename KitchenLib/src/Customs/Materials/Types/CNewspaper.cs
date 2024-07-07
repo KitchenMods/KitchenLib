@@ -36,6 +36,7 @@ namespace KitchenLib.Customs
 			result.SetFloat("_Alpha", _Alpha);
 			result.SetFloat("_BlowoutScale", _BlowoutScale);
 			result.SetColor("_Colour", _Colour);
+			result.SetFloat("_BlowoutOffset", _BlowoutOffset);
 			result.name = Name;
 
 			material = result;

@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using imColorPicker;
 using KitchenLib.Interfaces;
 using UnityEngine;
@@ -16,7 +15,7 @@ namespace KitchenLib.Customs
 		public float _ColorZ = 0.0f;
 		public float _ColorA = 0.0f;
 
-		public bool _Hatched { get; set; } = false;
+		public bool _Hatched = false;
 		
 
 		public override void ConvertMaterial(out Material material)
@@ -25,6 +24,11 @@ namespace KitchenLib.Customs
 
 			result.SetColor("_Colour", _Color);
 			result.SetFloat("_Hatched", _Hatched ? 1 : 0);
+			
+			if (!_Hatched)
+				result.DisableKeyword("_HATCHED_ON");
+			else
+				result.EnableKeyword("_HATCHED_ON");
 			result.name = Name;
 
 			material = result;
@@ -42,6 +46,12 @@ namespace KitchenLib.Customs
 			
 			material.SetColor("_Colour", DrawColorModule(new Rect(2, 2, 146, 186), mainColorPicker, "Primary Color", material.GetVector("_Colour")));
 			material.SetFloat("_Hatched", DrawToggleModule(new Rect(2, 195, 146, 25), "_Hatched", material.GetFloat("_Hatched") == 1) ? 1 : 0);
+			
+			if (material.GetFloat("_Hatched") == 1)
+				material.EnableKeyword("_HATCHED_ON");
+			else
+				material.DisableKeyword("_HATCHED_ON");
+			
 		}
 
 		public string Export(Material material)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using imColorPicker;
 using KitchenLib.Utils;
@@ -12,7 +13,7 @@ namespace KitchenLib.Customs
 		public virtual void Deserialise() { }
 		public virtual string Name { get; set; } = "";
 
-		protected static string imgtob64(Texture texture)
+		protected static string imgtob64(Texture texture, bool requiresFlip = false)
 		{
 			string enc = "";
 			if (texture == null)
@@ -22,7 +23,7 @@ namespace KitchenLib.Customs
 			{
 				if (!texture2D.isReadable)
 				{
-					texture2D = duplicateTexture(texture2D);
+					texture2D = duplicateTexture(texture2D, requiresFlip);
 				}
 				enc = Convert.ToBase64String((texture2D).EncodeToPNG());
 			}
@@ -34,14 +35,14 @@ namespace KitchenLib.Customs
 			return enc;
 		}
 		
-		private static Texture2D duplicateTexture(Texture2D source)
+		private static Texture2D duplicateTexture(Texture2D source, bool requiresFlip = false)
 		{
 			RenderTexture renderTex = RenderTexture.GetTemporary(
 				source.width,
 				source.height,
 				0,
 				RenderTextureFormat.Default,
-				RenderTextureReadWrite.Linear);
+				RenderTextureReadWrite.sRGB);
 
 			Graphics.Blit(source, renderTex);
 			RenderTexture previous = RenderTexture.active;
@@ -51,19 +52,48 @@ namespace KitchenLib.Customs
 			readableText.Apply();
 			RenderTexture.active = previous;
 			RenderTexture.ReleaseTemporary(renderTex);
+
+			if (requiresFlip)
+			{
+				// Flip the texture vertically
+				var pixels = readableText.GetPixels();
+				System.Array.Reverse(pixels, 0, pixels.Length);
+				readableText.SetPixels(pixels);
+				readableText.Apply();
+			}
+
 			return readableText;
 		}
 
 		protected Color DrawColorModule(Rect rect, IMColorPicker module, string name, Color color)
 		{
 			GUILayout.BeginArea(rect);
-			
 			GUILayout.Label(name);
 			color = module.DrawColorPicker(color);
 			color.a = GUILayout.HorizontalSlider(color.a, 0, 1);
+			GUILayout.EndArea();
+			
+			return color;
+		}
+		
+		
+		// This is currently unfinished and non-functional
+		protected Color DrawHDRColorModule(Rect rect, IMColorPicker module, string name, Color color, float intensity, out float newIntensity)
+		{
+			GUILayout.BeginArea(rect);
+
+			GUILayout.Label(name);
+			color /= intensity;
+			color = module.DrawColorPicker(color);
+			GUILayout.BeginHorizontal();
+			color.a = GUILayout.HorizontalSlider(color.a, 0, 1);
+			intensity = GUILayout.HorizontalSlider(intensity, 1, 5);
+			GUILayout.EndHorizontal();
 			
 			GUILayout.EndArea();
 
+			color *= intensity;
+			newIntensity = intensity;
 			return color;
 		}
 

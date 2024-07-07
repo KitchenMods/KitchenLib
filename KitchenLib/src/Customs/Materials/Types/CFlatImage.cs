@@ -57,7 +57,7 @@ namespace KitchenLib.Customs
 			result._BlowoutScale1 = material.GetFloat("_BlowoutScale1");
 			result._BlowoutOffset1 = material.GetFloat("_BlowoutOffset1");
 			result._IsBlowout = material.GetFloat("_IsBlowout");
-			result._ImageAsBase64 = imgtob64(material.GetTexture("_Image"));
+			result._ImageAsBase64 = imgtob64(material.GetTexture("_Image"), true);
 
 			result.Name = material.name;
 

@@ -20,18 +20,6 @@ using KitchenLib.Utils;
 using KitchenLib.Views;
 using Achievement = KitchenLib.Achievements.Achievement;
 
-/*
- * TODO
- * Finish Material Editor UIs
- * - Simple Flat
- * - Simple Flat Player
- * - Simple Transparent
- * - Walls
- * - Add intensity to Fairy Light, Blueprint Light, Indicator Light, Lake Surface, Simple Flat Player, XP Badge
- *
- * Complete and polish Achievements UI
- */
-
 namespace KitchenLib
 {
 	/// <summary>
@@ -126,7 +114,7 @@ namespace KitchenLib
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).FirstOrDefault() ?? throw new MissingAssetBundleException(MOD_ID);
 			preferenceSystemMenuType = GetPreferenceSystemMenuType();
 			SetupMenus();
-			RegisterMenu<NewMaterialUI>();
+			// RegisterMenu<NewMaterialUI>();
 			RegisterMenu<NewNewMaterialUI>();
 			RegisterMenu<DebugMenu>();
 			
