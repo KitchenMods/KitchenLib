@@ -88,4 +88,26 @@ namespace KitchenLib.Patches
 			return false;
 		}
 	}
+	
+	[HarmonyPatch(typeof(LocalViewRouter), "GetPrefab")]
+	public class LocalViewRouter_Patch_AchievementDisplayView
+	{
+		private static GameObject prefab;
+		static bool Prefix(ViewType view_type, ref GameObject __result)
+		{
+			if (view_type != (ViewType)VariousUtils.GetID("KitchenLib.Views.DisplayView")) return true;
+			
+			if (prefab == null)
+			{
+				prefab = Main.bundle.LoadAsset<GameObject>("SteamNotification");
+				AchievementDisplay view = prefab.AddComponent<AchievementDisplay>();
+				view.animator = prefab.GetComponent<Animator>();
+				view.Title = prefab.GetChild("SteamNotification/Title").GetComponent<TextMeshPro>();
+				view.Description = prefab.GetChild("SteamNotification/Description").GetComponent<TextMeshPro>();
+			}
+			
+			__result = prefab;
+			return false;
+		}
+	}
 }

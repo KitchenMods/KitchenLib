@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace KitchenLib.Views
 {
-	public class AchievementTicketView : UpdatableObjectView<AchievementTicketView.ViewData>
+	public class AchievementDisplay : UpdatableObjectView<AchievementDisplay.ViewData>
 	{
 		public class UpdateView : ViewSystemBase, IModSystem
 		{
@@ -67,7 +67,6 @@ namespace KitchenLib.Views
 		public Animator animator;
 		public TextMeshPro Title;
 		public TextMeshPro Description;
-		private static int TriggerAnimation = Animator.StringToHash("TriggerAnimation");
 		
 		private readonly List<PendingNotification> pendingNotifications = new List<PendingNotification>();
 		
@@ -86,54 +85,26 @@ namespace KitchenLib.Views
 			if (Title == null) return;
 			if (Description == null) return;
 			
-			int state = GetTicketState();
+			if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) return;
+
+			if (pendingNotifications.Count == 0) return;
+			PendingNotification notification = pendingNotifications[0];
+			pendingNotifications.RemoveAt(0);
+				
+			AchievementsManager manager = AchievementsManager.GetManager(notification.modId);
+			if (manager == null) return;
+				
+			Achievement achievement = manager.GetAchievement(notification.achievementKey);
+
+			long unlock = achievement.UnlockDate;
+			long now = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+				
+			if (now - unlock > 20000) return;
 			
-			if (state == 0)
-			{
-				if (pendingNotifications.Count == 0) return;
-				PendingNotification notification = pendingNotifications[0];
-				pendingNotifications.RemoveAt(0);
+			Title.text = achievement.Name;
+			Description.text = achievement.Description;
 				
-				AchievementsManager manager = AchievementsManager.GetManager(notification.modId);
-				if (manager == null) return;
-				
-				Achievement achievement = manager.GetAchievement(notification.achievementKey);
-				if (achievement == null) return;
-
-				long unlock = achievement.UnlockDate;
-				long now = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-				
-				if (now - unlock > 20000) return;
-				
-				Title.text = achievement.Name;
-				Description.text = achievement.Description;
-				
-				animator.SetBool(TriggerAnimation, true);
-			}
-			else if (state == 1)
-			{
-				animator.SetBool(TriggerAnimation, false);
-			}
+			animator.Play("Achievement_Main", 0);
 		}
-
-		private int GetTicketState()
-		{
-			if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !animator.GetBool(TriggerAnimation))
-			{
-				return 0;
-			}
-			if (animator.GetCurrentAnimatorStateInfo(0).IsName("Display") ||  animator.GetBool(TriggerAnimation))
-			{
-				return 1;
-			}
-
-			return -1;
-		}
-	}
-	
-	public struct PendingNotification
-	{
-		public string modId;
-		public string achievementKey;
 	}
 }

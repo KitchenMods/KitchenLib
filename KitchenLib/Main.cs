@@ -126,7 +126,8 @@ namespace KitchenLib
 			achievementsManager.Save();
 
 			ViewUtils.RegisterView("KitchenLib.Views.SyncMods", typeof(SModSync), typeof(SyncMods));
-			ViewUtils.RegisterView("KitchenLib.Views.AchievementTicketView", typeof(SAchievementTicketView.Marker), typeof(AchievementTicketView), ViewMode.Screen, new Vector3(1, 1, 0));
+			// ViewUtils.RegisterView("KitchenLib.Views.AchievementTicketView", typeof(SAchievementDisplayView.Marker), typeof(AchievementTicketView), ViewMode.Screen, new Vector3(1, 1, 0));
+			ViewUtils.RegisterView("KitchenLib.Views.DisplayView", typeof(SAchievementDisplayView.Marker), typeof(AchievementDisplay), ViewMode.Screen, new Vector3(1, 1, 0));
 
 			LogInfo(" __  ___  __  .___________.  ______  __    __   _______ .__   __.  __       __  .______  ");
 			LogInfo("|  |/  / |  | |           | /      ||  |  |  | |   ____||  \\ |  | |  |     |  | |   _  \\ ");
