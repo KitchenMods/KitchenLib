@@ -1,13 +1,11 @@
 ﻿using Kitchen;
 using KitchenLib.Components;
-using KitchenLib.Views;
 using KitchenMods;
 using Unity.Collections;
 using Unity.Entities;
 
 namespace KitchenLib.Systems
 {
-	[UpdateBefore(typeof(ModAchievementDistributionView))]
 	public class RequestAchievementTickets : GameSystemBase, IModSystem
 	{
 		private EntityQuery _notificationManager;
@@ -15,7 +13,7 @@ namespace KitchenLib.Systems
 		protected override void Initialise()
 		{
 			base.Initialise();
-			_notificationManager = GetEntityQuery(typeof(SAchievementDisplayView.Marker));
+			_notificationManager = GetEntityQuery(typeof(SAchievementTicketView.Marker));
 			_notifications = GetEntityQuery(typeof(CRequestAchievementUnlock));
 		}
 
@@ -26,14 +24,14 @@ namespace KitchenLib.Systems
 			if (entities.Length == 0) return;
 			
 			Entity notificationManager = _notificationManager.GetSingletonEntity();
-			DynamicBuffer<SAchievementDisplayView> notifications = EntityManager.GetBuffer<SAchievementDisplayView>(notificationManager);
+			DynamicBuffer<SAchievementTicketView> notifications = EntityManager.GetBuffer<SAchievementTicketView>(notificationManager);
 			
 			
 			foreach (Entity entity in entities)
 			{
 				if (Require(entity, out CRequestAchievementUnlock cRequestAchievementUnlock))
 				{
-					notifications.Add(new SAchievementDisplayView
+					notifications.Add(new SAchievementTicketView
 					{
 						modId = cRequestAchievementUnlock.modId,
 						achivementKey = cRequestAchievementUnlock.achivementKey

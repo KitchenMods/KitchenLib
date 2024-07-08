@@ -14,7 +14,7 @@ namespace KitchenLib.Systems
 		protected override void Initialise()
 		{
 			base.Initialise();
-			_notificationManager = GetEntityQuery(typeof(SAchievementDisplayView.Marker));
+			_notificationManager = GetEntityQuery(typeof(SAchievementTicketView.Marker));
 		}
 
 		protected override void OnUpdate()
@@ -47,8 +47,6 @@ namespace KitchenLib.Systems
 				modId = modid,
 				achivementKey = key
 			});
-			
-			Main.Logger.LogInfo("Manually unlocked achievement: " + key + " from mod: " + modid);
 		}
 	}
 }

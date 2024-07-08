@@ -21,7 +21,7 @@ namespace KitchenLib.Views
 			protected override void Initialise()
 			{
 				base.Initialise();
-				views = GetEntityQuery(new QueryHelper().All(typeof(SAchievementDisplayView.Marker), typeof(CLinkedView)));
+				views = GetEntityQuery(new QueryHelper().All(typeof(SAchievementTicketView.Marker), typeof(CLinkedView)));
 			}
 
 			protected override void OnUpdate()
@@ -31,21 +31,21 @@ namespace KitchenLib.Views
 				{
 					if (Require(entity, out CLinkedView cLinkedView))
 					{
-						if (!HasBuffer<SAchievementDisplayView>(entity))
+						if (!HasBuffer<SAchievementTicketView>(entity))
 						{
-							EntityManager.AddBuffer<SAchievementDisplayView>(entity);
+							EntityManager.AddBuffer<SAchievementTicketView>(entity);
 						}
 
-						DynamicBuffer<SAchievementDisplayView> buffer = GetBuffer<SAchievementDisplayView>(entity);
+						DynamicBuffer<SAchievementTicketView> buffer = GetBuffer<SAchievementTicketView>(entity);
 						
 						if (buffer.Length == 0) continue;
 						
-						SAchievementDisplayView display = buffer[0];
+						SAchievementTicketView ticket = buffer[0];
 						
 						SendUpdate(cLinkedView.Identifier, new ViewData
 						{
-							modId = display.modId,
-							achievementKey = display.achivementKey
+							modId = ticket.modId,
+							achievementKey = ticket.achivementKey
 						});
 						
 						buffer.RemoveAt(0);
