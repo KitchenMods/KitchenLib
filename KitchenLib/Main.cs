@@ -107,6 +107,7 @@ namespace KitchenLib
 			manager.RegisterPreference(new PreferenceInt("cosmeticWidth", 4));
 			manager.RegisterPreference(new PreferenceInt("cosmeticHeight", 2));
 			manager.RegisterPreference(new PreferenceInt("modSyncMethod", 0));
+			manager.RegisterPreference(new PreferenceInt("achievementNotificatonDisplay", 1));
 			manager.Load();
 			manager.Save();
 			
@@ -114,19 +115,30 @@ namespace KitchenLib
 			bundle = mod.GetPacks<AssetBundleModPack>().SelectMany(e => e.AssetBundles).FirstOrDefault() ?? throw new MissingAssetBundleException(MOD_ID);
 			preferenceSystemMenuType = GetPreferenceSystemMenuType();
 			SetupMenus();
-			// RegisterMenu<NewMaterialUI>();
 			RegisterMenu<NewNewMaterialUI>();
 			RegisterMenu<DebugMenu>();
 			
 			achievementsManager = new AchievementsManager(MOD_ID, MOD_NAME);
 			achievementsManager.RegisterAchievement(new Achievement("test", "Super Wow!", "This is a super cool test achivement!", bundle.LoadAsset<Texture2D>("wow")));
-			achievementsManager.RegisterAchievement(new Achievement("test2", "Another Wow", "This is a su2per cool test achivement!", bundle.LoadAsset<Texture2D>("wow"), new List<string>{"test"}));
+			achievementsManager.RegisterAchievement(new Achievement("test2", "Another Wow", "This is a su2per cool test achivement!", bundle.LoadAsset<Texture2D>("vest"), new List<string>{"test"}));
 			achievementsManager.RegisterAchievement(new Achievement("test3", "Triple Wow?", "This is a su3per cool test achivement!", bundle.LoadAsset<Texture2D>("wow"), new List<string>{"test"}));
 			achievementsManager.Load();
 			achievementsManager.Save();
 
 			ViewUtils.RegisterView("KitchenLib.Views.SyncMods", typeof(SModSync), typeof(SyncMods));
-			ViewUtils.RegisterView("KitchenLib.Views.AchievementTicketView", typeof(SAchievementTicketView.Marker), typeof(AchievementTicketView), ViewMode.Screen, new Vector3(1, 1, 0));
+
+			switch (manager.GetPreference<PreferenceInt>("achievementNotificatonDisplay").Value)
+			{
+				case 0:
+					ViewUtils.RegisterView("KitchenLib.Views.AchievementNotification.None", typeof(SAchievementDisplayView.Marker), typeof(AchievementNotification), ViewMode.Screen, new Vector3(1, 1, 0));
+					break;
+				case 1:
+					ViewUtils.RegisterView("KitchenLib.Views.AchievementNotification.Ticket", typeof(SAchievementDisplayView.Marker), typeof(AchievementNotification), ViewMode.Screen, new Vector3(1, 1, 0));
+					break;
+				case 2:
+					ViewUtils.RegisterView("KitchenLib.Views.AchievementNotification.SteamClone", typeof(SAchievementDisplayView.Marker), typeof(AchievementNotification), ViewMode.Screen, new Vector3(1, 1, 0));
+					break;
+			}
 
 			LogInfo(" __  ___  __  .___________.  ______  __    __   _______ .__   __.  __       __  .______  ");
 			LogInfo("|  |/  / |  | |           | /      ||  |  |  | |   ____||  \\ |  | |  |     |  | |   _  \\ ");

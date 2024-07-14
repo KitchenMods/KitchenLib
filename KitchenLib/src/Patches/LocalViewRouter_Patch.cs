@@ -68,20 +68,63 @@ namespace KitchenLib.Patches
 		private static GameObject prefab;
 		static bool Prefix(ViewType view_type, ref GameObject __result)
 		{
-			if (view_type != (ViewType)VariousUtils.GetID("KitchenLib.Views.AchievementTicketView")) return true;
+			if (view_type != (ViewType)VariousUtils.GetID("KitchenLib.Views.AchievementNotification.Ticket")) return true;
 			
 			if (prefab == null)
 			{
 				prefab = Main.bundle.LoadAsset<GameObject>("TestView");
-				AchievementTicketView view = prefab.AddComponent<AchievementTicketView>();
-				view.animator = prefab.GetComponent<Animator>();
+				AchievementNotification view = prefab.AddComponent<AchievementNotification>();
+				view.Animator = prefab.GetComponent<Animator>();
 				view.Title = prefab.GetChild("Ticket Asset").GetChild("Title").GetComponent<TextMeshPro>();
 				view.Description = prefab.GetChild("Ticket Asset").GetChild("Description").GetComponent<TextMeshPro>();
-				
+
 				view.Title.fontStyle = FontStyles.Normal;
 				view.Description.fontStyle = FontStyles.Normal;
 				view.Title.font = GameData.Main.GlobalLocalisation.Fonts[Font.Default];
 				view.Description.font = GameData.Main.GlobalLocalisation.Fonts[Font.Default];
+			}
+			
+			__result = prefab;
+			return false;
+		}
+	}
+	
+	[HarmonyPatch(typeof(LocalViewRouter), "GetPrefab")]
+	public class LocalViewRouter_Patch_AchievementSteamCloneView
+	{
+		private static GameObject prefab;
+		static bool Prefix(ViewType view_type, ref GameObject __result)
+		{
+			if (view_type != (ViewType)VariousUtils.GetID("KitchenLib.Views.AchievementNotification.SteamClone")) return true;
+			
+			if (prefab == null)
+			{
+				prefab = Main.bundle.LoadAsset<GameObject>("Steam Clone");
+				prefab = prefab.AssignMaterialsByNames();
+				AchievementNotification view = prefab.AddComponent<AchievementNotification>();
+				view.Animator = prefab.GetComponent<Animator>();
+				view.Title = prefab.GetChild("Steam Clone/Title").GetComponent<TextMeshPro>();
+				view.Description = prefab.GetChild("Steam Clone/Description").GetComponent<TextMeshPro>();
+				view.Icon = prefab.GetChild("Steam Clone/Icon").GetComponent<Renderer>();
+			}
+			
+			__result = prefab;
+			return false;
+		}
+	}
+	
+	[HarmonyPatch(typeof(LocalViewRouter), "GetPrefab")]
+	public class LocalViewRouter_Patch_AchievementNoneView
+	{
+		private static GameObject prefab;
+		static bool Prefix(ViewType view_type, ref GameObject __result)
+		{
+			if (view_type != (ViewType)VariousUtils.GetID("KitchenLib.Views.AchievementNotification.None")) return true;
+			
+			if (prefab == null)
+			{
+				prefab = new GameObject();
+				AchievementNotification view = prefab.AddComponent<AchievementNotification>();
 			}
 			
 			__result = prefab;

@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace KitchenLib.Views
 {
-	public class AchievementTicketView : UpdatableObjectView<AchievementTicketView.ViewData>
+	public class AchievementNotification : UpdatableObjectView<AchievementNotification.ViewData>
 	{
 		public class UpdateView : ViewSystemBase, IModSystem
 		{
@@ -21,7 +21,7 @@ namespace KitchenLib.Views
 			protected override void Initialise()
 			{
 				base.Initialise();
-				views = GetEntityQuery(new QueryHelper().All(typeof(SAchievementTicketView.Marker), typeof(CLinkedView)));
+				views = GetEntityQuery(new QueryHelper().All(typeof(SAchievementDisplayView.Marker), typeof(CLinkedView)));
 			}
 
 			protected override void OnUpdate()
@@ -31,21 +31,21 @@ namespace KitchenLib.Views
 				{
 					if (Require(entity, out CLinkedView cLinkedView))
 					{
-						if (!HasBuffer<SAchievementTicketView>(entity))
+						if (!HasBuffer<SAchievementDisplayView>(entity))
 						{
-							EntityManager.AddBuffer<SAchievementTicketView>(entity);
+							EntityManager.AddBuffer<SAchievementDisplayView>(entity);
 						}
 
-						DynamicBuffer<SAchievementTicketView> buffer = GetBuffer<SAchievementTicketView>(entity);
+						DynamicBuffer<SAchievementDisplayView> buffer = GetBuffer<SAchievementDisplayView>(entity);
 						
 						if (buffer.Length == 0) continue;
 						
-						SAchievementTicketView ticket = buffer[0];
+						SAchievementDisplayView display = buffer[0];
 						
 						SendUpdate(cLinkedView.Identifier, new ViewData
 						{
-							modId = ticket.modId,
-							achievementKey = ticket.achivementKey
+							modId = display.modId,
+							achievementKey = display.achivementKey
 						});
 						
 						buffer.RemoveAt(0);
@@ -53,6 +53,7 @@ namespace KitchenLib.Views
 				}
 			}
 		}
+		
 		[MessagePackObject(false)]
 		public struct ViewData : IViewData, IViewData.ICheckForChanges<ViewData>
 		{
@@ -63,11 +64,14 @@ namespace KitchenLib.Views
 			[Key(0)] public FixedString32 modId;
 			[Key(0)] public FixedString32 achievementKey;
 		}
-
-		public Animator animator;
+		
+		public Animator Animator;
 		public TextMeshPro Title;
 		public TextMeshPro Description;
-		private static int TriggerAnimation = Animator.StringToHash("TriggerAnimation");
+		public Renderer Icon;
+
+		private static readonly int Image = Shader.PropertyToID("_Image");
+		
 		
 		private readonly List<PendingNotification> pendingNotifications = new List<PendingNotification>();
 		
@@ -79,16 +83,11 @@ namespace KitchenLib.Views
 				achievementKey = data.achievementKey.ToString()
 			});
 		}
-
 		private void Update()
 		{
-			if (animator == null) return;
-			if (Title == null) return;
-			if (Description == null) return;
+			if (Animator == null) return;
 			
-			int state = GetTicketState();
-			
-			if (state == 0)
+			if (Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
 			{
 				if (pendingNotifications.Count == 0) return;
 				PendingNotification notification = pendingNotifications[0];
@@ -104,30 +103,25 @@ namespace KitchenLib.Views
 				long now = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 				
 				if (now - unlock > 20000) return;
-				
-				Title.text = achievement.Name;
-				Description.text = achievement.Description;
-				
-				animator.SetBool(TriggerAnimation, true);
-			}
-			else if (state == 1)
-			{
-				animator.SetBool(TriggerAnimation, false);
-			}
-		}
 
-		private int GetTicketState()
-		{
-			if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !animator.GetBool(TriggerAnimation))
-			{
-				return 0;
-			}
-			if (animator.GetCurrentAnimatorStateInfo(0).IsName("Display") ||  animator.GetBool(TriggerAnimation))
-			{
-				return 1;
-			}
+				if (Title != null)
+				{
+					Title.text = achievement.Name;
+				}
 
-			return -1;
+				if (Description != null)
+				{
+					Description.text = achievement.Description;
+				}
+
+				if (Icon != null)
+				{
+					Icon.material.SetTexture(Image, achievement.Icon);
+				}
+
+				Animator.Play("Idle", 0);
+				Animator.Play("Display", 0);
+			}
 		}
 	}
 	

@@ -13,7 +13,7 @@ namespace KitchenLib.Systems
 		protected override void Initialise()
 		{
 			base.Initialise();
-			_notificationManager = GetEntityQuery(typeof(SAchievementTicketView.Marker));
+			_notificationManager = GetEntityQuery(typeof(SAchievementDisplayView.Marker));
 			_notifications = GetEntityQuery(typeof(CRequestAchievementUnlock));
 		}
 
@@ -24,14 +24,14 @@ namespace KitchenLib.Systems
 			if (entities.Length == 0) return;
 			
 			Entity notificationManager = _notificationManager.GetSingletonEntity();
-			DynamicBuffer<SAchievementTicketView> notifications = EntityManager.GetBuffer<SAchievementTicketView>(notificationManager);
+			DynamicBuffer<SAchievementDisplayView> notifications = EntityManager.GetBuffer<SAchievementDisplayView>(notificationManager);
 			
 			
 			foreach (Entity entity in entities)
 			{
 				if (Require(entity, out CRequestAchievementUnlock cRequestAchievementUnlock))
 				{
-					notifications.Add(new SAchievementTicketView
+					notifications.Add(new SAchievementDisplayView
 					{
 						modId = cRequestAchievementUnlock.modId,
 						achivementKey = cRequestAchievementUnlock.achivementKey

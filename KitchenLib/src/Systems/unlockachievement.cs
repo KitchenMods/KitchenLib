@@ -14,7 +14,7 @@ namespace KitchenLib.Systems
 		protected override void Initialise()
 		{
 			base.Initialise();
-			_notificationManager = GetEntityQuery(typeof(SAchievementTicketView.Marker));
+			_notificationManager = GetEntityQuery(typeof(SAchievementDisplayView.Marker));
 		}
 
 		protected override void OnUpdate()
