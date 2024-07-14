@@ -68,6 +68,11 @@ namespace KitchenLib
 		internal static PreferenceManager manager;
 
 		/// <summary>
+		/// The global preference manager for the mod.
+		/// </summary>
+		internal static PreferenceManager globalManager;
+
+		/// <summary>
 		/// The achievement manager for the mod.
 		/// </summary>
 		internal static AchievementsManager achievementsManager;
@@ -88,6 +93,11 @@ namespace KitchenLib
 		internal static bool debugLogging = false;
 
 		/// <summary>
+		/// Whether or not data should be synced with the Steam Cloud.
+		/// </summary>
+		internal static bool steamCloud = false;
+
+		/// <summary>
 		/// Initializes a new instance of the <see cref="Main"/> class.
 		/// </summary>
 		public Main() : base(MOD_ID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_BETA_VERSION, MOD_COMPATIBLE_VERSIONS, Assembly.GetExecutingAssembly()) { }
@@ -99,6 +109,12 @@ namespace KitchenLib
 		protected override void OnPostActivate(Mod mod)
 		{	
 			Logger = InitLogger();
+			
+			globalManager = new PreferenceManager(MOD_ID + ".global", true);
+			globalManager.RegisterPreference(new PreferenceInt("steamCloud", 0));
+			globalManager.Load();
+			globalManager.Save();
+			
 			manager = new PreferenceManager(MOD_ID);
 			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));
 			manager.RegisterPreference(new PreferenceBool("mergeWithPreferenceSystem", false));
@@ -199,6 +215,7 @@ namespace KitchenLib
 			
 			Events.MainMenuView_SetupMenusEvent += (s, args) =>
 			{
+				args.addMenu.Invoke(args.instance, new object[] { typeof(SaveDataDisclosure), new SaveDataDisclosure(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(RevisedMainMenu), new RevisedMainMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(FailedGDOsMenu), new FailedGDOsMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(FailedModsMenu), new FailedModsMenu(args.instance.ButtonContainer, args.module_list) });

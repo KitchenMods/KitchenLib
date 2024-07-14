@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
@@ -7,13 +8,17 @@ namespace KitchenLib.Preferences
 {
     public class PreferenceManager
     {
-        private readonly string PREFERENCE_FOLDER_PATH = Application.persistentDataPath + "/UserData/Preferences";
+        private readonly string OLD_PREFERENCE_FOLDER_PATH = Application.persistentDataPath + "/UserData/Preferences";
+        private readonly string PREFERENCE_FOLDER_PATH = Application.persistentDataPath + "/ModData/KitchenLib/Preferences";
         private string preferenceFilePath = "";
         private string fileType = ".json";
+        private bool isGlobal = false;
 
         private readonly string modId;
         private readonly Dictionary<(string, string), PreferenceBase> preferences = new();
         private string currentProfile = "";
+        
+        internal static readonly List<PreferenceManager> Managers = new List<PreferenceManager>();
 
         /// <summary>
         /// Create a preference manager attached to the given mod ID.
@@ -21,17 +26,53 @@ namespace KitchenLib.Preferences
         /// <param name="modId">The mod ID.</param>
         public PreferenceManager(string modId)
         {
-            this.modId = modId;
-            Setup();
+	        this.modId = modId;
+	        Setup();
         }
-
-        internal void Setup(bool isForcedFileType = false)
+        
+        internal PreferenceManager(string modId, bool isGlobal)
         {
-	        if (!Directory.Exists($"{PREFERENCE_FOLDER_PATH}/{this.modId}"))
-		        Directory.CreateDirectory($"{PREFERENCE_FOLDER_PATH}/{this.modId}");
-
-	        preferenceFilePath = $"{PREFERENCE_FOLDER_PATH}/{this.modId}/{this.modId}{currentProfile}{fileType}";
+	        this.modId = modId;
+	        this.isGlobal = isGlobal;
+	        Setup();
         }
+
+        internal void Setup()
+        {
+	        CheckForOldPreferences();
+	        
+	        if (!Directory.Exists($"{PREFERENCE_FOLDER_PATH}/{modId}"))
+		        Directory.CreateDirectory($"{PREFERENCE_FOLDER_PATH}/{modId}");
+
+	        if (!isGlobal && Main.globalManager != null && Main.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 2)
+		        fileType = ".plateupsave";
+	        
+	        preferenceFilePath = $"{PREFERENCE_FOLDER_PATH}/{modId}/{modId}{currentProfile}{fileType}";
+	        Managers.Add(this);
+        }
+        
+        private void CheckForOldPreferences()
+		{
+	        if (Directory.Exists(OLD_PREFERENCE_FOLDER_PATH))
+	        {
+		        Directory.Move(OLD_PREFERENCE_FOLDER_PATH, PREFERENCE_FOLDER_PATH);
+	        }
+		}
+        
+        internal void ChangeFileType(string newFileType)
+        {
+	        if (isGlobal) return;
+	        
+	        fileType = newFileType;
+	        
+	        string oldPath = preferenceFilePath;
+	        preferenceFilePath = $"{PREFERENCE_FOLDER_PATH}/{modId}/{modId}{currentProfile}{fileType}";
+	        
+	        if (File.Exists(oldPath) && !File.Exists(preferenceFilePath))
+		        File.Copy(oldPath, preferenceFilePath, true);
+
+	        Load();
+		}
         
         /// <summary>
         /// Set the current mod-level preference profile of the preference manager.

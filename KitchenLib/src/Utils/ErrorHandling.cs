@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using KitchenLib.Customs;
+using KitchenLib.Preferences;
 using KitchenLib.UI;
 using KitchenLib.UI.PlateUp;
 using KitchenMods;
@@ -32,6 +33,9 @@ namespace KitchenLib.Utils
 				if (ErrorHandling.FailedMods.Count > 0)
 					return typeof(FailedModsMenu);
 				
+				if (Main.globalManager != null && Main.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 0)
+					return typeof(SaveDataDisclosure);
+				
 				return typeof(RevisedMainMenu);
 			}
 			
@@ -39,6 +43,9 @@ namespace KitchenLib.Utils
 			{
 				if (ErrorHandling.FailedMods.Count > 0)
 					return typeof(FailedModsMenu);
+				
+				if (Main.globalManager != null && Main.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 0)
+					return typeof(SaveDataDisclosure);
 				
 				return typeof(RevisedMainMenu);
 			}

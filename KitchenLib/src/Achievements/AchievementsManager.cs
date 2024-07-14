@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Kitchen;
 using Kitchen.Modules;
+using KitchenLib.Preferences;
 using KitchenLib.Utils;
 using Newtonsoft.Json;
 using Shapes;
@@ -32,23 +33,31 @@ namespace KitchenLib.Achievements
 			Setup();
 		}
 		
-		internal AchievementsManager(string modId, string displayName, string fileType)
-		{
-			this.modId = modId;
-			this.fileType = fileType;
-			this.DisplayName = displayName;
-			Setup();
-		}
-		
 		public static AchievementsManager GetManager(string modId)
 		{
 			return Managers.FirstOrDefault(manager => manager.modId == modId);
+		}
+        
+		internal void ChangeFileType(string newFileType)
+		{
+			fileType = newFileType;
+	        
+			string oldPath = achievementFilePath;
+			achievementFilePath = $"{ACHIEVEMENT_FOLDER_PATH}/{modId}{fileType}";
+	        
+			if (File.Exists(oldPath) && !File.Exists(achievementFilePath))
+				File.Copy(oldPath, achievementFilePath, true);
+
+			Load();
 		}
 		
 		private void Setup()
 		{
 			if (!Directory.Exists($"{ACHIEVEMENT_FOLDER_PATH}"))
 				Directory.CreateDirectory($"{ACHIEVEMENT_FOLDER_PATH}");
+
+			if (Main.globalManager != null && Main.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 2)
+				fileType = ".plateupsave";
 
 			achievementFilePath = $"{ACHIEVEMENT_FOLDER_PATH}/{this.modId}{fileType}";
 			
