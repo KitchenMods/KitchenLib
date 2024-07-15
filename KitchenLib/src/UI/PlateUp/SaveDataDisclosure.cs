@@ -64,7 +64,7 @@ namespace KitchenLib.UI.PlateUp
 			
 			AddButton("Data Information", delegate (int i)
 			{
-				RequestSubMenu(typeof(RevisedMainMenu));
+				System.Diagnostics.Process.Start("https://steamcommunity.com/workshop/filedetails/discussion/2932799348/6982351509016201267/");
 			}, 0, 1f, 0.2f);
 		}
 	}
