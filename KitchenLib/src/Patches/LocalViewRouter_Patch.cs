@@ -72,11 +72,11 @@ namespace KitchenLib.Patches
 			
 			if (prefab == null)
 			{
-				prefab = Main.bundle.LoadAsset<GameObject>("TestView");
+				prefab = Main.bundle.LoadAsset<GameObject>("Ticket").AssignMaterialsByNames();
 				AchievementNotification view = prefab.AddComponent<AchievementNotification>();
 				view.Animator = prefab.GetComponent<Animator>();
-				view.Title = prefab.GetChild("Ticket Asset").GetChild("Title").GetComponent<TextMeshPro>();
-				view.Description = prefab.GetChild("Ticket Asset").GetChild("Description").GetComponent<TextMeshPro>();
+				view.Title = prefab.GetChild("Ticket/Title").GetComponent<TextMeshPro>();
+				view.Description = prefab.GetChild("Ticket/Description").GetComponent<TextMeshPro>();
 
 				view.Title.fontStyle = FontStyles.Normal;
 				view.Description.fontStyle = FontStyles.Normal;

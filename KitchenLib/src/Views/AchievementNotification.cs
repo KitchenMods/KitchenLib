@@ -85,7 +85,7 @@ namespace KitchenLib.Views
 		}
 		private void Update()
 		{
-			if (Animator == null) return;
+			if (Animator== null) return;
 			
 			if (Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
 			{

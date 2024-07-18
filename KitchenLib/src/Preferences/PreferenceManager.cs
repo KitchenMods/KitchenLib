@@ -53,7 +53,7 @@ namespace KitchenLib.Preferences
         
         private void CheckForOldPreferences()
 		{
-	        if (Directory.Exists(OLD_PREFERENCE_FOLDER_PATH))
+	        if (Directory.Exists(OLD_PREFERENCE_FOLDER_PATH) && !Directory.Exists(PREFERENCE_FOLDER_PATH))
 	        {
 		        Directory.Move(OLD_PREFERENCE_FOLDER_PATH, PREFERENCE_FOLDER_PATH);
 	        }
