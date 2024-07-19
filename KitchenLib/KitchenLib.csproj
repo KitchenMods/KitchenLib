@@ -74,10 +74,11 @@
 	</ItemGroup>
 
 	<Target Name="Merge" AfterTargets="Build">
-		<Message Text="'$(ILRepack)' /lib:'$(AssemblyReferencePath)' /lib:'$(BuildDir)' /out:'$(BuildDir)KitchenLib-Workshop.dll" Importance="high"/>
+		<Message Text="BUILDDIR : '$(BuildDir)'" Importance="high"/>
+		<!--Message Text="'$(ILRepack)' /lib:'$(AssemblyReferencePath)' /lib:'$(BuildDir)' /out:'$(BuildDir)KitchenLib-Workshop.dll" Importance="high"/>
 		<ItemGroup>
 			<_MergeCommands Include="$(ILRepack) /lib:&quot;$(AssemblyReferencePath)&quot; /lib:&quot;$(BuildDir)&quot; /out:&quot;$(BuildDir)KitchenLib-Workshop.dll&quot; &quot;$(BuildDir)KitchenLib-Workshop.dll&quot; &quot;%(MergeBinaries.Identity)&quot;" />
 		</ItemGroup>
-		<Exec Command="%(_MergeCommands.Identity)" />
+		<Exec Command="%(_MergeCommands.Identity)" /-->
 	</Target>
 </Project>
