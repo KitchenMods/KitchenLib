@@ -74,10 +74,27 @@
 	</ItemGroup>
 
 	<Target Name="Merge" AfterTargets="Build">
-		<Message Text="MYPAYH = '$(ProjectDir)$(OutputPath)'" Importance="high"/>
-		<!--ItemGroup>
-			<_MergeCommands Include="$(ILRepack) /lib:&quot;$(AssemblyReferencePath)&quot; /lib:&quot;$(BuildDir)&quot; /out:&quot;$(BuildDir)KitchenLib-Workshop.dll&quot; &quot;$(BuildDir)KitchenLib-Workshop.dll&quot; &quot;%(MergeBinaries.Identity)&quot;" />
+		<!-- Debugging: Print the values of ProjectDir and OutputPath -->
+		<Message Text="ProjectDir: $(ProjectDir)" Importance="high" />
+		<Message Text="OutputPath: $(OutputPath)" Importance="high" />
+
+		<!-- Combine ProjectDir and OutputPath properly -->
+		<PropertyGroup>
+			<BuildOutputPath>$(ProjectDir)$(OutputPath)</BuildOutputPath>
+		</PropertyGroup>
+
+		<!-- Debugging: Print the combined path -->
+		<Message Text="BuildOutputPath: $(BuildOutputPath)" Importance="high" />
+
+		<ItemGroup>
+			<!-- Ensure the command is properly quoted -->
+			<_MergeCommands Include="$(ILRepack) /lib:&quot;$(AssemblyReferencePath)&quot; /lib:&quot;$(BuildOutputPath)&quot; /out:&quot;$(BuildOutputPath)KitchenLib-Workshop.dll&quot; &quot;$(BuildOutputPath)KitchenLib-Workshop.dll&quot; &quot;%(MergeBinaries.Identity)&quot;" />
 		</ItemGroup>
-		<Exec Command="%(_MergeCommands.Identity)" /-->
+
+		<!-- Debugging: Print the full command -->
+		<Message Text="Merge Command: %(_MergeCommands.Identity)" Importance="high" />
+
+		<!-- Execute the command -->
+		<Exec Command="%(_MergeCommands.Identity)" />
 	</Target>
 </Project>
