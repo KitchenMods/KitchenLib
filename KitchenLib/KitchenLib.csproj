@@ -73,7 +73,7 @@
 		<MergeBinaries Include="$(BuildDir)Microsoft.Extensions.Primitives.dll" />
 	</ItemGroup>
 
-	<Target Name="Merge" AfterTargets="Build" Condition="$(EnableModDeployLocal) == 'true'">
+	<Target Name="Merge" AfterTargets="Build">
 		<Message Text="'$(ILRepack)' /lib:'$(AssemblyReferencePath)' /lib:'$(BuildDir)' /out:'$(BuildDir)KitchenLib-Workshop.dll" Importance="high"/>
 		<ItemGroup>
 			<_MergeCommands Include="$(ILRepack) /lib:&quot;$(AssemblyReferencePath)&quot; /lib:&quot;$(BuildDir)&quot; /out:&quot;$(BuildDir)KitchenLib-Workshop.dll&quot; &quot;$(BuildDir)KitchenLib-Workshop.dll&quot; &quot;%(MergeBinaries.Identity)&quot;" />
