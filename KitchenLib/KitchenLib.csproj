@@ -74,7 +74,7 @@
 	</ItemGroup>
 
 	<Target Name="Merge" AfterTargets="Build">
-		<Message Text="MYPAYH = '$(ProjectDir)$(OutoutPath)'" Importance="high"/>
+		<Message Text="MYPAYH = '$(ProjectDir)$(OutputPath)'" Importance="high"/>
 		<!--ItemGroup>
 			<_MergeCommands Include="$(ILRepack) /lib:&quot;$(AssemblyReferencePath)&quot; /lib:&quot;$(BuildDir)&quot; /out:&quot;$(BuildDir)KitchenLib-Workshop.dll&quot; &quot;$(BuildDir)KitchenLib-Workshop.dll&quot; &quot;%(MergeBinaries.Identity)&quot;" />
 		</ItemGroup>
