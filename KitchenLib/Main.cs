@@ -50,7 +50,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string MOD_BETA_VERSION = "10";
+		internal const string MOD_BETA_VERSION = "11";
 
 		/// <summary>
 		/// The compatible versions of the mod.
@@ -66,11 +66,6 @@ namespace KitchenLib
 		/// The preference manager for the mod.
 		/// </summary>
 		internal static PreferenceManager manager;
-
-		/// <summary>
-		/// The global preference manager for the mod.
-		/// </summary>
-		internal static PreferenceManager globalManager;
 
 		/// <summary>
 		/// The achievement manager for the mod.
@@ -109,11 +104,6 @@ namespace KitchenLib
 		protected override void OnPostActivate(Mod mod)
 		{	
 			Logger = InitLogger();
-			
-			globalManager = new PreferenceManager(MOD_ID + ".global", true);
-			globalManager.RegisterPreference(new PreferenceInt("steamCloud", 0));
-			globalManager.Load();
-			globalManager.Save();
 			
 			manager = new PreferenceManager(MOD_ID);
 			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));

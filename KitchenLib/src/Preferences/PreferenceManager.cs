@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 using System.IO;
+using KitchenLib.Utils;
 
 namespace KitchenLib.Preferences
 {
@@ -19,6 +20,12 @@ namespace KitchenLib.Preferences
         private string currentProfile = "";
         
         internal static readonly List<PreferenceManager> Managers = new List<PreferenceManager>();
+        
+        
+        /// <summary>
+        /// The global preference manager for the mod.
+        /// </summary>
+        internal static PreferenceManager globalManager;
 
         /// <summary>
         /// Create a preference manager attached to the given mod ID.
@@ -44,8 +51,18 @@ namespace KitchenLib.Preferences
 	        if (!Directory.Exists($"{PREFERENCE_FOLDER_PATH}/{modId}"))
 		        Directory.CreateDirectory($"{PREFERENCE_FOLDER_PATH}/{modId}");
 
-	        if (!isGlobal && Main.globalManager != null && Main.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 2)
+	        if (!isGlobal && globalManager == null)
+	        {
+		        globalManager = new PreferenceManager(Main.MOD_ID + ".global", true);
+		        globalManager.RegisterPreference(new PreferenceInt("steamCloud", 0));
+		        globalManager.Load();
+		        globalManager.Save();
+	        }
+	        
+	        if (!isGlobal && globalManager != null && globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 2)
+	        {
 		        fileType = ".plateupsave";
+	        }
 	        
 	        preferenceFilePath = $"{PREFERENCE_FOLDER_PATH}/{modId}/{modId}{currentProfile}{fileType}";
 	        Managers.Add(this);
@@ -55,11 +72,12 @@ namespace KitchenLib.Preferences
 		{
 	        if (Directory.Exists(OLD_PREFERENCE_FOLDER_PATH) && !Directory.Exists(PREFERENCE_FOLDER_PATH))
 	        {
-		        Directory.Move(OLD_PREFERENCE_FOLDER_PATH, PREFERENCE_FOLDER_PATH);
+		        VariousUtils.CopyDirectory(OLD_PREFERENCE_FOLDER_PATH, PREFERENCE_FOLDER_PATH);
+		        Directory.Delete(OLD_PREFERENCE_FOLDER_PATH, true);
 	        }
 		}
-        
-        internal void ChangeFileType(string newFileType)
+
+		internal void ChangeFileType(string newFileType)
         {
 	        if (isGlobal) return;
 	        

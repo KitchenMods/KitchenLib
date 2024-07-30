@@ -56,7 +56,7 @@ namespace KitchenLib.Achievements
 			if (!Directory.Exists($"{ACHIEVEMENT_FOLDER_PATH}"))
 				Directory.CreateDirectory($"{ACHIEVEMENT_FOLDER_PATH}");
 
-			if (Main.globalManager != null && Main.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 2)
+			if (PreferenceManager.globalManager != null && PreferenceManager.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 2)
 				fileType = ".plateupsave";
 
 			achievementFilePath = $"{ACHIEVEMENT_FOLDER_PATH}/{this.modId}{fileType}";

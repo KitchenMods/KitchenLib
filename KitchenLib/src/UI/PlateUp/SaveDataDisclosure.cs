@@ -26,8 +26,8 @@ namespace KitchenLib.UI.PlateUp
 			
 			AddButton("Ok - Lets Cook!", delegate (int i)
 			{
-				Main.globalManager.GetPreference<PreferenceInt>("steamCloud").Set(2);
-				Main.globalManager.Save();
+				PreferenceManager.globalManager.GetPreference<PreferenceInt>("steamCloud").Set(2);
+				PreferenceManager.globalManager.Save();
 				
 				foreach (PreferenceManager manager in PreferenceManager.Managers)
 				{
@@ -46,8 +46,8 @@ namespace KitchenLib.UI.PlateUp
 			
 			AddButton("No Thanks", delegate (int i)
 			{
-				Main.globalManager.GetPreference<PreferenceInt>("steamCloud").Set(1);
-				Main.globalManager.Save();
+				PreferenceManager.globalManager.GetPreference<PreferenceInt>("steamCloud").Set(1);
+				PreferenceManager.globalManager.Save();
 				
 				foreach (PreferenceManager manager in PreferenceManager.Managers)
 				{
