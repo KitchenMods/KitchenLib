@@ -9,7 +9,6 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using KitchenLib.UI.PlateUp;
-using KitchenLib.Logging;
 using KitchenLib.Logging.Exceptions;
 using System.Runtime.CompilerServices;
 using System;
@@ -19,6 +18,7 @@ using KitchenLib.Components;
 using KitchenLib.Utils;
 using KitchenLib.Views;
 using Achievement = KitchenLib.Achievements.Achievement;
+using KitchenLogger = KitchenLib.Logging.KitchenLogger;
 
 namespace KitchenLib
 {
@@ -206,7 +206,7 @@ namespace KitchenLib
 			Events.MainMenuView_SetupMenusEvent += (s, args) =>
 			{
 				args.addMenu.Invoke(args.instance, new object[] { typeof(SaveDataDisclosure), new SaveDataDisclosure(args.instance.ButtonContainer, args.module_list) });
-				args.addMenu.Invoke(args.instance, new object[] { typeof(RevisedMainMenu), new RevisedMainMenu(args.instance.ButtonContainer, args.module_list) });
+				//args.addMenu.Invoke(args.instance, new object[] { typeof(RevisedMainMenu), new RevisedMainMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(FailedGDOsMenu), new FailedGDOsMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(FailedModsMenu), new FailedModsMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<MainMenuAction>), new ModsMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });

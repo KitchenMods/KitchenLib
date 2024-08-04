@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace KitchenLib.UI.PlateUp
 {
-	public class SaveDataDisclosure : KLMenu<MainMenuAction>
+	public class SaveDataDisclosure : KLMenu<MenuAction>
 	{
 		public SaveDataDisclosure(Transform container, ModuleList module_list) : base(container, module_list)
 		{
@@ -41,7 +41,7 @@ namespace KitchenLib.UI.PlateUp
 					manager.ChangeFileType(".plateupsave");
 				}
 				
-				RequestSubMenu(typeof(RevisedMainMenu));
+				RequestSubMenu(typeof(StartMainMenu));
 			}, 0, 1f, 0.2f);
 			
 			AddButton("No Thanks", delegate (int i)
@@ -59,7 +59,7 @@ namespace KitchenLib.UI.PlateUp
 					manager.ChangeFileType(".json");
 				}
 				
-				RequestSubMenu(typeof(RevisedMainMenu));
+				RequestSubMenu(typeof(StartMainMenu));
 			}, 0, 1f, 0.2f);
 			
 			AddButton("Data Information", delegate (int i)
