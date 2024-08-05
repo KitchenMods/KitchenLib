@@ -50,12 +50,12 @@ namespace KitchenLib
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string MOD_BETA_VERSION = "11";
+		internal const string MOD_BETA_VERSION = "12";
 
 		/// <summary>
 		/// The compatible versions of the mod.
 		/// </summary>
-		internal const string MOD_COMPATIBLE_VERSIONS = ">=1.1.9";
+		internal const string MOD_COMPATIBLE_VERSIONS = ">=1.2.0";
 
 		/// <summary>
 		/// The asset bundle for the mod.
@@ -200,8 +200,8 @@ namespace KitchenLib
 		/// </summary>
 		private void SetupMenus()
 		{
-			ModsPreferencesMenu<PauseMenuAction>.RegisterMenu("KitchenLib", typeof(PreferenceMenu<PauseMenuAction>), typeof(PauseMenuAction));
-			ModsPreferencesMenu<MainMenuAction>.RegisterMenu("KitchenLib", typeof(PreferenceMenu<MainMenuAction>), typeof(MainMenuAction));
+			ModsPreferencesMenu<MenuAction>.RegisterMenu("KitchenLib", typeof(PreferenceMenu<MenuAction>), typeof(MenuAction));
+			ModsPreferencesMenu<MenuAction>.RegisterMenu("KitchenLib", typeof(PreferenceMenu<MenuAction>), typeof(MenuAction));
 			
 			Events.MainMenuView_SetupMenusEvent += (s, args) =>
 			{
@@ -209,40 +209,32 @@ namespace KitchenLib
 				//args.addMenu.Invoke(args.instance, new object[] { typeof(RevisedMainMenu), new RevisedMainMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(FailedGDOsMenu), new FailedGDOsMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(FailedModsMenu), new FailedModsMenu(args.instance.ButtonContainer, args.module_list) });
-				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<MainMenuAction>), new ModsMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
-				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<MainMenuAction>), new ModsPreferencesMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
-				args.addMenu.Invoke(args.instance, new object[] { typeof(DeveloperOptions<MainMenuAction>), new DeveloperOptions<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
-				args.addMenu.Invoke(args.instance, new object[] { typeof(UserOptions<MainMenuAction>), new UserOptions<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
-				args.addMenu.Invoke(args.instance, new object[] { typeof(ModAchievementsMenu<MainMenuAction>), new ModAchievementsMenu<MainMenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<MenuAction>), new ModsMenu<MenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<MenuAction>), new ModsPreferencesMenu<MenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(PreferenceMenu<MenuAction>), new PreferenceMenu<MenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(DeveloperOptions<MenuAction>), new DeveloperOptions<MenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(UserOptions<MenuAction>), new UserOptions<MenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ModAchievementsMenu<MenuAction>), new ModAchievementsMenu<MenuAction>(args.instance.ButtonContainer, args.module_list) });
 			};
 
 			//Setting Up For Pause Menu
 			Events.MainMenu_SetupEvent += (s, args) =>
 			{
-				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mods", typeof(ModsMenu<PauseMenuAction>), false });
+				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mods", typeof(ModsMenu<MenuAction>), false });
 				if (!manager.GetPreference<PreferenceBool>("mergeWithPreferenceSystem").Value && preferenceSystemMenuType != null || preferenceSystemMenuType == null)
-					args.addSubmenuButton.Invoke(args.instance, new object[] { "Mod Preferences", typeof(ModsPreferencesMenu<PauseMenuAction>), false });
-				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mod Achievements", typeof(ModAchievementsMenu<PauseMenuAction>), false });
+					args.addSubmenuButton.Invoke(args.instance, new object[] { "Mod Preferences", typeof(ModsPreferencesMenu<MenuAction>), false });
+				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mod Achievements", typeof(ModAchievementsMenu<MenuAction>), false });
 			};
 			Events.PlayerPauseView_SetupMenusEvent += (s, args) =>
 			{
-				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<PauseMenuAction>), new ModsMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
-				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<PauseMenuAction>), new ModsPreferencesMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<MenuAction>), new ModsMenu<MenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<MenuAction>), new ModsPreferencesMenu<MenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModSyncMenu), new ModSyncMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ConfirmModSync), new ConfirmModSync(args.instance.ButtonContainer, args.module_list) });
-				args.addMenu.Invoke(args.instance, new object[] { typeof(DeveloperOptions<PauseMenuAction>), new DeveloperOptions<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
-				args.addMenu.Invoke(args.instance, new object[] { typeof(UserOptions<PauseMenuAction>), new UserOptions<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
-				args.addMenu.Invoke(args.instance, new object[] { typeof(ModAchievementsMenu<PauseMenuAction>), new ModAchievementsMenu<PauseMenuAction>(args.instance.ButtonContainer, args.module_list) });
-			};
-
-			Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent += (s, args) =>
-			{
-				args.Menus.Add(typeof(PreferenceMenu<PauseMenuAction>), new PreferenceMenu<PauseMenuAction>(args.Container, args.Module_list));
-			};
-
-			Events.PreferenceMenu_MainMenu_CreateSubmenusEvent += (s, args) =>
-			{
-				args.Menus.Add(typeof(PreferenceMenu<MainMenuAction>), new PreferenceMenu<MainMenuAction>(args.Container, args.Module_list));
+				args.addMenu.Invoke(args.instance, new object[] { typeof(DeveloperOptions<MenuAction>), new DeveloperOptions<MenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(UserOptions<MenuAction>), new UserOptions<MenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(ModAchievementsMenu<MenuAction>), new ModAchievementsMenu<MenuAction>(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(PreferenceMenu<MenuAction>), new PreferenceMenu<MenuAction>(args.instance.ButtonContainer, args.module_list) });
 			};
 		}
 		

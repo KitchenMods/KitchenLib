@@ -31,12 +31,12 @@ namespace KitchenLib.UI
 			MethodInfo AddSubmenuButton = ReflectionUtils.GetMethod<StartMainMenu>("AddSubmenuButton");
 			
 			New.Invoke(instance, [true]);
-			AddSubmenuButton.Invoke(instance, ["Mods", typeof(ModsMenu<MainMenuAction>), false]);
+			AddSubmenuButton.Invoke(instance, ["Mods", typeof(ModsMenu<MenuAction>), false]);
 			if (!Main.manager.GetPreference<PreferenceBool>("mergeWithPreferenceSystem").Value && Main.preferenceSystemMenuType != null || Main.preferenceSystemMenuType == null)
 			{
 				AddSubmenuButton.Invoke(instance, ["Mod Preferences", typeof(ModsPreferencesMenu<MenuAction>), false]);
 			}
-			AddSubmenuButton.Invoke(instance, ["Mod Achievements", typeof(ModAchievementsMenu<MainMenuAction>), false]);
+			AddSubmenuButton.Invoke(instance, ["Mod Achievements", typeof(ModAchievementsMenu<MenuAction>), false]);
 		}
 	}
 }

@@ -146,7 +146,14 @@ namespace KitchenLib
 				{
 					if (MenuPages[menu] == pageNumber)
 					{
-						AddSubmenuButton(RegisteredMenus[menu], menu.Item1, false);
+						AddSubmenuButton(RegisteredMenus[menu], menu.Item1);
+					}
+				}
+				else
+				{
+					if (MenuPages[menu] == pageNumber)
+					{
+						AddButton("<color=red>" + RegisteredMenus[menu], null);
 					}
 				}
 			}
@@ -159,6 +166,7 @@ namespace KitchenLib
 			}, 0, 1f, 0.2f);
 		}
 
+		
 		public override void CreateSubmenus(ref Dictionary<Type, Menu<T>> menus)
 		{
 			if (this.GetType().GetGenericArguments()[0] == typeof(MainMenuAction))
@@ -166,5 +174,6 @@ namespace KitchenLib
 			else if (this.GetType().GetGenericArguments()[0] == typeof(PauseMenuAction))
 				EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent), Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent?.GetInvocationList(), null, new PreferenceMenu_CreateSubmenusArgs<T>(this, menus, this.Container, this.ModuleList));
 		}
+		
 	}
 }
