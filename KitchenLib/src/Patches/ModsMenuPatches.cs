@@ -28,6 +28,12 @@ namespace KitchenLib.Patches
 			return matcher.InstructionEnumeration();
 		}
 
+		static void Postfix(MainMenuView __instance)
+		{
+			MethodInfo _SetMenu = ReflectionUtils.GetMethod<MainMenuView>("SetMenu");
+			_SetMenu.Invoke(__instance, new object[] {ErrorHandling.GetNextMenu(null), false});
+		}
+
 		private static void CallSetupMenusEvent(MainMenuView instance)
 		{
 			FieldInfo moduleList = ReflectionUtils.GetField<LocalMenuView<MenuAction>>("ModuleList");
