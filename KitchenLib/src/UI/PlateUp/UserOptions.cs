@@ -19,13 +19,6 @@ namespace KitchenLib.UI.PlateUp
 
 		public override void Setup(int player_id)
 		{
-			AddLabel("Changing Main Menu");
-			AddSelect(scrollingMenu);
-			scrollingMenu.OnChanged += delegate (object _, bool result)
-			{
-				Main.manager.GetPreference<PreferenceBool>("enableChangingMenu").Set(result);
-			};
-
 			New<SpacerElement>(true);
 			AddLabel("Merge with Preference System (Requires Restart)");
 			AddSelect(mergeWithPreferenceSystem);

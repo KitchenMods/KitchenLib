@@ -106,7 +106,8 @@ namespace KitchenLib
 			Logger = InitLogger();
 			
 			manager = new PreferenceManager(MOD_ID);
-			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", true));
+			manager.RegisterPreference(new PreferenceBool("enableChangingMenu", false));
+			manager.RegisterPreference(new PreferenceBool("enableChangingMenu0160", false));
 			manager.RegisterPreference(new PreferenceBool("mergeWithPreferenceSystem", false));
 			manager.RegisterPreference(new PreferenceBool("forceLocalDishes", true));
 			manager.RegisterPreference(new PreferenceBool("isDebug", false));
