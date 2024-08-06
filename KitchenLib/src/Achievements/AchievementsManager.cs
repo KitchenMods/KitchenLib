@@ -6,6 +6,7 @@ using System.Reflection;
 using Kitchen;
 using Kitchen.Modules;
 using KitchenLib.Preferences;
+using KitchenLib.Systems;
 using KitchenLib.Utils;
 using Newtonsoft.Json;
 using Shapes;
@@ -29,46 +30,27 @@ namespace KitchenLib.Achievements
 		public AchievementsManager(string modId, string displayName)
 		{
 			this.modId = modId;
-			this.DisplayName = displayName;
+			DisplayName = displayName;
 			Setup();
 		}
+		
+		#region api
 		
 		public static AchievementsManager GetManager(string modId)
 		{
 			return Managers.FirstOrDefault(manager => manager.modId == modId);
-		}
-        
-		internal void ChangeFileType(string newFileType)
-		{
-			fileType = newFileType;
-	        
-			string oldPath = achievementFilePath;
-			achievementFilePath = $"{ACHIEVEMENT_FOLDER_PATH}/{modId}{fileType}";
-	        
-			if (File.Exists(oldPath) && !File.Exists(achievementFilePath))
-				File.Copy(oldPath, achievementFilePath, true);
-
-			Load();
-		}
-		
-		private void Setup()
-		{
-			if (!Directory.Exists($"{ACHIEVEMENT_FOLDER_PATH}"))
-				Directory.CreateDirectory($"{ACHIEVEMENT_FOLDER_PATH}");
-
-			if (PreferenceManager.globalManager != null && PreferenceManager.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 2)
-				fileType = ".plateupsave";
-
-			achievementFilePath = $"{ACHIEVEMENT_FOLDER_PATH}/{this.modId}{fileType}";
-			
-			Managers.Add(this);
 		}
 		
 		public List<Achievement> GetAchievements()
 		{
 			return achievements.Values.ToList();
 		}
-		
+
+		public void UnlockAchievement(string key)
+		{
+			AchievementUnlockSystem.Instance.UnlockAchievement(modId, key);
+		}
+
 		public Achievement GetAchievement(string key)
 		{
 			if (achievements.ContainsKey(key))
@@ -79,32 +61,6 @@ namespace KitchenLib.Achievements
 		public bool IsUnlocked(string key)
 		{
 			return achievements.ContainsKey(key) && achievements[key].IsUnlocked();
-		}
-		
-		internal bool CompleteAchievement(string key)
-		{
-			if (achievements.ContainsKey(key) && achievements[key].CanComplete())
-			{
-				achievements[key].HasCompleted = true;
-				achievements[key].UnlockDate = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-				achievements[key].UnlockDateString = DateTimeOffset.FromUnixTimeMilliseconds(achievements[key].UnlockDate + (long)TimeZoneInfo.Local.BaseUtcOffset.TotalMilliseconds).DateTime.ToString("dd/MM/yyyy");
-				Save();
-				return true;
-			}
-			return false;
-		}
-		
-		internal bool ReverseAchievement(string key)
-		{
-			if (achievements.ContainsKey(key))
-			{
-				achievements[key].HasCompleted = false;
-				achievements[key].UnlockDate = 0;
-				achievements[key].UnlockDateString = "";
-				Save();
-				return true;
-			}
-			return false;
 		}
 		
 		public bool TryGetAchievement(string key, out Achievement achievement)
@@ -177,6 +133,60 @@ namespace KitchenLib.Achievements
 			achievement.manager = this;
 			achievements.Add(achievement.Key, achievement);
 			return achievement;
+		}
+		
+		#endregion
+        
+		internal void ChangeFileType(string newFileType)
+		{
+			fileType = newFileType;
+	        
+			string oldPath = achievementFilePath;
+			achievementFilePath = $"{ACHIEVEMENT_FOLDER_PATH}/{modId}{fileType}";
+	        
+			if (File.Exists(oldPath) && !File.Exists(achievementFilePath))
+				File.Copy(oldPath, achievementFilePath, true);
+
+			Load();
+		}
+		
+		private void Setup()
+		{
+			if (!Directory.Exists($"{ACHIEVEMENT_FOLDER_PATH}"))
+				Directory.CreateDirectory($"{ACHIEVEMENT_FOLDER_PATH}");
+
+			if (PreferenceManager.globalManager != null && PreferenceManager.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 2)
+				fileType = ".plateupsave";
+
+			achievementFilePath = $"{ACHIEVEMENT_FOLDER_PATH}/{this.modId}{fileType}";
+			
+			Managers.Add(this);
+		}
+		
+		internal bool CompleteAchievement(string key)
+		{
+			if (achievements.ContainsKey(key) && achievements[key].CanComplete())
+			{
+				achievements[key].HasCompleted = true;
+				achievements[key].UnlockDate = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+				achievements[key].UnlockDateString = DateTimeOffset.FromUnixTimeMilliseconds(achievements[key].UnlockDate + (long)TimeZoneInfo.Local.BaseUtcOffset.TotalMilliseconds).DateTime.ToString("dd/MM/yyyy");
+				Save();
+				return true;
+			}
+			return false;
+		}
+		
+		internal bool ReverseAchievement(string key)
+		{
+			if (achievements.ContainsKey(key))
+			{
+				achievements[key].HasCompleted = false;
+				achievements[key].UnlockDate = 0;
+				achievements[key].UnlockDateString = "";
+				Save();
+				return true;
+			}
+			return false;
 		}
 
 		internal static void SetupMenuElement()
