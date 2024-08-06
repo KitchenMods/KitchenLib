@@ -77,6 +77,16 @@ namespace KitchenLib.Preferences
 	        }
 		}
 
+		public void Reset()
+		{
+			if (isGlobal) return;
+			foreach (var preference in preferences)
+			{
+				preference.Value.Reset();
+			}
+			Save();
+		}
+
 		internal void ChangeFileType(string newFileType)
         {
 	        if (isGlobal) return;

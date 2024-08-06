@@ -133,6 +133,18 @@ namespace KitchenLib
 			
 			New<SpacerElement>(true);
 
+			if (Main.debugLogging)
+			{
+				AddButton("DEBUG Reset Preferences", delegate(int i)
+				{
+					foreach (PreferenceManager manager in PreferenceManager.Managers)
+					{
+						manager.Reset();
+					}
+					RequestPreviousMenu();
+				}, 0, 1f, 0.2f);
+			}
+
 			if (Pages[GetType().GetGenericArguments()[0]].Count >= 2)
 			{
 				AddSelect<int>(PageSelector);

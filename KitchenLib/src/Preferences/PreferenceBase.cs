@@ -15,14 +15,18 @@ namespace KitchenLib.Preferences
 		public abstract string Serialize();
 
 		public abstract void Deserialize(string json);
+
+		public abstract void Reset();
 	}
 
 	public abstract class PreferenceBase<T> : PreferenceBase
 	{
 		public T Value { get; protected set; }
+		private T DefaultValue;
 
 		public PreferenceBase(string key, T defaultValue = default) : base(key)
 		{
+			DefaultValue = defaultValue;
 			Value = defaultValue;
 		}
 
@@ -34,6 +38,11 @@ namespace KitchenLib.Preferences
 		public T Get()
 		{
 			return Value;
+		}
+
+		public override void Reset()
+		{ 
+			Value = DefaultValue;
 		}
 	}
 
