@@ -126,12 +126,16 @@ namespace KitchenLib
 			RegisterMenu<NewNewMaterialUI>();
 			RegisterMenu<DebugMenu>();
 			
+			
+			/*
 			achievementsManager = new AchievementsManager(MOD_ID, MOD_NAME);
 			achievementsManager.RegisterAchievement(new Achievement("test", "Super Wow!", "This is a super cool test achivement!", bundle.LoadAsset<Texture2D>("wow")));
 			achievementsManager.RegisterAchievement(new Achievement("test2", "Another Wow", "This is a su2per cool test achivement!", bundle.LoadAsset<Texture2D>("vest"), new List<string>{"test"}));
 			achievementsManager.RegisterAchievement(new Achievement("test3", "Triple Wow?", "This is a su3per cool test achivement!", bundle.LoadAsset<Texture2D>("wow"), new List<string>{"test"}));
 			achievementsManager.Load();
 			achievementsManager.Save();
+			*/
+			
 
 			ViewUtils.RegisterView("KitchenLib.Views.SyncMods", typeof(SModSync), typeof(SyncMods));
 
@@ -159,7 +163,7 @@ namespace KitchenLib
 		}
 
 		private void determineDebugLoggingStatus() {
-			int localModCount = ModPreload.Mods.Where(mod => mod.Name == "").Count();
+			int localModCount = ModPreload.Mods.Count(mod => mod.Source.GetType() == typeof(SteamWorkshopModSource));
 			if (MOD_BETA_VERSION != "") {
 				localModCount--;
 			}
@@ -225,8 +229,17 @@ namespace KitchenLib
 			{
 				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mods", typeof(ModsMenu<MenuAction>), false });
 				if (!manager.GetPreference<PreferenceBool>("mergeWithPreferenceSystem").Value && preferenceSystemMenuType != null || preferenceSystemMenuType == null)
-					args.addSubmenuButton.Invoke(args.instance, new object[] { "Mod Preferences", typeof(ModsPreferencesMenu<MenuAction>), false });
-				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mod Achievements", typeof(ModAchievementsMenu<MenuAction>), false });
+				{
+					if (PreferenceManager.Managers.Count > 0)
+					{
+						args.addSubmenuButton.Invoke(args.instance, new object[] { "Mod Preferences", typeof(ModsPreferencesMenu<MenuAction>), false });
+					}
+				}
+
+				if (AchievementsManager.Managers.Count > 0)
+				{
+					args.addSubmenuButton.Invoke(args.instance, new object[] { "Mod Achievements", typeof(ModAchievementsMenu<MenuAction>), false });
+				}
 			};
 			Events.PlayerPauseView_SetupMenusEvent += (s, args) =>
 			{

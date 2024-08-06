@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Kitchen.Modules;
 using Kitchen;
+using KitchenLib.Achievements;
 using KitchenLib.Preferences;
 using KitchenLib.UI.PlateUp;
 using KitchenLib.Utils;
@@ -33,9 +34,16 @@ namespace KitchenLib.UI
 			AddSubmenuButton.Invoke(instance, ["Mods", typeof(ModsMenu<MenuAction>), false]);
 			if (!Main.manager.GetPreference<PreferenceBool>("mergeWithPreferenceSystem").Value && Main.preferenceSystemMenuType != null || Main.preferenceSystemMenuType == null)
 			{
-				AddSubmenuButton.Invoke(instance, ["Mod Preferences", typeof(ModsPreferencesMenu<MenuAction>), false]);
+				if (PreferenceManager.Managers.Count > 0)
+				{
+					AddSubmenuButton.Invoke(instance, ["Mod Preferences", typeof(ModsPreferencesMenu<MenuAction>), false]);
+				}
 			}
-			AddSubmenuButton.Invoke(instance, ["Mod Achievements", typeof(ModAchievementsMenu<MenuAction>), false]);
+
+			if (AchievementsManager.Managers.Count > 0)
+			{
+				AddSubmenuButton.Invoke(instance, ["Mod Achievements", typeof(ModAchievementsMenu<MenuAction>), false]);
+			}
 		}
 	}
 }
