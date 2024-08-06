@@ -21,7 +21,6 @@ namespace KitchenLib.UI
 				AddInfo.Invoke(instance, ["You are running a beta version of KitchenLib"]);
 				AddInfo.Invoke(instance, ["(Please backup your save files.)"]);
 				AddInfo.Invoke(instance, ["There will be bugs, this is for TESTING PURPOSES"]);
-				New.Invoke(instance, [true]);
 			}
 		}
 

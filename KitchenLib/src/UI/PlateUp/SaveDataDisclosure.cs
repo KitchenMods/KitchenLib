@@ -3,6 +3,7 @@ using Kitchen;
 using Kitchen.Modules;
 using KitchenLib.Achievements;
 using KitchenLib.Preferences;
+using KitchenLib.Utils;
 using UnityEngine;
 
 namespace KitchenLib.UI.PlateUp
@@ -41,7 +42,7 @@ namespace KitchenLib.UI.PlateUp
 					manager.ChangeFileType(".plateupsave");
 				}
 				
-				RequestSubMenu(typeof(StartMainMenu));
+				RequestSubMenu(ErrorHandling.GetNextMenu(GetType()));
 			}, 0, 1f, 0.2f);
 			
 			AddButton("No Thanks", delegate (int i)
@@ -59,7 +60,7 @@ namespace KitchenLib.UI.PlateUp
 					manager.ChangeFileType(".json");
 				}
 				
-				RequestSubMenu(typeof(StartMainMenu));
+				RequestSubMenu(ErrorHandling.GetNextMenu(GetType()));
 			}, 0, 1f, 0.2f);
 			
 			AddButton("Data Information", delegate (int i)

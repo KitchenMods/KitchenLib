@@ -115,6 +115,7 @@ namespace KitchenLib
 			manager.RegisterPreference(new PreferenceInt("cosmeticHeight", 2));
 			manager.RegisterPreference(new PreferenceInt("modSyncMethod", 0));
 			manager.RegisterPreference(new PreferenceInt("achievementNotificatonDisplay", 1));
+			manager.RegisterPreference(new PreferenceString("lastVersionCheck", ""));
 			manager.Load();
 			manager.Save();
 			
@@ -210,6 +211,7 @@ namespace KitchenLib
 				//args.addMenu.Invoke(args.instance, new object[] { typeof(RevisedMainMenu), new RevisedMainMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(FailedGDOsMenu), new FailedGDOsMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(FailedModsMenu), new FailedModsMenu(args.instance.ButtonContainer, args.module_list) });
+				args.addMenu.Invoke(args.instance, new object[] { typeof(GameUpdateWarning), new GameUpdateWarning(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsMenu<MenuAction>), new ModsMenu<MenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(ModsPreferencesMenu<MenuAction>), new ModsPreferencesMenu<MenuAction>(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(PreferenceMenu<MenuAction>), new PreferenceMenu<MenuAction>(args.instance.ButtonContainer, args.module_list) });
