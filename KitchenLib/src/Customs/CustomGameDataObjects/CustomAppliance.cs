@@ -97,86 +97,78 @@ namespace KitchenLib.Customs
         {
 			Appliance result = ScriptableObject.CreateInstance<Appliance>();
 
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<Appliance>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
+            OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "Prefab", Prefab);
+            OverrideVariable(result, "HeldAppliancePrefab", HeldAppliancePrefab);
+            OverrideVariable(result, "EffectRange", EffectRange);
+            OverrideVariable(result, "EffectCondition", EffectCondition);
+            OverrideVariable(result, "EffectType", EffectType);
+            OverrideVariable(result, "IsNonInteractive", IsNonInteractive);
+            OverrideVariable(result, "Layer", Layer);
+            OverrideVariable(result, "ForceHighInteractionPriority", ForceHighInteractionPriority);
+            OverrideVariable(result, "EntryAnimation", EntryAnimation);
+            OverrideVariable(result, "ExitAnimation", ExitAnimation);
+            OverrideVariable(result, "SkipRotationAnimation", SkipRotationAnimation);
+            OverrideVariable(result, "IsPurchasable", IsPurchasable);
+            OverrideVariable(result, "IsPurchasableAsUpgrade", IsPurchasableAsUpgrade);
+            OverrideVariable(result, "ThemeRequired", ThemeRequired);
+            OverrideVariable(result, "ShoppingTags", ShoppingTags);
+            OverrideVariable(result, "RarityTier", RarityTier);
+            OverrideVariable(result, "PriceTier", PriceTier);
+            OverrideVariable(result, "ShopRequirementFilter", ShopRequirementFilter);
+            OverrideVariable(result, "RequiresPhaseForShop", RequiresPhaseForShop);
+            OverrideVariable(result, "StapleWhenMissing", StapleWhenMissing);
+            OverrideVariable(result, "SellOnlyAsDuplicate", SellOnlyAsDuplicate);
+            OverrideVariable(result, "SellOnlyAsUnique", SellOnlyAsUnique);
+            OverrideVariable(result, "PreventSale", PreventSale);
+            OverrideVariable(result, "IsNonCrated", IsNonCrated);
+            OverrideVariable(result, "Info", Info);
 
-            if (result.ID != ID) result.ID = ID;
-            if (result.Prefab != Prefab) result.Prefab = Prefab;
-            if (result.HeldAppliancePrefab != HeldAppliancePrefab) result.HeldAppliancePrefab = HeldAppliancePrefab;
-            if (result.EffectRange != EffectRange) result.EffectRange = EffectRange;
-            if (result.EffectCondition != EffectCondition) result.EffectCondition = EffectCondition;
-			if (result.EffectType != EffectType) result.EffectType = EffectType;
-            if (result.IsNonInteractive != IsNonInteractive) result.IsNonInteractive = IsNonInteractive;
-            if (result.Layer != Layer) result.Layer = Layer;
-            if (result.ForceHighInteractionPriority != ForceHighInteractionPriority) result.ForceHighInteractionPriority = ForceHighInteractionPriority;
-            if (result.EntryAnimation != EntryAnimation) result.EntryAnimation = EntryAnimation;
-            if (result.ExitAnimation != ExitAnimation) result.ExitAnimation = ExitAnimation;
-            if (result.SkipRotationAnimation != SkipRotationAnimation) result.SkipRotationAnimation = SkipRotationAnimation;
-            if (result.IsPurchasable != IsPurchasable) result.IsPurchasable = IsPurchasable;
-            if (result.IsPurchasableAsUpgrade != IsPurchasableAsUpgrade) result.IsPurchasableAsUpgrade = IsPurchasableAsUpgrade;
-			if (result.ThemeRequired != ThemeRequired) result.ThemeRequired = ThemeRequired;
-            if (result.ShoppingTags != ShoppingTags) result.ShoppingTags = ShoppingTags;
-            if (result.RarityTier != RarityTier) result.RarityTier = RarityTier;
-            if (result.PriceTier != PriceTier) result.PriceTier = PriceTier;
-            if (result.ShopRequirementFilter != ShopRequirementFilter) result.ShopRequirementFilter = ShopRequirementFilter;
-            if (result.RequiresPhaseForShop != RequiresPhaseForShop) result.RequiresPhaseForShop = RequiresPhaseForShop;
-            if (result.StapleWhenMissing != StapleWhenMissing) result.StapleWhenMissing = StapleWhenMissing;
-            if (result.SellOnlyAsDuplicate != SellOnlyAsDuplicate) result.SellOnlyAsDuplicate = SellOnlyAsDuplicate;
-            if (result.SellOnlyAsUnique != SellOnlyAsUnique) result.SellOnlyAsUnique = SellOnlyAsUnique;
-			if (result.PreventSale != PreventSale) result.PreventSale = PreventSale;
-            if (result.IsNonCrated != IsNonCrated) result.IsNonCrated = IsNonCrated;
-            if (result.Info != Info) result.Info = Info;
-
-			if (PurchaseCostOverride != -1)
+            if (PurchaseCostOverride != -1)
             {
-                ApplianceOverrides.AddPurchaseCostOverride(result.ID, PurchaseCostOverride);
+	            Main.LogDebug($"Assigning : {PurchaseCostOverride} >> PurchaseCostOverride");
+	            ApplianceOverrides.AddPurchaseCostOverride(result.ID, PurchaseCostOverride);
             }
 
             if (InfoList.Count > 0)
             {
-                result.Info = new LocalisationObject<ApplianceInfo>();
-                foreach ((Locale, ApplianceInfo) info in InfoList)
-                    result.Info.Add(info.Item1, info.Item2);
+	            Main.LogDebug($"Setting up localisation");
+	            SetupLocalisation<ApplianceInfo>(InfoList, ref result.Info);
             }
-
-			if (result.Info == null)
+            else
             {
-                result.Info = new LocalisationObject<ApplianceInfo>();
-                if (!result.Info.Has(Locale.English))
-                {
-					ApplianceInfo applianceInfo = ScriptableObject.CreateInstance<ApplianceInfo>();
-					applianceInfo.Name = Name;
-					applianceInfo.Description = Description;
-					applianceInfo.Sections = Sections;
-					applianceInfo.Tags = Tags;
-					result.Info.Add(Locale.English, applianceInfo);
-				}
+	            if (result.Info == null)
+	            {
+		            Main.LogDebug($"Setting up fallback localisation");
+		            result.Info = new LocalisationObject<ApplianceInfo>();
+		            if (!result.Info.Has(Locale.English))
+		            {
+			            ApplianceInfo applianceInfo = ScriptableObject.CreateInstance<ApplianceInfo>();
+			            applianceInfo.Name = Name;
+			            applianceInfo.Description = Description;
+			            applianceInfo.Sections = Sections;
+			            applianceInfo.Tags = Tags;
+			            result.Info.Add(Locale.English, applianceInfo);
+		            }
+	            }
             }
 
-			if (AutoGenerateNavMeshObject && result.Prefab != null)
-			{
-				NavMeshObstacle navMeshObstacle = null;
-				foreach (Transform t in result.Prefab.GetComponentInChildren<Transform>())
-				{
-					if (t.gameObject.HasComponent<NavMeshObstacle>())
-					{
-						navMeshObstacle = t.gameObject.GetComponent<NavMeshObstacle>();
-						break;
-					}
-				}
-				if (navMeshObstacle == null)
-				{
-					Appliance counter = gameData.Get<Appliance>().FirstOrDefault(a => a.ID == ApplianceReferences.Countertop);
-					foreach (Transform t in counter.Prefab.GetComponentInChildren<Transform>())
-					{
-						if (t.gameObject.HasComponent<NavMeshObstacle>())
-						{
-							GameObjectUtils.CopyComponent(t.gameObject.GetComponent<NavMeshObstacle>(), result.Prefab);
-							break;
-						}
-					}
-				}
-			}
+            if (AutoGenerateNavMeshObject && result.Prefab != null)
+            {
+	            Main.LogDebug($"Setting up NavMeshObstacle");
+	            if (result.Prefab.GetComponentsInChildren<NavMeshObstacle>().Length == 0)
+	            {
+		            Appliance counter = gameData.Get<Appliance>().FirstOrDefault(a => a.ID == ApplianceReferences.Countertop);
+		            foreach (Transform t in counter.Prefab.GetComponentInChildren<Transform>())
+		            {
+			            if (t.gameObject.HasComponent<NavMeshObstacle>())
+			            {
+				            GameObjectUtils.CopyComponent(t.gameObject.GetComponent<NavMeshObstacle>(), result.Prefab);
+				            break;
+			            }
+		            }
+	            }
+            }
 
 			gameDataObject = result;
         }
@@ -184,20 +176,21 @@ namespace KitchenLib.Customs
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             Appliance result = (Appliance)gameDataObject;
+            
+            OverrideVariable(result, "Processes", Processes);
+            OverrideVariable(result, "Properties", Properties);
+            OverrideVariable(result, "EffectRepresentation", EffectRepresentation);
+            OverrideVariable(result, "RequiresForShop", RequiresForShop);
+            OverrideVariable(result, "RequiresProcessForShop", RequiresProcessForShop);
+            OverrideVariable(result, "Upgrades", Upgrades);
+            OverrideVariable(result, "Enchantments", Enchantments);
+            OverrideVariable(result, "CrateItem", CrateItem);
 
-			if (result.Processes != Processes) result.Processes = Processes;
-            if (result.Properties != Properties) result.Properties = Properties;
-            if (result.EffectRepresentation != EffectRepresentation) result.EffectRepresentation = EffectRepresentation;
-            if (result.RequiresForShop != RequiresForShop) result.RequiresForShop = RequiresForShop;
-            if (result.RequiresProcessForShop != RequiresProcessForShop) result.RequiresProcessForShop = RequiresProcessForShop;
-            if (result.Upgrades != Upgrades) result.Upgrades = Upgrades;
-            if (result.Enchantments != Enchantments) result.Enchantments = Enchantments;
-            if (result.CrateItem != CrateItem) result.CrateItem = CrateItem;
-
-			if (result.Prefab == null)
-			{
-				result.Prefab = Main.bundle.LoadAsset<GameObject>("Error_Appliance");
-			}
+            if (result.Prefab == null)
+            {
+	            Main.LogError($"Assigning fallback prefab");
+	            result.Prefab = Main.bundle.LoadAsset<GameObject>("Error_Appliance");
+            }
         }
 
         public override void OnRegister(GameDataObject gameDataObject)
@@ -207,14 +200,12 @@ namespace KitchenLib.Customs
             {
                 SetupPrefab(gdo.Prefab);
             }
-            else
-            {
-                Main.LogWarning($"Appliance with ID '{UniqueNameID}' does not have a prefab set.");
-            }
 
             base.OnRegister(gameDataObject);
         }
-
+        
+        
+        [Obsolete("Please use OnRegister")]
         public virtual void SetupPrefab(GameObject prefab) { }
     }
 }

@@ -16,16 +16,26 @@ namespace KitchenLib
 			{ JsonType.TransparentMaterial, typeof(CustomSimpleTransparent) },
 			{ JsonType.ImageMaterial, typeof(CustomFlatImage) },
 			{ JsonType.CustomMaterial, typeof(CustomMaterial) },
-			{ JsonType.CSimpleFlat, typeof(CSimpleFlat) },
-			{ JsonType.CSimpleTransparent, typeof(CSimpleTransparent) },
-			{ JsonType.CFlatImage, typeof(CFlatImage) },
-			{ JsonType.CFlat, typeof(CFlat) },
-			{ JsonType.CIndicatorLight, typeof(CIndicatorLight) },
-			{ JsonType.CGhost, typeof(CGhost) },
-			{ JsonType.CFairyLight, typeof(CFairyLight) },
-			{ JsonType.CFoliage, typeof(CFoliage) },
-			{ JsonType.CWalls, typeof(CWalls) },
+			{ JsonType.CBlockOutBackground, typeof(CBlockOutBackground) },
 			{ JsonType.CBlueprintLight, typeof(CBlueprintLight) },
+			{ JsonType.CCircularTimer, typeof(CCircularTimer) },
+			{ JsonType.CFairyLight, typeof(CFairyLight) },
+			{ JsonType.CFlat, typeof(CFlat) },
+			{ JsonType.CFlatImage, typeof(CFlatImage) },
+			{ JsonType.CFoliage, typeof(CFoliage) },
+			{ JsonType.CGhost, typeof(CGhost) },
+			{ JsonType.CIndicatorLight, typeof(CIndicatorLight) },
+			{ JsonType.CLakeSurface, typeof(CLakeSurface) },
+			{ JsonType.CMirror, typeof(CMirror) },
+			{ JsonType.CMirrorBacking, typeof(CMirrorBacking) },
+			{ JsonType.CMirrorSurface, typeof(CMirrorSurface) },
+			{ JsonType.CNewspaper, typeof(CNewspaper) },
+			{ JsonType.CPing, typeof(CPing) },
+			{ JsonType.CPreviewFloor, typeof(CPreviewFloor) },
+			{ JsonType.CSimpleFlat, typeof(CSimpleFlat) },
+			{ JsonType.CSimpleFlatPlayer, typeof(CSimpleFlatPlayer) },
+			{ JsonType.CSimpleTransparent, typeof(CSimpleTransparent) },
+			{ JsonType.CWalls, typeof(CWalls) },
 		};
 
 		public static List<BaseJson> LoadedJsons = new List<BaseJson>();
@@ -73,7 +83,6 @@ namespace KitchenLib
 			foreach (TextAsset asset in bundle.LoadAllAssets<TextAsset>())
 			{
 				Main.LogInfo($"Loading JSON-based material asset '{asset.name}'");
-				BaseJson baseJson = null;
 				try
 				{
 					try
@@ -94,6 +103,7 @@ namespace KitchenLib
 				}
 				catch (Exception e)
 				{
+					Main.LogWarning(e.Message);
 					Main.LogWarning($"Material asset '{asset.name}' could not be loaded");
 				}
 			}

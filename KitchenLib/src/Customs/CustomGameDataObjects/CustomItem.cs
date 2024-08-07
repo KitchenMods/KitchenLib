@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Security.Policy;
 using TMPro;
 using UnityEngine;
 
@@ -62,34 +61,32 @@ namespace KitchenLib.Customs
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             Item result = ScriptableObject.CreateInstance<Item>();
-
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<Item>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
-            if (result.Prefab != Prefab) result.Prefab = Prefab;
-			if (!AutomaticItemProcess.Equals(result.AutomaticItemProcess)) result.AutomaticItemProcess = AutomaticItemProcess;
-            if (result.ExtraTimeGranted != ExtraTimeGranted) result.ExtraTimeGranted = ExtraTimeGranted;
-            if (!result.EatingTime.Equals(EatingTime)) result.EatingTime = EatingTime;
-            if (result.ItemValue != ItemValue) result.ItemValue = ItemValue;
-			if (result.IsConsumedByCustomer != IsConsumedByCustomer) result.IsConsumedByCustomer = IsConsumedByCustomer;
-            if (result.MaxOrderSharers != MaxOrderSharers) result.MaxOrderSharers = MaxOrderSharers;
-            if (result.AlwaysOrderAdditionalItem != AlwaysOrderAdditionalItem) result.AlwaysOrderAdditionalItem = AlwaysOrderAdditionalItem;
-            if (result.AutoSatisfied != AutoSatisfied) result.AutoSatisfied = AutoSatisfied;
-            if (result.SplitCount != SplitCount) result.SplitCount = SplitCount;
-            if (result.SplitSpeed != SplitSpeed) result.SplitSpeed = SplitSpeed;
-            if (result.AllowSplitMerging != AllowSplitMerging) result.AllowSplitMerging = AllowSplitMerging;
-            if (result.PreventExplicitSplit != PreventExplicitSplit) result.PreventExplicitSplit = PreventExplicitSplit;
-            if (result.SplitByComponents != SplitByComponents) result.SplitByComponents = SplitByComponents;
-            if (result.SplitByCopying != SplitByCopying) result.SplitByCopying = SplitByCopying;
-            if (result.IsIndisposable != IsIndisposable) result.IsIndisposable = IsIndisposable;
-            if (result.ItemCategory != ItemCategory) result.ItemCategory = ItemCategory;
-            if (result.ItemStorageFlags != ItemStorageFlags) result.ItemStorageFlags = ItemStorageFlags;
-            if (result.HoldPose != HoldPose) result.HoldPose = HoldPose;
-            if (result.IsMergeableSide != IsMergeableSide) result.IsMergeableSide = IsMergeableSide;
+            
+            OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "Prefab", Prefab);
+            OverrideVariable(result, "AutomaticItemProcess", AutomaticItemProcess);
+            OverrideVariable(result, "ExtraTimeGranted", ExtraTimeGranted);
+            OverrideVariable(result, "EatingTime", EatingTime);
+            OverrideVariable(result, "ItemValue", ItemValue);
+            OverrideVariable(result, "IsConsumedByCustomer", IsConsumedByCustomer);
+            OverrideVariable(result, "MaxOrderSharers", MaxOrderSharers);
+            OverrideVariable(result, "AlwaysOrderAdditionalItem", AlwaysOrderAdditionalItem);
+            OverrideVariable(result, "AutoSatisfied", AutoSatisfied);
+            OverrideVariable(result, "SplitCount", SplitCount);
+            OverrideVariable(result, "SplitSpeed", SplitSpeed);
+            OverrideVariable(result, "AllowSplitMerging", AllowSplitMerging);
+            OverrideVariable(result, "PreventExplicitSplit", PreventExplicitSplit);
+            OverrideVariable(result, "SplitByComponents", SplitByComponents);
+            OverrideVariable(result, "SplitByCopying", SplitByCopying);
+            OverrideVariable(result, "IsIndisposable", IsIndisposable);
+            OverrideVariable(result, "ItemCategory", ItemCategory);
+            OverrideVariable(result, "ItemStorageFlags", ItemStorageFlags);
+            OverrideVariable(result, "HoldPose", HoldPose);
+            OverrideVariable(result, "IsMergeableSide", IsMergeableSide);
 
 			if (!string.IsNullOrEmpty(ColourBlindTag))
 			{
+				Main.LogError($"Adding ColourBlindTag '{ColourBlindTag}'");
 				Item steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
 				if (steak != null)
 				{
@@ -100,16 +97,10 @@ namespace KitchenLib.Customs
 				}
 			}
 
-            if (RewardOverride != -1)
-                ItemOverrides.AddRewardOverride(result.ID, RewardOverride);
-
-			if (SidePrefab == null)
+			if (RewardOverride != -1)
 			{
-				SidePrefab = result.Prefab ?? Main.bundle.LoadAsset<GameObject>("Error_Item");
-			}
-			if (result.Prefab == null)
-			{
-				result.Prefab = Main.bundle.LoadAsset<GameObject>("Error_Item");
+				Main.LogDebug($"Assigning : {RewardOverride} >> RewardOverride");
+				ItemOverrides.AddRewardOverride(result.ID, RewardOverride);
 			}
 
 			gameDataObject = result;
@@ -118,25 +109,33 @@ namespace KitchenLib.Customs
         public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
         {
             Item result = (Item)gameDataObject;
-
-			if (result.Properties != Properties) result.Properties = Properties;
-            if (result.DirtiesTo != DirtiesTo) result.DirtiesTo = DirtiesTo;
-            if (result.MayRequestExtraItems != MayRequestExtraItems) result.MayRequestExtraItems = MayRequestExtraItems;
-            if (result.SatisfiedBy != SatisfiedBy) result.SatisfiedBy = SatisfiedBy;
-            if (result.NeedsIngredients != NeedsIngredients) result.NeedsIngredients = NeedsIngredients;
-            if (result.SplitSubItem != SplitSubItem) result.SplitSubItem = SplitSubItem;
-            if (result.SplitDepletedItems != SplitDepletedItems) result.SplitDepletedItems = SplitDepletedItems;
-            if (result.SplitByComponentsHolder != SplitByComponentsHolder) result.SplitByComponentsHolder = SplitByComponentsHolder;
-            if (result.SplitByComponentsWrapper != SplitByComponentsWrapper) result.SplitByComponentsWrapper = SplitByComponentsWrapper;
-            if (result.RefuseSplitWith != RefuseSplitWith) result.RefuseSplitWith = RefuseSplitWith;
-            if (result.DisposesTo != DisposesTo) result.DisposesTo = DisposesTo;
-            if (result.DedicatedProvider != DedicatedProvider) result.DedicatedProvider = DedicatedProvider;
-            if (result.CreditSourceDish != CreditSourceDish) result.CreditSourceDish = CreditSourceDish;
-            if (result.ExtendedDirtItem != ExtendedDirtItem) result.ExtendedDirtItem = ExtendedDirtItem;
-
-            FieldInfo processes = ReflectionUtils.GetField<Item>("Processes");
-
-            if (processes.GetValue(result) != Processes) processes.SetValue(result, Processes);
+            
+            OverrideVariable(result, "Properties", Properties);
+            OverrideVariable(result, "DirtiesTo", DirtiesTo);
+            OverrideVariable(result, "MayRequestExtraItems", MayRequestExtraItems);
+            OverrideVariable(result, "SatisfiedBy", SatisfiedBy);
+            OverrideVariable(result, "NeedsIngredients", NeedsIngredients);
+            OverrideVariable(result, "SplitSubItem", SplitSubItem);
+            OverrideVariable(result, "SplitDepletedItems", SplitDepletedItems);
+            OverrideVariable(result, "SplitByComponentsHolder", SplitByComponentsHolder);
+            OverrideVariable(result, "SplitByComponentsWrapper", SplitByComponentsWrapper);
+            OverrideVariable(result, "RefuseSplitWith", RefuseSplitWith);
+            OverrideVariable(result, "DisposesTo", DisposesTo);
+            OverrideVariable(result, "DedicatedProvider", DedicatedProvider);
+            OverrideVariable(result, "CreditSourceDish", CreditSourceDish);
+            OverrideVariable(result, "ExtendedDirtItem", ExtendedDirtItem);
+            OverrideVariable(result, "Processes", Processes);
+            
+            if (SidePrefab == null)
+            {
+	            Main.LogError($"Assigning fallback side prefab");
+	            SidePrefab = result.Prefab ?? Main.bundle.LoadAsset<GameObject>("Error_Item");
+            }
+            if (result.Prefab == null)
+            {
+	            Main.LogError($"Assigning fallback prefab");
+	            result.Prefab = Main.bundle.LoadAsset<GameObject>("Error_Item");
+            }
 		}
 
         public override void OnRegister(GameDataObject gameDataObject)
@@ -146,14 +145,10 @@ namespace KitchenLib.Customs
             {
                 SetupPrefab(gdo.Prefab);
             }
-            else
-            {
-                Main.LogWarning($"Item/ItemGroup with ID '{UniqueNameID}' does not have a prefab set.");
-            }
 
             base.OnRegister(gameDataObject);
         }
-
+        [Obsolete("Please use OnRegister")]
         public virtual void SetupPrefab(GameObject prefab) { }
     }
 }

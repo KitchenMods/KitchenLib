@@ -4,7 +4,6 @@ using KitchenLib.Utils;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Mime;
 using UnityEngine;
 using Kitchen;
 using KitchenLib.Interfaces;
@@ -215,14 +214,16 @@ namespace KitchenLib.UI
 		{
 			foreach (Material material in MaterialUtils.GetAllMaterials(false, editors.Keys.ToList()))
 			{
-				GameObject gameObject = Main.bundle.LoadAsset<GameObject>("Material Cube");
+				GameObject gameObject = Main.bundle.LoadAsset<GameObject>("Material Dump Cube");
 				gameObject.transform.position = new Vector3(0, 5, 0);
-				MaterialUtils.ApplyMaterial(gameObject, "Mesh", new Material[] { material } );
-				gameObject.GetChild(1).GetComponent<TextMeshPro>().text = material.name;
 
+				TextMeshPro title = gameObject.GetChild("TitleText").GetComponent<TextMeshPro>();
+				
+				MaterialUtils.ApplyMaterial(gameObject, "Cube", new Material[] { material } );
+				title.text = material.name;
 				
 				Quaternion rotation = new Quaternion(0, 0, 0, 0);
-				SnapshotTexture texture = Snapshot.RenderPrefabToTexture(512, 512, gameObject, rotation, 0.5f, 0.5f, scale: 0.5f, position: -0.25f * new Vector3(0.0f, 1f, 1f));
+				SnapshotTexture texture = Snapshot.RenderPrefabToTexture(512, 512, gameObject, rotation, 0.5f, 0.5f);
 				byte[] bytes = null;
 				if (texture != null)
 					bytes = texture.Snapshot.EncodeToPNG();
@@ -233,7 +234,6 @@ namespace KitchenLib.UI
 						Directory.CreateDirectory(path);
 					File.WriteAllBytes(Path.Combine(path, material.name + ".png"), bytes);
 				}
-
 			}
 		}
 	}

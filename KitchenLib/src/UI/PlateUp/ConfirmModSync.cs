@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace KitchenLib.UI
 {
-	internal class ConfirmModSync : KLMenu<PauseMenuAction>
+	internal class ConfirmModSync : KLMenu<MenuAction>
 	{
 		public ConfirmModSync(Transform container, ModuleList module_list) : base(container, module_list)
 		{
@@ -17,13 +17,13 @@ namespace KitchenLib.UI
 		public static List<Steamworks.Ugc.Item> AllMods = new List<Steamworks.Ugc.Item>();
 		public override void Setup(int player_id)
 		{
-			Redraw();
+			LocalRedraw();
 		}
 
 		private bool ConfirmSync = false;
 		private bool Complete = false;
 		
-		private async void Redraw()
+		private async void LocalRedraw()
 		{
 			ModuleList.Clear();
 			if (!ConfirmSync && !Complete)
@@ -32,7 +32,7 @@ namespace KitchenLib.UI
 				AddButton("Confirm", delegate (int i)
 				{
 					ConfirmSync = true;
-					Redraw();
+					LocalRedraw();
 				}, 0, 1f, 0.2f);
 			}else if (ConfirmSync && !Complete)
 			{
@@ -42,7 +42,10 @@ namespace KitchenLib.UI
 					foreach (Mod mod in ModPreload.Mods)
 					{
 						var item = await Steamworks.Ugc.Item.GetAsync(mod.ID);
-						item.Value.Unsubscribe();
+						if (item != null)
+						{
+							await item.Value.Unsubscribe();
+						}
 					}
 					AddInfo("Installing...");
 					foreach (Item mod in AllMods)
@@ -62,7 +65,7 @@ namespace KitchenLib.UI
 				}
 
 				Complete = true;
-				Redraw();
+				LocalRedraw();
 				return;
 			}else if (ConfirmSync && Complete)
 			{

@@ -714,6 +714,16 @@ namespace KitchenLib.References
 
 		public static int VanishingCircle => (int)_ApplianceReferences.VanishingCircle;
 
+		public static int SourceMince => (int)_ApplianceReferences.SourceMince;
+
+		public static int SourceLasagnePastaSheet => (int)_ApplianceReferences.SourceLasagnePastaSheet;
+
+		public static int SourceLasagneTray => (int)_ApplianceReferences.SourceLasagneTray;
+
+		public static int SourceButter => (int)_ApplianceReferences.SourceButter;
+
+		public static int SourceSpaghetti => (int)_ApplianceReferences.SourceSpaghetti;
+
 		public static int ClipboardStand => (int)_ApplianceReferences.ClipboardStand;
 
 		public static int ResearchExitText => (int)_ApplianceReferences.ResearchExitText;
@@ -721,8 +731,6 @@ namespace KitchenLib.References
 		public static int ResearchableUpgrade => (int)_ApplianceReferences.ResearchableUpgrade;
 
 		public static int UpgradeKit => (int)_ApplianceReferences.UpgradeKit;
-
-		public static int kitchenlibSyncModsViewHolder => (int)_ApplianceReferences.kitchenlibSyncModsViewHolder;
 
 	}
 	public enum _ApplianceReferences
@@ -1439,6 +1447,16 @@ namespace KitchenLib.References
 
 		VanishingCircle = 1492264331,
 
+		SourceMince = -1541798751,
+
+		SourceLasagnePastaSheet = -2077197906,
+
+		SourceLasagneTray = -1339944542,
+
+		SourceButter = -215543585,
+
+		SourceSpaghetti = -182748008,
+
 		ClipboardStand = -2070005162,
 
 		ResearchExitText = -872135723,
@@ -1446,8 +1464,6 @@ namespace KitchenLib.References
 		ResearchableUpgrade = -1879606524,
 
 		UpgradeKit = -26827118,
-
-		kitchenlibSyncModsViewHolder = -1995745069,
 
 	}
 	public static class CompositeUnlockPackReferences
@@ -1852,6 +1868,14 @@ namespace KitchenLib.References
 
 		public static int Cakes => (int)_DishReferences.Cakes;
 
+		public static int SpaghettiBolognese => (int)_DishReferences.SpaghettiBolognese;
+
+		public static int Lasagne => (int)_DishReferences.Lasagne;
+
+		public static int PastawithWhiteSauce => (int)_DishReferences.PastawithWhiteSauce;
+
+		public static int PomodoroBase => (int)_DishReferences.PomodoroBase;
+
 	}
 	public enum _DishReferences
 	{
@@ -2044,6 +2068,14 @@ namespace KitchenLib.References
 		Doughnuts = -1166412657,
 
 		Cakes = 1113735761,
+
+		SpaghettiBolognese = -1501485763,
+
+		Lasagne = 803049136,
+
+		PastawithWhiteSauce = 1651927267,
+
+		PomodoroBase = 1764920765,
 
 	}
 	public static class EffectReferences
@@ -2828,6 +2860,72 @@ namespace KitchenLib.References
 
 		public static int PouchofHolding => (int)_ItemReferences.PouchofHolding;
 
+		public static int BologneseCooked => (int)_ItemReferences.BologneseCooked;
+
+		public static int BolognesePortion => (int)_ItemReferences.BolognesePortion;
+
+		public static int BologneseUncooked => (int)_ItemReferences.BologneseUncooked;
+
+		public static int MinceCooked => (int)_ItemReferences.MinceCooked;
+
+		public static int Mince => (int)_ItemReferences.Mince;
+
+		public static int SpaghettiBolognesePlated => (int)_ItemReferences.SpaghettiBolognesePlated;
+
+		public static int Spaghetti => (int)_ItemReferences.Spaghetti;
+
+		public static int LasagneBurned => (int)_ItemReferences.LasagneBurned;
+
+		public static int LasagneCooked => (int)_ItemReferences.LasagneCooked;
+
+		public static int LasagnePartial1 => (int)_ItemReferences.LasagnePartial1;
+
+		public static int LasagnePartial2 => (int)_ItemReferences.LasagnePartial2;
+
+		public static int LasagnePartial3 => (int)_ItemReferences.LasagnePartial3;
+
+		public static int LasagnePartial4 => (int)_ItemReferences.LasagnePartial4;
+
+		public static int LasagnePartial5 => (int)_ItemReferences.LasagnePartial5;
+
+		public static int LasagnePlated => (int)_ItemReferences.LasagnePlated;
+
+		public static int LasagnePortion => (int)_ItemReferences.LasagnePortion;
+
+		public static int LasagneUncooked => (int)_ItemReferences.LasagneUncooked;
+
+		public static int LasagnePastaSheet => (int)_ItemReferences.LasagnePastaSheet;
+
+		public static int LasagneTray => (int)_ItemReferences.LasagneTray;
+
+		public static int PastawithWhiteSaucePlated => (int)_ItemReferences.PastawithWhiteSaucePlated;
+
+		public static int PomodoroPlated => (int)_ItemReferences.PomodoroPlated;
+
+		public static int Butter => (int)_ItemReferences.Butter;
+
+		public static int RouxComplete => (int)_ItemReferences.RouxComplete;
+
+		public static int RouxCooked => (int)_ItemReferences.RouxCooked;
+
+		public static int RouxPartial1Mixed => (int)_ItemReferences.RouxPartial1Mixed;
+
+		public static int RouxPartial1Unmixed => (int)_ItemReferences.RouxPartial1Unmixed;
+
+		public static int RouxPartial2Unmixed => (int)_ItemReferences.RouxPartial2Unmixed;
+
+		public static int RouxPortion => (int)_ItemReferences.RouxPortion;
+
+		public static int RouxUncooked => (int)_ItemReferences.RouxUncooked;
+
+		public static int SpaghettiCooked => (int)_ItemReferences.SpaghettiCooked;
+
+		public static int SpaghettiDrained => (int)_ItemReferences.SpaghettiDrained;
+
+		public static int SpaghettiPortion => (int)_ItemReferences.SpaghettiPortion;
+
+		public static int SpaghettiUncooked => (int)_ItemReferences.SpaghettiUncooked;
+
 		public static int Clipboard => (int)_ItemReferences.Clipboard;
 
 		public static int ResearchFlask => (int)_ItemReferences.ResearchFlask;
@@ -3553,6 +3651,72 @@ namespace KitchenLib.References
 
 		PouchofHolding = 1103033456,
 
+		BologneseCooked = -1089548751,
+
+		BolognesePortion = 778957913,
+
+		BologneseUncooked = -2064751475,
+
+		MinceCooked = 177461183,
+
+		Mince = -2047874552,
+
+		SpaghettiBolognesePlated = -1711635749,
+
+		Spaghetti = -823534126,
+
+		LasagneBurned = -106588634,
+
+		LasagneCooked = -34663320,
+
+		LasagnePartial1 = 1222231297,
+
+		LasagnePartial2 = 840747448,
+
+		LasagnePartial3 = 1912043845,
+
+		LasagnePartial4 = 1666954509,
+
+		LasagnePartial5 = 1705809322,
+
+		LasagnePlated = 82891941,
+
+		LasagnePortion = 1385009029,
+
+		LasagneUncooked = 1734261786,
+
+		LasagnePastaSheet = 1521319349,
+
+		LasagneTray = -2080052245,
+
+		PastawithWhiteSaucePlated = -383718493,
+
+		PomodoroPlated = 1900532137,
+
+		Butter = 1605072344,
+
+		RouxComplete = -1681933989,
+
+		RouxCooked = 1972238291,
+
+		RouxPartial1Mixed = -774381202,
+
+		RouxPartial1Unmixed = -1460961204,
+
+		RouxPartial2Unmixed = 1626706454,
+
+		RouxPortion = 1972097789,
+
+		RouxUncooked = -1465578413,
+
+		SpaghettiCooked = -1514413821,
+
+		SpaghettiDrained = -748726515,
+
+		SpaghettiPortion = -1640088321,
+
+		SpaghettiUncooked = -452280071,
+
 		Clipboard = 123647569,
 
 		ResearchFlask = 56610526,
@@ -3768,6 +3932,44 @@ namespace KitchenLib.References
 
 		public static int MixingBowlUnmixed => (int)_ItemGroupReferences.MixingBowlUnmixed;
 
+		public static int BologneseCooked => (int)_ItemGroupReferences.BologneseCooked;
+
+		public static int BologneseUncooked => (int)_ItemGroupReferences.BologneseUncooked;
+
+		public static int SpaghettiBolognesePlated => (int)_ItemGroupReferences.SpaghettiBolognesePlated;
+
+		public static int LasagnePartial1 => (int)_ItemGroupReferences.LasagnePartial1;
+
+		public static int LasagnePartial2 => (int)_ItemGroupReferences.LasagnePartial2;
+
+		public static int LasagnePartial3 => (int)_ItemGroupReferences.LasagnePartial3;
+
+		public static int LasagnePartial4 => (int)_ItemGroupReferences.LasagnePartial4;
+
+		public static int LasagnePartial5 => (int)_ItemGroupReferences.LasagnePartial5;
+
+		public static int LasagnePlated => (int)_ItemGroupReferences.LasagnePlated;
+
+		public static int LasagneUncooked => (int)_ItemGroupReferences.LasagneUncooked;
+
+		public static int PastawithWhiteSaucePlated => (int)_ItemGroupReferences.PastawithWhiteSaucePlated;
+
+		public static int PomodoroPlated => (int)_ItemGroupReferences.PomodoroPlated;
+
+		public static int RouxPartial1Unmixed => (int)_ItemGroupReferences.RouxPartial1Unmixed;
+
+		public static int RouxPartial2Unmixed => (int)_ItemGroupReferences.RouxPartial2Unmixed;
+
+		public static int RouxPortion => (int)_ItemGroupReferences.RouxPortion;
+
+		public static int RouxUncooked => (int)_ItemGroupReferences.RouxUncooked;
+
+		public static int SpaghettiCooked => (int)_ItemGroupReferences.SpaghettiCooked;
+
+		public static int SpaghettiDrained => (int)_ItemGroupReferences.SpaghettiDrained;
+
+		public static int SpaghettiUncooked => (int)_ItemGroupReferences.SpaghettiUncooked;
+
 	}
 	public enum _ItemGroupReferences
 	{
@@ -3978,6 +4180,44 @@ namespace KitchenLib.References
 		MixingBowlMixedWithMilk = 1211203800,
 
 		MixingBowlUnmixed = 52652731,
+
+		BologneseCooked = -1089548751,
+
+		BologneseUncooked = -2064751475,
+
+		SpaghettiBolognesePlated = -1711635749,
+
+		LasagnePartial1 = 1222231297,
+
+		LasagnePartial2 = 840747448,
+
+		LasagnePartial3 = 1912043845,
+
+		LasagnePartial4 = 1666954509,
+
+		LasagnePartial5 = 1705809322,
+
+		LasagnePlated = 82891941,
+
+		LasagneUncooked = 1734261786,
+
+		PastawithWhiteSaucePlated = -383718493,
+
+		PomodoroPlated = 1900532137,
+
+		RouxPartial1Unmixed = -1460961204,
+
+		RouxPartial2Unmixed = 1626706454,
+
+		RouxPortion = 1972097789,
+
+		RouxUncooked = -1465578413,
+
+		SpaghettiCooked = -1514413821,
+
+		SpaghettiDrained = -748726515,
+
+		SpaghettiUncooked = -452280071,
 
 	}
 	public static class LayoutProfileReferences
@@ -4200,6 +4440,20 @@ namespace KitchenLib.References
 
 		public static int WitchHatLeaves => (int)_PlayerCosmeticReferences.WitchHatLeaves;
 
+		public static int BeeHat => (int)_PlayerCosmeticReferences.BeeHat;
+
+		public static int DwarfHat => (int)_PlayerCosmeticReferences.DwarfHat;
+
+		public static int PenguinOutfit => (int)_PlayerCosmeticReferences.PenguinOutfit;
+
+		public static int PigHat => (int)_PlayerCosmeticReferences.PigHat;
+
+		public static int RatHat => (int)_PlayerCosmeticReferences.RatHat;
+
+		public static int ToasterHat => (int)_PlayerCosmeticReferences.ToasterHat;
+
+		public static int WheelBoyHat => (int)_PlayerCosmeticReferences.WheelBoyHat;
+
 	}
 	public enum _PlayerCosmeticReferences
 	{
@@ -4286,6 +4540,20 @@ namespace KitchenLib.References
 		WitchHatFlowery = -233680051,
 
 		WitchHatLeaves = 1243499033,
+
+		BeeHat = -1081826389,
+
+		DwarfHat = -1077948768,
+
+		PenguinOutfit = 765190223,
+
+		PigHat = 557144597,
+
+		RatHat = 1000067739,
+
+		ToasterHat = 1129983609,
+
+		WheelBoyHat = 1674187527,
 
 	}
 	public static class ProcessReferences
@@ -4714,6 +4982,14 @@ namespace KitchenLib.References
 
 		public static int Cakes => (int)_UnlockReferences.Cakes;
 
+		public static int SpaghettiBolognese => (int)_UnlockReferences.SpaghettiBolognese;
+
+		public static int Lasagne => (int)_UnlockReferences.Lasagne;
+
+		public static int PastawithWhiteSauce => (int)_UnlockReferences.PastawithWhiteSauce;
+
+		public static int PomodoroBase => (int)_UnlockReferences.PomodoroBase;
+
 		public static int AllYouCanEatIncrease => (int)_UnlockReferences.AllYouCanEatIncrease;
 
 		public static int AllYouCanEat => (int)_UnlockReferences.AllYouCanEat;
@@ -5128,6 +5404,14 @@ namespace KitchenLib.References
 		Doughnuts = -1166412657,
 
 		Cakes = 1113735761,
+
+		SpaghettiBolognese = -1501485763,
+
+		Lasagne = 803049136,
+
+		PastawithWhiteSauce = 1651927267,
+
+		PomodoroBase = 1764920765,
 
 		AllYouCanEatIncrease = 2055765569,
 
@@ -5816,24 +6100,24 @@ namespace KitchenLib.References
 	{
 		public static int SameReshuffle2 => (int) _WorkshopRecipeReferences.SameReshuffle2;
 
-        public static int UpgradedintoKit2 => (int) _WorkshopRecipeReferences.UpgradedintoKit2;
+		public static int UpgradedintoKit2 => (int) _WorkshopRecipeReferences.UpgradedintoKit2;
 
-        public static int AnyRandom3 => (int) _WorkshopRecipeReferences.AnyRandom3;
+		public static int AnyRandom3 => (int) _WorkshopRecipeReferences.AnyRandom3;
 
-        public static int SameReshuffle3 => (int) _WorkshopRecipeReferences.SameReshuffle3;
+		public static int SameReshuffle3 => (int) _WorkshopRecipeReferences.SameReshuffle3;
 
-        public static int UseUpgradeKit => (int)_WorkshopRecipeReferences.UseUpgradeKit;
+		public static int UseUpgradeKit => (int)_WorkshopRecipeReferences.UseUpgradeKit;
 
 	}
 	public enum _WorkshopRecipeReferences
 	{
-        SameReshuffle2 = 1792697580,
+		SameReshuffle2 = 1792697580,
 
-        UpgradedintoKit2 = 1783705474,
+		UpgradedintoKit2 = 1783705474,
 
-        AnyRandom3 = -710212054,
+		AnyRandom3 = -710212054,
 
-        SameReshuffle3 = -495147897,
+		SameReshuffle3 = -495147897,
 
 		UseUpgradeKit = 1299921510,
 

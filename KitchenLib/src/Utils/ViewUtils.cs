@@ -2,6 +2,7 @@
 using Kitchen;
 using KitchenLib.Systems;
 using KitchenLib.Views;
+using UnityEngine;
 
 namespace KitchenLib.Utils
 {
@@ -44,6 +45,17 @@ namespace KitchenLib.Utils
 		public static void RegisterView(string viewType, Type singleton, Type component)
 		{
 			ViewCreator.RegisterView((ViewType)VariousUtils.GetID(viewType), singleton, component);
+		}
+		
+		public static void RegisterView(ViewType viewType, Type singleton, Type component, ViewMode mode, Vector3 position)
+		{
+			ViewCreator.RegisteredViews.Add(viewType, (singleton, component));
+			ViewCreator.ModesAndPositions.Add(viewType, (mode, position));
+		}
+		
+		public static void RegisterView(string viewType, Type singleton, Type component, ViewMode mode, Vector3 position)
+		{
+			ViewCreator.RegisterView((ViewType)VariousUtils.GetID(viewType), singleton, component, mode, position);
 		}
 	}
 }

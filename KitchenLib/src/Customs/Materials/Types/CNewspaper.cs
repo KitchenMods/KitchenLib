@@ -26,6 +26,7 @@ namespace KitchenLib.Customs
 		public float _ColourX = 0.0f;
 		public float _ColourY = 0.0f;
 		public float _ColourZ = 0.0f;
+		public float _ColourA = 0.0f;
 
 		public override void ConvertMaterial(out Material material)
 		{
@@ -35,6 +36,7 @@ namespace KitchenLib.Customs
 			result.SetFloat("_Alpha", _Alpha);
 			result.SetFloat("_BlowoutScale", _BlowoutScale);
 			result.SetColor("_Colour", _Colour);
+			result.SetFloat("_BlowoutOffset", _BlowoutOffset);
 			result.name = Name;
 
 			material = result;
@@ -43,86 +45,41 @@ namespace KitchenLib.Customs
 		public override void Deserialise()
 		{
 			_Photograph = ResourceUtils.LoadTextureFromBase64(_PhotographAsBase64);
-			_Colour = new Color(_ColourX, _ColourY, _ColourZ);
+			_Colour = new Color(_ColourX, _ColourY, _ColourZ, _ColourA);
 		}
 		IMColorPicker mainColorPicker;
+		private string imageFile = "";
 		public void GUI(Material material)
 		{
 			if(mainColorPicker == null)
 				mainColorPicker = new IMColorPicker();
 			
-			Vector4 _Colour = material.GetVector("_Colour");
+			imageFile = DrawTextureModule(new Rect(2, 50, 292, 207),"_Photograph", imageFile, material, "_Photograph");
 			
-			GUILayout.BeginArea(new Rect(0, 0, 159, 20));
-			GUILayout.Label("Base Color");
-			GUILayout.EndArea();
+			material.SetFloat("_Alpha", DrawSliderModule(new Rect(2, 215, 446, 24), "_Alpha", material.GetFloat("_Alpha"), 0, 1));
+			material.SetFloat("_BlowoutScale", DrawSliderModule(new Rect(2, 245, 446, 24), "_BlowoutScale", material.GetFloat("_BlowoutScale"), 0, 1));
+			material.SetFloat("_BlowoutOffset", DrawSliderModule(new Rect(2, 275, 446, 24), "_BlowoutOffset", material.GetFloat("_BlowoutOffset"), 0, 1));
 			
-			GUILayout.BeginArea(new Rect(0, 20, 159, 140));
-			_Colour = mainColorPicker.DrawColorPicker(_Colour);
-			material.SetVector("_Colour", _Colour);
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(318, 20, 159, 20));
-			GUILayout.Label("Texture File");
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(477, 20, 159, 20));
-			overlayFile = GUILayout.TextField(overlayFile);
-			if (File.Exists(overlayFile))
-				material.SetTexture("_Photograph", ResourceUtils.LoadTextureFromFile(overlayFile));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(318, 40, 110, 20));
-			GUILayout.Label("Alpha");
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(428, 40, 49, 20));
-			material.SetFloat("_Alpha", float.Parse(GUILayout.TextField(material.GetFloat("_Alpha").ToString())));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(477, 45, 318, 20));
-			material.SetFloat("_Alpha", GUILayout.HorizontalSlider(material.GetFloat("_Alpha"), 0.0f, 1.0f));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(318, 60, 110, 20));
-			GUILayout.Label("Blowout Scale");
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(428, 60, 49, 20));
-			material.SetFloat("_BlowoutScale", float.Parse(GUILayout.TextField(material.GetFloat("_BlowoutScale").ToString())));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(477, 65, 318, 20));
-			material.SetFloat("_BlowoutScale", GUILayout.HorizontalSlider(material.GetFloat("_BlowoutScale"), 0.0f, 1.0f));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(318, 80, 110, 20));
-			GUILayout.Label("Blowout Offset");
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(428, 80, 49, 20));
-			material.SetFloat("_BlowoutOffset", float.Parse(GUILayout.TextField(material.GetFloat("_BlowoutOffset").ToString())));
-			GUILayout.EndArea();
-			
-			GUILayout.BeginArea(new Rect(477, 85, 318, 20));
-			material.SetFloat("_BlowoutOffset", GUILayout.HorizontalSlider(material.GetFloat("_BlowoutOffset"), 0.0f, 1.0f));
-			GUILayout.EndArea();
+			material.SetColor("_Colour", DrawColorModule(new Rect(304, 2, 146, 186), mainColorPicker, "Primary Color", material.GetVector("_Colour")));
 		}
 
-		public void Export(Material material)
+		public string Export(Material material)
 		{
-			if (GUILayout.Button("Export"))
-			{
-				CNewspaper result = new CNewspaper();
-				result._ColourX = material.GetVector("_Colour").x;
-				result._ColourY = material.GetVector("_Colour").y;
-				result._ColourZ = material.GetVector("_Colour").z;
+			CNewspaper result = new CNewspaper();
+			result._ColourX = material.GetColor("_Colour").r;
+			result._ColourY = material.GetColor("_Colour").g;
+			result._ColourZ = material.GetColor("_Colour").b;
+			result._ColourA = material.GetColor("_Colour").a;
+			
+			result._Alpha = material.GetFloat("_Alpha");
+			result._BlowoutScale = material.GetFloat("_BlowoutScale");
+			result._BlowoutOffset = material.GetFloat("_BlowoutOffset");
+			result._PhotographAsBase64 = imgtob64(material.GetTexture("_Photograph"));
 
-				result.Name = material.name;
+			result.Name = material.name;
 
-				string json = JsonConvert.SerializeObject(result, Formatting.Indented);
-				System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + $"/{result.Name}.json", json);
-			}
+			string json = JsonConvert.SerializeObject(result, Formatting.Indented);
+			return json;
 		}
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using Kitchen;
-using KitchenLib.IMMS;
 
 namespace KitchenLib.IMMS
 {

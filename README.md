@@ -2,7 +2,7 @@
 
 ## Description
 
-KitchenLib is a ilbrary designed to assist in modding the Unity game PlateUp!
+KitchenLib is a library designed to assist in modding the Unity game PlateUp!
 
 ## [Documentation](https://github.com/KitchenMods/KitchenLib/wiki)
 

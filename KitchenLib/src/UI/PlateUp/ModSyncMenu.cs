@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Kitchen.Modules;
 using Kitchen;
 using KitchenLib.Preferences;
 using KitchenLib.Views;
-using KitchenMods;
 using Steamworks.Ugc;
 using UnityEngine;
 
 namespace KitchenLib.UI.PlateUp
 {
-	internal class ModSyncMenu : KLMenu<PauseMenuAction>
+	internal class ModSyncMenu : KLMenu<MenuAction>
 	{
 		public ModSyncMenu(Transform container, ModuleList module_list) : base(container, module_list)
 		{
@@ -25,15 +25,15 @@ namespace KitchenLib.UI.PlateUp
 				Main.manager.GetPreference<PreferenceInt>("modSyncMethod").Set(result);
 				Main.manager.Save();
 			};
-			Redraw();
+			LocalRedraw();
 		}
 		
-		private async void Redraw()
+		private async void LocalRedraw()
 		{
 			ModuleList.Clear();
 			if (SyncMods.MissingMods.Count == 0)
 			{
-				AddInfo("I have no clue why you're here, but you're missing no mods.");
+				AddInfo("I have no clue why you're here, but you're not missing any mods.");
 			}
 			else if (MissingMods.Count == 0 || AllMods.Count == 0)
 			{
@@ -49,7 +49,7 @@ namespace KitchenLib.UI.PlateUp
 					var mod = await Steamworks.Ugc.Item.GetAsync(allmod);
 					AllMods.Add(mod.Value);
 				}
-				Redraw();
+				LocalRedraw();
 				return;
 			}
 			else
@@ -59,17 +59,12 @@ namespace KitchenLib.UI.PlateUp
 				New<SpacerElement>(true);
 				
 				AddInfo("Would you like to install the following mods?");
-				string label = "";
-				int count = 0;
 				
-				foreach (Item mod in MissingMods)
-				{
-					AddLabel(mod.Title);
-				}
+				CreateModLabels(AddInfo("").Position, MissingMods.Select(mod => mod.Title).ToList(), 3, 0.3f, 6);
 				
 				New<SpacerElement>(true);
 				
-				AddButton("Install", async delegate (int i)
+				AddButton("Install", delegate (int i)
 				{
 					ConfirmModSync.MissingMods = MissingMods;
 					ConfirmModSync.AllMods = AllMods;

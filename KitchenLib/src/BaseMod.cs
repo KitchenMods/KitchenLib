@@ -176,44 +176,19 @@ namespace KitchenLib
 					}
 				}
 			}
-
-			try
-			{
-				OnPostActivate(mod);
-			}
-			catch (Exception e)
-			{
-				Main.LogWarning($"{ModID} has failed to PostActivate.");
-				Main.LogWarning(e);
-			}
+			OnPostActivate(mod);
 			
 			canRegisterGDO = false;
 		}
 
 		public sealed override void PostInject() //IModInitializer
 		{
-			try
-			{
-				OnPostInject();
-			}
-			catch (Exception e)
-			{
-				Main.LogWarning($"{ModID} has failed to PostInject.");
-				Main.LogWarning(e);
-			}
+			OnPostInject();
 		}
 
 		public sealed override void PreInject() //IModInitializer
 		{
-			try
-			{
-				OnPreInject();
-			}
-			catch (Exception e)
-			{
-				Main.LogWarning($"{ModID} has failed to PreInject.");
-				Main.LogWarning(e);
-			}
+			OnPreInject();
 		}
 
 		protected override void OnUpdate() //IModSystem

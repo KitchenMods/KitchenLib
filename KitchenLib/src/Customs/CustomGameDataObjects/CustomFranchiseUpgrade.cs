@@ -14,20 +14,15 @@ namespace KitchenLib.Customs
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			FranchiseUpgrade result = ScriptableObject.CreateInstance<FranchiseUpgrade>();
-
-			if (BaseGameDataObjectID != -1)
-				result = UnityEngine.Object.Instantiate(gameData.Get<FranchiseUpgrade>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-			if (result.ID != ID) result.ID = ID;
-			if (result.MaximumUpgradeCount != MaximumUpgradeCount) result.MaximumUpgradeCount = MaximumUpgradeCount;
-			if (result.Upgrades != Upgrades) result.Upgrades = Upgrades;
-			if (result.Info != Info) result.Info = Info;
+			
+			OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "MaximumUpgradeCount", MaximumUpgradeCount);
+            OverrideVariable(result, "Upgrades", Upgrades);
+            OverrideVariable(result, "Info", Info);
 
 			if (InfoList.Count > 0)
 			{
-				result.Info = new LocalisationObject<BasicInfo>();
-				foreach ((Locale, BasicInfo) info in InfoList)
-					result.Info.Add(info.Item1, info.Item2);
+				SetupLocalisation<BasicInfo>(InfoList, ref result.Info);
 			}
 			gameDataObject = result;
 		}

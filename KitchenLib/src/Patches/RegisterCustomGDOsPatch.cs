@@ -8,7 +8,6 @@ using KitchenLib.Systems;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using KitchenLib.Colorblind;
-using UnityEngine;
 using KitchenLib.src.Patches;
 using KitchenMods;
 
@@ -28,10 +27,15 @@ namespace KitchenLib.Patches
 			GDOUtils.SetupGDOIndex(__result);
 			ColorblindUtils.Init(__result);
 			
+			foreach ((string, Type) x in ModsPreferencesMenu<MenuAction>.MenusToRegister.Keys)
+				ModsPreferencesMenu<MenuAction>.Register(x.Item1, x.Item2, typeof(MenuAction));
+
 			foreach ((string, Type) x in ModsPreferencesMenu<MainMenuAction>.MenusToRegister.Keys)
-				ModsPreferencesMenu<MainMenuAction>.Register(x.Item1, x.Item2, ModsPreferencesMenu<MainMenuAction>.MenusToRegister[x]);
+				ModsPreferencesMenu<MenuAction>.Register(x.Item1, x.Item2, typeof(MainMenuAction));
+
 			foreach ((string, Type) x in ModsPreferencesMenu<PauseMenuAction>.MenusToRegister.Keys)
-				ModsPreferencesMenu<PauseMenuAction>.Register(x.Item1, x.Item2, ModsPreferencesMenu<PauseMenuAction>.MenusToRegister[x]);
+				ModsPreferencesMenu<MenuAction>.Register(x.Item1, x.Item2, typeof(PauseMenuAction));
+			
 
 			if (FirstRun) // only build custom GDOs once
 			{
@@ -66,25 +70,48 @@ namespace KitchenLib.Patches
 				
 				foreach (CustomGameDataObject gdo in CustomGDO.GDOs.Values)
 				{
-					Main.LogDebug($"-----===== Convert GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
-					GameDataObject gameDataObject;
-					gdo.Convert(__result, out gameDataObject);
-					gameDataObject.name = $"{gdo.ModID} - {gdo.UniqueNameID}";
-					gdo.GameDataObject = gameDataObject;
-					GameDataObjects.Add(gameDataObject);
+					try
+					{
+						Main.LogDebug($"-----===== Convert GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
+						GameDataObject gameDataObject;
+						gdo.Convert(__result, out gameDataObject);
+						gameDataObject.name = $"{gdo.ModID} - {gdo.UniqueNameID}";
+						gdo.GameDataObject = gameDataObject;
+						GameDataObjects.Add(gameDataObject);
+					}
+					catch (Exception e)
+					{
+						Main.LogError(e);
+						ErrorHandling.AddFailedGDO(gdo, e, GDOFailureState.FailedToConvert);
+					}
 				}
 
 				foreach (CustomGameDataObject gdo in CustomGDO.GDOs.Values)
 				{
-					
-					Main.LogDebug($"-----===== AttachDependentProperties GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
-					gdo.AttachDependentProperties(__result, gdo.GameDataObject);
+					try
+					{
+						Main.LogDebug($"-----===== AttachDependentProperties GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
+						gdo.AttachDependentProperties(__result, gdo.GameDataObject);
+					}
+					catch (Exception e)
+					{
+						Main.LogError(e);
+						ErrorHandling.AddFailedGDO(gdo, e, GDOFailureState.FailedToAttachDependent);
+					}
 				}
 
 				foreach (CustomGameDataObject gdo in CustomGDO.GDOs.Values)
 				{
-					Main.LogDebug($"-----===== OnRegister GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
-					gdo.OnRegister(gdo.GameDataObject);
+					try
+					{
+						Main.LogDebug($"-----===== OnRegister GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
+						gdo.OnRegister(gdo.GameDataObject);
+					}
+					catch (Exception e)
+					{
+						Main.LogError(e);
+						ErrorHandling.AddFailedGDO(gdo, e, GDOFailureState.FailedToRegister);
+					}
 				}
 			}
 
@@ -144,31 +171,7 @@ namespace KitchenLib.Patches
 					{
 						Dish dish = (Dish)gameDataObject;
 						CustomDish customDish = (CustomDish)GDOUtils.GetCustomGameDataObject(dish.ID);
-						foreach (Locale locle in customDish.Recipe.Keys)
-						{
-							__result.GlobalLocalisation.Recipes.Info.Get(locle).Text.Add(dish, customDish.Recipe[locle]);
-							foreach (RecipeLocalisation loc in __result.Get<RecipeLocalisation>())
-							{
-								if (!loc.Text.ContainsKey(dish))
-								{
-									if (Enum.TryParse<Locale>(PlayerPrefs.GetString(Pref.Localisation), out Locale locale))
-									{
-										if (customDish.Recipe.ContainsKey(locale))
-										{
-											loc.Text.Add(dish, customDish.Recipe[locale]);
-										}
-										else
-										{
-											loc.Text.Add(dish, customDish.Recipe[Locale.English]);
-										}
-									}
-									else
-									{
-										Main.LogError($"Invalid Locale: {PlayerPrefs.GetString(Pref.Localisation)} encountered when registering {customDish.UniqueNameID}");
-									}
-								}
-							}
-						}
+						
 						if (customDish.IsAvailableAsLobbyOption)
 						{
 							if (customDish.DestroyAfterModUninstall)
@@ -180,7 +183,6 @@ namespace KitchenLib.Patches
 								BuildLocalDishOptions.MenuOptions.Add(dish.ID);
 						}
 					}
-
 					// Items
 					if (gameDataObject.GetType() == typeof(Item) || gameDataObject.GetType() == typeof(ItemGroup))
 					{

@@ -1,32 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
 using Kitchen;
 using Kitchen.Modules;
 using KitchenLib.Registry;
 using KitchenMods;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using UnityEngine;
 
 namespace KitchenLib
 {
-	public partial class ModsMenu<T> : KLMenu<T>
+	public class ModsMenu<T> : KLMenu<T>
 	{
 		public ModsMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
-		private List<string> modNames = new List<string>();
-
-		private static List<ModPage> modPages = new List<ModPage>
+		
+		private Option<int> pages;
+		
+		private List<string> kitchenLibModNames = new List<string>();
+		private List<string> nonKitchenLibModNames = new List<string>();
+		
+		private List<string> blockedModNames = new List<string>
 		{
-			ModPage.LoadedMods,
-			ModPage.UntestedMods,
-			ModPage.NonKitchenLibMods
-		};
-
-		private static readonly float columnWidth = 6f;
-		private static readonly int modsPerColumn = 25;
-		private static readonly Vector2 selectPosition = new Vector2(1, 4);
-		private static readonly Vector2 backButtonPosition = new Vector2(1, 3.5f);
-		private static readonly List<string> modsToFilterOut = new List<string> {
 			"Mono.Cecil.dll",
 			"Mono.Cecil.Mdb.dll",
 			"Mono.Cecil.Pdb.dll",
@@ -34,93 +27,99 @@ namespace KitchenLib
 			"MonoMod.RuntimeDetour.dll",
 			"MonoMod.Utils.dll",
 			"UniverseLib.Mono.dll",
+			"MonoMod.Backports.dll",
+			"MonoMod.Core.dll",
+			"MonoMod.Iced.dll",
+			"MonoMod.ILHelpers.dll",
 		};
-
-		private static List<string> modPagesNames = new List<string>
-		{
-			"Loaded Mods",
-			"Untested Mods",
-			"Non-KitchenLib Mods"
-		};
-
-		private Option<ModPage> PageSelector = new Option<ModPage>(modPages, ModPage.LoadedMods, modPagesNames);
-
+		
+		private string modToModNameAndVersion(BaseMod mod) => $"{mod.ModName}     v{mod.ModVersion}{mod.BetaVersion}";
+		
 		public override void Setup(int player_id)
 		{
+			base.Setup(player_id);
 
-			Dictionary<Type, BaseMod> loadedMods = new Dictionary<Type, BaseMod>();
-			Dictionary<Type, BaseMod> untestedMods = new Dictionary<Type, BaseMod>();
-			Dictionary<Assembly, string> modAssemblies = new Dictionary<Assembly, string>();
-
+			kitchenLibModNames.Clear();
+			nonKitchenLibModNames.Clear();
+			
 			foreach (Type modType in ModRegistery.Registered.Keys)
 			{
 				BaseMod mod = ModRegistery.Registered[modType];
-				if (ModRegistery.isModSafeForVersion(mod))
-					loadedMods.Add(modType, mod);
-				else
-					untestedMods.Add(modType, mod);
-				modNames.Add(mod.ModName);
-				modAssemblies.Add(ModRegistery.keyValuePairs[modType], ModRegistery.keyValuePairs[modType].GetName().Name + ".dll");
+				kitchenLibModNames.Add(modToModNameAndVersion(mod));
+				blockedModNames.Add(ModRegistery.keyValuePairs[modType].GetName().Name + ".dll");
 			}
-			PageSelector.OnChanged += delegate (object _, ModPage result)
+
+			foreach (Mod mod in ModPreload.Mods)
 			{
-				Redraw(player_id, result, modAssemblies, untestedMods, loadedMods);
-			};
-			Redraw(player_id, ModPage.LoadedMods, modAssemblies, untestedMods, loadedMods);
+				foreach (AssemblyModPack pack in mod.GetPacks<AssemblyModPack>())
+				{
+					if (blockedModNames.Contains(pack.Name) && !Main.debugLogging)
+					{
+						continue;
+					}
+
+					if (pack.Mod.ID == 0)
+					{
+						nonKitchenLibModNames.Add(pack.Name + " v?");
+					}
+					else
+					{
+						try
+						{
+							System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(Path.Combine(Application.dataPath, "..", "..", "..", "..", "workshop", "content", "1599600", pack.Mod.ID.ToString(), pack.Name));
+							string version = fvi.FileVersion;
+							nonKitchenLibModNames.Add(pack.Name + " v" + version);
+						}
+						catch (Exception e)
+						{
+							Debug.LogException(e);
+							nonKitchenLibModNames.Add(pack.Name + " v?");
+						}
+					}
+				}
+			}
+
+			pages = CreatePageSelector(new Dictionary<int, PageDetails>
+			{
+				{
+					0, new PageDetails
+					{
+						title = "KitchenLib Mods",
+						action = DrawKitchenLibMods
+					}
+				},
+				{
+					1, new PageDetails
+					{
+						title = "Non-KitchenLib Mods",
+						action = DrawNonKitchenLibMods
+					}
+				}
+			});
+
+			DrawKitchenLibMods();
 		}
 
-		private void Redraw(int player_id, ModPage mod_page, Dictionary<Assembly, string> modAssemblies, Dictionary<Type, BaseMod> untestedMods, Dictionary<Type, BaseMod> loadedMods)
+		protected override void Redraw()
 		{
 			ModuleList.Clear();
-			AddSelect<ModPage>(PageSelector).Position = selectPosition;
-			New<SpacerElement>(true);
-			AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate (int i)
+			AddSelect(pages);
+			AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate(int i)
 			{
 				this.RequestPreviousMenu();
-			}, 0, 1f, 0.2f).Position = backButtonPosition;
-
-			if (mod_page == ModPage.LoadedMods)
-			{
-				createModLabels(loadedMods.Values.Select(modToModNameAndVersion).ToList());
-			}
-			else if (mod_page == ModPage.UntestedMods)
-			{
-				createModLabels(untestedMods.Values.Select(modToModNameAndVersion).ToList());
-			}
-			else if (mod_page == ModPage.NonKitchenLibMods)
-			{
-				List<string> nonKlMods = ModPreload.Mods
-					.Where(mod => mod.State == ModState.PostActivated)
-					.SelectMany(mod => mod.GetPacks<AssemblyModPack>())
-					.Where(pack => !modAssemblies.ContainsValue(pack.Name) && !modsToFilterOut.Contains(pack.Name))
-					.Select(pack => pack.Name.Replace(".dll", "")).ToList();
-				createModLabels(nonKlMods);
-			}
+			}, 0, 1f, 0.2f);
 		}
 
-		private string modToModNameAndVersion(BaseMod mod) => $"{mod.ModName}     v{mod.ModVersion}{mod.BetaVersion}";
-
-		private void createModLabels(List<string> modNames)
+		private void DrawKitchenLibMods()
 		{
-			int columns = modNames.Count / modsPerColumn;
-			int i = 0;
-
-			modNames.OrderBy(x => x).ToList().ForEach(modName =>
-			{
-				InfoBoxElement infoBoxElement = AddInfo(modName);
-				infoBoxElement.SetSize(columnWidth, 1f);
-				infoBoxElement.Position = new Vector2(
-					Mathf.Floor(i / modsPerColumn) * columnWidth - (columns * columnWidth / 2),
-					i % modsPerColumn * -0.25f + 3f);
-				i++;
-			});
+			Redraw();
+			CreateModLabels(AddInfo("").Position, kitchenLibModNames, 3, 0.3f, 6);
 		}
-	}
-
-	public enum ModPage
-	{
-		LoadedMods,
-		UntestedMods,
-		NonKitchenLibMods
+		
+		private void DrawNonKitchenLibMods()
+		{
+			Redraw();
+			CreateModLabels(AddInfo("").Position, nonKitchenLibModNames, 3, 0.3f, 6);
+		}
 	}
 }

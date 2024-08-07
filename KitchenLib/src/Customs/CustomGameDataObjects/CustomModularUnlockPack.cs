@@ -16,14 +16,11 @@ namespace KitchenLib.Customs
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             ModularUnlockPack result = ScriptableObject.CreateInstance<ModularUnlockPack>();
-
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<ModularUnlockPack>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
-            if (result.Filter != Filter) result.Filter = Filter;
-            if (result.Sorters != Sorters) result.Sorters = Sorters;
-            if (result.ConditionalOptions != ConditionalOptions) result.ConditionalOptions = ConditionalOptions;
+            
+            OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "Filter", Filter);
+            OverrideVariable(result, "Sorters", Sorters);
+            OverrideVariable(result, "ConditionalOptions", ConditionalOptions);
 
             gameDataObject = result;
         }
@@ -32,7 +29,7 @@ namespace KitchenLib.Customs
         {
             ModularUnlockPack result = (ModularUnlockPack)gameDataObject;
 
-			if (result.Sets != Sets) result.Sets = Sets;
+			OverrideVariable(result, "Sets", Sets);
         }
     }
 }

@@ -19,35 +19,32 @@ namespace KitchenLib.Customs
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             Process result = ScriptableObject.CreateInstance<Process>();
-
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<Process>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
-            if (result.EnablingApplianceCount != EnablingApplianceCount) result.EnablingApplianceCount = EnablingApplianceCount;
-            if (result.CanObfuscateProgress != CanObfuscateProgress) result.CanObfuscateProgress = CanObfuscateProgress;
-
-            if (result.Info != Info) result.Info = Info;
-
+            
+            OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "EnablingApplianceCount", EnablingApplianceCount);
+            OverrideVariable(result, "CanObfuscateProgress", CanObfuscateProgress);
+            OverrideVariable(result, "Info", Info);
+            
             if (InfoList.Count > 0)
             {
-                result.Info = new LocalisationObject<ProcessInfo>();
-                foreach ((Locale, ProcessInfo) info in InfoList)
-                    result.Info.Add(info.Item1, info.Item2);
+	            SetupLocalisation<ProcessInfo>(InfoList, ref result.Info);
             }
-
-            if (result.Info == null)
+            else
             {
-                result.Info = new LocalisationObject<ProcessInfo>();
-                if (!result.Info.Has(Locale.English))
-                {
-					ProcessInfo processInfo = ScriptableObject.CreateInstance<ProcessInfo>();
-					processInfo.Name = Icon;
-					processInfo.Icon = Icon;
-					result.Info.Add(Locale.English, processInfo);
-				}
+	            if (result.Info == null)
+	            {
+		            Main.LogDebug($"Setting up fallback localisation");
+		            result.Info = new LocalisationObject<ProcessInfo>();
+		            if (!result.Info.Has(Locale.English))
+		            {
+			            ProcessInfo processInfo = ScriptableObject.CreateInstance<ProcessInfo>();
+			            processInfo.Name = Icon;
+			            processInfo.Icon = Icon;
+			            result.Info.Add(Locale.English, processInfo);
+		            }
+	            }
             }
-
+            
             gameDataObject = result;
         }
 
@@ -55,8 +52,8 @@ namespace KitchenLib.Customs
         {
             Process result = (Process)gameDataObject;
 
-			if (result.BasicEnablingAppliance != BasicEnablingAppliance) result.BasicEnablingAppliance = BasicEnablingAppliance;
-            if (result.IsPseudoprocessFor != IsPseudoprocessFor) result.IsPseudoprocessFor = IsPseudoprocessFor;
+            OverrideVariable(result, "BasicEnablingAppliance", BasicEnablingAppliance);
+            OverrideVariable(result, "IsPseudoprocessFor", IsPseudoprocessFor);
         }
     }
 }

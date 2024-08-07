@@ -1,7 +1,11 @@
 using KitchenData;
 using KitchenLib.Utils;
 using System;
+using System.Collections.Generic;
+using System.Reflection;
+using JetBrains.Annotations;
 using KitchenMods;
+using UnityEngine;
 
 namespace KitchenLib.Customs
 {
@@ -33,6 +37,45 @@ namespace KitchenLib.Customs
         {
             return StringUtils.GetInt32HashCode($"{ModName}:{UniqueNameID}");
         }
+
+        protected void OverrideVariable(object result, string varName, object value, bool supressError = false)
+        {
+	        try
+	        {
+		        FieldInfo fieldInfo = ReflectionUtils.GetField(result.GetType(), varName);
+		        Main.LogDebug($"Assigning : {value} >> {varName}");
+		        fieldInfo.SetValue(result, value);
+	        }
+	        catch (Exception e)
+	        {
+		        if (!supressError)
+		        {
+			        Main.LogError($"Failed to assign : {value} >> {varName}");
+			        Main.LogError(e);
+		        }
+	        }
+        }
+
+        protected void SetupLocalisation<T>(List<(Locale, T)> InfoList, ref LocalisationObject<T> result) where T : Localisation
+		{
+	        Main.LogDebug($"Setting up localisation");
+	        result = new LocalisationObject<T>();
+
+	        T fallback = default;
+	        foreach ((Locale, T) info in InfoList)
+	        {
+		        if (info.Item1 == Locale.English)
+		        {
+			        fallback = info.Item2;
+		        }
+		        result.Add(info.Item1, info.Item2);
+	        }
+
+	        if (fallback != null)
+		        foreach (Locale locale in Enum.GetValues(typeof(Locale)))
+			        if (!result.Has(locale))
+				        result.Add(locale, fallback);
+		}
     }
 
     public abstract class CustomGameDataObject<T> : CustomGameDataObject where T : GameDataObject

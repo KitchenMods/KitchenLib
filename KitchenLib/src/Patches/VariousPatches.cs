@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
 using Kitchen;
 
 namespace KitchenLib.Patches
@@ -9,7 +10,7 @@ namespace KitchenLib.Patches
 	{
 		public static void Postfix(DisplayVersion __instance)
 		{
-			if (Main.MOD_BETA_VERSION != "")
+			if (!String.IsNullOrEmpty(Main.MOD_BETA_VERSION ))
 			{
 				__instance.Text.text = __instance.Text.text + "?";
 			}

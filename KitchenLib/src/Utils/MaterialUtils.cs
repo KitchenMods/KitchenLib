@@ -63,7 +63,6 @@ namespace KitchenLib.Utils
         /// <summary>
         /// Apply a material array to a GameObject's renderer.
         /// </summary>
-        /// <typeparam name="T">The type of the renderer.</typeparam>
         /// <param name="gameObject">The object to apply the material to.</param>
         /// <param name="materials">The names of the materials to apply.</param>
         /// <returns>The input GameObject.</returns>

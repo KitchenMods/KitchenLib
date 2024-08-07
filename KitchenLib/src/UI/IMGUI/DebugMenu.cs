@@ -126,24 +126,24 @@ namespace KitchenLib.UI
 
 		private void GenerateReferenceClass<T>(ref List<string> list, GameData gamedata) where T : GameDataObject
 		{
-			list.Add($"    public static class {typeof(T).Name}References");
-			list.Add("    {");
+			list.Add($"	public static class {typeof(T).Name}References");
+			list.Add("	{");
 			foreach (T x in gamedata.Get<T>())
 			{
-				list.Add($"        public static int {(x.name).Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "")} => (int)_{typeof(T).Name}References.{(x.name).Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "")};\n");
+				list.Add($"		public static int {(x.name).Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "")} => (int)_{typeof(T).Name}References.{(x.name).Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "")};\n");
 			}
-			list.Add("    }");
+			list.Add("	}");
 		}
 
 		private void GenerateEnumClass<T>(ref List<string> list, GameData gamedata) where T : GameDataObject
 		{
-			list.Add($"    public enum _{typeof(T).Name}References");
-			list.Add("    {");
+			list.Add($"	public enum _{typeof(T).Name}References");
+			list.Add("	{");
 			foreach (T x in gamedata.Get<T>())
 			{
-				list.Add($"        {(x.name).Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "")} = {x.ID},\n");
+				list.Add($"		{(x.name).Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "")} = {x.ID},\n");
 			}
-			list.Add("    }");
+			list.Add("	}");
 		}
 	}
 }

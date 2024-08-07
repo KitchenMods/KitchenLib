@@ -16,27 +16,19 @@ namespace KitchenLib.Utils
 			var tuple = (type, methodName);
 			if (cachedMethods.TryGetValue(tuple, out var cachedVal))
 				return cachedVal;
-			cachedMethods[tuple] = type.GetMethod(methodName);
+			cachedMethods[tuple] = AccessTools.Method(type, methodName);
 			return cachedMethods[tuple];
 		}
-
-		public static MethodInfo GetMethod<T>(string methodName, BindingFlags flags)
+		
+		public static FieldInfo GetField(Type type, string fieldName)
 		{
-			var tuple = (typeof(T), methodName);
-			if (cachedMethods.TryGetValue(tuple, out var cachedVal))
-				return cachedVal;
-			cachedMethods[tuple] = typeof(T).GetMethod(methodName, flags);
-			return cachedMethods[tuple];
-		}
-		public static FieldInfo GetField<T>(string fieldName, BindingFlags flags)
-		{
-			var tuple = (typeof(T), fieldName);
+			var tuple = (type, fieldName);
 			if (cachedFields.TryGetValue(tuple, out var cachedVal))
 				return cachedVal;
-			cachedFields[tuple] = typeof(T).GetField(fieldName, flags);
+			cachedFields[tuple] = AccessTools.Field(type, fieldName);
 			return cachedFields[tuple];
 		}
-
+		
 		public static MethodInfo GetMethod<T>(string methodName)
 		{
 			var tuple = (typeof(T), methodName);
@@ -52,6 +44,24 @@ namespace KitchenLib.Utils
 				return cachedVal;
 			cachedFields[tuple] = AccessTools.Field(typeof(T), fieldName);
 			return cachedFields[tuple];
+		}
+		
+		[Obsolete("Please use GetMethod<T>(string) instead")]
+		public static MethodInfo GetMethod<T>(string methodName, BindingFlags flags)
+		{
+			return GetMethod<T>(methodName);
+		}
+		
+		[Obsolete("Please use GetField<T>(string) instead")]
+		public static FieldInfo GetField<T>(string fieldName, BindingFlags flags)
+		{
+			return GetField<T>(fieldName);
+		}
+		
+		[Obsolete("Please use GetField(type, string) instead")]
+		public static FieldInfo GetField(Type type, string fieldName, BindingFlags flags)
+		{
+			return GetField(type, fieldName);
 		}
 	}
 }

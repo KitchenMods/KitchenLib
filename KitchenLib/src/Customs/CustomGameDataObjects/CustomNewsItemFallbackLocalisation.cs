@@ -16,13 +16,10 @@ namespace KitchenLib.Customs
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			NewsItemFallbackLocalisation result = ScriptableObject.CreateInstance<NewsItemFallbackLocalisation>();
-
-			if (BaseGameDataObjectID != -1)
-				result = UnityEngine.Object.Instantiate(gameData.Get<NewsItemFallbackLocalisation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-			if (result.ID != ID) result.ID = ID;
-			if (result.Info != Info) result.Info = Info;
-			if (result.Text != Text) result.Text = Text;
+			
+			OverrideVariable(result, "ID", ID);
+			OverrideVariable(result, "Info", Info);
+			OverrideVariable(result, "Text", Text);
 			
 			gameDataObject = result;
 		}

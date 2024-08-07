@@ -18,14 +18,11 @@ namespace KitchenLib.Customs
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			DecorationLocalisation result = ScriptableObject.CreateInstance<DecorationLocalisation>();
-
-			if (BaseGameDataObjectID != -1)
-				result = UnityEngine.Object.Instantiate(gameData.Get<DecorationLocalisation>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-			if (result.ID != ID) result.ID = ID;
-			if (result.Info != Info) result.Info = Info;
-			if (result.Text != Text) result.Text = Text;
-			if (result.Icons != Icons) result.Icons = Icons;
+			
+			OverrideVariable(result, "ID", ID);
+			OverrideVariable(result, "Info", Info);
+			OverrideVariable(result, "Text", Text);
+			OverrideVariable(result, "Icons", Icons);
 			
 			gameDataObject = result;
 		}

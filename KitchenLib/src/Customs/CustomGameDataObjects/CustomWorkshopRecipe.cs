@@ -16,14 +16,11 @@ namespace KitchenLib.Customs
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
             WorkshopRecipe result = ScriptableObject.CreateInstance<WorkshopRecipe>();
-
-			if (BaseGameDataObjectID != -1)
-                result = UnityEngine.Object.Instantiate(gameData.Get<WorkshopRecipe>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-            if (result.ID != ID) result.ID = ID;
-            if (result.Conditions != Conditions) result.Conditions = Conditions;
-            if (result.GroupConditions != GroupConditions) result.GroupConditions = GroupConditions;
-            if (result.Output != Output) result.Output = Output;
+            
+            OverrideVariable(result, "ID", ID);
+            OverrideVariable(result, "Conditions", Conditions);
+            OverrideVariable(result, "GroupConditions", GroupConditions);
+            OverrideVariable(result, "Output", Output);
 
             gameDataObject = result;
         }

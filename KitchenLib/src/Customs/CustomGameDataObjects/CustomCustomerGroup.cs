@@ -1,6 +1,5 @@
 using KitchenData;
 using KitchenLib.Utils;
-using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
@@ -11,51 +10,48 @@ namespace KitchenLib.Customs
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
         {
 	        CustomerGroup result = ScriptableObject.CreateInstance<CustomerGroup>();
-
-	        if (BaseGameDataObjectID != -1)
-		        result = UnityEngine.Object.Instantiate(gameData.Get<CustomerGroup>().FirstOrDefault(a => a.ID == BaseGameDataObjectID));
-
-	        if (result.ID != ID) result.ID = ID;
-	        if (result.Effects != Effects) result.Effects = Effects;
-
-	        if (result.ExpReward != ExpReward) result.ExpReward = ExpReward;
-	        if (result.IsUnlockable != IsUnlockable) result.IsUnlockable = IsUnlockable;
-	        if (result.UnlockGroup != UnlockGroup) result.UnlockGroup = UnlockGroup;
-	        if (result.CardType != CardType) result.CardType = CardType;
-	        if (result.MinimumFranchiseTier != MinimumFranchiseTier) result.MinimumFranchiseTier = MinimumFranchiseTier;
-	        if (result.IsSpecificFranchiseTier != IsSpecificFranchiseTier) result.IsSpecificFranchiseTier = IsSpecificFranchiseTier;
-	        if (result.CustomerMultiplier != CustomerMultiplier) result.CustomerMultiplier = CustomerMultiplier;
-	        if (result.SelectionBias != SelectionBias) result.SelectionBias = SelectionBias;
-	        if (result.BlocksAllOtherFood != BlocksAllOtherFood) result.BlocksAllOtherFood = BlocksAllOtherFood;
-
-	        if (result.Info != Info) result.Info = Info;
+	        
+	        OverrideVariable(result, "ID", ID);
+	        OverrideVariable(result, "Effects", Effects);
+	        OverrideVariable(result, "ExpReward", ExpReward);
+	        OverrideVariable(result, "IsUnlockable", IsUnlockable);
+	        OverrideVariable(result, "UnlockGroup", UnlockGroup);
+	        OverrideVariable(result, "CardType", CardType);
+	        OverrideVariable(result, "MinimumFranchiseTier", MinimumFranchiseTier);
+	        OverrideVariable(result, "IsSpecificFranchiseTier", IsSpecificFranchiseTier);
+	        OverrideVariable(result, "CustomerMultiplier", CustomerMultiplier);
+	        OverrideVariable(result, "SelectionBias", SelectionBias);
+	        OverrideVariable(result, "BlocksAllOtherFood", BlocksAllOtherFood);
+	        OverrideVariable(result, "Info", Info);
 
 	        if (InfoList.Count > 0)
 	        {
-		        result.Info = new LocalisationObject<UnlockInfo>();
-		        foreach ((Locale, UnlockInfo) info in InfoList)
-			        result.Info.Add(info.Item1, info.Item2);
+		        SetupLocalisation<UnlockInfo>(InfoList, ref result.Info);
 	        }
 
 	        if (!string.IsNullOrEmpty(IconOverride))
+	        {
+		        Main.LogDebug($"Assigning : {IconOverride} >> IconOverride");
 		        UnlockOverrides.AddIconOverride(result.ID, IconOverride);
-	        if (ColourOverride != new Color())
-		        UnlockOverrides.AddColourOverride(result.ID, ColourOverride);
+	        }
 
+	        if (ColourOverride != new Color())
+	        {
+		        Main.LogDebug($"Assigning : {ColourOverride} >> ColourOverride");
+		        UnlockOverrides.AddColourOverride(result.ID, ColourOverride);
+	        }
+	        
 	        gameDataObject = result;
         }
 
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			CustomerGroup result = (CustomerGroup)gameDataObject;
-
-			FieldInfo hardcodedRequirements = ReflectionUtils.GetField<Unlock>("HardcodedRequirements");
-			FieldInfo hardcodedBlockers = ReflectionUtils.GetField<Unlock>("HardcodedBlockers");
-
-			if (hardcodedRequirements.GetValue(result) != HardcodedRequirements) hardcodedRequirements.SetValue(result, HardcodedRequirements);
-			if (hardcodedBlockers.GetValue(result) != HardcodedBlockers) hardcodedBlockers.SetValue(result, HardcodedBlockers);
-			if (result.AllowedFoods != AllowedFoods) result.AllowedFoods = AllowedFoods;
-			if (result.ForceFranchiseSetting != ForceFranchiseSetting) result.ForceFranchiseSetting = ForceFranchiseSetting;
+			
+			OverrideVariable(result, "HardcodedRequirements", HardcodedRequirements);
+			OverrideVariable(result, "HardcodedBlockers", HardcodedBlockers);
+			OverrideVariable(result, "AllowedFoods", AllowedFoods);
+			OverrideVariable(result, "ForceFranchiseSetting", ForceFranchiseSetting);
 		}
 	}
 }
