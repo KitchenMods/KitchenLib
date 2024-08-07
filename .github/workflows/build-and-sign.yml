@@ -4,15 +4,21 @@ on:
   workflow_dispatch:
     inputs:
       releaseversion:
-        description: 'The release version'
+        description: "The release version"
         required: true
-        default: ''
+        default: ""
         type: string
       betaversion:
-        description: 'The beta version'
+        description: "The beta version"
         required: false
-        default: ''
+        default: ""
         type: string
+      branch:
+        type: choice
+        description: Which Branch?
+        options:
+          - public
+          - beta_branch_1
 
 jobs:
   build-and-sign:
@@ -20,114 +26,121 @@ jobs:
       matrix:
         configuration: [Workshop]
 
-    runs-on: ubuntu-latest  # For a list of available runner types, refer to
-                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+    runs-on:
+      ubuntu-latest # For a list of available runner types, refer to
+      # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     permissions:
       contents: read
       id-token: write # needed for signing the images with GitHub OIDC Token
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-         
-    - name: Setup DepotDownloader
-      run: |
-         wget https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.5.0/DepotDownloader-linux-x64.zip
-         unzip DepotDownloader-linux-x64.zip
-         chmod +x DepotDownloader
-        
-    - name: Generate auth code
-      id: generate
-      uses: CyberAndrii/steam-totp@c7f636bc64e77f1b901e0420b7890813141508ee
-      with:
-        shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
-        
-    - name: Download PlateUp Files
-      run: |
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup DepotDownloader
+        run: |
+          wget https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.5.0/DepotDownloader-linux-x64.zip
+          unzip DepotDownloader-linux-x64.zip
+          chmod +x DepotDownloader
+
+      - name: Generate auth code
+        id: generate
+        uses: CyberAndrii/steam-totp@c7f636bc64e77f1b901e0420b7890813141508ee
+        with:
+          shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
+
+      - name: Download PlateUp Files (Beta Branch 1)
+        if: ${{ github.event.inputs.branch == 'beta_branch_1' }}
+        run: |
+          ./DepotDownloader -app 1599600 -depot 1599601 -beta ${{ secrets.BETA_BRANCH_1_NAME }} -betapassword ${{ secrets.BETA_BRANCH_1_PASSWORD }} -username ${{ secrets.STEAM_USERNAME }} -password ${{ secrets.STEAM_PASSWORD }} <<< "${{ steps.generate.outputs.code }}"
+
+      - name: Download PlateUp Files (Public)
+        if: ${{ github.event.inputs.branch == 'public' }}
+        run: |
           ./DepotDownloader -app 1599600 -depot 1599601 -username ${{ secrets.STEAM_USERNAME }} -password ${{ secrets.STEAM_PASSWORD }} <<< "${{ steps.generate.outputs.code }}"
 
-     # Install the .NET Core workload
-    - name: Install .NET Core
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: |
-         6.x
-         
-    # Execute all unit tests in the solution TODO: Implement tests?
-    #- name: Execute unit tests
-    #  run: dotnet test
+        # Install the .NET Core workload
+      - name: Install .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: |
+            6.x
 
-    - name: Build the application
-      run: |
-        set -x
-        dotnet --list-sdks
-        ls -d $PWD/depots/1599601/**
-        dotnet build -c $Configuration -p:GamePath=`ls -d $PWD/depots/1599601/**`/PlateUp -p:EnableModDeployLocal='false' -p:EnableGameDebugging='false' --os windows --no-self-contained ./KitchenLib/KitchenLib.csproj
-        cp ./KitchenLib/bin/$Configuration/net472/windows-x64/KitchenLib-$Configuration.dll ./KitchenLib/content/
-        cp ./KitchenLib/bin/$Configuration/net472/KitchenLib-$Configuration.xml ./KitchenLib/content/
-        cp "./Unity Project - KitchenLib/Assets/StreamingAssets/kitchenlib.assets" ./KitchenLib/content/
-      env:
-        Configuration: ${{ matrix.configuration }}
+      # Execute all unit tests in the solution TODO: Implement tests?
+      #- name: Execute unit tests
+      #  run: dotnet test
 
-    - name: cosign-installer
-      uses: sigstore/cosign-installer@v3.3.0
+      - name: Build the application
+        run: |
+          set -x
+          dotnet --list-sdks
+          ls -d $PWD/depots/1599601/**
+          dotnet build -c $Configuration -p:GamePath=`ls -d $PWD/depots/1599601/**`/PlateUp -p:EnableModDeployLocal='false' -p:EnableGameDebugging='false' --os windows --no-self-contained ./KitchenLib/KitchenLib.csproj
+          cp ./KitchenLib/bin/$Configuration/net472/windows-x64/KitchenLib-$Configuration.dll ./KitchenLib/content/
+          cp ./KitchenLib/bin/$Configuration/net472/KitchenLib-$Configuration.xml ./KitchenLib/content/
+          cp "./Unity Project - KitchenLib/Assets/StreamingAssets/kitchenlib.assets" ./KitchenLib/content/
+        env:
+          Configuration: ${{ matrix.configuration }}
 
-    # This performs signing with the Gitub OIDC token. See https://docs.sigstore.dev/cosign/overview/ for specifics
-    - name: Sign with Github Key
-      run: |
-        cosign sign-blob --yes ./KitchenLib/content/KitchenLib-Workshop.dll --bundle ./KitchenLib/content/cosign.bundle
+      - name: cosign-installer
+        uses: sigstore/cosign-installer@v3.3.0
 
-    - name: Perform Hashes
-      run: |
-        sha256sum ./KitchenLib/content/* > ./KitchenLib/content/checksums.txt
-        ls ./KitchenLib/content/
+      # This performs signing with the Gitub OIDC token. See https://docs.sigstore.dev/cosign/overview/ for specifics
+      - name: Sign with Github Key
+        run: |
+          cosign sign-blob --yes ./KitchenLib/content/KitchenLib-Workshop.dll --bundle ./KitchenLib/content/cosign.bundle
 
-    # Upload the build artifacts for later use
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: KitchenLib-Build
-        path: KitchenLib/content/
-        if-no-files-found: error
+      - name: Perform Hashes
+        run: |
+          sha256sum ./KitchenLib/content/* > ./KitchenLib/content/checksums.txt
+          ls ./KitchenLib/content/
 
-    # Publish Release
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.PAT }} # This token is provided by Actions, you do not need to create your own token
-      with:
-        tag_name: v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}
-        release_name: v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}
-        body_path: ./KitchenLib/Changelogs/${{ github.event.inputs.releaseversion }}/Github/v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}.MD
-        draft: false
-        prerelease: ${{ !(github.event.inputs.betaversion == '') }}
-          
-    - name: Download artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: KitchenLib-Build
-        path: build
-        
-    - name: Display structure of downloaded files
-      run: |
-        ls -l
-        cd build
-        ls -l
-        zip -r KitchenLib-Build.zip *
-        ls -l
-  
-    # Upload Release Files
-    - name: Upload Release Files
-      id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.PAT }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: build/KitchenLib-Build.zip
-        asset_name: KitchenLib-v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}}.zip
-        asset_content_type: application/zip
+      # Upload the build artifacts for later use
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: KitchenLib-Build
+          path: KitchenLib/content/
+          if-no-files-found: error
+
+      # Publish Release
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}
+          release_name: v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}
+          body_path: ./KitchenLib/Changelogs/${{ github.event.inputs.releaseversion }}/Github/v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}.MD
+          draft: false
+          prerelease: ${{ !(github.event.inputs.betaversion == '') }}
+
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: KitchenLib-Build
+          path: build
+
+      - name: Display structure of downloaded files
+        run: |
+          ls -l
+          cd build
+          ls -l
+          zip -r KitchenLib-Build.zip *
+          ls -l
+
+      # Upload Release Files
+      - name: Upload Release Files
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: build/KitchenLib-Build.zip
+          asset_name: KitchenLib-v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}}.zip
+          asset_content_type: application/zip
