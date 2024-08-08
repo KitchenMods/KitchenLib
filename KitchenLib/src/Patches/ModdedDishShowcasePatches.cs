@@ -19,7 +19,7 @@ namespace KitchenLib.Patches {
         private static bool hasRebuiltItems = false;
 
         public static void Prefix(ref bool ___IsCreated, ref List<Item> ___Items, MenuBackgroundItemScroller __instance) {
-			if (!Main.manager.GetPreference<PreferenceBool>("enableChangingMenu").Value)
+			if (!Main.manager.GetPreference<PreferenceBool>("enableChangingMenu0160").Value)
 			{
 				return;
 			}

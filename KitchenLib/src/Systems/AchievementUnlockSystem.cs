@@ -1,4 +1,5 @@
 ﻿using Kitchen;
+using KitchenLib.Achievements;
 using KitchenLib.Components;
 using KitchenLib.Utils;
 using KitchenMods;
@@ -7,29 +8,24 @@ using UnityEngine;
 
 namespace KitchenLib.Systems
 {
-	public class unlockachievement : GameSystemBase, IModSystem
+	public class AchievementUnlockSystem : GameSystemBase, IModSystem
 	{
-		
-		private EntityQuery _notificationManager;
-		protected override void Initialise()
-		{
-			base.Initialise();
-			_notificationManager = GetEntityQuery(typeof(SAchievementDisplayView.Marker));
-		}
-
+		internal static AchievementUnlockSystem Instance;
 		protected override void OnUpdate()
 		{
+			if (Instance == null) Instance = this;
+			return;
 			if (Input.GetKeyDown(KeyCode.F))
 			{
-				UnlockAchievement("kitchenlib", "test");
+				AchievementsManager.GetManager("kitchenlib").UnlockAchievement("test");
 			}
 			if (Input.GetKeyDown(KeyCode.G))
 			{
-				UnlockAchievement("kitchenlib", "test2");
+				AchievementsManager.GetManager("kitchenlib").UnlockAchievement("test2");
 			}
 			if (Input.GetKeyDown(KeyCode.H))
 			{
-				UnlockAchievement("kitchenlib", "test3");
+				AchievementsManager.GetManager("kitchenlib").UnlockAchievement("test3");
 			}
 		}
 

@@ -81,15 +81,18 @@ namespace KitchenLib.UI.PlateUp
 			{
 				this.RequestPreviousMenu();
 			}, 0, 1f, 0.2f);
-			
-			AddButton("Reset Achievements DEBUG", delegate(int i)
+
+			if (Main.debugLogging)
 			{
-				foreach (Achievement achievement in achievements[manager])
+				AddButton("DEBUG Reset Achievements", delegate(int i)
 				{
-					achievement.manager.ReverseAchievement(achievement.Key);
-				}
-				this.RequestPreviousMenu();
-			}, 0, 1f, 0.2f);
+					foreach (Achievement achievement in achievements[manager])
+					{
+						achievement.manager.ReverseAchievement(achievement.Key);
+					}
+					this.RequestPreviousMenu();
+				}, 0, 1f, 0.2f);
+			}
 			
 			
 			List<Achievement> _achievements = achievements[manager];

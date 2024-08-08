@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using Kitchen;
 using KitchenLib.Customs;
 using KitchenLib.Preferences;
-using KitchenLib.UI;
 using KitchenLib.UI.PlateUp;
 using KitchenMods;
+using UnityEngine;
 
 namespace KitchenLib.Utils
 {
@@ -22,35 +23,30 @@ namespace KitchenLib.Utils
 		{
 			FailedMods.Add(new FailedMod(mod, state, e));
 		}
+		
+		private static Dictionary<Type, bool> MenuLoadingOrder = new Dictionary<Type, bool>
+		{
+			{typeof(FailedGDOsMenu), FailedGDOs.Count > 0},
+			{typeof(FailedModsMenu), FailedMods.Count > 0},
+			{typeof(GameUpdateWarning), Main.manager != null && !Main.manager.GetPreference<PreferenceString>("lastVersionCheck").Value.Equals(Application.version) },
+			{typeof(SaveDataDisclosure), PreferenceManager.globalManager != null && PreferenceManager.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 0},
+			{typeof(StartMainMenu), true}
+		};
+		
+		private static List<Type> visitedMenus = new List<Type>();
 
 		public static Type GetNextMenu(Type currentMenu)
 		{
-			if (currentMenu == null)
+			foreach (var menu in MenuLoadingOrder)
 			{
-				if (ErrorHandling.FailedGDOs.Count > 0)
-					return typeof(FailedGDOsMenu);
+				if (menu.Key == currentMenu) continue;
+				if (!menu.Value || visitedMenus.Contains(menu.Key)) continue;
 				
-				if (ErrorHandling.FailedMods.Count > 0)
-					return typeof(FailedModsMenu);
-				
-				if (Main.globalManager != null && Main.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 0)
-					return typeof(SaveDataDisclosure);
-				
-				return typeof(RevisedMainMenu);
+				visitedMenus.Add(menu.Key);
+				return menu.Key;
 			}
-			
-			if (currentMenu == typeof(FailedGDOsMenu))
-			{
-				if (ErrorHandling.FailedMods.Count > 0)
-					return typeof(FailedModsMenu);
-				
-				if (Main.globalManager != null && Main.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 0)
-					return typeof(SaveDataDisclosure);
-				
-				return typeof(RevisedMainMenu);
-			}
-			
-			return typeof(RevisedMainMenu);
+
+			return typeof(StartMainMenu);
 		}
 	}
 	

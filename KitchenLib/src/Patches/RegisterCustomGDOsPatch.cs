@@ -27,10 +27,15 @@ namespace KitchenLib.Patches
 			GDOUtils.SetupGDOIndex(__result);
 			ColorblindUtils.Init(__result);
 			
+			foreach ((string, Type) x in ModsPreferencesMenu<MenuAction>.MenusToRegister.Keys)
+				ModsPreferencesMenu<MenuAction>.Register(x.Item1, x.Item2, typeof(MenuAction));
+
 			foreach ((string, Type) x in ModsPreferencesMenu<MainMenuAction>.MenusToRegister.Keys)
-				ModsPreferencesMenu<MainMenuAction>.Register(x.Item1, x.Item2, ModsPreferencesMenu<MainMenuAction>.MenusToRegister[x]);
+				ModsPreferencesMenu<MenuAction>.Register(x.Item1, x.Item2, typeof(MainMenuAction));
+
 			foreach ((string, Type) x in ModsPreferencesMenu<PauseMenuAction>.MenusToRegister.Keys)
-				ModsPreferencesMenu<PauseMenuAction>.Register(x.Item1, x.Item2, ModsPreferencesMenu<PauseMenuAction>.MenusToRegister[x]);
+				ModsPreferencesMenu<MenuAction>.Register(x.Item1, x.Item2, typeof(PauseMenuAction));
+			
 
 			if (FirstRun) // only build custom GDOs once
 			{

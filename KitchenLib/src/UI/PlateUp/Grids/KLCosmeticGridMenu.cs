@@ -26,9 +26,10 @@ namespace KitchenLib.UI.PlateUp.Grids
 
 		protected override void OnSelect(PlayerCosmetic item)
 		{
-			if (this.Player != 0 && item != null)
+			if (Player != 0 && item != null)
 			{
-				Players.Main.SetCosmetic(this.Player, item);
+				//Players.Main.SetCosmetic(this.Player, item);
+				ProfileAccessor.SetCosmetic(Player, item);
 			}
 		}
 	}

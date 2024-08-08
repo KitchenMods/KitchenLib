@@ -133,6 +133,18 @@ namespace KitchenLib
 			
 			New<SpacerElement>(true);
 
+			if (Main.debugLogging)
+			{
+				AddButton("DEBUG Reset Preferences", delegate(int i)
+				{
+					foreach (PreferenceManager manager in PreferenceManager.Managers)
+					{
+						manager.Reset();
+					}
+					RequestPreviousMenu();
+				}, 0, 1f, 0.2f);
+			}
+
 			if (Pages[GetType().GetGenericArguments()[0]].Count >= 2)
 			{
 				AddSelect<int>(PageSelector);
@@ -146,7 +158,14 @@ namespace KitchenLib
 				{
 					if (MenuPages[menu] == pageNumber)
 					{
-						AddSubmenuButton(RegisteredMenus[menu], menu.Item1, false);
+						AddSubmenuButton(RegisteredMenus[menu], menu.Item1);
+					}
+				}
+				else
+				{
+					if (MenuPages[menu] == pageNumber)
+					{
+						AddButton("<color=red>" + RegisteredMenus[menu], null);
 					}
 				}
 			}
@@ -159,6 +178,7 @@ namespace KitchenLib
 			}, 0, 1f, 0.2f);
 		}
 
+		
 		public override void CreateSubmenus(ref Dictionary<Type, Menu<T>> menus)
 		{
 			if (this.GetType().GetGenericArguments()[0] == typeof(MainMenuAction))
@@ -166,5 +186,6 @@ namespace KitchenLib
 			else if (this.GetType().GetGenericArguments()[0] == typeof(PauseMenuAction))
 				EventUtils.InvokeEvent(nameof(Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent), Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent?.GetInvocationList(), null, new PreferenceMenu_CreateSubmenusArgs<T>(this, menus, this.Container, this.ModuleList));
 		}
+		
 	}
 }

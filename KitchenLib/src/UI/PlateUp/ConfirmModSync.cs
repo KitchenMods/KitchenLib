@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace KitchenLib.UI
 {
-	internal class ConfirmModSync : KLMenu<PauseMenuAction>
+	internal class ConfirmModSync : KLMenu<MenuAction>
 	{
 		public ConfirmModSync(Transform container, ModuleList module_list) : base(container, module_list)
 		{

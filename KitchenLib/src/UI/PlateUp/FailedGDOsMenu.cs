@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using Kitchen;
 using Kitchen.Modules;
-using KitchenLib.Customs;
 using KitchenLib.Utils;
 using UnityEngine;
 
 namespace KitchenLib.UI.PlateUp
 {
-	public class FailedGDOsMenu : KLMenu<MainMenuAction>
+	public class FailedGDOsMenu : KLMenu<MenuAction>
 	{
 		public FailedGDOsMenu(Transform container, ModuleList module_list) : base(container, module_list)
 		{
@@ -52,7 +51,7 @@ namespace KitchenLib.UI.PlateUp
 				
 			AddButton("<color=red>Proceed Anyway", delegate (int i)
 			{
-				RequestSubMenu(ErrorHandling.GetNextMenu(typeof(FailedGDOsMenu)));
+				RequestSubMenu(ErrorHandling.GetNextMenu(GetType()));
 			}, 0, 1f, 0.2f);
 		}
 	}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using System.Text;
 
@@ -43,6 +44,30 @@ namespace KitchenLib.Utils
 			uint hashCodeEnd = BitConverter.ToUInt32(hashText, 16);
 			var hashCode = hashCodeStart ^ hashCodeMedium ^ hashCodeEnd;
 			return BitConverter.ToInt32(BitConverter.GetBytes(uint.MaxValue - hashCode), 0);
+		}
+		internal static void CopyDirectory(string sourceDir, string destDir)
+		{
+			if (!Directory.Exists(sourceDir))
+			{
+				throw new DirectoryNotFoundException($"Source directory not found: {sourceDir}");
+			}
+
+			if (!Directory.Exists(destDir))
+			{
+				Directory.CreateDirectory(destDir);
+			}
+
+			foreach (string file in Directory.GetFiles(sourceDir))
+			{
+				string destFile = Path.Combine(destDir, Path.GetFileName(file));
+				File.Copy(file, destFile, true);
+			}
+
+			foreach (string subdir in Directory.GetDirectories(sourceDir))
+			{
+				string destSubdir = Path.Combine(destDir, Path.GetFileName(subdir));
+				CopyDirectory(subdir, destSubdir);
+			}
 		}
 	}
 }
