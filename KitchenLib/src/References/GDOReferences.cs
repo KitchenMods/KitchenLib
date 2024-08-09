@@ -500,13 +500,13 @@ namespace KitchenLib.References
 
 		public static int SeededRunVisual => (int)_ApplianceReferences.SeededRunVisual;
 
-		public static int BedroomColourSelector => (int)_ApplianceReferences.BedroomColourSelector;
-
-		public static int BedroomCostumeSelector => (int)_ApplianceReferences.BedroomCostumeSelector;
-
 		public static int BedroomOutfitSelector => (int)_ApplianceReferences.BedroomOutfitSelector;
 
-		public static int ProfileEditorTrigger => (int)_ApplianceReferences.ProfileEditorTrigger;
+		public static int xBedroomColourSelector => (int)_ApplianceReferences.xBedroomColourSelector;
+
+		public static int xBedroomCostumeSelector => (int)_ApplianceReferences.xBedroomCostumeSelector;
+
+		public static int xProfileEditorTrigger => (int)_ApplianceReferences.xProfileEditorTrigger;
 
 		public static int ReloadCrash => (int)_ApplianceReferences.ReloadCrash;
 
@@ -724,7 +724,19 @@ namespace KitchenLib.References
 
 		public static int SourceSpaghetti => (int)_ApplianceReferences.SourceSpaghetti;
 
+		public static int DishSelectionCabinet => (int)_ApplianceReferences.DishSelectionCabinet;
+
+		public static int AdvancedBuildLoadoutCraneInGame => (int)_ApplianceReferences.AdvancedBuildLoadoutCraneInGame;
+
+		public static int AdvancedBuildLoadoutCrane => (int)_ApplianceReferences.AdvancedBuildLoadoutCrane;
+
+		public static int LeftoversBagStation => (int)_ApplianceReferences.LeftoversBagStation;
+
 		public static int ClipboardStand => (int)_ApplianceReferences.ClipboardStand;
+
+		public static int ProviderTacoTray => (int)_ApplianceReferences.ProviderTacoTray;
+
+		public static int ProviderTortilla => (int)_ApplianceReferences.ProviderTortilla;
 
 		public static int ResearchExitText => (int)_ApplianceReferences.ResearchExitText;
 
@@ -1233,13 +1245,13 @@ namespace KitchenLib.References
 
 		SeededRunVisual = -1114059052,
 
-		BedroomColourSelector = -62256073,
-
-		BedroomCostumeSelector = 1636658728,
-
 		BedroomOutfitSelector = -1518462324,
 
-		ProfileEditorTrigger = -1260306608,
+		xBedroomColourSelector = -62256073,
+
+		xBedroomCostumeSelector = 1636658728,
+
+		xProfileEditorTrigger = -1260306608,
 
 		ReloadCrash = 1425494045,
 
@@ -1457,7 +1469,19 @@ namespace KitchenLib.References
 
 		SourceSpaghetti = -182748008,
 
+		DishSelectionCabinet = 509800268,
+
+		AdvancedBuildLoadoutCraneInGame = -364231730,
+
+		AdvancedBuildLoadoutCrane = -121110359,
+
+		LeftoversBagStation = -940358190,
+
 		ClipboardStand = -2070005162,
+
+		ProviderTacoTray = 745886540,
+
+		ProviderTortilla = -5840756,
 
 		ResearchExitText = -872135723,
 
@@ -1876,6 +1900,16 @@ namespace KitchenLib.References
 
 		public static int PomodoroBase => (int)_DishReferences.PomodoroBase;
 
+		public static int TacosBase => (int)_DishReferences.TacosBase;
+
+		public static int TacosCheese => (int)_DishReferences.TacosCheese;
+
+		public static int TacosLettuce => (int)_DishReferences.TacosLettuce;
+
+		public static int TacosOnion => (int)_DishReferences.TacosOnion;
+
+		public static int TacosTomato => (int)_DishReferences.TacosTomato;
+
 	}
 	public enum _DishReferences
 	{
@@ -2076,6 +2110,16 @@ namespace KitchenLib.References
 		PastawithWhiteSauce = 1651927267,
 
 		PomodoroBase = 1764920765,
+
+		TacosBase = 506626805,
+
+		TacosCheese = 675343178,
+
+		TacosLettuce = -2122069505,
+
+		TacosOnion = 706991842,
+
+		TacosTomato = -1656665053,
 
 	}
 	public static class EffectReferences
@@ -2926,7 +2970,17 @@ namespace KitchenLib.References
 
 		public static int SpaghettiUncooked => (int)_ItemReferences.SpaghettiUncooked;
 
+		public static int LeftoversBag => (int)_ItemReferences.LeftoversBag;
+
 		public static int Clipboard => (int)_ItemReferences.Clipboard;
+
+		public static int TacoIndividual => (int)_ItemReferences.TacoIndividual;
+
+		public static int TacoTray => (int)_ItemReferences.TacoTray;
+
+		public static int TacosOnTray => (int)_ItemReferences.TacosOnTray;
+
+		public static int Tortilla => (int)_ItemReferences.Tortilla;
 
 		public static int ResearchFlask => (int)_ItemReferences.ResearchFlask;
 
@@ -3717,7 +3771,17 @@ namespace KitchenLib.References
 
 		SpaghettiUncooked = -452280071,
 
+		LeftoversBag = 903385113,
+
 		Clipboard = 123647569,
+
+		TacoIndividual = 244927287,
+
+		TacoTray = -1190642520,
+
+		TacosOnTray = -319704939,
+
+		Tortilla = 111245472,
 
 		ResearchFlask = 56610526,
 
@@ -3970,6 +4034,10 @@ namespace KitchenLib.References
 
 		public static int SpaghettiUncooked => (int)_ItemGroupReferences.SpaghettiUncooked;
 
+		public static int TacoIndividual => (int)_ItemGroupReferences.TacoIndividual;
+
+		public static int TacosOnTray => (int)_ItemGroupReferences.TacosOnTray;
+
 	}
 	public enum _ItemGroupReferences
 	{
@@ -4219,6 +4287,10 @@ namespace KitchenLib.References
 
 		SpaghettiUncooked = -452280071,
 
+		TacoIndividual = 244927287,
+
+		TacosOnTray = -319704939,
+
 	}
 	public static class LayoutProfileReferences
 	{
@@ -4454,6 +4526,30 @@ namespace KitchenLib.References
 
 		public static int WheelBoyHat => (int)_PlayerCosmeticReferences.WheelBoyHat;
 
+		public static int Bandana1 => (int)_PlayerCosmeticReferences.Bandana1;
+
+		public static int Bandana2 => (int)_PlayerCosmeticReferences.Bandana2;
+
+		public static int BaseballCap => (int)_PlayerCosmeticReferences.BaseballCap;
+
+		public static int CatBeanie => (int)_PlayerCosmeticReferences.CatBeanie;
+
+		public static int ChefGlasses => (int)_PlayerCosmeticReferences.ChefGlasses;
+
+		public static int CowboyHat => (int)_PlayerCosmeticReferences.CowboyHat;
+
+		public static int DogHat => (int)_PlayerCosmeticReferences.DogHat;
+
+		public static int FaceMask => (int)_PlayerCosmeticReferences.FaceMask;
+
+		public static int JapanAutumnHat => (int)_PlayerCosmeticReferences.JapanAutumnHat;
+
+		public static int JapanSpringHat => (int)_PlayerCosmeticReferences.JapanSpringHat;
+
+		public static int JapanSummerHat => (int)_PlayerCosmeticReferences.JapanSummerHat;
+
+		public static int JapanWinterHat => (int)_PlayerCosmeticReferences.JapanWinterHat;
+
 	}
 	public enum _PlayerCosmeticReferences
 	{
@@ -4554,6 +4650,30 @@ namespace KitchenLib.References
 		ToasterHat = 1129983609,
 
 		WheelBoyHat = 1674187527,
+
+		Bandana1 = -1859499757,
+
+		Bandana2 = -1555058020,
+
+		BaseballCap = 1384109274,
+
+		CatBeanie = -1690532191,
+
+		ChefGlasses = 1621008279,
+
+		CowboyHat = 1229854946,
+
+		DogHat = 390429686,
+
+		FaceMask = 1021194022,
+
+		JapanAutumnHat = 1412489604,
+
+		JapanSpringHat = 1412489602,
+
+		JapanSummerHat = 1412489603,
+
+		JapanWinterHat = 1412489605,
 
 	}
 	public static class ProcessReferences
@@ -4990,6 +5110,16 @@ namespace KitchenLib.References
 
 		public static int PomodoroBase => (int)_UnlockReferences.PomodoroBase;
 
+		public static int TacosBase => (int)_UnlockReferences.TacosBase;
+
+		public static int TacosCheese => (int)_UnlockReferences.TacosCheese;
+
+		public static int TacosLettuce => (int)_UnlockReferences.TacosLettuce;
+
+		public static int TacosOnion => (int)_UnlockReferences.TacosOnion;
+
+		public static int TacosTomato => (int)_UnlockReferences.TacosTomato;
+
 		public static int AllYouCanEatIncrease => (int)_UnlockReferences.AllYouCanEatIncrease;
 
 		public static int AllYouCanEat => (int)_UnlockReferences.AllYouCanEat;
@@ -5412,6 +5542,16 @@ namespace KitchenLib.References
 		PastawithWhiteSauce = 1651927267,
 
 		PomodoroBase = 1764920765,
+
+		TacosBase = 506626805,
+
+		TacosCheese = 675343178,
+
+		TacosLettuce = -2122069505,
+
+		TacosOnion = 706991842,
+
+		TacosTomato = -1656665053,
 
 		AllYouCanEatIncrease = 2055765569,
 

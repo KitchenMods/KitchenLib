@@ -52,6 +52,8 @@ namespace KitchenLib.Customs
         public virtual bool IsMergeableSide { get; protected set; }
         public virtual Dish CreditSourceDish { get; protected set; }
         public virtual Item ExtendedDirtItem { get; protected set; }
+        public virtual int RepeatOrderMin { get; protected set; }
+        public virtual int RepeatOrderMax { get; protected set; }
         
         // KitchenLib Variables
         public virtual GameObject SidePrefab { get; protected set; }
@@ -83,6 +85,8 @@ namespace KitchenLib.Customs
             OverrideVariable(result, "ItemStorageFlags", ItemStorageFlags);
             OverrideVariable(result, "HoldPose", HoldPose);
             OverrideVariable(result, "IsMergeableSide", IsMergeableSide);
+            OverrideVariable(result, "RepeatOrderMin", RepeatOrderMin);
+            OverrideVariable(result, "RepeatOrderMax", RepeatOrderMax);
 
 			if (!string.IsNullOrEmpty(ColourBlindTag))
 			{

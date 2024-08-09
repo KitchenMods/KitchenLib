@@ -30,6 +30,8 @@ namespace KitchenLib.Customs
         public virtual GameObject IconPrefab { get; protected set; }
         public virtual GameObject DisplayPrefab { get; protected set; }
         
+        public virtual bool IsMainThatDoesNotNeedPlates { get; protected set; }
+        
         // KitchenLib Variables
 		public virtual Item RequiredDishItem { get; protected set; }
 		public virtual bool RequiredNoDishItem { get; protected set; } = false;
@@ -61,6 +63,7 @@ namespace KitchenLib.Customs
             OverrideVariable(result, "CustomerMultiplier", CustomerMultiplier);
             OverrideVariable(result, "SelectionBias", SelectionBias);
             OverrideVariable(result, "BlocksAllOtherFood", BlocksAllOtherFood);
+            OverrideVariable(result, "IsMainThatDoesNotNeedPlates", IsMainThatDoesNotNeedPlates);
             OverrideVariable(result, "Info", Info);
 
             if (InfoList.Count > 0)

@@ -6,8 +6,7 @@ using Unity.Entities;
 namespace KitchenLib.Systems
 {
 	
-	[UpdateInGroup(typeof(ViewSystemsGroup))]
-	[UpdateBefore(typeof(CleanEvents))]
+	[UpdateInGroup(typeof(ViewSystemsGroup), OrderFirst = true)]
 	public class CleanAchievementEvents : GenericSystemBase, IModSystem
 	{
 		private EntityQuery ViewedEvents;

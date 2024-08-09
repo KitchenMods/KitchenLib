@@ -53,29 +53,11 @@ namespace KitchenLib
 			{
 				foreach (AssemblyModPack pack in mod.GetPacks<AssemblyModPack>())
 				{
-					if (blockedModNames.Contains(pack.Name) && !Main.debugLogging)
+					if (blockedModNames.Contains(pack.Name))
 					{
 						continue;
 					}
-
-					if (pack.Mod.ID == 0)
-					{
-						nonKitchenLibModNames.Add(pack.Name + " v?");
-					}
-					else
-					{
-						try
-						{
-							System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(Path.Combine(Application.dataPath, "..", "..", "..", "..", "workshop", "content", "1599600", pack.Mod.ID.ToString(), pack.Name));
-							string version = fvi.FileVersion;
-							nonKitchenLibModNames.Add(pack.Name + " v" + version);
-						}
-						catch (Exception e)
-						{
-							Debug.LogException(e);
-							nonKitchenLibModNames.Add(pack.Name + " v?");
-						}
-					}
+					nonKitchenLibModNames.Add(pack.Name);
 				}
 			}
 
@@ -114,12 +96,14 @@ namespace KitchenLib
 		{
 			Redraw();
 			CreateModLabels(AddInfo("").Position, kitchenLibModNames, 3, 0.3f, 6);
+			ResetPanel();
 		}
 		
 		private void DrawNonKitchenLibMods()
 		{
 			Redraw();
 			CreateModLabels(AddInfo("").Position, nonKitchenLibModNames, 3, 0.3f, 6);
+			ResetPanel();
 		}
 	}
 }

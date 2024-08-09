@@ -48,6 +48,8 @@ namespace KitchenLib.Customs
 			OverrideVariable(result, "ItemStorageFlags", ItemStorageFlags);
 			OverrideVariable(result, "HoldPose", HoldPose);
 			OverrideVariable(result, "IsMergeableSide", IsMergeableSide);
+			OverrideVariable(result, "RepeatOrderMin", RepeatOrderMin);
+			OverrideVariable(result, "RepeatOrderMax", RepeatOrderMax);
 			OverrideVariable(result, "CanContainSide", CanContainSide);
 			OverrideVariable(result, "ApplyProcessesToComponents", ApplyProcessesToComponents);
 			OverrideVariable(result, "AutoCollapsing", AutoCollapsing);
