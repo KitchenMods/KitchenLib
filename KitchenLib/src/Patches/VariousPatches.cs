@@ -30,8 +30,11 @@ namespace KitchenLib.Patches
 	
     /*
      * Thanks to IcedMilo for creating the patch
+     *
+     * DISABLED - *should* be in the base-game now.
      */
 
+    /*
     [HarmonyPatch]
     static class ApplianceComponentHelpers_Patch
     {
@@ -69,4 +72,5 @@ namespace KitchenLib.Patches
             return false;
         }
     }
+    */
 }
