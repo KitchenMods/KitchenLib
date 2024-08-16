@@ -27,11 +27,24 @@ namespace KitchenLib.src.Patches
 		};
 		static void Prefix(GridMenuNavigationConfig __instance)
 		{
-			foreach (GridMenuConfig custom in registeredConfigs)
+			int found = 0;
+			if (__instance.name == "Root")
 			{
-				if (!__instance.Links.Contains(custom))
+				foreach (GridMenuConfig config in __instance.Links)
 				{
-					__instance.Links.Add(custom);
+					if (config.name == "Hats - Page 1" || config.name == "Outfits" || config.name == "Colours - All 2")
+						found++;
+				}
+			}
+
+			if (found >= 3)
+			{
+				foreach (GridMenuConfig custom in registeredConfigs)
+				{
+					if (!__instance.Links.Contains(custom))
+					{
+						__instance.Links.Add(custom);
+					}
 				}
 			}
 		}
