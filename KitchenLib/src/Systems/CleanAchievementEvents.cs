@@ -1,16 +1,19 @@
 ﻿using Kitchen;
 using KitchenLib.Components;
+using KitchenMods;
 using Unity.Entities;
 
 namespace KitchenLib.Systems
 {
-	[UpdateBefore(typeof(AddNewViews))]
-	[UpdateInGroup(typeof(ViewSystemsGroup))]
-	public class CleanAchievementEvents : GenericSystemBase
+	
+	[UpdateInGroup(typeof(ViewSystemsGroup), OrderFirst = true)]
+	public class CleanAchievementEvents : GenericSystemBase, IModSystem
 	{
+		private EntityQuery ViewedEvents;
+	
 		protected override void Initialise()
 		{
-			this.ViewedEvents = base.GetEntityQuery(new EntityQueryDesc[] { new QueryHelper().Any(new ComponentType[]
+			ViewedEvents = GetEntityQuery(new EntityQueryDesc[] { new QueryHelper().Any(new ComponentType[]
 			{
 				typeof(CRequestAchievementUnlock)
 			}).All(new ComponentType[] { typeof(CLinkedView) }) });
@@ -18,9 +21,8 @@ namespace KitchenLib.Systems
 
 		protected override void OnUpdate()
 		{
-			base.EntityManager.DestroyEntity(this.ViewedEvents);
+			EntityManager.DestroyEntity(ViewedEvents);
 		}
-
-		private EntityQuery ViewedEvents;
 	}
+	
 }

@@ -92,9 +92,10 @@ namespace KitchenLib
 		
 		protected void ResetPanel()
 		{
+			if (view == null) return;
 			MethodInfo setparneltarget = ReflectionUtils.GetMethod<PlayerPauseView>("SetPanelTarget");
 			container.transform.parent.parent.parent.localPosition = -ModuleList.BoundingBox.center;
-			setparneltarget.Invoke(view, new object[] { ModuleList });
+			setparneltarget.Invoke(view, new object[] { RequiresBackingPanel ? ModuleList : null });
 		}
 
 		protected ControlRebindElement GetRebindElement()

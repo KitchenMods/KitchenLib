@@ -10,6 +10,7 @@ namespace KitchenLib.Customs
 		// Base-Game Variables
 		public virtual int MaximumUpgradeCount { get; protected set; } = 1;
 		public virtual List<IFranchiseUpgrade> Upgrades { get; protected set; } = new List<IFranchiseUpgrade>();
+		public virtual GameObject Prefab { get; protected set; }
 
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
@@ -19,6 +20,7 @@ namespace KitchenLib.Customs
             OverrideVariable(result, "MaximumUpgradeCount", MaximumUpgradeCount);
             OverrideVariable(result, "Upgrades", Upgrades);
             OverrideVariable(result, "Info", Info);
+            OverrideVariable(result, "Prefab", Prefab);
 
 			if (InfoList.Count > 0)
 			{

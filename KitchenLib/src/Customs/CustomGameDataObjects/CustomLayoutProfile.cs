@@ -74,10 +74,7 @@ namespace KitchenLib.Customs
 		            }
 	            }
             }
-
             
-
-
 			gameDataObject = result;
         }
 
