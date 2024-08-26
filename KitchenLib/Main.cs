@@ -12,12 +12,10 @@ using KitchenLib.UI.PlateUp;
 using KitchenLib.Logging.Exceptions;
 using System.Runtime.CompilerServices;
 using System;
-using System.Collections.Generic;
 using KitchenLib.Achievements;
 using KitchenLib.Components;
 using KitchenLib.Utils;
 using KitchenLib.Views;
-using Achievement = KitchenLib.Achievements.Achievement;
 using KitchenLogger = KitchenLib.Logging.KitchenLogger;
 
 namespace KitchenLib
@@ -163,7 +161,7 @@ namespace KitchenLib
 		}
 
 		private void determineDebugLoggingStatus() {
-			int localModCount = ModPreload.Mods.Count(mod => mod.Source.GetType() == typeof(SteamWorkshopModSource));
+			int localModCount = ModPreload.Mods.Count(mod => mod.Source.GetType() == typeof(FolderModSource));
 			if (MOD_BETA_VERSION != "") {
 				localModCount--;
 			}
