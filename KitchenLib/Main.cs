@@ -43,12 +43,12 @@ namespace KitchenLib
 		/// <summary>
 		/// The version of the mod.
 		/// </summary>
-		internal const string MOD_VERSION = "0.8.3";
+		internal const string MOD_VERSION = "0.8.4";
 
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string MOD_BETA_VERSION = "";
+		internal const string MOD_BETA_VERSION = "1";
 
 		/// <summary>
 		/// The compatible versions of the mod.
@@ -209,6 +209,7 @@ namespace KitchenLib
 			
 			Events.MainMenuView_SetupMenusEvent += (s, args) =>
 			{
+				args.addMenu.Invoke(args.instance, new object[] { typeof(BetaWarningMenu), new BetaWarningMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(SaveDataDisclosure), new SaveDataDisclosure(args.instance.ButtonContainer, args.module_list) });
 				//args.addMenu.Invoke(args.instance, new object[] { typeof(RevisedMainMenu), new RevisedMainMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(FailedGDOsMenu), new FailedGDOsMenu(args.instance.ButtonContainer, args.module_list) });

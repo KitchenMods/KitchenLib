@@ -26,6 +26,7 @@ namespace KitchenLib.Utils
 		
 		private static Dictionary<Type, bool> MenuLoadingOrder = new Dictionary<Type, bool>
 		{
+			{typeof(BetaWarningMenu), Main.MOD_BETA_VERSION != ""},
 			{typeof(FailedGDOsMenu), FailedGDOs.Count > 0},
 			{typeof(FailedModsMenu), FailedMods.Count > 0},
 			{typeof(GameUpdateWarning), Main.manager != null && !Main.manager.GetPreference<PreferenceString>("lastVersionCheck").Value.Equals(Application.version) },
