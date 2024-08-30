@@ -13,15 +13,10 @@ namespace KitchenLib.UI
 		private static void AddBetaInfo(StartMainMenu instance)
 		{
 			MethodInfo AddLabel = ReflectionUtils.GetMethod<StartMainMenu>("AddLabel");
-			MethodInfo AddInfo = ReflectionUtils.GetMethod<StartMainMenu>("AddInfo");
-			MethodInfo New = ReflectionUtils.GetMethod<StartMainMenu>("New").MakeGenericMethod(typeof(SpacerElement));
 
 			if (Main.MOD_BETA_VERSION != "")
 			{
-				AddLabel.Invoke(instance, ["!!BETA WARNING!!"]);
-				AddInfo.Invoke(instance, ["You are running a beta version of KitchenLib"]);
-				AddInfo.Invoke(instance, ["(Please backup your save files.)"]);
-				AddInfo.Invoke(instance, ["There will be bugs, this is for TESTING PURPOSES"]);
+				AddLabel.Invoke(instance, ["!! KITCHENLIB BETA !!"]);
 			}
 		}
 
