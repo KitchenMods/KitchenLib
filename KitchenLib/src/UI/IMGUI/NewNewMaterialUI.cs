@@ -60,6 +60,12 @@ namespace KitchenLib.UI
 			{"Simple Flat - Player", new CSimpleFlatPlayer()}
 		};
 
+		private static List<string> blenderShaderExports = new()
+		{
+			"Simple Flat",
+			"Simple Transparent",
+		};
+
 		public override void OnInit()
 		{
 			if (materialDisplay == null)
@@ -240,9 +246,28 @@ namespace KitchenLib.UI
 				CustomMaterials.Add(material);
 			}
 		}
-		
+
 		private void GenerateMaterialDump()
 		{
+			List<string> scriptLines = new List<string>();
+			List<string> existingMaterials = new List<string>();
+			
+			scriptLines.Add("import bpy");
+			scriptLines.Add("");
+			scriptLines.Add("");
+			scriptLines.Add("def create_material(name, color):");
+			scriptLines.Add("	if name in bpy.data.materials:");
+			scriptLines.Add("		print(\"Material Already Found. Skipping\")");
+			scriptLines.Add("	else:");
+			scriptLines.Add("		material = bpy.data.materials.new(name)");
+			scriptLines.Add("		material.diffuse_color = color");
+			scriptLines.Add("		material.use_fake_user = 1");
+			scriptLines.Add("");
+			scriptLines.Add("create_material(\"ERROR_MATERIAL_MISSING\", (1,0,1,1))");
+			scriptLines.Add("");
+
+			int counter = 0;
+			
 			foreach (Material material in MaterialUtils.GetAllMaterials(false, editors.Keys.ToList()))
 			{
 				GameObject gameObject = Main.bundle.LoadAsset<GameObject>("Material Dump Cube");
@@ -265,7 +290,137 @@ namespace KitchenLib.UI
 						Directory.CreateDirectory(path);
 					File.WriteAllBytes(Path.Combine(path, material.name + ".png"), bytes);
 				}
+
+				if (blenderShaderExports.Contains(material.shader.name))
+				{
+					string variableName = "material_" + counter;
+					string materialName = material.name;
+
+					if (!existingMaterials.Contains(materialName))
+					{
+						Color color = texture.Snapshot.GetPixel(5, 5);
+				
+						scriptLines.Add($"create_material(\"{materialName}\", ({color.r},{color.g},{color.b},{color.a}))");
+						scriptLines.Add("");
+
+						List<string> unityFile = CreateUnityMaterialFile(materialName, color);
+						string path = Path.Combine(Application.persistentDataPath, "Debug/MaterialDumps/Unity");
+						if (!Directory.Exists(path))
+							Directory.CreateDirectory(path);
+						string filePath = Path.Combine(Application.persistentDataPath, "Debug/MaterialDumps/Unity", materialName + ".mat");
+						
+						File.WriteAllLines(filePath, unityFile);
+						
+						counter++;
+					}
+				}
 			}
+			
+			scriptLines.Add("");
+			scriptLines.Add("");
+			scriptLines.Add("error_material = bpy.data.materials[\"ERROR_MATERIAL_MISSING\"]");
+			scriptLines.Add("");
+			scriptLines.Add("for obj in bpy.data.objects:");
+			scriptLines.Add("	if hasattr(obj.data, \"materials\"):");
+			scriptLines.Add("		if len(obj.material_slots) == 0:");
+			scriptLines.Add("			obj.data.materials.append(None)");
+			scriptLines.Add("		for slot in obj.material_slots:");
+			scriptLines.Add("			if slot.material is None:");
+			scriptLines.Add("				slot.material = error_material");
+			scriptLines.Add("			elif not slot.material.use_fake_user:");
+			scriptLines.Add("				slot.material = error_material");
+			scriptLines.Add("");
+			scriptLines.Add("");
+			
+			string scriptPath = Path.Combine(Application.persistentDataPath, "Debug/MaterialDumps/blenderexport.py");
+			File.WriteAllLines(scriptPath, scriptLines);
+		}
+
+		private List<string> CreateUnityMaterialFile(string name, Color color)
+		{
+			List<string> result = new List<string>();
+			
+			result.Add("%YAML 1.1");
+			result.Add("%TAG !u! tag:unity3d.com,2011:");
+			result.Add("--- !u!21 &2100000");
+			result.Add("Material:");
+			result.Add("  serializedVersion: 6");
+			result.Add("  m_ObjectHideFlags: 0");
+			result.Add("  m_CorrespondingSourceObject: {fileID: 0}");
+			result.Add("  m_PrefabInstance: {fileID: 0}");
+			result.Add("  m_PrefabAsset: {fileID: 0}");
+			result.Add("  m_Name: " + name);
+			result.Add("  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}");
+			result.Add("  m_ShaderKeywords: ");
+			result.Add("  m_LightmapFlags: 4");
+			result.Add("  m_EnableInstancingVariants: 0");
+			result.Add("  m_DoubleSidedGI: 0");
+			result.Add("  m_CustomRenderQueue: -1");
+			result.Add("  stringTagMap: {}");
+			result.Add("  disabledShaderPasses: []");
+			result.Add("  m_SavedProperties:");
+			result.Add("    serializedVersion: 3");
+			result.Add("    m_TexEnvs:");
+			result.Add("    - _BumpMap:");
+			result.Add("        m_Texture: {fileID: 0}");
+			result.Add("        m_Scale: {x: 1, y: 1}");
+			result.Add("        m_Offset: {x: 0, y: 0}");
+			result.Add("    - _DetailAlbedoMap:");
+			result.Add("        m_Texture: {fileID: 0}");
+			result.Add("        m_Scale: {x: 1, y: 1}");
+			result.Add("        m_Offset: {x: 0, y: 0}");
+			result.Add("    - _DetailMask:");
+			result.Add("        m_Texture: {fileID: 0}");
+			result.Add("        m_Scale: {x: 1, y: 1}");
+			result.Add("        m_Offset: {x: 0, y: 0}");
+			result.Add("    - _DetailNormalMap:");
+			result.Add("        m_Texture: {fileID: 0}");
+			result.Add("        m_Scale: {x: 1, y: 1}");
+			result.Add("        m_Offset: {x: 0, y: 0}");
+			result.Add("    - _EmissionMap:");
+			result.Add("        m_Texture: {fileID: 0}");
+			result.Add("        m_Scale: {x: 1, y: 1}");
+			result.Add("        m_Offset: {x: 0, y: 0}");
+			result.Add("    - _MainTex:");
+			result.Add("        m_Texture: {fileID: 0}");
+			result.Add("        m_Scale: {x: 1, y: 1}");
+			result.Add("        m_Offset: {x: 0, y: 0}");
+			result.Add("    - _MetallicGlossMap:");
+			result.Add("        m_Texture: {fileID: 0}");
+			result.Add("        m_Scale: {x: 1, y: 1}");
+			result.Add("        m_Offset: {x: 0, y: 0}");
+			result.Add("    - _OcclusionMap:");
+			result.Add("        m_Texture: {fileID: 0}");
+			result.Add("        m_Scale: {x: 1, y: 1}");
+			result.Add("        m_Offset: {x: 0, y: 0}");
+			result.Add("    - _ParallaxMap:");
+			result.Add("        m_Texture: {fileID: 0}");
+			result.Add("        m_Scale: {x: 1, y: 1}");
+			result.Add("        m_Offset: {x: 0, y: 0}");
+			result.Add("    m_Floats:");
+			result.Add("    - _BumpScale: 1");
+			result.Add("    - _Cutoff: 0.5");
+			result.Add("    - _DetailNormalMapScale: 1");
+			result.Add("    - _DstBlend: 0");
+			result.Add("    - _GlossMapScale: 1");
+			result.Add("    - _Glossiness: 0.5");
+			result.Add("    - _GlossyReflections: 1");
+			result.Add("    - _Metallic: 0");
+			result.Add("    - _Mode: 0");
+			result.Add("    - _OcclusionStrength: 1");
+			result.Add("    - _Parallax: 0.02");
+			result.Add("    - _SmoothnessTextureChannel: 0");
+			result.Add("    - _SpecularHighlights: 1");
+			result.Add("    - _SrcBlend: 1");
+			result.Add("    - _UVSec: 0");
+			result.Add("    - _ZWrite: 1");
+			result.Add("    m_Colors:");
+			result.Add("    - _Color: {r: " + color.r + ", g: " + color.g + ", b: " + color.b + ", a: " + color.a + "}");
+			result.Add("    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}");
+			result.Add("  m_BuildTextureStacks: []");
+			result.Add("");
+			
+			return result;
 		}
 	}
 }
