@@ -4,6 +4,7 @@ using Kitchen;
 using KitchenLib.Achievements;
 using KitchenLib.Preferences;
 using KitchenLib.UI.PlateUp;
+using KitchenLib.UI.PlateUp.PreferenceMenus;
 using KitchenLib.Utils;
 
 namespace KitchenLib.UI
@@ -31,7 +32,8 @@ namespace KitchenLib.UI
 			{
 				if (PreferenceManager.Managers.Count > 0)
 				{
-					AddSubmenuButton.Invoke(instance, ["Mod Preferences", typeof(ModsPreferencesMenu<MenuAction>), false]);
+					//AddSubmenuButton.Invoke(instance, ["Mod Preferences", typeof(ModsPreferencesMenu<MenuAction>), false]);
+					AddSubmenuButton.Invoke(instance, ["Mod Preferences", typeof(MainMenuPreferencesMenu), false]);
 				}
 			}
 
