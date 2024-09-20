@@ -14,6 +14,7 @@ using System.Runtime.CompilerServices;
 using System;
 using KitchenLib.Achievements;
 using KitchenLib.Components;
+using KitchenLib.UI.PlateUp.PreferenceMenus;
 using KitchenLib.Utils;
 using KitchenLib.Views;
 using KitchenLogger = KitchenLib.Logging.KitchenLogger;
@@ -204,11 +205,14 @@ namespace KitchenLib
 		/// </summary>
 		private void SetupMenus()
 		{
-			ModsPreferencesMenu<MenuAction>.RegisterMenu("KitchenLib", typeof(PreferenceMenu<MenuAction>), typeof(MenuAction));
-			ModsPreferencesMenu<MenuAction>.RegisterMenu("KitchenLib", typeof(PreferenceMenu<MenuAction>), typeof(MenuAction));
+			//ModsPreferencesMenu<MenuAction>.RegisterMenu("KitchenLib", typeof(PreferenceMenu<MenuAction>), typeof(MenuAction));
+			//ModsPreferencesMenu<MenuAction>.RegisterMenu("KitchenLib", typeof(PreferenceMenu<MenuAction>), typeof(MenuAction));
+			
+			MainMenuPreferencesMenu.RegisterMenu("KitchenLib", typeof(PreferenceMenu<MenuAction>));
 			
 			Events.MainMenuView_SetupMenusEvent += (s, args) =>
 			{
+				args.addMenu.Invoke(args.instance, new object[] { typeof(MainMenuPreferencesMenu), new MainMenuPreferencesMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(BetaWarningMenu), new BetaWarningMenu(args.instance.ButtonContainer, args.module_list) });
 				args.addMenu.Invoke(args.instance, new object[] { typeof(SaveDataDisclosure), new SaveDataDisclosure(args.instance.ButtonContainer, args.module_list) });
 				//args.addMenu.Invoke(args.instance, new object[] { typeof(RevisedMainMenu), new RevisedMainMenu(args.instance.ButtonContainer, args.module_list) });
