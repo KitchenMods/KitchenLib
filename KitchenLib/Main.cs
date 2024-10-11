@@ -49,7 +49,12 @@ namespace KitchenLib
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string MOD_BETA_VERSION = "2";
+		internal const string THE_MOD_BETA_VERSION = "2";
+#if DEBUG
+		internal static string MOD_BETA_VERSION = THE_MOD_BETA_VERSION + "-DEBUG";
+#else
+		internal static string MOD_BETA_VERSION = THE_MOD_BETA_VERSION;
+#endif
 
 		/// <summary>
 		/// The compatible versions of the mod.
