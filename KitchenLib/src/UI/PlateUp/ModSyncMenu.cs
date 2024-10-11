@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace KitchenLib.UI.PlateUp
 {
-	internal class ModSyncMenu : KLMenu<MenuAction>
+	internal class ModSyncMenu : KLMenu
 	{
 		public ModSyncMenu(Transform container, ModuleList module_list) : base(container, module_list)
 		{

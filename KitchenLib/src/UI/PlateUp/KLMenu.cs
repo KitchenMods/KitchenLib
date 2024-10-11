@@ -11,6 +11,23 @@ using UnityEngine;
 
 namespace KitchenLib
 {
+	public class KLMenu : KLMenu<MenuAction>
+	{
+		internal bool ShouldCloneType;
+		internal Type TypeToClone;
+		public KLMenu(Transform container, ModuleList module_list) : base(container, module_list)
+		{
+		}
+
+		public override void Setup(int player_id)
+		{
+			if (ShouldCloneType)
+			{
+				MethodInfo methodInfo = ReflectionUtils.GetMethod(TypeToClone, "Setup");
+			}
+		}
+	}
+
 	public class KLMenu<T> : Menu<T>
 	{
 		private PlayerPauseView view;

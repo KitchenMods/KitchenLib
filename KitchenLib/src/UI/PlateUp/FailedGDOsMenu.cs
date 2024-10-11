@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace KitchenLib.UI.PlateUp
 {
-	public class FailedGDOsMenu : KLMenu<MenuAction>
+	public class FailedGDOsMenu : KLMenu
 	{
 		public FailedGDOsMenu(Transform container, ModuleList module_list) : base(container, module_list)
 		{

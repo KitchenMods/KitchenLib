@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace KitchenLib.UI.PlateUp
 {
-	public class SaveDataDisclosure : KLMenu<MenuAction>
+	public class SaveDataDisclosure : KLMenu
 	{
 		public SaveDataDisclosure(Transform container, ModuleList module_list) : base(container, module_list)
 		{

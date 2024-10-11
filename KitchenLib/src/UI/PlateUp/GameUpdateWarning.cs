@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace KitchenLib.UI.PlateUp
 {
-	public class GameUpdateWarning : KLMenu<MenuAction>
+	public class GameUpdateWarning : KLMenu
 	{
 		public GameUpdateWarning(Transform container, ModuleList module_list) : base(container, module_list)
 		{
