@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace KitchenLib
 {
-	public class ModsMenu<T> : KLMenu<T>
+	public class ModsMenu : KLMenu
 	{
 		public ModsMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
 		

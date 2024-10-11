@@ -6,22 +6,23 @@ using KitchenLib.UI.PlateUp;
 
 namespace KitchenLib.UI
 {
-	internal class PreferenceMenu<T> : KLMenu<T>
+	internal class PreferenceMenu : KLMenu
 	{
 		public PreferenceMenu(Transform container, ModuleList module_list) : base(container, module_list) { }
 
 		public override void Setup(int player_id)
 		{
+			AddLabel("KitchenLib");
 			New<SpacerElement>(true);
 
 			AddButton("User Options", delegate (int i)
 			{
-				RequestSubMenu(typeof(UserOptions<T>));
+				RequestSubMenu(typeof(UserOptions));
 			}, 0, 1f, 0.2f);
 
 			AddButton("Developer Options", delegate (int i)
 			{
-				RequestSubMenu(typeof(DeveloperOptions<T>));
+				RequestSubMenu(typeof(DeveloperOptions));
 			}, 0, 1f, 0.2f);
 
 			New<SpacerElement>(true);
