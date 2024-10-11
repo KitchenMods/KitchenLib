@@ -22,7 +22,10 @@
 	
 	<ItemGroup>
 	  <PackageReference Include="HarmonyX" Version="2.9.0" />
-	  <PackageReference Include="ILRepack" Version="2.0.34" />
+	  <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.34.2">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
 	  <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 	  <PackageReference Include="Semver" Version="3.0.0-beta.1" />
 	  <PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.12.0" />
@@ -86,26 +89,4 @@
 		<None Remove="plateup_mod_metadata.json" />
 		<None Remove="*.png" />
 	</ItemGroup>
-
-	<Target Name="Merge" AfterTargets="Build">
-		<PropertyGroup>
-			<BuildOutputPath>$(ProjectDir)$(OutputPath)</BuildOutputPath>
-		</PropertyGroup>
-		
-		<ItemGroup>
-			<MergeBinaries Include="$(BuildOutputPath)IndexRange.dll" />
-			<MergeBinaries Include="$(BuildOutputPath)Semver.dll" />
-			<MergeBinaries Include="$(BuildOutputPath)Microsoft.Extensions.Primitives.dll" />
-		</ItemGroup>
-		
-		<ItemGroup>
-			<_MergeCommands Include="$(ILRepack) /lib:&quot;$(AssemblyReferencePath)&quot; /lib:&quot;$(BuildOutputPath)&quot; /out:&quot;$(BuildOutputPath)KitchenLib-Workshop.dll&quot; &quot;$(BuildOutputPath)KitchenLib-Workshop.dll&quot; &quot;%(MergeBinaries.Identity)&quot;" />
-		</ItemGroup>
-
-		<ItemGroup>
-			<_CleanedMergedCommands Include="$([System.String]::Copy('%(_MergeCommands.Identity)').Replace('\', '/').Replace('//', '/'))" />
-		</ItemGroup>
-		
-		<Exec Command="%(_CleanedMergedCommands.Identity)" />
-	</Target>
 </Project>

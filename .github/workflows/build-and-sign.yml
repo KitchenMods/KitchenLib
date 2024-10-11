@@ -42,7 +42,7 @@ jobs:
 
       - name: Setup DepotDownloader
         run: |
-          wget https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.5.0/DepotDownloader-linux-x64.zip
+          wget https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.7.2/DepotDownloader-linux-x64.zip
           unzip DepotDownloader-linux-x64.zip
           chmod +x DepotDownloader
 
@@ -67,7 +67,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: |
-            6.x
+            8.x
 
       # Execute all unit tests in the solution TODO: Implement tests?
       #- name: Execute unit tests
