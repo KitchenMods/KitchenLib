@@ -10,6 +10,7 @@ using KitchenLib.Utils;
 
 namespace KitchenLib.Patches
 {
+	/*
 	[HarmonyPatch(typeof(GrantNecessaryAppliances), "OnUpdate")]
 	internal class GrantNecessaryAppliances_Patch
 	{
@@ -59,4 +60,5 @@ namespace KitchenLib.Patches
 			return customDish.MinimumIngredients.All(minimumIngredient => minimumIngredient.ID != ItemReferences.Plate);
 		}
 	}
+	*/
 }

@@ -83,6 +83,11 @@ namespace KitchenLib.Customs
 	            UnlockOverrides.AddColourOverride(result.ID, ColourOverride);
             }
 
+            if (RequiredNoDishItem)
+            {
+	            result.IsMainThatDoesNotNeedPlates = RequiredNoDishItem;
+            }
+
             gameDataObject = result;
         }
 
