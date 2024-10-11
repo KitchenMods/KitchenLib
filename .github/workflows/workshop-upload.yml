@@ -25,6 +25,11 @@ on:
       publishtodiscord:
         type: boolean
         description: "Publish release note to Discord"
+        default: true
+      publishtosteam:
+        type: boolean
+        description: "Publish update to Steam"
+        default: true
 
 jobs:
   upload:
@@ -40,6 +45,7 @@ jobs:
           fetch-depth: 0
 
       - name: Download artifact
+        if: ${{ github.event.inputs.publishtosteam == 'true' }}
         id: download-artifact
         uses: dawidd6/action-download-artifact@v2
         with:
@@ -49,21 +55,25 @@ jobs:
           name: KitchenLib-Build
 
       - name: List Directory Contents
+        if: ${{ github.event.inputs.publishtosteam == 'true' }}
         run: |
           set -e
           ls -al
           ls -al build
 
       - name: Setup steamcmd
+        if: ${{ github.event.inputs.publishtosteam == 'true' }}
         uses: CyberAndrii/setup-steamcmd@b786e0da44db3d817e66fa3910a9560cb28c9323
 
       - name: Generate auth code
+        if: ${{ github.event.inputs.publishtosteam == 'true' }}
         id: generate-code
         uses: CyberAndrii/steam-totp@c7f636bc64e77f1b901e0420b7890813141508ee
         with:
           shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
 
       - name: Upload to steam workshop
+        if: ${{ github.event.inputs.publishtosteam == 'true' }}
         run: |
           ./upload.sh
         env:
@@ -79,8 +89,9 @@ jobs:
       - name: Post to Discord
         if: ${{ github.event.inputs.publishtodiscord == 'true' }}
         run: |
-          pip install discordwebhook
-          python discord.py
+          cd Discord
+          npm install
+          node .
         env:
           INPUT_PATH: "build" # Path to your mod's folder from repository root
           CHANGELOGVER: ${{ github.event.inputs.releaseversion }}
