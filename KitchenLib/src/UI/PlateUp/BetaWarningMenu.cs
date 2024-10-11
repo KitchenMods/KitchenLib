@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace KitchenLib.UI.PlateUp
 {
-	public class BetaWarningMenu : KLMenu<MenuAction>
+	public class BetaWarningMenu : KLMenu
 	{
 		public BetaWarningMenu(Transform container, ModuleList module_list) : base(container, module_list)
 		{

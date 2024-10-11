@@ -69,5 +69,18 @@ namespace KitchenLib.Utils
 				CopyDirectory(subdir, destSubdir);
 			}
 		}
+
+		public static bool HasCommandlineArgument(string argument)
+		{
+			string[] commandLineArgs = Environment.GetCommandLineArgs();
+			for (int i = 0; i < commandLineArgs.Length; i++)
+			{
+				if (commandLineArgs[i] == argument)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 }
