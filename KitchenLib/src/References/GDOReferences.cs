@@ -726,6 +726,18 @@ namespace KitchenLib.References
 
 		public static int DishSelectionCabinet => (int)_ApplianceReferences.DishSelectionCabinet;
 
+		public static int RuneRock1 => (int)_ApplianceReferences.RuneRock1;
+
+		public static int RuneRock2 => (int)_ApplianceReferences.RuneRock2;
+
+		public static int RuneRock3 => (int)_ApplianceReferences.RuneRock3;
+
+		public static int WitchCobblestone => (int)_ApplianceReferences.WitchCobblestone;
+
+		public static int WitchGroundwithRiver => (int)_ApplianceReferences.WitchGroundwithRiver;
+
+		public static int WitchHutWallPanel => (int)_ApplianceReferences.WitchHutWallPanel;
+
 		public static int AdvancedBuildLoadoutCraneInGame => (int)_ApplianceReferences.AdvancedBuildLoadoutCraneInGame;
 
 		public static int AdvancedBuildLoadoutCrane => (int)_ApplianceReferences.AdvancedBuildLoadoutCrane;
