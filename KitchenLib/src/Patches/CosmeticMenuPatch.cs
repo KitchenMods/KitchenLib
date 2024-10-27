@@ -32,7 +32,7 @@ namespace KitchenLib.src.Patches
 			{
 				foreach (GridMenuConfig config in __instance.Links)
 				{
-					if (config.name == "Hats - Page 1" || config.name == "Outfits" || config.name == "Colours - All 2")
+					if (config.name == "Hats - Page 1" || config.name == "Outfits - Root" || config.name == "Colours - All 2")
 						found++;
 				}
 			}
