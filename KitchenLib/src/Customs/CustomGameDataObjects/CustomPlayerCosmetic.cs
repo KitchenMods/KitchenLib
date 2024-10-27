@@ -14,6 +14,7 @@ namespace KitchenLib.Customs
         public virtual bool IsDefault { get; protected set; }
         public virtual bool BlockHats { get; protected set; }
         public virtual float HeadSize { get; protected set; } = 1f;
+        public virtual bool HideBody { get; protected set; }
         public virtual GameObject Visual { get; protected set; }
 
         public override void Convert(GameData gameData, out GameDataObject gameDataObject)
@@ -26,6 +27,7 @@ namespace KitchenLib.Customs
             OverrideVariable(result, "IsDefault", IsDefault);
             OverrideVariable(result, "BlockHats", BlockHats);
             OverrideVariable(result, "HeadSize", HeadSize);
+            OverrideVariable(result, "HideBody", HideBody);
             OverrideVariable(result, "Visual", Visual);
             OverrideVariable(result, "Info", Info);
 

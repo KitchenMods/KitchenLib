@@ -15,6 +15,7 @@ namespace KitchenLib.Customs
 		public virtual Unlock StartingUnlock { get; protected set; }
 		public virtual Dish FixedDish { get; protected set; }
 		public virtual GameObject Prefab { get; protected set; }
+		public virtual LayoutProfile ForceLayout { get; protected set; }
 		public virtual bool AlwaysLight { get; protected set; }
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
@@ -42,6 +43,7 @@ namespace KitchenLib.Customs
 			OverrideVariable(result, "UnlockPack", UnlockPack);
 			OverrideVariable(result, "StartingUnlock", StartingUnlock);
 			OverrideVariable(result, "FixedDish", FixedDish);
+			OverrideVariable(result, "ForceLayout", ForceLayout);
 		}
 	}
 }
