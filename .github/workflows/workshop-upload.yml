@@ -22,6 +22,11 @@ on:
         required: false
         default: ""
         type: string
+      plateupsignature:
+        description: "PlateUp provided signature"
+        required: false
+        default: ""
+        type: string
       publishtodiscord:
         type: boolean
         description: "Publish release note to Discord"
@@ -71,6 +76,15 @@ jobs:
         uses: CyberAndrii/steam-totp@c7f636bc64e77f1b901e0420b7890813141508ee
         with:
           shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
+
+      - name: Create Signature File
+        if: ${{ github.event.inputs.plateupsignature != '' }}
+        id: plateup-signatgure
+        uses: DamianReeves/write-file-action@master
+        with:
+          path: ./build/signature.txt
+          contents: ${{ github.event.inputs.plateupsignature }}
+          write-mode: overwrite
 
       - name: Upload to steam workshop
         if: ${{ github.event.inputs.publishtosteam == 'true' }}
