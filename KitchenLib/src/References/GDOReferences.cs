@@ -1483,6 +1483,18 @@ namespace KitchenLib.References
 
 		DishSelectionCabinet = 509800268,
 
+		RuneRock1 = 1436010410,
+
+		RuneRock2 = -400359294,
+
+		RuneRock3 = -1082709460,
+
+		WitchCobblestone = -307800946,
+
+		WitchGroundwithRiver = 2095304286,
+
+		WitchHutWallPanel = 585649337,
+
 		AdvancedBuildLoadoutCraneInGame = -364231730,
 
 		AdvancedBuildLoadoutCrane = -121110359,
@@ -4538,6 +4550,60 @@ namespace KitchenLib.References
 
 		public static int WheelBoyHat => (int)_PlayerCosmeticReferences.WheelBoyHat;
 
+		public static int BakerChef => (int)_PlayerCosmeticReferences.BakerChef;
+
+		public static int BaristaChef => (int)_PlayerCosmeticReferences.BaristaChef;
+
+		public static int BBQChef => (int)_PlayerCosmeticReferences.BBQChef;
+
+		public static int BrownChef => (int)_PlayerCosmeticReferences.BrownChef;
+
+		public static int ButcherChef => (int)_PlayerCosmeticReferences.ButcherChef;
+
+		public static int CleanerChef => (int)_PlayerCosmeticReferences.CleanerChef;
+
+		public static int CollanderHat => (int)_PlayerCosmeticReferences.CollanderHat;
+
+		public static int CookingPotHat => (int)_PlayerCosmeticReferences.CookingPotHat;
+
+		public static int CowboyHat2 => (int)_PlayerCosmeticReferences.CowboyHat2;
+
+		public static int DarkChef => (int)_PlayerCosmeticReferences.DarkChef;
+
+		public static int DinerChef => (int)_PlayerCosmeticReferences.DinerChef;
+
+		public static int FrankensteinChef => (int)_PlayerCosmeticReferences.FrankensteinChef;
+
+		public static int FryingPanHat => (int)_PlayerCosmeticReferences.FryingPanHat;
+
+		public static int HandymanChef => (int)_PlayerCosmeticReferences.HandymanChef;
+
+		public static int HawaiianChef => (int)_PlayerCosmeticReferences.HawaiianChef;
+
+		public static int IceCreamHat => (int)_PlayerCosmeticReferences.IceCreamHat;
+
+		public static int MummyChef => (int)_PlayerCosmeticReferences.MummyChef;
+
+		public static int NightmareChef => (int)_PlayerCosmeticReferences.NightmareChef;
+
+		public static int SkeletonChef => (int)_PlayerCosmeticReferences.SkeletonChef;
+
+		public static int SushiChef => (int)_PlayerCosmeticReferences.SushiChef;
+
+		public static int TallChefHat => (int)_PlayerCosmeticReferences.TallChefHat;
+
+		public static int TeppanyakiChef => (int)_PlayerCosmeticReferences.TeppanyakiChef;
+
+		public static int ThrillerChef => (int)_PlayerCosmeticReferences.ThrillerChef;
+
+		public static int TuxChef => (int)_PlayerCosmeticReferences.TuxChef;
+
+		public static int VampireChef => (int)_PlayerCosmeticReferences.VampireChef;
+
+		public static int VisorHat => (int)_PlayerCosmeticReferences.VisorHat;
+
+		public static int WitchChef => (int)_PlayerCosmeticReferences.WitchChef;
+
 		public static int Bandana1 => (int)_PlayerCosmeticReferences.Bandana1;
 
 		public static int Bandana2 => (int)_PlayerCosmeticReferences.Bandana2;
@@ -4662,6 +4728,60 @@ namespace KitchenLib.References
 		ToasterHat = 1129983609,
 
 		WheelBoyHat = 1674187527,
+
+		BakerChef = 907728224,
+
+		BaristaChef = 153589827,
+
+		BBQChef = -1773267544,
+
+		BrownChef = -30734782,
+
+		ButcherChef = -1627755214,
+
+		CleanerChef = 732564270,
+
+		CollanderHat = 1190448658,
+
+		CookingPotHat = 1623972248,
+
+		CowboyHat2 = -1382700210,
+
+		DarkChef = 1453139625,
+
+		DinerChef = 913958454,
+
+		FrankensteinChef = -2013127355,
+
+		FryingPanHat = 655614579,
+
+		HandymanChef = -1776995498,
+
+		HawaiianChef = -1372763235,
+
+		IceCreamHat = -439502309,
+
+		MummyChef = 1064557162,
+
+		NightmareChef = -1015061923,
+
+		SkeletonChef = -1058807536,
+
+		SushiChef = 991572677,
+
+		TallChefHat = -545572929,
+
+		TeppanyakiChef = 751635467,
+
+		ThrillerChef = 1937347555,
+
+		TuxChef = 429857619,
+
+		VampireChef = -1612775152,
+
+		VisorHat = 1538718644,
+
+		WitchChef = 1685032362,
 
 		Bandana1 = -1859499757,
 
