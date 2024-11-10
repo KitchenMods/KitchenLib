@@ -11,7 +11,6 @@ on:
         options:
           - "2898069883" # KitchenLib mod id
           - "2932799348" # KitchenLib Beta mod id
-          - "3000699306" # Testing KitchenLib mod id
       releaseversion:
         description: "The release version"
         required: true
@@ -49,22 +48,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download artifact
-        if: ${{ github.event.inputs.publishtosteam == 'true' }}
-        id: download-artifact
-        uses: dawidd6/action-download-artifact@v2
+      - name: Download Release
+        id: download-release
+        uses: robinraju/release-downloader@v1
         with:
-          workflow: build-and-sign.yml
-          branch: ${{ github.ref_name }}
-          path: build
-          name: KitchenLib-Build
+          latest: true
+          preRelease: true
+          tag: "v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}"
+          fileName: "KitchenLib-v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}.zip"
 
-      - name: List Directory Contents
-        if: ${{ github.event.inputs.publishtosteam == 'true' }}
+      - name: Unzip Release
         run: |
-          set -e
-          ls -al
-          ls -al build
+          unzip KitchenLib-v${{ github.event.inputs.releaseversion }}${{ github.event.inputs.betaversion }}.zip -d Release
+          cd Release
+          ls -l
 
       - name: Setup steamcmd
         if: ${{ github.event.inputs.publishtosteam == 'true' }}
@@ -87,13 +84,27 @@ jobs:
           write-mode: overwrite
 
       - name: Upload to steam workshop
-        if: ${{ github.event.inputs.publishtosteam == 'true' }}
+        if: ${{ github.event.inputs.publishtosteam == 'true' && inputs.itemid == '2932799348' && github.event.inputs.plateupsignature != ''}}
         run: |
           ./upload.sh
         env:
           INPUT_APPID: 1599600 # Game's Steam App ID (PlateUp)
           INPUT_ITEMID: ${{ inputs.itemid }} # Your mod's Steam Workshop ID
-          INPUT_PATH: "build" # Path to your mod's folder from repository root
+          INPUT_PATH: "Release" # Path to your mod's folder from repository root
+          STEAM_USERNAME: "${{ secrets.STEAM_USERNAME }}" # Your Steam username
+          STEAM_PASSWORD: "${{ secrets.STEAM_PASSWORD }}" # Your Steam password
+          STEAM_CODE: ${{ steps.generate-code.outputs.code }}
+          CHANGELOGVER: ${{ github.event.inputs.releaseversion }}
+          CHANGELOGBETA: ${{ github.event.inputs.betaversion }}
+
+      - name: Upload to steam workshop
+        if: ${{ github.event.inputs.publishtosteam == 'true' && inputs.itemid != '2898069883'}}
+        run: |
+          ./upload.sh
+        env:
+          INPUT_APPID: 1599600 # Game's Steam App ID (PlateUp)
+          INPUT_ITEMID: ${{ inputs.itemid }} # Your mod's Steam Workshop ID
+          INPUT_PATH: "Release" # Path to your mod's folder from repository root
           STEAM_USERNAME: "${{ secrets.STEAM_USERNAME }}" # Your Steam username
           STEAM_PASSWORD: "${{ secrets.STEAM_PASSWORD }}" # Your Steam password
           STEAM_CODE: ${{ steps.generate-code.outputs.code }}
@@ -107,7 +118,6 @@ jobs:
           npm install
           node .
         env:
-          INPUT_PATH: "build" # Path to your mod's folder from repository root
           CHANGELOGVER: ${{ github.event.inputs.releaseversion }}
           CHANGELOGBETA: ${{ github.event.inputs.betaversion }}
           DISCORDURL: "${{ secrets.DISCORD_WEBHOOK }}"

@@ -3,7 +3,7 @@ set -e
 
 echo "Uploading to steam workshop"
 
-steammessage=`cat KitchenLib/Changelogs/${CHANGELOGVER}/Workshop/v${CHANGELOGVER}${CHANGELOGBETA}.MD`
+steammessage=`cat Changelogs/${CHANGELOGVER}/Workshop/v${CHANGELOGVER}${CHANGELOGBETA}.MD`
 export Cleaned_steammessage=$(echo "$steammessage" | tr '"' ' ')
 
 cat << EOF > $PWD/workshop.vdf

@@ -19,7 +19,7 @@ if (process.env.DISCORDURL) {
 
 const hook = new Webhook(DiscordURL);
 
-const changelogpath = '../KitchenLib/Changelogs/' + ChangelogVer + '/Github/v' + ChangelogVer + ChangelogBetaVer + '.MD';
+const changelogpath = '../Changelogs/' + ChangelogVer + '/Github/v' + ChangelogVer + ChangelogBetaVer + '.MD';
 
 fs.readFile(changelogpath, 'utf8', (err, data) => {
     if (err) {
