@@ -43,9 +43,6 @@ namespace KitchenLib
 		
 		public AchivementElement SetIcon(Texture2D icon)
 		{
-			if (icon == null)
-				icon = Main.bundle.LoadAsset<Texture2D>("defaultAchievementIcon");
-			
 			Icon.material.SetTexture(Image, icon);
 			return this;
 		}

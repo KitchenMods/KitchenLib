@@ -1,4 +1,4 @@
-﻿/*Script created by Pierre Stempin*/
+/*Script created by Pierre Stempin*/
 
 using UnityEngine;
 using UnityEditor;

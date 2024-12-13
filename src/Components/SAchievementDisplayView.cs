@@ -6,8 +6,8 @@ namespace KitchenLib.Components
 {
 	public struct SAchievementDisplayView : IBufferElementData, IModComponent
 	{
-		public FixedString32 modId;
-		public FixedString32 achivementKey;
+		public FixedString128 modId;
+		public FixedString128 achivementKey;
 		
 		public struct Marker : IComponentData, IModComponent { }
 	}

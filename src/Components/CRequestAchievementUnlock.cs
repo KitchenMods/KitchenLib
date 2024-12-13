@@ -6,7 +6,7 @@ namespace KitchenLib.Components
 {
 	public struct CRequestAchievementUnlock : IComponentData, IModComponent
 	{
-		public FixedString32 modId;
-		public FixedString32 achivementKey;
+		public FixedString128 modId;
+		public FixedString128 achivementKey;
 	}
 }

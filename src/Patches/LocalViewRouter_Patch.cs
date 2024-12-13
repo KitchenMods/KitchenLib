@@ -72,11 +72,11 @@ namespace KitchenLib.Patches
 			
 			if (prefab == null)
 			{
-				prefab = Main.bundle.LoadAsset<GameObject>("Ticket").AssignMaterialsByNames();
+				prefab = Main.bundle.LoadAsset<GameObject>("Ordering Ticket").AssignMaterialsByNames();
 				AchievementNotification view = prefab.AddComponent<AchievementNotification>();
 				view.Animator = prefab.GetComponent<Animator>();
-				view.Title = prefab.GetChild("Ticket/Title").GetComponent<TextMeshPro>();
-				view.Description = prefab.GetChild("Ticket/Description").GetComponent<TextMeshPro>();
+				view.Title = prefab.GetChild("Sub Ordering Ticket/Title").GetComponent<TextMeshPro>();
+				view.Description = prefab.GetChild("Sub Ordering Ticket/Description").GetComponent<TextMeshPro>();
 
 				view.Title.fontStyle = FontStyles.Normal;
 				view.Description.fontStyle = FontStyles.Normal;
@@ -103,9 +103,9 @@ namespace KitchenLib.Patches
 				prefab = prefab.AssignMaterialsByNames();
 				AchievementNotification view = prefab.AddComponent<AchievementNotification>();
 				view.Animator = prefab.GetComponent<Animator>();
-				view.Title = prefab.GetChild("Steam Clone/Title").GetComponent<TextMeshPro>();
-				view.Description = prefab.GetChild("Steam Clone/Description").GetComponent<TextMeshPro>();
-				view.Icon = prefab.GetChild("Steam Clone/Icon").GetComponent<Renderer>();
+				view.Title = prefab.GetChild("Sub Steam Clone/Title").GetComponent<TextMeshPro>();
+				view.Description = prefab.GetChild("Sub Steam Clone/Description").GetComponent<TextMeshPro>();
+				view.Icon = prefab.GetChild("Sub Steam Clone/Icon").GetComponent<Renderer>();
 			}
 			
 			__result = prefab;

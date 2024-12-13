@@ -49,7 +49,7 @@ public class AssetBundler
     [MenuItem("PlateUp!/Build Asset Bundle _F6")]
     public static void BuildAssetBundle()
     {
-        Debug.LogFormat("Creating 1\"{0}\" AssetBundle...", BUNDLE_FILENAME);
+        Debug.LogFormat("Creating \"{0}\" AssetBundle...", BUNDLE_FILENAME);
 
 		AssetBundler bundler = new AssetBundler();
 
@@ -214,8 +214,8 @@ public class AssetBundler
             var importer = AssetImporter.GetAtPath(path);
             if (!importer.assetBundleName.Equals(BUNDLE_FILENAME))
             {
-                Debug.LogWarningFormat("Asset \"{0}\" is not tagged with \"{1}\" and will not be included in the AssetBundle!", path, BUNDLE_FILENAME);
-                ++NumWarnings;
+                // Debug.LogWarningFormat("Asset \"{0}\" is not tagged with \"{1}\" and will not be included in the AssetBundle!", path, BUNDLE_FILENAME);
+                // ++NumWarnings;
             }
         }
     }
@@ -228,7 +228,7 @@ public class AssetBundler
         string[] assetsInBundle = AssetDatabase.FindAssets($"{ASSET_SEARCH_QUERY},b:{BUNDLE_FILENAME}");
         if (assetsInBundle.Length == 0)
         {
-            throw new Exception(string.Format("No assets have been tagged for inclusion in the {0} AssetBundle.", BUNDLE_FILENAME));
+            // throw new Exception(string.Format("No assets have been tagged for inclusion in the {0} AssetBundle.", BUNDLE_FILENAME));
         }
     }
 
@@ -300,7 +300,7 @@ public class AssetBundler
         return GetGameObjectPath(current.parent) + "/" + current.name;
     }
 
-    [MenuItem("PlateUp!/Preparation/Strip Materials From Prefabs")]
+    [MenuItem("PlateUp!/Preparation/[Deprecated] Strip Materials From Prefabs")]
     public static void RemoveAllPrefabMaterials()
     {
         if (!EditorUtility.DisplayDialog("Confirm", "Stripping materials from prefabs is an irreversible process. Perform at your own risk.", "Proceed", "Cancel"))
@@ -334,7 +334,7 @@ public class AssetBundler
 
 
 
-    [MenuItem("PlateUp!/Preparation/Set Prefab Materials to Default")]
+    [MenuItem("PlateUp!/Preparation/[Deprecated] Set Prefab Materials to Default")]
     public static void SetAllPrefabMaterialsToDefault()
     {
         if (!EditorUtility.DisplayDialog("Confirm", "Changing the materials of prefabs is an irreversible process. Perform at your own risk.", "Proceed", "Cancel"))

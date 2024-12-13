@@ -61,8 +61,8 @@ namespace KitchenLib.Views
 			{
 				return modId != check.modId || achievementKey != check.achievementKey;
 			}
-			[Key(0)] public FixedString32 modId;
-			[Key(0)] public FixedString32 achievementKey;
+			[Key(0)] public FixedString128 modId;
+			[Key(0)] public FixedString128 achievementKey;
 		}
 		
 		public Animator Animator;
@@ -71,6 +71,7 @@ namespace KitchenLib.Views
 		public Renderer Icon;
 
 		private static readonly int Image = Shader.PropertyToID("_Image");
+		private static readonly int isRequested = Animator.StringToHash("isRequested");
 		
 		
 		private readonly List<PendingNotification> pendingNotifications = new List<PendingNotification>();
@@ -85,10 +86,14 @@ namespace KitchenLib.Views
 		}
 		private void Update()
 		{
-			if (Animator== null) return;
-			
-			if (Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+			if (Animator == null) return;
+
+			if (Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Idle")
 			{
+				if (Input.GetKeyDown(KeyCode.G))
+				{
+					Animator.SetBool(isRequested, true);
+				}
 				if (pendingNotifications.Count == 0) return;
 				PendingNotification notification = pendingNotifications[0];
 				pendingNotifications.RemoveAt(0);
@@ -119,8 +124,11 @@ namespace KitchenLib.Views
 					Icon.material.SetTexture(Image, achievement.Icon);
 				}
 
-				Animator.Play("Idle", 0);
-				Animator.Play("Display", 0);
+				Animator.SetBool(isRequested, true);
+			}
+			else
+			{
+				Animator.SetBool(isRequested, false);
 			}
 		}
 	}

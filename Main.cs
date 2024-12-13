@@ -17,6 +17,7 @@ using KitchenLib.Components;
 using KitchenLib.UI.PlateUp.PreferenceMenus;
 using KitchenLib.Utils;
 using KitchenLib.Views;
+using Unity.Entities;
 using KitchenLogger = KitchenLib.Logging.KitchenLogger;
 
 namespace KitchenLib
@@ -49,7 +50,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string THE_MOD_BETA_VERSION = "4";
+		internal const string THE_MOD_BETA_VERSION = "5";
 #if DEBUG
 		internal static string MOD_BETA_VERSION = THE_MOD_BETA_VERSION + "-DEBUG";
 #else
@@ -143,6 +144,7 @@ namespace KitchenLib
 
 			ViewUtils.RegisterView("KitchenLib.Views.SyncMods", typeof(SModSync), typeof(SyncMods));
 
+			
 			switch (manager.GetPreference<PreferenceInt>("achievementNotificatonDisplay").Value)
 			{
 				case 0:
@@ -152,9 +154,10 @@ namespace KitchenLib
 					ViewUtils.RegisterView("KitchenLib.Views.AchievementNotification.Ticket", typeof(SAchievementDisplayView.Marker), typeof(AchievementNotification), ViewMode.Screen, new Vector3(1, 1, 0));
 					break;
 				case 2:
-					ViewUtils.RegisterView("KitchenLib.Views.AchievementNotification.SteamClone", typeof(SAchievementDisplayView.Marker), typeof(AchievementNotification), ViewMode.Screen, new Vector3(1, 1, 0));
+					ViewUtils.RegisterView("KitchenLib.Views.AchievementNotification.SteamClone", typeof(SAchievementDisplayView.Marker), typeof(AchievementNotification), ViewMode.Screen, new Vector3(1,1, 0));
 					break;
 			}
+			
 
 			LogInfo(" __  ___  __  .___________.  ______  __    __   _______ .__   __.  __       __  .______  ");
 			LogInfo("|  |/  / |  | |           | /      ||  |  |  | |   ____||  \\ |  | |  |     |  | |   _  \\ ");
@@ -166,7 +169,8 @@ namespace KitchenLib
 			Events.BuildGameDataEvent += (sender, args) => { if (args.firstBuild) AchievementsManager.SetupMenuElement(); };
 		}
 
-		private void determineDebugLoggingStatus() {
+		private void determineDebugLoggingStatus()
+		{
 			int localModCount = ModPreload.Mods.Count(mod => mod.Source.GetType() == typeof(FolderModSource));
 			if (MOD_BETA_VERSION != "") {
 				localModCount--;

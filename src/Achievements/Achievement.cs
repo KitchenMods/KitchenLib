@@ -30,6 +30,10 @@ namespace KitchenLib.Achievements
 			Name = name;
 			Description = description;
 			Icon = icon;
+			if (Icon == null)
+			{
+				Icon = Main.bundle.LoadAsset<Texture2D>("defaultAchievementIcon");
+			}
 		}
 		
 		public Achievement(string key, string name, string description, Texture2D icon, List<string> requiredCompletedAchievements)
