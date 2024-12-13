@@ -32,20 +32,24 @@ namespace KitchenLib.Patches
 
 			foreach ((string, Type) x in ModsPreferencesMenu<MenuAction>.MenusToRegister.Keys)
 			{
-				MainMenuPreferencesesMenu.RegisterMenu("<i>" + x.Item1 + "</i>", x.Item2, false);
-				PauseMenuPreferencesesMenu.RegisterMenu("<i>" + x.Item1 + "</i>", x.Item2, false);
+				MainMenuPreferencesesMenu.RegisterMenu(x.Item1, x.Item2, false);
+				//MainMenuPreferencesesMenu.RegisterMenu("<i>" + x.Item1 + "</i>", x.Item2, false);
+				PauseMenuPreferencesesMenu.RegisterMenu(x.Item1, x.Item2, false);
+				//PauseMenuPreferencesesMenu.RegisterMenu("<i>" + x.Item1 + "</i>", x.Item2, false);
 			}
 
 
 			foreach ((string, Type) x in ModsPreferencesMenu<MainMenuAction>.MenusToRegister.Keys)
 			{
-				MainMenuPreferencesesMenu.RegisterMenu("<color=red><i>" + x.Item1 + "</i>", x.Item2, false);
+				MainMenuPreferencesesMenu.RegisterMenu("<color=red>" + x.Item1, x.Item2, false);
+				//MainMenuPreferencesesMenu.RegisterMenu("<color=red><i>" + x.Item1 + "</i>", x.Item2, false);
 			}
 
 
 			foreach ((string, Type) x in ModsPreferencesMenu<PauseMenuAction>.MenusToRegister.Keys)
 			{
-				PauseMenuPreferencesesMenu.RegisterMenu("<color=red><i>" + x.Item1 + "</i>", x.Item2, false);
+				PauseMenuPreferencesesMenu.RegisterMenu("<color=red>" + x.Item1, x.Item2, false);
+				//PauseMenuPreferencesesMenu.RegisterMenu("<color=red><i>" + x.Item1 + "</i>", x.Item2, false);
 			}
 
 			if (Main.manager.GetPreference<PreferenceBool>("mergeWithPreferenceSystem") != null && Main.manager.GetPreference<PreferenceBool>("mergeWithPreferenceSystem").Value && Main.preferenceSystemMenuType != null)
