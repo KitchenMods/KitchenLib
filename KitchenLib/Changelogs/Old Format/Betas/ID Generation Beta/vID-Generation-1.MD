@@ -1,5 +1,0 @@
-﻿# Release Notes - API Related
-
-- Custom GDOs now use ModID rather than ModName to generate IDs.
-    - Currently modded runs WILL BREAK
-    - Modded Franchises should be fine.

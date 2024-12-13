@@ -1,0 +1,50 @@
+name: Build Test
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup DepotDownloader
+        run: |
+          wget https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.7.2/DepotDownloader-linux-x64.zip
+          unzip DepotDownloader-linux-x64.zip
+          chmod +x DepotDownloader
+
+      - name: Generate auth code
+        id: generate
+        uses: CyberAndrii/steam-totp@c7f636bc64e77f1b901e0420b7890813141508ee
+        with:
+          shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
+
+      - name: Download PlateUp Files
+        run: |
+          ./DepotDownloader -app 1599600 -depot 1599601 -username ${{ secrets.STEAM_USERNAME }} -password ${{ secrets.STEAM_PASSWORD }} <<< "${{ steps.generate.outputs.code }}"
+
+      - name: Install .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: |
+            8.x
+
+      - name: Build the application
+        run: |
+          set -x
+          dotnet build -c Workshop -p:GamePath=`ls -d $PWD/depots/1599601/**`/PlateUp -p:EnableModDeployLocal='false' -p:EnableGameDebugging='false' --os windows --no-self-contained ./KitchenLib.csproj
+          mkdir ./content/
+          cp ./bin/Workshop/net472/windows-x64/KitchenLib-Workshop.dll ./content/
+          cp ./bin/Workshop/net472/windows-x64/KitchenLib-Workshop.pdb ./content/
+          cp ./bin/Workshop/net472/KitchenLib-Workshop.xml ./content/

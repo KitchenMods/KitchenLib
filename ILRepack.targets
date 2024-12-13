@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="ILRepacker" AfterTargets="Build" BeforeTargets="Deploy">
+        <!-- Listing the DLLs to be merged into the output DLL -->
+        <ItemGroup>
+            <InputAssemblies Include="$(OutputPath)\$(AssemblyName).dll" />
+            <InputAssemblies Include="$(OutputPath)\IndexRange.dll" />
+            <InputAssemblies Include="$(OutputPath)\Semver.dll" />
+            <InputAssemblies Include="$(OutputPath)\Microsoft.Extensions.Primitives.dll" />
+        </ItemGroup>
+
+        <ItemGroup>
+            <LibraryPath Include="$(AssemblyReferencePath)"/>
+            <LibraryPath Include="$(OutputPath)"/>
+        </ItemGroup>
+
+        <ILRepack
+                Parallel="true"
+                Internalize="true"
+                InputAssemblies="@(InputAssemblies)"
+                TargetKind="Dll"
+                OutputFile="$(OutputPath)\$(AssemblyName).dll"
+                LibraryPath="@(LibraryPath)"
+        />
+    </Target>
+</Project>
