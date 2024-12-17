@@ -16,7 +16,12 @@ namespace KitchenLib.UI.PlateUp
 		public Option<AchievementsManager> managers = null;
 		public Dictionary<AchievementsManager, Option<int>> pages = new Dictionary<AchievementsManager, Option<int>>();
 		public Dictionary<AchievementsManager, List<Achievement>> achievements = new Dictionary<AchievementsManager, List<Achievement>>();
-		
+
+		public Texture2D GetVoidTexture()
+		{
+			return Main.bundle.LoadAsset<Texture2D>("defaultAchievementIcon");
+		}
+
 		private int maxPerPage = 6;
 		public override void Setup(int player_id)
 		{
@@ -101,7 +106,14 @@ namespace KitchenLib.UI.PlateUp
 				Achievement achievement = _achievements[i];
 				if (achievement.IsUnlocked())
 				{
-					CreateAchievementModule(achievement.UnlockDateString, achievement.Name, achievement.Description, achievement.Icon);
+					if (achievement.IsHidden && !achievement.HasCompleted)
+					{
+						CreateHiddenAchievementModule();
+					}
+					else
+					{
+						CreateAchievementModule(achievement.UnlockDateString, achievement.Name, achievement.Description, achievement.Icon);
+					}
 				}
 				else
 				{
@@ -128,9 +140,22 @@ namespace KitchenLib.UI.PlateUp
 			AchivementElement e = ModuleDirectory.Add<AchivementElement>(Container, Vector2.zero);
 			e.SetUnlockDate("");
 			e.SetTitle("????");
-			e.SetDescription("Details for this achievement will be revealed once unlocked. ");
+			e.SetDescription("Details for this achievement will be revealed once unlocked.");
 			e.SetStyle(Style);
-			e.SetIcon(null);
+			e.SetIcon(GetVoidTexture());
+			e.SetUnlocked(false);
+			e.SetSelectable(false);
+			ModuleList.AddModule(e);
+		}
+		
+		public void CreateHiddenAchievementModule()
+		{
+			AchivementElement e = ModuleDirectory.Add<AchivementElement>(Container, Vector2.zero);
+			e.SetUnlockDate("");
+			e.SetTitle("????");
+			e.SetDescription("Details for this achievement will be revealed once completed.");
+			e.SetStyle(Style);
+			e.SetIcon(GetVoidTexture());
 			e.SetUnlocked(false);
 			e.SetSelectable(false);
 			ModuleList.AddModule(e);

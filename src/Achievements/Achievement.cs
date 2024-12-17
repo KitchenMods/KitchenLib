@@ -21,6 +21,7 @@ namespace KitchenLib.Achievements
 		[JsonIgnore] public string Description;
 		[JsonIgnore] public Texture2D Icon;
 		[JsonIgnore] public List<string> RequiredCompletedAchievements = new List<string>();
+		[JsonIgnore] public bool IsHidden;
 		[JsonIgnore] public string UnlockDateString { get; internal set; }
 		[JsonIgnore] internal AchievementsManager manager;
 		
@@ -43,6 +44,36 @@ namespace KitchenLib.Achievements
 			Description = description;
 			Icon = icon;
 			RequiredCompletedAchievements = requiredCompletedAchievements;
+		}
+
+		public Achievement SetName(string value)
+		{
+			Name = value;
+			return this;
+		}
+
+		public Achievement SetDescription(string value)
+		{
+			Description = value;
+			return this;
+		}
+
+		public Achievement SetIcon(Texture2D value)
+		{
+			Icon = value;
+			return this;
+		}
+
+		public Achievement SetRequirements(List<string> value)
+		{
+			RequiredCompletedAchievements = value;
+			return this;
+		}
+
+		public Achievement SetHidden(bool value)
+		{
+			IsHidden = value;
+			return this;
 		}
 
 		public bool IsUnlocked()

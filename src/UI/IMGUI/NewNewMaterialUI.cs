@@ -224,10 +224,6 @@ namespace KitchenLib.UI
 			foreach (Renderer renderer in materialDisplay.GetComponentsInChildren<Renderer>())
 			{
 				renderer.material = selectedMaterial;
-				for (var i = 0; i < renderer.materials.Length; i++)
-				{
-					renderer.materials[i] = material;
-				}
 			}
 		}
 
