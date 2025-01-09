@@ -79,7 +79,7 @@ jobs:
         id: plateup-signatgure
         uses: DamianReeves/write-file-action@master
         with:
-          path: ./build/signature.txt
+          path: Release/signature.txt
           contents: ${{ github.event.inputs.plateupsignature }}
           write-mode: overwrite
 
