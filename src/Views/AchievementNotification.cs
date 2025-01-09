@@ -90,10 +90,6 @@ namespace KitchenLib.Views
 
 			if (Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Idle")
 			{
-				if (Input.GetKeyDown(KeyCode.G))
-				{
-					Animator.SetBool(isRequested, true);
-				}
 				if (pendingNotifications.Count == 0) return;
 				PendingNotification notification = pendingNotifications[0];
 				pendingNotifications.RemoveAt(0);
