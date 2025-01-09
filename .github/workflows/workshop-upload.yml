@@ -84,7 +84,7 @@ jobs:
           write-mode: overwrite
 
       - name: Upload to steam workshop
-        if: ${{ github.event.inputs.publishtosteam == 'true' && inputs.itemid == '2932799348' && github.event.inputs.plateupsignature != ''}}
+        if: ${{ github.event.inputs.publishtosteam == 'true' && inputs.itemid == '2898069883' && github.event.inputs.plateupsignature != ''}}
         run: |
           ./upload.sh
         env:
