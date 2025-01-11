@@ -233,11 +233,8 @@ namespace KitchenLib.Patches
 					if (gameDataObject.GetType() == typeof(PlayerCosmetic))
 					{
 						PlayerCosmetic cosmetic = (PlayerCosmetic)gameDataObject;
-						if (!cosmetic.DisableInGame)
-						{
-							if (cosmetic.CosmeticType == CosmeticType.Hat) { CosmeticMenuPatch.Hats.Add(cosmetic); }
-							if (cosmetic.CosmeticType == CosmeticType.Outfit) { CosmeticMenuPatch.Outfits.Add(cosmetic); }
-						}
+						if (cosmetic.CosmeticType == CosmeticType.Hat) { CosmeticMenuPatch.Hats.Add(cosmetic); }
+						if (cosmetic.CosmeticType == CosmeticType.Outfit) { CosmeticMenuPatch.Outfits.Add(cosmetic); }
 					}
 				}
 			}
