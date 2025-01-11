@@ -16,12 +16,12 @@ namespace KitchenLib.src.Patches
 		{
 			new KLGridMenuHatConfig
 			{
-				Cosmetics = Hats,
+				Cosmetics = new List<PlayerCosmetic>(),
 				Icon = Main.bundle.LoadAsset<Texture2D>("hats")
 			},
 			new KLGridMenuCosmeticConfig
 			{
-				Cosmetics = Outfits,
+				Cosmetics = new List<PlayerCosmetic>(),
 				Icon = Main.bundle.LoadAsset<Texture2D>("vest")
 			}
 		};
@@ -45,6 +45,27 @@ namespace KitchenLib.src.Patches
 					{
 						__instance.Links.Add(custom);
 					}
+
+					if (custom is KLGridMenuCosmeticConfig kLGridMenuCosmeticConfig)
+					{
+						kLGridMenuCosmeticConfig.Cosmetics.Clear();
+						foreach (PlayerCosmetic cosmetic in Outfits)
+						{
+							if (!cosmetic.DisableInGame)
+								kLGridMenuCosmeticConfig.Cosmetics.Add(cosmetic);
+						}
+					}
+
+					if (custom is KLGridMenuHatConfig kLGridMenuHatConfig)
+					{
+						kLGridMenuHatConfig.Cosmetics.Clear();
+						foreach (PlayerCosmetic cosmetic in Hats)
+						{
+							if (!cosmetic.DisableInGame)
+								kLGridMenuHatConfig.Cosmetics.Add(cosmetic);
+						}
+					}
+					
 				}
 			}
 		}

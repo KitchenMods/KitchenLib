@@ -170,7 +170,10 @@ namespace KitchenLib.Achievements
 				achievements[key].HasCompleted = true;
 				achievements[key].UnlockDate = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 				achievements[key].UnlockDateString = DateTimeOffset.FromUnixTimeMilliseconds(achievements[key].UnlockDate + (long)TimeZoneInfo.Local.BaseUtcOffset.TotalMilliseconds).DateTime.ToString("dd/MM/yyyy");
-				achievements[key].OnUnlock.Invoke();
+				if (achievements[key].OnUnlock != null)
+				{
+					achievements[key].OnUnlock.Invoke();
+				}
 				Save();
 				return true;
 			}
