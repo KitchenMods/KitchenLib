@@ -120,6 +120,8 @@ namespace KitchenLib.UI.PlateUp
 					CreateLockedAchievementModule();
 				}
 			}
+
+			ResetPanel();
 		}
 
 		public void CreateAchievementModule(string unlockDate, string title, string description, Texture2D icon)
