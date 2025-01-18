@@ -61,8 +61,8 @@ namespace KitchenLib.Views
 			{
 				return modId != check.modId || achievementKey != check.achievementKey;
 			}
-			[Key(0)] public FixedString128 modId;
-			[Key(0)] public FixedString128 achievementKey;
+			[Key(0)] public FixedString64 modId;
+			[Key(1)] public FixedString64 achievementKey;
 		}
 		
 		public Animator Animator;

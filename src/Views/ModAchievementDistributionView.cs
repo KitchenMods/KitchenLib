@@ -38,8 +38,8 @@ namespace KitchenLib.Views
 		[MessagePackObject(false)]
 		public struct ViewData : IViewData, IViewResponseData
 		{
-			[Key(0)] public FixedString128 modId;
-			[Key(1)] public FixedString128 achievementKey;
+			[Key(0)] public FixedString64 modId;
+			[Key(1)] public FixedString64 achievementKey;
 		}
 		
 		private bool IsRemoved;
