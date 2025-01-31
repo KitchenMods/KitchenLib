@@ -103,7 +103,7 @@ namespace KitchenLib.Views
 				long unlock = achievement.UnlockDate;
 				long now = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 				
-				if (now - unlock > 20000) return;
+				if (now - unlock > 2000) return;
 
 				if (Title != null)
 				{
