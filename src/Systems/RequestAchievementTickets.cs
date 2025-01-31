@@ -31,11 +31,13 @@ namespace KitchenLib.Systems
 			{
 				if (Require(entity, out CRequestAchievementUnlock cRequestAchievementUnlock))
 				{
+					/*
 					notifications.Add(new SAchievementDisplayView
 					{
 						modId = cRequestAchievementUnlock.modId,
 						achivementKey = cRequestAchievementUnlock.achivementKey
 					});
+					*/
 				}
 			}
 		}

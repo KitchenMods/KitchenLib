@@ -26,6 +26,7 @@ namespace KitchenLib.Views
 
 			protected override void OnUpdate()
 			{
+				return; // Doesn't need to exist.
 				using NativeArray<Entity> entities = views.ToEntityArray(Allocator.Temp);
 				foreach (Entity entity in entities)
 				{
@@ -74,7 +75,7 @@ namespace KitchenLib.Views
 		private static readonly int isRequested = Animator.StringToHash("isRequested");
 		
 		
-		private readonly List<PendingNotification> pendingNotifications = new List<PendingNotification>();
+		internal static readonly List<PendingNotification> pendingNotifications = new List<PendingNotification>();
 		
 		protected override void UpdateData(ViewData data)
 		{
@@ -84,6 +85,7 @@ namespace KitchenLib.Views
 				achievementKey = data.achievementKey.ToString()
 			});
 		}
+		
 		private void Update()
 		{
 			if (Animator == null) return;

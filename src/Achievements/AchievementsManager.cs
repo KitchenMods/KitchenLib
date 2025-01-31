@@ -8,6 +8,7 @@ using Kitchen.Modules;
 using KitchenLib.Preferences;
 using KitchenLib.Systems;
 using KitchenLib.Utils;
+using KitchenLib.Views;
 using Newtonsoft.Json;
 using Shapes;
 using TMPro;
@@ -180,6 +181,11 @@ namespace KitchenLib.Achievements
 				{
 					achievements[key].OnUnlock.Invoke();
 				}
+				AchievementNotification.pendingNotifications.Add(new PendingNotification
+				{
+					modId = modId,
+					achievementKey = key
+				});
 				Save();
 				return true;
 			}
