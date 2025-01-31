@@ -155,6 +155,12 @@ namespace KitchenLib.Achievements
 			if (!Directory.Exists($"{ACHIEVEMENT_FOLDER_PATH}"))
 				Directory.CreateDirectory($"{ACHIEVEMENT_FOLDER_PATH}");
 
+			if (PreferenceManager.globalManager == null)
+			{
+				Main.LogWarning("Global Preference Manager is null, attempting to assign.");
+				PreferenceManager.EnsureGlobal();
+			}
+
 			if (PreferenceManager.globalManager != null && PreferenceManager.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 2)
 				fileType = ".plateupsave";
 

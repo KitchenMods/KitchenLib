@@ -228,15 +228,19 @@ namespace KitchenLib.Utils
 			List<Material> materials = new List<Material>();
 			foreach (Material material in MaterialIndex.Values)
 			{
-				if (shaders.Contains(material.shader.name))
-					materials.Add(material);
+				if (material != null)
+				{
+					if (shaders.Contains(material.shader.name))
+						materials.Add(material);
+				}
 			}
 
 			foreach (Material material in CustomMaterials.GetCustomMaterials())
 			{
-				if (shaders.Contains(material.shader.name))
+				if (material != null)
 				{
-					materials.Add(material);
+					if (shaders.Contains(material.shader.name)) 
+						materials.Add(material);
 				}
 			}
 

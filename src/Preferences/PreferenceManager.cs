@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
@@ -44,6 +43,17 @@ namespace KitchenLib.Preferences
 	        Setup();
         }
 
+        internal static void EnsureGlobal()
+        {
+	        if (globalManager == null)
+	        {
+		        globalManager = new PreferenceManager(Main.MOD_ID + ".global", true);
+		        globalManager.RegisterPreference(new PreferenceInt("steamCloud", 0));
+		        globalManager.Load();
+		        globalManager.Save();
+	        }
+        }
+
         internal void Setup()
         {
 	        CheckForOldPreferences();
@@ -53,10 +63,8 @@ namespace KitchenLib.Preferences
 
 	        if (!isGlobal && globalManager == null)
 	        {
-		        globalManager = new PreferenceManager(Main.MOD_ID + ".global", true);
-		        globalManager.RegisterPreference(new PreferenceInt("steamCloud", 0));
-		        globalManager.Load();
-		        globalManager.Save();
+		        Main.LogWarning("Global Preference Manager is null, attempting to assign.");
+		        EnsureGlobal();
 	        }
 	        
 	        if (!isGlobal && globalManager != null && globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 2)
