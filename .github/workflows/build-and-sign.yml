@@ -73,7 +73,7 @@ jobs:
           ls ./content/
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: KitchenLib-Build
           path: content/
@@ -92,7 +92,7 @@ jobs:
           prerelease: ${{ !(github.event.inputs.betaversion == '') }}
 
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: KitchenLib-Build
           path: build

@@ -8,6 +8,7 @@ using Kitchen.Modules;
 using KitchenLib.Preferences;
 using KitchenLib.Systems;
 using KitchenLib.Utils;
+using KitchenLib.Views;
 using Newtonsoft.Json;
 using Shapes;
 using TMPro;
@@ -155,6 +156,12 @@ namespace KitchenLib.Achievements
 			if (!Directory.Exists($"{ACHIEVEMENT_FOLDER_PATH}"))
 				Directory.CreateDirectory($"{ACHIEVEMENT_FOLDER_PATH}");
 
+			if (PreferenceManager.globalManager == null)
+			{
+				Main.LogWarning("Global Preference Manager is null, attempting to assign.");
+				PreferenceManager.EnsureGlobal();
+			}
+
 			if (PreferenceManager.globalManager != null && PreferenceManager.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 2)
 				fileType = ".plateupsave";
 
@@ -174,6 +181,11 @@ namespace KitchenLib.Achievements
 				{
 					achievements[key].OnUnlock.Invoke();
 				}
+				AchievementNotification.pendingNotifications.Add(new PendingNotification
+				{
+					modId = modId,
+					achievementKey = key
+				});
 				Save();
 				return true;
 			}
