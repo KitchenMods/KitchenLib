@@ -26,7 +26,6 @@ namespace KitchenLib.Views
 
 			protected override void OnUpdate()
 			{
-				return; // Doesn't need to exist.
 				using NativeArray<Entity> entities = views.ToEntityArray(Allocator.Temp);
 				foreach (Entity entity in entities)
 				{
