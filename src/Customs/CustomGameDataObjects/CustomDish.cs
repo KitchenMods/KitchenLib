@@ -105,7 +105,7 @@ namespace KitchenLib.Customs
 			OverrideVariable(result, "ForceFranchiseSetting", ForceFranchiseSetting);
 			OverrideVariable(result, "ResultingMenuItems", ResultingMenuItems);
 			OverrideVariable(result, "IngredientsUnlocks", IngredientsUnlocks);
-			OverrideVariable(result, "PrerequisiteDishesEditor", PrerequisiteDishesEditor);
+			// OverrideVariable(result, "PrerequisiteDishesEditor", PrerequisiteDishesEditor);
 			OverrideVariable(result, "HardcodedRequirements", HardcodedRequirements);
 			OverrideVariable(result, "HardcodedBlockers", HardcodedBlockers);
 

@@ -177,7 +177,6 @@ namespace KitchenLib
 			}
 			bool isDebug = manager.GetPreference<PreferenceBool>("isDebug").Value;
 			debugLogging = localModCount > 0 || isDebug;
-			debugLogging = false;
 			LogInfo($"GDO debug logging: {debugLogging} (local mods: {localModCount}, isDebug: {isDebug})");
 		}
 
