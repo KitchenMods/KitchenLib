@@ -19,6 +19,7 @@ namespace KitchenLib.Systems
 
 		protected override void OnUpdate()
 		{
+			return;
 			using NativeArray<Entity> entities = _notifications.ToEntityArray(Allocator.Temp);
 			
 			if (entities.Length == 0) return;

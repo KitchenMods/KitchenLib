@@ -45,7 +45,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The version of the mod.
 		/// </summary>
-		internal const string MOD_VERSION = "0.8.7";
+		internal const string MOD_VERSION = "0.8.8";
 
 		/// <summary>
 		/// The beta version of the mod.
@@ -177,7 +177,6 @@ namespace KitchenLib
 			}
 			bool isDebug = manager.GetPreference<PreferenceBool>("isDebug").Value;
 			debugLogging = localModCount > 0 || isDebug;
-			debugLogging = false;
 			LogInfo($"GDO debug logging: {debugLogging} (local mods: {localModCount}, isDebug: {isDebug})");
 		}
 
