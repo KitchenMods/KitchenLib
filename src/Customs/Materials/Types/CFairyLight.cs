@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using imColorPicker;
 using KitchenLib.Interfaces;
 using UnityEngine;
@@ -15,7 +16,10 @@ namespace KitchenLib.Customs
 		public float _ColorZ = 0.0f;
 		public float _ColorA = 0.0f;
 
+		public float _Intensity = 1;
 		public float _Float0 = 1;
+
+		[JsonIgnore] private readonly Dictionary<Material, Color> baseColorCache = new Dictionary<Material, Color>();
 		
 
 		public override void ConvertMaterial(out Material material)
@@ -38,10 +42,15 @@ namespace KitchenLib.Customs
 		{
 			if(mainColorPicker == null)
 				mainColorPicker = new IMColorPicker();
+
+			if (!baseColorCache.ContainsKey(material))
+				baseColorCache.Add(material, material.GetVector("_Color0"));
 			
-			material.SetColor("_Color0", DrawColorModule(new Rect(2, 2, 146, 186), mainColorPicker, "Primary Color", material.GetVector("_Color0")));
-			// insensity slider?
-			material.SetFloat("_Float0", DrawSliderModule(new Rect(2, 199, 446, 24), "_Float0", material.GetFloat("_Float0")));
+			baseColorCache[material] = DrawColorModule(new Rect(2, 2, 146, 186), mainColorPicker, "Primary Color", baseColorCache[material]);
+			_Intensity = DrawSliderModule(new Rect(2, 199, 446, 24), "_Intensity", _Intensity, 1, 25);
+			
+			material.SetColor("_Color0", baseColorCache[material] * _Intensity);
+			material.SetFloat("_Float0", DrawSliderModule(new Rect(2, 223, 446, 24), "_Float0", material.GetFloat("_Float0")));
 		}
 
 		public string Export(Material material)
