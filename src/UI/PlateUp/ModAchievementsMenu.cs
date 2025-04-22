@@ -106,9 +106,12 @@ namespace KitchenLib.UI.PlateUp
 				Achievement achievement = _achievements[i];
 				if (achievement.IsUnlocked())
 				{
-					if (achievement.IsHidden && !achievement.HasCompleted)
+					if (achievement.HiddenState == AchievementHiddenState.HiddenUntilUnlocked && !achievement.HasCompleted)
 					{
 						CreateHiddenAchievementModule();
+					}
+					else if (achievement.HiddenState == AchievementHiddenState.HiddenUntilCompleted && !achievement.HasCompleted)
+					{
 					}
 					else
 					{

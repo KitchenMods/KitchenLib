@@ -11,6 +11,14 @@ namespace KitchenLib.Achievements
 		public bool HasCompleted;
 		public long UnlockDate;
 	}
+
+	public enum AchievementHiddenState
+	{
+		NotHidden,
+		HiddenUntilUnlocked,
+		HiddenUntilCompleted
+	}
+
 	public class Achievement
 	{
 		public string Key { get; }
@@ -21,7 +29,8 @@ namespace KitchenLib.Achievements
 		[JsonIgnore] public string Description;
 		[JsonIgnore] public Texture2D Icon;
 		[JsonIgnore] public List<string> RequiredCompletedAchievements = new List<string>();
-		[JsonIgnore] public bool IsHidden;
+		[Obsolete("Please use HiddenState")][JsonIgnore] public bool IsHidden;
+		[JsonIgnore] public AchievementHiddenState HiddenState;
 		[JsonIgnore] public Action OnUnlock;
 		[JsonIgnore] public string UnlockDateString { get; internal set; }
 		[JsonIgnore] internal AchievementsManager manager;
@@ -73,7 +82,22 @@ namespace KitchenLib.Achievements
 
 		public Achievement SetHidden(bool value)
 		{
-			IsHidden = value;
+			if (value)
+			{
+				HiddenState = AchievementHiddenState.HiddenUntilUnlocked;
+			}
+			else
+			{
+				HiddenState = AchievementHiddenState.NotHidden;
+			}
+
+			return this;
+		}
+
+		public Achievement SetHiddenState(AchievementHiddenState value)
+		{
+			HiddenState = value;
+
 			return this;
 		}
 
