@@ -21,9 +21,9 @@ namespace KitchenLib.Patches
 			CodeMatcher matcher = new(instructions);
 
 			matcher.MatchForward(false, new CodeMatch(OpCodes.Ldarg_0), new CodeMatch(OpCodes.Ldfld), new CodeMatch(OpCodes.Callvirt), new CodeMatch(OpCodes.Ldarg_0), new CodeMatch(OpCodes.Ldtoken))
-				.Advance(3)
+				.Advance(5)
 				.Insert(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MainMenuViewPatch), "CallSetupMenusEvent")))
-				.Insert(new CodeInstruction(OpCodes.Ldarg_0)); 
+				.Insert(new CodeInstruction(OpCodes.Ldarg_0));
 				
 			return matcher.InstructionEnumeration();
 		}
@@ -31,7 +31,7 @@ namespace KitchenLib.Patches
 		static void Postfix(MainMenuView __instance)
 		{
 			MethodInfo _SetMenu = ReflectionUtils.GetMethod<MainMenuView>("SetMenu");
-			_SetMenu.Invoke(__instance, new object[] {ErrorHandling.GetNextMenu(null), false});
+			_SetMenu.Invoke(__instance, new object[] {ErrorHandling.GetNextMenu(null), false, false});
 		}
 
 		private static void CallSetupMenusEvent(MainMenuView instance)
