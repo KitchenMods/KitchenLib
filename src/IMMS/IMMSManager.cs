@@ -61,6 +61,8 @@ namespace KitchenLib.IMMS
 		/// <returns>The result from the handler which handled the message. Will be null if there are no listeners on that channel.</returns>
 		public static void SendNetworkMessage(string channel, string key, int target, params object[] args)
 		{
+			Main.Logger.LogWarning("[DISABLED] Disabled IMMS sending network message.");
+			/*
 			// Check if we are client or server
 			if ((Session.CurrentGameNetworkMode == GameNetworkMode.Host && target == IMMSTarget.Host) || (target == IMMSTarget.Me && IMMSTarget.Me != -1))
 			{
@@ -104,6 +106,7 @@ namespace KitchenLib.IMMS
 					Type = IMMSMessageType.ClientToHost
 				});
 			}
+			*/
 		}
 
 		/// <summary>
