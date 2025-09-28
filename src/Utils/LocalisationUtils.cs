@@ -7,116 +7,91 @@ namespace KitchenLib.Utils
 {
 	public class LocalisationUtils
 	{
-		#region Helpers for Custom GDOs
 
+		#region Obsolete
+
+		[Obsolete("Use LocalisationBuilder")]
 		public static ApplianceInfo CreateApplianceInfo(string name, string description, List<Appliance.Section> sections, List<string> tags)
 		{
-			var applianceInfo = ScriptableObject.CreateInstance<ApplianceInfo>();
-
-			applianceInfo.Name = name;
-			applianceInfo.Description = description;
-			applianceInfo.Sections = sections;
-			applianceInfo.Tags = tags;
-
-			return applianceInfo;
+			return LocalisationBuilder.NewBuilder<ApplianceInfo>().SetName(name).SetDescription(description).SetSections(sections).SetTags(tags);
 		}
 
+		[Obsolete("Use LocalisationBuilder")]
 		public static CosmeticInfo CreateCosmeticInfo(string name, string description)
 		{
-			var cosmeticInfo = ScriptableObject.CreateInstance<CosmeticInfo>();
-
-			cosmeticInfo.Name = name;
-			cosmeticInfo.Description = description;
-
-			return cosmeticInfo;
+			return LocalisationBuilder.NewBuilder<CosmeticInfo>().SetName(name).SetDescription(description);
 		}
 
+		[Obsolete("Use LocalisationBuilder")]
 		public static EffectInfo CreateEffectInfo(string name, string description, string icon)
 		{
-			var effectInfo = ScriptableObject.CreateInstance<EffectInfo>();
-
-			effectInfo.Name = name;
-			effectInfo.Description = description;
-			effectInfo.Icon = icon;
-
-			return effectInfo;
+			return LocalisationBuilder.NewBuilder<EffectInfo>().SetName(name).SetDescription(description).SetInfoIcon(icon);
 		}
 
+		[Obsolete("Use LocalisationBuilder")]
 		public static ProcessInfo CreateProcessInfo(string name, string icon)
 		{
-			var processInfo = ScriptableObject.CreateInstance<ProcessInfo>();
-
-			processInfo.Name = name;
-			processInfo.Icon = icon;
-
-			return processInfo;
+			return LocalisationBuilder.NewBuilder<ProcessInfo>().SetName(name).SetIcon(icon);
 		}
 
+		[Obsolete("Use LocalisationBuilder")]
 		public static ResearchLocalisation CreateResearchLocalisation(string name, string description, string flavourText)
 		{
-			var researchLocalisation = ScriptableObject.CreateInstance<ResearchLocalisation>();
-
-			researchLocalisation.Name = name;
-			researchLocalisation.Description = description;
-			researchLocalisation.FlavourText = flavourText;
-
-			return researchLocalisation;
+			return LocalisationBuilder.NewBuilder<ResearchLocalisation>().SetName(name).SetDescription(description).SetFlavourText(flavourText);
 		}
 
+		[Obsolete("Use LocalisationBuilder")]
 		public static UnlockInfo CreateUnlockInfo(string name, string description, string flavourText)
 		{
-			var unlockInfo = ScriptableObject.CreateInstance<UnlockInfo>();
+			return LocalisationBuilder.NewBuilder<UnlockInfo>().SetName(name).SetDescription(description).SetFlavourText(flavourText);
+		}
+		
+		[Obsolete("Use LocalisationBuilder")]
+		public static BasicInfo CreateBasicInfo(string name, string description)
+		{
+			return LocalisationBuilder.NewBuilder<BasicInfo>().SetName(name).SetDescription(description);
+		}
 
-			unlockInfo.Name = name;
-			unlockInfo.Description = description;
-			unlockInfo.FlavourText = flavourText;
+		[Obsolete("Use LocalisationBuilder")]
+		public static ContractInfo CreateContractInfo(string name, string description)
+		{
+			return LocalisationBuilder.NewBuilder<ContractInfo>().SetName(name).SetDescription(description);
+		}
 
-			return unlockInfo;
+		[Obsolete("Use LocalisationBuilder")]
+		public static DecorationBonusInfo CreateDecorationBonusInfo(Dictionary<DecorationType, string> icons, Dictionary<DecorationBonus, string> text)
+		{
+			return LocalisationBuilder.NewBuilder<DecorationBonusInfo>().SetIcons(icons).SetText(text);
+		}
+
+		[Obsolete("Use LocalisationBuilder")]
+		public static DictionaryInfo CreateDictionaryInfo(Dictionary<string, string> text)
+		{
+			return LocalisationBuilder.NewBuilder<DictionaryInfo>().SetText(text);
+		}
+
+		[Obsolete("Use LocalisationBuilder")]
+		public static PopupText CreatePopupText(Dictionary<PopupType, PopupDetails> text)
+		{
+			return LocalisationBuilder.NewBuilder<PopupText>().SetText(text);
+		}
+
+		[Obsolete("Use LocalisationBuilder")]
+		public static RecipeInfo CreateRecipeInfo(Dictionary<Dish, string> text)
+		{
+			return LocalisationBuilder.NewBuilder<RecipeInfo>().SetText(text);
+		}
+
+		[Obsolete("Use LocalisationBuilder")]
+		public static TutorialText CreateTutorialText(Dictionary<TutorialMessage, TutorialDetails> text)
+		{
+			return LocalisationBuilder.NewBuilder<TutorialText>().SetText(text);
 		}
 
 		#endregion
 
-		#region Helpers for Other Localisation Subclasses
-
-		public static BasicInfo CreateBasicInfo(string name, string description)
-		{
-			var basicInfo = ScriptableObject.CreateInstance<BasicInfo>();
-
-			basicInfo.Name = name;
-			basicInfo.Description = description;
-
-			return basicInfo;
-		}
-
-		public static ContractInfo CreateContractInfo(string name, string description)
-		{
-			var contractInfo = ScriptableObject.CreateInstance<ContractInfo>();
-
-			contractInfo.Name = name;
-			contractInfo.Description = description;
-
-			return contractInfo;
-		}
-
-		public static DecorationBonusInfo CreateDecorationBonusInfo(Dictionary<DecorationType, string> icons, Dictionary<DecorationBonus, string> text)
-		{
-			var decorationBonusInfo = ScriptableObject.CreateInstance<DecorationBonusInfo>();
-
-			decorationBonusInfo.Icons = icons;
-			decorationBonusInfo.Text = text;
-
-			return decorationBonusInfo;
-		}
-
-		public static DictionaryInfo CreateDictionaryInfo(Dictionary<string, string> text)
-		{
-			var dictionaryInfo = ScriptableObject.CreateInstance<DictionaryInfo>();
-
-			dictionaryInfo.Text = text;
-
-			return dictionaryInfo;
-		}
-
+		#region Active
+		
 		public static EnumInfo<T> CreateEnumInfo<T>(Dictionary<T, string> name) where T : Enum
 		{
 			var enumInfo = ScriptableObject.CreateInstance<EnumInfo<T>>();
@@ -133,33 +108,6 @@ namespace KitchenLib.Utils
 			enumBasicInfo.Text = text;
 
 			return enumBasicInfo;
-		}
-
-		public static PopupText CreatePopupText(Dictionary<PopupType, PopupDetails> text)
-		{
-			var popupText = ScriptableObject.CreateInstance<PopupText>();
-
-			popupText.Text = text;
-
-			return popupText;
-		}
-
-		public static RecipeInfo CreateRecipeInfo(Dictionary<Dish, string> text)
-		{
-			var recipeInfo = ScriptableObject.CreateInstance<RecipeInfo>();
-
-			recipeInfo.Text = text;
-
-			return recipeInfo;
-		}
-
-		public static TutorialText CreateTutorialText(Dictionary<TutorialMessage, TutorialDetails> text)
-		{
-			var tutorialText = ScriptableObject.CreateInstance<TutorialText>();
-
-			tutorialText.Text = text;
-
-			return tutorialText;
 		}
 
 		#endregion
