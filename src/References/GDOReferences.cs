@@ -4318,7 +4318,7 @@ namespace KitchenLib.References
 	}
 	public static class LayoutProfileReferences
 	{
-		public static int LayoutProfile => (int)_LayoutProfileReferences.LayoutProfile;
+		public static int ChristmasLayout => (int)_LayoutProfileReferences.ChristmasLayout;
 
 		public static int JanuaryLayoutProfile => (int)_LayoutProfileReferences.JanuaryLayoutProfile;
 
@@ -4345,7 +4345,7 @@ namespace KitchenLib.References
 	}
 	public enum _LayoutProfileReferences
 	{
-		LayoutProfile = -791067106,
+		ChristmasLayout = -791067106,
 
 		JanuaryLayoutProfile = -1207945624,
 
@@ -4566,8 +4566,6 @@ namespace KitchenLib.References
 
 		public static int CookingPotHat => (int)_PlayerCosmeticReferences.CookingPotHat;
 
-		public static int CowboyHat2 => (int)_PlayerCosmeticReferences.CowboyHat2;
-
 		public static int DarkChef => (int)_PlayerCosmeticReferences.DarkChef;
 
 		public static int DinerChef => (int)_PlayerCosmeticReferences.DinerChef;
@@ -4593,8 +4591,6 @@ namespace KitchenLib.References
 		public static int TallChefHat => (int)_PlayerCosmeticReferences.TallChefHat;
 
 		public static int TeppanyakiChef => (int)_PlayerCosmeticReferences.TeppanyakiChef;
-
-		public static int ThrillerChef => (int)_PlayerCosmeticReferences.ThrillerChef;
 
 		public static int TuxChef => (int)_PlayerCosmeticReferences.TuxChef;
 
@@ -4745,8 +4741,6 @@ namespace KitchenLib.References
 
 		CookingPotHat = 1623972248,
 
-		CowboyHat2 = -1382700210,
-
 		DarkChef = 1453139625,
 
 		DinerChef = 913958454,
@@ -4772,8 +4766,6 @@ namespace KitchenLib.References
 		TallChefHat = -545572929,
 
 		TeppanyakiChef = 751635467,
-
-		ThrillerChef = 1937347555,
 
 		TuxChef = 429857619,
 
