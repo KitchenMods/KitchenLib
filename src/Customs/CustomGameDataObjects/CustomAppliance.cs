@@ -31,6 +31,7 @@ namespace KitchenLib.Customs
         public virtual ExitAnimation ExitAnimation { get; protected set; }
         public virtual bool SkipRotationAnimation { get; protected set; }
         public virtual bool IsPurchasable { get; protected set; } = false;
+        public virtual Season RestrictedToSeason { get; protected set; }
         public virtual bool IsPurchasableAsUpgrade { get; protected set; }
         public virtual DecorationType ThemeRequired { get; protected set; }
         public virtual ShoppingTags ShoppingTags { get; protected set; } = ShoppingTags.None;
@@ -110,6 +111,7 @@ namespace KitchenLib.Customs
             OverrideVariable(result, "ExitAnimation", ExitAnimation);
             OverrideVariable(result, "SkipRotationAnimation", SkipRotationAnimation);
             OverrideVariable(result, "IsPurchasable", IsPurchasable);
+            OverrideVariable(result, "RestrictedToSeason", RestrictedToSeason);
             OverrideVariable(result, "IsPurchasableAsUpgrade", IsPurchasableAsUpgrade);
             OverrideVariable(result, "ThemeRequired", ThemeRequired);
             OverrideVariable(result, "ShoppingTags", ShoppingTags);

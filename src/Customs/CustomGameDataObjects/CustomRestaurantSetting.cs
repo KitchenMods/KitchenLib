@@ -17,6 +17,7 @@ namespace KitchenLib.Customs
 		public virtual GameObject Prefab { get; protected set; }
 		public virtual LayoutProfile ForceLayout { get; protected set; }
 		public virtual bool AlwaysLight { get; protected set; }
+		public virtual Season FixedRunSeason { get; protected set; }
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			RestaurantSetting result = ScriptableObject.CreateInstance<RestaurantSetting>();
@@ -25,6 +26,7 @@ namespace KitchenLib.Customs
 			OverrideVariable(result, "WeatherMode", WeatherMode);
 			OverrideVariable(result, "Prefab", Prefab);
 			OverrideVariable(result, "AlwaysLight", AlwaysLight);
+			OverrideVariable(result, "FixedRunSeason", FixedRunSeason);
 			OverrideVariable(result, "Info", Info);
 
 			if (InfoList.Count > 0)
