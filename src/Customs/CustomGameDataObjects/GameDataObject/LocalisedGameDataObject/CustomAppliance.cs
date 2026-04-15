@@ -1,0 +1,154 @@
+﻿using System;
+using System.Collections.Generic;
+using KitchenData;
+using UnityEngine;
+
+namespace KitchenLib.Customs
+{
+	public abstract class CustomAppliance : CustomLocalisedGameDataObject<Appliance, ApplianceInfo>, ICustomHasPrefab
+	{
+		#region Base Game Variables
+
+		public virtual GameObject Prefab { get; protected set; }
+		public virtual GameObject HeldAppliancePrefab { get; protected set; }
+		public virtual List<Appliance.ApplianceProcesses> Processes { get; protected set; } = new();
+		public virtual List<IApplianceProperty> Properties { get; protected set; } = new();
+		public virtual IEffectRange EffectRange { get; protected set; }
+		public virtual IEffectCondition EffectCondition { get; protected set; }
+		public virtual IEffectType EffectType { get; protected set; }
+		public virtual EffectRepresentation EffectRepresentation { get; protected set; }
+		public virtual bool IsNonInteractive { get; protected set; }
+		public virtual OccupancyLayer Layer { get; protected set; }
+		public virtual bool ForceHighInteractionPriority { get; protected set; }
+		public virtual int PurchaseCost { get; protected set; }
+		public virtual EntryAnimation EntryAnimation { get; protected set; }
+		public virtual ExitAnimation ExitAnimation { get; protected set; }
+		public virtual bool SkipRotationAnimation { get; protected set; }
+		public virtual bool IsPurchasable { get; protected set; }
+		public virtual Season RestrictedToSeason { get; protected set; }
+		public virtual bool IsPurchasableAsUpgrade { get; protected set; }
+		public virtual DecorationType ThemeRequired { get; protected set; }
+		public virtual ShoppingTags ShoppingTags { get; protected set; }
+		public virtual RarityTier RarityTier { get; protected set; }
+		public virtual PriceTier PriceTier { get; protected set; }
+		public virtual ShopRequirementFilter ShopRequirementFilter { get; protected set; }
+		public virtual List<Appliance> RequiresForShop { get; protected set; } = new();
+		public virtual List<Process> RequiresProcessForShop { get; protected set; } = new();
+		public virtual List<Item> RequiresIngredientForShop { get; protected set; } = new();
+		public virtual List<MenuPhase> RequiresPhaseForShop { get; protected set; } = new();
+		public virtual bool StapleWhenMissing { get; protected set; }
+		public virtual bool SellOnlyAsDuplicate { get; protected set; }
+		public virtual bool SellOnlyAsUnique { get; protected set; }
+		public virtual bool PreventSale { get; protected set; }
+		public virtual List<Appliance> Upgrades { get; protected set; } = new();
+		public virtual List<Appliance> Enchantments { get; protected set; } = new();
+		public virtual bool IsAnUpgrade { get; protected set; }
+		public virtual bool IsNonCrated { get; protected set; }
+		public virtual Item CrateItem { get; protected set; }
+
+		#region Obsolete
+
+		[Obsolete("Please set your Name in Info")]
+		public virtual string Name { get; protected set; } = "Appliance";
+
+		[Obsolete("Please set your Description in Info")]
+		public virtual string Description { get; protected set; } = "A little something for your restaurant";
+		
+		[Obsolete("Please set your Sections in Info")]
+		public virtual List<Appliance.Section> Sections { get; protected set; } = new List<Appliance.Section>();
+		
+		[Obsolete("Please set your Tags in Info")]
+		public virtual List<string> Tags { get; protected set; } = new List<string>();
+
+		#endregion
+		
+		#endregion
+		
+		[Obsolete("Please use OnRegister")]
+		public virtual void SetupPrefab(GameObject prefab) { }
+		
+		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
+		{
+			base.Convert(gameData, out gameDataObject);
+
+			if (gameDataObject is Appliance appliance)
+			{
+				#region Backwards Compatibility
+
+				#region Localisation
+
+				if (InfoList.Count <= 0)
+				{
+					appliance.Info = new LocalisationObject<ApplianceInfo>();
+					if (!appliance.Info.Has(Locale.English))
+					{
+						ApplianceInfo applianceInfo = ScriptableObject.CreateInstance<ApplianceInfo>();
+						applianceInfo.Name = Name;
+						applianceInfo.Description = Description;
+						applianceInfo.Sections = Sections;
+						applianceInfo.Tags = Tags;
+						appliance.Info.Add(Locale.English, applianceInfo);
+					}
+				}
+
+				#endregion
+
+				#endregion
+
+				#region Apply Properties
+
+				OverrideVariable(appliance, "Prefab", Prefab);
+				OverrideVariable(appliance, "HeldAppliancePrefab", HeldAppliancePrefab);
+				OverrideVariable(appliance, "EffectRange", EffectRange);
+				OverrideVariable(appliance, "EffectCondition", EffectCondition);
+				OverrideVariable(appliance, "EffectType", EffectType);
+				OverrideVariable(appliance, "IsNonInteractive", IsNonInteractive);
+				OverrideVariable(appliance, "Layer", Layer);
+				OverrideVariable(appliance, "ForceHighInteractionPriority", ForceHighInteractionPriority);
+				OverrideVariable(appliance, "PurchaseCost", PurchaseCost);
+				OverrideVariable(appliance, "EntryAnimation", EntryAnimation);
+				OverrideVariable(appliance, "ExitAnimation", ExitAnimation);
+				OverrideVariable(appliance, "SkipRotationAnimation", SkipRotationAnimation);
+				OverrideVariable(appliance, "IsPurchasable", IsPurchasable);
+				OverrideVariable(appliance, "RestrictedToSeason", RestrictedToSeason);
+				OverrideVariable(appliance, "IsPurchasableAsUpgrade", IsPurchasableAsUpgrade);
+				OverrideVariable(appliance, "ThemeRequired", ThemeRequired);
+				OverrideVariable(appliance, "ShoppingTags", ShoppingTags);
+				OverrideVariable(appliance, "RarityTier", RarityTier);
+				OverrideVariable(appliance, "PriceTier", PriceTier);
+				OverrideVariable(appliance, "ShopRequirementFilter", ShopRequirementFilter);
+				OverrideVariable(appliance, "RequiresPhaseForShop", RequiresPhaseForShop);
+				OverrideVariable(appliance, "StapleWhenMissing", StapleWhenMissing);
+				OverrideVariable(appliance, "SellOnlyAsDuplicate", SellOnlyAsDuplicate);
+				OverrideVariable(appliance, "SellOnlyAsUnique", SellOnlyAsUnique);
+				OverrideVariable(appliance, "PreventSale", PreventSale);
+				OverrideVariable(appliance, "IsAnUpgrade", IsAnUpgrade);
+				OverrideVariable(appliance, "IsNonCrated", IsNonCrated);
+
+				#endregion
+			}
+		}
+
+		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
+		{
+			base.AttachDependentProperties(gameData, gameDataObject);
+			
+			if (gameDataObject is Appliance appliance)
+			{
+				#region Apply Properties
+
+				OverrideVariable(appliance, "Properties", Properties);
+				OverrideVariable(appliance, "Processes", Processes);
+				OverrideVariable(appliance, "EffectRepresentation", EffectRepresentation);
+				OverrideVariable(appliance, "RequiresForShop", RequiresForShop);
+				OverrideVariable(appliance, "RequiresProcessForShop", RequiresProcessForShop);
+				OverrideVariable(appliance, "RequiresIngredientForShop", RequiresIngredientForShop);
+				OverrideVariable(appliance, "Upgrades", Upgrades);
+				OverrideVariable(appliance, "Enchantments", Enchantments);
+				OverrideVariable(appliance, "CrateItem", CrateItem);
+
+				#endregion
+			}
+		}
+	}
+}
