@@ -161,5 +161,16 @@ namespace KitchenLib.Customs
 				}
 			}
 		}
+		
+		public override void OnRegister(GameDataObject gameDataObject)
+		{
+			IHasPrefab gdo = gameDataObject as IHasPrefab;
+			if (gdo?.Prefab != null)
+			{
+				SetupPrefab(gdo.Prefab);
+			}
+
+			base.OnRegister(gameDataObject);
+		}
 	}
 }
