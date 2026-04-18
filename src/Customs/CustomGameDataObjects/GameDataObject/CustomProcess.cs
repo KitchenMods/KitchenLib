@@ -9,7 +9,7 @@ namespace KitchenLib.Customs
 		#region Base Game Variables
 		
 		public virtual GameDataObject BasicEnablingAppliance { get; protected set; }
-		public virtual int EnablingApplianceCount { get; protected set; }
+		public virtual int EnablingApplianceCount { get; protected set; } = 1;
 		public virtual Process IsPseudoprocessFor { get; protected set; }
 		public virtual bool CanObfuscateProgress { get; protected set; }
 		public virtual LocalisationObject<ProcessInfo> Info { get; protected set; }

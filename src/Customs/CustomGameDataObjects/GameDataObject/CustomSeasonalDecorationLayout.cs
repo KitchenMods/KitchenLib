@@ -9,8 +9,8 @@ namespace KitchenLib.Customs
 		#region Base Game Variables
 		
 		public virtual Season SeasonActive { get; protected set; }
-		public virtual List<SeasonalDecorationLayout.Decoration> Decorations { get; protected set; } = new();
-		public virtual List<SeasonalDecorationLayout.DecorOverride> DecorOverrides { get; protected set; } = new();
+		public virtual List<SeasonalDecorationLayout.Decoration> Decorations { get; protected set; } = new List<SeasonalDecorationLayout.Decoration>();
+		public virtual List<SeasonalDecorationLayout.DecorOverride> DecorOverrides { get; protected set; } = new List<SeasonalDecorationLayout.DecorOverride>();
 		
 		#endregion
 		

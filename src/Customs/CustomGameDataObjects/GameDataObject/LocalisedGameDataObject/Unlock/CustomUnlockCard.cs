@@ -9,7 +9,7 @@ namespace KitchenLib.Customs
 	{
 		#region Base Game Variables
 
-		public virtual List<UnlockEffect> Effects { get; protected set; } = new();
+		public virtual List<UnlockEffect> Effects { get; protected set; } = new List<UnlockEffect>();
 		
 		#endregion
 		

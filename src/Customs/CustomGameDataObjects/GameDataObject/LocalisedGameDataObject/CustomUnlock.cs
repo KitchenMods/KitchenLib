@@ -10,9 +10,9 @@ namespace KitchenLib.Customs
 	{
 		#region Base Game Variables
 
-		public virtual Unlock.RewardLevel ExpReward { get; protected set; }
+		public virtual Unlock.RewardLevel ExpReward { get; protected set; } = Unlock.RewardLevel.Medium;
 		public virtual DishCustomerChange CustomerMultiplier { get; protected set; }
-		public virtual bool IsUnlockable { get; protected set; }
+		public virtual bool IsUnlockable { get; protected set; } = true;
 		public virtual bool HasSubOptions { get; protected set; }
 		public virtual Unlock OptionCard1 { get; protected set; }
 		public virtual Unlock OptionCard2 { get; protected set; }
@@ -22,12 +22,12 @@ namespace KitchenLib.Customs
 		public virtual int MinimumFranchiseTier { get; protected set; }
 		public virtual bool IsSpecificFranchiseTier { get; protected set; }
 		public virtual float SelectionBias { get; protected set; }
-		public virtual List<Unlock> HardcodedRequirements { get; protected set; } = new();
-		public virtual List<Unlock> HardcodedBlockers { get; protected set; } = new();
+		public virtual List<Unlock> HardcodedRequirements { get; protected set; } = new List<Unlock>();
+		public virtual List<Unlock> HardcodedBlockers { get; protected set; } = new List<Unlock>();
 		public virtual bool BlocksAllOtherFood { get; protected set; }
-		public virtual List<Unlock> AllowedFoods { get; protected set; } = new();
+		public virtual List<Unlock> AllowedFoods { get; protected set; } = new List<Unlock>();
 		public virtual RestaurantSetting ForceFranchiseSetting { get; protected set; }
-		public virtual List<Unlock.ItemReward> ItemRewards { get; protected set; } = new();
+		public virtual List<Unlock.ItemReward> ItemRewards { get; protected set; } = new List<Unlock.ItemReward>();
 		
 		#endregion
 

@@ -8,8 +8,8 @@ namespace KitchenLib.Customs
 	public abstract class CustomFranchiseUpgrade : CustomGenericLocalisation<FranchiseUpgrade>
 	{
 		#region Base Game Variables
-		
-		public virtual int MaximumUpgradeCount { get; protected set; }
+
+		public virtual int MaximumUpgradeCount { get; protected set; } = 1;
 		public virtual List<IFranchiseUpgrade> Upgrades { get; protected set; }
 		public virtual GameObject Prefab { get; protected set; }
 		

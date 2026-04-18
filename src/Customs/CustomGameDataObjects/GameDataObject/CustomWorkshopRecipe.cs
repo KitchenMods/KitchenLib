@@ -8,9 +8,9 @@ namespace KitchenLib.Customs
 	public abstract class CustomWorkshopRecipe : CustomGameDataObject<WorkshopRecipe>
 	{
 		#region Base Game Variables
-		
-		public virtual List<IWorkshopIndividualCondition> Conditions { get; protected set; } = new();
-		public virtual List<IWorkshopGroupCondition> GroupConditions { get; protected set; } = new();
+
+		public virtual List<IWorkshopIndividualCondition> Conditions { get; protected set; } = new List<IWorkshopIndividualCondition>();
+		public virtual List<IWorkshopGroupCondition> GroupConditions { get; protected set; } = new List<IWorkshopGroupCondition>();
 		public virtual IWorkshopProduct Output { get; protected set; }
 		
 		#endregion

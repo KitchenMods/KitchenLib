@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Kitchen;
 using KitchenData;
+using KitchenLib.References;
+using KitchenLib.Utils;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace KitchenLib.Customs
 {
@@ -11,8 +16,8 @@ namespace KitchenLib.Customs
 
 		public virtual GameObject Prefab { get; protected set; }
 		public virtual GameObject HeldAppliancePrefab { get; protected set; }
-		public virtual List<Appliance.ApplianceProcesses> Processes { get; protected set; } = new();
-		public virtual List<IApplianceProperty> Properties { get; protected set; } = new();
+		public virtual List<Appliance.ApplianceProcesses> Processes { get; protected set; } = new List<Appliance.ApplianceProcesses>();
+		public virtual List<IApplianceProperty> Properties { get; protected set; } = new List<IApplianceProperty>();
 		public virtual IEffectRange EffectRange { get; protected set; }
 		public virtual IEffectCondition EffectCondition { get; protected set; }
 		public virtual IEffectType EffectType { get; protected set; }
@@ -20,7 +25,7 @@ namespace KitchenLib.Customs
 		public virtual bool IsNonInteractive { get; protected set; }
 		public virtual OccupancyLayer Layer { get; protected set; }
 		public virtual bool ForceHighInteractionPriority { get; protected set; }
-		public virtual int PurchaseCost { get; protected set; }
+		public virtual int PurchaseCost { get; protected set; } = 1;
 		public virtual EntryAnimation EntryAnimation { get; protected set; }
 		public virtual ExitAnimation ExitAnimation { get; protected set; }
 		public virtual bool SkipRotationAnimation { get; protected set; }
@@ -30,18 +35,18 @@ namespace KitchenLib.Customs
 		public virtual DecorationType ThemeRequired { get; protected set; }
 		public virtual ShoppingTags ShoppingTags { get; protected set; }
 		public virtual RarityTier RarityTier { get; protected set; }
-		public virtual PriceTier PriceTier { get; protected set; }
+		public virtual PriceTier PriceTier { get; protected set; } = PriceTier.Medium;
 		public virtual ShopRequirementFilter ShopRequirementFilter { get; protected set; }
-		public virtual List<Appliance> RequiresForShop { get; protected set; } = new();
-		public virtual List<Process> RequiresProcessForShop { get; protected set; } = new();
-		public virtual List<Item> RequiresIngredientForShop { get; protected set; } = new();
-		public virtual List<MenuPhase> RequiresPhaseForShop { get; protected set; } = new();
+		public virtual List<Appliance> RequiresForShop { get; protected set; } = new List<Appliance>();
+		public virtual List<Process> RequiresProcessForShop { get; protected set; } = new List<Process>();
+		public virtual List<Item> RequiresIngredientForShop { get; protected set; } = new List<Item>();
+		public virtual List<MenuPhase> RequiresPhaseForShop { get; protected set; } = new List<MenuPhase>();
 		public virtual bool StapleWhenMissing { get; protected set; }
 		public virtual bool SellOnlyAsDuplicate { get; protected set; }
 		public virtual bool SellOnlyAsUnique { get; protected set; }
 		public virtual bool PreventSale { get; protected set; }
-		public virtual List<Appliance> Upgrades { get; protected set; } = new();
-		public virtual List<Appliance> Enchantments { get; protected set; } = new();
+		public virtual List<Appliance> Upgrades { get; protected set; } = new List<Appliance>();
+		public virtual List<Appliance> Enchantments { get; protected set; } = new List<Appliance>();
 		public virtual bool IsAnUpgrade { get; protected set; }
 		public virtual bool IsNonCrated { get; protected set; }
 		public virtual Item CrateItem { get; protected set; }
@@ -59,6 +64,41 @@ namespace KitchenLib.Customs
 		
 		[Obsolete("Please set your Tags in Info")]
 		public virtual List<string> Tags { get; protected set; } = new List<string>();
+
+		#endregion
+		
+		#endregion
+
+		#region KitchenLib Variables
+
+		public virtual bool AutoGenerateNavMeshObject { get; protected set; } = true;
+		public virtual int PurchaseCostOverride { get; protected set; } = -1;
+		
+		#region Obsolete
+
+		[Obsolete("Please create a custom system for rotations")]
+		public virtual bool ForceIsRotationPossible() { return false; }
+
+		[Obsolete("Please create a custom system for rotations")]
+		public virtual bool IsRotationPossible(InteractionData data) { return true; }
+
+		[Obsolete("Please create a custom system for rotations")]
+		public virtual bool PreRotate(InteractionData data, bool isSecondary = false) { return false; }
+
+		[Obsolete("Please create a custom system for rotations")]
+		public virtual void PostRotate(InteractionData data) { }
+
+		[Obsolete("Please create a custom system for interactions")]
+		public virtual bool ForceIsInteractionPossible() { return false; }
+
+		[Obsolete("Please create a custom system for interactions")]
+		public virtual bool IsInteractionPossible(InteractionData data) { return true; }
+
+		[Obsolete("Please create a custom system for interactions")]
+		public virtual bool PreInteract(InteractionData data, bool isSecondary = false) { return false; }
+
+		[Obsolete("Please create a custom system for interactions")]
+		public virtual void PostInteract(InteractionData data) { }
 
 		#endregion
 		
@@ -126,6 +166,31 @@ namespace KitchenLib.Customs
 				OverrideVariable(appliance, "IsNonCrated", IsNonCrated);
 
 				#endregion
+				
+				// Used to override the purchase price of this Appliance.
+				if (PurchaseCostOverride != -1)
+				{
+					Main.LogDebug($"Assigning : {PurchaseCostOverride} >> PurchaseCostOverride");
+					ApplianceOverrides.AddPurchaseCostOverride(appliance.ID, PurchaseCostOverride);
+				}
+				
+				// Used to automatically generate a NavMeshObstacle component on this Appliance if not already present.
+				if (AutoGenerateNavMeshObject && appliance.Prefab != null)
+				{
+					Main.LogDebug($"Setting up NavMeshObstacle");
+					if (appliance.Prefab.GetComponentsInChildren<NavMeshObstacle>().Length == 0)
+					{
+						Appliance counter = gameData.Get<Appliance>().FirstOrDefault(a => a.ID == ApplianceReferences.Countertop);
+						foreach (Transform t in counter.Prefab.GetComponentInChildren<Transform>())
+						{
+							if (t.gameObject.HasComponent<NavMeshObstacle>())
+							{
+								GameObjectUtils.CopyComponent(t.gameObject.GetComponent<NavMeshObstacle>(), appliance.Prefab);
+								break;
+							}
+						}
+					}
+				}
 			}
 		}
 

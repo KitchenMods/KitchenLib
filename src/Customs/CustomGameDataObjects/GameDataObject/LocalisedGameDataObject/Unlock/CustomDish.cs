@@ -17,17 +17,17 @@ namespace KitchenLib.Customs
 		public virtual Item UnlockItemOverride { get; protected set; }
 		public virtual bool HideInfoPanel { get; protected set; }
 		public virtual bool SkipOwnRecipe { get; protected set; }
-		public virtual List<Dish> AlsoAddRecipes { get; protected set; } = new();
+		public virtual List<Dish> AlsoAddRecipes { get; protected set; } = new List<Dish>();
 		public virtual GameObject IconPrefab { get; protected set; }
 		public virtual GameObject DisplayPrefab { get; protected set; }
 		public virtual string ImageKey { get; protected set; }
-		public virtual List<Dish.MenuItem> ResultingMenuItems { get; protected set; } = new();
+		public virtual List<Dish.MenuItem> ResultingMenuItems { get; protected set; } = new List<Dish.MenuItem>();
 		public virtual HashSet<Dish.IngredientUnlock> IngredientsUnlocks { get; protected set; }
 		public virtual HashSet<Dish.IngredientUnlock> ExtraOrderUnlocks { get; protected set; }
 		public virtual bool IsMainThatDoesNotNeedPlates { get; protected set; }
-		public virtual List<RestaurantStatus> AddsStatuses { get; protected set; } = new();
+		public virtual List<RestaurantStatus> AddsStatuses { get; protected set; } = new List<RestaurantStatus>();
 		public virtual string AchievementName { get; protected set; }
-		public virtual List<string> StartingNameSet { get; protected set; } = new();
+		public virtual List<string> StartingNameSet { get; protected set; } = new List<string>();
 		public virtual bool IsSpeedrunDish { get; protected set; }
 		public virtual HashSet<Item> MinimumIngredients { get; protected set; }
 		public virtual HashSet<Process> RequiredProcesses { get; protected set; }
@@ -37,12 +37,11 @@ namespace KitchenLib.Customs
 		#endregion
 		
 		#region KitchenLib Variables
-		
-		
-		public virtual bool IsAvailableAsLobbyOption { get; protected set; }
-		public virtual bool DestroyAfterModUninstall { get; protected set; }
+
+
+		public virtual bool IsAvailableAsLobbyOption { get; protected set; } = false;
+		public virtual bool DestroyAfterModUninstall { get; protected set; } = true;
 		public virtual Dictionary<Locale, string> Recipe { get; protected set; } = new Dictionary<Locale, string>();
-		
 		public virtual Item RequiredDishItem { get; protected set; }
 		public virtual bool RequiredNoDishItem { get; protected set; } = false;
 		public virtual bool BypassMainRequirementsCheck { get; protected set; } = false;
@@ -72,6 +71,11 @@ namespace KitchenLib.Customs
 				OverrideVariable(dish, "IsSpeedrunDish", IsSpeedrunDish);
 
 				#endregion
+				
+				if (RequiredNoDishItem)
+				{
+					dish.IsMainThatDoesNotNeedPlates = RequiredNoDishItem;
+				}
 			}
 		}
 
@@ -128,6 +132,18 @@ namespace KitchenLib.Customs
 				}
 
 				#endregion
+				
+				if (RequiredDishItem != null)
+				{
+					Main.LogDebug($"Adding : {RequiredDishItem} >> MinimumIngredients");
+					dish.MinimumIngredients.Add(RequiredDishItem);
+				}
+				
+				if (dish.Type == DishType.Main && HardcodedRequirements.Count == 0 && !BypassMainRequirementsCheck)
+				{
+					Main.LogDebug($"Assigning : {DishType.Base} >> Type");
+					dish.Type = DishType.Base;
+				}
 			}
 		}
 	}

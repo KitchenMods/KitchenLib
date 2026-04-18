@@ -9,7 +9,7 @@ namespace KitchenLib.Customs
 	{
 		#region Base Game Variables
 
-		public virtual bool IsPrimary { get; protected set; }
+		public virtual bool IsPrimary { get; protected set; } = true;
 		public virtual DecorationType Type { get; protected set; }
 		public virtual ThemeUnlock ParentTheme1 { get; protected set; }
 		public virtual ThemeUnlock ParentTheme2 { get; protected set; }

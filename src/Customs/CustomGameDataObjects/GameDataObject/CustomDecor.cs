@@ -14,6 +14,7 @@ namespace KitchenLib.Customs
 		public virtual bool IsAvailable { get; protected set; } = true;
 		
 		#endregion
+		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);

@@ -9,8 +9,8 @@ namespace KitchenLib.Customs
 		#region Base Game Variables
 
 		public virtual LayoutGraph Graph { get; protected set; }
-		public virtual int MaximumTables { get; protected set; }
-		public virtual List<GameDataObject> RequiredAppliances { get; protected set; } = new();
+		public virtual int MaximumTables { get; protected set; } = 3;
+		public virtual List<GameDataObject> RequiredAppliances { get; protected set; } = new List<GameDataObject>();
 		public virtual GameDataObject Table { get; protected set; }
 		public virtual GameDataObject Counter { get; protected set; }
 		public virtual Appliance ExternalBin { get; protected set; }

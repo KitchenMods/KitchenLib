@@ -8,9 +8,10 @@ namespace KitchenLib.Customs
 		#region Base Game Variables
 		
 		public virtual RestaurantStatus Status { get; protected set; }
-		public virtual float ExperienceMultiplier { get; protected set; }
+		public virtual float ExperienceMultiplier { get; protected set; } = 1;
 		
 		#endregion
+		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
