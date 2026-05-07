@@ -116,6 +116,7 @@ namespace KitchenLib.Customs
 					{
 						GameObject colorBlind = Object.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject, item.Prefab.transform, true);
 						colorBlind.name = "Colour Blind";
+						colorBlind.transform.SetParent(item.Prefab.transform);
 						colorBlind.transform.Find("Title").GetComponent<TMP_Text>().text = ColourBlindTag;
 					}
 				}

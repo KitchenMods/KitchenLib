@@ -6,7 +6,8 @@ namespace KitchenLib.Customs
 	public abstract class CustomCrateSet : CustomGameDataObject<CrateSet>
 	{
 		#region Base Game Variables
-		public virtual List<Appliance> Options { get; protected set; } = new();
+
+		public virtual List<Appliance> Options { get; protected set; } = new List<Appliance>();
 		
 		#endregion
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)

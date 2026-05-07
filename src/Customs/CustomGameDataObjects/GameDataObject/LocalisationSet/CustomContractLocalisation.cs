@@ -7,14 +7,14 @@ namespace KitchenLib.Customs
 	public abstract class CustomContractLocalisation : CustomLocalisationSet<ContractLocalisation, ContractInfo>
 	{
 		#region Base Game Variables
-		
-		public virtual LocalisationObject<ContractInfo> Info { get; protected set; }
+
+		public virtual LocalisationObject<ContractInfo> Info { get; protected set; } = new LocalisationObject<ContractInfo>();
 		
 		#endregion
 		
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, ContractInfo)> InfoList { get; protected set; } = new();
+		public virtual List<(Locale, ContractInfo)> InfoList { get; protected set; } = new List<(Locale, ContractInfo)>();
 
 		#endregion
 		

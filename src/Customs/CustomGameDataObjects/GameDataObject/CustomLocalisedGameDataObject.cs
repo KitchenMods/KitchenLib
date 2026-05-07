@@ -8,13 +8,13 @@ namespace KitchenLib.Customs
 	{
 		#region Base Game Variables
 
-		public virtual LocalisationObject<L> Info { get; protected set; }
+		public virtual LocalisationObject<L> Info { get; protected set; } = new LocalisationObject<L>();
 
 		#endregion
 
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, L)> InfoList { get; protected set; } = new();
+		public virtual List<(Locale, L)> InfoList { get; protected set; } = new List<(Locale, L)>();
 
 		#endregion
 

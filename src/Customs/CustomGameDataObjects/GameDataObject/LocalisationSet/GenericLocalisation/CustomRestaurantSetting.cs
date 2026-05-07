@@ -10,7 +10,7 @@ namespace KitchenLib.Customs
 		#region Base Game Variables
 		
 		public virtual WeatherMode WeatherMode { get; protected set; }
-		public virtual List<IDecorationConfiguration> Decorators { get; protected set; }
+		public virtual List<IDecorationConfiguration> Decorators { get; protected set; } = new List<IDecorationConfiguration>();
 		public virtual UnlockPack UnlockPack { get; protected set; }
 		public virtual Unlock StartingUnlock { get; protected set; }
 		public virtual Dish FixedDish { get; protected set; }

@@ -7,14 +7,14 @@ namespace KitchenLib.Customs
 	public abstract class CustomRecipeLocalisation : CustomLocalisationSet<RecipeLocalisation, RecipeInfo>
 	{
 		#region Base Game Variables
-		
-		public virtual LocalisationObject<RecipeInfo> Info { get; protected set; }
+
+		public virtual LocalisationObject<RecipeInfo> Info { get; protected set; } = new LocalisationObject<RecipeInfo>();
 		
 		#endregion
 		
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, RecipeInfo)> InfoList { get; protected set; } = new();
+		public virtual List<(Locale, RecipeInfo)> InfoList { get; protected set; } = new List<(Locale, RecipeInfo)>();
 
 		#endregion
 		

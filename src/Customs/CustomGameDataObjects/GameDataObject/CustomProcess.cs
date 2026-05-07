@@ -12,13 +12,13 @@ namespace KitchenLib.Customs
 		public virtual int EnablingApplianceCount { get; protected set; } = 1;
 		public virtual Process IsPseudoprocessFor { get; protected set; }
 		public virtual bool CanObfuscateProgress { get; protected set; }
-		public virtual LocalisationObject<ProcessInfo> Info { get; protected set; }
+		public virtual LocalisationObject<ProcessInfo> Info { get; protected set; } = new LocalisationObject<ProcessInfo>();
 		
 		#endregion
 		
 		#region KitchenLib Variables
-		
-		public virtual List<(Locale, ProcessInfo)> InfoList { get; protected set; } = new();
+
+		public virtual List<(Locale, ProcessInfo)> InfoList { get; protected set; } = new List<(Locale, ProcessInfo)>();
 		
 		#endregion
 		

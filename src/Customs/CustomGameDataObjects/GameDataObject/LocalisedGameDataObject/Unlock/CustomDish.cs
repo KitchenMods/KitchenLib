@@ -22,17 +22,17 @@ namespace KitchenLib.Customs
 		public virtual GameObject DisplayPrefab { get; protected set; }
 		public virtual string ImageKey { get; protected set; }
 		public virtual List<Dish.MenuItem> ResultingMenuItems { get; protected set; } = new List<Dish.MenuItem>();
-		public virtual HashSet<Dish.IngredientUnlock> IngredientsUnlocks { get; protected set; }
-		public virtual HashSet<Dish.IngredientUnlock> ExtraOrderUnlocks { get; protected set; }
+		public virtual HashSet<Dish.IngredientUnlock> IngredientsUnlocks { get; protected set; } = new HashSet<Dish.IngredientUnlock>();
+		public virtual HashSet<Dish.IngredientUnlock> ExtraOrderUnlocks { get; protected set; } = new HashSet<Dish.IngredientUnlock>();
 		public virtual bool IsMainThatDoesNotNeedPlates { get; protected set; }
 		public virtual List<RestaurantStatus> AddsStatuses { get; protected set; } = new List<RestaurantStatus>();
 		public virtual string AchievementName { get; protected set; }
 		public virtual List<string> StartingNameSet { get; protected set; } = new List<string>();
 		public virtual bool IsSpeedrunDish { get; protected set; }
-		public virtual HashSet<Item> MinimumIngredients { get; protected set; }
-		public virtual HashSet<Process> RequiredProcesses { get; protected set; }
-		public virtual HashSet<Item> BlockProviders { get; protected set; }
-		public virtual HashSet<Item> BeneficialIngredients { get; protected set; }
+		public virtual HashSet<Item> MinimumIngredients { get; protected set; } = new HashSet<Item>();
+		public virtual HashSet<Process> RequiredProcesses { get; protected set; } = new HashSet<Process>();
+		public virtual HashSet<Item> BlockProviders { get; protected set; } = new HashSet<Item>();
+		public virtual HashSet<Item> BeneficialIngredients { get; protected set; } = new HashSet<Item>();
 		
 		#endregion
 		

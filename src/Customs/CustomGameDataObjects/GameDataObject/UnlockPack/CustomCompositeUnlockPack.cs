@@ -6,7 +6,8 @@ namespace KitchenLib.Customs
 	public abstract class CustomCompositeUnlockPack : CustomUnlockPack<CompositeUnlockPack>
 	{
 		#region Base Game Variables
-		public virtual List<UnlockPack> Packs { get; protected set; } = new();
+
+		public virtual List<UnlockPack> Packs { get; protected set; } = new List<UnlockPack>();
 		
 		#endregion
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)

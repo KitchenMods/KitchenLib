@@ -6,14 +6,14 @@ namespace KitchenLib.Customs
 	public abstract class CustomDictionaryLocalisation : CustomLocalisationSet<DictionaryLocalisation, DictionaryInfo>
 	{
 		#region Base Game Variables
-		
-		public virtual LocalisationObject<DictionaryInfo> Info { get; protected set; }
+
+		public virtual LocalisationObject<DictionaryInfo> Info { get; protected set; } = new LocalisationObject<DictionaryInfo>();
 		
 		#endregion
 		
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, DictionaryInfo)> InfoList { get; protected set; } = new();
+		public virtual List<(Locale, DictionaryInfo)> InfoList { get; protected set; } = new List<(Locale, DictionaryInfo)>();
 
 		#endregion
 		

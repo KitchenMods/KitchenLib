@@ -7,14 +7,14 @@ namespace KitchenLib.Customs
 	public abstract class CustomRarityTierLocalisation : CustomLocalisationSet<RarityTierLocalisation, RarityTierInfo>
 	{
 		#region Base Game Variables
-		
-		public virtual LocalisationObject<RarityTierInfo> Info { get; protected set; }
+
+		public virtual LocalisationObject<RarityTierInfo> Info { get; protected set; } = new LocalisationObject<RarityTierInfo>();
 		
 		#endregion
 		
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, RarityTierInfo)> InfoList { get; protected set; } = new();
+		public virtual List<(Locale, RarityTierInfo)> InfoList { get; protected set; } = new List<(Locale, RarityTierInfo)>();
 
 		#endregion
 		

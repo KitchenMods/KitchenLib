@@ -12,8 +12,8 @@ namespace KitchenLib.Customs
 		public virtual int MaxGroupSize { get; protected set; }
 		public virtual PatienceValues PatienceModifiers { get; protected set; }
 		public virtual OrderingValues OrderingModifiers { get; protected set; }
-		public virtual List<PlayerCosmetic> Cosmetics { get; protected set; } = new();
-		public virtual List<ICustomerProperty> Properties { get; protected set; } = new();
+		public virtual List<PlayerCosmetic> Cosmetics { get; protected set; } = new List<PlayerCosmetic>();
+		public virtual List<ICustomerProperty> Properties { get; protected set; } = new List<ICustomerProperty>();
 		
 		#endregion
 		

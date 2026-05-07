@@ -7,14 +7,14 @@ namespace KitchenLib.Customs
 	public abstract class CustomGenericLocalisation<T> : CustomLocalisationSet<T, BasicInfo> where T : GameDataObject
 	{
 		#region Base Game Variables
-		
-		public virtual LocalisationObject<BasicInfo> Info { get; protected set; }
+
+		public virtual LocalisationObject<BasicInfo> Info { get; protected set; } = new LocalisationObject<BasicInfo>();
 		
 		#endregion
 		
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, BasicInfo)> InfoList { get; protected set; } = new();
+		public virtual List<(Locale, BasicInfo)> InfoList { get; protected set; } = new List<(Locale, BasicInfo)>();
 
 		#endregion
 		

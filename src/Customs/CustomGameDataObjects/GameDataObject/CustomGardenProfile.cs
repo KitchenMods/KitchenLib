@@ -8,7 +8,7 @@ namespace KitchenLib.Customs
 		#region Base Game Variables
 		
 		public virtual Appliance SpawnHolder { get; protected set; }
-		public virtual List<GardenProfile.SpawnProbability> Spawns { get; protected set; } = new();
+		public virtual List<GardenProfile.SpawnProbability> Spawns { get; protected set; } = new List<GardenProfile.SpawnProbability>();
 		
 		#endregion
 		

@@ -6,14 +6,14 @@ namespace KitchenLib.Customs
 	public abstract class CustomDecorationLocalisation : CustomLocalisationSet<DecorationLocalisation, DecorationBonusInfo>
 	{
 		#region Base Game Variables
-		
-		public virtual LocalisationObject<DecorationBonusInfo> Info { get; protected set; }
+
+		public virtual LocalisationObject<DecorationBonusInfo> Info { get; protected set; } = new LocalisationObject<DecorationBonusInfo>();
 		
 		#endregion
 		
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, DecorationBonusInfo)> InfoList { get; protected set; } = new();
+		public virtual List<(Locale, DecorationBonusInfo)> InfoList { get; protected set; } = new List<(Locale, DecorationBonusInfo)>();
 
 		#endregion
 		

@@ -6,8 +6,8 @@ namespace KitchenLib.Customs
 	public abstract class CustomLevelUpgradeSet : CustomGameDataObject<LevelUpgradeSet>
 	{
 		#region Base Game Variables
-		
-		public virtual List<LevelUpgrade> Upgrades { get; protected set; } = new();
+
+		public virtual List<LevelUpgrade> Upgrades { get; protected set; } = new List<LevelUpgrade>();
 		
 		#endregion
 		

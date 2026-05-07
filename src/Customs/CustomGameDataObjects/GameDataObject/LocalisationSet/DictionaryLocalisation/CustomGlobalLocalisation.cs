@@ -7,15 +7,15 @@ namespace KitchenLib.Customs
 	public abstract class CustomGlobalLocalisation : CustomDictionaryLocalisation
 	{
 		#region Base Game Variables
-		
-		public virtual Dictionary<DisplayedPatienceFactor, string> PatienceFactorIcons { get; protected set; }
-		public virtual Dictionary<PatienceReason, string> PatienceReasonIcons { get; protected set; }
-		public virtual Dictionary<DecorationType, string> DecorationIcons { get; protected set; }
+
+		public virtual Dictionary<DisplayedPatienceFactor, string> PatienceFactorIcons { get; protected set; } = new Dictionary<DisplayedPatienceFactor, string>();
+		public virtual Dictionary<PatienceReason, string> PatienceReasonIcons { get; protected set; } = new Dictionary<PatienceReason, string>();
+		public virtual Dictionary<DecorationType, string> DecorationIcons { get; protected set; } = new Dictionary<DecorationType, string>();
 		public virtual NewsItemFallbackLocalisation NewsItemFallbackLocalisation { get; protected set; }
 		public virtual StartDayWarningLocalisation StartDayWarningLocalisation { get; protected set; }
 		public virtual PopupTextLocalisation PopupTextLocalisation { get; protected set; }
 		public virtual RecipeLocalisation Recipes { get; protected set; }
-		public virtual Dictionary<Font, TMP_FontAsset> Fonts { get; protected set; }
+		public virtual Dictionary<Font, TMP_FontAsset> Fonts { get; protected set; } = new Dictionary<Font, TMP_FontAsset>();
 		public virtual ControllerIcons ControllerIcons { get; protected set; }
 		
 		#endregion

@@ -7,14 +7,14 @@ namespace KitchenLib.Customs
 	public abstract class CustomStartDayWarningLocalisation : CustomLocalisationSet<StartDayWarningLocalisation, StartDayWarningInfo>
 	{
 		#region Base Game Variables
-		
-		public virtual LocalisationObject<StartDayWarningInfo> Info { get; protected set; }
+
+		public virtual LocalisationObject<StartDayWarningInfo> Info { get; protected set; } = new LocalisationObject<StartDayWarningInfo>();
 		
 		#endregion
 		
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, StartDayWarningInfo)> InfoList { get; protected set; } = new();
+		public virtual List<(Locale, StartDayWarningInfo)> InfoList { get; protected set; } = new List<(Locale, StartDayWarningInfo)>();
 
 		#endregion
 		

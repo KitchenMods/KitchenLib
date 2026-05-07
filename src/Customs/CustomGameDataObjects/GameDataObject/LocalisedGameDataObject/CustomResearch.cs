@@ -9,9 +9,9 @@ namespace KitchenLib.Customs
 	{
 		#region Base Game Variables
 
-		public virtual List<IUpgrade> Rewards { get; protected set; } = new();
-		public virtual List<Research> EnablesResearchOf { get; protected set; } = new();
-		public virtual List<Research> RequiresForResearch { get; protected set; } = new();
+		public virtual List<IUpgrade> Rewards { get; protected set; } = new List<IUpgrade>();
+		public virtual List<Research> EnablesResearchOf { get; protected set; } = new List<Research>();
+		public virtual List<Research> RequiresForResearch { get; protected set; } = new List<Research>();
 		
 		#endregion
 		

@@ -7,14 +7,14 @@ namespace KitchenLib.Customs
 	public abstract class CustomNewsItemFallbackLocalisation : CustomLocalisationSet<NewsItemFallbackLocalisation, NewsItemFallbackInfo>
 	{
 		#region Base Game Variables
-		
-		public virtual LocalisationObject<NewsItemFallbackInfo> Info { get; protected set; }
+
+		public virtual LocalisationObject<NewsItemFallbackInfo> Info { get; protected set; } = new LocalisationObject<NewsItemFallbackInfo>();
 		
 		#endregion
 		
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, NewsItemFallbackInfo)> InfoList { get; protected set; } = new();
+		public virtual List<(Locale, NewsItemFallbackInfo)> InfoList { get; protected set; } = new List<(Locale, NewsItemFallbackInfo)>();
 
 		#endregion
 		

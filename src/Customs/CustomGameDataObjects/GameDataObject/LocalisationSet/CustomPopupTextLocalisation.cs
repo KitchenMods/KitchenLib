@@ -7,14 +7,14 @@ namespace KitchenLib.Customs
 	public abstract class CustomPopupTextLocalisation : CustomLocalisationSet<PopupTextLocalisation, PopupText>
 	{
 		#region Base Game Variables
-		
-		public virtual LocalisationObject<PopupText> Info { get; protected set; }
+
+		public virtual LocalisationObject<PopupText> Info { get; protected set; } = new LocalisationObject<PopupText>();
 		
 		#endregion
 		
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, PopupText)> InfoList { get; protected set; } = new();
+		public virtual List<(Locale, PopupText)> InfoList { get; protected set; } = new List<(Locale, PopupText)>();
 
 		#endregion
 		
