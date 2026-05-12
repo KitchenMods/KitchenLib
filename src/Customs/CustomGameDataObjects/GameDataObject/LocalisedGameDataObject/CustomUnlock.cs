@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Kitchen.Layouts;
 using KitchenData;
 using KitchenLib.Utils;
 using UnityEngine;
@@ -8,36 +7,6 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomUnlock<T> : CustomLocalisedGameDataObject<T, UnlockInfo> where T : GameDataObject
 	{
-		#region Base Game Variables
-
-		public virtual Unlock.RewardLevel ExpReward { get; protected set; } = Unlock.RewardLevel.Medium;
-		public virtual DishCustomerChange CustomerMultiplier { get; protected set; }
-		public virtual bool IsUnlockable { get; protected set; } = true;
-		public virtual bool HasSubOptions { get; protected set; }
-		public virtual Unlock OptionCard1 { get; protected set; }
-		public virtual Unlock OptionCard2 { get; protected set; }
-		public virtual Unlock ParentOption { get; protected set; }
-		public virtual UnlockGroup UnlockGroup { get; protected set; }
-		public virtual CardType CardType { get; protected set; }
-		public virtual int MinimumFranchiseTier { get; protected set; }
-		public virtual bool IsSpecificFranchiseTier { get; protected set; }
-		public virtual float SelectionBias { get; protected set; }
-		public virtual List<Unlock> HardcodedRequirements { get; protected set; } = new List<Unlock>();
-		public virtual List<Unlock> HardcodedBlockers { get; protected set; } = new List<Unlock>();
-		public virtual bool BlocksAllOtherFood { get; protected set; }
-		public virtual List<Unlock> AllowedFoods { get; protected set; } = new List<Unlock>();
-		public virtual RestaurantSetting ForceFranchiseSetting { get; protected set; }
-		public virtual List<Unlock.ItemReward> ItemRewards { get; protected set; } = new List<Unlock.ItemReward>();
-		
-		#endregion
-
-		#region KitchenLib Variables
-
-		public virtual string IconOverride { get; protected set; }
-		public virtual Color ColourOverride { get; protected set; }
-
-		#endregion
-		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -58,7 +27,7 @@ namespace KitchenLib.Customs
 				OverrideVariable(unlock, "BlocksAllOtherFood", BlocksAllOtherFood);
 
 				#endregion
-				
+
 				if (!string.IsNullOrEmpty(IconOverride))
 				{
 					Main.LogDebug($"Assigning : {IconOverride} >> IconOverride");
@@ -76,7 +45,7 @@ namespace KitchenLib.Customs
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
-			
+
 			if (gameDataObject is Unlock unlock)
 			{
 				#region Apply Properties
@@ -93,5 +62,35 @@ namespace KitchenLib.Customs
 				#endregion
 			}
 		}
+
+		#region Base Game Variables
+
+		public virtual Unlock.RewardLevel ExpReward { get; protected set; } = Unlock.RewardLevel.Medium;
+		public virtual DishCustomerChange CustomerMultiplier { get; protected set; }
+		public virtual bool IsUnlockable { get; protected set; } = true;
+		public virtual bool HasSubOptions { get; protected set; }
+		public virtual Unlock OptionCard1 { get; protected set; }
+		public virtual Unlock OptionCard2 { get; protected set; }
+		public virtual Unlock ParentOption { get; protected set; }
+		public virtual UnlockGroup UnlockGroup { get; protected set; }
+		public virtual CardType CardType { get; protected set; }
+		public virtual int MinimumFranchiseTier { get; protected set; }
+		public virtual bool IsSpecificFranchiseTier { get; protected set; }
+		public virtual float SelectionBias { get; protected set; }
+		public virtual List<Unlock> HardcodedRequirements { get; protected set; } = new();
+		public virtual List<Unlock> HardcodedBlockers { get; protected set; } = new();
+		public virtual bool BlocksAllOtherFood { get; protected set; }
+		public virtual List<Unlock> AllowedFoods { get; protected set; } = new();
+		public virtual RestaurantSetting ForceFranchiseSetting { get; protected set; }
+		public virtual List<Unlock.ItemReward> ItemRewards { get; protected set; } = new();
+
+		#endregion
+
+		#region KitchenLib Variables
+
+		public virtual string IconOverride { get; protected set; }
+		public virtual Color ColourOverride { get; protected set; }
+
+		#endregion
 	}
 }

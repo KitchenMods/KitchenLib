@@ -5,18 +5,6 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomCustomerType : CustomGameDataObject<CustomerType>
 	{
-		#region Base Game Variables
-		public virtual bool IsGenericGroup { get; protected set; }
-		public virtual bool RelativeGroupSize { get; protected set; }
-		public virtual int MinGroupSize { get; protected set; }
-		public virtual int MaxGroupSize { get; protected set; }
-		public virtual PatienceValues PatienceModifiers { get; protected set; }
-		public virtual OrderingValues OrderingModifiers { get; protected set; }
-		public virtual List<PlayerCosmetic> Cosmetics { get; protected set; } = new List<PlayerCosmetic>();
-		public virtual List<ICustomerProperty> Properties { get; protected set; } = new List<ICustomerProperty>();
-		
-		#endregion
-		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -32,7 +20,7 @@ namespace KitchenLib.Customs
 				OverrideVariable(customerType, "PatienceModifiers", PatienceModifiers);
 				OverrideVariable(customerType, "OrderingModifiers", OrderingModifiers);
 				OverrideVariable(customerType, "Properties", Properties);
-				
+
 				#endregion
 			}
 		}
@@ -40,15 +28,28 @@ namespace KitchenLib.Customs
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
-			
+
 			if (gameDataObject is CustomerType customerType)
 			{
 				#region Apply Properties
 
 				OverrideVariable(customerType, "Cosmetics", Cosmetics);
-				
+
 				#endregion
 			}
 		}
+
+		#region Base Game Variables
+
+		public virtual bool IsGenericGroup { get; protected set; }
+		public virtual bool RelativeGroupSize { get; protected set; }
+		public virtual int MinGroupSize { get; protected set; }
+		public virtual int MaxGroupSize { get; protected set; }
+		public virtual PatienceValues PatienceModifiers { get; protected set; }
+		public virtual OrderingValues OrderingModifiers { get; protected set; }
+		public virtual List<PlayerCosmetic> Cosmetics { get; protected set; } = new();
+		public virtual List<ICustomerProperty> Properties { get; protected set; } = new();
+
+		#endregion
 	}
 }

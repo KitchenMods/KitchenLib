@@ -8,22 +8,24 @@ namespace KitchenLib.Customs
 	{
 		#region Base Game Variables
 
-		public virtual LocalisationObject<ContractInfo> Info { get; protected set; } = new LocalisationObject<ContractInfo>();
-		
+		public virtual LocalisationObject<ContractInfo> Info { get; protected set; } = new();
+
 		#endregion
-		
+
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, ContractInfo)> InfoList { get; protected set; } = new List<(Locale, ContractInfo)>();
+		public virtual List<(Locale, ContractInfo)> InfoList { get; protected set; } = new();
 
 		#endregion
-		
+
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
 
 			if (!(gameDataObject is ContractLocalisation contractLocalisation))
+			{
 				return;
+			}
 
 			if (InfoList != null && InfoList.Count > 0)
 			{
@@ -33,7 +35,6 @@ namespace KitchenLib.Customs
 			{
 				OverrideVariable(contractLocalisation, "Info", Info);
 			}
-
 		}
 
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
@@ -41,7 +42,9 @@ namespace KitchenLib.Customs
 			base.AttachDependentProperties(gameData, gameDataObject);
 
 			if (!(gameDataObject is ContractLocalisation contractLocalisation))
+			{
 				return;
+			}
 		}
 	}
 }

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using Kitchen.Layouts;
 using KitchenData;
-using UnityEngine;
 
 namespace KitchenLib.Customs
 {
@@ -9,10 +7,10 @@ namespace KitchenLib.Customs
 	{
 		#region Base Game Variables
 
-		public virtual List<UnlockEffect> Effects { get; protected set; } = new List<UnlockEffect>();
-		
+		public virtual List<UnlockEffect> Effects { get; protected set; } = new();
+
 		#endregion
-		
+
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -30,7 +28,7 @@ namespace KitchenLib.Customs
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
-			
+
 			if (gameDataObject is UnlockCard unlockCard)
 			{
 			}

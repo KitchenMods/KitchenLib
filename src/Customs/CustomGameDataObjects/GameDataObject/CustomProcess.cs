@@ -1,42 +1,33 @@
 ﻿using System.Collections.Generic;
 using KitchenData;
-using UnityEngine;
 
 namespace KitchenLib.Customs
 {
 	public abstract class CustomProcess : CustomGameDataObject<Process>
 	{
-		#region Base Game Variables
-		
-		public virtual GameDataObject BasicEnablingAppliance { get; protected set; }
-		public virtual int EnablingApplianceCount { get; protected set; } = 1;
-		public virtual Process IsPseudoprocessFor { get; protected set; }
-		public virtual bool CanObfuscateProgress { get; protected set; }
-		public virtual LocalisationObject<ProcessInfo> Info { get; protected set; } = new LocalisationObject<ProcessInfo>();
-		
-		#endregion
-		
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, ProcessInfo)> InfoList { get; protected set; } = new List<(Locale, ProcessInfo)>();
-		
+		public virtual List<(Locale, ProcessInfo)> InfoList { get; protected set; } = new();
+
 		#endregion
-		
+
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
 
 			if (gameDataObject is not Process process)
+			{
 				return;
+			}
 
 			#region Apply Properties
 
 			OverrideVariable(process, "EnablingApplianceCount", EnablingApplianceCount);
 			OverrideVariable(process, "CanObfuscateProgress", CanObfuscateProgress);
 			OverrideVariable(process, "Info", Info);
-				
+
 			#endregion
-			
+
 			if (InfoList != null && InfoList.Count > 0)
 			{
 				ConvertInfoListToLocalisationObject(InfoList, ref process.Info);
@@ -50,16 +41,26 @@ namespace KitchenLib.Customs
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
-			
+
 			if (gameDataObject is Process process)
 			{
 				#region Apply Properties
 
 				OverrideVariable(process, "BasicEnablingAppliance", BasicEnablingAppliance);
 				OverrideVariable(process, "IsPseudoprocessFor", IsPseudoprocessFor);
-				
+
 				#endregion
 			}
 		}
+
+		#region Base Game Variables
+
+		public virtual GameDataObject BasicEnablingAppliance { get; protected set; }
+		public virtual int EnablingApplianceCount { get; protected set; } = 1;
+		public virtual Process IsPseudoprocessFor { get; protected set; }
+		public virtual bool CanObfuscateProgress { get; protected set; }
+		public virtual LocalisationObject<ProcessInfo> Info { get; protected set; } = new();
+
+		#endregion
 	}
 }

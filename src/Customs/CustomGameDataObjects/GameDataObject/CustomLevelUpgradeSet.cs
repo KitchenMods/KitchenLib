@@ -7,10 +7,10 @@ namespace KitchenLib.Customs
 	{
 		#region Base Game Variables
 
-		public virtual List<LevelUpgrade> Upgrades { get; protected set; } = new List<LevelUpgrade>();
-		
+		public virtual List<LevelUpgrade> Upgrades { get; protected set; } = new();
+
 		#endregion
-		
+
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -20,7 +20,7 @@ namespace KitchenLib.Customs
 				#region Apply Properties
 
 				OverrideVariable(levelUpgradeSet, "Upgrades", Upgrades);
-				
+
 				#endregion
 			}
 		}
@@ -28,7 +28,7 @@ namespace KitchenLib.Customs
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
-			
+
 			if (gameDataObject is LevelUpgradeSet levelUpgradeSet)
 			{
 			}

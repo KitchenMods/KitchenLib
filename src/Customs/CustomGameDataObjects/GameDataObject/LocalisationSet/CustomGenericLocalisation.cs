@@ -8,22 +8,24 @@ namespace KitchenLib.Customs
 	{
 		#region Base Game Variables
 
-		public virtual LocalisationObject<BasicInfo> Info { get; protected set; } = new LocalisationObject<BasicInfo>();
-		
+		public virtual LocalisationObject<BasicInfo> Info { get; protected set; } = new();
+
 		#endregion
-		
+
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, BasicInfo)> InfoList { get; protected set; } = new List<(Locale, BasicInfo)>();
+		public virtual List<(Locale, BasicInfo)> InfoList { get; protected set; } = new();
 
 		#endregion
-		
+
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
 
 			if (!(gameDataObject is GenericLocalisation genericLocalisation))
+			{
 				return;
+			}
 
 			if (InfoList != null && InfoList.Count > 0)
 			{
@@ -40,7 +42,9 @@ namespace KitchenLib.Customs
 			base.AttachDependentProperties(gameData, gameDataObject);
 
 			if (!(gameDataObject is GenericLocalisation genericLocalisation))
+			{
 				return;
+			}
 		}
 	}
 }

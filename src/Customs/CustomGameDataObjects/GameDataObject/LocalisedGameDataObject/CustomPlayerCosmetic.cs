@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Kitchen.Layouts;
 using KitchenData;
 using UnityEngine;
 
@@ -7,20 +6,6 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomPlayerCosmetic : CustomLocalisedGameDataObject<PlayerCosmetic, CosmeticInfo>
 	{
-		#region Base Game Variables
-
-		public virtual CosmeticType CosmeticType { get; protected set; }
-		public virtual List<RestaurantSetting> CustomerSettings { get; protected set; } = new List<RestaurantSetting>();
-		public virtual bool DisableInGame { get; protected set; }
-		public virtual bool IsDefault { get; protected set; }
-		public virtual bool BlockHats { get; protected set; }
-		public virtual float HeadSize { get; protected set; } = 1;
-		public virtual bool HideBody { get; protected set; }
-		public virtual ContentPack RequiresDLC { get; protected set; }
-		public virtual GameObject Visual { get; protected set; }
-		
-		#endregion
-		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -45,7 +30,7 @@ namespace KitchenLib.Customs
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
-			
+
 			if (gameDataObject is PlayerCosmetic playerCosmetic)
 			{
 				#region Apply Properties
@@ -55,5 +40,19 @@ namespace KitchenLib.Customs
 				#endregion
 			}
 		}
+
+		#region Base Game Variables
+
+		public virtual CosmeticType CosmeticType { get; protected set; }
+		public virtual List<RestaurantSetting> CustomerSettings { get; protected set; } = new();
+		public virtual bool DisableInGame { get; protected set; }
+		public virtual bool IsDefault { get; protected set; }
+		public virtual bool BlockHats { get; protected set; }
+		public virtual float HeadSize { get; protected set; } = 1;
+		public virtual bool HideBody { get; protected set; }
+		public virtual ContentPack RequiresDLC { get; protected set; }
+		public virtual GameObject Visual { get; protected set; }
+
+		#endregion
 	}
 }

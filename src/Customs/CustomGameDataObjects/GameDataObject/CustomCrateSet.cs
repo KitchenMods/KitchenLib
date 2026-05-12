@@ -7,30 +7,34 @@ namespace KitchenLib.Customs
 	{
 		#region Base Game Variables
 
-		public virtual List<Appliance> Options { get; protected set; } = new List<Appliance>();
-		
+		public virtual List<Appliance> Options { get; protected set; } = new();
+
 		#endregion
+
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
 
 			if (!(gameDataObject is CrateSet crateSet))
+			{
 				return;
+			}
 		}
 
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
-			
+
 			if (!(gameDataObject is CrateSet crateSet))
+			{
 				return;
-			
+			}
+
 			#region Apply Properties
 
-				OverrideVariable(crateSet, "Options", Options);
-				
-				#endregion
-			
+			OverrideVariable(crateSet, "Options", Options);
+
+			#endregion
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using HarmonyLib;
 using KitchenData;
 using KitchenLib.References;
 using KitchenLib.Utils;
@@ -9,68 +10,17 @@ using Object = UnityEngine.Object;
 
 namespace KitchenLib.Customs
 {
-	public abstract class CustomItem : CustomItem<Item> { }
-	
+	public abstract class CustomItem : CustomItem<Item>
+	{
+	}
+
 	public abstract class CustomItem<T> : CustomGameDataObject<T>, ICustomHasPrefab where T : GameDataObject
 	{
-		#region Base Game Variables
-		
-		public virtual GameObject Prefab { get; protected set; }
-		public virtual List<Item.ItemProcess> Processes { get; protected set; } = new List<Item.ItemProcess>();
-		public virtual Item.ItemProcess AutomaticItemProcess { get; protected set; }
-		public virtual List<IItemProperty> Properties { get; protected set; } = new List<IItemProperty>();
-		public virtual bool RequiresCleaning { get; protected set; }
-		public virtual float ExtraTimeGranted { get; protected set; }
-		public virtual Factor EatingTime { get; protected set; }
-		public virtual ItemValue ItemValue { get; protected set; } = ItemValue.Small;
-		public virtual int Reward { get; protected set; } = 1;
-		public virtual Item DirtiesTo { get; protected set; }
-		public virtual bool IsConsumedByCustomer { get; protected set; }
-		public virtual List<Item> MayRequestExtraItems { get; protected set; } = new List<Item>();
-		public virtual int MaxOrderSharers { get; protected set; }
-		public virtual int AlwaysOrderAdditionalItem { get; protected set; }
-		public virtual bool AutoSatisfied { get; protected set; }
-		public virtual int RepeatOrderMin { get; protected set; }
-		public virtual int RepeatOrderMax { get; protected set; }
-		public virtual bool CanBeOrderedPiecemeal { get; protected set; }
-		public virtual List<Item> SatisfiedBy { get; protected set; } = new List<Item>();
-		public virtual List<Item> NeedsIngredients { get; protected set; } = new List<Item>();
-		public virtual Item SplitSubItem { get; protected set; }
-		public virtual int SplitCount { get; protected set; }
-		public virtual float SplitSpeed { get; protected set; } = 1f;
-		public virtual List<Item> SplitDepletedItems { get; protected set; } = new List<Item>();
-		public virtual bool AllowSplitMerging { get; protected set; }
-		public virtual bool PreventExplicitSplit { get; protected set; }
-		public virtual bool SplitByComponents { get; protected set; }
-		public virtual Item SplitByComponentsHolder { get; protected set; }
-		public virtual Item SplitByComponentsWrapper { get; protected set; }
-		public virtual bool SplitByCopying { get; protected set; }
-		public virtual Item RefuseSplitWith { get; protected set; }
-		public virtual bool HasImplicitlyModifiedComponents { get; protected set; }
-		public virtual Item DisposesTo { get; protected set; }
-		public virtual bool IsIndisposable { get; protected set; }
-		public virtual bool IsSinkDisposable { get; protected set; }
-		public virtual ItemCategory ItemCategory { get; protected set; }
-		public virtual ItemStorage ItemStorageFlags { get; protected set; }
-		public virtual Appliance DedicatedProvider { get; protected set; }
-		public virtual ToolAttachPoint HoldPose { get; protected set; }
-		public virtual bool IsMergeableSide { get; protected set; }
-		public virtual Dish CreditSourceDish { get; protected set; }
-		public virtual Item ExtendedDirtItem { get; protected set; }
-		
-		#endregion
-		
-		#region KitchenLib Variables
-		
-		public virtual GameObject SidePrefab { get; protected set; }
-		public virtual string ColourBlindTag { get; protected set; }
-		public virtual int RewardOverride { get; protected set; } = -1;
-		
-		#endregion
-		
 		[Obsolete("Please use OnRegister")]
-		public virtual void SetupPrefab(GameObject prefab) { }
-		
+		public virtual void SetupPrefab(GameObject prefab)
+		{
+		}
+
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -105,16 +55,16 @@ namespace KitchenLib.Customs
 				OverrideVariable(item, "ItemStorageFlags", ItemStorageFlags);
 				OverrideVariable(item, "HoldPose", HoldPose);
 				OverrideVariable(item, "IsMergeableSide", IsMergeableSide);
-				
+
 				#endregion
-				
+
 				if (!string.IsNullOrEmpty(ColourBlindTag))
 				{
 					Main.LogError($"Adding ColourBlindTag '{ColourBlindTag}'");
-					Item steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
+					var steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
 					if (steak != null)
 					{
-						GameObject colorBlind = Object.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject, item.Prefab.transform, true);
+						var colorBlind = Object.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject, item.Prefab.transform, true);
 						colorBlind.name = "Colour Blind";
 						colorBlind.transform.SetParent(item.Prefab.transform);
 						colorBlind.transform.Find("Title").GetComponent<TMP_Text>().text = ColourBlindTag;
@@ -132,7 +82,7 @@ namespace KitchenLib.Customs
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
-			
+
 			if (gameDataObject is Item item)
 			{
 				#region Apply Properties
@@ -152,26 +102,81 @@ namespace KitchenLib.Customs
 				OverrideVariable(item, "DedicatedProvider", DedicatedProvider);
 				OverrideVariable(item, "CreditSourceDish", CreditSourceDish);
 				OverrideVariable(item, "ExtendedDirtItem", ExtendedDirtItem);
-				
+
 				#endregion
-				
+
 				if (SidePrefab == null)
 				{
-					Main.LogError($"Assigning fallback side prefab");
+					Main.LogError("Assigning fallback side prefab");
 					SidePrefab = item.Prefab ?? Main.bundle.LoadAsset<GameObject>("Error_Item");
 				}
 			}
 		}
-		
+
 		public override void OnRegister(GameDataObject gameDataObject)
 		{
-			IHasPrefab gdo = gameDataObject as IHasPrefab;
+			var gdo = gameDataObject as IHasPrefab;
 			if (gdo?.Prefab != null)
 			{
 				SetupPrefab(gdo.Prefab);
 			}
-
+			
 			base.OnRegister(gameDataObject);
 		}
+
+		#region Base Game Variables
+
+		public virtual GameObject Prefab { get; protected set; }
+		public virtual List<Item.ItemProcess> Processes { get; protected set; } = new();
+		public virtual Item.ItemProcess AutomaticItemProcess { get; protected set; }
+		public virtual List<IItemProperty> Properties { get; protected set; } = new();
+		public virtual bool RequiresCleaning { get; protected set; }
+		public virtual float ExtraTimeGranted { get; protected set; }
+		public virtual Factor EatingTime { get; protected set; }
+		public virtual ItemValue ItemValue { get; protected set; } = ItemValue.Small;
+		public virtual int Reward { get; protected set; } = 1;
+		public virtual Item DirtiesTo { get; protected set; }
+		public virtual bool IsConsumedByCustomer { get; protected set; }
+		public virtual List<Item> MayRequestExtraItems { get; protected set; } = new();
+		public virtual int MaxOrderSharers { get; protected set; }
+		public virtual int AlwaysOrderAdditionalItem { get; protected set; }
+		public virtual bool AutoSatisfied { get; protected set; }
+		public virtual int RepeatOrderMin { get; protected set; }
+		public virtual int RepeatOrderMax { get; protected set; }
+		public virtual bool CanBeOrderedPiecemeal { get; protected set; }
+		public virtual List<Item> SatisfiedBy { get; protected set; } = new();
+		public virtual List<Item> NeedsIngredients { get; protected set; } = new();
+		public virtual Item SplitSubItem { get; protected set; }
+		public virtual int SplitCount { get; protected set; }
+		public virtual float SplitSpeed { get; protected set; } = 1f;
+		public virtual List<Item> SplitDepletedItems { get; protected set; } = new();
+		public virtual bool AllowSplitMerging { get; protected set; }
+		public virtual bool PreventExplicitSplit { get; protected set; }
+		public virtual bool SplitByComponents { get; protected set; }
+		public virtual Item SplitByComponentsHolder { get; protected set; }
+		public virtual Item SplitByComponentsWrapper { get; protected set; }
+		public virtual bool SplitByCopying { get; protected set; }
+		public virtual Item RefuseSplitWith { get; protected set; }
+		public virtual bool HasImplicitlyModifiedComponents { get; protected set; }
+		public virtual Item DisposesTo { get; protected set; }
+		public virtual bool IsIndisposable { get; protected set; }
+		public virtual bool IsSinkDisposable { get; protected set; }
+		public virtual ItemCategory ItemCategory { get; protected set; }
+		public virtual ItemStorage ItemStorageFlags { get; protected set; }
+		public virtual Appliance DedicatedProvider { get; protected set; }
+		public virtual ToolAttachPoint HoldPose { get; protected set; }
+		public virtual bool IsMergeableSide { get; protected set; }
+		public virtual Dish CreditSourceDish { get; protected set; }
+		public virtual Item ExtendedDirtItem { get; protected set; }
+
+		#endregion
+
+		#region KitchenLib Variables
+
+		public virtual GameObject SidePrefab { get; protected set; }
+		public virtual string ColourBlindTag { get; protected set; }
+		public virtual int RewardOverride { get; protected set; } = -1;
+
+		#endregion
 	}
 }

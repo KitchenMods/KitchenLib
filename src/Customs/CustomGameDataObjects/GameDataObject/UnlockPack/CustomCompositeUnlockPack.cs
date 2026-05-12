@@ -7,30 +7,34 @@ namespace KitchenLib.Customs
 	{
 		#region Base Game Variables
 
-		public virtual List<UnlockPack> Packs { get; protected set; } = new List<UnlockPack>();
-		
+		public virtual List<UnlockPack> Packs { get; protected set; } = new();
+
 		#endregion
+
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
 
 			if (!(gameDataObject is CompositeUnlockPack compositeUnlockPac))
+			{
 				return;
+			}
 		}
 
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
-			
+
 			if (!(gameDataObject is CompositeUnlockPack compositeUnlockPack))
+			{
 				return;
-			
+			}
+
 			#region Apply Properties
 
 			OverrideVariable(compositeUnlockPack, "Packs", Packs);
-				
+
 			#endregion
-			
 		}
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using KitchenData;
-using KitchenData.Localisations;
 
 namespace KitchenLib.Customs
 {
@@ -8,22 +7,24 @@ namespace KitchenLib.Customs
 	{
 		#region Base Game Variables
 
-		public virtual LocalisationObject<NewsItemFallbackInfo> Info { get; protected set; } = new LocalisationObject<NewsItemFallbackInfo>();
-		
+		public virtual LocalisationObject<NewsItemFallbackInfo> Info { get; protected set; } = new();
+
 		#endregion
-		
+
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, NewsItemFallbackInfo)> InfoList { get; protected set; } = new List<(Locale, NewsItemFallbackInfo)>();
+		public virtual List<(Locale, NewsItemFallbackInfo)> InfoList { get; protected set; } = new();
 
 		#endregion
-		
+
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
 
 			if (!(gameDataObject is NewsItemFallbackLocalisation newsItemFallbackLocalisation))
+			{
 				return;
+			}
 
 			if (InfoList != null && InfoList.Count > 0)
 			{
@@ -40,7 +41,9 @@ namespace KitchenLib.Customs
 			base.AttachDependentProperties(gameData, gameDataObject);
 
 			if (!(gameDataObject is NewsItemFallbackLocalisation newsItemFallbackLocalisation))
+			{
 				return;
+			}
 		}
 	}
 }

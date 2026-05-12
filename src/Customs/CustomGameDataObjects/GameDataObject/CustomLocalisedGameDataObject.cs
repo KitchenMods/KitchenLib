@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using KitchenData;
 
 namespace KitchenLib.Customs
@@ -8,13 +7,13 @@ namespace KitchenLib.Customs
 	{
 		#region Base Game Variables
 
-		public virtual LocalisationObject<L> Info { get; protected set; } = new LocalisationObject<L>();
+		public virtual LocalisationObject<L> Info { get; protected set; } = new();
 
 		#endregion
 
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, L)> InfoList { get; protected set; } = new List<(Locale, L)>();
+		public virtual List<(Locale, L)> InfoList { get; protected set; } = new();
 
 		#endregion
 
@@ -23,8 +22,10 @@ namespace KitchenLib.Customs
 			base.Convert(gameData, out gameDataObject);
 
 			if (gameDataObject is not LocalisedGameDataObject<L> localisedGameDataObject)
+			{
 				return;
-			
+			}
+
 			if (InfoList != null && InfoList.Count > 0)
 			{
 				ConvertInfoListToLocalisationObject(InfoList, ref localisedGameDataObject.Info);

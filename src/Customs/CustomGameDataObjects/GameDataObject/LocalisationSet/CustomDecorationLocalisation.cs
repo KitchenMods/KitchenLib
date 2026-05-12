@@ -7,22 +7,24 @@ namespace KitchenLib.Customs
 	{
 		#region Base Game Variables
 
-		public virtual LocalisationObject<DecorationBonusInfo> Info { get; protected set; } = new LocalisationObject<DecorationBonusInfo>();
-		
+		public virtual LocalisationObject<DecorationBonusInfo> Info { get; protected set; } = new();
+
 		#endregion
-		
+
 		#region KitchenLib Variables
 
-		public virtual List<(Locale, DecorationBonusInfo)> InfoList { get; protected set; } = new List<(Locale, DecorationBonusInfo)>();
+		public virtual List<(Locale, DecorationBonusInfo)> InfoList { get; protected set; } = new();
 
 		#endregion
-		
+
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
 
 			if (!(gameDataObject is DecorationLocalisation decorationLocalisation))
+			{
 				return;
+			}
 
 			if (InfoList != null && InfoList.Count > 0)
 			{
@@ -39,7 +41,9 @@ namespace KitchenLib.Customs
 			base.AttachDependentProperties(gameData, gameDataObject);
 
 			if (!(gameDataObject is DecorationLocalisation decorationLocalisation))
+			{
 				return;
+			}
 		}
 	}
 }
