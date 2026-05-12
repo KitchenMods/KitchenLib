@@ -145,5 +145,28 @@ namespace KitchenLib.Customs
 		public virtual bool BypassMainRequirementsCheck { get; protected set; } = false;
 
 		#endregion
+		
+		public override void OnRegister(GameDataObject gameDataObject)
+		{
+			if (gameDataObject is Dish dish)
+			{
+				if (dish.DisplayPrefab != null)
+				{
+					SetupDisplayPrefab(dish.DisplayPrefab);
+				}
+
+				if (dish.IconPrefab != null)
+				{
+					SetupDisplayPrefab(dish.IconPrefab);
+				}
+			}
+
+			base.OnRegister(gameDataObject);
+		}		
+
+		[Obsolete("Please use OnRegister")]
+		public virtual void SetupDisplayPrefab(GameObject prefab) { }
+		[Obsolete("Please use OnRegister")]
+		public virtual void SetupIconPrefab(GameObject prefab) { }
 	}
 }
