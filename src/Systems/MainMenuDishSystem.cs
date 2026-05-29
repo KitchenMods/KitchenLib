@@ -6,52 +6,19 @@ using Unity.Entities;
 
 namespace KitchenLib.Systems
 {
-	[UpdateBefore(typeof(GrantUpgrades))]
-	public class MainMenuDishSystem : FranchiseFirstFrameSystem, IModSystem
-	{
-		public static List<int> MenuOptions = new List<int>();
-		private EntityQuery EntitiesToActOn;
-		protected override void Initialise()
-		{
-			base.Initialise();
-			EntitiesToActOn = GetEntityQuery(typeof(CUpgrade));
-		}
-		protected override void OnUpdate()
-		{
-			foreach (int id in MenuOptions)
-			{
-				bool found = false;
-				using var ents = EntitiesToActOn.ToEntityArray(Allocator.Temp);
-
-				foreach (var ent in ents)
-				{
-					CUpgrade cUpgrade = EntityManager.GetComponentData<CUpgrade>(ent);
-					if (cUpgrade.ID == id)
-					{
-						found = true;
-						break;
-					}
-				}
-				if (!found)
-				{
-					Entity e = EntityManager.CreateEntity(typeof(CUpgrade), typeof(CPersistThroughSceneChanges));
-					EntityManager.SetComponentData<CUpgrade>(e, new CUpgrade { ID = id, IsFromLevel = false });
-				}
-			}
-		}
-	}
-
 	[UpdateBefore(typeof(CreateDishOptions))]
 	[UpdateAfter(typeof(GrantUpgrades))]
 	public class MainMenuDishDebugSystem : FranchiseFirstFrameSystem, IModSystem
 	{
 		public static List<int> MenuOptions = new List<int>();
 		private EntityQuery EntitiesToActOn;
+
 		protected override void Initialise()
 		{
 			base.Initialise();
 			EntitiesToActOn = GetEntityQuery(typeof(CDishUpgrade));
 		}
+
 		protected override void OnUpdate()
 		{
 			foreach (int id in MenuOptions)
@@ -68,6 +35,7 @@ namespace KitchenLib.Systems
 						break;
 					}
 				}
+
 				if (!found)
 				{
 					Entity e = EntityManager.CreateEntity(typeof(CDishUpgrade), typeof(CPersistThroughSceneChanges));
