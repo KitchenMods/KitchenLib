@@ -53,7 +53,7 @@ jobs:
         run: |
           ./DepotDownloader -app 1599600 -depot 1599601 -username ${{ secrets.STEAM_USERNAME }} -password ${{ secrets.STEAM_PASSWORD }} <<< "${{ steps.generate.outputs.code }}"
 
-          - name: Download PlateUp Files
+      - name: Download PlateUp Files
         if: ${{ github.event.inputs.buildbranch == 'taste-test'}}
         run: |
           ./DepotDownloader -app 1599600 -depot 1599601 -username ${{ secrets.STEAM_USERNAME }} -branch 'taste-test' -password ${{ secrets.STEAM_PASSWORD }} <<< "${{ steps.generate.outputs.code }}"
