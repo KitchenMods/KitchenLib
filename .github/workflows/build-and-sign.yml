@@ -13,6 +13,14 @@ on:
         required: false
         default: ""
         type: string
+      buildbranch:
+        description: "The branch to build from"
+        required: true
+        default: ""
+        type: choice
+        options:
+          - "main"
+          - "taste-test"
 
 jobs:
   build-and-sign:
@@ -41,8 +49,14 @@ jobs:
           shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
 
       - name: Download PlateUp Files
+        if: ${{ github.event.inputs.buildbranch == 'main'}}
         run: |
           ./DepotDownloader -app 1599600 -depot 1599601 -username ${{ secrets.STEAM_USERNAME }} -password ${{ secrets.STEAM_PASSWORD }} <<< "${{ steps.generate.outputs.code }}"
+
+          - name: Download PlateUp Files
+        if: ${{ github.event.inputs.buildbranch == 'taste-test'}}
+        run: |
+          ./DepotDownloader -app 1599600 -depot 1599601 -username ${{ secrets.STEAM_USERNAME }} -branch 'taste-test' -password ${{ secrets.STEAM_PASSWORD }} <<< "${{ steps.generate.outputs.code }}"
 
       - name: Install .NET Core
         uses: actions/setup-dotnet@v3
