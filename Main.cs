@@ -50,7 +50,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string THE_MOD_BETA_VERSION = "1-TASTETEST";
+		internal const string THE_MOD_BETA_VERSION = "2-TASTETEST";
 #if DEBUG
 		internal static string MOD_BETA_VERSION = THE_MOD_BETA_VERSION + "";
 #else
