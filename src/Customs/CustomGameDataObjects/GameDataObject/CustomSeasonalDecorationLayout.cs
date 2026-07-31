@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Kitchen;
 using KitchenData;
 
 namespace KitchenLib.Customs
@@ -13,6 +15,23 @@ namespace KitchenLib.Customs
 			{
 				return;
 			}
+			
+			bool AddToDates = true;
+			
+			foreach (ValueTuple<Season, ValueTuple<ValueTuple<int, int>, ValueTuple<int, int>>> tuple in Seasons.Dates)
+			{
+				if (tuple.Item1 == SeasonActive)
+				{
+					AddToDates = false;
+					break;
+				}
+			}
+
+			if (AddToDates)
+			{
+				Seasons.Dates.AddRange(DateRange);
+			}
+			
 
 			#region Apply Properties
 
@@ -38,6 +57,12 @@ namespace KitchenLib.Customs
 			#endregion
 		}
 
+		#region KitchenLib Variables
+
+		public virtual List<ValueTuple<Season, ValueTuple<ValueTuple<int, int>, ValueTuple<int, int>>>> DateRange { get; protected set; } = new List<ValueTuple<Season, ValueTuple<ValueTuple<int, int>, ValueTuple<int, int>>>>();
+
+		#endregion
+		
 		#region Base Game Variables
 
 		public virtual Season SeasonActive { get; protected set; }
