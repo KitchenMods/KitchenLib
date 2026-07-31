@@ -45,14 +45,14 @@ namespace KitchenLib
 		/// <summary>
 		/// The version of the mod.
 		/// </summary>
-		internal const string MOD_VERSION = "0.9.1";
+		internal const string MOD_VERSION = "0.9.1.1";
 
 		/// <summary>
 		/// The beta version of the mod.
 		/// </summary>
-		internal const string THE_MOD_BETA_VERSION = "1";
+		internal const string THE_MOD_BETA_VERSION = "2-TASTETEST";
 #if DEBUG
-		internal static string MOD_BETA_VERSION = THE_MOD_BETA_VERSION + "-DEBUG";
+		internal static string MOD_BETA_VERSION = THE_MOD_BETA_VERSION + "";
 #else
 		internal static string MOD_BETA_VERSION = THE_MOD_BETA_VERSION;
 #endif

@@ -249,37 +249,8 @@ namespace KitchenLib.UI
 
 		private void GenerateMaterialDump()
 		{
-			List<string> BlenderScript = new List<string>();
-			List<string> MayaScript = new List<string>();
+			List<string> Materials = new List<string>();
 			List<string> existingMaterials = new List<string>();
-			
-			BlenderScript.Add("import bpy");
-			BlenderScript.Add("");
-			BlenderScript.Add("");
-			BlenderScript.Add("def create_material(name, color):");
-			BlenderScript.Add("	if name in bpy.data.materials:");
-			BlenderScript.Add("		print(\"Material Already Found. Skipping\")");
-			BlenderScript.Add("	else:");
-			BlenderScript.Add("		material = bpy.data.materials.new(name)");
-			BlenderScript.Add("		material.diffuse_color = color");
-			BlenderScript.Add("		material.use_fake_user = 1");
-			BlenderScript.Add("");
-			BlenderScript.Add("create_material(\"ERROR_MATERIAL_MISSING\", (1,0,1,1))");
-			BlenderScript.Add("");
-			
-			MayaScript.Add("import maya.cmds as cmds");
-			MayaScript.Add("");
-			MayaScript.Add("def create_lambert_material(name, color):");
-			MayaScript.Add("    if cmds.objExists(name):");
-			MayaScript.Add("        return");
-			MayaScript.Add("    shader = cmds.shadingNode('lambert', asShader=True, name=name)");
-			MayaScript.Add("    sg = cmds.sets(renderable=True, noSurfaceShader=True, empty=True, name=f'{name}SG')");
-			MayaScript.Add("    cmds.connectAttr(f'{shader}.outColor', f'{sg}.surfaceShader', force=True)");
-			MayaScript.Add("    r, g, b, a = color");
-			MayaScript.Add("    cmds.setAttr(f'{shader}.color', r, g, b, type='double3')");
-			MayaScript.Add("    if a < 1.0:");
-			MayaScript.Add("        cmds.setAttr(f'{shader}.transparency', 1 - r, 1 - g, 1 - b, type='double3')");
-			MayaScript.Add("");
 
 			int counter = 0;
 			
@@ -314,11 +285,8 @@ namespace KitchenLib.UI
 					if (!existingMaterials.Contains(materialName))
 					{
 						Color color = texture.Snapshot.GetPixel(5, 5);
-				
-						BlenderScript.Add($"create_material(\"{materialName}\", ({color.r},{color.g},{color.b},{color.a}))");
-						BlenderScript.Add("");
-						MayaScript.Add($"create_lambert_material(\"{materialName}\", ({color.r},{color.g},{color.b},{color.a}))");
-						MayaScript.Add("");
+						
+						Materials.Add($"(\"{materialName}\", ({color.r},{color.g},{color.b},{color.a}))");
 
 						List<string> unityFile = CreateUnityMaterialFile(materialName, color);
 						string path = Path.Combine(Application.persistentDataPath, "Debug/MaterialDumps/Unity");
@@ -333,24 +301,7 @@ namespace KitchenLib.UI
 				}
 			}
 			
-			BlenderScript.Add("");
-			BlenderScript.Add("");
-			BlenderScript.Add("error_material = bpy.data.materials[\"ERROR_MATERIAL_MISSING\"]");
-			BlenderScript.Add("");
-			BlenderScript.Add("for obj in bpy.data.objects:");
-			BlenderScript.Add("	if hasattr(obj.data, \"materials\"):");
-			BlenderScript.Add("		if len(obj.material_slots) == 0:");
-			BlenderScript.Add("			obj.data.materials.append(None)");
-			BlenderScript.Add("		for slot in obj.material_slots:");
-			BlenderScript.Add("			if slot.material is None:");
-			BlenderScript.Add("				slot.material = error_material");
-			BlenderScript.Add("			elif not slot.material.use_fake_user:");
-			BlenderScript.Add("				slot.material = error_material");
-			BlenderScript.Add("");
-			BlenderScript.Add("");
-			
-			File.WriteAllLines(Path.Combine(Application.persistentDataPath, "Debug/MaterialDumps/BlenderScript.py"), BlenderScript);
-			File.WriteAllLines(Path.Combine(Application.persistentDataPath, "Debug/MaterialDumps/MayaScript.py"), MayaScript);
+			File.WriteAllLines(Path.Combine(Application.persistentDataPath, "Debug/MaterialDumps/Materials.txt"), Materials);
 		}
 
 		private List<string> CreateUnityMaterialFile(string name, Color color)

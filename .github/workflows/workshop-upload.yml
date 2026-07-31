@@ -11,6 +11,7 @@ on:
         options:
           - "2898069883" # KitchenLib mod id
           - "2932799348" # KitchenLib Beta mod id
+          - "3735315455" # KitchenLib Taste Testing
       releaseversion:
         description: "The release version"
         required: true

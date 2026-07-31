@@ -37,6 +37,7 @@ namespace KitchenLib.Customs
 		public virtual bool RequiredNoDishItem { get; protected set; } = false;
 
         public virtual bool IsAvailableAsLobbyOption { get; protected set; } = false;
+        [Obsolete("This variable now does nothing. Only kept for backwards compatibility")]
         public virtual bool DestroyAfterModUninstall { get; protected set; } = true;
         public virtual Dictionary<Locale, string> Recipe { get; protected set; } = new Dictionary<Locale, string>();
         public virtual bool BypassMainRequirementsCheck { get; protected set; } = false;
