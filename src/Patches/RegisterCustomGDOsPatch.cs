@@ -209,11 +209,7 @@ namespace KitchenLib.Patches
 						
 						if (customDish.IsAvailableAsLobbyOption)
 						{
-							if (customDish.DestroyAfterModUninstall)
-								MainMenuDishDebugSystem.MenuOptions.Add(dish.ID);
-							else
-								MainMenuDishSystem.MenuOptions.Add(dish.ID);
-							
+							MainMenuDishDebugSystem.MenuOptions.Add(dish.ID); 
 							if (customDish.mod != null && customDish.mod.Name == "")
 								BuildLocalDishOptions.MenuOptions.Add(dish.ID);
 						}
