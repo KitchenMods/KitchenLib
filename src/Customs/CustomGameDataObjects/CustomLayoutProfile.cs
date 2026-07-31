@@ -24,6 +24,7 @@ namespace KitchenLib.Customs
         public virtual Appliance WallPiece { get; protected set; }
         public virtual Appliance InternalWallPiece { get; protected set; }
         public virtual Appliance StreetPiece { get; protected set; }
+        public virtual Season FixedRunSeason { get; protected set; }
         
         // KitchenLib Variables
 		public virtual List<NodeConnection> NodeConnections { get; protected set; } = new List<NodeConnection>();
@@ -45,6 +46,7 @@ namespace KitchenLib.Customs
 			OverrideVariable(result, "Graph", Graph);
 			OverrideVariable(result, "MaximumTables", MaximumTables);
 			OverrideVariable(result, "Info", Info);
+			OverrideVariable(result, "FixedRunSeason", FixedRunSeason);
 			
 			if (NodeConnections.Count > 0)
 			{

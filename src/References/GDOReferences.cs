@@ -738,13 +738,65 @@ namespace KitchenLib.References
 
 		public static int WitchHutWallPanel => (int)_ApplianceReferences.WitchHutWallPanel;
 
+		public static int BuffetCounter => (int)_ApplianceReferences.BuffetCounter;
+
+		public static int xServiceCounter => (int)_ApplianceReferences.xServiceCounter;
+
 		public static int AdvancedBuildLoadoutCraneInGame => (int)_ApplianceReferences.AdvancedBuildLoadoutCraneInGame;
 
 		public static int AdvancedBuildLoadoutCrane => (int)_ApplianceReferences.AdvancedBuildLoadoutCrane;
 
+		public static int SourceChocolateSyrup => (int)_ApplianceReferences.SourceChocolateSyrup;
+
+		public static int SourceStrawberrySyrup => (int)_ApplianceReferences.SourceStrawberrySyrup;
+
+		public static int SourceSundaeGlasses => (int)_ApplianceReferences.SourceSundaeGlasses;
+
+		public static int SourceStrawberry => (int)_ApplianceReferences.SourceStrawberry;
+
 		public static int LeftoversBagStation => (int)_ApplianceReferences.LeftoversBagStation;
 
 		public static int ClipboardStand => (int)_ApplianceReferences.ClipboardStand;
+
+		public static int SourceHam => (int)_ApplianceReferences.SourceHam;
+
+		public static int SourcePickle => (int)_ApplianceReferences.SourcePickle;
+
+		public static int ChristmasOfficeDecoration => (int)_ApplianceReferences.ChristmasOfficeDecoration;
+
+		public static int DecorationPresents => (int)_ApplianceReferences.DecorationPresents;
+
+		public static int DecorationTinsel => (int)_ApplianceReferences.DecorationTinsel;
+
+		public static int DecorationTree => (int)_ApplianceReferences.DecorationTree;
+
+		public static int DecorationWreath => (int)_ApplianceReferences.DecorationWreath;
+
+		public static int LargeShedChristmas => (int)_ApplianceReferences.LargeShedChristmas;
+
+		public static int LargeShed => (int)_ApplianceReferences.LargeShed;
+
+		public static int MediumShedChristmas => (int)_ApplianceReferences.MediumShedChristmas;
+
+		public static int MediumShed => (int)_ApplianceReferences.MediumShed;
+
+		public static int SleighChristmas => (int)_ApplianceReferences.SleighChristmas;
+
+		public static int Sleigh => (int)_ApplianceReferences.Sleigh;
+
+		public static int SmallShedChristmas => (int)_ApplianceReferences.SmallShedChristmas;
+
+		public static int SmallShed => (int)_ApplianceReferences.SmallShed;
+
+		public static int TreeChristmas => (int)_ApplianceReferences.TreeChristmas;
+
+		public static int TreeSetBottomLeftChristmas => (int)_ApplianceReferences.TreeSetBottomLeftChristmas;
+
+		public static int TreeSetBottomRightChristmas => (int)_ApplianceReferences.TreeSetBottomRightChristmas;
+
+		public static int RunBoardDecoration => (int)_ApplianceReferences.RunBoardDecoration;
+
+		public static int StartRoomDecoration => (int)_ApplianceReferences.StartRoomDecoration;
 
 		public static int ProviderTacoTray => (int)_ApplianceReferences.ProviderTacoTray;
 
@@ -1495,13 +1547,65 @@ namespace KitchenLib.References
 
 		WitchHutWallPanel = 585649337,
 
+		BuffetCounter = -773196462,
+
+		xServiceCounter = 638034870,
+
 		AdvancedBuildLoadoutCraneInGame = -364231730,
 
 		AdvancedBuildLoadoutCrane = -121110359,
 
+		SourceChocolateSyrup = 825737084,
+
+		SourceStrawberrySyrup = 483880621,
+
+		SourceSundaeGlasses = 602693523,
+
+		SourceStrawberry = 1872560572,
+
 		LeftoversBagStation = -940358190,
 
 		ClipboardStand = -2070005162,
+
+		SourceHam = -1673135814,
+
+		SourcePickle = -74499940,
+
+		ChristmasOfficeDecoration = 1895329114,
+
+		DecorationPresents = -1889835507,
+
+		DecorationTinsel = -380823608,
+
+		DecorationTree = -602487625,
+
+		DecorationWreath = -302306254,
+
+		LargeShedChristmas = -1492497486,
+
+		LargeShed = -771033261,
+
+		MediumShedChristmas = -1082534766,
+
+		MediumShed = 416689423,
+
+		SleighChristmas = 1595436560,
+
+		Sleigh = -1985766917,
+
+		SmallShedChristmas = 2029957333,
+
+		SmallShed = 1621490890,
+
+		TreeChristmas = 708507454,
+
+		TreeSetBottomLeftChristmas = 684514756,
+
+		TreeSetBottomRightChristmas = 1178498897,
+
+		RunBoardDecoration = 1668340088,
+
+		StartRoomDecoration = -450635801,
 
 		ProviderTacoTray = 745886540,
 
@@ -1534,6 +1638,8 @@ namespace KitchenLib.References
 
 		public static int HalloweenPack => (int)_CompositeUnlockPackReferences.HalloweenPack;
 
+		public static int ChristmasCompositePack => (int)_CompositeUnlockPackReferences.ChristmasCompositePack;
+
 	}
 	public enum _CompositeUnlockPackReferences
 	{
@@ -1554,6 +1660,8 @@ namespace KitchenLib.References
 		DefaultCompositePack = -2020288853,
 
 		HalloweenPack = -839658581,
+
+		ChristmasCompositePack = 1570187384,
 
 	}
 	public static class CrateSetReferences
@@ -1924,6 +2032,38 @@ namespace KitchenLib.References
 
 		public static int PomodoroBase => (int)_DishReferences.PomodoroBase;
 
+		public static int PomodoroExtraStarch => (int)_DishReferences.PomodoroExtraStarch;
+
+		public static int PomodoroTraditional => (int)_DishReferences.PomodoroTraditional;
+
+		public static int IceCreamSundaesBaseHomemade => (int)_DishReferences.IceCreamSundaesBaseHomemade;
+
+		public static int IceCreamSundaesBaseSimpleScoops => (int)_DishReferences.IceCreamSundaesBaseSimpleScoops;
+
+		public static int IceCreamSundaesBase => (int)_DishReferences.IceCreamSundaesBase;
+
+		public static int IceCreamSundaesGiant => (int)_DishReferences.IceCreamSundaesGiant;
+
+		public static int IceCreamSundaesSyrups => (int)_DishReferences.IceCreamSundaesSyrups;
+
+		public static int IceCreamSundaesToppings => (int)_DishReferences.IceCreamSundaesToppings;
+
+		public static int SandwichBase => (int)_DishReferences.SandwichBase;
+
+		public static int SandwichDishClub => (int)_DishReferences.SandwichDishClub;
+
+		public static int SandwichDishGiant => (int)_DishReferences.SandwichDishGiant;
+
+		public static int SandwichDishToast => (int)_DishReferences.SandwichDishToast;
+
+		public static int SandwichExtraCheese => (int)_DishReferences.SandwichExtraCheese;
+
+		public static int SandwichExtraEgg => (int)_DishReferences.SandwichExtraEgg;
+
+		public static int SandwichExtraMayo => (int)_DishReferences.SandwichExtraMayo;
+
+		public static int SandwichExtraToppers => (int)_DishReferences.SandwichExtraToppers;
+
 		public static int TacosBase => (int)_DishReferences.TacosBase;
 
 		public static int TacosCheese => (int)_DishReferences.TacosCheese;
@@ -2134,6 +2274,38 @@ namespace KitchenLib.References
 		PastawithWhiteSauce = 1651927267,
 
 		PomodoroBase = 1764920765,
+
+		PomodoroExtraStarch = -1974675533,
+
+		PomodoroTraditional = 1411587046,
+
+		IceCreamSundaesBaseHomemade = -1451591918,
+
+		IceCreamSundaesBaseSimpleScoops = 620309357,
+
+		IceCreamSundaesBase = 934171642,
+
+		IceCreamSundaesGiant = -690833761,
+
+		IceCreamSundaesSyrups = 431260200,
+
+		IceCreamSundaesToppings = 1879652468,
+
+		SandwichBase = -1272159363,
+
+		SandwichDishClub = 641008296,
+
+		SandwichDishGiant = -1795285445,
+
+		SandwichDishToast = -72176411,
+
+		SandwichExtraCheese = -469306490,
+
+		SandwichExtraEgg = 525953646,
+
+		SandwichExtraMayo = -778718372,
+
+		SandwichExtraToppers = 368792675,
 
 		TacosBase = 506626805,
 
@@ -2994,9 +3166,51 @@ namespace KitchenLib.References
 
 		public static int SpaghettiUncooked => (int)_ItemReferences.SpaghettiUncooked;
 
+		public static int SundaeDefault => (int)_ItemReferences.SundaeDefault;
+
+		public static int SundaeGiant => (int)_ItemReferences.SundaeGiant;
+
+		public static int SundaeGlass => (int)_ItemReferences.SundaeGlass;
+
+		public static int SundaeSyrupChocolateServing => (int)_ItemReferences.SundaeSyrupChocolateServing;
+
+		public static int SundaeSyrupChocolate => (int)_ItemReferences.SundaeSyrupChocolate;
+
+		public static int SundaeSyrupStrawberryServing => (int)_ItemReferences.SundaeSyrupStrawberryServing;
+
+		public static int SundaeSyrupStrawberry => (int)_ItemReferences.SundaeSyrupStrawberry;
+
+		public static int HomemadeIceCreamChocolateMixed => (int)_ItemReferences.HomemadeIceCreamChocolateMixed;
+
+		public static int HomemadeIceCreamChocolate => (int)_ItemReferences.HomemadeIceCreamChocolate;
+
+		public static int HomemadeIceCreamMixed => (int)_ItemReferences.HomemadeIceCreamMixed;
+
+		public static int HomemadeIceCreamMixture => (int)_ItemReferences.HomemadeIceCreamMixture;
+
+		public static int HomemadeIceCreamStrawberryMixed => (int)_ItemReferences.HomemadeIceCreamStrawberryMixed;
+
+		public static int HomemadeIceCreamStrawberry => (int)_ItemReferences.HomemadeIceCreamStrawberry;
+
+		public static int HomemadeIceCreamVanillaMixed => (int)_ItemReferences.HomemadeIceCreamVanillaMixed;
+
+		public static int Strawberry => (int)_ItemReferences.Strawberry;
+
 		public static int LeftoversBag => (int)_ItemReferences.LeftoversBag;
 
 		public static int Clipboard => (int)_ItemReferences.Clipboard;
+
+		public static int HamSliced => (int)_ItemReferences.HamSliced;
+
+		public static int Pickle => (int)_ItemReferences.Pickle;
+
+		public static int SandwichClub => (int)_ItemReferences.SandwichClub;
+
+		public static int SandwichDefault => (int)_ItemReferences.SandwichDefault;
+
+		public static int SandwichGiant => (int)_ItemReferences.SandwichGiant;
+
+		public static int SandwichToast => (int)_ItemReferences.SandwichToast;
 
 		public static int TacoIndividual => (int)_ItemReferences.TacoIndividual;
 
@@ -3795,9 +4009,51 @@ namespace KitchenLib.References
 
 		SpaghettiUncooked = -452280071,
 
+		SundaeDefault = 1695786399,
+
+		SundaeGiant = -1990180123,
+
+		SundaeGlass = 1116040881,
+
+		SundaeSyrupChocolateServing = 118692718,
+
+		SundaeSyrupChocolate = 2105393112,
+
+		SundaeSyrupStrawberryServing = -1927341553,
+
+		SundaeSyrupStrawberry = -764053970,
+
+		HomemadeIceCreamChocolateMixed = 1815024071,
+
+		HomemadeIceCreamChocolate = 1089859925,
+
+		HomemadeIceCreamMixed = -666384607,
+
+		HomemadeIceCreamMixture = -756407144,
+
+		HomemadeIceCreamStrawberryMixed = 1186100927,
+
+		HomemadeIceCreamStrawberry = 363293392,
+
+		HomemadeIceCreamVanillaMixed = -1033480722,
+
+		Strawberry = 578808284,
+
 		LeftoversBag = 903385113,
 
 		Clipboard = 123647569,
+
+		HamSliced = 164425076,
+
+		Pickle = 1384381531,
+
+		SandwichClub = -1370653249,
+
+		SandwichDefault = 359143701,
+
+		SandwichGiant = -527624731,
+
+		SandwichToast = 1453228675,
 
 		TacoIndividual = 244927287,
 
@@ -4058,6 +4314,24 @@ namespace KitchenLib.References
 
 		public static int SpaghettiUncooked => (int)_ItemGroupReferences.SpaghettiUncooked;
 
+		public static int SundaeDefault => (int)_ItemGroupReferences.SundaeDefault;
+
+		public static int SundaeGiant => (int)_ItemGroupReferences.SundaeGiant;
+
+		public static int HomemadeIceCreamChocolate => (int)_ItemGroupReferences.HomemadeIceCreamChocolate;
+
+		public static int HomemadeIceCreamMixture => (int)_ItemGroupReferences.HomemadeIceCreamMixture;
+
+		public static int HomemadeIceCreamStrawberry => (int)_ItemGroupReferences.HomemadeIceCreamStrawberry;
+
+		public static int SandwichClub => (int)_ItemGroupReferences.SandwichClub;
+
+		public static int SandwichDefault => (int)_ItemGroupReferences.SandwichDefault;
+
+		public static int SandwichGiant => (int)_ItemGroupReferences.SandwichGiant;
+
+		public static int SandwichToast => (int)_ItemGroupReferences.SandwichToast;
+
 		public static int TacoIndividual => (int)_ItemGroupReferences.TacoIndividual;
 
 		public static int TacosOnTray => (int)_ItemGroupReferences.TacosOnTray;
@@ -4311,6 +4585,24 @@ namespace KitchenLib.References
 
 		SpaghettiUncooked = -452280071,
 
+		SundaeDefault = 1695786399,
+
+		SundaeGiant = -1990180123,
+
+		HomemadeIceCreamChocolate = 1089859925,
+
+		HomemadeIceCreamMixture = -756407144,
+
+		HomemadeIceCreamStrawberry = 363293392,
+
+		SandwichClub = -1370653249,
+
+		SandwichDefault = 359143701,
+
+		SandwichGiant = -527624731,
+
+		SandwichToast = 1453228675,
+
 		TacoIndividual = 244927287,
 
 		TacosOnTray = -319704939,
@@ -4331,6 +4623,8 @@ namespace KitchenLib.References
 		public static int BakeryLayout => (int)_LayoutProfileReferences.BakeryLayout;
 
 		public static int WitchLayout => (int)_LayoutProfileReferences.WitchLayout;
+
+		public static int BanquetLayout => (int)_LayoutProfileReferences.BanquetLayout;
 
 		public static int BasicLayout => (int)_LayoutProfileReferences.BasicLayout;
 
@@ -4358,6 +4652,8 @@ namespace KitchenLib.References
 		BakeryLayout = 206333080,
 
 		WitchLayout = 394042671,
+
+		BanquetLayout = -921257357,
 
 		BasicLayout = 222370461,
 
@@ -4422,6 +4718,8 @@ namespace KitchenLib.References
 
 		public static int ThemeCardsPack => (int)_ModularUnlockPackReferences.ThemeCardsPack;
 
+		public static int ChristmasBuffetsCardPack => (int)_ModularUnlockPackReferences.ChristmasBuffetsCardPack;
+
 	}
 	public enum _ModularUnlockPackReferences
 	{
@@ -4448,6 +4746,8 @@ namespace KitchenLib.References
 		NormalCardsPack = 1659224512,
 
 		ThemeCardsPack = 786043106,
+
+		ChristmasBuffetsCardPack = 1430153472,
 
 	}
 	public static class PlayerCosmeticReferences
@@ -4624,6 +4924,18 @@ namespace KitchenLib.References
 
 		public static int JapanWinterHat => (int)_PlayerCosmeticReferences.JapanWinterHat;
 
+		public static int ElfChef => (int)_PlayerCosmeticReferences.ElfChef;
+
+		public static int ReindeerAntlersHat => (int)_PlayerCosmeticReferences.ReindeerAntlersHat;
+
+		public static int SnowglobeHat => (int)_PlayerCosmeticReferences.SnowglobeHat;
+
+		public static int SnowmanDisguiseHat => (int)_PlayerCosmeticReferences.SnowmanDisguiseHat;
+
+		public static int SnowmanRatatouilleHat => (int)_PlayerCosmeticReferences.SnowmanRatatouilleHat;
+
+		public static int StarTopperHat => (int)_PlayerCosmeticReferences.StarTopperHat;
+
 	}
 	public enum _PlayerCosmeticReferences
 	{
@@ -4799,6 +5111,18 @@ namespace KitchenLib.References
 
 		JapanWinterHat = 1412489605,
 
+		ElfChef = -1175171095,
+
+		ReindeerAntlersHat = -1719938564,
+
+		SnowglobeHat = -927075221,
+
+		SnowmanDisguiseHat = -488882727,
+
+		SnowmanRatatouilleHat = 644533104,
+
+		StarTopperHat = -1116056749,
+
 	}
 	public static class ProcessReferences
 	{
@@ -4817,6 +5141,8 @@ namespace KitchenLib.References
 		public static int ExtinguishFire => (int)_ProcessReferences.ExtinguishFire;
 
 		public static int FillCoffee => (int)_ProcessReferences.FillCoffee;
+
+		public static int Freeze => (int)_ProcessReferences.Freeze;
 
 		public static int Knead => (int)_ProcessReferences.Knead;
 
@@ -4852,6 +5178,8 @@ namespace KitchenLib.References
 		ExtinguishFire = -2063819574,
 
 		FillCoffee = -1316622579,
+
+		Freeze = -1853370850,
 
 		Knead = -523839730,
 
@@ -5226,6 +5554,8 @@ namespace KitchenLib.References
 
 		public static int Cakes => (int)_UnlockReferences.Cakes;
 
+		public static int WitchHutMode => (int)_UnlockReferences.WitchHutMode;
+
 		public static int SpaghettiBolognese => (int)_UnlockReferences.SpaghettiBolognese;
 
 		public static int Lasagne => (int)_UnlockReferences.Lasagne;
@@ -5233,6 +5563,42 @@ namespace KitchenLib.References
 		public static int PastawithWhiteSauce => (int)_UnlockReferences.PastawithWhiteSauce;
 
 		public static int PomodoroBase => (int)_UnlockReferences.PomodoroBase;
+
+		public static int PomodoroExtraStarch => (int)_UnlockReferences.PomodoroExtraStarch;
+
+		public static int PomodoroTraditional => (int)_UnlockReferences.PomodoroTraditional;
+
+		public static int IceCreamSundaesBaseHomemade => (int)_UnlockReferences.IceCreamSundaesBaseHomemade;
+
+		public static int IceCreamSundaesBaseSimpleScoops => (int)_UnlockReferences.IceCreamSundaesBaseSimpleScoops;
+
+		public static int IceCreamSundaesBase => (int)_UnlockReferences.IceCreamSundaesBase;
+
+		public static int IceCreamSundaesGiant => (int)_UnlockReferences.IceCreamSundaesGiant;
+
+		public static int IceCreamSundaesSyrups => (int)_UnlockReferences.IceCreamSundaesSyrups;
+
+		public static int IceCreamSundaesToppings => (int)_UnlockReferences.IceCreamSundaesToppings;
+
+		public static int SandwichBase => (int)_UnlockReferences.SandwichBase;
+
+		public static int SandwichDishClub => (int)_UnlockReferences.SandwichDishClub;
+
+		public static int SandwichDishGiant => (int)_UnlockReferences.SandwichDishGiant;
+
+		public static int SandwichDishToast => (int)_UnlockReferences.SandwichDishToast;
+
+		public static int SandwichExtraCheese => (int)_UnlockReferences.SandwichExtraCheese;
+
+		public static int SandwichExtraEgg => (int)_UnlockReferences.SandwichExtraEgg;
+
+		public static int SandwichExtraMayo => (int)_UnlockReferences.SandwichExtraMayo;
+
+		public static int SandwichExtraToppers => (int)_UnlockReferences.SandwichExtraToppers;
+
+		public static int BanquetDining => (int)_UnlockReferences.BanquetDining;
+
+		public static int ChristmasBanquetCardBuffets => (int)_UnlockReferences.ChristmasBanquetCardBuffets;
 
 		public static int TacosBase => (int)_UnlockReferences.TacosBase;
 
@@ -5659,6 +6025,8 @@ namespace KitchenLib.References
 
 		Cakes = 1113735761,
 
+		WitchHutMode = -192521877,
+
 		SpaghettiBolognese = -1501485763,
 
 		Lasagne = 803049136,
@@ -5666,6 +6034,42 @@ namespace KitchenLib.References
 		PastawithWhiteSauce = 1651927267,
 
 		PomodoroBase = 1764920765,
+
+		PomodoroExtraStarch = -1974675533,
+
+		PomodoroTraditional = 1411587046,
+
+		IceCreamSundaesBaseHomemade = -1451591918,
+
+		IceCreamSundaesBaseSimpleScoops = 620309357,
+
+		IceCreamSundaesBase = 934171642,
+
+		IceCreamSundaesGiant = -690833761,
+
+		IceCreamSundaesSyrups = 431260200,
+
+		IceCreamSundaesToppings = 1879652468,
+
+		SandwichBase = -1272159363,
+
+		SandwichDishClub = 641008296,
+
+		SandwichDishGiant = -1795285445,
+
+		SandwichDishToast = -72176411,
+
+		SandwichExtraCheese = -469306490,
+
+		SandwichExtraEgg = 525953646,
+
+		SandwichExtraMayo = -778718372,
+
+		SandwichExtraToppers = 368792675,
+
+		BanquetDining = 1989028383,
+
+		ChristmasBanquetCardBuffets = -2066052899,
 
 		TacosBase = 506626805,
 
@@ -5902,6 +6306,12 @@ namespace KitchenLib.References
 
 		public static int CoffeeshopMode => (int)_UnlockCardReferences.CoffeeshopMode;
 
+		public static int WitchHutMode => (int)_UnlockCardReferences.WitchHutMode;
+
+		public static int BanquetDining => (int)_UnlockCardReferences.BanquetDining;
+
+		public static int ChristmasBanquetCardBuffets => (int)_UnlockCardReferences.ChristmasBanquetCardBuffets;
+
 		public static int AllYouCanEatIncrease => (int)_UnlockCardReferences.AllYouCanEatIncrease;
 
 		public static int AllYouCanEat => (int)_UnlockCardReferences.AllYouCanEat;
@@ -6127,6 +6537,12 @@ namespace KitchenLib.References
 
 		CoffeeshopMode = 746549422,
 
+		WitchHutMode = -192521877,
+
+		BanquetDining = 1989028383,
+
+		ChristmasBanquetCardBuffets = -2066052899,
+
 		AllYouCanEatIncrease = 2055765569,
 
 		AllYouCanEat = -347199069,
@@ -6314,6 +6730,10 @@ namespace KitchenLib.References
 
 		public static int ThemeCardsPack => (int)_UnlockPackReferences.ThemeCardsPack;
 
+		public static int ChristmasBuffetsCardPack => (int)_UnlockPackReferences.ChristmasBuffetsCardPack;
+
+		public static int ChristmasCompositePack => (int)_UnlockPackReferences.ChristmasCompositePack;
+
 	}
 	public enum _UnlockPackReferences
 	{
@@ -6358,6 +6778,10 @@ namespace KitchenLib.References
 		NormalCardsPack = 1659224512,
 
 		ThemeCardsPack = 786043106,
+
+		ChristmasBuffetsCardPack = 1430153472,
+
+		ChristmasCompositePack = 1570187384,
 
 	}
 	public static class WorkshopRecipeReferences
@@ -6426,6 +6850,12 @@ namespace KitchenLib.References
 
 		public static int WitchHut2310 => (int)_RestaurantSettingReferences.WitchHut2310;
 
+		public static int HalloweenWithCards => (int)_RestaurantSettingReferences.HalloweenWithCards;
+
+		public static int BanquetSetting => (int)_RestaurantSettingReferences.BanquetSetting;
+
+		public static int ChristmasBanquetSetting => (int)_RestaurantSettingReferences.ChristmasBanquetSetting;
+
 		public static int Alpine => (int)_RestaurantSettingReferences.Alpine;
 
 		public static int City => (int)_RestaurantSettingReferences.City;
@@ -6452,6 +6882,12 @@ namespace KitchenLib.References
 		BakerySetting = -31920316,
 
 		WitchHut2310 = 424841351,
+
+		HalloweenWithCards = 726229627,
+
+		BanquetSetting = 206822591,
+
+		ChristmasBanquetSetting = -1864626837,
 
 		Alpine = -1864906012,
 
