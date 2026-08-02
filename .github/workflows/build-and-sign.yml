@@ -21,6 +21,17 @@ on:
         options:
           - "main"
           - "taste-test"
+          - "custom"
+      custombranch:
+        description: "Custom branch name (only used when buildbranch is 'custom')"
+        required: false
+        default: ""
+        type: string
+      custombranchpassword:
+        description: "Custom branch password (only used when buildbranch is 'custom')"
+        required: false
+        default: ""
+        type: string
 
 jobs:
   build-and-sign:
@@ -31,6 +42,21 @@ jobs:
       id-token: write
 
     steps:
+      - name: Mask custom branch inputs
+        if: ${{ github.event.inputs.buildbranch == 'custom' }}
+        env:
+          CUSTOM_BRANCH: ${{ github.event.inputs.custombranch }}
+          CUSTOM_BRANCH_PASSWORD: ${{ github.event.inputs.custombranchpassword }}
+        run: |
+          if [ -z "$CUSTOM_BRANCH" ]; then
+            echo "::error::buildbranch is 'custom' but no custombranch was provided."
+            exit 1
+          fi
+          echo "::add-mask::$CUSTOM_BRANCH"
+          if [ -n "$CUSTOM_BRANCH_PASSWORD" ]; then
+            echo "::add-mask::$CUSTOM_BRANCH_PASSWORD"
+          fi
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -57,6 +83,21 @@ jobs:
         if: ${{ github.event.inputs.buildbranch == 'taste-test'}}
         run: |
           ./DepotDownloader -app 1599600 -depot 1599601 -username ${{ secrets.STEAM_USERNAME }} -branch 'taste-test' -password ${{ secrets.STEAM_PASSWORD }} <<< "${{ steps.generate.outputs.code }}"
+
+      - name: Download PlateUp Files
+        if: ${{ github.event.inputs.buildbranch == 'custom'}}
+        env:
+          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
+          STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
+          STEAM_AUTH_CODE: ${{ steps.generate.outputs.code }}
+          CUSTOM_BRANCH: ${{ github.event.inputs.custombranch }}
+          CUSTOM_BRANCH_PASSWORD: ${{ github.event.inputs.custombranchpassword }}
+        run: |
+          args=(-app 1599600 -depot 1599601 -username "$STEAM_USERNAME" -password "$STEAM_PASSWORD" -branch "$CUSTOM_BRANCH")
+          if [ -n "$CUSTOM_BRANCH_PASSWORD" ]; then
+            args+=(-branchpassword "$CUSTOM_BRANCH_PASSWORD")
+          fi
+          ./DepotDownloader "${args[@]}" <<< "$STEAM_AUTH_CODE"
 
       - name: Install .NET Core
         uses: actions/setup-dotnet@v3
