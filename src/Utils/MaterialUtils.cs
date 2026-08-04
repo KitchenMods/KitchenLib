@@ -7,6 +7,7 @@ namespace KitchenLib.Utils
     public static class MaterialUtils
 	{
         private static readonly Dictionary<string, Material> MaterialIndex = new Dictionary<string, Material>();
+        private static readonly HashSet<string> ReportedMissingShaders = new HashSet<string>();
 
         /// <summary>
         /// Apply a material array to a child renderer.
@@ -187,6 +188,39 @@ namespace KitchenLib.Utils
             return parent.GetChild(childPath).ApplyMaterial(GetMaterialArray(materials));
         }
 
+        /// <summary>
+        /// Find a Shader by name.
+        /// </summary>
+        /// <remarks>
+        /// Shader.Find only sees shaders that are in the player's Always Included Shaders
+        /// list or that some already loaded object is using, so it returns null for a shader
+        /// that exists in the game's asset files but has not been pulled into memory yet.
+        /// Scan the loaded shaders before giving up, and report the name when it cannot be
+        /// resolved at all rather than letting it surface as a null argument to Material.
+        /// </remarks>
+        /// <param name="shaderName">The name of the shader to find.</param>
+        /// <returns>The requested Shader, or null if it could not be resolved.</returns>
+        public static Shader GetShader(string shaderName)
+        {
+            Shader shader = GetShader(shaderName);
+            if (shader != null)
+                return shader;
+
+            foreach (Shader loadedShader in Resources.FindObjectsOfTypeAll<Shader>())
+            {
+                if (loadedShader.name == shaderName)
+                    return loadedShader;
+            }
+
+            if (!ReportedMissingShaders.Contains(shaderName))
+            {
+                ReportedMissingShaders.Add(shaderName);
+                Main.LogError($"Shader '{shaderName}' could not be found. Materials using it will not be created. It is either missing from the game's Always Included Shaders list or not loaded yet at this point in startup.");
+            }
+
+            return null;
+        }
+
         public static void SetupMaterialIndex()
         {
 			if (MaterialIndex.Count > 0)
@@ -316,7 +350,7 @@ namespace KitchenLib.Utils
         /// <returns>The created Material.</returns>
         public static Material CreateFlat(string name, Color color, float shininess = 0, float overlayScale = 10)
         {
-            Material mat = new(Shader.Find("Simple Flat"))
+            Material mat = new(GetShader("Simple Flat"))
             {
                 name = name
             };
@@ -348,7 +382,7 @@ namespace KitchenLib.Utils
         /// <returns>The created Material.</returns>
         public static Material CreateTransparent(string name, Color color)
         {
-            Material mat = new(Shader.Find("Simple Transparent"))
+            Material mat = new(GetShader("Simple Transparent"))
             {
                 name = name
             };

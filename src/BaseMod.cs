@@ -138,20 +138,30 @@ namespace KitchenLib
 
 			foreach (BaseJson json in JSONManager.LoadedJsons)
 			{
-				if (json is CustomBaseMaterial)
+				try
 				{
-					CustomBaseMaterial customBaseMaterial = json as CustomBaseMaterial;
-					Material mat;
-					customBaseMaterial.ConvertMaterial(out mat);
-					AddMaterial(mat);
+					if (json is CustomBaseMaterial)
+					{
+						CustomBaseMaterial customBaseMaterial = json as CustomBaseMaterial;
+						Material mat;
+						customBaseMaterial.ConvertMaterial(out mat);
+						if (mat != null)
+							AddMaterial(mat);
+					}
+					else if (json is CustomMaterial)
+					{
+						CustomMaterial customBaseMaterial = json as CustomMaterial;
+						Material mat;
+						customBaseMaterial.Deserialise();
+						customBaseMaterial.ConvertMaterial(out mat);
+						if (mat != null)
+							AddMaterial(mat);
+					}
 				}
-				else if (json is CustomMaterial)
+				catch (Exception e)
 				{
-					CustomMaterial customBaseMaterial = json as CustomMaterial;
-					Material mat;
-					customBaseMaterial.Deserialise();
-					customBaseMaterial.ConvertMaterial(out mat);
-					AddMaterial(mat);
+					Main.LogError($"{json.GetType().FullName} could not be converted into a Material");
+					Main.LogError(e);
 				}
 			}
 

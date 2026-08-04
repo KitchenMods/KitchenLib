@@ -36,7 +36,7 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Simple Flat"));
+			Material result = new Material(MaterialUtils.GetShader("Simple Flat"));
 
 			result.name = Name;
 			result.SetVector("_Color0", new Vector4(_Color0X, _Color0Y, _Color0Z, _Color0W));
@@ -73,7 +73,7 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Simple Transparent"));
+			Material result = new Material(MaterialUtils.GetShader("Simple Transparent"));
 
 			result.name = Name;
 			result.SetVector("_Color", new Vector4(_ColorX, _ColorY, _ColorZ, _ColorW));
@@ -95,7 +95,7 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Flat Image"));
+			Material result = new Material(MaterialUtils.GetShader("Flat Image"));
 
 			result.name = Name;
 			if (_ImageBase64 != "" && _ImageBase64 != String.Empty)

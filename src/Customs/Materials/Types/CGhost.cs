@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using imColorPicker;
 using KitchenLib.Interfaces;
+using KitchenLib.Utils;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -20,7 +21,7 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Ghost"));
+			Material result = new Material(MaterialUtils.GetShader("Ghost"));
 
 			result.SetColor("_Colour", _Color);
 			result.SetFloat("_Hatched", _Hatched ? 1 : 0);

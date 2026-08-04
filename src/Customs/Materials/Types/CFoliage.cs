@@ -2,6 +2,7 @@
 using System;
 using imColorPicker;
 using KitchenLib.Interfaces;
+using KitchenLib.Utils;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -24,7 +25,7 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Foliage"));
+			Material result = new Material(MaterialUtils.GetShader("Foliage"));
 
 			result.SetColor("_Color0", _Color0);
 			result.SetColor("_Color1", _Color1);

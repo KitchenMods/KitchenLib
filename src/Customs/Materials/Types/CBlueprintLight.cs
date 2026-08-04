@@ -2,6 +2,7 @@
 using System;
 using imColorPicker;
 using KitchenLib.Interfaces;
+using KitchenLib.Utils;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -28,7 +29,7 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Blueprint Light"));
+			Material result = new Material(MaterialUtils.GetShader("Blueprint Light"));
 
 			result.SetColor("_Color", _Color);
 			result.SetColor("_Color0", _Color0);

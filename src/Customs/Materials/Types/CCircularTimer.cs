@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using imColorPicker;
 using KitchenLib.Interfaces;
+using KitchenLib.Utils;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -38,7 +39,7 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Circular Timer"));
+			Material result = new Material(MaterialUtils.GetShader("Circular Timer"));
 
 			result.SetColor("_Colour", _Colour);
 			result.SetColor("_BackingColour", _BackingColour);

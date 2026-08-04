@@ -232,7 +232,7 @@ namespace KitchenLib.UI
 			MaterialTemplates.Clear();
 			foreach (string shader in editors.Keys)
 			{
-				MaterialTemplates.Add(new Material(Shader.Find(shader)));
+				MaterialTemplates.Add(new Material(MaterialUtils.GetShader(shader)));
 			}
 		}
 		

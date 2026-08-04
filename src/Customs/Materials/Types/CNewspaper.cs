@@ -30,7 +30,7 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Newspaper"));
+			Material result = new Material(MaterialUtils.GetShader("Newspaper"));
 
 			result.SetTexture("_Overlay", _Photograph);
 			result.SetFloat("_Alpha", _Alpha);

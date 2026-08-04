@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using imColorPicker;
 using KitchenLib.Interfaces;
+using KitchenLib.Utils;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -17,7 +18,7 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Flat"));
+			Material result = new Material(MaterialUtils.GetShader("Flat"));
 
 			result.SetColor("_Color0", _Color0);
 			result.name = Name;

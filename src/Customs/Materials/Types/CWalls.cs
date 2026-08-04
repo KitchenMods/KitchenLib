@@ -51,7 +51,7 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Walls"));
+			Material result = new Material(MaterialUtils.GetShader("Walls"));
 
 			result.SetColor("_Color0", _Color0);
 			result.SetColor("_Colour2", _Colour2);

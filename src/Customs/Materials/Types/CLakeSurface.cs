@@ -2,6 +2,7 @@ using System;
 using imColorPicker;
 using KitchenLib.Interfaces;
 using Newtonsoft.Json;
+using KitchenLib.Utils;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -40,7 +41,7 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Lake Surface"));
+			Material result = new Material(MaterialUtils.GetShader("Lake Surface"));
 
 			result.SetColor("_Color0", _Color0);
 			result.SetFloat("_TimeScale", _TimeScale);

@@ -22,7 +22,7 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Flat Image"));
+			Material result = new Material(MaterialUtils.GetShader("Flat Image"));
 			
 			result.name = Name;
 			result.SetFloat("_Alpha", _Alpha);

@@ -1,6 +1,7 @@
 using System;
 using KitchenLib.Interfaces;
 using Newtonsoft.Json;
+using KitchenLib.Utils;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -19,7 +20,7 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Mirror"));
+			Material result = new Material(MaterialUtils.GetShader("Mirror"));
 
 			result.SetVector("_Centre", _Centre);
 			result.SetFloat("_Radius", _Radius);

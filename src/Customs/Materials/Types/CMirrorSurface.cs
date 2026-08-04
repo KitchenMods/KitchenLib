@@ -2,6 +2,7 @@
 using System;
 using imColorPicker;
 using KitchenLib.Interfaces;
+using KitchenLib.Utils;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -20,7 +21,7 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Mirror Surface"));
+			Material result = new Material(MaterialUtils.GetShader("Mirror Surface"));
 
 			result.SetColor("_Color1", _Color1);
 			result.SetFloat("_Highlight", _Highlight ? 1 : 0);

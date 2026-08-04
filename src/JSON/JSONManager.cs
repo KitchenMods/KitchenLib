@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using KitchenLib.Utils;
 using UnityEngine;
 
 namespace KitchenLib
@@ -74,7 +75,7 @@ namespace KitchenLib
 				return material;
 			}
 			Main.LogWarning("Unable to load JSON");
-			return new Material(Shader.Find("Simple Flat"));
+			return new Material(MaterialUtils.GetShader("Simple Flat"));
 
 		}
 
@@ -110,19 +111,29 @@ namespace KitchenLib
 			
 			foreach (BaseJson json in LoadedJsons)
 			{
-				if (json is CustomMaterial)
+				try
 				{
-					var material = json as CustomMaterial;
-					material.Deserialise();
-					material.ConvertMaterial(out Material newMaterial);
-					CustomMaterials.AddMaterial(material.Name, newMaterial);
+					if (json is CustomMaterial)
+					{
+						var material = json as CustomMaterial;
+						material.Deserialise();
+						material.ConvertMaterial(out Material newMaterial);
+						if (newMaterial != null)
+							CustomMaterials.AddMaterial(material.Name, newMaterial);
+					}
+					if (json is CustomBaseMaterial)
+					{
+						var material = json as CustomBaseMaterial;
+						Material mat;
+						material.ConvertMaterial(out mat);
+						if (mat != null)
+							CustomMaterials.AddMaterial(mat.name, mat);
+					}
 				}
-				if (json is CustomBaseMaterial)
+				catch (Exception e)
 				{
-					var material = json as CustomBaseMaterial;
-					Material mat;
-					material.ConvertMaterial(out mat);
-					CustomMaterials.AddMaterial(mat.name, mat);
+					Main.LogError($"{json.GetType().FullName} could not be converted into a Material");
+					Main.LogError(e);
 				}
 			}
 		}

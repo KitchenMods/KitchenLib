@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using KitchenLib.Interfaces;
+using KitchenLib.Utils;
 using UnityEngine;
 
 namespace KitchenLib.Customs
@@ -15,7 +16,7 @@ namespace KitchenLib.Customs
 
 		public override void ConvertMaterial(out Material material)
 		{
-			Material result = new Material(Shader.Find("Preview Floor"));
+			Material result = new Material(MaterialUtils.GetShader("Preview Floor"));
 
 			result.SetFloat("_LineRate", _LineRate);
 			result.SetFloat("_LineOffset", _LineOffset);
