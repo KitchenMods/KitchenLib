@@ -13,11 +13,12 @@ using KitchenLib.Logging.Exceptions;
 using System.Runtime.CompilerServices;
 using System;
 using KitchenLib.Achievements;
+using KitchenLib.Commands;
 using KitchenLib.Components;
+using KitchenLib.UI.IMGUI;
 using KitchenLib.UI.PlateUp.PreferenceMenus;
 using KitchenLib.Utils;
 using KitchenLib.Views;
-using Unity.Entities;
 using KitchenLogger = KitchenLib.Logging.KitchenLogger;
 
 namespace KitchenLib
@@ -96,6 +97,15 @@ namespace KitchenLib
 		/// Whether or not data should be synced with the Steam Cloud.
 		/// </summary>
 		internal static bool steamCloud = false;
+		
+		/// <summary>
+		/// Whether or not cheat related commands should be usable.
+		/// </summary>
+		internal static bool cheatsEnabled = false;
+
+		internal static bool _enableDeveloperConsole = false;
+		internal ulong _acceptableEnablerModID = 3776747177;
+		internal string _acceptableEnablerAssemblyHash = "ef86f16d498669ee960c1ec9ab63695be4c56079bca7612e3a22513c234ad3d0";
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Main"/> class.
@@ -131,6 +141,9 @@ namespace KitchenLib
 			RegisterMenu<NewNewMaterialUI>();
 			RegisterMenu<DebugMenu>();
 			
+			DeveloperConsole.RegisterCommand(new ClearCommand());
+			DeveloperConsole.RegisterCommand(new HelpCommand());
+			DeveloperConsole.RegisterCommand(new EnableCheatsCommand());
 			
 			/*
 			achievementsManager = new AchievementsManager(MOD_ID, MOD_NAME);
@@ -186,8 +199,32 @@ namespace KitchenLib
 		/// </summary>
 		protected override void OnInitialise()
 		{
-			GameObject go = new GameObject();
-			go.AddComponent<DevUIController>();
+			GameObject localScriptManager = new GameObject("KitchenLib Local Script Manager");
+			localScriptManager.AddComponent<DevUIController>();
+			localScriptManager.AddComponent<DeveloperConsole>();
+
+			_enableDeveloperConsole = IsDeveloperConsoleEnablerFound();
+		}
+
+		private bool IsDeveloperConsoleEnablerFound()
+		{
+			foreach (Mod mod in ModPreload.Mods)
+			{
+				if (mod.ID == _acceptableEnablerModID)
+				{
+					foreach (AssemblyModPack pack in mod.GetPacks<AssemblyModPack>())
+					{
+						string hash = VariousUtils.GetAssemblyHash(pack.Asm);
+						if (hash == _acceptableEnablerAssemblyHash)
+						{
+							return true;
+						}
+					}
+					break;
+				}
+			}
+			
+			return false;
 		}
 
 		private Type GetPreferenceSystemMenuType()
