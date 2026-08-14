@@ -1,32 +1,21 @@
 ﻿using Kitchen;
-using KitchenLib.Achievements;
 using KitchenLib.Components;
 using KitchenLib.Utils;
 using KitchenMods;
 using Unity.Entities;
-using UnityEngine;
 
 namespace KitchenLib.Systems
 {
+	/*
+	 * This system is designed to trigger achievement unlocks
+	 * This system static and accessible anywhere
+	 */
 	public class AchievementUnlockSystem : GameSystemBase, IModSystem
 	{
 		internal static AchievementUnlockSystem Instance;
 		protected override void OnUpdate()
 		{
-			if (Instance == null) Instance = this;
-			return;
-			if (Input.GetKeyDown(KeyCode.F))
-			{
-				AchievementsManager.GetManager("kitchenlib").UnlockAchievement("test");
-			}
-			if (Input.GetKeyDown(KeyCode.G))
-			{
-				AchievementsManager.GetManager("kitchenlib").UnlockAchievement("test2");
-			}
-			if (Input.GetKeyDown(KeyCode.H))
-			{
-				AchievementsManager.GetManager("kitchenlib").UnlockAchievement("test3");
-			}
+			Instance ??= this;
 		}
 
 		public void UnlockAchievement(string modid, string key)

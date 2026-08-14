@@ -6,10 +6,14 @@ using Unity.Entities;
 
 namespace KitchenLib.Systems
 {
-	public class ComponentCleanup : GameSystemBase, IModSystem
+	/*
+	 * This system is designed to cleanup and remove any entities with legacy components
+	 */
+	public class CleanupLegacyComponents : GameSystemBase, IModSystem
 	{
 		private EntityQuery query;
 		
+		// Initialise a list of legacy components
 		protected override void Initialise()
 		{
 			query = GetEntityQuery(new QueryHelper().All(

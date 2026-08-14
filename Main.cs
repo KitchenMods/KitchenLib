@@ -130,17 +130,6 @@ namespace KitchenLib
 			SetupMenus();
 			RegisterMenu<NewNewMaterialUI>();
 			RegisterMenu<DebugMenu>();
-			
-			
-			/*
-			achievementsManager = new AchievementsManager(MOD_ID, MOD_NAME);
-			achievementsManager.RegisterAchievement(new Achievement("test", "Super Wow!", "This is a super cool test achivement!", bundle.LoadAsset<Texture2D>("wow")));
-			achievementsManager.RegisterAchievement(new Achievement("test2", "Another Wow", "This is a su2per cool test achivement!", bundle.LoadAsset<Texture2D>("vest"), new List<string>{"test"}));
-			achievementsManager.RegisterAchievement(new Achievement("test3", "Triple Wow?", "This is a su3per cool test achivement!", bundle.LoadAsset<Texture2D>("wow"), new List<string>{"test"}));
-			achievementsManager.Load();
-			achievementsManager.Save();
-			*/
-			
 
 			ViewUtils.RegisterView("KitchenLib.Views.SyncMods", typeof(SModSync), typeof(SyncMods));
 
