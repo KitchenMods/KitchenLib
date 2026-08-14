@@ -2,7 +2,7 @@
 using KitchenData;
 using UnityEngine;
 
-namespace KitchenLib.Customs.GDOs
+namespace KitchenLib.Customs.Generics
 {
 	internal abstract class BaseViewHolder<T> : CustomAppliance where T : GenericObjectView
 	{

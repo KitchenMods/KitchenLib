@@ -1,8 +1,8 @@
-﻿using KitchenLib.Customs.GDOs;
+﻿using KitchenLib.Customs.Generics;
 using KitchenLib.Views;
 using UnityEngine;
 
-namespace KitchenLib.Customs
+namespace KitchenLib.Customs.Appliances
 {
 	internal class SyncModsViewHolder : BaseViewHolder<SyncMods>
 	{
