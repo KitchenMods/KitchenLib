@@ -8,6 +8,44 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomDish : CustomUnlock<Dish>
 	{
+
+		#region Base Game Variables
+
+		public virtual DishType Type { get; protected set; }
+		public virtual int Difficulty { get; protected set; }
+		public virtual int RewardOverride { get; protected set; }
+		public virtual Item UnlockItemOverride { get; protected set; }
+		public virtual bool HideInfoPanel { get; protected set; }
+		public virtual bool SkipOwnRecipe { get; protected set; }
+		public virtual List<Dish> AlsoAddRecipes { get; protected set; } = new();
+		public virtual GameObject IconPrefab { get; protected set; }
+		public virtual GameObject DisplayPrefab { get; protected set; }
+		public virtual string ImageKey { get; protected set; }
+		public virtual List<Dish.MenuItem> ResultingMenuItems { get; protected set; } = new();
+		public virtual HashSet<Dish.IngredientUnlock> IngredientsUnlocks { get; protected set; } = new();
+		public virtual HashSet<Dish.IngredientUnlock> ExtraOrderUnlocks { get; protected set; } = new();
+		public virtual bool IsMainThatDoesNotNeedPlates { get; protected set; }
+		public virtual List<RestaurantStatus> AddsStatuses { get; protected set; } = new();
+		public virtual List<string> StartingNameSet { get; protected set; } = new();
+		public virtual HeatLevels  HeatOverride { get; protected set; } = new();
+		public virtual HashSet<Item> MinimumIngredients { get; protected set; } = new();
+		public virtual HashSet<Process> RequiredProcesses { get; protected set; } = new();
+		public virtual HashSet<Item> BlockProviders { get; protected set; } = new();
+		public virtual HashSet<Item> BeneficialIngredients { get; protected set; } = new();
+
+		#endregion
+
+		#region KitchenLib Variables
+
+		public virtual bool IsAvailableAsLobbyOption { get; protected set; } = false;
+		public virtual bool DestroyAfterModUninstall { get; protected set; } = true;
+		public virtual Dictionary<Locale, string> Recipe { get; protected set; } = new();
+		public virtual Item RequiredDishItem { get; protected set; }
+		public virtual bool RequiredNoDishItem { get; protected set; } = false;
+		public virtual bool BypassMainRequirementsCheck { get; protected set; } = false;
+
+		#endregion
+		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -26,9 +64,7 @@ namespace KitchenLib.Customs
 				OverrideVariable(dish, "ImageKey", ImageKey);
 				OverrideVariable(dish, "IsMainThatDoesNotNeedPlates", IsMainThatDoesNotNeedPlates);
 				OverrideVariable(dish, "AddsStatuses", AddsStatuses);
-				OverrideVariable(dish, "AchievementName", AchievementName);
 				OverrideVariable(dish, "StartingNameSet", StartingNameSet);
-				OverrideVariable(dish, "IsSpeedrunDish", IsSpeedrunDish);
 
 				#endregion
 
@@ -52,6 +88,7 @@ namespace KitchenLib.Customs
 				OverrideVariable(dish, "ResultingMenuItems", ResultingMenuItems);
 				OverrideVariable(dish, "IngredientsUnlocks", IngredientsUnlocks);
 				OverrideVariable(dish, "ExtraOrderUnlocks", ExtraOrderUnlocks);
+				OverrideVariable(dish, "HeatOverride", HeatOverride);
 				OverrideVariable(dish, "MinimumIngredients", MinimumIngredients);
 				OverrideVariable(dish, "RequiredProcesses", RequiredProcesses);
 				OverrideVariable(dish, "BlockProviders", BlockProviders);
@@ -107,44 +144,6 @@ namespace KitchenLib.Customs
 				}
 			}
 		}
-
-		#region Base Game Variables
-
-		public virtual DishType Type { get; protected set; }
-		public virtual int Difficulty { get; protected set; }
-		public virtual int RewardOverride { get; protected set; }
-		public virtual Item UnlockItemOverride { get; protected set; }
-		public virtual bool HideInfoPanel { get; protected set; }
-		public virtual bool SkipOwnRecipe { get; protected set; }
-		public virtual List<Dish> AlsoAddRecipes { get; protected set; } = new();
-		public virtual GameObject IconPrefab { get; protected set; }
-		public virtual GameObject DisplayPrefab { get; protected set; }
-		public virtual string ImageKey { get; protected set; }
-		public virtual List<Dish.MenuItem> ResultingMenuItems { get; protected set; } = new();
-		public virtual HashSet<Dish.IngredientUnlock> IngredientsUnlocks { get; protected set; } = new();
-		public virtual HashSet<Dish.IngredientUnlock> ExtraOrderUnlocks { get; protected set; } = new();
-		public virtual bool IsMainThatDoesNotNeedPlates { get; protected set; }
-		public virtual List<RestaurantStatus> AddsStatuses { get; protected set; } = new();
-		public virtual string AchievementName { get; protected set; }
-		public virtual List<string> StartingNameSet { get; protected set; } = new();
-		public virtual bool IsSpeedrunDish { get; protected set; }
-		public virtual HashSet<Item> MinimumIngredients { get; protected set; } = new();
-		public virtual HashSet<Process> RequiredProcesses { get; protected set; } = new();
-		public virtual HashSet<Item> BlockProviders { get; protected set; } = new();
-		public virtual HashSet<Item> BeneficialIngredients { get; protected set; } = new();
-
-		#endregion
-
-		#region KitchenLib Variables
-
-		public virtual bool IsAvailableAsLobbyOption { get; protected set; } = false;
-		public virtual bool DestroyAfterModUninstall { get; protected set; } = true;
-		public virtual Dictionary<Locale, string> Recipe { get; protected set; } = new();
-		public virtual Item RequiredDishItem { get; protected set; }
-		public virtual bool RequiredNoDishItem { get; protected set; } = false;
-		public virtual bool BypassMainRequirementsCheck { get; protected set; } = false;
-
-		#endregion
 		
 		public override void OnRegister(GameDataObject gameDataObject)
 		{

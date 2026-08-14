@@ -6,6 +6,15 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomFranchiseUpgrade : CustomGenericLocalisation<FranchiseUpgrade>
 	{
+
+		#region Base Game Variables
+
+		public virtual int MaximumUpgradeCount { get; protected set; } = 1;
+		public virtual List<IFranchiseUpgrade> Upgrades { get; protected set; } = new();
+		public virtual GameObject Prefab { get; protected set; }
+
+		#endregion
+		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -23,23 +32,5 @@ namespace KitchenLib.Customs
 
 			#endregion
 		}
-
-		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
-		{
-			base.AttachDependentProperties(gameData, gameDataObject);
-
-			if (!(gameDataObject is FranchiseUpgrade franchiseUpgrade))
-			{
-				return;
-			}
-		}
-
-		#region Base Game Variables
-
-		public virtual int MaximumUpgradeCount { get; protected set; } = 1;
-		public virtual List<IFranchiseUpgrade> Upgrades { get; protected set; } = new();
-		public virtual GameObject Prefab { get; protected set; }
-
-		#endregion
 	}
 }

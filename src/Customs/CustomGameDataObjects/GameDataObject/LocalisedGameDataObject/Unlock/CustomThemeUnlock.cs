@@ -4,6 +4,16 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomThemeUnlock : CustomUnlock<ThemeUnlock>
 	{
+
+		#region Base Game Variables
+
+		public virtual bool IsPrimary { get; protected set; } = true;
+		public virtual DecorationType Type { get; protected set; }
+		public virtual ThemeUnlock ParentTheme1 { get; protected set; }
+		public virtual ThemeUnlock ParentTheme2 { get; protected set; }
+
+		#endregion
+		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -33,14 +43,5 @@ namespace KitchenLib.Customs
 				#endregion
 			}
 		}
-
-		#region Base Game Variables
-
-		public virtual bool IsPrimary { get; protected set; } = true;
-		public virtual DecorationType Type { get; protected set; }
-		public virtual ThemeUnlock ParentTheme1 { get; protected set; }
-		public virtual ThemeUnlock ParentTheme2 { get; protected set; }
-
-		#endregion
 	}
 }

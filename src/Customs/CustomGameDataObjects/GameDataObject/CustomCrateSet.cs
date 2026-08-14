@@ -11,16 +11,6 @@ namespace KitchenLib.Customs
 
 		#endregion
 
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
-
-			if (!(gameDataObject is CrateSet crateSet))
-			{
-				return;
-			}
-		}
-
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);

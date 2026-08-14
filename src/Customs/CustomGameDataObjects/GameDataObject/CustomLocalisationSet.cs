@@ -16,17 +16,7 @@ namespace KitchenLib.Customs
 		public virtual List<(Locale, L)> InfoList { get; protected set; } = new();
 
 		#endregion
-
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
-
-			if (!(gameDataObject is LocalisationSet<L> localisationSet))
-			{
-				return;
-			}
-		}
-
+		
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
@@ -35,6 +25,12 @@ namespace KitchenLib.Customs
 			{
 				return;
 			}
+			
+			#region Apply Properties
+
+			OverrideVariable(localisationSet, "LocalisationInfo", LocalisationInfo);
+
+			#endregion
 		}
 	}
 }

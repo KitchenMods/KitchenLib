@@ -5,6 +5,19 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomCustomerType : CustomGameDataObject<CustomerType>
 	{
+		#region Base Game Variables
+
+		public virtual bool IsGenericGroup { get; protected set; }
+		public virtual bool RelativeGroupSize { get; protected set; }
+		public virtual int MinGroupSize { get; protected set; }
+		public virtual int MaxGroupSize { get; protected set; }
+		public virtual PatienceValues PatienceModifiers { get; protected set; }
+		public virtual OrderingValues OrderingModifiers { get; protected set; }
+		public virtual List<PlayerCosmetic> Cosmetics { get; protected set; } = new();
+		public virtual List<ICustomerProperty> Properties { get; protected set; } = new();
+
+		#endregion
+		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -39,17 +52,5 @@ namespace KitchenLib.Customs
 			}
 		}
 
-		#region Base Game Variables
-
-		public virtual bool IsGenericGroup { get; protected set; }
-		public virtual bool RelativeGroupSize { get; protected set; }
-		public virtual int MinGroupSize { get; protected set; }
-		public virtual int MaxGroupSize { get; protected set; }
-		public virtual PatienceValues PatienceModifiers { get; protected set; }
-		public virtual OrderingValues OrderingModifiers { get; protected set; }
-		public virtual List<PlayerCosmetic> Cosmetics { get; protected set; } = new();
-		public virtual List<ICustomerProperty> Properties { get; protected set; } = new();
-
-		#endregion
 	}
 }

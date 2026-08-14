@@ -7,6 +7,20 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomSeasonalDecorationLayout : CustomGameDataObject<SeasonalDecorationLayout>
 	{
+		
+		#region Base Game Variables
+
+		public virtual Season SeasonActive { get; protected set; }
+		public virtual List<SeasonalDecorationLayout.Decoration> Decorations { get; protected set; } = new();
+		public virtual List<SeasonalDecorationLayout.DecorOverride> DecorOverrides { get; protected set; } = new();
+
+		#endregion
+
+		#region KitchenLib Variables
+
+		public virtual List<ValueTuple<Season, ValueTuple<ValueTuple<int, int>, ValueTuple<int, int>>>> DateRange { get; protected set; } = new List<ValueTuple<Season, ValueTuple<ValueTuple<int, int>, ValueTuple<int, int>>>>();
+
+		#endregion
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -56,19 +70,5 @@ namespace KitchenLib.Customs
 
 			#endregion
 		}
-
-		#region KitchenLib Variables
-
-		public virtual List<ValueTuple<Season, ValueTuple<ValueTuple<int, int>, ValueTuple<int, int>>>> DateRange { get; protected set; } = new List<ValueTuple<Season, ValueTuple<ValueTuple<int, int>, ValueTuple<int, int>>>>();
-
-		#endregion
-		
-		#region Base Game Variables
-
-		public virtual Season SeasonActive { get; protected set; }
-		public virtual List<SeasonalDecorationLayout.Decoration> Decorations { get; protected set; } = new();
-		public virtual List<SeasonalDecorationLayout.DecorOverride> DecorOverrides { get; protected set; } = new();
-
-		#endregion
 	}
 }

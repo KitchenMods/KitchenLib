@@ -6,6 +6,21 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomRestaurantSetting : CustomGenericLocalisation<RestaurantSetting>
 	{
+
+		#region Base Game Variables
+
+		public virtual WeatherMode WeatherMode { get; protected set; }
+		public virtual List<IDecorationConfiguration> Decorators { get; protected set; } = new();
+		public virtual UnlockPack UnlockPack { get; protected set; }
+		public virtual Unlock StartingUnlock { get; protected set; }
+		public virtual Dish FixedDish { get; protected set; }
+		public virtual GameObject Prefab { get; protected set; }
+		public virtual LayoutProfile ForceLayout { get; protected set; }
+		public virtual bool AlwaysLight { get; protected set; }
+		public virtual Season FixedRunSeason { get; protected set; }
+
+		#endregion
+		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -44,19 +59,5 @@ namespace KitchenLib.Customs
 
 			#endregion
 		}
-
-		#region Base Game Variables
-
-		public virtual WeatherMode WeatherMode { get; protected set; }
-		public virtual List<IDecorationConfiguration> Decorators { get; protected set; } = new();
-		public virtual UnlockPack UnlockPack { get; protected set; }
-		public virtual Unlock StartingUnlock { get; protected set; }
-		public virtual Dish FixedDish { get; protected set; }
-		public virtual GameObject Prefab { get; protected set; }
-		public virtual LayoutProfile ForceLayout { get; protected set; }
-		public virtual bool AlwaysLight { get; protected set; }
-		public virtual Season FixedRunSeason { get; protected set; }
-
-		#endregion
 	}
 }

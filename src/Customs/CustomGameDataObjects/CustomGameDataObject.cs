@@ -15,20 +15,6 @@ namespace KitchenLib.Customs
 
 		#endregion
 
-		public virtual void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
-		{
-		}
-
-		[Obsolete("Use OnRegister(SpecificGDOType) instead")]
-		public virtual void OnRegister(GameDataObject gameDataObject)
-		{
-		}
-
-		public virtual void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			gameDataObject = null;
-		}
-
 		#region KitchenLib Variables
 
 		public int LegacyID { get; internal set; }
@@ -101,6 +87,22 @@ namespace KitchenLib.Customs
 		}
 
 		#endregion
+		
+		public virtual void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
+		{
+		}
+
+		[Obsolete("Use OnRegister(SpecificGDOType) instead")]
+		public virtual void OnRegister(GameDataObject gameDataObject)
+		{
+		}
+
+		public virtual void Convert(GameData gameData, out GameDataObject gameDataObject)
+		{
+			gameDataObject = null;
+		}
+
+		
 	}
 
 	public abstract class CustomGameDataObject<T> : CustomGameDataObject where T : GameDataObject

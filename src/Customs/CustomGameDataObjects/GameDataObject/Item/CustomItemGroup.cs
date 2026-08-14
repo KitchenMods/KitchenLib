@@ -14,6 +14,25 @@ namespace KitchenLib.Customs
 
 	public abstract class CustomItemGroup<T> : CustomItem<ItemGroup> where T : ItemGroupView
 	{
+		
+		#region Base Game Variables
+
+		public virtual List<ItemGroup.ItemSet> Sets { get; protected set; } = new();
+		public virtual bool CanContainSide { get; protected set; }
+		public virtual bool ApplyProcessesToComponents { get; protected set; }
+		public virtual bool AllowLooseComponentSplitting { get; protected set; }
+		public virtual bool AutoCollapsing { get; protected set; }
+		public virtual List<ItemGroup.ItemReward> Rewards { get; protected set; } = new();
+
+		#endregion
+
+		#region KitchenLib Variables
+
+		public virtual bool AutoSetupItemGroupView { get; protected set; } = true;
+		public virtual List<ItemGroupView.ColourBlindLabel> Labels { get; protected set; } = new();
+
+		#endregion
+		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -81,23 +100,5 @@ namespace KitchenLib.Customs
 				}
 			}
 		}
-
-		#region Base Game Variables
-
-		public virtual List<ItemGroup.ItemSet> Sets { get; protected set; } = new();
-		public virtual bool CanContainSide { get; protected set; }
-		public virtual bool ApplyProcessesToComponents { get; protected set; }
-		public virtual bool AllowLooseComponentSplitting { get; protected set; }
-		public virtual bool AutoCollapsing { get; protected set; }
-		public virtual List<ItemGroup.ItemReward> Rewards { get; protected set; } = new();
-
-		#endregion
-
-		#region KitchenLib Variables
-
-		public virtual bool AutoSetupItemGroupView { get; protected set; } = true;
-		public virtual List<ItemGroupView.ColourBlindLabel> Labels { get; protected set; } = new();
-
-		#endregion
 	}
 }

@@ -5,6 +5,15 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomResearch : CustomLocalisedGameDataObject<Research, ResearchLocalisation>
 	{
+
+		#region Base Game Variables
+
+		public virtual List<IUpgrade> Rewards { get; protected set; } = new();
+		public virtual List<Research> EnablesResearchOf { get; protected set; } = new();
+		public virtual List<Research> RequiresForResearch { get; protected set; } = new();
+
+		#endregion
+		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -33,13 +42,5 @@ namespace KitchenLib.Customs
 				#endregion
 			}
 		}
-
-		#region Base Game Variables
-
-		public virtual List<IUpgrade> Rewards { get; protected set; } = new();
-		public virtual List<Research> EnablesResearchOf { get; protected set; } = new();
-		public virtual List<Research> RequiresForResearch { get; protected set; } = new();
-
-		#endregion
 	}
 }

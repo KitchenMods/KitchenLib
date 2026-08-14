@@ -5,6 +5,15 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomDecor : CustomGameDataObject<Decor>
 	{
+		#region Base Game Variables
+
+		public virtual Material Material { get; protected set; }
+		public virtual Appliance ApplicatorAppliance { get; protected set; }
+		public virtual LayoutMaterialType Type { get; protected set; }
+		public virtual bool IsAvailable { get; protected set; } = true;
+
+		#endregion
+		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -34,14 +43,5 @@ namespace KitchenLib.Customs
 				#endregion
 			}
 		}
-
-		#region Base Game Variables
-
-		public virtual Material Material { get; protected set; }
-		public virtual Appliance ApplicatorAppliance { get; protected set; }
-		public virtual LayoutMaterialType Type { get; protected set; }
-		public virtual bool IsAvailable { get; protected set; } = true;
-
-		#endregion
 	}
 }

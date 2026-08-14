@@ -24,14 +24,5 @@ namespace KitchenLib.Customs
 				#endregion
 			}
 		}
-
-		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
-		{
-			base.AttachDependentProperties(gameData, gameDataObject);
-
-			if (gameDataObject is UnlockCard unlockCard)
-			{
-			}
-		}
 	}
 }

@@ -36,15 +36,5 @@ namespace KitchenLib.Customs
 				OverrideVariable(contractLocalisation, "Info", Info);
 			}
 		}
-
-		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
-		{
-			base.AttachDependentProperties(gameData, gameDataObject);
-
-			if (!(gameDataObject is ContractLocalisation contractLocalisation))
-			{
-				return;
-			}
-		}
 	}
 }

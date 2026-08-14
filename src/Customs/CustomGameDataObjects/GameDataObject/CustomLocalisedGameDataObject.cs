@@ -35,10 +35,5 @@ namespace KitchenLib.Customs
 				OverrideVariable(localisedGameDataObject, "Info", Info);
 			}
 		}
-
-		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
-		{
-			base.AttachDependentProperties(gameData, gameDataObject);
-		}
 	}
 }

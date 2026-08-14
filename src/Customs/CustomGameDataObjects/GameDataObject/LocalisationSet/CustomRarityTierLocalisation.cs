@@ -35,15 +35,5 @@ namespace KitchenLib.Customs
 				OverrideVariable(rarityTierLocalisation, "Info", Info);
 			}
 		}
-
-		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
-		{
-			base.AttachDependentProperties(gameData, gameDataObject);
-
-			if (!(gameDataObject is RarityTierLocalisation rarityTierLocalisation))
-			{
-				return;
-			}
-		}
 	}
 }

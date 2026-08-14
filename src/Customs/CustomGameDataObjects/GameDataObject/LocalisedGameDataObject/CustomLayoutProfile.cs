@@ -6,6 +6,22 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomLayoutProfile : CustomLocalisedGameDataObject<LayoutProfile, BasicInfo>
 	{
+
+		#region Base Game Variables
+
+		public virtual LayoutGraph Graph { get; protected set; }
+		public virtual int MaximumTables { get; protected set; } = 3;
+		public virtual List<GameDataObject> RequiredAppliances { get; protected set; } = new();
+		public virtual GameDataObject Table { get; protected set; }
+		public virtual GameDataObject Counter { get; protected set; }
+		public virtual Appliance ExternalBin { get; protected set; }
+		public virtual Appliance WallPiece { get; protected set; }
+		public virtual Appliance InternalWallPiece { get; protected set; }
+		public virtual Appliance StreetPiece { get; protected set; }
+		public virtual Season FixedRunSeason { get; protected set; }
+
+		#endregion
+		
 		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
 		{
 			base.Convert(gameData, out gameDataObject);
@@ -41,20 +57,5 @@ namespace KitchenLib.Customs
 				#endregion
 			}
 		}
-
-		#region Base Game Variables
-
-		public virtual LayoutGraph Graph { get; protected set; }
-		public virtual int MaximumTables { get; protected set; } = 3;
-		public virtual List<GameDataObject> RequiredAppliances { get; protected set; } = new();
-		public virtual GameDataObject Table { get; protected set; }
-		public virtual GameDataObject Counter { get; protected set; }
-		public virtual Appliance ExternalBin { get; protected set; }
-		public virtual Appliance WallPiece { get; protected set; }
-		public virtual Appliance InternalWallPiece { get; protected set; }
-		public virtual Appliance StreetPiece { get; protected set; }
-		public virtual Season FixedRunSeason { get; protected set; }
-
-		#endregion
 	}
 }
