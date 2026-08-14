@@ -1,5 +1,4 @@
 ﻿using Kitchen.Modules;
-using Kitchen;
 using System.Collections.Generic;
 using KitchenLib.Preferences;
 using KitchenMods;

@@ -1,8 +1,6 @@
 using Kitchen.Modules;
 using System;
 using System.Collections.Generic;
-using Kitchen;
-using KitchenLib.UI.PlateUp;
 using UnityEngine;
 
 namespace KitchenLib

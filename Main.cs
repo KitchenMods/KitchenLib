@@ -17,7 +17,6 @@ using KitchenLib.Components;
 using KitchenLib.UI.PlateUp.PreferenceMenus;
 using KitchenLib.Utils;
 using KitchenLib.Views;
-using Unity.Entities;
 using KitchenLogger = KitchenLib.Logging.KitchenLogger;
 
 namespace KitchenLib

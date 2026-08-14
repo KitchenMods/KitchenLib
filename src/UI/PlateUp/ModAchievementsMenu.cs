@@ -2,7 +2,6 @@
 using Kitchen;
 using Kitchen.Modules;
 using KitchenLib.Achievements;
-using KitchenMods;
 using UnityEngine;
 
 namespace KitchenLib.UI.PlateUp

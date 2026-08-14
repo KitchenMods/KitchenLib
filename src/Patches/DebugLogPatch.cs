@@ -6,8 +6,6 @@ using HarmonyLib;
 using System.Reflection;
 using KitchenLib.Utils;
 using System.Linq;
-using KitchenLib.Preferences;
-
 namespace KitchenLib.Patches
 {
 	internal class DebugLogPatch

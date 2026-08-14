@@ -1,6 +1,4 @@
-﻿using KitchenData;
-
-namespace KitchenLib.Customs
+﻿namespace KitchenLib.Customs
 {
 	public abstract class CustomCustomerGroup : CustomUnlockCard
 	{
