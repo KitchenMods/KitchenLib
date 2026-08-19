@@ -94,9 +94,9 @@ namespace KitchenLib.References
 
 		public static int ChristmasBanner => (int)_ApplianceReferences.ChristmasBanner;
 
-		public static int ChristmasTree => (int)_ApplianceReferences.ChristmasTree;
-
 		public static int FairyLights => (int)_ApplianceReferences.FairyLights;
+
+		public static int xoldChristmasTree => (int)_ApplianceReferences.xoldChristmasTree;
 
 		public static int FancyCandelabra => (int)_ApplianceReferences.FancyCandelabra;
 
@@ -454,7 +454,17 @@ namespace KitchenLib.References
 
 		public static int GarageDivider => (int)_ApplianceReferences.GarageDivider;
 
+		public static int GarageInbox => (int)_ApplianceReferences.GarageInbox;
+
 		public static int GarageShelf => (int)_ApplianceReferences.GarageShelf;
+
+		public static int GreenhouseInbox => (int)_ApplianceReferences.GreenhouseInbox;
+
+		public static int GreenhouseShelfEnd => (int)_ApplianceReferences.GreenhouseShelfEnd;
+
+		public static int GreenhouseShelf => (int)_ApplianceReferences.GreenhouseShelf;
+
+		public static int LoadingBayDecorations => (int)_ApplianceReferences.LoadingBayDecorations;
 
 		public static int LoadoutPedestal => (int)_ApplianceReferences.LoadoutPedestal;
 
@@ -469,6 +479,8 @@ namespace KitchenLib.References
 		public static int WorkshopGate => (int)_ApplianceReferences.WorkshopGate;
 
 		public static int WorkshopMachine => (int)_ApplianceReferences.WorkshopMachine;
+
+		public static int GreenhouseRoomLocked => (int)_ApplianceReferences.GreenhouseRoomLocked;
 
 		public static int AnimalBowl => (int)_ApplianceReferences.AnimalBowl;
 
@@ -514,7 +526,7 @@ namespace KitchenLib.References
 
 		public static int StatsRoomLocked => (int)_ApplianceReferences.StatsRoomLocked;
 
-		public static int WorkshopRoomLocked => (int)_ApplianceReferences.WorkshopRoomLocked;
+		public static int WorkshopGarageRoomLocked => (int)_ApplianceReferences.WorkshopGarageRoomLocked;
 
 		public static int BuilderFloor => (int)_ApplianceReferences.BuilderFloor;
 
@@ -536,7 +548,7 @@ namespace KitchenLib.References
 
 		public static int SourceBananas => (int)_ApplianceReferences.SourceBananas;
 
-		public static int SourceStrawberries => (int)_ApplianceReferences.SourceStrawberries;
+		public static int xSourceStrawberries => (int)_ApplianceReferences.xSourceStrawberries;
 
 		public static int SourcePumpkin => (int)_ApplianceReferences.SourcePumpkin;
 
@@ -738,6 +750,10 @@ namespace KitchenLib.References
 
 		public static int WitchHutWallPanel => (int)_ApplianceReferences.WitchHutWallPanel;
 
+		public static int BuffetCounterHeated => (int)_ApplianceReferences.BuffetCounterHeated;
+
+		public static int BuffetCounterPrepStation => (int)_ApplianceReferences.BuffetCounterPrepStation;
+
 		public static int BuffetCounter => (int)_ApplianceReferences.BuffetCounter;
 
 		public static int xServiceCounter => (int)_ApplianceReferences.xServiceCounter;
@@ -745,6 +761,86 @@ namespace KitchenLib.References
 		public static int AdvancedBuildLoadoutCraneInGame => (int)_ApplianceReferences.AdvancedBuildLoadoutCraneInGame;
 
 		public static int AdvancedBuildLoadoutCrane => (int)_ApplianceReferences.AdvancedBuildLoadoutCrane;
+
+		public static int CounterWeakStarting => (int)_ApplianceReferences.CounterWeakStarting;
+
+		public static int HobWeakStarting => (int)_ApplianceReferences.HobWeakStarting;
+
+		public static int OvenWeak => (int)_ApplianceReferences.OvenWeak;
+
+		public static int PlateStackWeakStarting => (int)_ApplianceReferences.PlateStackWeakStarting;
+
+		public static int SinkWeakStarting => (int)_ApplianceReferences.SinkWeakStarting;
+
+		public static int TableWeakStarting => (int)_ApplianceReferences.TableWeakStarting;
+
+		public static int GreenhouseAddCompostStation => (int)_ApplianceReferences.GreenhouseAddCompostStation;
+
+		public static int GreenhouseCompostHeap => (int)_ApplianceReferences.GreenhouseCompostHeap;
+
+		public static int GreenhouseMakeCompostStation => (int)_ApplianceReferences.GreenhouseMakeCompostStation;
+
+		public static int GreenhouseNursery => (int)_ApplianceReferences.GreenhouseNursery;
+
+		public static int GreenhousePruningStation => (int)_ApplianceReferences.GreenhousePruningStation;
+
+		public static int GreenhouseWaterTank => (int)_ApplianceReferences.GreenhouseWaterTank;
+
+		public static int GreenhouseWateringStation => (int)_ApplianceReferences.GreenhouseWateringStation;
+
+		public static int GreenhouseDecoration => (int)_ApplianceReferences.GreenhouseDecoration;
+
+		public static int GreenhouseSunEffects => (int)_ApplianceReferences.GreenhouseSunEffects;
+
+		public static int GreenhouseTile => (int)_ApplianceReferences.GreenhouseTile;
+
+		public static int GreenhouseWindow => (int)_ApplianceReferences.GreenhouseWindow;
+
+		public static int PlantBayLeavesRerollPerDay => (int)_ApplianceReferences.PlantBayLeavesRerollPerDay;
+
+		public static int PlantMintSkipsinOvertime => (int)_ApplianceReferences.PlantMintSkipsinOvertime;
+
+		public static int PlantSageThreeRerolls => (int)_ApplianceReferences.PlantSageThreeRerolls;
+
+		public static int PlantCherryBlossomDeco3Affordable => (int)_ApplianceReferences.PlantCherryBlossomDeco3Affordable;
+
+		public static int PlantLavenderDeco3Formal => (int)_ApplianceReferences.PlantLavenderDeco3Formal;
+
+		public static int PlantRoseDeco3Exclusive => (int)_ApplianceReferences.PlantRoseDeco3Exclusive;
+
+		public static int PlantViolaDeco3Charming => (int)_ApplianceReferences.PlantViolaDeco3Charming;
+
+		public static int PlantSpringOnionStartingAppliance => (int)_ApplianceReferences.PlantSpringOnionStartingAppliance;
+
+		public static int PlantThymePreptime => (int)_ApplianceReferences.PlantThymePreptime;
+
+		public static int PlantChiliAddHeat => (int)_ApplianceReferences.PlantChiliAddHeat;
+
+		public static int PlantSeedling => (int)_ApplianceReferences.PlantSeedling;
+
+		public static int PlantChivesRebuyBlueprints => (int)_ApplianceReferences.PlantChivesRebuyBlueprints;
+
+		public static int PlantFennelMinimumMoney => (int)_ApplianceReferences.PlantFennelMinimumMoney;
+
+		public static int PlantJasmineFirstDayShop => (int)_ApplianceReferences.PlantJasmineFirstDayShop;
+
+		public static int PlantOreganoExtraBlueprint => (int)_ApplianceReferences.PlantOreganoExtraBlueprint;
+
+		public static int PlantRosemaryStartingMoney => (int)_ApplianceReferences.PlantRosemaryStartingMoney;
+
+		public static int PlantTarragonRecycleBlueprints => (int)_ApplianceReferences.PlantTarragonRecycleBlueprints;
+
+		public static int GreenhouseSwitch => (int)_ApplianceReferences.GreenhouseSwitch;
+
+		public static int HeatSelector => (int)_ApplianceReferences.HeatSelector;
+
+		public static int SourceAvocado => (int)_ApplianceReferences.SourceAvocado;
+
+		public static int SourceBellPeppers => (int)_ApplianceReferences.SourceBellPeppers;
+
+		public static int SourceFryingPan => (int)_ApplianceReferences.SourceFryingPan;
+
+		public static int SourceLime => (int)_ApplianceReferences.SourceLime;
 
 		public static int SourceChocolateSyrup => (int)_ApplianceReferences.SourceChocolateSyrup;
 
@@ -903,9 +999,9 @@ namespace KitchenLib.References
 
 		ChristmasBanner = -1380985631,
 
-		ChristmasTree = 1797739089,
-
 		FairyLights = -4737636,
+
+		xoldChristmasTree = 1797739089,
 
 		FancyCandelabra = -13481890,
 
@@ -1263,7 +1359,17 @@ namespace KitchenLib.References
 
 		GarageDivider = -342718019,
 
+		GarageInbox = 286909233,
+
 		GarageShelf = 174737401,
+
+		GreenhouseInbox = -679488834,
+
+		GreenhouseShelfEnd = 1710403104,
+
+		GreenhouseShelf = 1710403103,
+
+		LoadingBayDecorations = 199496276,
 
 		LoadoutPedestal = 310022384,
 
@@ -1278,6 +1384,8 @@ namespace KitchenLib.References
 		WorkshopGate = -1451048989,
 
 		WorkshopMachine = -1820794030,
+
+		GreenhouseRoomLocked = 1076426452,
 
 		AnimalBowl = 871235082,
 
@@ -1323,7 +1431,7 @@ namespace KitchenLib.References
 
 		StatsRoomLocked = -1051912790,
 
-		WorkshopRoomLocked = 1010867759,
+		WorkshopGarageRoomLocked = 1010867759,
 
 		BuilderFloor = -720353319,
 
@@ -1345,7 +1453,7 @@ namespace KitchenLib.References
 
 		SourceBananas = 235355384,
 
-		SourceStrawberries = -699333907,
+		xSourceStrawberries = -699333907,
 
 		SourcePumpkin = -1055654549,
 
@@ -1547,6 +1655,10 @@ namespace KitchenLib.References
 
 		WitchHutWallPanel = 585649337,
 
+		BuffetCounterHeated = 524986663,
+
+		BuffetCounterPrepStation = -1228506595,
+
 		BuffetCounter = -773196462,
 
 		xServiceCounter = 638034870,
@@ -1554,6 +1666,86 @@ namespace KitchenLib.References
 		AdvancedBuildLoadoutCraneInGame = -364231730,
 
 		AdvancedBuildLoadoutCrane = -121110359,
+
+		CounterWeakStarting = 1521405905,
+
+		HobWeakStarting = -703157650,
+
+		OvenWeak = 179021494,
+
+		PlateStackWeakStarting = -951016989,
+
+		SinkWeakStarting = 307023830,
+
+		TableWeakStarting = -995798081,
+
+		GreenhouseAddCompostStation = -896355051,
+
+		GreenhouseCompostHeap = 295017434,
+
+		GreenhouseMakeCompostStation = -733956586,
+
+		GreenhouseNursery = 973562672,
+
+		GreenhousePruningStation = 1314289638,
+
+		GreenhouseWaterTank = -1094202280,
+
+		GreenhouseWateringStation = 1861256409,
+
+		GreenhouseDecoration = -1616825935,
+
+		GreenhouseSunEffects = 1127950131,
+
+		GreenhouseTile = -1304047988,
+
+		GreenhouseWindow = 458216451,
+
+		PlantBayLeavesRerollPerDay = 494894462,
+
+		PlantMintSkipsinOvertime = -1383080431,
+
+		PlantSageThreeRerolls = 1631244582,
+
+		PlantCherryBlossomDeco3Affordable = 239366585,
+
+		PlantLavenderDeco3Formal = -78023961,
+
+		PlantRoseDeco3Exclusive = 269955775,
+
+		PlantViolaDeco3Charming = -1677597382,
+
+		PlantSpringOnionStartingAppliance = -2146458011,
+
+		PlantThymePreptime = -1873457825,
+
+		PlantChiliAddHeat = 1071144288,
+
+		PlantSeedling = 116617378,
+
+		PlantChivesRebuyBlueprints = 444566625,
+
+		PlantFennelMinimumMoney = 349483235,
+
+		PlantJasmineFirstDayShop = -552159415,
+
+		PlantOreganoExtraBlueprint = -1848709278,
+
+		PlantRosemaryStartingMoney = 245231715,
+
+		PlantTarragonRecycleBlueprints = -395285279,
+
+		GreenhouseSwitch = 1154874054,
+
+		HeatSelector = -1000906413,
+
+		SourceAvocado = -1809492459,
+
+		SourceBellPeppers = -1374072955,
+
+		SourceFryingPan = -2137213147,
+
+		SourceLime = -870467526,
 
 		SourceChocolateSyrup = 825737084,
 
@@ -2036,6 +2228,22 @@ namespace KitchenLib.References
 
 		public static int PomodoroTraditional => (int)_DishReferences.PomodoroTraditional;
 
+		public static int FajitaBellPepper => (int)_DishReferences.FajitaBellPepper;
+
+		public static int FajitaCheese => (int)_DishReferences.FajitaCheese;
+
+		public static int FajitaOnion => (int)_DishReferences.FajitaOnion;
+
+		public static int FajitaSauceCrema => (int)_DishReferences.FajitaSauceCrema;
+
+		public static int FajitaSauceGuacamole => (int)_DishReferences.FajitaSauceGuacamole;
+
+		public static int FajitaSauceSalsa => (int)_DishReferences.FajitaSauceSalsa;
+
+		public static int FajitaTomato => (int)_DishReferences.FajitaTomato;
+
+		public static int FajitasBase => (int)_DishReferences.FajitasBase;
+
 		public static int IceCreamSundaesBaseHomemade => (int)_DishReferences.IceCreamSundaesBaseHomemade;
 
 		public static int IceCreamSundaesBaseSimpleScoops => (int)_DishReferences.IceCreamSundaesBaseSimpleScoops;
@@ -2278,6 +2486,22 @@ namespace KitchenLib.References
 		PomodoroExtraStarch = -1974675533,
 
 		PomodoroTraditional = 1411587046,
+
+		FajitaBellPepper = -823626125,
+
+		FajitaCheese = -525525407,
+
+		FajitaOnion = -780950614,
+
+		FajitaSauceCrema = -960612653,
+
+		FajitaSauceGuacamole = -1315816541,
+
+		FajitaSauceSalsa = -1438205860,
+
+		FajitaTomato = 693878802,
+
+		FajitasBase = 544487102,
 
 		IceCreamSundaesBaseHomemade = -1451591918,
 
@@ -2558,6 +2782,8 @@ namespace KitchenLib.References
 
 		public static int Onion => (int)_ItemReferences.Onion;
 
+		public static int OverchoppedFood => (int)_ItemReferences.OverchoppedFood;
+
 		public static int PotatoChoppedCooked => (int)_ItemReferences.PotatoChoppedCooked;
 
 		public static int PotatoChoppedPotCooked => (int)_ItemReferences.PotatoChoppedPotCooked;
@@ -2783,6 +3009,8 @@ namespace KitchenLib.References
 		public static int CarrotChopped => (int)_ItemReferences.CarrotChopped;
 
 		public static int MeatChoppedContainerCooked => (int)_ItemReferences.MeatChoppedContainerCooked;
+
+		public static int MeatChoppedCooled => (int)_ItemReferences.MeatChoppedCooled;
 
 		public static int MeatChopped => (int)_ItemReferences.MeatChopped;
 
@@ -3166,6 +3394,52 @@ namespace KitchenLib.References
 
 		public static int SpaghettiUncooked => (int)_ItemReferences.SpaghettiUncooked;
 
+		public static int Plant => (int)_ItemReferences.Plant;
+
+		public static int Seedling => (int)_ItemReferences.Seedling;
+
+		public static int BellPepperChoppedCooked => (int)_ItemReferences.BellPepperChoppedCooked;
+
+		public static int BellPepperChoppedCooled => (int)_ItemReferences.BellPepperChoppedCooled;
+
+		public static int BellPepperChopped => (int)_ItemReferences.BellPepperChopped;
+
+		public static int BellPepper => (int)_ItemReferences.BellPepper;
+
+		public static int FajitaSteakCooked => (int)_ItemReferences.FajitaSteakCooked;
+
+		public static int FajitaSteakCooled => (int)_ItemReferences.FajitaSteakCooled;
+
+		public static int FajitaSteakIngredientAdded => (int)_ItemReferences.FajitaSteakIngredientAdded;
+
+		public static int FajitaSteakRaw => (int)_ItemReferences.FajitaSteakRaw;
+
+		public static int FryingPanBurned => (int)_ItemReferences.FryingPanBurned;
+
+		public static int FryingPan => (int)_ItemReferences.FryingPan;
+
+		public static int AvocadoHalfNoStone => (int)_ItemReferences.AvocadoHalfNoStone;
+
+		public static int AvocadoHalfStone => (int)_ItemReferences.AvocadoHalfStone;
+
+		public static int AvocadoStone => (int)_ItemReferences.AvocadoStone;
+
+		public static int Avocado => (int)_ItemReferences.Avocado;
+
+		public static int Crema => (int)_ItemReferences.Crema;
+
+		public static int Guacamole => (int)_ItemReferences.Guacamole;
+
+		public static int LimeHalved => (int)_ItemReferences.LimeHalved;
+
+		public static int Lime => (int)_ItemReferences.Lime;
+
+		public static int SalsaPartial => (int)_ItemReferences.SalsaPartial;
+
+		public static int Salsa => (int)_ItemReferences.Salsa;
+
+		public static int TortillaWithExtras => (int)_ItemReferences.TortillaWithExtras;
+
 		public static int SundaeDefault => (int)_ItemReferences.SundaeDefault;
 
 		public static int SundaeGiant => (int)_ItemReferences.SundaeGiant;
@@ -3401,6 +3675,8 @@ namespace KitchenLib.References
 
 		Onion = -201067776,
 
+		OverchoppedFood = 1216714290,
+
 		PotatoChoppedCooked = -1399719685,
 
 		PotatoChoppedPotCooked = 2010203194,
@@ -3626,6 +3902,8 @@ namespace KitchenLib.References
 		CarrotChopped = -830135945,
 
 		MeatChoppedContainerCooked = -1018018897,
+
+		MeatChoppedCooled = 1898515545,
 
 		MeatChopped = 1005005768,
 
@@ -4009,6 +4287,52 @@ namespace KitchenLib.References
 
 		SpaghettiUncooked = -452280071,
 
+		Plant = -589472936,
+
+		Seedling = -811593943,
+
+		BellPepperChoppedCooked = -846417768,
+
+		BellPepperChoppedCooled = 1196675660,
+
+		BellPepperChopped = -1532597064,
+
+		BellPepper = -105883218,
+
+		FajitaSteakCooked = 1122662087,
+
+		FajitaSteakCooled = -942758897,
+
+		FajitaSteakIngredientAdded = 467531714,
+
+		FajitaSteakRaw = 1138812962,
+
+		FryingPanBurned = -1052104504,
+
+		FryingPan = -759016206,
+
+		AvocadoHalfNoStone = 1452808081,
+
+		AvocadoHalfStone = 1554615237,
+
+		AvocadoStone = -1858265826,
+
+		Avocado = 370822297,
+
+		Crema = 4573241,
+
+		Guacamole = -1069886345,
+
+		LimeHalved = 1163967458,
+
+		Lime = -720902876,
+
+		SalsaPartial = 1971246929,
+
+		Salsa = -1434567975,
+
+		TortillaWithExtras = 1133924457,
+
 		SundaeDefault = 1695786399,
 
 		SundaeGiant = -1990180123,
@@ -4314,6 +4638,24 @@ namespace KitchenLib.References
 
 		public static int SpaghettiUncooked => (int)_ItemGroupReferences.SpaghettiUncooked;
 
+		public static int FajitaSteakCooked => (int)_ItemGroupReferences.FajitaSteakCooked;
+
+		public static int FajitaSteakCooled => (int)_ItemGroupReferences.FajitaSteakCooled;
+
+		public static int FajitaSteakIngredientAdded => (int)_ItemGroupReferences.FajitaSteakIngredientAdded;
+
+		public static int FajitaSteakRaw => (int)_ItemGroupReferences.FajitaSteakRaw;
+
+		public static int Crema => (int)_ItemGroupReferences.Crema;
+
+		public static int Guacamole => (int)_ItemGroupReferences.Guacamole;
+
+		public static int SalsaPartial => (int)_ItemGroupReferences.SalsaPartial;
+
+		public static int Salsa => (int)_ItemGroupReferences.Salsa;
+
+		public static int TortillaWithExtras => (int)_ItemGroupReferences.TortillaWithExtras;
+
 		public static int SundaeDefault => (int)_ItemGroupReferences.SundaeDefault;
 
 		public static int SundaeGiant => (int)_ItemGroupReferences.SundaeGiant;
@@ -4585,6 +4927,24 @@ namespace KitchenLib.References
 
 		SpaghettiUncooked = -452280071,
 
+		FajitaSteakCooked = 1122662087,
+
+		FajitaSteakCooled = -942758897,
+
+		FajitaSteakIngredientAdded = 467531714,
+
+		FajitaSteakRaw = 1138812962,
+
+		Crema = 4573241,
+
+		Guacamole = -1069886345,
+
+		SalsaPartial = 1971246929,
+
+		Salsa = -1434567975,
+
+		TortillaWithExtras = 1133924457,
+
 		SundaeDefault = 1695786399,
 
 		SundaeGiant = -1990180123,
@@ -4710,6 +5070,10 @@ namespace KitchenLib.References
 
 		public static int WitchCards => (int)_ModularUnlockPackReferences.WitchCards;
 
+		public static int HeatFoodCardAfterDay2Pack => (int)_ModularUnlockPackReferences.HeatFoodCardAfterDay2Pack;
+
+		public static int HeatStarterOrDessertPack => (int)_ModularUnlockPackReferences.HeatStarterOrDessertPack;
+
 		public static int FranchiseCardsPack => (int)_ModularUnlockPackReferences.FranchiseCardsPack;
 
 		public static int HalloweenCards => (int)_ModularUnlockPackReferences.HalloweenCards;
@@ -4738,6 +5102,10 @@ namespace KitchenLib.References
 		JuneCards = 138545119,
 
 		WitchCards = -789810137,
+
+		HeatFoodCardAfterDay2Pack = -1759859435,
+
+		HeatStarterOrDessertPack = 31750544,
 
 		FranchiseCardsPack = 1355831133,
 
@@ -4899,6 +5267,14 @@ namespace KitchenLib.References
 		public static int VisorHat => (int)_PlayerCosmeticReferences.VisorHat;
 
 		public static int WitchChef => (int)_PlayerCosmeticReferences.WitchChef;
+
+		public static int FireHat => (int)_PlayerCosmeticReferences.FireHat;
+
+		public static int FirefighterOutfit => (int)_PlayerCosmeticReferences.FirefighterOutfit;
+
+		public static int GardenerChef => (int)_PlayerCosmeticReferences.GardenerChef;
+
+		public static int GnomeOutfit => (int)_PlayerCosmeticReferences.GnomeOutfit;
 
 		public static int Bandana1 => (int)_PlayerCosmeticReferences.Bandana1;
 
@@ -5087,6 +5463,14 @@ namespace KitchenLib.References
 
 		WitchChef = 1685032362,
 
+		FireHat = -700022710,
+
+		FirefighterOutfit = 1393620031,
+
+		GardenerChef = 2077511723,
+
+		GnomeOutfit = 809443708,
+
 		Bandana1 = -1859499757,
 
 		Bandana2 = -1555058020,
@@ -5138,6 +5522,8 @@ namespace KitchenLib.References
 
 		public static int Cook => (int)_ProcessReferences.Cook;
 
+		public static int CoolOff => (int)_ProcessReferences.CoolOff;
+
 		public static int ExtinguishFire => (int)_ProcessReferences.ExtinguishFire;
 
 		public static int FillCoffee => (int)_ProcessReferences.FillCoffee;
@@ -5175,6 +5561,8 @@ namespace KitchenLib.References
 
 		Cook = 1972879238,
 
+		CoolOff = -1204622729,
+
 		ExtinguishFire = -2063819574,
 
 		FillCoffee = -1316622579,
@@ -5200,6 +5588,8 @@ namespace KitchenLib.References
 	}
 	public static class RandomUpgradeSetReferences
 	{
+		public static int PlantHeatRewards => (int)_RandomUpgradeSetReferences.PlantHeatRewards;
+
 		public static int FailureRewards => (int)_RandomUpgradeSetReferences.FailureRewards;
 
 		public static int HighRewards => (int)_RandomUpgradeSetReferences.HighRewards;
@@ -5211,6 +5601,8 @@ namespace KitchenLib.References
 	}
 	public enum _RandomUpgradeSetReferences
 	{
+		PlantHeatRewards = -1023546888,
+
 		FailureRewards = 1965532508,
 
 		HighRewards = -1302090208,
@@ -5567,6 +5959,60 @@ namespace KitchenLib.References
 		public static int PomodoroExtraStarch => (int)_UnlockReferences.PomodoroExtraStarch;
 
 		public static int PomodoroTraditional => (int)_UnlockReferences.PomodoroTraditional;
+
+		public static int ChillEasy1 => (int)_UnlockReferences.ChillEasy1;
+
+		public static int ChillEasy2 => (int)_UnlockReferences.ChillEasy2;
+
+		public static int ChillEasy3 => (int)_UnlockReferences.ChillEasy3;
+
+		public static int HeatMoreCustomersFlat5 => (int)_UnlockReferences.HeatMoreCustomersFlat5;
+
+		public static int Heat11ExtraFlammability => (int)_UnlockReferences.Heat11ExtraFlammability;
+
+		public static int Heat12FlammableDesks => (int)_UnlockReferences.Heat12FlammableDesks;
+
+		public static int Heat13BadProcessesStartFires => (int)_UnlockReferences.Heat13BadProcessesStartFires;
+
+		public static int Heat14FlammableCustomers => (int)_UnlockReferences.Heat14FlammableCustomers;
+
+		public static int HeatFoodCardAfterDay2 => (int)_UnlockReferences.HeatFoodCardAfterDay2;
+
+		public static int HeatLargerGroups => (int)_UnlockReferences.HeatLargerGroups;
+
+		public static int HeatMessSlowsEating => (int)_UnlockReferences.HeatMessSlowsEating;
+
+		public static int HeatMoreCustomers => (int)_UnlockReferences.HeatMoreCustomers;
+
+		public static int HeatOverchopping => (int)_UnlockReferences.HeatOverchopping;
+
+		public static int HeatProcessesSlower => (int)_UnlockReferences.HeatProcessesSlower;
+
+		public static int HeatQueueNerfs => (int)_UnlockReferences.HeatQueueNerfs;
+
+		public static int HeatRent => (int)_UnlockReferences.HeatRent;
+
+		public static int HeatStarterOrDessert => (int)_UnlockReferences.HeatStarterOrDessert;
+
+		public static int HeatWeakStartingAppliances => (int)_UnlockReferences.HeatWeakStartingAppliances;
+
+		public static int xHeatWorseDesks => (int)_UnlockReferences.xHeatWorseDesks;
+
+		public static int FajitaBellPepper => (int)_UnlockReferences.FajitaBellPepper;
+
+		public static int FajitaCheese => (int)_UnlockReferences.FajitaCheese;
+
+		public static int FajitaOnion => (int)_UnlockReferences.FajitaOnion;
+
+		public static int FajitaSauceCrema => (int)_UnlockReferences.FajitaSauceCrema;
+
+		public static int FajitaSauceGuacamole => (int)_UnlockReferences.FajitaSauceGuacamole;
+
+		public static int FajitaSauceSalsa => (int)_UnlockReferences.FajitaSauceSalsa;
+
+		public static int FajitaTomato => (int)_UnlockReferences.FajitaTomato;
+
+		public static int FajitasBase => (int)_UnlockReferences.FajitasBase;
 
 		public static int IceCreamSundaesBaseHomemade => (int)_UnlockReferences.IceCreamSundaesBaseHomemade;
 
@@ -6039,6 +6485,60 @@ namespace KitchenLib.References
 
 		PomodoroTraditional = 1411587046,
 
+		ChillEasy1 = -1889522844,
+
+		ChillEasy2 = -1542554250,
+
+		ChillEasy3 = 1134277391,
+
+		HeatMoreCustomersFlat5 = -1409140412,
+
+		Heat11ExtraFlammability = 1358714374,
+
+		Heat12FlammableDesks = 118281906,
+
+		Heat13BadProcessesStartFires = -1636036373,
+
+		Heat14FlammableCustomers = -1280757615,
+
+		HeatFoodCardAfterDay2 = 1382681650,
+
+		HeatLargerGroups = 1510465155,
+
+		HeatMessSlowsEating = 1898278106,
+
+		HeatMoreCustomers = 1901536762,
+
+		HeatOverchopping = 737629539,
+
+		HeatProcessesSlower = -2134682523,
+
+		HeatQueueNerfs = 2137249839,
+
+		HeatRent = -43856987,
+
+		HeatStarterOrDessert = 421796067,
+
+		HeatWeakStartingAppliances = 1299515713,
+
+		xHeatWorseDesks = -1128294925,
+
+		FajitaBellPepper = -823626125,
+
+		FajitaCheese = -525525407,
+
+		FajitaOnion = -780950614,
+
+		FajitaSauceCrema = -960612653,
+
+		FajitaSauceGuacamole = -1315816541,
+
+		FajitaSauceSalsa = -1438205860,
+
+		FajitaTomato = 693878802,
+
+		FajitasBase = 544487102,
+
 		IceCreamSundaesBaseHomemade = -1451591918,
 
 		IceCreamSundaesBaseSimpleScoops = 620309357,
@@ -6308,6 +6808,44 @@ namespace KitchenLib.References
 
 		public static int WitchHutMode => (int)_UnlockCardReferences.WitchHutMode;
 
+		public static int ChillEasy1 => (int)_UnlockCardReferences.ChillEasy1;
+
+		public static int ChillEasy2 => (int)_UnlockCardReferences.ChillEasy2;
+
+		public static int ChillEasy3 => (int)_UnlockCardReferences.ChillEasy3;
+
+		public static int HeatMoreCustomersFlat5 => (int)_UnlockCardReferences.HeatMoreCustomersFlat5;
+
+		public static int Heat11ExtraFlammability => (int)_UnlockCardReferences.Heat11ExtraFlammability;
+
+		public static int Heat12FlammableDesks => (int)_UnlockCardReferences.Heat12FlammableDesks;
+
+		public static int Heat13BadProcessesStartFires => (int)_UnlockCardReferences.Heat13BadProcessesStartFires;
+
+		public static int Heat14FlammableCustomers => (int)_UnlockCardReferences.Heat14FlammableCustomers;
+
+		public static int HeatFoodCardAfterDay2 => (int)_UnlockCardReferences.HeatFoodCardAfterDay2;
+
+		public static int HeatLargerGroups => (int)_UnlockCardReferences.HeatLargerGroups;
+
+		public static int HeatMessSlowsEating => (int)_UnlockCardReferences.HeatMessSlowsEating;
+
+		public static int HeatMoreCustomers => (int)_UnlockCardReferences.HeatMoreCustomers;
+
+		public static int HeatOverchopping => (int)_UnlockCardReferences.HeatOverchopping;
+
+		public static int HeatProcessesSlower => (int)_UnlockCardReferences.HeatProcessesSlower;
+
+		public static int HeatQueueNerfs => (int)_UnlockCardReferences.HeatQueueNerfs;
+
+		public static int HeatRent => (int)_UnlockCardReferences.HeatRent;
+
+		public static int HeatStarterOrDessert => (int)_UnlockCardReferences.HeatStarterOrDessert;
+
+		public static int HeatWeakStartingAppliances => (int)_UnlockCardReferences.HeatWeakStartingAppliances;
+
+		public static int xHeatWorseDesks => (int)_UnlockCardReferences.xHeatWorseDesks;
+
 		public static int BanquetDining => (int)_UnlockCardReferences.BanquetDining;
 
 		public static int ChristmasBanquetCardBuffets => (int)_UnlockCardReferences.ChristmasBanquetCardBuffets;
@@ -6539,6 +7077,44 @@ namespace KitchenLib.References
 
 		WitchHutMode = -192521877,
 
+		ChillEasy1 = -1889522844,
+
+		ChillEasy2 = -1542554250,
+
+		ChillEasy3 = 1134277391,
+
+		HeatMoreCustomersFlat5 = -1409140412,
+
+		Heat11ExtraFlammability = 1358714374,
+
+		Heat12FlammableDesks = 118281906,
+
+		Heat13BadProcessesStartFires = -1636036373,
+
+		Heat14FlammableCustomers = -1280757615,
+
+		HeatFoodCardAfterDay2 = 1382681650,
+
+		HeatLargerGroups = 1510465155,
+
+		HeatMessSlowsEating = 1898278106,
+
+		HeatMoreCustomers = 1901536762,
+
+		HeatOverchopping = 737629539,
+
+		HeatProcessesSlower = -2134682523,
+
+		HeatQueueNerfs = 2137249839,
+
+		HeatRent = -43856987,
+
+		HeatStarterOrDessert = 421796067,
+
+		HeatWeakStartingAppliances = 1299515713,
+
+		xHeatWorseDesks = -1128294925,
+
 		BanquetDining = 1989028383,
 
 		ChristmasBanquetCardBuffets = -2066052899,
@@ -6718,6 +7294,10 @@ namespace KitchenLib.References
 
 		public static int WitchCards => (int)_UnlockPackReferences.WitchCards;
 
+		public static int HeatFoodCardAfterDay2Pack => (int)_UnlockPackReferences.HeatFoodCardAfterDay2Pack;
+
+		public static int HeatStarterOrDessertPack => (int)_UnlockPackReferences.HeatStarterOrDessertPack;
+
 		public static int DefaultCompositePack => (int)_UnlockPackReferences.DefaultCompositePack;
 
 		public static int HalloweenPack => (int)_UnlockPackReferences.HalloweenPack;
@@ -6766,6 +7346,10 @@ namespace KitchenLib.References
 		WitchCardPack = -37697044,
 
 		WitchCards = -789810137,
+
+		HeatFoodCardAfterDay2Pack = -1759859435,
+
+		HeatStarterOrDessertPack = 31750544,
 
 		DefaultCompositePack = -2020288853,
 
