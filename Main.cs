@@ -145,12 +145,12 @@ namespace KitchenLib
 			}
 			
 
-			LogInfo(" __  ___  __  .___________.  ______  __    __   _______ .__   __.  __       __  .______  ");
-			LogInfo("|  |/  / |  | |           | /      ||  |  |  | |   ____||  \\ |  | |  |     |  | |   _  \\ ");
-			LogInfo("|  '  /  |  | `---|  |----`|  ,----'|  |__|  | |  |__   |   \\|  | |  |     |  | |  |_)  |");
-			LogInfo("|    <   |  |     |  |     |  |     |   __   | |   __|  |  . `  | |  |     |  | |   _  <  ");
-			LogInfo("|  .  \\  |  |     |  |     |  `----.|  |  |  | |  |____ |  |\\   | |  `----.|  | |  |_)  |");
-			LogInfo("|__|\\__\\ |__|     |__|      \\______||__|  |__| |_______||__| \\__| |_______||__| |______/ " + $"   v{MOD_VERSION}b{MOD_BETA_VERSION}");
+			Logger.LogInfo(" __  ___  __  .___________.  ______  __    __   _______ .__   __.  __       __  .______  ");
+			Logger.LogInfo("|  |/  / |  | |           | /      ||  |  |  | |   ____||  \\ |  | |  |     |  | |   _  \\ ");
+			Logger.LogInfo("|  '  /  |  | `---|  |----`|  ,----'|  |__|  | |  |__   |   \\|  | |  |     |  | |  |_)  |");
+			Logger.LogInfo("|    <   |  |     |  |     |  |     |   __   | |   __|  |  . `  | |  |     |  | |   _  <  ");
+			Logger.LogInfo("|  .  \\  |  |     |  |     |  `----.|  |  |  | |  |____ |  |\\   | |  `----.|  | |  |_)  |");
+			Logger.LogInfo("|__|\\__\\ |__|     |__|      \\______||__|  |__| |_______||__| \\__| |_______||__| |______/ " + $"   v{MOD_VERSION}b{MOD_BETA_VERSION}");
 
 			Events.BuildGameDataEvent += (sender, args) => { if (args.firstBuild) AchievementsManager.SetupMenuElement(); };
 		}
@@ -162,8 +162,8 @@ namespace KitchenLib
 				localModCount--;
 			}
 			bool isDebug = manager.GetPreference<PreferenceBool>("isDebug").Value;
-			debugLogging = localModCount > 0 || isDebug;
-			LogInfo($"GDO debug logging: {debugLogging} (local mods: {localModCount}, isDebug: {isDebug})");
+			InternalLogger.IsDebug = localModCount > 0 || isDebug;
+			Logger.LogInfo($"GDO debug logging: {debugLogging} (local mods: {localModCount}, isDebug: {isDebug})");
 		}
 
 
@@ -252,38 +252,10 @@ namespace KitchenLib
 			AddGameDataObject<T>();
 		}
 
-		[Obsolete]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogInfo(object message)
-		{
-			Debug.Log($"[{MOD_NAME}] " + message);
-		}
-
-		[Obsolete]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogWarning(object message)
-		{
-			Debug.LogWarning($"[{MOD_NAME}] " + message);
-		}
-
-		[Obsolete]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogError(object message)
-		{
-			Debug.LogError($"[{MOD_NAME}] " + message);
-		}
-
-		[Obsolete]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogDebug(object message)
-		{
-			if (debugLogging)
-				Debug.Log($"[{MOD_NAME}] [DEBUG] " + message);
-		}
-
-		internal static void ObsoleteCodeWarning(string className, string methodName)
-		{
-			Logger.LogWarning($"[Obsolete Warning] {className}.{methodName} is marked as Obsolete, but is still being used.");
-		}
+		#region Obsolete Code
+		
+		
+		
+		#endregion
 	}
 }
