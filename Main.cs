@@ -130,8 +130,6 @@ namespace KitchenLib
 			RegisterMenu<NewNewMaterialUI>();
 			RegisterMenu<DebugMenu>();
 
-			ViewUtils.RegisterView("KitchenLib.Views.SyncMods", typeof(SModSync), typeof(SyncMods));
-
 			
 			switch (manager.GetPreference<PreferenceInt>("achievementNotificatonDisplay").Value)
 			{
@@ -215,7 +213,6 @@ namespace KitchenLib
 			
 			// Pause Menu Registrations
 			PauseMenuPreferencesesMenu.RegisterUsableMenu(typeof(PauseMenuPreferencesesMenu));
-			PauseMenuPreferencesesMenu.RegisterUsableMenu(typeof(ModSyncMenu));
 			PauseMenuPreferencesesMenu.RegisterUsableMenu(typeof(ConfirmModSync));
 			
 			// Global Registrations
