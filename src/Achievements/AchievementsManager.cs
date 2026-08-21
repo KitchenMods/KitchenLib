@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Kitchen;
 using Kitchen.Modules;
+using KitchenLib.Materials;
 using KitchenLib.Preferences;
 using KitchenLib.Systems;
 using KitchenLib.Utils;
@@ -211,8 +212,8 @@ namespace KitchenLib.Achievements
 			Dictionary<Type, Element> defaultModules = (Dictionary<Type, Element>)DefaultModules.GetValue(ModuleDirectory.Main);
 				
 			ButtonElement defaultButton = defaultModules[typeof(ButtonElement)] as ButtonElement;
-				
-			GameObject label = Main.bundle.LoadAsset<GameObject>("Achievement").AssignMaterialsByNames(); 
+
+			GameObject label = MaterialManager.AssignMaterialsByNames(Main.bundle.LoadAsset<GameObject>("Achievement"));
 				
 			AchivementElement element = label.AddComponent<AchivementElement>();
 				

@@ -21,10 +21,8 @@ namespace KitchenLib.Patches
 	{
 		private static readonly List<GameDataObject> GameDataObjects = new List<GameDataObject>();
 		private static bool FirstRun = true;
-
 		static void Postfix(KitchenData.GameDataConstructor __instance, KitchenData.GameData __result)
 		{
-			MaterialUtils.SetupMaterialIndex();
 			FontUtils.SetupFontIndex();
 			VFXUtils.SetupVFXIndex();
 			GDOUtils.SetupGDOIndex(__result);

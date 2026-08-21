@@ -280,5 +280,10 @@ namespace KitchenLib
 			if (debugLogging)
 				Debug.Log($"[{MOD_NAME}] [DEBUG] " + message);
 		}
+
+		internal static void ObsoleteCodeWarning(string className, string methodName)
+		{
+			Logger.LogWarning($"[Obsolete Warning] {className}.{methodName} is marked as Obsolete, but is still being used.");
+		}
 	}
 }

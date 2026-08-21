@@ -268,37 +268,7 @@ namespace KitchenLib
 			return PreferenceUtils.Register<T>(modID, key, name);
 		}
 
-		public Material AddCustomMaterial<T>() where T : CustomBaseMaterial, new()
-		{
-			T material = new T();
-			material.ConvertMaterial(out Material newMaterial);
-			return CustomMaterials.AddMaterial(newMaterial.name, newMaterial);
-		}
-
-		public Material AddMaterial<T>() where T : Material, new()
-		{
-			T material = new T();
-			if (CustomMaterials.CustomMaterialsIndex.ContainsKey(material.name))
-			{
-				return material;
-			}
-			else
-			{
-				return CustomMaterials.AddMaterial(material.name, material);
-			}
-		}
-
-		public Material AddMaterial(Material material)
-		{
-			if (CustomMaterials.CustomMaterialsIndex.ContainsKey(material.name))
-			{
-				return material;
-			}
-			else
-			{
-				return CustomMaterials.AddMaterial(material.name, material);
-			}
-		}
+		
 
 		/// <summary>
 		/// Register a custom view type.
@@ -342,5 +312,40 @@ namespace KitchenLib
 		{
 			return new KitchenLogger(ModName);
 		}
+
+		#region Obsolete Code
+		public Material AddCustomMaterial<T>() where T : CustomBaseMaterial, new()
+		{
+			T material = new T();
+			material.ConvertMaterial(out Material newMaterial);
+			return CustomMaterials.AddMaterial(newMaterial.name, newMaterial);
+		}
+
+		public Material AddMaterial<T>() where T : Material, new()
+		{
+			T material = new T();
+			if (CustomMaterials.CustomMaterialsIndex.ContainsKey(material.name))
+			{
+				return material;
+			}
+			else
+			{
+				return CustomMaterials.AddMaterial(material.name, material);
+			}
+		}
+
+		public Material AddMaterial(Material material)
+		{
+			if (CustomMaterials.CustomMaterialsIndex.ContainsKey(material.name))
+			{
+				return material;
+			}
+			else
+			{
+				return CustomMaterials.AddMaterial(material.name, material);
+			}
+		}
+
+		#endregion
 	}
 }

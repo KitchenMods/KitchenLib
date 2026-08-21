@@ -1,12 +1,33 @@
-using KitchenLib.Customs;
+using System;
 using System.Collections.Generic;
+using KitchenLib.Materials;
 using UnityEngine;
 
 namespace KitchenLib.Utils
 {
+	[Obsolete("Please use MaterialManager.")]
     public static class MaterialUtils
 	{
-        private static readonly Dictionary<string, Material> MaterialIndex = new Dictionary<string, Material>();
+		#region Obsolete Code
+
+		[Obsolete("SetupMaterialIndex is also Obsolete.")]
+		private static readonly Dictionary<string, Material> MaterialIndex = new Dictionary<string, Material>();
+		
+		[Obsolete("This was never intended on being public in the first place.")]
+		public static void SetupMaterialIndex()
+		{
+			Main.ObsoleteCodeWarning("MaterialUtils", "SetupMaterialIndex");
+			if (MaterialIndex.Count > 0)
+				return;
+
+			foreach (Material material in Resources.FindObjectsOfTypeAll(typeof(Material)))
+			{
+				if (!MaterialIndex.ContainsKey(material.name))
+				{
+					MaterialIndex.Add(material.name, material);
+				}
+			}
+		}
 
         /// <summary>
         /// Apply a material array to a child renderer.
@@ -14,8 +35,10 @@ namespace KitchenLib.Utils
         /// <param name="parent">The parent object.</param>
         /// <param name="childPath">The path to the child object.</param>
         /// <param name="materials">The material array to apply.</param>
+        [Obsolete("Please add Materials to GameObjects within Unity.")]
 		public static void ApplyMaterial(GameObject parent, string childPath, Material[] materials)
 		{
+			Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterial");
             parent.GetChild(childPath).ApplyMaterial(materials);
 		}
 
@@ -26,8 +49,10 @@ namespace KitchenLib.Utils
         /// <param name="parent">The parent object.</param>
         /// <param name="childPath">The path to the child object.</param>
         /// <param name="materials">The material array to apply.</param>
+        [Obsolete("Please add Materials to GameObjects within Unity.")]
 		public static void ApplyMaterial<T>(GameObject parent, string childPath, Material[] materials) where T : Renderer
 		{
+			Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterial<T>");
             parent.GetChild(childPath).ApplyMaterial<T>(materials);
         }
 
@@ -38,8 +63,10 @@ namespace KitchenLib.Utils
         /// <param name="gameObject">The object to apply the material to.</param>
         /// <param name="materials">The material array to apply.</param>
         /// <returns>The input GameObject.</returns>
+        [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterial<T>(this GameObject gameObject, params Material[] materials) where T : Renderer
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterial<T>");
             var comp = gameObject?.GetComponent<T>();
             if (comp == null)
                 return gameObject;
@@ -55,8 +82,10 @@ namespace KitchenLib.Utils
         /// <param name="gameObject">The object to apply the material to.</param>
         /// <param name="materials">The material array to apply.</param>
         /// <returns>The input GameObject.</returns>
+        [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterial(this GameObject gameObject, params Material[] materials)
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterial");
             return ApplyMaterial<MeshRenderer>(gameObject, materials);
         }
 
@@ -66,8 +95,10 @@ namespace KitchenLib.Utils
         /// <param name="gameObject">The object to apply the material to.</param>
         /// <param name="materials">The names of the materials to apply.</param>
         /// <returns>The input GameObject.</returns>
+        [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterial(this GameObject gameObject, params string[] materials)
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterial");
             return ApplyMaterial<MeshRenderer>(gameObject, GetMaterialArray(materials));
         }
 
@@ -79,8 +110,10 @@ namespace KitchenLib.Utils
         /// <param name="nameContains">A filter that children names must contain to be modified.</param>
         /// <param name="materials">The materials to apply.</param>
         /// <returns>The parent GameObject.</returns>
+        [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChildren<T>(this GameObject parent, string nameContains, Material[] materials) where T : Renderer
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren<T>");
             for (int i = 0; i < parent.GetChildCount(); i++)
             {
                 GameObject child = parent.GetChild(i);
@@ -99,8 +132,10 @@ namespace KitchenLib.Utils
         /// <param name="nameContains">A filter that children names must contain to be modified.</param>
         /// <param name="materials">The materials to apply.</param>
         /// <returns>The parent GameObject.</returns>
+        [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChildren(this GameObject parent, string nameContains, Material[] materials)
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren");
             return ApplyMaterialToChildren<MeshRenderer>(parent, nameContains, materials);
         }
 
@@ -111,8 +146,10 @@ namespace KitchenLib.Utils
         /// <param name="nameContains">A filter that children names must contain to be modified.</param>
         /// <param name="materials">The names of the materials to apply.</param>
         /// <returns>The parent GameObject.</returns>
+        [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChildren(this GameObject parent, string nameContains, params string[] materials)
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren");
             return ApplyMaterialToChildren<MeshRenderer>(parent, nameContains, GetMaterialArray(materials));
         }
 
@@ -123,8 +160,10 @@ namespace KitchenLib.Utils
         /// <param name="parent">The parent object.</param>
         /// <param name="materials">The materials to apply.</param>
         /// <returns>The parent GameObject.</returns>
+        [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChildren<T>(this GameObject parent, Material[] materials) where T : Renderer
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren<T>");
             return ApplyMaterialToChildren<T>(parent, "", materials);
         }
 
@@ -134,8 +173,10 @@ namespace KitchenLib.Utils
         /// <param name="parent">The parent object.</param>
         /// <param name="materials">The materials to apply.</param>
         /// <returns>The parent GameObject.</returns>
+        [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChildren(this GameObject parent, Material[] materials)
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren");
             return ApplyMaterialToChildren<MeshRenderer>(parent, "", materials);
         }
 
@@ -145,8 +186,10 @@ namespace KitchenLib.Utils
         /// <param name="parent">The parent object.</param>
         /// <param name="materials">The names of the materials to apply.</param>
         /// <returns>The parent GameObject.</returns>
+        [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChildren(this GameObject parent, params string[] materials)
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren");
             return ApplyMaterialToChildren<MeshRenderer>(parent, "", GetMaterialArray(materials));
         }
 
@@ -158,8 +201,10 @@ namespace KitchenLib.Utils
         /// <param name="childPath">The path to the child object.</param>
         /// <param name="materials">The materials to apply.</param>
         /// <returns>The parent GameObject.</returns>
+        [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChild<T>(this GameObject parent, string childPath, Material[] materials) where T : Renderer
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChild<T>");
             return parent.GetChild(childPath).ApplyMaterial<T>(materials);
         }
 
@@ -170,8 +215,10 @@ namespace KitchenLib.Utils
         /// <param name="childPath">The path to the child object.</param>
         /// <param name="materials">The materials to apply.</param>
         /// <returns>The parent GameObject.</returns>
+        [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChild(this GameObject parent, string childPath, Material[] materials)
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChild");
             return parent.GetChild(childPath).ApplyMaterial(materials);
         }
 
@@ -182,118 +229,11 @@ namespace KitchenLib.Utils
         /// <param name="childPath">The path to the child object.</param>
         /// <param name="materials">The names of the materials to apply.</param>
         /// <returns>The parent GameObject.</returns>
+        [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChild(this GameObject parent, string childPath, params string[] materials)
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChild");
             return parent.GetChild(childPath).ApplyMaterial(GetMaterialArray(materials));
-        }
-
-        public static void SetupMaterialIndex()
-        {
-			if (MaterialIndex.Count > 0)
-				return;
-
-			foreach (Material material in Resources.FindObjectsOfTypeAll(typeof(Material)))
-			{
-				if (!MaterialIndex.ContainsKey(material.name))
-				{
-					MaterialIndex.Add(material.name, material);
-				}
-			}
-		}
-
-        /// <summary>
-        /// Gets a list of all Materials.
-        /// </summary>
-        /// <param name="includeCustom">If the returned list should contain custom Materials.</param>
-        /// <returns>The list of Materials.</returns>
-		public static List<Material> GetAllMaterials(bool includeCustom)
-		{
-			List<Material> materials = new List<Material>();
-			foreach (Material material in MaterialIndex.Values)
-			{
-				materials.Add(material);
-			}
-
-			return materials;
-		}
-
-        /// <summary>
-        /// Gets a list of all Materials.
-        /// </summary>
-        /// <param name="includeCustom">If the returned list should contain custom Materials.</param>
-        /// <param name="shaders">What shaders to filter by.</param>
-        /// <returns>The list of Materials.</returns>
-		public static List<Material> GetAllMaterials(bool includeCustom, List<string> shaders)
-		{
-			List<Material> materials = new List<Material>();
-			foreach (Material material in MaterialIndex.Values)
-			{
-				if (material != null)
-				{
-					if (shaders.Contains(material.shader.name))
-						materials.Add(material);
-				}
-			}
-
-			foreach (Material material in CustomMaterials.GetCustomMaterials())
-			{
-				if (material != null)
-				{
-					if (shaders.Contains(material.shader.name)) 
-						materials.Add(material);
-				}
-			}
-
-			return materials;
-		}
-
-        /// <summary>
-        /// Get a vanilla material by name.
-        /// </summary>
-        /// <param name="materialName">The name of the material to find.</param>
-        /// <returns>The requested material or null if not found.</returns>
-        public static Material GetExistingMaterial(string materialName)
-        {
-            if (MaterialIndex.ContainsKey(materialName))
-                return MaterialIndex[materialName];
-            else
-                return null;
-        }
-
-        /// <summary>
-        /// Get a custom material by name.
-        /// </summary>
-        /// <param name="materialName">The name of the material to find.</param>
-        /// <returns>The requested material or null if not found.</returns>
-        public static Material GetCustomMaterial(string materialName)
-		{
-			bool found = CustomMaterials.CustomMaterialsIndex.ContainsKey(materialName);
-			if (found)
-				return CustomMaterials.CustomMaterialsIndex[materialName];
-			else
-				return null;
-        }
-
-        /// <summary>
-        /// Get a material array from a array of material names.
-        /// </summary>
-        /// <param name="materials">The names of the materials.</param>
-        /// <returns>The corresponding material array.</returns>
-        public static Material[] GetMaterialArray(params string[] materials)
-        {
-            List<Material> materialList = new();
-            foreach (string matName in materials)
-            {
-                if (CustomMaterials.CustomMaterialsIndex.ContainsKey(matName))
-                {
-                    materialList.Add(CustomMaterials.CustomMaterialsIndex[matName]);
-                }
-                else
-                {
-                    materialList.Add(GetExistingMaterial(matName));
-                }
-            }
-            return materialList.ToArray();
         }
 
         /// <summary>
@@ -301,8 +241,10 @@ namespace KitchenLib.Utils
         /// </summary>
         /// <param name="hex">The hex code.</param>
         /// <returns>The corresponding Color.</returns>
+        [Obsolete("Please create custom Materials within KitchenLib's Material Editor, and load them in Unity.")]
         public static Color ColorFromHex(int hex)
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "ColorFromHex");
             return new Color(((hex & 0xFF0000) >> 16) / 255.0f, ((hex & 0xFF00) >> 8) / 255.0f, (hex & 0xFF) / 255.0f);
         }
 
@@ -314,8 +256,10 @@ namespace KitchenLib.Utils
         /// <param name="shininess">How shiny the Material should be.</param>
         /// <param name="overlayScale">The scale for the Material's overlay.</param>
         /// <returns>The created Material.</returns>
+        [Obsolete("Please create custom Materials within KitchenLib's Material Editor, and load them in Unity.")]
         public static Material CreateFlat(string name, Color color, float shininess = 0, float overlayScale = 10)
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "CreateFlat");
             Material mat = new(Shader.Find("Simple Flat"))
             {
                 name = name
@@ -335,8 +279,10 @@ namespace KitchenLib.Utils
         /// <param name="shininess">How shiny the Material should be.</param>
         /// <param name="overlayScale">The scale for the Material's overlay.</param>
         /// <returns>The created Material.</returns>
+        [Obsolete("Please create custom Materials within KitchenLib's Material Editor, and load them in Unity.")]
         public static Material CreateFlat(string name, int color, float shininess = 0, float overlayScale = 10)
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "CreateFlat");
             return CreateFlat(name, ColorFromHex(color), shininess, overlayScale);
         }
 
@@ -346,8 +292,10 @@ namespace KitchenLib.Utils
         /// <param name="name">The name for the Material.</param>
         /// <param name="color">The Color for the Material.</param>
         /// <returns>The created Material.</returns>
+        [Obsolete("Please create custom Materials within KitchenLib's Material Editor, and load them in Unity.")]
         public static Material CreateTransparent(string name, Color color)
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "CreateTransparent");
             Material mat = new(Shader.Find("Simple Transparent"))
             {
                 name = name
@@ -363,11 +311,98 @@ namespace KitchenLib.Utils
         /// <param name="color">The hex code for the Material.</param>
         /// <param name="opacity">The opacity for the Material.</param>
         /// <returns>The created Material.</returns>
+        [Obsolete("Please create custom Materials within KitchenLib's Material Editor, and load them in Unity.")]
         public static Material CreateTransparent(string name, int color, float opacity)
         {
+	        Main.ObsoleteCodeWarning("MaterialUtils", "CreateTransparent");
             Color col = ColorFromHex(color);
             col.a = opacity;
             return CreateTransparent(name, col);
+		}
+
+		/// <summary>
+		/// Gets a list of all Materials.
+		/// </summary>
+		/// <param name="includeCustom">If the returned list should contain custom Materials.</param>
+		/// <returns>The list of Materials.</returns>
+		[Obsolete("Please use MaterialManager.GetAllMaterials() instead")]
+		public static List<Material> GetAllMaterials(bool includeCustom)
+		{
+			Main.ObsoleteCodeWarning("MaterialUtils", "GetAllMaterials");
+			return MaterialManager.GetAllMaterials(includeCustom);
+		}
+
+		/// <summary>
+		/// Gets a list of all Materials.
+		/// </summary>
+		/// <param name="includeCustom">If the returned list should contain custom Materials.</param>
+		/// <param name="shaders">What shaders to filter by.</param>
+		/// <returns>The list of Materials.</returns>
+		[Obsolete("Please use MaterialManager.GetAllMaterialsOfShader() instead")]
+		public static List<Material> GetAllMaterials(bool includeCustom, List<string> shaders)
+		{
+			Main.ObsoleteCodeWarning("MaterialUtils", "GetAllMaterials");
+			List<Shader> _tempShaders = new List<Shader>();
+			foreach (string shaderName in shaders)
+			{
+				Shader shader = Shader.Find(shaderName);
+				if (shader == null)
+				{
+					foreach (Shader loadedShader in Resources.FindObjectsOfTypeAll<Shader>())
+					{
+						if (loadedShader.name == shaderName)
+							shader =  loadedShader;
+					}
+				}
+				
+				if (shader != null)
+					_tempShaders.Add(shader);
+			}
+
+			return MaterialManager.GetAllMaterialsOfShader(_tempShaders, includeCustom);
+		}
+
+		/// <summary>
+		/// Get a vanilla material by name.
+		/// </summary>
+		/// <param name="materialName">The name of the material to find.</param>
+		/// <returns>The requested material or null if not found.</returns>
+		[Obsolete("Please use MaterialManager.GetMaterial() instead")]
+		public static Material GetExistingMaterial(string materialName)
+		{
+			Main.ObsoleteCodeWarning("MaterialUtils", "GetExistingMaterial");
+			return MaterialManager.GetMaterial(materialName);
+		}
+
+		/// <summary>
+		/// Get a custom material by name.
+		/// </summary>
+		/// <param name="materialName">The name of the material to find.</param>
+		/// <returns>The requested material or null if not found.</returns>
+		[Obsolete("Please use MaterialManager.GetMaterial() instead")]
+		public static Material GetCustomMaterial(string materialName)
+		{
+			Main.ObsoleteCodeWarning("MaterialUtils", "GetCustomMaterial");
+			return MaterialManager.GetMaterial(materialName);
+		}
+
+		/// <summary>
+		/// Get a material array from a array of material names.
+		/// </summary>
+		/// <param name="materials">The names of the materials.</param>
+		/// <returns>The corresponding material array.</returns>
+		[Obsolete("Please use MaterialManager.GetMaterial() instead")]
+		public static Material[] GetMaterialArray(params string[] materials)
+		{
+			Main.ObsoleteCodeWarning("MaterialUtils", "GetMaterialArray");
+			List<Material> result = new List<Material>();
+			foreach (string materialName in materials)
+			{
+				Material foundMaterial = MaterialManager.GetMaterial(materialName);
+				if (foundMaterial == null) continue;
+				result.Add(foundMaterial);
+			}
+			return result.ToArray();
 		}
 
 		/// <summary>
@@ -375,38 +410,13 @@ namespace KitchenLib.Utils
 		/// </summary>
 		/// <param name="gameObject">The GameObject to modify.</param>
 		/// <returns>The modified GameObject</returns>
+		[Obsolete("Please use MaterialManager.AssignMaterialsByNames() instead")]
 		public static GameObject AssignMaterialsByNames(this GameObject gameObject)
 		{
-			foreach (Transform transform in gameObject.GetComponentsInChildren<Transform>())
-			{
-				if (transform.gameObject.HasComponent<Renderer>())
-				{
-					Renderer renderer = transform.gameObject.GetComponent<Renderer>();
-					if (renderer != null)
-					{
-						Material[] materials = renderer.materials;
-						List<Material> newMaterials = new List<Material>();
-						foreach (Material material in materials)
-						{
-							Material mat = MaterialUtils.GetExistingMaterial(material.name.Replace(" (Instance)", ""));
-							if (mat == null)
-								mat = MaterialUtils.GetCustomMaterial(material.name.Replace(" (Instance)", ""));
-
-							if (mat != null)
-							{
-								newMaterials.Add(mat);
-							}
-							else
-							{
-								newMaterials.Add(material);
-							}
-						}
-						renderer.materials = newMaterials.ToArray();
-					}
-				}
-			}
-			return gameObject;
+			Main.ObsoleteCodeWarning("MaterialUtils", "AssignMaterialsByNames");
+			return MaterialManager.AssignMaterialsByNames(gameObject);
 		}
 
+		#endregion
     }
 }
