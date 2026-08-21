@@ -198,14 +198,14 @@ namespace KitchenLib.Customs
 				// Used to override the purchase price of this Appliance.
 				if (PurchaseCostOverride != -1)
 				{
-					Main.LogDebug($"Assigning : {PurchaseCostOverride} >> PurchaseCostOverride");
+					BaseMod.InternalLogger.LogDebug($"Assigning : {PurchaseCostOverride} >> PurchaseCostOverride");
 					ApplianceOverrides.AddPurchaseCostOverride(appliance.ID, PurchaseCostOverride);
 				}
 
 				// Used to automatically generate a NavMeshObstacle component on this Appliance if not already present.
 				if (AutoGenerateNavMeshObject && appliance.Prefab != null)
 				{
-					Main.LogDebug("Setting up NavMeshObstacle");
+					BaseMod.InternalLogger.LogDebug("Setting up NavMeshObstacle");
 					if (appliance.Prefab.GetComponentsInChildren<NavMeshObstacle>().Length == 0)
 					{
 						var counter = gameData.Get<Appliance>().FirstOrDefault(a => a.ID == ApplianceReferences.Countertop);

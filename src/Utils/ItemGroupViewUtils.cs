@@ -57,7 +57,7 @@ namespace KitchenLib.Utils
 			}
 			if (newPrefab == null)
 			{
-				Main.LogWarning($"Could not find side prefab for item {item.ID} ({item.name}).");
+				BaseMod.InternalLogger.LogWarning($"Could not find side prefab for item {item.ID} ({item.name}).");
 				return;
 			}
 
@@ -71,7 +71,7 @@ namespace KitchenLib.Utils
 			mAdd.Invoke(componentGroups, new object[] { newComponentGroup });
 
 			SideItems.Add(item.ID);
-			Main.LogInfo($"Added item prefab to side registry for item {item.ID} ({item.name}).");
+			BaseMod.InternalLogger.LogInfo($"Added item prefab to side registry for item {item.ID} ({item.name}).");
 		}
 
 		public static void AddSideContainer<T>(GameData gameData, ItemGroup itemGroup, T localView) where T : ItemGroupView
@@ -91,7 +91,7 @@ namespace KitchenLib.Utils
 			}
 			else
 			{
-				Main.LogWarning($"Could not find Side Container in prefab for ItemGroup {itemGroup.ID} ({itemGroup.name}).");
+				BaseMod.InternalLogger.LogWarning($"Could not find Side Container in prefab for ItemGroup {itemGroup.ID} ({itemGroup.name}).");
 			}
 		}
 

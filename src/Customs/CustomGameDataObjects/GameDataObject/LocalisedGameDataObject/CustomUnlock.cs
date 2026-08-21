@@ -65,13 +65,13 @@ namespace KitchenLib.Customs
 
 				if (!string.IsNullOrEmpty(IconOverride))
 				{
-					Main.LogDebug($"Assigning : {IconOverride} >> IconOverride");
+					BaseMod.InternalLogger.LogDebug($"Assigning : {IconOverride} >> IconOverride");
 					UnlockOverrides.AddIconOverride(unlock.ID, IconOverride);
 				}
 
 				if (ColourOverride != new Color())
 				{
-					Main.LogDebug($"Assigning : {ColourOverride} >> ColourOverride");
+					BaseMod.InternalLogger.LogDebug($"Assigning : {ColourOverride} >> ColourOverride");
 					UnlockOverrides.AddColourOverride(unlock.ID, ColourOverride);
 				}
 			}

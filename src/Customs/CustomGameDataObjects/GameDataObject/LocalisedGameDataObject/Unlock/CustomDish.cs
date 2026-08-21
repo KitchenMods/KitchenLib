@@ -133,13 +133,13 @@ namespace KitchenLib.Customs
 
 				if (RequiredDishItem != null)
 				{
-					Main.LogDebug($"Adding : {RequiredDishItem} >> MinimumIngredients");
+					BaseMod.InternalLogger.LogDebug($"Adding : {RequiredDishItem} >> MinimumIngredients");
 					dish.MinimumIngredients.Add(RequiredDishItem);
 				}
 
 				if (dish.Type == DishType.Main && HardcodedRequirements.Count == 0 && !BypassMainRequirementsCheck)
 				{
-					Main.LogDebug($"Assigning : {DishType.Base} >> Type");
+					BaseMod.InternalLogger.LogDebug($"Assigning : {DishType.Base} >> Type");
 					dish.Type = DishType.Base;
 				}
 			}

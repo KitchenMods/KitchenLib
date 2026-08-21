@@ -28,6 +28,7 @@ namespace KitchenLib
 
 		public static KitchenVersion version;
 		public static SemVersion semVersion;
+		internal static KitchenLogger InternalLogger;
 
 		private static List<Assembly> PatchedAssemblies = new List<Assembly>();
 		private bool isRegistered = false;
@@ -68,6 +69,8 @@ namespace KitchenLib
 
 		private void SetupMod(string modID, string modName, string author, string modVersion, string betaVersion, string compatibleVersions, Assembly assembly)
 		{
+			if (InternalLogger == null)
+				InternalLogger = new KitchenLogger("KL Internal");
 			DebugLogPatch.SetupCustomLogHandler();
 
 			instance = this;
@@ -199,8 +202,8 @@ namespace KitchenLib
 			}
 			catch (Exception e)
 			{
-				Main.LogWarning($"{ModID} has failed to OnUpdate.");
-				Main.LogWarning(e);
+				InternalLogger.LogWarning($"{ModID} has failed to OnUpdate.");
+				InternalLogger.LogWarning(e);
 			}
 		}
 
@@ -214,8 +217,8 @@ namespace KitchenLib
 				}
 				catch (Exception e)
 				{
-					Main.LogWarning($"{ModID} has failed to Initialise.");
-					Main.LogWarning(e);
+					InternalLogger.LogWarning($"{ModID} has failed to Initialise.");
+					InternalLogger.LogWarning(e);
 				}
 				ModRegistery.InitialisedMods.Add(ModAuthor + ModID);
 			}
@@ -223,13 +226,13 @@ namespace KitchenLib
 
 		public object AddGameDataObjectByInterface(Type gdo)
 		{
-			Main.LogInfo($"Registering {gdo.FullName} by interface.");
+			InternalLogger.LogInfo($"Registering {gdo.FullName} by interface.");
 			return AddGameDataObjectType(gdo);
 		}
 
 		public object AddGameDataObjectAutomatically(Type gdo)
 		{
-			Main.LogInfo($"Registering {gdo.FullName} automatically.");
+			InternalLogger.LogInfo($"Registering {gdo.FullName} automatically.");
 			return AddGameDataObjectType(gdo);
 		}
 
@@ -251,7 +254,7 @@ namespace KitchenLib
 			}
 			else
 			{
-				Main.LogWarning("Please Register GDOs in OnPostActivate(Mod mod) " + gdo.GetType().FullName);
+				InternalLogger.LogWarning("Please Register GDOs in OnPostActivate(Mod mod) " + gdo.GetType().FullName);
 				return null;
 			}
 		}
@@ -311,6 +314,11 @@ namespace KitchenLib
 		public KitchenLogger InitLogger()
 		{
 			return new KitchenLogger(ModName);
+		}
+		
+		internal static void ObsoleteCodeWarning(string className, string methodName)
+		{
+			InternalLogger.LogWarning($"[Obsolete Warning] {className}.{methodName} is marked as Obsolete, but is still being used.");
 		}
 
 		#region Obsolete Code

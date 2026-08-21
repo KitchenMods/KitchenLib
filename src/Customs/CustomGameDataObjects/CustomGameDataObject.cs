@@ -45,22 +45,22 @@ namespace KitchenLib.Customs
 			try
 			{
 				var fieldInfo = ReflectionUtils.GetField(result.GetType(), varName);
-				Main.LogDebug($"Assigning : {value} >> {varName}");
+				BaseMod.InternalLogger.LogDebug($"Assigning : {value} >> {varName}");
 				fieldInfo.SetValue(result, value);
 			}
 			catch (Exception e)
 			{
 				if (!supressError)
 				{
-					Main.LogError($"Failed to assign : {value} >> {varName}");
-					Main.LogError(e);
+					BaseMod.InternalLogger.LogError($"Failed to assign : {value} >> {varName}");
+					BaseMod.InternalLogger.LogError(e);
 				}
 			}
 		}
 
 		protected void ConvertInfoListToLocalisationObject<L>(List<(Locale, L)> InfoList, ref LocalisationObject<L> result) where L : Localisation
 		{
-			Main.LogDebug("Setting up localisation");
+			BaseMod.InternalLogger.LogDebug("Setting up localisation");
 			result = new LocalisationObject<L>();
 
 			L fallback = default;

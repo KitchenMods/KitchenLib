@@ -117,7 +117,7 @@ namespace KitchenLib.Customs
 
 				if (!string.IsNullOrEmpty(ColourBlindTag))
 				{
-					Main.LogError($"Adding ColourBlindTag '{ColourBlindTag}'");
+					BaseMod.InternalLogger.LogError($"Adding ColourBlindTag '{ColourBlindTag}'");
 					var steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
 					if (steak != null)
 					{
@@ -130,7 +130,7 @@ namespace KitchenLib.Customs
 
 				if (RewardOverride != -1)
 				{
-					Main.LogDebug($"Assigning : {RewardOverride} >> RewardOverride");
+					BaseMod.InternalLogger.LogDebug($"Assigning : {RewardOverride} >> RewardOverride");
 					ItemOverrides.AddRewardOverride(item.ID, RewardOverride);
 				}
 			}
@@ -164,7 +164,7 @@ namespace KitchenLib.Customs
 
 				if (SidePrefab == null)
 				{
-					Main.LogError("Assigning fallback side prefab");
+					BaseMod.InternalLogger.LogError("Assigning fallback side prefab");
 					SidePrefab = item.Prefab ?? Main.bundle.LoadAsset<GameObject>("Error_Item");
 				}
 			}

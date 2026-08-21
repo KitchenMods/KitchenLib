@@ -16,7 +16,7 @@ namespace KitchenLib.Utils
 		[Obsolete("This was never intended on being public in the first place.")]
 		public static void SetupMaterialIndex()
 		{
-			Main.ObsoleteCodeWarning("MaterialUtils", "SetupMaterialIndex");
+			BaseMod.ObsoleteCodeWarning("MaterialUtils", "SetupMaterialIndex");
 			if (MaterialIndex.Count > 0)
 				return;
 
@@ -38,7 +38,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please add Materials to GameObjects within Unity.")]
 		public static void ApplyMaterial(GameObject parent, string childPath, Material[] materials)
 		{
-			Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterial");
+			BaseMod.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterial");
             parent.GetChild(childPath).ApplyMaterial(materials);
 		}
 
@@ -52,7 +52,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please add Materials to GameObjects within Unity.")]
 		public static void ApplyMaterial<T>(GameObject parent, string childPath, Material[] materials) where T : Renderer
 		{
-			Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterial<T>");
+			BaseMod.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterial<T>");
             parent.GetChild(childPath).ApplyMaterial<T>(materials);
         }
 
@@ -66,7 +66,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterial<T>(this GameObject gameObject, params Material[] materials) where T : Renderer
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterial<T>");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterial<T>");
             var comp = gameObject?.GetComponent<T>();
             if (comp == null)
                 return gameObject;
@@ -85,7 +85,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterial(this GameObject gameObject, params Material[] materials)
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterial");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterial");
             return ApplyMaterial<MeshRenderer>(gameObject, materials);
         }
 
@@ -98,7 +98,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterial(this GameObject gameObject, params string[] materials)
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterial");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterial");
             return ApplyMaterial<MeshRenderer>(gameObject, GetMaterialArray(materials));
         }
 
@@ -113,7 +113,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChildren<T>(this GameObject parent, string nameContains, Material[] materials) where T : Renderer
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren<T>");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren<T>");
             for (int i = 0; i < parent.GetChildCount(); i++)
             {
                 GameObject child = parent.GetChild(i);
@@ -135,7 +135,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChildren(this GameObject parent, string nameContains, Material[] materials)
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren");
             return ApplyMaterialToChildren<MeshRenderer>(parent, nameContains, materials);
         }
 
@@ -149,7 +149,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChildren(this GameObject parent, string nameContains, params string[] materials)
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren");
             return ApplyMaterialToChildren<MeshRenderer>(parent, nameContains, GetMaterialArray(materials));
         }
 
@@ -163,7 +163,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChildren<T>(this GameObject parent, Material[] materials) where T : Renderer
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren<T>");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren<T>");
             return ApplyMaterialToChildren<T>(parent, "", materials);
         }
 
@@ -176,7 +176,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChildren(this GameObject parent, Material[] materials)
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren");
             return ApplyMaterialToChildren<MeshRenderer>(parent, "", materials);
         }
 
@@ -189,7 +189,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChildren(this GameObject parent, params string[] materials)
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChildren");
             return ApplyMaterialToChildren<MeshRenderer>(parent, "", GetMaterialArray(materials));
         }
 
@@ -204,7 +204,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChild<T>(this GameObject parent, string childPath, Material[] materials) where T : Renderer
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChild<T>");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChild<T>");
             return parent.GetChild(childPath).ApplyMaterial<T>(materials);
         }
 
@@ -218,7 +218,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChild(this GameObject parent, string childPath, Material[] materials)
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChild");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChild");
             return parent.GetChild(childPath).ApplyMaterial(materials);
         }
 
@@ -232,7 +232,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please add Materials to GameObjects within Unity.")]
         public static GameObject ApplyMaterialToChild(this GameObject parent, string childPath, params string[] materials)
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChild");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "ApplyMaterialToChild");
             return parent.GetChild(childPath).ApplyMaterial(GetMaterialArray(materials));
         }
 
@@ -244,7 +244,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please create custom Materials within KitchenLib's Material Editor, and load them in Unity.")]
         public static Color ColorFromHex(int hex)
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "ColorFromHex");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "ColorFromHex");
             return new Color(((hex & 0xFF0000) >> 16) / 255.0f, ((hex & 0xFF00) >> 8) / 255.0f, (hex & 0xFF) / 255.0f);
         }
 
@@ -259,7 +259,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please create custom Materials within KitchenLib's Material Editor, and load them in Unity.")]
         public static Material CreateFlat(string name, Color color, float shininess = 0, float overlayScale = 10)
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "CreateFlat");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "CreateFlat");
             Material mat = new(Shader.Find("Simple Flat"))
             {
                 name = name
@@ -282,7 +282,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please create custom Materials within KitchenLib's Material Editor, and load them in Unity.")]
         public static Material CreateFlat(string name, int color, float shininess = 0, float overlayScale = 10)
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "CreateFlat");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "CreateFlat");
             return CreateFlat(name, ColorFromHex(color), shininess, overlayScale);
         }
 
@@ -295,7 +295,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please create custom Materials within KitchenLib's Material Editor, and load them in Unity.")]
         public static Material CreateTransparent(string name, Color color)
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "CreateTransparent");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "CreateTransparent");
             Material mat = new(Shader.Find("Simple Transparent"))
             {
                 name = name
@@ -314,7 +314,7 @@ namespace KitchenLib.Utils
         [Obsolete("Please create custom Materials within KitchenLib's Material Editor, and load them in Unity.")]
         public static Material CreateTransparent(string name, int color, float opacity)
         {
-	        Main.ObsoleteCodeWarning("MaterialUtils", "CreateTransparent");
+	        BaseMod.ObsoleteCodeWarning("MaterialUtils", "CreateTransparent");
             Color col = ColorFromHex(color);
             col.a = opacity;
             return CreateTransparent(name, col);
@@ -328,7 +328,7 @@ namespace KitchenLib.Utils
 		[Obsolete("Please use MaterialManager.GetAllMaterials() instead")]
 		public static List<Material> GetAllMaterials(bool includeCustom)
 		{
-			Main.ObsoleteCodeWarning("MaterialUtils", "GetAllMaterials");
+			BaseMod.ObsoleteCodeWarning("MaterialUtils", "GetAllMaterials");
 			return MaterialManager.GetAllMaterials(includeCustom);
 		}
 
@@ -341,7 +341,7 @@ namespace KitchenLib.Utils
 		[Obsolete("Please use MaterialManager.GetAllMaterialsOfShader() instead")]
 		public static List<Material> GetAllMaterials(bool includeCustom, List<string> shaders)
 		{
-			Main.ObsoleteCodeWarning("MaterialUtils", "GetAllMaterials");
+			BaseMod.ObsoleteCodeWarning("MaterialUtils", "GetAllMaterials");
 			List<Shader> _tempShaders = new List<Shader>();
 			foreach (string shaderName in shaders)
 			{
@@ -370,7 +370,7 @@ namespace KitchenLib.Utils
 		[Obsolete("Please use MaterialManager.GetMaterial() instead")]
 		public static Material GetExistingMaterial(string materialName)
 		{
-			Main.ObsoleteCodeWarning("MaterialUtils", "GetExistingMaterial");
+			BaseMod.ObsoleteCodeWarning("MaterialUtils", "GetExistingMaterial");
 			return MaterialManager.GetMaterial(materialName);
 		}
 
@@ -382,7 +382,7 @@ namespace KitchenLib.Utils
 		[Obsolete("Please use MaterialManager.GetMaterial() instead")]
 		public static Material GetCustomMaterial(string materialName)
 		{
-			Main.ObsoleteCodeWarning("MaterialUtils", "GetCustomMaterial");
+			BaseMod.ObsoleteCodeWarning("MaterialUtils", "GetCustomMaterial");
 			return MaterialManager.GetMaterial(materialName);
 		}
 
@@ -394,7 +394,7 @@ namespace KitchenLib.Utils
 		[Obsolete("Please use MaterialManager.GetMaterial() instead")]
 		public static Material[] GetMaterialArray(params string[] materials)
 		{
-			Main.ObsoleteCodeWarning("MaterialUtils", "GetMaterialArray");
+			BaseMod.ObsoleteCodeWarning("MaterialUtils", "GetMaterialArray");
 			List<Material> result = new List<Material>();
 			foreach (string materialName in materials)
 			{
@@ -413,7 +413,7 @@ namespace KitchenLib.Utils
 		[Obsolete("Please use MaterialManager.AssignMaterialsByNames() instead")]
 		public static GameObject AssignMaterialsByNames(this GameObject gameObject)
 		{
-			Main.ObsoleteCodeWarning("MaterialUtils", "AssignMaterialsByNames");
+			BaseMod.ObsoleteCodeWarning("MaterialUtils", "AssignMaterialsByNames");
 			return MaterialManager.AssignMaterialsByNames(gameObject);
 		}
 

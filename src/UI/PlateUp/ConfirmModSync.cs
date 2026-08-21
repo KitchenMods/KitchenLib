@@ -49,7 +49,7 @@ namespace KitchenLib.UI
 					AddInfo("Installing...");
 					foreach (Item mod in AllMods)
 					{
-						Main.LogInfo("Installing " + mod.Title);
+						BaseMod.InternalLogger.LogInfo("Installing " + mod.Title);
 						await mod.Subscribe();
 					}
 				}
@@ -58,7 +58,7 @@ namespace KitchenLib.UI
 					AddInfo("Installing...");
 					foreach (Item mod in MissingMods)
 					{
-						Main.LogInfo("Installing " + mod.Title);
+						BaseMod.InternalLogger.LogInfo("Installing " + mod.Title);
 						await mod.Subscribe();
 					}
 				}

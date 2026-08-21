@@ -65,7 +65,7 @@ namespace KitchenLib.Customs
 
 				if (AutoSetupItemGroupView)
 				{
-					Main.LogDebug($"Setting up ItemGroupView as {typeof(T).FullName}");
+					BaseMod.InternalLogger.LogDebug($"Setting up ItemGroupView as {typeof(T).FullName}");
 					var localView = itemGroup.Prefab.GetComponent<T>();
 					if (localView == null)
 					{
@@ -81,7 +81,7 @@ namespace KitchenLib.Customs
 				var steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
 				if (steak != null)
 				{
-					Main.LogDebug("Setting up Colour Blind Labels");
+					BaseMod.InternalLogger.LogDebug("Setting up Colour Blind Labels");
 					var ColorBlind = GameObject.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject);
 					ColorBlind.name = "Colour Blind";
 					ColorBlind.transform.SetParent(itemGroup.Prefab.transform);

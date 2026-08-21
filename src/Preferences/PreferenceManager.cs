@@ -63,7 +63,7 @@ namespace KitchenLib.Preferences
 
 	        if (!isGlobal && globalManager == null)
 	        {
-		        Main.LogWarning("Global Preference Manager is null, attempting to assign.");
+		        BaseMod.InternalLogger.LogWarning("Global Preference Manager is null, attempting to assign.");
 		        EnsureGlobal();
 	        }
 	        
@@ -135,7 +135,7 @@ namespace KitchenLib.Preferences
                 return (T)preferences[(key, typeof(T).Name)];
             else
             {
-                Main.LogWarning($"Unable to get preference with {key}, key not registered.");
+	            BaseMod.InternalLogger.LogWarning($"Unable to get preference with {key}, key not registered.");
                 return null;
             }
         }
@@ -155,7 +155,7 @@ namespace KitchenLib.Preferences
                 return ((dynamic)preferences[(key, typeof(T).Name)]).Get();
             else
             {
-                Main.LogWarning($"Unable to get value of {key}, key not registered.");
+	            BaseMod.InternalLogger.LogWarning($"Unable to get value of {key}, key not registered.");
                 return null;
             }
         }
@@ -176,7 +176,7 @@ namespace KitchenLib.Preferences
                 ((dynamic)preferences[(key, typeof(T).Name)]).Set((dynamic)value);
             else
             {
-                Main.LogWarning($"Unable to set value of {key}, key not registered.");
+	            BaseMod.InternalLogger.LogWarning($"Unable to set value of {key}, key not registered.");
                 return;
             }
         }
@@ -215,7 +215,7 @@ namespace KitchenLib.Preferences
 			        json = File.ReadAllText(preferenceFilePath);
 		        if (string.IsNullOrEmpty(json))
 		        {
-			        Main.LogWarning($"Unable to load preferences, file empty or not saved.");
+			        BaseMod.InternalLogger.LogWarning($"Unable to load preferences, file empty or not saved.");
 			        return;
 		        }
 
@@ -224,7 +224,7 @@ namespace KitchenLib.Preferences
 		        {
 			        if (!preferences.ContainsKey((pref.Key, pref.Type)))
 			        {
-				        Main.LogWarning($"Unable to load {pref.Key}, key not registered.");
+				        BaseMod.InternalLogger.LogWarning($"Unable to load {pref.Key}, key not registered.");
 			        }
 			        else
 			        {
@@ -237,7 +237,7 @@ namespace KitchenLib.Preferences
 	        {
 		        if (File.Exists(preferenceFilePath))
 		        {
-			        Main.LogWarning("Failed to load preferences file " + preferenceFilePath + ", backing up and replacing.");
+			        BaseMod.InternalLogger.LogWarning("Failed to load preferences file " + preferenceFilePath + ", backing up and replacing.");
 			        File.Move(preferenceFilePath, preferenceFilePath + ".backup");
 			        Save();
 			        Load();
@@ -255,7 +255,7 @@ namespace KitchenLib.Preferences
         {
             if (preferences.ContainsKey((preference.Key, preference.GetType().Name)))
             {
-                Main.LogWarning($"Unable to register {preference.Key}, key already registered.");
+	            BaseMod.InternalLogger.LogWarning($"Unable to register {preference.Key}, key already registered.");
                 return null;
             }
             preferences.Add((preference.Key, preference.GetType().Name), preference);

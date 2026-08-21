@@ -35,7 +35,7 @@ namespace KitchenLib.Utils
 			if (result == null)
 			{
 				CustomGDO.GDOsByModName.TryGetValue(new KeyValuePair<string, string>(modID, name), out result);
-				Main.LogWarning($"Mod Name {modID}:{name} should not be used to find GDOs. Use Mod ID instead.");
+				BaseMod.InternalLogger.LogWarning($"Mod Name {modID}:{name} should not be used to find GDOs. Use Mod ID instead.");
 			}
 			return result;
 		}
@@ -93,7 +93,7 @@ namespace KitchenLib.Utils
 		{
 			if (GameData.Main == null)
 			{
-				Main.LogWarning("Please use WhitelistSide in OnInitialise");
+				BaseMod.InternalLogger.LogWarning("Please use WhitelistSide in OnInitialise");
 				return;
 			}
 			foreach (Dish dish in GameData.Main.Get<Dish>())

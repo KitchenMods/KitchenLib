@@ -72,7 +72,7 @@ namespace KitchenLib.Patches
 				{
 					if (gdo.mod == null)
 					{
-						Main.LogWarning($"{gdo.GetType().FullName} Failed to register correctly. Attempting to fix...");
+						BaseMod.InternalLogger.LogWarning($"{gdo.GetType().FullName} Failed to register correctly. Attempting to fix...");
 						bool found = false;
 						foreach (Mod mod in ModPreload.Mods)
 						{
@@ -83,7 +83,7 @@ namespace KitchenLib.Patches
 									if (type == gdo.GetType())
 									{
 										gdo.mod = mod;
-										Main.LogWarning($"Successfully fixed {gdo.GetType().FullName}");
+										BaseMod.InternalLogger.LogWarning($"Successfully fixed {gdo.GetType().FullName}");
 										found = true;
 										break;
 									}
@@ -101,7 +101,7 @@ namespace KitchenLib.Patches
 				{
 					try
 					{
-						Main.LogDebug($"-----===== Convert GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
+						BaseMod.InternalLogger.LogDebug($"-----===== Convert GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
 						GameDataObject gameDataObject;
 						gdo.Convert(__result, out gameDataObject);
 						gameDataObject.name = $"{gdo.ModID} - {gdo.UniqueNameID}";
@@ -110,7 +110,7 @@ namespace KitchenLib.Patches
 					}
 					catch (Exception e)
 					{
-						Main.LogError(e);
+						BaseMod.InternalLogger.LogError(e);
 						ErrorHandling.AddFailedGDO(gdo, e, GDOFailureState.FailedToConvert);
 					}
 				}
@@ -119,12 +119,12 @@ namespace KitchenLib.Patches
 				{
 					try
 					{
-						Main.LogDebug($"-----===== AttachDependentProperties GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
+						BaseMod.InternalLogger.LogDebug($"-----===== AttachDependentProperties GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
 						gdo.AttachDependentProperties(__result, gdo.GameDataObject);
 					}
 					catch (Exception e)
 					{
-						Main.LogError(e);
+						BaseMod.InternalLogger.LogError(e);
 						ErrorHandling.AddFailedGDO(gdo, e, GDOFailureState.FailedToAttachDependent);
 					}
 				}
@@ -133,12 +133,12 @@ namespace KitchenLib.Patches
 				{
 					try
 					{
-						Main.LogDebug($"-----===== OnRegister GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
+						BaseMod.InternalLogger.LogDebug($"-----===== OnRegister GDO : ({gdo.GetType().BaseType}) {gdo.GetType().FullName} =====-----");
 						gdo.OnRegister(gdo.GameDataObject);
 					}
 					catch (Exception e)
 					{
-						Main.LogError(e);
+						BaseMod.InternalLogger.LogError(e);
 						ErrorHandling.AddFailedGDO(gdo, e, GDOFailureState.FailedToRegister);
 					}
 				}
@@ -149,7 +149,7 @@ namespace KitchenLib.Patches
 
 			foreach (GameDataObject gameDataObject in GameDataObjects)
 			{
-				Main.LogDebug($"-----===== SetupForGame GDO : ({gameDataObject.GetType().BaseType}) {gameDataObject.name} =====-----");
+				BaseMod.InternalLogger.LogDebug($"-----===== SetupForGame GDO : ({gameDataObject.GetType().BaseType}) {gameDataObject.name} =====-----");
 				try
 				{
 					gameDataObject.SetupForGame();
@@ -162,13 +162,13 @@ namespace KitchenLib.Patches
 				}
 				catch (Exception e)
 				{
-					Main.LogInfo(e.Message);
+					BaseMod.InternalLogger.LogInfo(e.Message);
 				}
 			}
 
 			foreach (GameDataObject gameDataObject in GameDataObjects)
 			{
-				Main.LogDebug($"-----===== Prefabs.Add GDO : ({gameDataObject.GetType().BaseType}) {gameDataObject.name} =====-----");
+				BaseMod.InternalLogger.LogDebug($"-----===== Prefabs.Add GDO : ({gameDataObject.GetType().BaseType}) {gameDataObject.name} =====-----");
 				if (__result.Objects.ContainsKey(gameDataObject.ID))
 					break;
 				__result.Objects.Add(gameDataObject.ID, gameDataObject);
@@ -181,7 +181,7 @@ namespace KitchenLib.Patches
 
 			foreach (GameDataObject gameDataObject in GameDataObjects)
 			{
-				Main.LogDebug($"-----===== SetupFinal GDO : ({gameDataObject.GetType().BaseType}) {gameDataObject.name} =====-----");
+				BaseMod.InternalLogger.LogDebug($"-----===== SetupFinal GDO : ({gameDataObject.GetType().BaseType}) {gameDataObject.name} =====-----");
 				gameDataObject.SetupFinal();
 			}
 
@@ -194,7 +194,7 @@ namespace KitchenLib.Patches
 			{
 				foreach (GameDataObject gameDataObject in GameDataObjects)
 				{
-					Main.LogDebug($"-----===== Specifics GDO : ({gameDataObject.GetType().BaseType}) {gameDataObject.name} =====-----");
+					BaseMod.InternalLogger.LogDebug($"-----===== Specifics GDO : ({gameDataObject.GetType().BaseType}) {gameDataObject.name} =====-----");
 					// Dishes
 					if (gameDataObject.GetType() == typeof(Dish))
 					{
