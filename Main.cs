@@ -213,7 +213,6 @@ namespace KitchenLib
 			
 			// Pause Menu Registrations
 			PauseMenuPreferencesesMenu.RegisterUsableMenu(typeof(PauseMenuPreferencesesMenu));
-			PauseMenuPreferencesesMenu.RegisterUsableMenu(typeof(ConfirmModSync));
 			
 			// Global Registrations
 			BasePreferencesMenu.RegisterUsableMenu(typeof(ModsMenu));
