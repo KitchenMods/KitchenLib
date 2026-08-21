@@ -224,7 +224,7 @@ namespace KitchenLib
 			BasePreferencesMenu.RegisterUsableMenu(typeof(UserOptions));
 			BasePreferencesMenu.RegisterUsableMenu(typeof(ModAchievementsMenu));
 
-			//Setting Up For Pause Menu
+			//Add Mod Preference and Mod Achievement Menus when needed
 			Events.MainMenu_SetupEvent += (s, args) =>
 			{
 				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mods", typeof(ModsMenu), false });
