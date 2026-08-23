@@ -11,24 +11,17 @@ using UnityEngine;
 
 namespace KitchenLib
 {
-	public class KLMenu : KLMenu<MenuAction>
+	/*
+	 * KLMenu is an extension of Menu<MenuAction> to implement, and provide additional menu functionality.
+	 */
+	public abstract class KLMenu : KLMenu<MenuAction>
 	{
-		internal bool ShouldCloneType;
-		internal Type TypeToClone;
 		public KLMenu(Transform container, ModuleList module_list) : base(container, module_list)
 		{
 		}
-
-		public override void Setup(int player_id)
-		{
-			if (ShouldCloneType)
-			{
-				MethodInfo methodInfo = ReflectionUtils.GetMethod(TypeToClone, "Setup");
-			}
-		}
 	}
 
-	public class KLMenu<T> : Menu<T>
+	public abstract class KLMenu<T> : Menu<T>
 	{
 		private PlayerPauseView view;
 		private Transform container;
@@ -193,7 +186,6 @@ namespace KitchenLib
 				{
 					if (current_profile != "Create")
 					{
-						Main.LogInfo("------------------------ Selected Profile " + current_profile);
 						GlobalPreferences.SetProfile(mod_id, current_profile);
 						action(current_profile);
 						manager.SetProfile(current_profile);
@@ -221,7 +213,6 @@ namespace KitchenLib
 					{
 						if (current_profile != "Create")
 						{
-							Main.LogInfo("------------------------ Selected Profile " + current_profile);
 							GlobalPreferences.SetProfile(mod_id, current_profile);
 							action(current_profile);
 							manager.SetProfile(current_profile);

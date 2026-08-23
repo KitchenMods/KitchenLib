@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using HarmonyLib;
 using Kitchen;
 using KitchenData;
+using KitchenLib.Materials;
 using KitchenLib.Systems;
 using KitchenLib.Utils;
 using KitchenLib.Views;
@@ -72,7 +73,7 @@ namespace KitchenLib.Patches
 			
 			if (prefab == null)
 			{
-				prefab = Main.bundle.LoadAsset<GameObject>("Ordering Ticket").AssignMaterialsByNames();
+				prefab = MaterialManager.AssignMaterialsByNames(Main.bundle.LoadAsset<GameObject>("Ordering Ticket"));
 				AchievementNotification view = prefab.AddComponent<AchievementNotification>();
 				view.Animator = prefab.GetComponent<Animator>();
 				view.Title = prefab.GetChild("Sub Ordering Ticket/Title").GetComponent<TextMeshPro>();
@@ -100,7 +101,7 @@ namespace KitchenLib.Patches
 			if (prefab == null)
 			{
 				prefab = Main.bundle.LoadAsset<GameObject>("Steam Clone");
-				prefab = prefab.AssignMaterialsByNames();
+				prefab = MaterialManager.AssignMaterialsByNames(prefab);
 				AchievementNotification view = prefab.AddComponent<AchievementNotification>();
 				view.Animator = prefab.GetComponent<Animator>();
 				view.Title = prefab.GetChild("Sub Steam Clone/Title").GetComponent<TextMeshPro>();

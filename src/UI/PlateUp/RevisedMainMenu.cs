@@ -32,7 +32,6 @@ namespace KitchenLib.UI
 			{
 				if (PreferenceManager.Managers.Count > 0)
 				{
-					//AddSubmenuButton.Invoke(instance, ["Mod Preferences", typeof(ModsPreferencesMenu<MenuAction>), false]);
 					AddSubmenuButton.Invoke(instance, ["Mod Preferences", typeof(MainMenuPreferencesesMenu), false]);
 				}
 			}

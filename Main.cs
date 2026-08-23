@@ -17,7 +17,6 @@ using KitchenLib.Components;
 using KitchenLib.UI.PlateUp.PreferenceMenus;
 using KitchenLib.Utils;
 using KitchenLib.Views;
-using Unity.Entities;
 using KitchenLogger = KitchenLib.Logging.KitchenLogger;
 
 namespace KitchenLib
@@ -45,7 +44,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The version of the mod.
 		/// </summary>
-		internal const string MOD_VERSION = "0.9.2";
+		internal const string MOD_VERSION = "0.10.0";
 
 		/// <summary>
 		/// The beta version of the mod.
@@ -130,19 +129,6 @@ namespace KitchenLib
 			SetupMenus();
 			RegisterMenu<NewNewMaterialUI>();
 			RegisterMenu<DebugMenu>();
-			
-			
-			/*
-			achievementsManager = new AchievementsManager(MOD_ID, MOD_NAME);
-			achievementsManager.RegisterAchievement(new Achievement("test", "Super Wow!", "This is a super cool test achivement!", bundle.LoadAsset<Texture2D>("wow")));
-			achievementsManager.RegisterAchievement(new Achievement("test2", "Another Wow", "This is a su2per cool test achivement!", bundle.LoadAsset<Texture2D>("vest"), new List<string>{"test"}));
-			achievementsManager.RegisterAchievement(new Achievement("test3", "Triple Wow?", "This is a su3per cool test achivement!", bundle.LoadAsset<Texture2D>("wow"), new List<string>{"test"}));
-			achievementsManager.Load();
-			achievementsManager.Save();
-			*/
-			
-
-			ViewUtils.RegisterView("KitchenLib.Views.SyncMods", typeof(SModSync), typeof(SyncMods));
 
 			
 			switch (manager.GetPreference<PreferenceInt>("achievementNotificatonDisplay").Value)
@@ -159,12 +145,12 @@ namespace KitchenLib
 			}
 			
 
-			LogInfo(" __  ___  __  .___________.  ______  __    __   _______ .__   __.  __       __  .______  ");
-			LogInfo("|  |/  / |  | |           | /      ||  |  |  | |   ____||  \\ |  | |  |     |  | |   _  \\ ");
-			LogInfo("|  '  /  |  | `---|  |----`|  ,----'|  |__|  | |  |__   |   \\|  | |  |     |  | |  |_)  |");
-			LogInfo("|    <   |  |     |  |     |  |     |   __   | |   __|  |  . `  | |  |     |  | |   _  <  ");
-			LogInfo("|  .  \\  |  |     |  |     |  `----.|  |  |  | |  |____ |  |\\   | |  `----.|  | |  |_)  |");
-			LogInfo("|__|\\__\\ |__|     |__|      \\______||__|  |__| |_______||__| \\__| |_______||__| |______/ " + $"   v{MOD_VERSION}b{MOD_BETA_VERSION}");
+			Logger.LogInfo(" __  ___  __  .___________.  ______  __    __   _______ .__   __.  __       __  .______  ");
+			Logger.LogInfo("|  |/  / |  | |           | /      ||  |  |  | |   ____||  \\ |  | |  |     |  | |   _  \\ ");
+			Logger.LogInfo("|  '  /  |  | `---|  |----`|  ,----'|  |__|  | |  |__   |   \\|  | |  |     |  | |  |_)  |");
+			Logger.LogInfo("|    <   |  |     |  |     |  |     |   __   | |   __|  |  . `  | |  |     |  | |   _  <  ");
+			Logger.LogInfo("|  .  \\  |  |     |  |     |  `----.|  |  |  | |  |____ |  |\\   | |  `----.|  | |  |_)  |");
+			Logger.LogInfo("|__|\\__\\ |__|     |__|      \\______||__|  |__| |_______||__| \\__| |_______||__| |______/ " + $"   v{MOD_VERSION}b{MOD_BETA_VERSION}");
 
 			Events.BuildGameDataEvent += (sender, args) => { if (args.firstBuild) AchievementsManager.SetupMenuElement(); };
 		}
@@ -176,8 +162,8 @@ namespace KitchenLib
 				localModCount--;
 			}
 			bool isDebug = manager.GetPreference<PreferenceBool>("isDebug").Value;
-			debugLogging = localModCount > 0 || isDebug;
-			LogInfo($"GDO debug logging: {debugLogging} (local mods: {localModCount}, isDebug: {isDebug})");
+			InternalLogger.IsDebug = localModCount > 0 || isDebug;
+			Logger.LogInfo($"GDO debug logging: {debugLogging} (local mods: {localModCount}, isDebug: {isDebug})");
 		}
 
 
@@ -227,8 +213,6 @@ namespace KitchenLib
 			
 			// Pause Menu Registrations
 			PauseMenuPreferencesesMenu.RegisterUsableMenu(typeof(PauseMenuPreferencesesMenu));
-			PauseMenuPreferencesesMenu.RegisterUsableMenu(typeof(ModSyncMenu));
-			PauseMenuPreferencesesMenu.RegisterUsableMenu(typeof(ConfirmModSync));
 			
 			// Global Registrations
 			BasePreferencesMenu.RegisterUsableMenu(typeof(ModsMenu));
@@ -236,7 +220,7 @@ namespace KitchenLib
 			BasePreferencesMenu.RegisterUsableMenu(typeof(UserOptions));
 			BasePreferencesMenu.RegisterUsableMenu(typeof(ModAchievementsMenu));
 
-			//Setting Up For Pause Menu
+			//Add Mod Preference and Mod Achievement Menus when needed
 			Events.MainMenu_SetupEvent += (s, args) =>
 			{
 				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mods", typeof(ModsMenu), false });
@@ -267,33 +251,10 @@ namespace KitchenLib
 			AddGameDataObject<T>();
 		}
 
-		[Obsolete]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogInfo(object message)
-		{
-			Debug.Log($"[{MOD_NAME}] " + message);
-		}
-
-		[Obsolete]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogWarning(object message)
-		{
-			Debug.LogWarning($"[{MOD_NAME}] " + message);
-		}
-
-		[Obsolete]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogError(object message)
-		{
-			Debug.LogError($"[{MOD_NAME}] " + message);
-		}
-
-		[Obsolete]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogDebug(object message)
-		{
-			if (debugLogging)
-				Debug.Log($"[{MOD_NAME}] [DEBUG] " + message);
-		}
+		#region Obsolete Code
+		
+		
+		
+		#endregion
 	}
 }

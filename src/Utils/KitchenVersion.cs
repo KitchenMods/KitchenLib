@@ -26,7 +26,7 @@ namespace KitchenLib.Utils
                 Patch = 0;
                 Hotfix = "";
                 Hash = "XXXX";
-                mod.Error("ERROR - KitchenVersion: Version string is not valid. Using default version.");
+                BaseMod.InternalLogger.LogError("ERROR - KitchenVersion: Version string is not valid. Using default version.");
             }
             else
             {

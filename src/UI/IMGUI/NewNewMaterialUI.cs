@@ -5,6 +5,7 @@ using Kitchen;
 using KitchenLib.Customs;
 using KitchenLib.DevUI;
 using KitchenLib.Interfaces;
+using KitchenLib.Materials;
 using KitchenLib.Utils;
 using TMPro;
 using UnityEngine;
@@ -76,7 +77,7 @@ namespace KitchenLib.UI
 
 			if (defaultMaterial == null)
 			{
-				defaultMaterial = MaterialUtils.GetExistingMaterial("Wood - Default");
+				defaultMaterial = MaterialManager.GetMaterial("Wood - Default");
 			}
 
 			if (!Directory.Exists(customMaterialsPath))
@@ -150,7 +151,7 @@ namespace KitchenLib.UI
 			GUILayout.Label("Existing Materials");
 			materialSelectorSearchBar = GUILayout.TextField(materialSelectorSearchBar);
 			materialSelectorScrollPosition = GUILayout.BeginScrollView(materialSelectorScrollPosition, false, false, GUIStyle.none, GUI.skin.verticalScrollbar);
-			foreach (Material material in MaterialUtils.GetAllMaterials(true, editors.Keys.ToList()))
+			foreach (Material material in MaterialManager.GetAllMaterialsOfShader(editors.Keys.ToList()))
 			{
 				string name = $"[{material.shader.name}] {material.name}";
 				if (name.ToLower().Contains(materialSelectorSearchBar.ToLower()))
@@ -254,14 +255,14 @@ namespace KitchenLib.UI
 
 			int counter = 0;
 			
-			foreach (Material material in MaterialUtils.GetAllMaterials(false, editors.Keys.ToList()))
+			foreach (Material material in MaterialManager.GetAllMaterialsOfShader(editors.Keys.ToList(), false))
 			{
 				GameObject gameObject = Main.bundle.LoadAsset<GameObject>("Material Dump Cube");
 				gameObject.transform.position = new Vector3(0, 5, 0);
 
 				TextMeshPro title = gameObject.GetChild("TitleText").GetComponent<TextMeshPro>();
 				
-				MaterialUtils.ApplyMaterial(gameObject, "Cube", new Material[] { material } );
+				gameObject.GetChild("Cube")?.GetComponent<Renderer>().material = material;
 				title.text = material.name;
 				
 				Quaternion rotation = new Quaternion(0, 0, 0, 0);
