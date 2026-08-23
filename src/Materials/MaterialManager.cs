@@ -165,7 +165,7 @@ namespace KitchenLib.Materials
 			if (result == null && includeCustomMaterials)
 			{
 				if (RegisteredCustomMaterials.ContainsKey(materialName))
-					result = LoadedVanillaMaterials[materialName];
+					result = RegisteredCustomMaterials[materialName];
 			}
 
 			return result;
