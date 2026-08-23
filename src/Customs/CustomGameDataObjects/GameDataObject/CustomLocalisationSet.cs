@@ -28,7 +28,7 @@ namespace KitchenLib.Customs
 			
 			#region Apply Properties
 
-			OverrideVariable(localisationSet, "LocalisationInfo", LocalisationInfo);
+			// OverrideVariable(localisationSet, "LocalisationInfo", LocalisationInfo);
 
 			#endregion
 		}

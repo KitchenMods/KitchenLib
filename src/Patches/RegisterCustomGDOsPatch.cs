@@ -110,7 +110,7 @@ namespace KitchenLib.Patches
 					}
 					catch (Exception e)
 					{
-						BaseMod.InternalLogger.LogError(e);
+						BaseMod.InternalLogger.LogError($"Failed to Convert {gdo.GetType().FullName}: {e}");
 						ErrorHandling.AddFailedGDO(gdo, e, GDOFailureState.FailedToConvert);
 					}
 				}
@@ -124,7 +124,7 @@ namespace KitchenLib.Patches
 					}
 					catch (Exception e)
 					{
-						BaseMod.InternalLogger.LogError(e);
+						BaseMod.InternalLogger.LogError($"Failed to AttachDependentProperties {gdo.GetType().FullName}: {e}");
 						ErrorHandling.AddFailedGDO(gdo, e, GDOFailureState.FailedToAttachDependent);
 					}
 				}
@@ -138,7 +138,7 @@ namespace KitchenLib.Patches
 					}
 					catch (Exception e)
 					{
-						BaseMod.InternalLogger.LogError(e);
+						BaseMod.InternalLogger.LogError($"Failed to OnRegister {gdo.GetType().FullName}: {e}");
 						ErrorHandling.AddFailedGDO(gdo, e, GDOFailureState.FailedToRegister);
 					}
 				}
@@ -162,7 +162,7 @@ namespace KitchenLib.Patches
 				}
 				catch (Exception e)
 				{
-					BaseMod.InternalLogger.LogInfo(e.Message);
+					BaseMod.InternalLogger.LogError($"Failed to SetupForGame {gameDataObject.GetType().FullName}: {e}");
 				}
 			}
 

@@ -31,7 +31,7 @@ namespace KitchenLib.Customs
 			{
 				ConvertInfoListToLocalisationObject(InfoList, ref genericLocalisation.Info);
 			}
-			else
+			else if (Info != null)
 			{
 				OverrideVariable(genericLocalisation, "Info", Info);
 			}

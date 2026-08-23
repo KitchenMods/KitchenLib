@@ -29,7 +29,7 @@ namespace KitchenLib.Customs
 		public virtual List<Unlock> AllowedFoods { get; protected set; } = new();
 		public virtual RestaurantSetting ForceFranchiseSetting { get; protected set; }
 		public virtual List<Unlock.ItemReward> ItemRewards { get; protected set; } = new();
-		public virtual int ItemRHeatCardDisplayedNumberewards { get; protected set; }
+		public virtual int HeatCardDisplayedNumber { get; protected set; }
 
 		#endregion
 
@@ -59,7 +59,7 @@ namespace KitchenLib.Customs
 				OverrideVariable(unlock, "IsSpecificFranchiseTier", IsSpecificFranchiseTier);
 				OverrideVariable(unlock, "SelectionBias", SelectionBias);
 				OverrideVariable(unlock, "BlocksAllOtherFood", BlocksAllOtherFood);
-				OverrideVariable(unlock, "ItemRHeatCardDisplayedNumberewards", ItemRHeatCardDisplayedNumberewards);
+				OverrideVariable(unlock, "HeatCardDisplayedNumber", HeatCardDisplayedNumber);
 
 				#endregion
 

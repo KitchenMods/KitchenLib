@@ -27,7 +27,7 @@ namespace KitchenLib.Customs
 		public virtual bool IsMainThatDoesNotNeedPlates { get; protected set; }
 		public virtual List<RestaurantStatus> AddsStatuses { get; protected set; } = new();
 		public virtual List<string> StartingNameSet { get; protected set; } = new();
-		public virtual HeatLevels  HeatOverride { get; protected set; } = new();
+		public virtual HeatLevels HeatOverride { get; protected set; }
 		public virtual HashSet<Item> MinimumIngredients { get; protected set; } = new();
 		public virtual HashSet<Process> RequiredProcesses { get; protected set; } = new();
 		public virtual HashSet<Item> BlockProviders { get; protected set; } = new();

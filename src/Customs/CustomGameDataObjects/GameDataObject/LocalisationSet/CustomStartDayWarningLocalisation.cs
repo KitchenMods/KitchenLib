@@ -30,7 +30,7 @@ namespace KitchenLib.Customs
 			{
 				ConvertInfoListToLocalisationObject(InfoList, ref startDayWarningLocalisation.Info);
 			}
-			else
+			else if (Info != null)
 			{
 				OverrideVariable(startDayWarningLocalisation, "Info", Info);
 			}

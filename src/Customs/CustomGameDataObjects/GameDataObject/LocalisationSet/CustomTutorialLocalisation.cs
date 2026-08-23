@@ -30,7 +30,7 @@ namespace KitchenLib.Customs
 			{
 				ConvertInfoListToLocalisationObject(InfoList, ref tutorialLocalisation.Info);
 			}
-			else
+			else if (Info != null)
 			{
 				OverrideVariable(tutorialLocalisation, "Info", Info);
 			}

@@ -30,7 +30,7 @@ namespace KitchenLib.Customs
 			{
 				ConvertInfoListToLocalisationObject(InfoList, ref newsItemFallbackLocalisation.Info);
 			}
-			else
+			else if (Info != null)
 			{
 				OverrideVariable(newsItemFallbackLocalisation, "Info", Info);
 			}

@@ -117,11 +117,11 @@ namespace KitchenLib.Customs
 
 				if (!string.IsNullOrEmpty(ColourBlindTag))
 				{
-					BaseMod.InternalLogger.LogError($"Adding ColourBlindTag '{ColourBlindTag}'");
+					BaseMod.InternalLogger.LogDebug($"Adding ColourBlindTag '{ColourBlindTag}'");
 					var steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
 					if (steak != null)
 					{
-						var colorBlind = Object.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject, item.Prefab.transform, true);
+						var colorBlind = Object.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject);
 						colorBlind.name = "Colour Blind";
 						colorBlind.transform.SetParent(item.Prefab.transform);
 						colorBlind.transform.Find("Title").GetComponent<TMP_Text>().text = ColourBlindTag;

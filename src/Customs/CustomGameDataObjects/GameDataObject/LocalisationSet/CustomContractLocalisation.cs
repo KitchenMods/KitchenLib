@@ -31,7 +31,7 @@ namespace KitchenLib.Customs
 			{
 				ConvertInfoListToLocalisationObject(InfoList, ref contractLocalisation.Info);
 			}
-			else
+			else if (Info != null)
 			{
 				OverrideVariable(contractLocalisation, "Info", Info);
 			}

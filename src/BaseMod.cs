@@ -254,13 +254,13 @@ namespace KitchenLib
 		
 		public object AddGameDataObjectByInterface(Type gdo)
 		{
-			InternalLogger.LogInfo($"Registering {gdo.FullName} by interface.");
+			InternalLogger.LogDebug($"Registering {gdo.FullName} by interface.");
 			return AddGameDataObjectType(gdo);
 		}
 
 		public object AddGameDataObjectAutomatically(Type gdo)
 		{
-			InternalLogger.LogInfo($"Registering {gdo.FullName} automatically.");
+			InternalLogger.LogDebug($"Registering {gdo.FullName} automatically.");
 			return AddGameDataObjectType(gdo);
 		}
 

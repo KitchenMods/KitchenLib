@@ -9,8 +9,8 @@ namespace KitchenLib.Customs
 		#region Base Game Variables
 
 		public virtual bool IsDefaultLevels { get; protected set; }
-		public virtual List<ICard> Cards { get; protected set; } = new();
-		public virtual List<ICard> ChillCards { get; protected set; } = new();
+		public virtual List<ICard> Cards { get; protected set; } = new List<ICard>();
+		public virtual List<ICard> ChillCards { get; protected set; } = new List<ICard>();
 
 		#endregion
 		

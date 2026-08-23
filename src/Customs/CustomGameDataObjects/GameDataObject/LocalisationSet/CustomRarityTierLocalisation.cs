@@ -30,7 +30,7 @@ namespace KitchenLib.Customs
 			{
 				ConvertInfoListToLocalisationObject(InfoList, ref rarityTierLocalisation.Info);
 			}
-			else
+			else if (Info != null)
 			{
 				OverrideVariable(rarityTierLocalisation, "Info", Info);
 			}
