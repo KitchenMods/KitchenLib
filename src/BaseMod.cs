@@ -243,9 +243,17 @@ namespace KitchenLib
 			}
 		}
 
+		internal static Dictionary<string, List<string>> ObsoleteUsages = new Dictionary<string, List<string>>();
+		
 		internal static void ObsoleteCodeWarning(string className, string methodName)
 		{
+			if (!ObsoleteUsages.ContainsKey(className))
+				ObsoleteUsages.Add(className, new List<string>());
+
+			if (ObsoleteUsages[className].Contains(methodName)) return;
+
 			InternalLogger.LogWarning($"[Obsolete Warning] {className}.{methodName} is marked as Obsolete, but is still being used.");
+			ObsoleteUsages[className].Add(methodName);
 		}
 
 		#endregion
