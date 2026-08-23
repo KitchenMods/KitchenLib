@@ -26,15 +26,6 @@ namespace KitchenLib.UI.PlateUp
 		{
 			pages.Clear();
 			achievements.Clear();
-			if (AchievementsManager.Managers.Count < 0)
-			{
-				AddLabel("Mod Achievements");
-				AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate(int i)
-				{
-					this.RequestPreviousMenu();
-				}, 0, 1f, 0.2f);
-				return;
-			}
 
 			List<AchievementsManager> _managers = new List<AchievementsManager>();
 			List<string> _managerNames = new List<string>();
