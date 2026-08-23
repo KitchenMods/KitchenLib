@@ -40,6 +40,13 @@ namespace KitchenLib.Systems
 
     internal class ModUpdateManager : FranchiseFirstFrameSystem, IModSystem
     {
+        private static readonly Regex HTML_COMMENT_REGEX = new Regex(@"<!--.*?-->", RegexOptions.Singleline);
+        private static readonly Regex HTML_HIDDEN_CONTENT_REGEX = new Regex(@"<(script|style|head)\b[^>]*>.*?</\1\s*>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        private static readonly Regex HTML_LINE_BREAK_REGEX = new Regex(@"<br\s*/?>|</(p|div|ul|ol|tr|table|h[1-6]|blockquote)\s*>", RegexOptions.IgnoreCase);
+        private static readonly Regex HTML_LIST_ITEM_REGEX = new Regex(@"<li\b[^>]*>", RegexOptions.IgnoreCase);
+        private static readonly Regex HTML_TAG_REGEX = new Regex(@"<[^>]*>", RegexOptions.Singleline);
+        private static readonly Regex TRAILING_WHITESPACE_REGEX = new Regex(@"[ \t]+$", RegexOptions.Multiline);
+        private static readonly Regex EXCESS_NEWLINE_REGEX = new Regex(@"\n{3,}");
         private static readonly Regex CHANGELOG_REGEX = new Regex(@"<p id=""\d+"">(.+)</p>", RegexOptions.IgnoreCase);
         private readonly string DATA_FILE_PATH = Path.Combine(Application.persistentDataPath, "UserData/KitchenLib/modUpdateCache.json");
 
@@ -80,7 +87,7 @@ namespace KitchenLib.Systems
             {
                 foreach (var baseMod in possibleMods.Value)
                 {
-                    Main.LogInfo($"[Update Manager] Found mod: {possibleMods.Key.Name} {baseMod.ModName}");
+	                BaseMod.InternalLogger.LogInfo($"[Update Manager] Found mod: {possibleMods.Key.Name} {baseMod.ModName}");
                 }
             }
 
@@ -97,7 +104,7 @@ namespace KitchenLib.Systems
                     string version = null;
                     var changelog = await GetLatestUpdateChangelog(changelogUrl);
 
-                    Main.LogInfo($"[Update Manager] Found subscribed workshop mod: {id} {name} {timestamp} {changelogUrl}");
+                    BaseMod.InternalLogger.LogInfo($"[Update Manager] Found subscribed workshop mod: {id} {name} {timestamp} {changelogUrl}");
 
                     if (!entry.NeedsUpdate)
                     {
@@ -109,7 +116,7 @@ namespace KitchenLib.Systems
                             {
                                 foreach (var baseMod in possibleMods.Value)
                                 {
-                                    Main.LogInfo($"[Update Manager] Found KL mod '{baseMod.ModName}'");
+	                                BaseMod.InternalLogger.LogInfo($"[Update Manager] Found KL mod '{baseMod.ModName}'");
                                     updatedMods.Add(new UpdatedMod
                                     {
                                         Id = id,
@@ -126,7 +133,7 @@ namespace KitchenLib.Systems
 
                         if (!foundBaseMod)
                         {
-                            Main.LogInfo($"[Update Manager] Found non-KL mod '{name}'");
+	                        BaseMod.InternalLogger.LogInfo($"[Update Manager] Found non-KL mod '{name}'");
                             updatedMods.Add(new UpdatedMod
                             {
                                 Id = id,
@@ -140,7 +147,7 @@ namespace KitchenLib.Systems
                     else
                     {
                         // Mod needs update
-                        Main.LogInfo($"[Update Manager] Found out of date mod '{name}'");
+                        BaseMod.InternalLogger.LogInfo($"[Update Manager] Found out of date mod '{name}'");
                         outOfDateMods.Add(new OutOfDateMod
                         {
                             ModId = id,
@@ -169,7 +176,7 @@ namespace KitchenLib.Systems
                     // This is a newer version than previous
                     GenericPopupManager.CreatePopup(
                         "A mod has been updated!",
-                        $"<line-height=2><align=\"center\"><size=2.25>{updatedMod.Name}\n{subtitle}</size></align></line-height>\n\n{updatedMod.Content}",
+                        $"<line-height=2><align=\"center\"><size=2.25>{updatedMod.Name}\n{subtitle}</size></align></line-height>\n\n{StripHTML(updatedMod.Content)}",
                         GenericChoiceType.OnlyAccept,
                         () => RecordChangelogView(updatedMod),
                         null,
@@ -194,7 +201,33 @@ namespace KitchenLib.Systems
 			}
 		}
 
-		private void RecordChangelogView(UpdatedMod mod)
+        private string StripHTML(string htmlInput)
+        {
+            if (string.IsNullOrEmpty(htmlInput))
+            {
+                return string.Empty;
+            }
+
+            // Markup that never renders as text at all
+            string text = HTML_COMMENT_REGEX.Replace(htmlInput, string.Empty);
+            text = HTML_HIDDEN_CONTENT_REGEX.Replace(text, string.Empty);
+
+            // Keep the shape of block level elements by turning them into line breaks
+            text = HTML_LINE_BREAK_REGEX.Replace(text, "\n");
+            text = HTML_LIST_ITEM_REGEX.Replace(text, "\n\u2022 ");
+
+            // Anything still tag shaped carries no text of its own
+            text = HTML_TAG_REGEX.Replace(text, string.Empty);
+            text = HttpUtility.HtmlDecode(text);
+
+            // Tidy up the whitespace the markup left behind
+            text = text.Replace("\r\n", "\n").Replace('\r', '\n').Replace('\u00A0', ' ');
+            text = TRAILING_WHITESPACE_REGEX.Replace(text, string.Empty);
+            text = EXCESS_NEWLINE_REGEX.Replace(text, "\n\n");
+            return text.Trim();
+        }
+
+        private void RecordChangelogView(UpdatedMod mod)
 		{
 			PreviousData[mod.Id] = mod.Timestamp;
 			WriteDataFile();

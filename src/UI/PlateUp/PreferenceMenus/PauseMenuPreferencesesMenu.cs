@@ -24,7 +24,8 @@ namespace KitchenLib.UI.PlateUp.PreferenceMenus
 				Events.PlayerPauseView_SetupMenusEvent += (s, args) =>
 				{
 					var menu = Activator.CreateInstance(type, new object[]{args.instance.ButtonContainer, args.module_list});
-					args.addMenu.Invoke(args.instance, new object[] { type, menu });
+					if (!args.Menus.ContainsKey(type))
+						args.addMenu.Invoke(args.instance, new object[] { type, menu });
 				};
 			}
 			
@@ -42,7 +43,8 @@ namespace KitchenLib.UI.PlateUp.PreferenceMenus
 			Events.PlayerPauseView_SetupMenusEvent += (s, args) =>
 			{
 				var menu = Activator.CreateInstance(type, new object[]{args.instance.ButtonContainer, args.module_list});
-				args.addMenu.Invoke(args.instance, new object[] { type, menu });
+				if (!args.Menus.ContainsKey(type))
+					args.addMenu.Invoke(args.instance, new object[] { type, menu });
 			};
 		}
 	}

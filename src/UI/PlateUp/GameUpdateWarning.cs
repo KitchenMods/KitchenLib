@@ -1,5 +1,4 @@
-﻿using Kitchen;
-using Kitchen.Modules;
+﻿using Kitchen.Modules;
 using KitchenLib.Preferences;
 using KitchenLib.Utils;
 using UnityEngine;

@@ -1,0 +1,6 @@
+﻿namespace KitchenLib.Customs
+{
+	public abstract class CustomCustomerGroup : CustomUnlockCard
+	{
+	}
+}
