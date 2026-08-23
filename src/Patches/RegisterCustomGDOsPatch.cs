@@ -170,7 +170,7 @@ namespace KitchenLib.Patches
 			{
 				BaseMod.InternalLogger.LogDebug($"-----===== Prefabs.Add GDO : ({gameDataObject.GetType().BaseType}) {gameDataObject.name} =====-----");
 				if (__result.Objects.ContainsKey(gameDataObject.ID))
-					break;
+					continue;
 				__result.Objects.Add(gameDataObject.ID, gameDataObject);
 				IHasPrefab hasPrefab = gameDataObject as IHasPrefab;
 				if (hasPrefab != null)
