@@ -15,36 +15,22 @@ namespace KitchenLib.Customs
 		public virtual EffectRepresentation EffectInformation { get; protected set; }
 
 		#endregion
-		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
-
-			if (gameDataObject is Effect effect)
-			{
-				#region Apply Properties
-
-				OverrideVariable(effect, "Properties", Properties);
-				OverrideVariable(effect, "EffectRange", EffectRange);
-				OverrideVariable(effect, "EffectCondition", EffectCondition);
-				OverrideVariable(effect, "EffectType", EffectType);
-
-				#endregion
-			}
-		}
 
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is Effect effect)
-			{
-				#region Apply Properties
+			if (gameDataObject is not Effect effect) return;
 
-				OverrideVariable(effect, "EffectInformation", EffectInformation);
+			#region Apply Properties
+				
+			OverrideVariable(effect, "Properties", Properties);
+			OverrideVariable(effect, "EffectRange", EffectRange);
+			OverrideVariable(effect, "EffectCondition", EffectCondition);
+			OverrideVariable(effect, "EffectType", EffectType);
+			OverrideVariable(effect, "EffectInformation", EffectInformation);
 
-				#endregion
-			}
+			#endregion
 		}
 	}
 }

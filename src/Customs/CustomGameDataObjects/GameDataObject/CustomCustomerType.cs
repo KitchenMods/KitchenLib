@@ -17,39 +17,25 @@ namespace KitchenLib.Customs
 		public virtual List<ICustomerProperty> Properties { get; protected set; } = new();
 
 		#endregion
-		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
-
-			if (gameDataObject is CustomerType customerType)
-			{
-				#region Apply Properties
-
-				OverrideVariable(customerType, "IsGenericGroup", IsGenericGroup);
-				OverrideVariable(customerType, "RelativeGroupSize", RelativeGroupSize);
-				OverrideVariable(customerType, "MinGroupSize", MinGroupSize);
-				OverrideVariable(customerType, "MaxGroupSize", MaxGroupSize);
-				OverrideVariable(customerType, "PatienceModifiers", PatienceModifiers);
-				OverrideVariable(customerType, "OrderingModifiers", OrderingModifiers);
-				OverrideVariable(customerType, "Properties", Properties);
-
-				#endregion
-			}
-		}
 
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is CustomerType customerType)
-			{
-				#region Apply Properties
+			if (gameDataObject is not CustomerType customerType) return;
 
-				OverrideVariable(customerType, "Cosmetics", Cosmetics);
+			#region Apply Properties
 
-				#endregion
-			}
+			OverrideVariable(customerType, "IsGenericGroup", IsGenericGroup);
+			OverrideVariable(customerType, "RelativeGroupSize", RelativeGroupSize);
+			OverrideVariable(customerType, "MinGroupSize", MinGroupSize);
+			OverrideVariable(customerType, "MaxGroupSize", MaxGroupSize);
+			OverrideVariable(customerType, "PatienceModifiers", PatienceModifiers);
+			OverrideVariable(customerType, "OrderingModifiers", OrderingModifiers);
+			OverrideVariable(customerType, "Properties", Properties);
+			OverrideVariable(customerType, "Cosmetics", Cosmetics);
+
+			#endregion
 		}
 
 	}

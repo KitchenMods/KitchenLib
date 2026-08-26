@@ -131,118 +131,101 @@ namespace KitchenLib.Customs
 		
 		#endregion
 		
-		[Obsolete("Please use OnRegister")]
-		public virtual void SetupPrefab(GameObject prefab) { }
-
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
-
-			if (gameDataObject is Appliance appliance)
-			{
-				#region Backwards Compatibility
-
-				#region Localisation
-
-				if (InfoList.Count <= 0)
-				{
-					appliance.Info = new LocalisationObject<ApplianceInfo>();
-					if (!appliance.Info.Has(Locale.English))
-					{
-						var applianceInfo = ScriptableObject.CreateInstance<ApplianceInfo>();
-						applianceInfo.Name = Name;
-						applianceInfo.Description = Description;
-						applianceInfo.Sections = Sections;
-						applianceInfo.Tags = Tags;
-						appliance.Info.Add(Locale.English, applianceInfo);
-					}
-				}
-
-				#endregion
-
-				#endregion
-
-				#region Apply Properties
-
-				OverrideVariable(appliance, "Prefab", Prefab);
-				OverrideVariable(appliance, "HeldAppliancePrefab", HeldAppliancePrefab);
-				OverrideVariable(appliance, "EffectRange", EffectRange);
-				OverrideVariable(appliance, "EffectCondition", EffectCondition);
-				OverrideVariable(appliance, "EffectType", EffectType);
-				OverrideVariable(appliance, "IsNonInteractive", IsNonInteractive);
-				OverrideVariable(appliance, "Layer", Layer);
-				OverrideVariable(appliance, "ForceHighInteractionPriority", ForceHighInteractionPriority);
-				OverrideVariable(appliance, "PurchaseCost", PurchaseCost);
-				OverrideVariable(appliance, "EntryAnimation", EntryAnimation);
-				OverrideVariable(appliance, "ExitAnimation", ExitAnimation);
-				OverrideVariable(appliance, "SkipRotationAnimation", SkipRotationAnimation);
-				OverrideVariable(appliance, "IsPurchasable", IsPurchasable);
-				OverrideVariable(appliance, "RestrictedToSeason", RestrictedToSeason);
-				OverrideVariable(appliance, "IsPurchasableAsUpgrade", IsPurchasableAsUpgrade);
-				OverrideVariable(appliance, "ThemeRequired", ThemeRequired);
-				OverrideVariable(appliance, "ShoppingTags", ShoppingTags);
-				OverrideVariable(appliance, "RarityTier", RarityTier);
-				OverrideVariable(appliance, "PriceTier", PriceTier);
-				OverrideVariable(appliance, "ShopRequirementFilter", ShopRequirementFilter);
-				OverrideVariable(appliance, "RequiresPhaseForShop", RequiresPhaseForShop);
-				OverrideVariable(appliance, "StapleWhenMissing", StapleWhenMissing);
-				OverrideVariable(appliance, "SellOnlyAsDuplicate", SellOnlyAsDuplicate);
-				OverrideVariable(appliance, "SellOnlyAsUnique", SellOnlyAsUnique);
-				OverrideVariable(appliance, "SellOnlyIfPlatesNeeded", SellOnlyIfPlatesNeeded);
-				OverrideVariable(appliance, "PreventSale", PreventSale);
-				OverrideVariable(appliance, "IsAnUpgrade", IsAnUpgrade);
-				OverrideVariable(appliance, "IsNonCrated", IsNonCrated);
-
-				#endregion
-
-				// Used to override the purchase price of this Appliance.
-				if (PurchaseCostOverride != -1)
-				{
-					BaseMod.InternalLogger.LogDebug($"Assigning : {PurchaseCostOverride} >> PurchaseCostOverride");
-					ApplianceOverrides.AddPurchaseCostOverride(appliance.ID, PurchaseCostOverride);
-				}
-
-				// Used to automatically generate a NavMeshObstacle component on this Appliance if not already present.
-				if (AutoGenerateNavMeshObject && appliance.Prefab != null)
-				{
-					BaseMod.InternalLogger.LogDebug("Setting up NavMeshObstacle");
-					if (appliance.Prefab.GetComponentsInChildren<NavMeshObstacle>().Length == 0)
-					{
-						var counter = gameData.Get<Appliance>().FirstOrDefault(a => a.ID == ApplianceReferences.Countertop);
-						foreach (Transform t in counter.Prefab.GetComponentInChildren<Transform>())
-						{
-							if (t.gameObject.HasComponent<NavMeshObstacle>())
-							{
-								GameObjectUtils.CopyComponent(t.gameObject.GetComponent<NavMeshObstacle>(), appliance.Prefab);
-								break;
-							}
-						}
-					}
-				}
-			}
-		}
-
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is Appliance appliance)
+			if (gameDataObject is not Appliance appliance) return;
+
+			#region Backwards Compatibility
+
+			#region Localisation
+
+			if (InfoList.Count <= 0)
 			{
-				#region Apply Properties
+				appliance.Info = new LocalisationObject<ApplianceInfo>();
+				if (!appliance.Info.Has(Locale.English))
+				{
+					var applianceInfo = ScriptableObject.CreateInstance<ApplianceInfo>();
+					applianceInfo.Name = Name;
+					applianceInfo.Description = Description;
+					applianceInfo.Sections = Sections;
+					applianceInfo.Tags = Tags;
+					appliance.Info.Add(Locale.English, applianceInfo);
+				}
+			}
 
-				OverrideVariable(appliance, "Properties", Properties);
-				OverrideVariable(appliance, "AppliesEffects", AppliesEffects);
-				OverrideVariable(appliance, "Processes", Processes);
-				OverrideVariable(appliance, "EffectRepresentation", EffectRepresentation);
-				OverrideVariable(appliance, "RequiresForShop", RequiresForShop);
-				OverrideVariable(appliance, "RequiresProcessForShop", RequiresProcessForShop);
-				OverrideVariable(appliance, "RequiresIngredientForShop", RequiresIngredientForShop);
-				OverrideVariable(appliance, "Upgrades", Upgrades);
-				OverrideVariable(appliance, "Enchantments", Enchantments);
-				OverrideVariable(appliance, "CrateItem", CrateItem);
-				OverrideVariable(appliance, "WeakVariant", WeakVariant);
+			#endregion
 
-				#endregion
+			#endregion
+			
+			#region Apply Properties
+
+			OverrideVariable(appliance, "Prefab", Prefab);
+			OverrideVariable(appliance, "HeldAppliancePrefab", HeldAppliancePrefab);
+			OverrideVariable(appliance, "EffectRange", EffectRange);
+			OverrideVariable(appliance, "EffectCondition", EffectCondition);
+			OverrideVariable(appliance, "EffectType", EffectType);
+			OverrideVariable(appliance, "IsNonInteractive", IsNonInteractive);
+			OverrideVariable(appliance, "Layer", Layer);
+			OverrideVariable(appliance, "ForceHighInteractionPriority", ForceHighInteractionPriority);
+			OverrideVariable(appliance, "PurchaseCost", PurchaseCost);
+			OverrideVariable(appliance, "EntryAnimation", EntryAnimation);
+			OverrideVariable(appliance, "ExitAnimation", ExitAnimation);
+			OverrideVariable(appliance, "SkipRotationAnimation", SkipRotationAnimation);
+			OverrideVariable(appliance, "IsPurchasable", IsPurchasable);
+			OverrideVariable(appliance, "RestrictedToSeason", RestrictedToSeason);
+			OverrideVariable(appliance, "IsPurchasableAsUpgrade", IsPurchasableAsUpgrade);
+			OverrideVariable(appliance, "ThemeRequired", ThemeRequired);
+			OverrideVariable(appliance, "ShoppingTags", ShoppingTags);
+			OverrideVariable(appliance, "RarityTier", RarityTier);
+			OverrideVariable(appliance, "PriceTier", PriceTier);
+			OverrideVariable(appliance, "ShopRequirementFilter", ShopRequirementFilter);
+			OverrideVariable(appliance, "RequiresPhaseForShop", RequiresPhaseForShop);
+			OverrideVariable(appliance, "StapleWhenMissing", StapleWhenMissing);
+			OverrideVariable(appliance, "SellOnlyAsDuplicate", SellOnlyAsDuplicate);
+			OverrideVariable(appliance, "SellOnlyAsUnique", SellOnlyAsUnique);
+			OverrideVariable(appliance, "SellOnlyIfPlatesNeeded", SellOnlyIfPlatesNeeded);
+			OverrideVariable(appliance, "PreventSale", PreventSale);
+			OverrideVariable(appliance, "IsAnUpgrade", IsAnUpgrade);
+			OverrideVariable(appliance, "IsNonCrated", IsNonCrated);
+			OverrideVariable(appliance, "Properties", Properties);
+			OverrideVariable(appliance, "AppliesEffects", AppliesEffects);
+			OverrideVariable(appliance, "Processes", Processes);
+			OverrideVariable(appliance, "EffectRepresentation", EffectRepresentation);
+			OverrideVariable(appliance, "RequiresForShop", RequiresForShop);
+			OverrideVariable(appliance, "RequiresProcessForShop", RequiresProcessForShop);
+			OverrideVariable(appliance, "RequiresIngredientForShop", RequiresIngredientForShop);
+			OverrideVariable(appliance, "Upgrades", Upgrades);
+			OverrideVariable(appliance, "Enchantments", Enchantments);
+			OverrideVariable(appliance, "CrateItem", CrateItem);
+			OverrideVariable(appliance, "WeakVariant", WeakVariant);
+
+			#endregion
+			
+			// Used to override the purchase price of this Appliance.
+			if (PurchaseCostOverride != -1)
+			{
+				BaseMod.InternalLogger.LogDebug($"Assigning : {PurchaseCostOverride} >> PurchaseCostOverride");
+				ApplianceOverrides.AddPurchaseCostOverride(appliance.ID, PurchaseCostOverride);
+			}
+
+			// Used to automatically generate a NavMeshObstacle component on this Appliance if not already present.
+			if (AutoGenerateNavMeshObject && appliance.Prefab != null)
+			{
+				BaseMod.InternalLogger.LogDebug("Setting up NavMeshObstacle");
+				if (appliance.Prefab.GetComponentsInChildren<NavMeshObstacle>().Length == 0)
+				{
+					var counter = gameData.Get<Appliance>().FirstOrDefault(a => a.ID == ApplianceReferences.Countertop);
+					foreach (Transform t in counter.Prefab.GetComponentInChildren<Transform>())
+					{
+						if (t.gameObject.HasComponent<NavMeshObstacle>())
+						{
+							GameObjectUtils.CopyComponent(t.gameObject.GetComponent<NavMeshObstacle>(), appliance.Prefab);
+							break;
+						}
+					}
+				}
 			}
 		}
 
@@ -256,5 +239,9 @@ namespace KitchenLib.Customs
 
 			base.OnRegister(gameDataObject);
 		}
+		
+		
+		[Obsolete("Please use OnRegister")]
+		public virtual void SetupPrefab(GameObject prefab) { }
 	}
 }

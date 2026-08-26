@@ -44,7 +44,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The version of the mod.
 		/// </summary>
-		internal const string MOD_VERSION = "0.10.0";
+		internal const string MOD_VERSION = "0.10.1";
 
 		/// <summary>
 		/// The beta version of the mod.
@@ -59,7 +59,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The compatible versions of the mod.
 		/// </summary>
-		internal const string MOD_COMPATIBLE_VERSIONS = ">=1.2.1";
+		internal const string MOD_COMPATIBLE_VERSIONS = ">=1.5.2";
 
 		/// <summary>
 		/// The asset bundle for the mod.

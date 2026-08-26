@@ -17,26 +17,25 @@ namespace KitchenLib.Customs
 		public virtual float GroupDessertChance { get; protected set; } = 1f;
 
 		#endregion
-		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
+
+		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
-			base.Convert(gameData, out gameDataObject);
+			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is GameDifficultySettings gameDifficultySettings)
-			{
-				#region Apply Properties
+			if (gameDataObject is not GameDifficultySettings gameDifficultySettings) return;
 
-				OverrideVariable(gameDifficultySettings, "IsActive", IsActive);
-				OverrideVariable(gameDifficultySettings, "CustomersPerHourBase", CustomersPerHourBase);
-				OverrideVariable(gameDifficultySettings, "CustomersPerHourIncreasePerDay", CustomersPerHourIncreasePerDay);
-				OverrideVariable(gameDifficultySettings, "CustomerSideChance", CustomerSideChance);
-				OverrideVariable(gameDifficultySettings, "QueuePatienceTime", QueuePatienceTime);
-				OverrideVariable(gameDifficultySettings, "QueuePatienceBoost", QueuePatienceBoost);
-				OverrideVariable(gameDifficultySettings, "CustomerStarterChance", CustomerStarterChance);
-				OverrideVariable(gameDifficultySettings, "GroupDessertChance", GroupDessertChance);
+			#region Apply Properties
 
-				#endregion
-			}
+			OverrideVariable(gameDifficultySettings, "IsActive", IsActive);
+			OverrideVariable(gameDifficultySettings, "CustomersPerHourBase", CustomersPerHourBase);
+			OverrideVariable(gameDifficultySettings, "CustomersPerHourIncreasePerDay", CustomersPerHourIncreasePerDay);
+			OverrideVariable(gameDifficultySettings, "CustomerSideChance", CustomerSideChance);
+			OverrideVariable(gameDifficultySettings, "QueuePatienceTime", QueuePatienceTime);
+			OverrideVariable(gameDifficultySettings, "QueuePatienceBoost", QueuePatienceBoost);
+			OverrideVariable(gameDifficultySettings, "CustomerStarterChance", CustomerStarterChance);
+			OverrideVariable(gameDifficultySettings, "GroupDessertChance", GroupDessertChance);
+
+			#endregion
 		}
 	}
 }

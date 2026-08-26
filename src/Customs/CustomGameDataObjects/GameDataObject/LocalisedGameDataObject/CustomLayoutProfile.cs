@@ -21,41 +21,27 @@ namespace KitchenLib.Customs
 		public virtual Season FixedRunSeason { get; protected set; }
 
 		#endregion
-		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
-
-			if (gameDataObject is LayoutProfile layoutProfile)
-			{
-				#region Apply Properties
-
-				OverrideVariable(layoutProfile, "Graph", Graph);
-				OverrideVariable(layoutProfile, "MaximumTables", MaximumTables);
-				OverrideVariable(layoutProfile, "FixedRunSeason", FixedRunSeason);
-
-				#endregion
-			}
-		}
 
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is LayoutProfile layoutProfile)
-			{
-				#region Apply Properties
+			if (gameDataObject is not LayoutProfile layoutProfile) return;
 
-				OverrideVariable(layoutProfile, "RequiredAppliances", RequiredAppliances);
-				OverrideVariable(layoutProfile, "Table", Table);
-				OverrideVariable(layoutProfile, "Counter", Counter);
-				OverrideVariable(layoutProfile, "ExternalBin", ExternalBin);
-				OverrideVariable(layoutProfile, "WallPiece", WallPiece);
-				OverrideVariable(layoutProfile, "InternalWallPiece", InternalWallPiece);
-				OverrideVariable(layoutProfile, "StreetPiece", StreetPiece);
+			#region Apply Properties
 
-				#endregion
-			}
+			OverrideVariable(layoutProfile, "Graph", Graph);
+			OverrideVariable(layoutProfile, "MaximumTables", MaximumTables);
+			OverrideVariable(layoutProfile, "FixedRunSeason", FixedRunSeason);
+			OverrideVariable(layoutProfile, "RequiredAppliances", RequiredAppliances);
+			OverrideVariable(layoutProfile, "Table", Table);
+			OverrideVariable(layoutProfile, "Counter", Counter);
+			OverrideVariable(layoutProfile, "ExternalBin", ExternalBin);
+			OverrideVariable(layoutProfile, "WallPiece", WallPiece);
+			OverrideVariable(layoutProfile, "InternalWallPiece", InternalWallPiece);
+			OverrideVariable(layoutProfile, "StreetPiece", StreetPiece);
+
+			#endregion
 		}
 	}
 }

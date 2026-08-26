@@ -17,14 +17,11 @@ namespace KitchenLib.Customs
 
 		#endregion
 
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
+		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
-			base.Convert(gameData, out gameDataObject);
+			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (!(gameDataObject is RarityTierLocalisation rarityTierLocalisation))
-			{
-				return;
-			}
+			if (gameDataObject is not RarityTierLocalisation rarityTierLocalisation) return;
 
 			if (InfoList != null && InfoList.Count > 0)
 			{

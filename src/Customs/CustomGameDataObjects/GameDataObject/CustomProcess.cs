@@ -26,26 +26,26 @@ namespace KitchenLib.Customs
 
 		#endregion
 
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
+		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
-			base.Convert(gameData, out gameDataObject);
+			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is not Process process)
-			{
-				return;
-			}
-
+			if (gameDataObject is not Process process) return;
+			
 			#region Apply Properties
 
+			OverrideVariable(process, "BasicEnablingAppliance", BasicEnablingAppliance);
+			OverrideVariable(process, "IsPseudoprocessFor", IsPseudoprocessFor);
+			OverrideVariable(process, "IsCounteractedBy", IsCounteractedBy);
 			OverrideVariable(process, "EnablingApplianceCount", EnablingApplianceCount);
 			OverrideVariable(process, "CanObfuscateProgress", CanObfuscateProgress);
 			OverrideVariable(process, "ReverseProgressBar", ReverseProgressBar);
 			OverrideVariable(process, "DrawBadProcessAsMinor", DrawBadProcessAsMinor);
 			OverrideVariable(process, "OverrideProgressColour", OverrideProgressColour);
 			OverrideVariable(process, "Info", Info);
-
+				
 			#endregion
-
+			
 			if (InfoList != null && InfoList.Count > 0)
 			{
 				ConvertInfoListToLocalisationObject(InfoList, ref process.Info);
@@ -54,22 +54,7 @@ namespace KitchenLib.Customs
 			{
 				OverrideVariable(process, "Info", Info);
 			}
-		}
-
-		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
-		{
-			base.AttachDependentProperties(gameData, gameDataObject);
-
-			if (gameDataObject is Process process)
-			{
-				#region Apply Properties
-
-				OverrideVariable(process, "BasicEnablingAppliance", BasicEnablingAppliance);
-				OverrideVariable(process, "IsPseudoprocessFor", IsPseudoprocessFor);
-				OverrideVariable(process, "IsCounteractedBy", IsCounteractedBy);
-
-				#endregion
-			}
+			
 		}
 	}
 }

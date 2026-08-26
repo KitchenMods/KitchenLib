@@ -39,62 +39,48 @@ namespace KitchenLib.Customs
 		public virtual Color ColourOverride { get; protected set; }
 
 		#endregion
-		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
-
-			if (gameDataObject is Unlock unlock)
-			{
-				#region Apply Properties
-
-				OverrideVariable(unlock, "ExpReward", ExpReward);
-				OverrideVariable(unlock, "ExpMult", ExpMult);
-				OverrideVariable(unlock, "CustomerMultiplier", CustomerMultiplier);
-				OverrideVariable(unlock, "IsUnlockable", IsUnlockable);
-				OverrideVariable(unlock, "HasSubOptions", HasSubOptions);
-				OverrideVariable(unlock, "UnlockGroup", UnlockGroup);
-				OverrideVariable(unlock, "CardType", CardType);
-				OverrideVariable(unlock, "MinimumFranchiseTier", MinimumFranchiseTier);
-				OverrideVariable(unlock, "IsSpecificFranchiseTier", IsSpecificFranchiseTier);
-				OverrideVariable(unlock, "SelectionBias", SelectionBias);
-				OverrideVariable(unlock, "BlocksAllOtherFood", BlocksAllOtherFood);
-				OverrideVariable(unlock, "HeatCardDisplayedNumber", HeatCardDisplayedNumber);
-
-				#endregion
-
-				if (!string.IsNullOrEmpty(IconOverride))
-				{
-					BaseMod.InternalLogger.LogDebug($"Assigning : {IconOverride} >> IconOverride");
-					UnlockOverrides.AddIconOverride(unlock.ID, IconOverride);
-				}
-
-				if (ColourOverride != new Color())
-				{
-					BaseMod.InternalLogger.LogDebug($"Assigning : {ColourOverride} >> ColourOverride");
-					UnlockOverrides.AddColourOverride(unlock.ID, ColourOverride);
-				}
-			}
-		}
 
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is Unlock unlock)
+			if (gameDataObject is not Unlock unlock) return;
+
+			#region Apply Properties
+
+			OverrideVariable(unlock, "ExpReward", ExpReward);
+			OverrideVariable(unlock, "ExpMult", ExpMult);
+			OverrideVariable(unlock, "CustomerMultiplier", CustomerMultiplier);
+			OverrideVariable(unlock, "IsUnlockable", IsUnlockable);
+			OverrideVariable(unlock, "HasSubOptions", HasSubOptions);
+			OverrideVariable(unlock, "UnlockGroup", UnlockGroup);
+			OverrideVariable(unlock, "CardType", CardType);
+			OverrideVariable(unlock, "MinimumFranchiseTier", MinimumFranchiseTier);
+			OverrideVariable(unlock, "IsSpecificFranchiseTier", IsSpecificFranchiseTier);
+			OverrideVariable(unlock, "SelectionBias", SelectionBias);
+			OverrideVariable(unlock, "BlocksAllOtherFood", BlocksAllOtherFood);
+			OverrideVariable(unlock, "HeatCardDisplayedNumber", HeatCardDisplayedNumber);
+			OverrideVariable(unlock, "OptionCard1", OptionCard1);
+			OverrideVariable(unlock, "OptionCard2", OptionCard2);
+			OverrideVariable(unlock, "ParentOption", ParentOption);
+			OverrideVariable(unlock, "HardcodedRequirements", HardcodedRequirements);
+			OverrideVariable(unlock, "HardcodedBlockers", HardcodedBlockers);
+			OverrideVariable(unlock, "AllowedFoods", AllowedFoods);
+			OverrideVariable(unlock, "ForceFranchiseSetting", ForceFranchiseSetting);
+			OverrideVariable(unlock, "ItemRewards", ItemRewards);
+
+			#endregion
+				
+			if (!string.IsNullOrEmpty(IconOverride))
 			{
-				#region Apply Properties
+				BaseMod.InternalLogger.LogDebug($"Assigning : {IconOverride} >> IconOverride");
+				UnlockOverrides.AddIconOverride(unlock.ID, IconOverride);
+			}
 
-				OverrideVariable(unlock, "OptionCard1", OptionCard1);
-				OverrideVariable(unlock, "OptionCard2", OptionCard2);
-				OverrideVariable(unlock, "ParentOption", ParentOption);
-				OverrideVariable(unlock, "HardcodedRequirements", HardcodedRequirements);
-				OverrideVariable(unlock, "HardcodedBlockers", HardcodedBlockers);
-				OverrideVariable(unlock, "AllowedFoods", AllowedFoods);
-				OverrideVariable(unlock, "ForceFranchiseSetting", ForceFranchiseSetting);
-				OverrideVariable(unlock, "ItemRewards", ItemRewards);
-
-				#endregion
+			if (ColourOverride != new Color())
+			{
+				BaseMod.InternalLogger.LogDebug($"Assigning : {ColourOverride} >> ColourOverride");
+				UnlockOverrides.AddColourOverride(unlock.ID, ColourOverride);
 			}
 		}
 	}

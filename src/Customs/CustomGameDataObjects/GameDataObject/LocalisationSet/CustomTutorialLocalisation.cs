@@ -16,15 +16,12 @@ namespace KitchenLib.Customs
 		public virtual List<(Locale, TutorialText)> InfoList { get; protected set; } = new();
 
 		#endregion
-
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
+		
+		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
-			base.Convert(gameData, out gameDataObject);
+			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (!(gameDataObject is TutorialLocalisation tutorialLocalisation))
-			{
-				return;
-			}
+			if (gameDataObject is not TutorialLocalisation tutorialLocalisation) return;
 
 			if (InfoList != null && InfoList.Count > 0)
 			{

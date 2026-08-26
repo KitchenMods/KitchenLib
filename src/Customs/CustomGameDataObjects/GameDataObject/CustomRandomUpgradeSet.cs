@@ -12,15 +12,12 @@ namespace KitchenLib.Customs
 		public virtual List<IUpgrade> Rewards { get; protected set; } = new();
 
 		#endregion
-		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
 
-			if (gameDataObject is not RandomUpgradeSet randomUpgradeSet)
-			{
-				return;
-			}
+		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
+		{
+			base.AttachDependentProperties(gameData, gameDataObject);
+
+			if (gameDataObject is not RandomUpgradeSet randomUpgradeSet) return;
 
 			#region Apply Properties
 

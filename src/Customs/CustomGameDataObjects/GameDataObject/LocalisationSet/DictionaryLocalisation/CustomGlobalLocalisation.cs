@@ -21,15 +21,12 @@ namespace KitchenLib.Customs
 
 		#endregion
 		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
+		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
-			base.Convert(gameData, out gameDataObject);
+			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (!(gameDataObject is GlobalLocalisation globalLocalisation))
-			{
-				return;
-			}
-
+			if (gameDataObject is not GlobalLocalisation globalLocalisation) return;
+				
 			#region Apply Properties
 
 			OverrideVariable(globalLocalisation, "PatienceFactorIcons", PatienceFactorIcons);
@@ -37,26 +34,11 @@ namespace KitchenLib.Customs
 			OverrideVariable(globalLocalisation, "DecorationIcons", DecorationIcons);
 			OverrideVariable(globalLocalisation, "Fonts", Fonts);
 			OverrideVariable(globalLocalisation, "ControllerIcons", ControllerIcons);
-
-			#endregion
-		}
-
-		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
-		{
-			base.AttachDependentProperties(gameData, gameDataObject);
-
-			if (!(gameDataObject is GlobalLocalisation globalLocalisation))
-			{
-				return;
-			}
-
-			#region Apply Properties
-
 			OverrideVariable(globalLocalisation, "NewsItemFallbackLocalisation", NewsItemFallbackLocalisation);
 			OverrideVariable(globalLocalisation, "StartDayWarningLocalisation", StartDayWarningLocalisation);
 			OverrideVariable(globalLocalisation, "PopupTextLocalisation", PopupTextLocalisation);
 			OverrideVariable(globalLocalisation, "Recipes", Recipes);
-
+			
 			#endregion
 		}
 	}

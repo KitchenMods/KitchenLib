@@ -6,7 +6,6 @@ namespace KitchenLib.Customs
 {
 	public abstract class CustomRestaurantSetting : CustomGenericLocalisation<RestaurantSetting>
 	{
-
 		#region Base Game Variables
 
 		public virtual WeatherMode WeatherMode { get; protected set; }
@@ -20,15 +19,12 @@ namespace KitchenLib.Customs
 		public virtual Season FixedRunSeason { get; protected set; }
 
 		#endregion
-		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
 
-			if (!(gameDataObject is RestaurantSetting restaurantSetting))
-			{
-				return;
-			}
+		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
+		{
+			base.AttachDependentProperties(gameData, gameDataObject);
+
+			if (gameDataObject is not RestaurantSetting restaurantSetting) return;
 
 			#region Apply Properties
 
@@ -36,21 +32,6 @@ namespace KitchenLib.Customs
 			OverrideVariable(restaurantSetting, "Prefab", Prefab);
 			OverrideVariable(restaurantSetting, "AlwaysLight", AlwaysLight);
 			OverrideVariable(restaurantSetting, "FixedRunSeason", FixedRunSeason);
-
-			#endregion
-		}
-
-		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
-		{
-			base.AttachDependentProperties(gameData, gameDataObject);
-
-			if (!(gameDataObject is RestaurantSetting restaurantSetting))
-			{
-				return;
-			}
-
-			#region Apply Properties
-
 			OverrideVariable(restaurantSetting, "Decorators", Decorators);
 			OverrideVariable(restaurantSetting, "UnlockPack", UnlockPack);
 			OverrideVariable(restaurantSetting, "StartingUnlock", StartingUnlock);

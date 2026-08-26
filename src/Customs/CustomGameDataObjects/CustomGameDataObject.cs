@@ -58,7 +58,7 @@ namespace KitchenLib.Customs
 			}
 		}
 
-		protected void ConvertInfoListToLocalisationObject<L>(List<(Locale, L)> InfoList, ref LocalisationObject<L> result) where L : Localisation
+		internal void ConvertInfoListToLocalisationObject<L>(List<(Locale, L)> InfoList, ref LocalisationObject<L> result) where L : Localisation
 		{
 			BaseMod.InternalLogger.LogDebug("Setting up localisation");
 			result = new LocalisationObject<L>();
@@ -101,8 +101,13 @@ namespace KitchenLib.Customs
 		{
 			gameDataObject = null;
 		}
-
 		
+		[Obsolete("This should only be run internally")]
+		protected void SetupLocalisation<T>(List<(Locale, T)> InfoList, ref LocalisationObject<T> result) where T : Localisation
+		{
+			ConvertInfoListToLocalisationObject(InfoList, ref result);
+			BaseMod.ObsoleteCodeWarning("CustomGameDataObject", "SetupLocalisation");
+		}
 	}
 
 	public abstract class CustomGameDataObject<T> : CustomGameDataObject where T : GameDataObject

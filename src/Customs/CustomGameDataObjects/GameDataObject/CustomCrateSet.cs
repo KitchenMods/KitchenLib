@@ -15,10 +15,7 @@ namespace KitchenLib.Customs
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (!(gameDataObject is CrateSet crateSet))
-			{
-				return;
-			}
+			if (gameDataObject is not CrateSet crateSet) return;
 
 			#region Apply Properties
 

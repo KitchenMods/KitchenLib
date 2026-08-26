@@ -21,14 +21,20 @@ namespace KitchenLib.Customs
 		public virtual List<ValueTuple<Season, ValueTuple<ValueTuple<int, int>, ValueTuple<int, int>>>> DateRange { get; protected set; } = new List<ValueTuple<Season, ValueTuple<ValueTuple<int, int>, ValueTuple<int, int>>>>();
 
 		#endregion
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
 
-			if (gameDataObject is not SeasonalDecorationLayout seasonalDecorationLayout)
-			{
-				return;
-			}
+		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
+		{
+			base.AttachDependentProperties(gameData, gameDataObject);
+
+			if (gameDataObject is not SeasonalDecorationLayout seasonalDecorationLayout) return;
+
+			#region Apply Properties
+
+			OverrideVariable(seasonalDecorationLayout, "Decorations", Decorations);
+			OverrideVariable(seasonalDecorationLayout, "DecorOverrides", DecorOverrides);
+			OverrideVariable(seasonalDecorationLayout, "SeasonActive", SeasonActive);
+			
+			#endregion
 			
 			bool AddToDates = true;
 			
@@ -45,30 +51,6 @@ namespace KitchenLib.Customs
 			{
 				Seasons.Dates.AddRange(DateRange);
 			}
-			
-
-			#region Apply Properties
-
-			OverrideVariable(seasonalDecorationLayout, "SeasonActive", SeasonActive);
-
-			#endregion
-		}
-
-		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
-		{
-			base.AttachDependentProperties(gameData, gameDataObject);
-
-			if (gameDataObject is not SeasonalDecorationLayout seasonalDecorationLayout)
-			{
-				return;
-			}
-
-			#region Apply Properties
-
-			OverrideVariable(seasonalDecorationLayout, "Decorations", Decorations);
-			OverrideVariable(seasonalDecorationLayout, "DecorOverrides", DecorOverrides);
-
-			#endregion
 		}
 	}
 }

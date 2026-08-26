@@ -13,35 +13,21 @@ namespace KitchenLib.Customs
 		public virtual ThemeUnlock ParentTheme2 { get; protected set; }
 
 		#endregion
-		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
-
-			if (gameDataObject is ThemeUnlock themeUnlock)
-			{
-				#region Apply Properties
-
-				OverrideVariable(themeUnlock, "IsPrimary", IsPrimary);
-				OverrideVariable(themeUnlock, "Type", Type);
-
-				#endregion
-			}
-		}
 
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is ThemeUnlock themeUnlock)
-			{
-				#region Apply Properties
+			if (gameDataObject is not ThemeUnlock themeUnlock) return;
 
-				OverrideVariable(themeUnlock, "ParentTheme1", ParentTheme1);
-				OverrideVariable(themeUnlock, "ParentTheme2", ParentTheme2);
+			#region Apply Properties
 
-				#endregion
-			}
+			OverrideVariable(themeUnlock, "IsPrimary", IsPrimary);
+			OverrideVariable(themeUnlock, "Type", Type);
+			OverrideVariable(themeUnlock, "ParentTheme1", ParentTheme1);
+			OverrideVariable(themeUnlock, "ParentTheme2", ParentTheme2);
+
+			#endregion
 		}
 	}
 }

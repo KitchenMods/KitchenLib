@@ -10,15 +10,12 @@ namespace KitchenLib.Customs
 		public virtual bool OverrideIconToBeHeat { get; protected set; }
 
 		#endregion
-		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
 
-			if (gameDataObject is not CustomUnlockPack<T> customUnlockPack)
-			{
-				return;
-			}
+		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
+		{
+			base.AttachDependentProperties(gameData, gameDataObject);
+
+			if (gameDataObject is not UnlockPack customUnlockPack) return;
 
 			#region Apply Properties
 
