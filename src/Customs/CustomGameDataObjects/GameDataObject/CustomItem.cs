@@ -72,101 +72,82 @@ namespace KitchenLib.Customs
 
 		#endregion
 		
-		[Obsolete("Please use OnRegister")]
-		public virtual void SetupPrefab(GameObject prefab)
-		{
-		}
-
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
-
-			if (gameDataObject is Item item)
-			{
-				#region Apply Properties
-
-				OverrideVariable(item, "Prefab", Prefab);
-				OverrideVariable(item, "Properties", Properties);
-				OverrideVariable(item, "RequiresCleaning", RequiresCleaning);
-				OverrideVariable(item, "ExtraTimeGranted", ExtraTimeGranted);
-				OverrideVariable(item, "EatingTime", EatingTime);
-				OverrideVariable(item, "ItemValue", ItemValue);
-				OverrideVariable(item, "IsConsumedByCustomer", IsConsumedByCustomer);
-				OverrideVariable(item, "MaxOrderSharers", MaxOrderSharers);
-				OverrideVariable(item, "AlwaysOrderAdditionalItem", AlwaysOrderAdditionalItem);
-				OverrideVariable(item, "AutoSatisfied", AutoSatisfied);
-				OverrideVariable(item, "RepeatOrderMin", RepeatOrderMin);
-				OverrideVariable(item, "RepeatOrderMax", RepeatOrderMax);
-				OverrideVariable(item, "CanBeOrderedPiecemeal", CanBeOrderedPiecemeal);
-				OverrideVariable(item, "SplitCount", SplitCount);
-				OverrideVariable(item, "SplitSpeed", SplitSpeed);
-				OverrideVariable(item, "AllowSplitMerging", AllowSplitMerging);
-				OverrideVariable(item, "PreventExplicitSplit", PreventExplicitSplit);
-				OverrideVariable(item, "SplitByComponents", SplitByComponents);
-				OverrideVariable(item, "SplitByCopying", SplitByCopying);
-				OverrideVariable(item, "HasImplicitlyModifiedComponents", HasImplicitlyModifiedComponents);
-				OverrideVariable(item, "IsIndisposable", IsIndisposable);
-				OverrideVariable(item, "IsSinkDisposable", IsSinkDisposable);
-				OverrideVariable(item, "ItemCategory", ItemCategory);
-				OverrideVariable(item, "ItemStorageFlags", ItemStorageFlags);
-				OverrideVariable(item, "HoldPose", HoldPose);
-				OverrideVariable(item, "IsMergeableSide", IsMergeableSide);
-				OverrideVariable(item, "IsOverchoppable", IsOverchoppable);
-
-				#endregion
-
-				if (!string.IsNullOrEmpty(ColourBlindTag))
-				{
-					BaseMod.InternalLogger.LogDebug($"Adding ColourBlindTag '{ColourBlindTag}'");
-					var steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
-					if (steak != null)
-					{
-						var colorBlind = Object.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject);
-						colorBlind.name = "Colour Blind";
-						colorBlind.transform.SetParent(item.Prefab.transform);
-						colorBlind.transform.Find("Title").GetComponent<TMP_Text>().text = ColourBlindTag;
-					}
-				}
-
-				if (RewardOverride != -1)
-				{
-					BaseMod.InternalLogger.LogDebug($"Assigning : {RewardOverride} >> RewardOverride");
-					ItemOverrides.AddRewardOverride(item.ID, RewardOverride);
-				}
-			}
-		}
-
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is Item item)
+			if (gameDataObject is not Item item) return;
+
+			#region Apply Properties
+
+			OverrideVariable(item, "Prefab", Prefab);
+			OverrideVariable(item, "Properties", Properties);
+			OverrideVariable(item, "RequiresCleaning", RequiresCleaning);
+			OverrideVariable(item, "ExtraTimeGranted", ExtraTimeGranted);
+			OverrideVariable(item, "EatingTime", EatingTime);
+			OverrideVariable(item, "ItemValue", ItemValue);
+			OverrideVariable(item, "IsConsumedByCustomer", IsConsumedByCustomer);
+			OverrideVariable(item, "MaxOrderSharers", MaxOrderSharers);
+			OverrideVariable(item, "AlwaysOrderAdditionalItem", AlwaysOrderAdditionalItem);
+			OverrideVariable(item, "AutoSatisfied", AutoSatisfied);
+			OverrideVariable(item, "RepeatOrderMin", RepeatOrderMin);
+			OverrideVariable(item, "RepeatOrderMax", RepeatOrderMax);
+			OverrideVariable(item, "CanBeOrderedPiecemeal", CanBeOrderedPiecemeal);
+			OverrideVariable(item, "SplitCount", SplitCount);
+			OverrideVariable(item, "SplitSpeed", SplitSpeed);
+			OverrideVariable(item, "AllowSplitMerging", AllowSplitMerging);
+			OverrideVariable(item, "PreventExplicitSplit", PreventExplicitSplit);
+			OverrideVariable(item, "SplitByComponents", SplitByComponents);
+			OverrideVariable(item, "SplitByCopying", SplitByCopying);
+			OverrideVariable(item, "HasImplicitlyModifiedComponents", HasImplicitlyModifiedComponents);
+			OverrideVariable(item, "IsIndisposable", IsIndisposable);
+			OverrideVariable(item, "IsSinkDisposable", IsSinkDisposable);
+			OverrideVariable(item, "ItemCategory", ItemCategory);
+			OverrideVariable(item, "ItemStorageFlags", ItemStorageFlags);
+			OverrideVariable(item, "HoldPose", HoldPose);
+			OverrideVariable(item, "IsMergeableSide", IsMergeableSide);
+			OverrideVariable(item, "IsOverchoppable", IsOverchoppable);
+			OverrideVariable(item, "Processes", Processes);
+			OverrideVariable(item, "AutomaticItemProcess", AutomaticItemProcess);
+			OverrideVariable(item, "DirtiesTo", DirtiesTo);
+			OverrideVariable(item, "MayRequestExtraItems", MayRequestExtraItems);
+			OverrideVariable(item, "SatisfiedBy", SatisfiedBy);
+			OverrideVariable(item, "NeedsIngredients", NeedsIngredients);
+			OverrideVariable(item, "SplitSubItem", SplitSubItem);
+			OverrideVariable(item, "SplitDepletedItems", SplitDepletedItems);
+			OverrideVariable(item, "SplitByComponentsHolder", SplitByComponentsHolder);
+			OverrideVariable(item, "SplitByComponentsWrapper", SplitByComponentsWrapper);
+			OverrideVariable(item, "RefuseSplitWith", RefuseSplitWith);
+			OverrideVariable(item, "DisposesTo", DisposesTo);
+			OverrideVariable(item, "DedicatedProvider", DedicatedProvider);
+			OverrideVariable(item, "CreditSourceDish", CreditSourceDish);
+			OverrideVariable(item, "ExtendedDirtItem", ExtendedDirtItem);
+
+			#endregion
+
+			if (SidePrefab == null)
 			{
-				#region Apply Properties
-
-				OverrideVariable(item, "Processes", Processes);
-				OverrideVariable(item, "AutomaticItemProcess", AutomaticItemProcess);
-				OverrideVariable(item, "DirtiesTo", DirtiesTo);
-				OverrideVariable(item, "MayRequestExtraItems", MayRequestExtraItems);
-				OverrideVariable(item, "SatisfiedBy", SatisfiedBy);
-				OverrideVariable(item, "NeedsIngredients", NeedsIngredients);
-				OverrideVariable(item, "SplitSubItem", SplitSubItem);
-				OverrideVariable(item, "SplitDepletedItems", SplitDepletedItems);
-				OverrideVariable(item, "SplitByComponentsHolder", SplitByComponentsHolder);
-				OverrideVariable(item, "SplitByComponentsWrapper", SplitByComponentsWrapper);
-				OverrideVariable(item, "RefuseSplitWith", RefuseSplitWith);
-				OverrideVariable(item, "DisposesTo", DisposesTo);
-				OverrideVariable(item, "DedicatedProvider", DedicatedProvider);
-				OverrideVariable(item, "CreditSourceDish", CreditSourceDish);
-				OverrideVariable(item, "ExtendedDirtItem", ExtendedDirtItem);
-
-				#endregion
-
-				if (SidePrefab == null)
+				BaseMod.InternalLogger.LogError("Assigning fallback side prefab");
+				SidePrefab = item.Prefab ?? Main.bundle.LoadAsset<GameObject>("Error_Item");
+			}
+			
+			if (!string.IsNullOrEmpty(ColourBlindTag))
+			{
+				BaseMod.InternalLogger.LogDebug($"Adding ColourBlindTag '{ColourBlindTag}'");
+				var steak = (Item)GDOUtils.GetExistingGDO(ItemReferences.SteakMedium);
+				if (steak != null)
 				{
-					BaseMod.InternalLogger.LogError("Assigning fallback side prefab");
-					SidePrefab = item.Prefab ?? Main.bundle.LoadAsset<GameObject>("Error_Item");
+					var colorBlind = Object.Instantiate(steak.Prefab.transform.Find("Colour Blind").gameObject);
+					colorBlind.name = "Colour Blind";
+					colorBlind.transform.SetParent(item.Prefab.transform);
+					colorBlind.transform.Find("Title").GetComponent<TMP_Text>().text = ColourBlindTag;
 				}
+			}
+
+			if (RewardOverride != -1)
+			{
+				BaseMod.InternalLogger.LogDebug($"Assigning : {RewardOverride} >> RewardOverride");
+				ItemOverrides.AddRewardOverride(item.ID, RewardOverride);
 			}
 		}
 
@@ -179,6 +160,11 @@ namespace KitchenLib.Customs
 			}
 			
 			base.OnRegister(gameDataObject);
+		}
+		
+		[Obsolete("Please use OnRegister")]
+		public virtual void SetupPrefab(GameObject prefab)
+		{
 		}
 	}
 }

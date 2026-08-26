@@ -15,10 +15,7 @@ namespace KitchenLib.Customs
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (!(gameDataObject is CompositeUnlockPack compositeUnlockPack))
-			{
-				return;
-			}
+			if (gameDataObject is not CompositeUnlockPack compositeUnlockPack) return;
 
 			#region Apply Properties
 

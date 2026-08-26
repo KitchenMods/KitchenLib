@@ -19,39 +19,25 @@ namespace KitchenLib.Customs
 		public virtual GameObject Visual { get; protected set; }
 
 		#endregion
-		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
-
-			if (gameDataObject is PlayerCosmetic playerCosmetic)
-			{
-				#region Apply Properties
-
-				OverrideVariable(playerCosmetic, "CosmeticType", CosmeticType);
-				OverrideVariable(playerCosmetic, "DisableInGame", DisableInGame);
-				OverrideVariable(playerCosmetic, "IsDefault", IsDefault);
-				OverrideVariable(playerCosmetic, "BlockHats", BlockHats);
-				OverrideVariable(playerCosmetic, "HeadSize", HeadSize);
-				OverrideVariable(playerCosmetic, "HideBody", HideBody);
-				OverrideVariable(playerCosmetic, "Visual", Visual);
-
-				#endregion
-			}
-		}
 
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is PlayerCosmetic playerCosmetic)
-			{
-				#region Apply Properties
+			if (gameDataObject is not PlayerCosmetic playerCosmetic) return;
 
-				OverrideVariable(playerCosmetic, "CustomerSettings", CustomerSettings);
+			#region Apply Properties
 
-				#endregion
-			}
+			OverrideVariable(playerCosmetic, "CosmeticType", CosmeticType);
+			OverrideVariable(playerCosmetic, "DisableInGame", DisableInGame);
+			OverrideVariable(playerCosmetic, "IsDefault", IsDefault);
+			OverrideVariable(playerCosmetic, "BlockHats", BlockHats);
+			OverrideVariable(playerCosmetic, "HeadSize", HeadSize);
+			OverrideVariable(playerCosmetic, "HideBody", HideBody);
+			OverrideVariable(playerCosmetic, "Visual", Visual);
+			OverrideVariable(playerCosmetic, "CustomerSettings", CustomerSettings);
+
+			#endregion
 		}
 	}
 }

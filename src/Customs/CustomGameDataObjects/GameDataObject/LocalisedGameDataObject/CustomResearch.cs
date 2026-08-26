@@ -13,34 +13,20 @@ namespace KitchenLib.Customs
 		public virtual List<Research> RequiresForResearch { get; protected set; } = new();
 
 		#endregion
-		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
-
-			if (gameDataObject is Research research)
-			{
-				#region Apply Properties
-
-				OverrideVariable(research, "Rewards", Rewards);
-
-				#endregion
-			}
-		}
 
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is Research research)
-			{
-				#region Apply Properties
+			if (gameDataObject is not Research research) return;
 
-				OverrideVariable(research, "EnablesResearchOf", EnablesResearchOf);
-				OverrideVariable(research, "RequiresForResearch", RequiresForResearch);
+			#region Apply Properties
 
-				#endregion
-			}
+			OverrideVariable(research, "Rewards", Rewards);
+			OverrideVariable(research, "EnablesResearchOf", EnablesResearchOf);
+			OverrideVariable(research, "RequiresForResearch", RequiresForResearch);
+
+			#endregion
 		}
 	}
 }

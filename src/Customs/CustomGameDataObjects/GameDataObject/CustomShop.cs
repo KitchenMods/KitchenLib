@@ -16,37 +16,19 @@ namespace KitchenLib.Customs
 
 		#endregion
 		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
-
-			if (gameDataObject is not Shop shop)
-			{
-				return;
-			}
-
-			#region Apply Properties
-
-			OverrideVariable(shop, "Type", Type);
-			OverrideVariable(shop, "ItemsForSaleCount", ItemsForSaleCount);
-			OverrideVariable(shop, "WallpapersForSaleCount", WallpapersForSaleCount);
-
-			#endregion
-		}
-
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is not Shop shop)
-			{
-				return;
-			}
+			if (gameDataObject is not Shop shop) return;
 
 			#region Apply Properties
 
 			OverrideVariable(shop, "Stock", Stock);
 			OverrideVariable(shop, "Decors", Decors);
+			OverrideVariable(shop, "Type", Type);
+			OverrideVariable(shop, "ItemsForSaleCount", ItemsForSaleCount);
+			OverrideVariable(shop, "WallpapersForSaleCount", WallpapersForSaleCount);
 
 			#endregion
 		}

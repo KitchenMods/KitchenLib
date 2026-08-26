@@ -14,16 +14,13 @@ namespace KitchenLib.Customs
 		public virtual IWorkshopProduct Output { get; protected set; }
 
 		#endregion
-		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
+
+		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
-			base.Convert(gameData, out gameDataObject);
+			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is not WorkshopRecipe workshopRecipe)
-			{
-				return;
-			}
-
+			if (gameDataObject is not WorkshopRecipe workshopRecipe) return;
+			
 			#region Apply Properties
 
 			OverrideVariable(workshopRecipe, "Conditions", Conditions);

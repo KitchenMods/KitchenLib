@@ -21,16 +21,18 @@ namespace KitchenLib.Customs
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (!(gameDataObject is LocalisationSet<L> localisationSet))
-			{
-				return;
-			}
+			if (gameDataObject is not LocalisationSet<L> localisationSet) return;
 			
-			#region Apply Properties
-
-			// OverrideVariable(localisationSet, "LocalisationInfo", LocalisationInfo);
-
-			#endregion
+			if (InfoList != null && InfoList.Count > 0)
+			{
+				LocalisationObject<L> info = null;
+				ConvertInfoListToLocalisationObject(InfoList, ref info);
+				OverrideVariable(localisationSet, "Info", info);
+			}
+			else if (LocalisationInfo != null)
+			{
+				OverrideVariable(localisationSet, "Info", LocalisationInfo);
+			}
 		}
 	}
 }

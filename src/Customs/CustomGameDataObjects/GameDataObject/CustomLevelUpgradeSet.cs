@@ -10,19 +10,18 @@ namespace KitchenLib.Customs
 		public virtual List<LevelUpgrade> Upgrades { get; protected set; } = new();
 
 		#endregion
-
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
+		
+		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
-			base.Convert(gameData, out gameDataObject);
+			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is LevelUpgradeSet levelUpgradeSet)
-			{
-				#region Apply Properties
+			if (gameDataObject is not LevelUpgradeSet levelUpgradeSet) return;
 
-				OverrideVariable(levelUpgradeSet, "Upgrades", Upgrades);
+			#region Apply Properties
 
-				#endregion
-			}
+			OverrideVariable(levelUpgradeSet, "Upgrades", Upgrades);
+
+			#endregion
 		}
 	}
 }

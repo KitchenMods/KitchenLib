@@ -14,34 +14,20 @@ namespace KitchenLib.Customs
 
 		#endregion
 		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
-
-			if (gameDataObject is Decor decor)
-			{
-				#region Apply Properties
-
-				OverrideVariable(decor, "Material", Material);
-				OverrideVariable(decor, "Type", Type);
-				OverrideVariable(decor, "IsAvailable", IsAvailable);
-
-				#endregion
-			}
-		}
-
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is Decor decor)
-			{
-				#region Apply Properties
+			if (gameDataObject is not Decor decor) return;
 
-				OverrideVariable(decor, "ApplicatorAppliance", ApplicatorAppliance);
+			#region Apply Properties
 
-				#endregion
-			}
+			OverrideVariable(decor, "Material", Material);
+			OverrideVariable(decor, "Type", Type);
+			OverrideVariable(decor, "IsAvailable", IsAvailable);
+			OverrideVariable(decor, "ApplicatorAppliance", ApplicatorAppliance);
+
+			#endregion
 		}
 	}
 }

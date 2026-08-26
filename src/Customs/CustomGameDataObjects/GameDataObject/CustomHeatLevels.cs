@@ -13,34 +13,20 @@ namespace KitchenLib.Customs
 		public virtual List<ICard> ChillCards { get; protected set; } = new List<ICard>();
 
 		#endregion
-		
-		public override void Convert(GameData gameData, out GameDataObject gameDataObject)
-		{
-			base.Convert(gameData, out gameDataObject);
-
-			if (gameDataObject is HeatLevels heatLevels)
-			{
-				#region Apply Properties
-				
-				OverrideVariable(heatLevels, "IsDefaultLevels", IsDefaultLevels);
-				
-				#endregion
-			}
-		}
 
 		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is HeatLevels heatLevels)
-			{
-				#region Apply Properties
+			if (gameDataObject is not HeatLevels heatLevels) return;
 
-				OverrideVariable(heatLevels, "Cards", Cards);
-				OverrideVariable(heatLevels, "ChillCards", ChillCards);
+			#region Apply Properties
 
-				#endregion
-			}
+			OverrideVariable(heatLevels, "IsDefaultLevels", IsDefaultLevels);
+			OverrideVariable(heatLevels, "Cards", Cards);
+			OverrideVariable(heatLevels, "ChillCards", ChillCards);
+
+			#endregion
 		}
 	}
 }

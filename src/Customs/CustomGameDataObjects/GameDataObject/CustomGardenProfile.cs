@@ -17,15 +17,14 @@ namespace KitchenLib.Customs
 		{
 			base.AttachDependentProperties(gameData, gameDataObject);
 
-			if (gameDataObject is GardenProfile gardenProfile)
-			{
-				#region Apply Properties
+			if (gameDataObject is not GardenProfile gardenProfile) return;
 
-				OverrideVariable(gardenProfile, "SpawnHolder", SpawnHolder);
-				OverrideVariable(gardenProfile, "Spawns", Spawns);
+			#region Apply Properties
 
-				#endregion
-			}
+			OverrideVariable(gardenProfile, "SpawnHolder", SpawnHolder);
+			OverrideVariable(gardenProfile, "Spawns", Spawns);
+
+			#endregion
 		}
 	}
 }
