@@ -20,9 +20,9 @@ namespace KitchenLib.Registry
 			if (!Registered.ContainsKey(mod.GetType()))
 			{
 				if (mod.BetaVersion != "")
-					Main.LogInfo($"Registered: {mod.ModName}:{mod.ModID} v{mod.ModVersion}b{mod.BetaVersion}");
+					BaseMod.InternalLogger.LogInfo($"Registered: {mod.ModName}:{mod.ModID} v{mod.ModVersion}b{mod.BetaVersion}");
 				else
-					Main.LogInfo($"Registered: {mod.ModName}:{mod.ModID} v{mod.ModVersion}");
+					BaseMod.InternalLogger.LogInfo($"Registered: {mod.ModName}:{mod.ModID} v{mod.ModVersion}");
 
 				Registered.Add(mod.GetType(), mod);
 				keyValuePairs.Add(mod.GetType(), Assembly.GetAssembly(mod.GetType()));

@@ -46,7 +46,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The version of the mod.
 		/// </summary>
-		internal const string MOD_VERSION = "0.9.1";
+		internal const string MOD_VERSION = "0.10.1";
 
 		/// <summary>
 		/// The beta version of the mod.
@@ -61,7 +61,7 @@ namespace KitchenLib
 		/// <summary>
 		/// The compatible versions of the mod.
 		/// </summary>
-		internal const string MOD_COMPATIBLE_VERSIONS = ">=1.2.1";
+		internal const string MOD_COMPATIBLE_VERSIONS = ">=1.5.2";
 
 		/// <summary>
 		/// The asset bundle for the mod.
@@ -172,12 +172,12 @@ namespace KitchenLib
 			}
 			
 
-			LogInfo(" __  ___  __  .___________.  ______  __    __   _______ .__   __.  __       __  .______  ");
-			LogInfo("|  |/  / |  | |           | /      ||  |  |  | |   ____||  \\ |  | |  |     |  | |   _  \\ ");
-			LogInfo("|  '  /  |  | `---|  |----`|  ,----'|  |__|  | |  |__   |   \\|  | |  |     |  | |  |_)  |");
-			LogInfo("|    <   |  |     |  |     |  |     |   __   | |   __|  |  . `  | |  |     |  | |   _  <  ");
-			LogInfo("|  .  \\  |  |     |  |     |  `----.|  |  |  | |  |____ |  |\\   | |  `----.|  | |  |_)  |");
-			LogInfo("|__|\\__\\ |__|     |__|      \\______||__|  |__| |_______||__| \\__| |_______||__| |______/ " + $"   v{MOD_VERSION}b{MOD_BETA_VERSION}");
+			Logger.LogInfo(" __  ___  __  .___________.  ______  __    __   _______ .__   __.  __       __  .______  ");
+			Logger.LogInfo("|  |/  / |  | |           | /      ||  |  |  | |   ____||  \\ |  | |  |     |  | |   _  \\ ");
+			Logger.LogInfo("|  '  /  |  | `---|  |----`|  ,----'|  |__|  | |  |__   |   \\|  | |  |     |  | |  |_)  |");
+			Logger.LogInfo("|    <   |  |     |  |     |  |     |   __   | |   __|  |  . `  | |  |     |  | |   _  <  ");
+			Logger.LogInfo("|  .  \\  |  |     |  |     |  `----.|  |  |  | |  |____ |  |\\   | |  `----.|  | |  |_)  |");
+			Logger.LogInfo("|__|\\__\\ |__|     |__|      \\______||__|  |__| |_______||__| \\__| |_______||__| |______/ " + $"   v{MOD_VERSION}b{MOD_BETA_VERSION}");
 
 			Events.BuildGameDataEvent += (sender, args) => { if (args.firstBuild) AchievementsManager.SetupMenuElement(); };
 		}
@@ -189,8 +189,8 @@ namespace KitchenLib
 				localModCount--;
 			}
 			bool isDebug = manager.GetPreference<PreferenceBool>("isDebug").Value;
-			debugLogging = localModCount > 0 || isDebug;
-			LogInfo($"GDO debug logging: {debugLogging} (local mods: {localModCount}, isDebug: {isDebug})");
+			InternalLogger.IsDebug = localModCount > 0 || isDebug;
+			Logger.LogInfo($"GDO debug logging: {debugLogging} (local mods: {localModCount}, isDebug: {isDebug})");
 		}
 
 
@@ -264,8 +264,6 @@ namespace KitchenLib
 			
 			// Pause Menu Registrations
 			PauseMenuPreferencesesMenu.RegisterUsableMenu(typeof(PauseMenuPreferencesesMenu));
-			PauseMenuPreferencesesMenu.RegisterUsableMenu(typeof(ModSyncMenu));
-			PauseMenuPreferencesesMenu.RegisterUsableMenu(typeof(ConfirmModSync));
 			
 			// Global Registrations
 			BasePreferencesMenu.RegisterUsableMenu(typeof(ModsMenu));
@@ -273,7 +271,7 @@ namespace KitchenLib
 			BasePreferencesMenu.RegisterUsableMenu(typeof(UserOptions));
 			BasePreferencesMenu.RegisterUsableMenu(typeof(ModAchievementsMenu));
 
-			//Setting Up For Pause Menu
+			//Add Mod Preference and Mod Achievement Menus when needed
 			Events.MainMenu_SetupEvent += (s, args) =>
 			{
 				args.addSubmenuButton.Invoke(args.instance, new object[] { "Mods", typeof(ModsMenu), false });
@@ -304,33 +302,10 @@ namespace KitchenLib
 			AddGameDataObject<T>();
 		}
 
-		[Obsolete]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogInfo(object message)
-		{
-			Debug.Log($"[{MOD_NAME}] " + message);
-		}
-
-		[Obsolete]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogWarning(object message)
-		{
-			Debug.LogWarning($"[{MOD_NAME}] " + message);
-		}
-
-		[Obsolete]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogError(object message)
-		{
-			Debug.LogError($"[{MOD_NAME}] " + message);
-		}
-
-		[Obsolete]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogDebug(object message)
-		{
-			if (debugLogging)
-				Debug.Log($"[{MOD_NAME}] [DEBUG] " + message);
-		}
+		#region Obsolete Code
+		
+		
+		
+		#endregion
 	}
 }

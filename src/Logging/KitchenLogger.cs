@@ -7,10 +7,16 @@ namespace KitchenLib.Logging
 	public class KitchenLogger
 	{
 		internal string MOD_NAME;
+		public bool IsDebug = false;
 
 		public KitchenLogger(string MOD_NAME)
 		{
 			this.MOD_NAME = MOD_NAME;
+		}
+		public void LogDebug(object message)
+		{
+			if (IsDebug)
+				Debug.Log($"[{MOD_NAME}] [DEBUG] " + message);
 		}
 
 		public void LogError(string message)

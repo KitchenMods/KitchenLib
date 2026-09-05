@@ -58,7 +58,7 @@ namespace KitchenLib.Views
 
 			if (Values.ContainsKey(hash))
 			{
-				Main.LogInfo($"Error while registering custom view type of ID={modId}:{id}. Double-check to ensure that the ID is actually unique.");
+				BaseMod.InternalLogger.LogInfo($"Error while registering custom view type of ID={modId}:{id}. Double-check to ensure that the ID is actually unique.");
 				return null;
 			}
 

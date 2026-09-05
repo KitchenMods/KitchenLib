@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using UnityEngine;
 
 namespace KitchenLib.Patches
 {
@@ -36,10 +35,14 @@ namespace KitchenLib.Patches
 
 		private static void CallSetupMenusEvent(MainMenuView instance)
 		{
-			FieldInfo moduleList = ReflectionUtils.GetField<LocalMenuView<MenuAction>>("ModuleList");
-			ModuleList mList = (ModuleList)moduleList.GetValue(instance);
-			MethodInfo mInfo = ReflectionUtils.GetMethod<LocalMenuView<MenuAction>>("AddMenu");
-			MainMenuView_SetupMenusArgs mainMenuViewEvent = new MainMenuView_SetupMenusArgs(instance, mInfo, mList);
+			FieldInfo _ModuleList = ReflectionUtils.GetField<LocalMenuView<MenuAction>>("ModuleList");
+			ModuleList ModuleList = (ModuleList)_ModuleList.GetValue(instance);
+			MethodInfo _AddMenu = ReflectionUtils.GetMethod<LocalMenuView<MenuAction>>("AddMenu");
+			FieldInfo _Menus = ReflectionUtils.GetField<LocalMenuView<MenuAction>>("Menus");
+			
+			Dictionary<Type, Menu<MenuAction>> Menus = (Dictionary<Type, Menu<MenuAction>>)_Menus.GetValue(instance);
+			
+			MainMenuView_SetupMenusArgs mainMenuViewEvent = new MainMenuView_SetupMenusArgs(instance, _AddMenu, ModuleList, Menus);
 			EventUtils.InvokeEvent(nameof(Events.MainMenuView_SetupMenusEvent), Events.MainMenuView_SetupMenusEvent?.GetInvocationList(), null, mainMenuViewEvent);
 		}
 	}
@@ -50,8 +53,6 @@ namespace KitchenLib.Patches
 		[HarmonyPrefix]
 		static bool Prefix(StartMainMenu __instance)
 		{
-			//ProfileManager.Main.Load();
-
 			MethodInfo addActionButton = __instance.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).Single(m => m.Name == "AddActionButton" && m.GetParameters().Length == 3);
 
 			MethodInfo addSubmenuButton = ReflectionUtils.GetMethod<MainMenu>("AddSubmenuButton");
@@ -59,6 +60,7 @@ namespace KitchenLib.Patches
 
 			MainMenu_SetupArgs startMainMenuEvent = new MainMenu_SetupArgs(__instance, addActionButton, addSubmenuButton, addSpacer);
 			EventUtils.InvokeEvent(nameof(Events.MainMenu_SetupEvent), Events.MainMenu_SetupEvent?.GetInvocationList(), null, startMainMenuEvent);
+			
 			return true;
 		}
 	}
@@ -72,8 +74,11 @@ namespace KitchenLib.Patches
 			FieldInfo moduleList = ReflectionUtils.GetField<LocalMenuView<MenuAction>>("ModuleList");
 			ModuleList mList = (ModuleList)moduleList.GetValue(__instance);
 			MethodInfo mInfo = ReflectionUtils.GetMethod<LocalMenuView<MenuAction>>("AddMenu");
+			FieldInfo _Menus = ReflectionUtils.GetField<LocalMenuView<MenuAction>>("Menus");
+			
+			Dictionary<Type, Menu<MenuAction>> Menus = (Dictionary<Type, Menu<MenuAction>>)_Menus.GetValue(__instance);
 
-			PlayerPauseView_SetupMenusArgs mainMenuViewEvent = new PlayerPauseView_SetupMenusArgs(__instance, mInfo, mList);
+			PlayerPauseView_SetupMenusArgs mainMenuViewEvent = new PlayerPauseView_SetupMenusArgs(__instance, mInfo, mList, Menus);
 			EventUtils.InvokeEvent(nameof(Events.PlayerPauseView_SetupMenusEvent), Events.PlayerPauseView_SetupMenusEvent?.GetInvocationList(), null, mainMenuViewEvent);
 			return true;
 		}

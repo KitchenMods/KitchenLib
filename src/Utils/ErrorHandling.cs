@@ -24,20 +24,20 @@ namespace KitchenLib.Utils
 			FailedMods.Add(new FailedMod(mod, state, e));
 		}
 		
-		private static Dictionary<Type, bool> MenuLoadingOrder = new Dictionary<Type, bool>
-		{
-			{typeof(BetaWarningMenu), Main.MOD_BETA_VERSION != "" && !VariousUtils.HasCommandlineArgument("-noklbetawarning") },
-			{typeof(FailedGDOsMenu), FailedGDOs.Count > 0},
-			{typeof(FailedModsMenu), FailedMods.Count > 0},
-			{typeof(GameUpdateWarning), Main.manager != null && !Main.manager.GetPreference<PreferenceString>("lastVersionCheck").Value.Equals(Application.version) },
-			{typeof(SaveDataDisclosure), PreferenceManager.globalManager != null && PreferenceManager.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 0},
-			{typeof(StartMainMenu), true}
-		};
-		
 		private static List<Type> visitedMenus = new List<Type>();
 
 		public static Type GetNextMenu(Type currentMenu)
 		{
+			Dictionary<Type, bool> MenuLoadingOrder = new Dictionary<Type, bool>
+			{
+				{typeof(BetaWarningMenu), Main.MOD_BETA_VERSION != "" && !VariousUtils.HasCommandlineArgument("-noklbetawarning") },
+				{typeof(FailedGDOsMenu), FailedGDOs.Count > 0},
+				{typeof(FailedModsMenu), FailedMods.Count > 0},
+				{typeof(GameUpdateWarning), Main.manager != null && !Main.manager.GetPreference<PreferenceString>("lastVersionCheck").Value.Equals(Application.version) },
+				{typeof(SaveDataDisclosure), PreferenceManager.globalManager != null && PreferenceManager.globalManager.GetPreference<PreferenceInt>("steamCloud").Value == 0},
+				{typeof(StartMainMenu), true}
+			};
+			
 			foreach (var menu in MenuLoadingOrder)
 			{
 				if (menu.Key == currentMenu) continue;

@@ -26,15 +26,6 @@ namespace KitchenLib.UI
 			}, 0, 1f, 0.2f);
 
 			New<SpacerElement>(true);
-			if (SyncMods.MissingMods.Count > 0)
-			{
-				AddButton("Sync Mods", delegate (int i)
-				{
-					RequestSubMenu(typeof(ModSyncMenu));
-				}, 0, 1f, 0.2f);
-
-				New<SpacerElement>(true);
-			}
 
 			AddButton(base.Localisation["MENU_BACK_SETTINGS"], delegate (int i)
 			{

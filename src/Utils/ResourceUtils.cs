@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace KitchenLib.Utils
@@ -35,16 +34,16 @@ namespace KitchenLib.Utils
 
 		public static Texture2D LoadTextureFromFile(string FilePath)
 		{
-			if (loadTextureFromFileCache.ContainsKey(VariousUtils.GetID("FilePath")))
+			if (loadTextureFromFileCache.ContainsKey(VariousUtils.GetID(FilePath)))
 			{
-				return loadTextureFromFileCache[VariousUtils.GetID("FilePath")];
+				return loadTextureFromFileCache[VariousUtils.GetID(FilePath)];
 			}
 			else
 			{
 				if (File.Exists(FilePath))
 				{
-					loadTextureFromFileCache.Add(VariousUtils.GetID("FilePath"), LoadTextureRaw(File.ReadAllBytes(FilePath)));
-					return loadTextureFromFileCache[VariousUtils.GetID("FilePath")];
+					loadTextureFromFileCache.Add(VariousUtils.GetID(FilePath), LoadTextureRaw(File.ReadAllBytes(FilePath)));
+					return loadTextureFromFileCache[VariousUtils.GetID(FilePath)];
 				}
 			}
 			return null;

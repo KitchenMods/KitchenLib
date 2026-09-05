@@ -2,10 +2,10 @@
 
 namespace KitchenLib.Customs
 {
-    public interface ICustomHasPrefab
-    {
-        GameObject Prefab { get; }
+	public interface ICustomHasPrefab
+	{
+		GameObject Prefab { get; }
 
-        void SetupPrefab(GameObject prefab);
-    }
+		void SetupPrefab(GameObject prefab);
+	}
 }

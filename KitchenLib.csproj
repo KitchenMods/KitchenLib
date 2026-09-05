@@ -67,4 +67,7 @@
 		<Compile Remove="Discord\**" />
 		<None Remove="Discord\**" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="src\Archive\Customs\" />
+	</ItemGroup>
 </Project>

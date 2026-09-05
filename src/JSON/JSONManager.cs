@@ -73,7 +73,7 @@ namespace KitchenLib
 				customMaterial.ConvertMaterial(out material);
 				return material;
 			}
-			Main.LogWarning("Unable to load JSON");
+			BaseMod.InternalLogger.LogWarning("Unable to load JSON");
 			return new Material(Shader.Find("Simple Flat"));
 
 		}
@@ -82,7 +82,7 @@ namespace KitchenLib
 		{
 			foreach (TextAsset asset in bundle.LoadAllAssets<TextAsset>())
 			{
-				Main.LogInfo($"Loading JSON-based material asset '{asset.name}'");
+				BaseMod.InternalLogger.LogInfo($"Loading JSON-based material asset '{asset.name}'");
 				try
 				{
 					try
@@ -97,14 +97,14 @@ namespace KitchenLib
 					}
 					catch (Exception e)
 					{
-						Main.LogWarning(asset.name + " Could Not Be Loaded");
-						Main.LogWarning(e.Message);
+						BaseMod.InternalLogger.LogWarning(asset.name + " Could Not Be Loaded");
+						BaseMod.InternalLogger.LogWarning(e.Message);
 					}
 				}
 				catch (Exception e)
 				{
-					Main.LogWarning(e.Message);
-					Main.LogWarning($"Material asset '{asset.name}' could not be loaded");
+					BaseMod.InternalLogger.LogWarning(e.Message);
+					BaseMod.InternalLogger.LogWarning($"Material asset '{asset.name}' could not be loaded");
 				}
 			}
 			

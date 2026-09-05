@@ -1,0 +1,27 @@
+﻿using System.Collections.Generic;
+using KitchenData;
+
+namespace KitchenLib.Customs
+{
+	public abstract class CustomCrateSet : CustomGameDataObject<CrateSet>
+	{
+		#region Base Game Variables
+
+		public virtual List<Appliance> Options { get; protected set; } = new();
+
+		#endregion
+
+		public override void AttachDependentProperties(GameData gameData, GameDataObject gameDataObject)
+		{
+			base.AttachDependentProperties(gameData, gameDataObject);
+
+			if (gameDataObject is not CrateSet crateSet) return;
+
+			#region Apply Properties
+
+			OverrideVariable(crateSet, "Options", Options);
+
+			#endregion
+		}
+	}
+}

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Kitchen;
 using Kitchen.Modules;
+using KitchenLib.Materials;
 using KitchenLib.Preferences;
 using KitchenLib.Systems;
 using KitchenLib.Utils;
@@ -85,7 +86,7 @@ namespace KitchenLib.Achievements
 				
 				if (string.IsNullOrEmpty(json))
 				{
-					Main.LogWarning($"Unable to load achievements for {achievementFilePath}, file empty or not saved.");
+					BaseMod.InternalLogger.LogWarning($"Unable to load achievements for {achievementFilePath}, file empty or not saved.");
 					return;
 				}
 				
@@ -95,7 +96,7 @@ namespace KitchenLib.Achievements
 				{
 					if (!achievements.ContainsKey(achievement.Key))
 					{
-						Main.LogWarning($"Unable to load {achievement.Key}, key not registered.");
+						BaseMod.InternalLogger.LogWarning($"Unable to load {achievement.Key}, key not registered.");
 						continue;
 					}
 					
@@ -109,8 +110,8 @@ namespace KitchenLib.Achievements
 			{
 				if (File.Exists(achievementFilePath))
 				{
-					Main.LogWarning(e.Message);
-					Main.LogWarning($"Failed to load achievements file {achievementFilePath} for {modId}, backing up and replacing.");
+					BaseMod.InternalLogger.LogWarning(e.Message);
+					BaseMod.InternalLogger.LogWarning($"Failed to load achievements file {achievementFilePath} for {modId}, backing up and replacing.");
 					File.Move(achievementFilePath, achievementFilePath + ".backup");
 					Save();
 					Load();
@@ -128,7 +129,7 @@ namespace KitchenLib.Achievements
 		{
 			if (achievements.ContainsKey(achievement.Key))
 			{
-				Main.LogWarning($"Unable to register {achievement.Key}, key already registered.");
+				BaseMod.InternalLogger.LogWarning($"Unable to register {achievement.Key}, key already registered.");
 				return null;
 			}
 			achievement.manager = this;
@@ -158,7 +159,7 @@ namespace KitchenLib.Achievements
 
 			if (PreferenceManager.globalManager == null)
 			{
-				Main.LogWarning("Global Preference Manager is null, attempting to assign.");
+				BaseMod.InternalLogger.LogWarning("Global Preference Manager is null, attempting to assign.");
 				PreferenceManager.EnsureGlobal();
 			}
 
@@ -211,8 +212,8 @@ namespace KitchenLib.Achievements
 			Dictionary<Type, Element> defaultModules = (Dictionary<Type, Element>)DefaultModules.GetValue(ModuleDirectory.Main);
 				
 			ButtonElement defaultButton = defaultModules[typeof(ButtonElement)] as ButtonElement;
-				
-			GameObject label = Main.bundle.LoadAsset<GameObject>("Achievement").AssignMaterialsByNames(); 
+
+			GameObject label = MaterialManager.AssignMaterialsByNames(Main.bundle.LoadAsset<GameObject>("Achievement"));
 				
 			AchivementElement element = label.AddComponent<AchivementElement>();
 				

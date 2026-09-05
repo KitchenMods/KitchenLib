@@ -24,13 +24,15 @@ namespace KitchenLib.UI.PlateUp.PreferenceMenus
 				Events.MainMenuView_SetupMenusEvent += (s, args) =>
 				{
 					var menu = Activator.CreateInstance(type, new object[]{args.instance.ButtonContainer, args.module_list});
-					args.addMenu.Invoke(args.instance, new object[] { type, menu });
+					if (!args.Menus.ContainsKey(type))
+						args.addMenu.Invoke(args.instance, new object[] { type, menu });
 				};
 			}
 			
 			MenusToRegister.Add((type, name));
 		}
 		
+		[Obsolete]
 		public static void RegisterCompatMenu(string name, Type type, KLMenu menuInstance)
 		{
 			foreach ((Type, string) menu in MenusToRegister)
@@ -40,7 +42,8 @@ namespace KitchenLib.UI.PlateUp.PreferenceMenus
 			
 			Events.MainMenuView_SetupMenusEvent += (s, args) =>
 			{
-				args.addMenu.Invoke(args.instance, new object[] { type, menuInstance });
+				if (!args.Menus.ContainsKey(type))
+					args.addMenu.Invoke(args.instance, new object[] { type, menuInstance });
 			};
 			
 			MenusToRegister.Add((type, name));
@@ -57,7 +60,8 @@ namespace KitchenLib.UI.PlateUp.PreferenceMenus
 			Events.MainMenuView_SetupMenusEvent += (s, args) =>
 			{
 				var menu = Activator.CreateInstance(type, new object[]{args.instance.ButtonContainer, args.module_list});
-				args.addMenu.Invoke(args.instance, new object[] { type, menu });
+				if (!args.Menus.ContainsKey(type))
+					args.addMenu.Invoke(args.instance, new object[] { type, menu });
 			};
 		}
 	}

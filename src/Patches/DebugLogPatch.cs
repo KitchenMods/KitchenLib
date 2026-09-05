@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using HarmonyLib;
 using System.Reflection;
 using KitchenLib.Utils;
-using System.Linq;
-using KitchenLib.Preferences;
-
 namespace KitchenLib.Patches
 {
 	internal class DebugLogPatch
@@ -98,47 +94,6 @@ namespace KitchenLib.Patches
 				}
 				return e.Message + Environment.NewLine + GetInnerExceptions(e.InnerException);
 			}
-		}
-	}
-
-	[HarmonyPatch(typeof(DebugLogHandler), "Internal_Log")]
-	internal class DebugLogHandler_Patch
-	{
-		private static int state = 0;
-		public static bool Prefix(ref string msg)
-		{
-			if (state == 0)
-			{
-				string[] commandLineArgs = Environment.GetCommandLineArgs();
-				for (int i = 0; i < commandLineArgs.Length; i++)
-				{
-					state = 1;
-					if (commandLineArgs[i].ToLower() == "-nologprivacy")
-					{
-						state = 2;
-						break;
-					}
-				}
-			}
-
-			if (state == 2)
-			{
-				return true;
-			}
-			
-			string[] split = Regex.Matches(msg, @"\W+|[\w]+")
-				.Cast<Match>()
-				.Select(_ => _.Value)
-				.ToArray();
-			for (int i = 0; i < split.Length; i++)
-			{
-				if (split[i] == Environment.UserName)
-				{
-					split[i] = "[USERNAME]";
-				}
-			}
-			msg = string.Join("", split);
-			return true;
 		}
 	}
 }

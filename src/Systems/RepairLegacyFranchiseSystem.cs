@@ -22,7 +22,7 @@ namespace KitchenLib
 				{
 					if (CustomGDO.LegacyGDOIDs.ContainsKey(item.Cards[i]))
 					{
-						Main.LogInfo($"Updated {item.Cards[i]} => {CustomGDO.LegacyGDOIDs[item.Cards[i]]}");
+						BaseMod.InternalLogger.LogInfo($"Updated {item.Cards[i]} => {CustomGDO.LegacyGDOIDs[item.Cards[i]]}");
 						item.Cards[i] = CustomGDO.LegacyGDOIDs[item.Cards[i]];
 					}
 				}

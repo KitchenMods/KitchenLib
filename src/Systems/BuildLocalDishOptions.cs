@@ -60,7 +60,7 @@ namespace KitchenLib.Systems
 			{
 				if (positions.Length <= i)
 				{
-					Main.LogError("Not enough positions for all the dishes!");
+					BaseMod.InternalLogger.LogError("Not enough positions for all the dishes!");
 					break;
 				}
 
