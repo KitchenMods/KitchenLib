@@ -104,7 +104,7 @@ namespace KitchenLib
 		internal static bool cheatsEnabled = false;
 
 		internal static bool _enableDeveloperConsole = false;
-		internal ulong _acceptableEnablerModID = 3776747177;
+		internal ulong _acceptableEnablerModID = 3796126560;
 		internal string _acceptableEnablerAssemblyHash = "ef86f16d498669ee960c1ec9ab63695be4c56079bca7612e3a22513c234ad3d0";
 
 		/// <summary>
@@ -153,9 +153,6 @@ namespace KitchenLib
 			achievementsManager.Load();
 			achievementsManager.Save();
 			*/
-			
-
-			ViewUtils.RegisterView("KitchenLib.Views.SyncMods", typeof(SModSync), typeof(SyncMods));
 
 			
 			switch (manager.GetPreference<PreferenceInt>("achievementNotificatonDisplay").Value)
