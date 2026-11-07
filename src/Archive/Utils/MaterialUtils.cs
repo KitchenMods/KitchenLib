@@ -410,8 +410,14 @@ namespace KitchenLib.Utils
 		/// </summary>
 		/// <param name="gameObject">The GameObject to modify.</param>
 		/// <returns>The modified GameObject</returns>
-		[Obsolete("Please use MaterialManager.AssignMaterialsByNames() instead")]
-		public static GameObject AssignMaterialsByNames(this GameObject gameObject)
+		/// <remarks>
+		/// No longer an extension method: as one, it made <c>gameObject.AssignMaterialsByNames()</c> ambiguous with
+		/// <see cref="MaterialManager.AssignMaterialsByNames"/> in any file using both KitchenLib.Utils and
+		/// KitchenLib.Materials. It stays public with the same signature so mods already compiled against it keep
+		/// working; the obsolete error stops new code calling it.
+		/// </remarks>
+		[Obsolete("Please use MaterialManager.AssignMaterialsByNames() instead (using KitchenLib.Materials)", true)]
+		public static GameObject AssignMaterialsByNames(GameObject gameObject)
 		{
 			BaseMod.ObsoleteCodeWarning("MaterialUtils", "AssignMaterialsByNames");
 			return MaterialManager.AssignMaterialsByNames(gameObject);
